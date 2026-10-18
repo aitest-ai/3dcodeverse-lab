@@ -1,0 +1,57 @@
+name: Sync official 3DCodeVerse source
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-upstream.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror-3dcodeverse
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout working repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Download official source (never execute it)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/gaoypeng/3dcodeverse.git "$RUNNER_TEMP/official-3dcodeverse"
+          git -C "$RUNNER_TEMP/official-3dcodeverse" rev-parse HEAD > "$RUNNER_TEMP/upstream.sha"
+
+      - name: Commit snapshot on isolated mirror branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-remote --exit-code --heads origin upstream-3dcodeverse > /dev/null; then
+            git fetch origin upstream-3dcodeverse
+            git switch -C upstream-3dcodeverse FETCH_HEAD
+          else
+            git switch --orphan upstream-3dcodeverse
+          fi
+
+          # Copy only source. Exclude Git metadata and upstream workflows.
+          rsync -a --delete --exclude='.git/' --exclude='.github/workflows/' "$RUNNER_TEMP/official-3dcodeverse/" ./
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No upstream changes'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Mirror 3DCodeVerse source $(cat "$RUNNER_TEMP/upstream.sha")"
+          git push origin HEAD:refs/heads/upstream-3dcodeverse
+          echo "Synced upstream commit $(cat "$RUNNER_TEMP/upstream.sha") to isolated branch."
