@@ -1,0 +1,235 @@
+"""What deterministic tools produce: builds, measurements, renders, gates."""
+
+from __future__ import annotations
+
+import json
+from collections.abc import Sequence
+from enum import StrEnum
+from typing import Any, Literal
+
+from pydantic import BaseModel, Field
+
+from codeverse3d.contracts.common import Usage, Vec3
+
+
+class Severity(StrEnum):
+    ERROR = "error"  # blocks acceptance; routed to a repair task
+    WARN = "warn"  # shown to judge/agent; does not block
+    INFO = "info"
+
+
+class LintKind(StrEnum):
+    """``data.kind`` of a ``lint:<language>`` finding — what routes a skill (``skills.registry``)
+    and what a cap rule's ``kinds`` are matched against.  One vocabulary for every lint."""
+
+    SYNTAX = "syntax"                        # the file does not parse
+    MISSING_FILE = "missing_file"            # an entry / planned part file is absent
+    FORBIDDEN_IMPORT = "forbidden_import"    # an import the sandbox forbids
+    BAD_IMPORT = "bad_import"                # an import that cannot resolve here (package, URL, escape, missing)
+    SANDBOX = "sandbox"                      # file IO, network, subprocess, DOM, eval, exiting the process
+    HARNESS_OWNED = "harness_owned"          # camera, light, world, renderer, render loop, export
+    API_TRAP = "api_trap"                    # a removed / renamed / context-dependent API
+    UNDEFINED_NAME = "undefined_name"        # a name used and never imported
+    NAMING = "naming"                        # object / link / file naming
+    LAYOUT = "layout"                        # module exports and the multi-file layout
+    PART_NOT_IMPORTED = "part_not_imported"  # a part file nothing imports, so its part is never built
+    LINK_NAME = "link_name"                  # a URDF link no object in model.py is named after
+    URDF_STRUCTURE = "urdf_structure"        # the XML, the root, the link/joint tree
+    URDF_LINK = "urdf_link"                  # a link's visual / collision / mesh
+    URDF_JOINT = "urdf_joint"                # a joint's type, parent/child, axis, limits
+    MIMIC = "mimic"                          # a <mimic> coupling
+    HANG_RISK = "hang_risk"                  # a loop / call that can stall a headless build
+    NONDETERMINISM = "nondeterminism"        # an unseeded random source
+    CENSUS = "census"                        # INFO: what the lint saw
+
+
+#: ``GateFinding.data["kind"]`` of a plan part that is still the skeleton's placeholder box
+#: (``spatial.contract``, D110) — the one gate ERROR the next refine round puts ahead of every
+#: other (``orchestrator.build_refine_instructions``): nothing else about a part matters until it exists
+PLACEHOLDER_PART = "placeholder_part"
+
+
+class GateFinding(BaseModel):
+    gate: str
+    severity: Severity
+    target: str | None = Field(default=None, description="part / zone / joint / file this is about")
+    message: str
+    fix_hint: str = Field(default="", description="concrete, copyable instruction for the fixer")
+    data: dict[str, Any] = Field(default_factory=dict)
+
+    def as_line(
+        self,
+        *,
+        with_gate: bool = False,
+        with_severity: bool = False,
+        with_target: bool = False,
+        with_hint: bool = True,
+    ) -> str:
+        """One presentation line for prompts/reports — no leading ``- `` (callers
+        own their list bullets).  ``message`` is always present; the flags opt in
+        to a ``GATE <gate>:`` prefix, a ``[<severity>]`` tag, a `` [<target>]``
+        suffix and the `` FIX: <fix_hint>`` suffix (default on, when non-empty)."""
+        parts: list[str] = []
+        if with_gate:
+            parts.append(f"GATE {self.gate}:")
+        if with_severity:
+            parts.append(f"[{self.severity.value}]")
+        parts.append(self.message)
+        line = " ".join(parts)
+        if with_target and self.target:
+            line += f" [{self.target}]"
+        if with_hint and self.fix_hint:
+            line += f" FIX: {self.fix_hint}"
+        return line
+
+
+class GateReport(BaseModel):
+    gate: str
+    passed: bool
+    findings: list[GateFinding] = Field(default_factory=list)
+    duration_ms: int = 0
+
+    @classmethod
+    def of(cls, gate: str, findings: Sequence[GateFinding] = (), *, duration_ms: int = 0) -> GateReport:
+        """The report whose verdict is its findings: ``passed`` iff none is an ERROR."""
+        return cls(gate=gate, passed=not any(f.severity == Severity.ERROR for f in findings),
+                   findings=list(findings), duration_ms=duration_ms)
+
+    @property
+    def errors(self) -> list[GateFinding]:
+        return [f for f in self.findings if f.severity == Severity.ERROR]
+
+
+class BuildResult(BaseModel):
+    """Result of executing the raw code and exporting the canonical artifact."""
+
+    ok: bool
+    language: str
+    glb_path: str | None = None
+    extra_paths: dict[str, str] = Field(default_factory=dict, description="stl/step/urdf/blend ...")
+    stdout_tail: str = ""
+    stderr_tail: str = ""
+    error_type: str = ""
+    error_message: str = ""
+    error_file: str = ""
+    error_line: int | None = None
+    duration_ms: int = 0
+    census: dict[str, Any] = Field(default_factory=dict, description="language-native census (objects, materials ...)")
+    gates: list[GateReport] = Field(
+        default_factory=list,
+        description="the build's own gate reports (scene_threejs: scene_probe + shader_preflight; the graphics "
+                    "languages: gl_frames) — tracks/steps appends them to the round's gates, built or not",
+    )
+    harness_failure: bool = Field(
+        default=False,
+        description="the build did not fail on the model's code — the harness could not run it "
+                    "(driver output lost, browser gone). Never handed to the agent as a repair.",
+    )
+
+
+class PartMeasure(BaseModel):
+    name: str
+    bbox_min: Vec3
+    bbox_max: Vec3
+    tri_count: int = 0
+    islands: int = 1
+    volume_m3: float | None = None
+    watertight: bool | None = None
+
+
+class Measurement(BaseModel):
+    """Language-agnostic census computed from the canonical GLB (Y-up, meters)."""
+
+    bbox_min: Vec3
+    bbox_max: Vec3
+    extents: Vec3
+    center: Vec3
+    tri_count: int
+    n_meshes: int
+    n_islands: int
+    parts: list[PartMeasure] = Field(default_factory=list)
+    ground_gap_m: float = Field(default=0.0, description="lowest point minus 0 (negative = below ground)")
+    footprint_offset_m: float = Field(default=0.0, description="xz distance of bbox centre from origin")
+    materials: int = 0
+    frame: str = "y_up_pos_z_front"
+    extra: dict[str, Any] = Field(default_factory=dict)
+
+
+#: every mode the object rig draws (runtime_js/render_glb.mjs MODES, pinned by
+#: tests/spatial_tools/test_tools.py).  The tool layer advertised "depth" from the
+#: first commit; no renderer ever had it.
+RENDER_MODES = ("shaded", "wire", "normals", "silhouette", "clay")
+
+
+class RenderView(BaseModel):
+    name: str
+    path: str
+    mode: str = "shaded"
+    width: int = 0
+    height: int = 0
+    camera_position: Vec3 | None = None
+    look_at: Vec3 | None = None
+    fov: float | None = None
+    time_s: float | None = Field(default=None, description="animation time for scenes")
+    judge: bool | None = Field(
+        default=None,
+        description="True/False once the judge subset is stamped at render time; None = not stamped (legacy rounds)",
+    )
+
+
+class RenderSet(BaseModel):
+    views: list[RenderView] = Field(default_factory=list)
+    contact_sheet: str | None = Field(default=None, description="one labelled grid image of all views")
+    renderer: str = ""
+    duration_ms: int = 0
+    console_errors: list[str] = Field(default_factory=list, description="(scenes) JS/WebGL errors seen")
+    fps: float | None = Field(default=None, description="(scenes) measured frame rate: a record only — it swings with "
+                              "the machine's load and renderer, so no gate or judge reads it (D99)")
+    out_dir: str = Field(default="", description="directory the views (+ views.json/metrics.json) were written to")
+
+# ===================================================================== judgment
+class JudgeIssue(BaseModel):
+    target: str = Field(description="part / zone / joint / asset / 'overall'")
+    kind: Literal[
+        "geometry", "proportion", "detail", "material", "assembly", "articulation",
+        "lighting", "composition", "animation", "effect", "fidelity", "scale", "bug",
+    ]
+    severity: Literal["critical", "major", "minor"]
+    detail: str = Field(description="what is wrong, observable in the renders")
+    evidence: str = Field(default="", description="which view(s) / measurement show it")
+
+
+class ImprovementItem(BaseModel):
+    target: str
+    kind: Literal["geometry", "material", "assembly", "articulation", "lighting", "composition", "animation", "effect", "bug"]
+    instruction: str = Field(description="concrete, actionable change for the builder")
+    priority: int = Field(ge=1, le=5, description="1 = do first")
+    expected_gain: float = Field(default=0.0, ge=0.0, le=1.0)
+
+
+class Judgment(BaseModel):
+    rubric: str
+    judge_backend: str = ""
+    scores: dict[str, float] = Field(description="criterion → 0..1")
+    overall: float = Field(ge=0.0, le=1.0, description="weighted by the rubric (computed in code)")
+    passed: bool
+    summary: str = ""
+    strengths: list[str] = Field(default_factory=list)
+    issues: list[JudgeIssue] = Field(default_factory=list)
+    improvement_plan: list[ImprovementItem] = Field(default_factory=list)
+    acceptance_results: dict[str, bool] = Field(default_factory=dict, description="acceptance item id → verified")
+    n_samples: int = 1
+    score_std: float = 0.0
+    usage: Usage = Field(default_factory=Usage)
+    raw: str = ""
+
+    @property
+    def degraded(self) -> bool:
+        """A judge glitch (an outage, an unparseable verdict), never a score: its 0.0 must not
+        reach a pick or a refine plan (``judges.rubrics.degraded_judgment`` writes one)."""
+        if self.summary.startswith("judge_error:"):
+            return True
+        try:
+            return json.loads(self.raw).get("status") == "degraded"
+        except (json.JSONDecodeError, AttributeError, TypeError):
+            return False

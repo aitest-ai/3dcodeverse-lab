@@ -1,0 +1,164 @@
+"""Browser-backed probes: scene probe, shader preflight."""
+
+from __future__ import annotations
+
+import pytest
+
+from codeverse3d.spatial.probes import probe_scene, run_probe
+from tests.scene_runtime.conftest import needs_browser
+
+pytestmark = [pytest.mark.node, needs_browser]
+
+
+def test_probe_scene_flags_bad_shape_and_cameras(starter_ws):
+    (starter_ws.src / "scene.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export function createScene() { const scene = new THREE.Scene(); scene.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial()));\n"
+        "  return { scene, cameras: [{ name: 'x', position: [1, 1], lookAt: [0, 0, 0] }], update(t) { if (t > 0.1) throw new Error('update boom'); } }; }\n"
+    )
+    gate, census = probe_scene(starter_ws)
+    msgs = " | ".join(f.message for f in gate.findings)
+    assert not gate.passed
+    assert "position must be [x,y,z]" in msgs and "no valid cameras" in msgs
+    assert census == {} or census.get("totals", {}).get("meshes") == 1  # census only when booted; boot fails on cameras here
+    # the host grades each camera problem itself ({severity, text}); nothing re-derives it from the wording
+    (starter_ws.src / "scene.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export function createScene() { const scene = new THREE.Scene(); scene.add(new THREE.AmbientLight());\n"
+        "  return { scene, update() {}, cameras: [{ name: 'x', position: [3, 3, 3], lookAt: [0, 0, 0], fov: 170 },\n"
+        "    { name: 'bad name', position: [3, 3, 3], lookAt: [0, 0, 0] }, { name: 'y', position: [1, 2], lookAt: [0, 0, 0] }] }; }\n"
+    )
+    gate, _ = probe_scene(starter_ws)
+    graded = {f.message: f.severity for f in gate.findings if f.message.startswith("cameras: ")}
+    assert sorted(graded.values()) == ["error", "warn", "warn"], graded
+    assert [m for m, sev in graded.items() if sev == "error"][0].startswith("cameras: cameras[2] position must be")
+
+
+def test_probe_scene_catches_update_throw_and_console_errors(starter_ws):
+    (starter_ws.src / "scene.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export function createScene() { const scene = new THREE.Scene(); scene.add(new THREE.AmbientLight()); scene.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshBasicMaterial()));\n"
+        "  console.error('custom failure 42');\n"
+        "  return { scene, cameras: [{ name: 'x', position: [3, 3, 3], lookAt: [0, 0, 0], fov: 50 }], update(t) { if (t > 0.1) throw new Error('update boom'); } }; }\n"
+    )
+    gate, _ = probe_scene(starter_ws)
+    msgs = " | ".join(f.message for f in gate.errors)
+    assert "update boom" in msgs and "custom failure 42" in msgs
+
+
+def preflight(ws):
+    """The shader_preflight report the build and the ``shader_probe`` tool both read."""
+    return run_probe(ws, compile=True)[1]
+
+
+def test_the_shader_preflight_runs_raw(ws, tmp_path, monkeypatch):
+    """The shader_probe tool once booted with the post chain ON (openHost's default) while the
+    build's probe_scene --compile runs raw, so it compiled — and counted, and would have
+    blamed on the scene — the harness's own GTAO / bloom / grade programs.  Only the chain
+    reads `scene.userData.grade`, so a read of it means the chain was built.  The tool now
+    reports the build's own probe + preflight, which must stay raw."""
+    from codeverse3d.spatial.render_scene import render_scene
+
+    ws.src.mkdir(parents=True, exist_ok=True)
+    (ws.src / "scene.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export function createScene() { const scene = new THREE.Scene(); scene.add(new THREE.AmbientLight());\n"
+        "  scene.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1), new THREE.MeshStandardMaterial()));\n"
+        "  Object.defineProperty(scene.userData, 'grade', { get() { console.error('post chain built'); return undefined; } });\n"
+        "  return { scene, cameras: [{ name: 'x', position: [3, 3, 3], lookAt: [0, 0, 0], fov: 50 }], update() {} }; }\n"
+    )
+    rep = preflight(ws)
+    assert rep.passed and not [f for f in rep.findings if "post chain built" in f.message], [f.message for f in rep.findings]
+    # control: a scene render DOES build the chain, and the read shows up
+    monkeypatch.delenv("C3D_POST", raising=False)
+    rs = render_scene(ws, tmp_path / "control", orbit=False, times=(0.0,), width=160, height=90, fps_seconds=0, sheet=False)
+    assert any("post chain built" in e for e in rs.console_errors), rs.console_errors
+
+
+def test_preflight_maps_patch_and_static_audit_errors_to_file_line(starter_ws):
+    """An onBeforeCompile patch's compile error lands on the patch's own file:line, and
+    the static audit reports a shader file no scene imports, all in one preflight."""
+    (starter_ws.src / "shaders" / "glow.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export function makeGlow(T = THREE) {\n"
+        "  const m = new T.MeshStandardMaterial({ color: 0xff8800 });\n"
+        "  m.onBeforeCompile = (shader) => {\n"
+        "    shader.fragmentShader = shader.fragmentShader.replace('#include <dithering_fragment>', `#include <dithering_fragment>\n"
+        "  gl_FragColor.rgb += vec3(0.2) * missingUniform;`);\n"
+        "  };\n"
+        "  return m;\n"
+        "}\n"
+    )
+    p = starter_ws.src / "zones" / "meadow.js"
+    text = p.read_text().replace(
+        "import { buildWindmill } from '../assets/windmill.js';",
+        "import { buildWindmill } from '../assets/windmill.js';\nimport { makeGlow } from '../shaders/glow.js';",
+    ).replace(
+        "const rock = new THREE.MeshStandardMaterial({ color: 0x7b7b78, roughness: 0.95 });",
+        "const rock = makeGlow(THREE);",
+    )
+    assert "makeGlow(THREE)" in text
+    p.write_text(text)
+    (starter_ws.src / "shaders" / "bad.js").write_text(
+        "export const frag = `\n#version 300 es\nvoid main() { gl_FragColor = vec4(uTime); }`;\n"
+    )
+    rep = preflight(starter_ws)
+    assert not rep.passed
+    glow = [f for f in rep.errors if f.target == "src/shaders/glow.js:6"]
+    assert glow and "missingUniform" in glow[0].message, [(f.target, f.message) for f in rep.errors]
+    kinds = {f.data.get("kind") for f in rep.errors}
+    assert {"version_directive", "undeclared_uniform", "unbound_uniform"} <= kinds
+    assert any(f.target == "src/shaders/bad.js:2" for f in rep.errors)
+
+
+def test_probe_scene_hanging_create_scene_times_out_as_agent_finding(starter_ws):
+    """A hanging createScene times out as an agent finding, not a harness crash."""
+    (starter_ws.src / "scene.js").write_text(
+        "import * as THREE from 'three';\n"
+        "export async function createScene({ THREE: T, renderer, loaders }) {\n"
+        "  const tex = await new Promise((resolve) => loaders.texture.load('/assets/missing.png', resolve));\n"
+        "  return { scene: new THREE.Scene(), cameras: [], update() {} };\n"
+        "}\n"
+    )
+    # createScene gets 0.6 x the driver budget (host_page.createTimeoutMs): 18 s, leaving the
+    # page boot 12 s before the watchdog — at 10 s (6 s + 4 s) a loaded box hit the watchdog first
+    res = probe_scene(starter_ws, timeout_s=30)
+    gate = res.gate
+    assert not gate.passed
+    err = next(f for f in gate.errors if f.data.get("stage") == "createScene")
+    assert "did not resolve within" in err.message and "never settled" in err.message
+    assert "failed to load /assets/missing.png" in err.message
+    assert "createScene({THREE, renderer, loaders})" in err.fix_hint
+    assert res.ok and res.errors == []          # the probe TOOL ran fine (agent-fixable failure)
+    assert not any("harness/driver failure" in f.fix_hint for f in gate.findings)
+
+
+def test_probe_result_tool_semantics(starter_ws, monkeypatch):
+    """Tool success is distinct from agent-fixable gate success."""
+    import codeverse3d.spatial.probes as probes_mod
+    from codeverse3d.spatial.render_scene import NodeResult, SceneRenderError
+
+    def fake_run_ok(script, args, **kw):
+        return NodeResult(0, "", "", {
+            "ok": False,
+            "boot": {"ok": True, "stage": "ready", "cameras": [{"name": "a"}], "camera_problems": []},
+            "update_ok": True, "census": {"totals": {"meshes": 3, "lights": 1}},
+            "console_errors": ["custom failure 42"], "console_warnings": [], "shader_errors": [],
+        }, 5)
+
+    monkeypatch.setattr(probes_mod, "run_scene_script", fake_run_ok)
+    res = probes_mod.probe_scene(starter_ws)
+    assert not res.gate.passed                       # gate truth: the scene has an error
+    assert res.ok and res.errors == []               # tool truth: the probe ran
+    assert any("custom failure 42" in line for line in res.findings)
+
+    def fake_run_crash(script, args, **kw):
+        raise SceneRenderError("probe_scene.mjs failed (exit 3): timeout")
+
+    monkeypatch.setattr(probes_mod, "run_scene_script", fake_run_crash)
+    res2 = probes_mod.probe_scene(starter_ws)
+    assert not res2.gate.passed and not res2.ok
+    assert res2.errors and "could not run" in res2.errors[0]
+    assert res2.gate.errors[0].data.get("harness_failure") is True
+    probe, shaders, _ = probes_mod.run_probe(starter_ws, compile=True)   # the build's probe + preflight
+    assert probe.errors[0].data.get("harness_failure") is True and not shaders.passed and not shaders.findings

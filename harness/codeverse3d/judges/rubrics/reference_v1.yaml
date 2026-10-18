@@ -1,0 +1,157 @@
+name: reference_v1
+version: 1
+track_hint: reference
+pass_threshold: 0.70
+description: >
+  Image-conditioned rubric: the object must match one or more REFERENCE images.  The
+  silhouette criterion is MEASURED in code (IoU of the front render vs the target
+  reference) and shown to the judge; the judge scores the perceptual criteria by
+  comparing reference images to renders side by side.
+
+extra_instructions: >
+  Images labelled REFERENCE are the target the object must reproduce; images labelled
+  VIEW are renders of the generated object.  Compare like with like (the front render
+  against the reference's viewpoint).  The silhouette IoU in the measurement block is a
+  fact computed by the harness — do not re-estimate it; use it to calibrate your
+  proportion judgement.  Ignore background, lighting style and camera framing
+  differences unless the brief asks for them.
+
+criteria:
+  - id: silhouette_match
+    weight: 0.25
+    kind: measured
+    title: Silhouette match (measured)
+    description: >
+      Outline IoU between the front render and the target reference image, computed
+      by the harness; mapped to 0..1 in code.  Shown for calibration only.
+    anchors:
+      "1.0": IoU ≥ 0.85.
+      "0.7": IoU ≈ 0.65.
+      "0.4": IoU ≈ 0.45.
+      "0.1": IoU ≤ 0.27.
+
+  - id: proportions
+    weight: 0.20
+    floor: 0.25
+    title: Proportions vs reference
+    description: >
+      Do the part ratios and overall aspect match the reference — heights, widths,
+      thicknesses, spacing of repeated elements?
+    anchors:
+      "1.0": Ratios match the reference within a few percent everywhere.
+      "0.7": One ratio is visibly off but the object still reads like the reference.
+      "0.4": A clearly wrong ratio changes the character of the object.
+      "0.1": Proportions have little to do with the reference.
+
+  - id: parts_coverage
+    weight: 0.20
+    floor: 0.25
+    title: Parts coverage
+    description: >
+      Is every visible part of the reference present in the render (and no invented
+      extra parts), placed and attached as in the reference?
+    anchors:
+      "1.0": Every reference part is present and correctly placed; nothing invented.
+      "0.7": One minor part is missing or simplified.
+      "0.4": A major part is missing, or an invented part changes the object.
+      "0.1": Most reference parts are missing.
+
+  - id: material_color
+    weight: 0.15
+    materials: true
+    title: Material and colour
+    description: >
+      Do the colours and material types match the reference per part (wood vs metal,
+      matte vs glossy, the actual hues)?
+    anchors:
+      "1.0": Per-part colours and material types match the reference.
+      "0.7": Colours close; one part's material type differs.
+      "0.4": A prominent part has a clearly wrong colour or material.
+      "0.1": Colours/materials unrelated to the reference.
+
+  - id: detail
+    weight: 0.10
+    title: Detail fidelity
+    description: >
+      Are the reference's visible details (mouldings, hardware, patterns, edges)
+      reproduced as GEOMETRY rather than smoothed away or merely painted on?  Count
+      how many distinct details the reference shows and how many of them exist as
+      shape in the render.  Colour alone is never detail here — a printed-on panel
+      line is not a modelled one; material_color scores the colours.
+    anchors:
+      "1.0": Nearly every detail the reference shows exists as modelled shape, at the reference's own scale (hardware, mouldings, edge profiles) — visible in the geometry-only montage, not only in the shaded views.
+      "0.85": Most reference details are modelled; a few fine ones are simplified.
+      "0.7": Major details present, fine ones smoothed.
+      "0.55": A couple of details modelled; the rest suggested by colour only.
+      "0.4": Only the gross form; details absent.
+      "0.1": A primitive approximation.
+
+  - id: cleanliness
+    weight: 0.10
+    floor: 0.30
+    title: Cleanliness
+    description: >
+      No artefacts — z-fighting, black faces, holes, slivers, floating parts.
+    anchors:
+      "1.0": No artefact anywhere, including at detail scale in a crop — no cracks at joins, no coplanar flicker, no stray slivers, no coarse facets on a surface that should read as curved.
+      "0.85": Clean at object scale; one blemish only findable in a crop.
+      "0.7": One minor artefact.
+      "0.4": A clearly visible artefact.
+      "0.1": Artefacts dominate.
+
+caps:
+  - id: build_error
+    when: gate
+    gate: "build*"
+    severity: error
+    cap: 0.0
+  # `connectivity` is the only gate on this track that emits floating / penetration
+  # ERRORs (2026-08-30); watching it alone keeps the cap and frees the veto from
+  # unrelated failing gates (judges/rubrics.measured_absent).
+  - id: floating_part
+    when: gate
+    gate: "connectivity"
+    severity: error
+    kinds: [floating, no_contact, disconnected, unsupported, island]
+    cap: 0.6
+  - id: penetration_error
+    when: gate
+    gate: "connectivity"
+    severity: error
+    kinds: [penetrat, intersect, overlap, collision]
+    cap: 0.7
+    measures: [interpenetration]
+  - id: missing_must_acceptance
+    when: acceptance
+    cap: 0.6
+    graded: true
+    note: 0.6 + 0.4 * verified/total must items (2026-08-30, as static_object_v1); pass/fail unchanged
+
+# Binary checklist (judge answers, code scores: penalty subtracted, cap applied).
+defects:
+  - id: wrong_object
+    text: The renders show a different object than the plan entry / reference (or nothing recognisable).
+    cap: 0.25
+  - id: floating_part
+    text: A part visibly hovers or is detached from the rest (daylight between it and its support).
+    penalty: 0.10
+    cap: 0.60
+  - id: interpenetration
+    text: A part visibly passes through another in a render (a rail poking out of the far side of a leg, a leg through the seat) or a gate ERROR reports it; weld overlaps of a few mm reported as gate warnings are NOT this defect.
+    penalty: 0.08
+    cap: 0.70
+  - id: unfinished_side
+    text: The back / underside / a side is missing, open or untextured where the front is finished.
+    penalty: 0.08
+    cap: 0.65
+  - id: primitive_only
+    text: Every part is an unmodified box / cylinder / sphere with sharp edges although the reference shows shaped edges, profiles or cut-outs.
+    penalty: 0.08
+  - id: untextured_flat
+    text: Default grey / magenta placeholder materials are visible, or surfaces are unlit flat fills with no shading response. A uniform but sensible colour (an all-walnut chair, an all-oak cabinet) is NOT this defect.
+    penalty: 0.05
+    cap: 0.75
+  - id: holes_or_inverted_faces
+    text: Missing faces, see-through walls or black inverted faces are visible.
+    penalty: 0.08
+    cap: 0.60

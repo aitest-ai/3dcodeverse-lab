@@ -1,0 +1,66 @@
+"""render_glb (node + headless Chrome) and offline guards."""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import pytest
+from PIL import Image
+
+from codeverse3d.conventions import OBJECT_VIEWS_QUICK, ViewPreset
+from codeverse3d.spatial.render import RenderError, render_glb
+
+
+def test_render_glb_offline_validation(tmp_path: Path):
+    with pytest.raises(RenderError):
+        render_glb(tmp_path / "missing.glb", tmp_path / "out")
+    fake = tmp_path / "x.glb"
+    fake.write_bytes(b"glTF" + b"\0" * 16)
+    with pytest.raises(RenderError, match="mode"):
+        render_glb(fake, tmp_path / "out", mode="xray")
+    with pytest.raises(RenderError, match="background"):
+        render_glb(fake, tmp_path / "out", background="blue")
+    with pytest.raises(RenderError, match="no views"):
+        render_glb(fake, tmp_path / "out", views=[])
+
+
+@pytest.mark.node
+def test_render_views_modes_isolate_and_cache(stool_glb: Path, tmp_path: Path):
+    out = tmp_path / "shaded"
+    rs = render_glb(stool_glb, out, views=OBJECT_VIEWS_QUICK, width=256, height=256, use_cache=True)
+    assert [v.name for v in rs.views] == [v.name for v in OBJECT_VIEWS_QUICK]
+    assert rs.renderer and rs.contact_sheet and Path(rs.contact_sheet).is_file()
+    for v in rs.views:
+        assert Path(v.path).is_file() and v.mode == "shaded" and v.camera_position is not None and v.fov == 35
+        with Image.open(v.path) as im:
+            assert im.size == (256, 256)
+    meta = json.loads((out / "views.json").read_text())
+    assert meta["ok"] and len(meta["views"]) == 4
+    # the front view: camera on +Z, looking at the bbox centre
+    front = next(v for v in rs.views if v.name == "front")
+    assert front.camera_position[2] > 0.5 and abs(front.camera_position[0]) < 1e-6
+    # cached re-render lands in a new directory without calling node
+    out2 = tmp_path / "shaded2"
+    rs2 = render_glb(stool_glb, out2, views=OBJECT_VIEWS_QUICK, width=256, height=256)
+    assert json.loads((out2 / "views.json").read_text()).get("from_cache") is True
+    assert rs2.views[0].camera_position == rs.views[0].camera_position
+
+    sil = render_glb(stool_glb, tmp_path / "sil", views=[ViewPreset("front", 0, 8)], mode="silhouette", width=128, height=128, sheet=False)
+    with Image.open(sil.views[0].path) as im:
+        px = list(im.convert("L").getdata())
+        # silhouette mode must be separable (compare_silhouette thresholds it)
+        dark = sum(1 for v in px if v < 32)
+        light = sum(1 for v in px if v > 223)
+        mid = len(px) - dark - light
+        assert dark > 300 and light > 3000
+        assert mid < 0.08 * len(px), f"silhouette is not separable: {mid} mid-tone px of {len(px)}"
+    assert sil.contact_sheet is None
+
+    iso = render_glb(stool_glb, tmp_path / "iso", views=[ViewPreset("front", 0, 8)], isolate=["Legs"], width=128, height=128, sheet=False)
+    assert Path(iso.views[0].path).is_file()
+    with pytest.raises(RenderError, match="isolate hid everything|nothing visible"):
+        render_glb(stool_glb, tmp_path / "iso_bad", views=[ViewPreset("front", 0, 8)], isolate=["NotAPart"], width=64, height=64, sheet=False)
+
+    ex = render_glb(stool_glb, tmp_path / "explode", views=[ViewPreset("front", 0, 8)], explode=0.5, mode="clay", width=128, height=128, sheet=False)
+    assert Path(ex.views[0].path).is_file()

@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "3dcodeverse"
+version = "0.1.0"
+description = "3dcodeverse: a data-flywheel harness for LLM-written 3D code (Blender / CadQuery / Three.js / URDF / GLSL) across static objects, articulated objects and scenes."
+readme = "README.md"
+# One fixed version: 3.13 (owner's decision 2026-08-26 — no floor, no matrix; the
+# one fixed version, 3.13 (owner, 2026-08-26): developed and measured on it; no CI (tests run locally before a push).
+# Nothing in the package uses a 3.11+ stdlib name directly — the three that were used
+# old codeverse3d/_compat.py shims are gone: StrEnum, datetime.UTC, tomllib are stdlib here).
+requires-python = ">=3.13"
+license = { text = "Apache-2.0" }
+classifiers = [
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: POSIX :: Linux",
+  "Operating System :: MacOS",
+]
+dependencies = [
+  "pydantic>=2.7",
+  "pydantic-settings>=2.3",
+  "typer>=0.12",
+  "click>=8.1",   # imported directly by cli/cost_cmd.py (typer re-exports it, but we use it by name)
+  "rich>=13",
+  "jinja2>=3.1",
+  "pyyaml>=6",
+  "numpy>=1.26",
+  "trimesh>=4.4",
+  "python-fcl>=0.7",
+  "pillow>=10",
+  "google-genai>=1.0",
+  "anthropic>=0.40",
+  "openai>=1.40",
+]
+
+[project.optional-dependencies]
+# What each extra unlocks is documented in docs/INSTALL.md §4.
+cad = ["cadquery>=2.4"]                                   # language `cadquery`
+urdf = ["yourdfpy>=0.0.56", "scipy>=1.11"]                # track `articulated_object` (urdf_blender)
+graphics = ["moderngl>=5.8"]                              # track `graphics` (glsl_shader / opengl_python)
+mesh = ["shapely>=2.0", "networkx>=3.2", "manifold3d>=2.3", "matplotlib>=3.8"]  # cross_section area, mesh split, joint-sweep booleans, judge slices (D48)
+mcp = ["mcp>=1.0"]                                        # `3dcode mcp` spatial-tool server for the agentic CLIs
+flywheel = ["pyarrow>=15"]                                # `3dcode flywheel export --pack` (parquet)
+all = ["3dcodeverse[cad,urdf,graphics,mesh,mcp,flywheel]"]
+dev = ["pytest>=8", "pytest-timeout>=2.3", "pytest-xdist>=3.6", "ruff>=0.5", "pyarrow>=15",
+       # the Agent Skills reference validator (CLI: `agentskills`).  Pure python,
+       # click + strictyaml.  tests/skills/test_spec_compliance.py runs it over every
+       # bundle and skips cleanly when it is absent, so it is dev-only on purpose:
+       # the spec is the arbiter of our library, not a runtime dependency of it.
+       "skills-ref>=0.1.1"]
+
+[project.scripts]
+3dcode = "codeverse3d.cli.main:app"
+3dcodeverse = "codeverse3d.cli.main:app"
+
+[tool.setuptools.packages.find]
+include = ["codeverse3d*"]
+
+[tool.setuptools.package-data]
+# Every non-python file a runtime reads at call time.  The scene starter tree was once
+# missing and `spatial/js/*` matched nothing at all (no such directory), so a wheel
+# install shipped no starter files: skeleton.write_example() rglob'd an absent
+# directory and wrote ZERO files while reporting success.  tests/core/test_portability.py
+# fails on a glob that matches nothing (languages/**/*.md died with the last README).
+# `skills/**/*` carries the SKILL.md bundles + their references/: an installed wheel that
+# ships none of them routes an empty set, and the failure is silent (the run still passes,
+# the skill simply never appears).  tests/skills/test_packaging.py builds a wheel and
+# asserts the files are in it.
+codeverse3d = ["prompts/**/*", "judges/rubrics/*.yaml", "languages/**/wrappers/*",
+             "languages/**/starter/**/*", "skills/**/*"]
+
+[tool.setuptools.exclude-package-data]
+codeverse3d = ["**/__pycache__/*"]   # a wheel must not carry the build host's bytecode
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"  # == requires-python: one fixed version (owner, 2026-08-26)
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 600
+# Live tests are OPT-IN (`pytest -m live`).  Without this, a bare `pytest` on a machine
+# that happens to have API keys configured fires real requests, and during a provider
+# outage it hangs instead of failing — which is exactly what happened on 2026-08-24.
+# Everyone's default run is the offline suite (run locally before every push; there is no CI).
+# -n auto: the offline suite is ~1 900 mostly-independent tests and this box has 24
+# cores — serial it is ~3 min, parallel ~15 s.  -p no:randomly is NOT set: xdist
+# distributes by file, and every test that touches shared state already uses tmp_path.
+addopts = ["-m", "not live", "-n", "auto", "--dist", "worksteal"]
+markers = [
+  "live: needs network + API keys (deselect with -m 'not live')",
+  "blender: needs a Blender binary",
+  "node: needs node + runtime_js deps",
+  "slow: builds or validates a distributable artifact (deselect with -m 'not slow')",
+]

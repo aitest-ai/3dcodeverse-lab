@@ -1,0 +1,84 @@
+"""Offline tests for the cadquery lint."""
+
+from __future__ import annotations
+
+from codeverse3d.contracts.artifacts import Severity
+from codeverse3d.languages.cadquery import lint_cadquery_source
+
+
+def _msgs(r, sev=None):
+    return [f.message for f in r.findings if sev is None or f.severity == sev]
+
+
+def test_missing_result_guarded_result_and_syntax_error() -> None:
+    r = lint_cadquery_source("import cadquery as cq\nx = cq.Workplane().box(1, 1, 1)\n")
+    assert not r.passed and any("module-level `result`" in m for m in _msgs(r, Severity.ERROR))
+    r = lint_cadquery_source("import cadquery as cq\nif __name__ == '__main__':\n    result = cq.Workplane().box(1, 1, 1)\n")
+    f = [x for x in r.findings if "result" in x.message][0]
+    assert f.severity == Severity.ERROR and "NOT under" in f.fix_hint
+    r = lint_cadquery_source("import cadquery as cq\nresult = (\n")
+    assert not r.passed and "SyntaxError" in r.findings[0].message
+
+
+def test_forbidden_imports_and_calls() -> None:
+    src = ("import cadquery as cq\nimport os\nfrom OCP.BRepPrimAPI import BRepPrimAPI_MakeBox\nresult = cq.Workplane().box(1, 1, 1)\n"
+           "show_object(result)\ncq.exporters.export(result, 'x.step')\nresult.save('x.step')\nopen('f', 'w')\n")
+    r = lint_cadquery_source(src)
+    e = _msgs(r, Severity.ERROR)
+    assert any("`os`" in m for m in e) and any("`OCP`" in m for m in e)
+    assert any("show_object" in m for m in e) and any("cq.exporters.export" in m for m in e)
+    assert any("result.save" in m for m in e) and any("open()" in m for m in e)
+
+
+def test_pitfalls() -> None:
+    src = ("import cadquery as cq\nimport math\ns = cq.Solid.makeSphere(1)\nw = cq.Workplane().box(1, 1, 1).rotate((0, 0, 0), (0, 0, 1), math.pi / 2)\n"
+           "result = cq.Assembly()\nresult.add(w)\nresult.add(s, name='my_part')\n")
+    r = lint_cadquery_source(src)
+    w, e = _msgs(r, Severity.WARN), _msgs(r, Severity.ERROR)
+    assert any("makeSphere" in m for m in w)
+    assert any("DEGREES" in m for m in e)
+    assert any("without name=" in m for m in w)
+    assert any("not PascalCase" in m and "my_part" in m for m in w)
+
+
+def _rotate_src(expr: str, prelude: str = "") -> str:
+    return (f"import cadquery as cq\nimport math\nimport numpy as np\n{prelude}n_pins, pitch_deg, spindles, i, a = 6, 30.0, 5, 2, 0.4\n"
+            f"w = cq.Workplane().box(1, 1, 1).rotate((0, 0, 0), (0, 0, 1), {expr})\nresult = cq.Assembly()\nresult.add(w, name='Part')\n")
+
+
+def test_rotate_angle_expression_table() -> None:
+    degrees = ("i * 360 / n_pins", "i * pitch_deg", "360 / spindles", "math.degrees(a) * 2",
+               "a * 180 / math.pi", "180 / math.pi * a", "360 * a / (2 * math.pi)",
+               "np.rad2deg(a) / 2", "math.degrees(math.pi / 4)", "90", "pitch_deg")
+    radians = ("math.pi / 2", "i * 2 * math.pi / n_pins", "math.pi", "math.radians(30) * 2",
+               "math.radians(a)", "math.tau / 4", "a * math.pi / 180", "np.deg2rad(30)", "-math.pi / 2")
+    for expr in degrees:
+        r = lint_cadquery_source(_rotate_src(expr))
+        assert r.passed and not any("DEGREES" in m for m in _msgs(r)), (expr, _msgs(r))
+    for expr in radians:
+        r = lint_cadquery_source(_rotate_src(expr))
+        assert not r.passed and any("DEGREES" in m for m in _msgs(r, Severity.ERROR)), (expr, _msgs(r))
+
+
+def test_fillet_and_chamfer_calls_are_not_findings() -> None:
+    """The build reports an OCC refusal where it happens; the lint no longer emits a per-call INFO
+    carrying fillet practices (D106 rule: the lint states facts the build measures, never a template)."""
+    r = lint_cadquery_source("import cadquery as cq\nw = cq.Workplane().box(1, 1, 1).edges('|Z').fillet(0.1).edges('>Z').chamfer(0.01)\n"
+                             "result = cq.Assembly()\nresult.add(w, name='Part', color=cq.Color(0.5, 0.5, 0.5))\n")
+    assert r.passed and not r.findings, [f.message for f in r.findings]
+
+
+def test_contract_import_list_matches_the_lint() -> None:
+    """One rule, one text: the contract's Imports section names every module the lint allows and every
+    module it forbids — neither list may drift from ``ALLOWED_IMPORTS`` / ``FORBIDDEN_IMPORTS``."""
+    import re
+    from pathlib import Path
+
+    from codeverse3d.languages.cadquery import ALLOWED_IMPORTS, FORBIDDEN_IMPORTS
+
+    text = Path(__file__).resolve().parents[2] / "codeverse3d" / "prompts" / "cadquery" / "contract.md"
+    section = text.read_text().split("## Imports", 1)[1].split("\n## ", 1)[0]
+    allowed_para, forbidden_para = section.split("* Forbidden (lint ERROR):", 1)
+    named = lambda s: set(re.findall(r"`([A-Za-z_][A-Za-z0-9_]*)`", s))  # noqa: E731
+    assert named(allowed_para) >= ALLOWED_IMPORTS - {"cq", "np", "__future__"}, sorted(ALLOWED_IMPORTS - named(allowed_para))
+    assert named(forbidden_para.split("* Forbidden calls", 1)[0]) == set(FORBIDDEN_IMPORTS)

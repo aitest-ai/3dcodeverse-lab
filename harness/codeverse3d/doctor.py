@@ -1,0 +1,398 @@
+"""Environment checks behind ``3dcode doctor`` — python deps, Blender, node/three/
+puppeteer, the GPU probe, keys, the machine-wide in-flight slots, the vendor CLIs, MCP
+and the skill library wiring.  Moved out of ``cli/`` 2026-08-28: only the typer
+shim is a CLI concern (tests/install imports these checks as documentation facts).
+"""
+
+from __future__ import annotations
+
+import importlib
+import re
+import shutil
+from pathlib import Path
+
+from codeverse3d.config import BLENDER_MIN, get_settings
+from codeverse3d.proc import read_json_or_none, run_subprocess, version_line
+
+Row = tuple[str, str, str]
+_PY_DEPS = ("pydantic", "pydantic_settings", "typer", "rich", "jinja2", "yaml", "numpy", "trimesh", "fcl", "PIL", "pyarrow",
+            "scipy", "shapely", "networkx", "manifold3d", "matplotlib", "google.genai", "anthropic", "openai",
+            "yourdfpy", "mcp", "moderngl", "cadquery")
+#: modules that come from an OPTIONAL extra: missing means one track is unavailable, not a
+#: broken install, so they are a WARN naming the extra to install.  `moderngl` and `cadquery`
+#: were absent from the list entirely until 2026-08-24, so an environment installed without
+#: [graphics] passed doctor "21/21 importable" and then failed in the graphics track with
+#: "no usable OpenGL context: No module named 'moderngl'" — a missing pip package reported
+#: as a GPU/driver problem (docs/INSTALL.md §4 promises every extra is listed here).
+#: EVERY module of every extra must be here, or the base install misreports itself: the
+#: map was missing scipy/networkx/pyarrow, so a fresh clone installed exactly as
+#: docs/INSTALL.md §1 documents (no extras) got `python deps FAIL 14/23` — "your install
+#: is broken" for an install that is correct — and a remedy that named four of the five
+#: extras and could not clear the row.  Verified on a 3.13 clean clone, 2026-08-24.
+_OPTIONAL_DEPS = {"manifold3d": "mesh", "shapely": "mesh", "networkx": "mesh", "matplotlib": "mesh",
+                  "yourdfpy": "urdf", "scipy": "urdf", "mcp": "mcp",
+                  "moderngl": "graphics", "cadquery": "cad", "pyarrow": "flywheel"}
+_CLI_TIMEOUT = 25
+
+
+def _ver(cmd: list[str], timeout: int = _CLI_TIMEOUT) -> tuple[bool, str]:
+    if not shutil.which(cmd[0]) and not Path(cmd[0]).is_file():
+        return False, "not found"
+    rc, first = version_line(cmd, timeout=timeout)
+    if rc is None:
+        return False, first
+    return rc == 0, first[:100] or f"exit {rc}"
+
+
+def check_python_deps() -> list[Row]:
+    missing, present = [], []
+    for mod in _PY_DEPS:
+        try:
+            importlib.import_module(mod)
+            present.append(mod)
+        except Exception:  # ImportError or a broken native lib
+            missing.append(mod)
+    import sys
+
+    rows: list[Row] = [("python", "OK", sys.version.split()[0] + f" ({sys.executable})")]
+    status = "OK" if not missing else ("WARN" if set(missing) <= set(_OPTIONAL_DEPS) else "FAIL")
+    detail = f"{len(present)}/{len(_PY_DEPS)} importable" + (f"; missing: {', '.join(missing)}" if missing else "")
+    extras = sorted({_OPTIONAL_DEPS[m] for m in missing if m in _OPTIONAL_DEPS})
+    if extras:  # name the fix, not just the symptom
+        detail += f"; fix: pip install -e 'harness[{','.join(extras)}]'"
+    rows.append(("python deps", status, detail))
+    return rows
+
+
+def check_blender() -> list[Row]:
+    s = get_settings()
+    b = s.resolve_blender()
+    if not b:
+        return [("blender", "FAIL", f"C3D_BINARIES__BLENDER={s.binaries.blender} is not an executable"
+                 if s.binaries.blender else "no binary (set C3D_BINARIES__BLENDER or put blender-5.2 on PATH)")]
+    okk, v = _ver([b, "--version"], timeout=60)
+    m = re.search(r"Blender (\d+)\.(\d+)", v)
+    if okk and m and (int(m[1]), int(m[2])) < BLENDER_MIN:
+        return [("blender", "FAIL", f"{v} @ {b} — too old, need >= {'.'.join(map(str, BLENDER_MIN))}")]
+    return [("blender", "OK" if okk else "FAIL", f"{v} @ {b}")]
+
+
+#: one headless Blender run: the Cycles CUDA device list, one timed 256x144 32-spp Cycles frame on it
+#: (the judged-frame fast path: GPU OIDN + persistent data, render_bpy_scene.setup_render) and (with
+#: EEVEE) a 32x18 EEVEE frame whose GL renderer string says whether the d3d12 env put it on the GPU
+#: or it fell to llvmpipe.  OptiX is never probed (no libnvoptix under WSL2: init error 7804, and
+#: switching the compute device type back afterwards crashes Blender 5.2.2).
+_BLENDER_RENDER_PROBE = """
+import json, sys, time
+import bpy
+out = {}
+p = bpy.context.preferences.addons["cycles"].preferences
+try:
+    p.compute_device_type = "CUDA"
+    p.refresh_devices()
+    out["cuda"] = [d.name for d in p.devices if d.type == "CUDA"]
+except Exception as e:
+    out["cuda"], out["cuda_error"] = [], str(e)[:200]
+if out["cuda"]:
+    try:
+        for d in p.devices:
+            d.use = d.type == "CUDA"
+        sc = bpy.context.scene
+        sc.render.engine = "CYCLES"
+        sc.cycles.device = "GPU"
+        sc.cycles.samples = 32
+        sc.cycles.use_adaptive_sampling = True
+        sc.cycles.use_denoising = True
+        sc.cycles.denoiser = "OPENIMAGEDENOISE"
+        sc.cycles.denoising_use_gpu = True
+        sc.render.use_persistent_data = True
+        sc.render.resolution_x, sc.render.resolution_y = 256, 144
+        t = time.perf_counter()
+        bpy.ops.render.render()
+        out["cycles_ms"] = int((time.perf_counter() - t) * 1000)
+    except Exception as e:
+        out["cycles_error"] = str(e)[:200]
+if "--eevee" in sys.argv:
+    try:
+        sc = bpy.context.scene
+        sc.render.engine = "BLENDER_EEVEE"
+        sc.render.resolution_x, sc.render.resolution_y = 32, 18
+        sc.eevee.taa_render_samples = 1
+        bpy.ops.render.render()
+        import gpu
+        out["gl"] = gpu.platform.renderer_get()
+    except Exception as e:
+        out["gl_error"] = str(e)[:200]
+print("C3D_DOCTOR " + json.dumps(out))
+"""
+
+
+def check_blender_render(*, eevee: bool = True, timeout_s: int = 120) -> list[Row]:
+    """What scene_blender's judged frames render on (owner D1/D8): Cycles on CUDA or on the CPU,
+    EEVEE on the GPU or silently on llvmpipe, and the machine-wide GPU render slots."""
+    import json
+
+    from codeverse3d.languages.blender import blender_env
+    from codeverse3d.spatial.gl_render import GPU_ENV
+    from codeverse3d.spatial.render_blender import gpu_slots
+
+    s = get_settings()
+    b = s.resolve_blender()
+    if not b:
+        return [("blender render", "SKIP", "no Blender binary")]
+    cmd = [b, "-b", "--factory-startup", "--python-expr", _BLENDER_RENDER_PROBE, "--"] + (["--eevee"] if eevee else [])
+    try:
+        proc = run_subprocess(cmd, cwd=Path.cwd(), env={**blender_env(), **GPU_ENV}, timeout_s=timeout_s)
+    except OSError as e:
+        return [("blender render", "FAIL", f"could not run {b}: {e}")]
+    line = next((ln for ln in reversed(proc.stdout.splitlines()) if ln.startswith("C3D_DOCTOR ")), "")
+    if proc.timed_out or not line:
+        why = f"timed out after {timeout_s}s" if proc.timed_out else f"exit {proc.returncode}, no probe line"
+        return [("blender render", "FAIL", why)]
+    res = json.loads(line.removeprefix("C3D_DOCTOR "))
+    r = s.render
+    cuda = res.get("cuda") or []
+    timed = (f", 32 spp 256x144 frame {res['cycles_ms']} ms (GPU OIDN + persistent data)" if res.get("cycles_ms") is not None
+             else f", timed frame failed: {res['cycles_error']}" if res.get("cycles_error") else "")
+    rows: list[Row] = [(
+        "blender cycles", "OK" if cuda and not res.get("cycles_error") else "WARN",
+        (f"CUDA: {', '.join(cuda)}{timed}" if cuda else f"no CUDA device{' (' + res['cuda_error'] + ')' if res.get('cuda_error') else ''}"
+         " — scene_blender frames render on the CPU (~4x slower)")
+        + f"; judged frames: {r.blender_engine} {r.blender_samples} spp, device {r.blender_device}, "
+          f"frame cap {r.blender_frame_time_limit_s:g}s")]
+    if eevee:
+        gl = str(res.get("gl") or "")
+        if res.get("gl_error") or not gl:
+            rows.append(("blender eevee", "FAIL", f"EEVEE smoke frame failed: {res.get('gl_error', 'no GL renderer')}"))
+        else:
+            soft = "llvmpipe" in gl.lower()
+            rows.append(("blender eevee", "WARN" if soft else "OK",
+                         f"{gl} — software GL: EEVEE would be ~10x slower (the Cycles default is unaffected)" if soft
+                         else f"GPU (Mesa d3d12 env): {gl}"))
+    slots = gpu_slots(s)
+    busy = slots.busy()
+    rows.append(("blender gpu slots", "WARN" if busy >= slots.n else "OK",
+                 f"{busy}/{slots.n} busy machine-wide ({slots.root}); a render waits {r.blender_gpu_wait_s:g}s, then the CPU"))
+    return rows
+
+
+def check_node() -> list[Row]:
+    from codeverse3d.spatial.node import NODE_MIN_STR, node_version_error, parse_node_version
+
+    s = get_settings()
+    rows: list[Row] = []
+    okk, v = _ver([s.binaries.node, "--version"])
+    too_old = node_version_error(parse_node_version(v)) if okk else ""
+    if too_old:
+        rows.append(("node", "FAIL", f"{v} — too old, need >= {NODE_MIN_STR} (nvm install --lts)"))
+    else:
+        rows.append(("node", "OK" if okk else "FAIL", v if okk else f"{v} (need >= {NODE_MIN_STR})"))
+    try:
+        rj = s.runtime_js_dir()
+    except RuntimeError as e:   # non-editable install without C3D_RUNTIME_JS
+        rows.append(("runtime_js", "FAIL", str(e)))
+        return rows
+    # a missing, torn or non-object package.json is the same broken install: never a crash
+    three = read_json_or_none(rj / "node_modules" / "three" / "package.json")
+    pup = read_json_or_none(rj / "node_modules" / "puppeteer" / "package.json")
+    if three is not None:
+        rows.append(("three", "OK", f"{three.get('version', '?')} ({rj / 'node_modules'})"))
+    else:
+        rows.append(("three", "FAIL", f"runtime_js/node_modules/three missing or unreadable — run `npm install` in {rj}"))
+    if pup is not None:
+        from codeverse3d.spatial.node import puppeteer_cache_dir
+
+        cache = puppeteer_cache_dir()
+        chrome = any(cache.rglob("chrome")) if cache.is_dir() else False
+        rows.append(("puppeteer", "OK" if chrome else "WARN",
+                     f"v{pup.get('version', '?')}; chrome cache {'found' if chrome else 'missing'} ({cache})"))
+    else:
+        rows.append(("puppeteer", "FAIL", "not installed in runtime_js (or its package.json is unreadable)"))
+    return rows
+
+
+#: ``release()``, never ``browser.close()``: by default the handle is the daemon's SHARED
+#: browser, and close() sends CDP Browser.close, which takes it down under any concurrent
+#: run rendering on it.  release() disconnects a shared browser and closes an owned one.
+_PROBE_JS = (
+    "const {launchBrowser}=require(process.argv[1]);"
+    "launchBrowser({gpu:'auto'}).then(async r=>{console.log(JSON.stringify({gpu:r.gpu,renderer:r.renderer}));"
+    "await r.release();process.exit(0)}).catch(e=>{console.log(JSON.stringify({error:String(e&&e.message||e)}));process.exit(1)})"
+)
+
+
+def check_gpu_probe(timeout_s: int = 120) -> list[Row]:
+    """Launch headless Chrome through runtime_js/gpu_launch.cjs and report the WebGL renderer."""
+    from codeverse3d.spatial.node import parse_last_json
+
+    s = get_settings()
+    try:
+        rj = s.runtime_js_dir()
+    except RuntimeError as e:
+        return [("chrome webgl", "FAIL", str(e))]
+    launcher = rj / "gpu_launch.cjs"
+    if not launcher.is_file():
+        return [("chrome webgl", "SKIP", f"{launcher} missing (spatial render package not installed yet)")]
+    cmd = [s.binaries.node, "-e", _PROBE_JS, str(launcher)]
+    try:
+        proc = run_subprocess(cmd, cwd=rj, timeout_s=timeout_s)
+    except OSError as e:
+        return [("chrome webgl", "FAIL", str(e))]
+    if proc.timed_out:
+        return [("chrome webgl", "FAIL", f"probe timed out after {timeout_s}s")]
+    res = parse_last_json(proc.stdout) or {}
+    if "error" in res or proc.returncode != 0:
+        detail = str(res.get("error") or (proc.stderr.strip().splitlines() or ["unknown error"])[-1])
+        return [("chrome webgl", "FAIL", detail[:160])]
+    renderer = str(res.get("renderer", "?"))
+    return [("chrome webgl", "OK" if res.get("gpu") else "WARN",
+             f"{'GPU' if res.get('gpu') else 'CPU/software'}: {renderer[:120]}")]
+
+
+def check_pool(live: bool) -> list[Row]:
+    """The key pool's live picture: in-flight, and the outcomes this process has seen.
+
+    Only meaningful once something has used the pool this process, so it is part
+    of ``--live`` (``check_keys`` makes one call just before)."""
+    from codeverse3d.models.gemini import shared_pool
+
+    s = get_settings()
+    if not live or not s.gemini_api_keys:
+        return []
+    st = shared_pool(list(s.gemini_api_keys)).stats()
+    return [(
+        "gemini pool", "WARN" if st["n_dead"] else "OK",
+        f"{st['n_keys']} keys · in-flight {st['in_flight']} (peak {st['peak_in_flight']}) · "
+        f"{st['acquired']} acquired, {st['ok']} ok, {st['429']} x429, {st['5xx']} x5xx, "
+        f"{st['n_dead']} dead, {st['n_cooling']} cooling (this process)",
+    )]
+
+
+def check_keys(live: bool) -> list[Row]:
+    s = get_settings()
+    n = len(s.gemini_api_keys)
+    rows: list[Row] = [("gemini keys", "OK" if n else "FAIL", f"{n} key(s)")]
+    if n:
+        from codeverse3d.models.gemini import shared_pool
+
+        slots = shared_pool(list(s.gemini_api_keys)).slots
+        if slots is None:
+            rows.append(("in-flight slots", "WARN", "max_in_flight=0: no cap on concurrent model calls"))
+        else:
+            busy = slots.busy()
+            rows.append(("in-flight slots", "WARN" if busy >= slots.n else "OK",
+                         f"{busy}/{slots.n} busy machine-wide ({slots.root}; docs/COST.md §23)"))
+    rows.append(("anthropic key", "OK" if s.anthropic_api_key else "WARN", "set" if s.anthropic_api_key else "not set (anthropic:* backends unavailable)"))
+    rows.append(("openai key", "OK" if s.openai_api_key else "WARN", "set" if s.openai_api_key else "not set (openai:* backends unavailable)"))
+    if live and n:
+        from codeverse3d.models.health import probe
+
+        h = probe(sample=1)   # one workload-sized call, no retries; never raises
+        rows.append(("gemini live call", "OK" if h.ok else "FAIL", str(h)))
+    return rows
+
+
+def check_clis() -> list[Row]:
+    s = get_settings()
+    rows: list[Row] = []
+    for name, binary in (("agy", s.binaries.agy_cli), ("claude", s.binaries.claude_cli),
+                         ("codex", s.binaries.codex_cli)):
+        okk, v = _ver([binary, "--version"])
+        rows.append((name, "OK" if okk else "WARN", v if okk else f"{v} (backend {name} unavailable)"))
+    okk, v = _ver(["git", "--version"])
+    rows.append(("git", "OK" if okk else "FAIL", v))
+    n = len(s.gemini_api_keys)
+    rows.append(("agy gemini keys", "OK" if n else "FAIL",
+                 f"{n}-key pool (Gemini-API mode, 3dcode MCP, priced)" if n
+                 else "no Gemini keys: agy runs on API keys only, so the default generator cannot run"))
+    return rows
+
+
+def check_mcp() -> list[Row]:
+    try:
+        importlib.import_module("mcp")
+    except ImportError:
+        return [("mcp", "WARN", "python package `mcp` missing (MCP server for CLIs unavailable)")]
+    try:
+        importlib.import_module("codeverse3d.spatial.mcp_server")
+        return [("mcp", "OK", "mcp + codeverse3d.spatial.mcp_server importable")]
+    except ImportError as e:
+        return [("mcp", "WARN", f"codeverse3d.spatial.mcp_server not importable ({e})")]
+
+
+def check_skills() -> list[Row]:
+    """The static half of the live CLI smoke: is the library there, valid, and reachable?
+
+    A CLI upgrade that moves its skills root ships an empty index and the run still
+    passes — the failure is invisible except as a read rate of zero a battery later.  So
+    the wiring gets a check you can run before spending money."""
+    from codeverse3d.agents.backends import ALLOWED_TOOLS
+    from codeverse3d.skills import (
+        bundle_dirs,
+        shipped_roots,
+        skills_dir,
+        validate_bundle,
+        variants_table,
+    )
+    from codeverse3d.skills.materialize import SKILL_ROOTS
+    from codeverse3d.skills.registry import ROUTED_SKILLS
+
+    on = get_settings().skills
+    rows: list[Row] = [("skills switch", "OK" if on else "WARN",
+                        "C3D_SKILLS on (the default since 2026-09-22)" if on
+                        else "C3D_SKILLS=0: no skill is attached to any session")]
+    dirs = bundle_dirs()
+    if not dirs:
+        rows.append(("skills library", "WARN", f"no bundles under {skills_dir()}"))
+    else:
+        bad = {d.name: validate_bundle(d) for d in dirs}
+        bad = {k: v for k, v in bad.items() if v}
+        rows.append(("skills library", "FAIL" if bad else "OK",
+                     f"{len(dirs)} bundles, {len(bad)} invalid" + (f": {', '.join(bad)}" if bad else "")))
+    missing = [n for n in ROUTED_SKILLS if n not in {d.name for d in dirs}]
+    if missing:
+        rows.append(("skills routing", "WARN", f"{len(missing)} routed skill(s) have no bundle: {', '.join(missing[:4])}…"))
+    # every shipped variant's overlay (D105), one `skills overlay` row each with the variant leading
+    # the detail: its bundles are routed the moment the variant is active, so they are checked like
+    # the base — an invalid one named `<variant>/<bundle>` — and so is its routes.toml, which
+    # attach_skills would otherwise reject with a logged warning
+    try:
+        overlays = [r for r in shipped_roots() if r.variant]
+    except ValueError as e:
+        overlays = []
+        rows.append(("skills variants", "FAIL", f"a shipped variant.toml does not parse: {e}"))
+    for root in overlays:
+        odirs = bundle_dirs(root.path)
+        invalid = [root.label(d.name) for d in odirs if validate_bundle(d)]
+        try:
+            table = variants_table(root.variant)
+            table_bad = False
+            table_note = ("routes.toml: no rows" if table.empty else
+                          f"routes.toml: {len(table.routes)} row(s), {len(table.boosts)} boost(s), "
+                          f"{len(table.disabled)} disabled")
+        except ValueError as e:
+            table_bad, table_note = True, f"routes.toml invalid: {e}"
+        rows.append(("skills overlay", "FAIL" if invalid or table_bad else "OK",
+                     f"{root.variant}: {len(odirs)} bundles, {len(invalid)} invalid"
+                     + (f": {', '.join(invalid)}" if invalid else "") + f"; {table_note}"))
+    rows.append(("skills discovery", "OK", "materialised into " + " + ".join(SKILL_ROOTS)))
+    rows.append(("claude-code Skill tool", "OK" if "Skill" in ALLOWED_TOOLS else "FAIL",
+                 "in --allowedTools" if "Skill" in ALLOWED_TOOLS else "missing: claude-code would deny skill activation"))
+    return rows
+
+
+def run_doctor(*, live: bool = False, gpu: bool = True, skills: bool = False) -> list[Row]:
+    rows: list[Row] = []
+    rows += check_python_deps()
+    rows += check_blender()
+    rows += check_blender_render(eevee=gpu)
+    rows += check_node()
+    if gpu:
+        rows += check_gpu_probe()
+    rows += check_keys(live)
+    rows += check_pool(live)
+    rows += check_clis()
+    rows += check_mcp()
+    if skills:
+        rows += check_skills()
+    return rows
