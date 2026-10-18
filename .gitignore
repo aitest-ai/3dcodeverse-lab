@@ -1,0 +1,13 @@
+# Local 3D output, environments and secrets
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+.env
+.env.*
+!.env.example
+runs/
+output/
+dist/
+.cache/
+*.log
