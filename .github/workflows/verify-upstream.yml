@@ -1,0 +1,31 @@
+name: Verify official 3DCodeVerse source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download original upstream source (do not execute it)
+        run: git clone --depth 1 https://github.com/gaoypeng/3dcodeverse.git upstream
+      - name: Verify required paths and Python compilation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python --version
+          node --version
+          test -f upstream/harness/pyproject.toml
+          test -f upstream/harness/setup.sh
+          python -m compileall -q upstream/harness/codeverse3d
+          echo "Source/syntax check passed. This is NOT installation, 3D rendering, or an agent test."
