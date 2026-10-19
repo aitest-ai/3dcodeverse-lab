@@ -25,7 +25,10 @@ jobs:
           req=urllib.request.Request(endpoint,data=json.dumps(payload).encode('utf-8'),headers={'Authorization':'Bearer '+os.environ['GH_MODELS_TOKEN'],'Content-Type':'application/json','Accept':'application/vnd.github+json'})
           try:
               with urllib.request.urlopen(req,timeout=35) as res:
-                  ans=json.load(res)
+                  raw=res.read()
+                  print('HTTP status',res.status,'Content-Type',res.headers.get('Content-Type'),'bytes',len(raw))
+                  print('Body first 600',repr(raw[:600].decode('utf-8','replace')))
+                  ans=json.loads(raw)
                   print('GitHub Models accessible; response=',(ans.get('choices') or [{}])[0].get('message',{}).get('content'))
           except urllib.error.HTTPError as e:
               print('GitHub Models access failed; HTTP',e.code)
