@@ -21,15 +21,18 @@ jobs:
           python3 - <<'PY'
           import os, json, urllib.request, urllib.error
           endpoint='https://models.github.ai/inference/chat/completions'
-          payload={'model':'openai/gpt-4.1-mini','messages':[{'role':'user','content':'Reply with exactly OK'}], 'max_tokens':16}
+          payload={'model':'openai/gpt-4.1-mini','messages':[{'role':'user','content':'Reply with exactly SNOWBEAR-8642'}], 'max_tokens':16}
           req=urllib.request.Request(endpoint,data=json.dumps(payload).encode('utf-8'),headers={'Authorization':'Bearer '+os.environ['GH_MODELS_TOKEN'],'Content-Type':'application/json','Accept':'application/vnd.github+json'})
           try:
               with urllib.request.urlopen(req,timeout=35) as res:
                   raw=res.read()
                   print('HTTP status',res.status,'Content-Type',res.headers.get('Content-Type'),'bytes',len(raw))
                   print('Body first 600',repr(raw[:600].decode('utf-8','replace')))
-                  ans=json.loads(raw)
-                  print('GitHub Models accessible; response=',(ans.get('choices') or [{}])[0].get('message',{}).get('content'))
+                  if res.headers.get('Content-Type', '').lower().startswith('application/json'):
+                      ans=json.loads(raw)
+                      print('Model JSON response:',(ans.get('choices') or [{}])[0].get('message',{}).get('content'))
+                  else:
+                      print('Non-JSON API reply, cannot use official OpenAI-compatible adapter')
           except urllib.error.HTTPError as e:
               print('GitHub Models access failed; HTTP',e.code)
               print(e.read().decode('utf-8','replace')[:1200])
