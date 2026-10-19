@@ -50,26 +50,26 @@ jobs:
             --planner openai:openai/gpt-4.1 --judge openai:openai/gpt-4.1 \
             --rounds 0 --candidates 1 --no-run --slug hokkaido-bear \
             --runs-dir "$GITHUB_WORKSPACE/runs"
-          cp tasks/hokkaido-bear/model.py runs/hokkaido-bear/src/model.py
-          python -m py_compile runs/hokkaido-bear/src/model.py
+          cp tasks/hokkaido-bear/model.py runs/hokkaido_bear/src/model.py
+          python -m py_compile runs/hokkaido_bear/src/model.py
       - name: OFFICIAL 3DCodeVerse spatial build and measurement
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p packaged
-          3dcode tools build --workspace runs/hokkaido-bear --json '{}' --json-out | tee packaged/build-tool.log
-          test -s runs/hokkaido-bear/artifacts/object.glb
-          3dcode tools measure --workspace runs/hokkaido-bear --json '{}' --json-out | tee packaged/measure-tool.log
-          cp runs/hokkaido-bear/artifacts/object.glb packaged/hokkaido_bear_official_harness.glb
-          cp runs/hokkaido-bear/artifacts/measurement.json packaged/measurement.json
-          cp runs/hokkaido-bear/artifacts/build.json packaged/build.json
-          cp runs/hokkaido-bear/spec.json packaged/spec.json
+          3dcode tools build --workspace runs/hokkaido_bear --json '{}' --json-out | tee packaged/build-tool.log
+          test -s runs/hokkaido_bear/artifacts/object.glb
+          3dcode tools measure --workspace runs/hokkaido_bear --json '{}' --json-out | tee packaged/measure-tool.log
+          cp runs/hokkaido_bear/artifacts/object.glb packaged/hokkaido_bear_official_harness.glb
+          cp runs/hokkaido_bear/artifacts/measurement.json packaged/measurement.json
+          cp runs/hokkaido_bear/artifacts/build.json packaged/build.json
+          cp runs/hokkaido_bear/spec.json packaged/spec.json
           cp tasks/hokkaido-bear/model.py packaged/model.py
       - name: Official 3DCodeVerse multiview render
         continue-on-error: true
         run: |
           set -o pipefail
-          3dcode tools render_views --workspace runs/hokkaido-bear --json '{"size":640,"mode":"shaded"}' --json-out | tee packaged/render-tool.log
+          3dcode tools render_views --workspace runs/hokkaido_bear --json '{"size":640,"mode":"shaded"}' --json-out | tee packaged/render-tool.log
       - name: Collect preview and diagnostics
         if: always()
         shell: bash
@@ -77,7 +77,7 @@ jobs:
           mkdir -p packaged
           python - <<'PY'
           import pathlib,shutil,json
-          root=pathlib.Path('runs/hokkaido-bear/artifacts')
+          root=pathlib.Path('runs/hokkaido_bear/artifacts')
           folder=pathlib.Path('packaged')
           images=list(root.rglob('*.png')) if root.exists() else []
           ranked=sorted(images,key=lambda p:(0 if 'sheet' in p.name else 1,len(str(p))))
