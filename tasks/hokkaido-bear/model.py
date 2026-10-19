@@ -237,21 +237,27 @@ for is_front,px in ((True,-1.02),(False,0.78)):
 # Ear pits and facial detail on both sides
 for side in (-1,1):
     sphere("EarWell_"+str(side),(-1.42,side*0.451,1.510),(0.087,0.015,0.10),walnut_dark,20,12)
-    sphere("InsetEye_"+str(side),(-1.645,side*0.343,1.195),(0.047,0.033,0.046),eye_mat,20,12)
-    sphere("Brow_"+str(side),(-1.595,side*0.358,1.255),(0.13,0.049,0.046),walnut_mid,24,14)
+    sphere("InsetEye_"+str(side),(-1.79,side*0.278,1.245),(0.047,0.033,0.046),eye_mat,20,12)
+    sphere("Brow_"+str(side),(-1.74,side*0.31,1.295),(0.13,0.049,0.046),walnut_mid,24,14)
 
 # A chunky triangular bear nose, distinctly forward.
-sphere("Bear_Black_Carved_Nose",(-2.030,0,1.030),(0.080,0.160,0.105),eye_mat,32,18)
-sphere("MouthOpening",(-1.964,0,0.863),(0.079,0.26,0.060),mouth_mat,24,12)
+sphere("Bear_Black_Carved_Nose",(-2.075,0,1.055),(0.080,0.160,0.105),eye_mat,32,18)
+sphere("MouthOpening",(-1.964,0,0.830),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
     curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
+
+# Compact the front-to-back silhouette by about 13%, but keep its thickness.
+# This happens before fish generation so the salmon remains properly crosswise.
+for ob in list(bpy.data.objects):
+    ob.location.x *= 0.87
+    ob.scale.x *= 0.87
 
 bear_names_before_fish = {ob.name for ob in bpy.data.objects}
 
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-1.988
-FISH_Z=0.875
+FISH_X=-1.80
+FISH_Z=0.815
 FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
     (-1.23, 0.012, 0.018),
@@ -340,8 +346,8 @@ for side in (-1,1):
             zz=FISH_Z+(row-1)*0.056
             rx=fish_radius_at(sy)
             norm=max(0.12,1-((zz-FISH_Z)/0.24)**2)**0.5
-            xx=FISH_X+FISH_SKEW*sy+side*(rx*norm+0.002)
-            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.007,0.030,0.017),salmon_ridge,10,8)
+            xx=FISH_X+FISH_SKEW*sy+side*(rx*norm-0.001)
+            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.004,0.025,0.010),salmon_ridge,10,8)
             ob.rotation_euler[0]=-0.12 if side==1 else 0.12
 
 # v5 fish-to-bear ratio: make the salmon 22% shorter, preserving the
@@ -351,6 +357,7 @@ for ob in list(bpy.data.objects):
     if ob.name not in bear_names_before_fish:
         ob.location.y *= 0.78
         ob.scale.y *= 0.78
+        ob.location.z -= 0.075  # nose and eyes remain above the salmon
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
