@@ -20,15 +20,15 @@ def material(name, rgb, rough=0.72, metallic=0.0):
         bs.inputs["Metallic"].default_value=metallic
     return mat
 
-walnut=material("Wood_Dark_Charred_Walnut",(0.115,0.057,0.029))
-walnut_warm=material("Wood_Highlight_Old_Polish",(0.205,0.112,0.052))
-walnut_mid=material("Wood_Facet_Satin",(0.153,0.073,0.033))
-walnut_dark=material("Wood_Deep_Gouges",(0.063,0.033,0.018))
-salmon_wood=material("Salmon_Warm_Carved_Wood",(0.31,0.168,0.079))
-salmon_side=material("Salmon_Dark_Upper_Body",(0.175,0.092,0.044))
-salmon_ridge=material("Salmon_Etched_Scales",(0.39,0.224,0.109))
-eye_mat=material("Inset_Eyes_and_Nose",(0.032,0.026,0.020),0.2)
-mouth_mat=material("Mouth_Dark_Shadow",(0.038,0.025,0.014))
+walnut=material("Wood_Dark_Charred_Walnut",(0.049,0.024,0.010))
+walnut_warm=material("Wood_Highlight_Old_Polish",(0.104,0.051,0.021))
+walnut_mid=material("Wood_Facet_Satin",(0.072,0.035,0.015))
+walnut_dark=material("Wood_Deep_Gouges",(0.018,0.009,0.006))
+salmon_wood=material("Salmon_Warm_Carved_Wood",(0.128,0.063,0.031))
+salmon_side=material("Salmon_Dark_Upper_Body",(0.069,0.030,0.013))
+salmon_ridge=material("Salmon_Etched_Scales",(0.162,0.080,0.037))
+eye_mat=material("Inset_Eyes_and_Nose",(0.007,0.006,0.004),0.2)
+mouth_mat=material("Mouth_Dark_Shadow",(0.010,0.007,0.004))
 
 def sphere(name, position, size, mat, seg=40, rings=24):
     bpy.ops.mesh.primitive_uv_sphere_add(segments=seg, ring_count=rings, location=position)
@@ -132,15 +132,15 @@ for mat in (walnut_mid,walnut_warm,walnut_dark):
 for v in bear.data.vertices:
     co=v.co
     nx=noise.noise(Vector((co.x*13,co.y*13,co.z*13)))
-    fur=math.sin(co.x*31 + co.z*19 + co.y*9) * 0.0055
-    v.co=co + v.normal * (0.0062*nx+fur)
+    fur=-0.0095 * max(0.0, math.sin(co.x*23 + co.z*15 + co.y*7))**5
+    v.co=co + v.normal * (0.0035*nx+fur)
 bear.data.update()
 for face in bear.data.polygons:
     cx=face.center.x; cy=face.center.y; cz=face.center.z
     n=noise.noise(Vector((cx*18,cy*18,cz*18)))
-    if n>0.39: face.material_index=2
-    elif n < -0.40: face.material_index=3
-    elif n>0.16: face.material_index=1
+    if n>0.61: face.material_index=2
+    elif n < -0.61: face.material_index=3
+    elif n>0.34: face.material_index=1
     else: face.material_index=0
     face.use_smooth=True
 
@@ -168,22 +168,22 @@ for side in (-1,1):
 
 # --- Salmon: lengthwise across the bear's jaws along Y ---
 # Entire fish is wood, carved with dark back and warm sides.
-fish_center=(-1.82,0.0,0.865)
-fish=sphere("Salmon_Whole_Tapered_Body",fish_center,(0.145,1.005,0.159),salmon_wood,64,32)
+fish_center=(-2.04,0.0,0.865)
+fish=sphere("Salmon_Whole_Tapered_Body",fish_center,(0.245,0.91,0.238),salmon_wood,64,32)
 # Upper dark stripe through back; unlike photo texture this remains in GLB.
-sphere("Salmon_Dark_Dorsal",(-1.82,0,0.946),(0.092,0.90,0.097),salmon_side,48,22)
+sphere("Salmon_Dark_Dorsal",(-2.04,0,0.946),(0.161,0.84,0.089),salmon_side,48,22)
 # Carved salmon head at negative Y; blunt jaws, eye and gill.
-sphere("Salmon_Head",(-1.82,-0.882,0.867),(0.147,0.195,0.145),salmon_side,32,20)
-sphere("Salmon_Jaw",(-1.83,-1.059,0.811),(0.105,0.09,0.039),salmon_wood,20,12)
+sphere("Salmon_Head",(-2.04,-0.882,0.867),(0.202,0.208,0.195),salmon_side,32,20)
+sphere("Salmon_Jaw",(-1.83,-1.059,0.811),(0.135,0.110,0.057),salmon_wood,20,12)
 for sx in (-1,1):
-    sphere("Salmon_Eye"+str(sx),(-1.82+sx*0.145,-0.936,0.908),(0.018,0.018,0.020),eye_mat,16,10)
-    curve_line("GillSlit"+str(sx),[(-1.82+sx*0.147,-0.78,0.975),(-1.82+sx*0.152,-0.75,0.895),(-1.82+sx*0.139,-0.80,0.81)],0.009,walnut_dark)
+    sphere("Salmon_Eye"+str(sx),(-2.04+sx*0.145,-0.936,0.908),(0.018,0.018,0.020),eye_mat,16,10)
+    curve_line("GillSlit"+str(sx),[(-2.04+sx*0.147,-0.78,0.975),(-2.04+sx*0.152,-0.75,0.895),(-2.04+sx*0.139,-0.80,0.81)],0.009,walnut_dark)
 # A separate forked tail, beyond positive Y end.
-fin("Salmon_Tail_Fork",[(-1.82,0.90,0.87),(-1.82,1.25,1.10),(-1.82,1.15,0.86),(-1.82,1.25,0.65)],salmon_side,0.035)
-fin("Salmon_Dorsal_Fin",[(-1.82,0.16,1.009),(-1.82,0.38,1.20),(-1.82,0.53,1.013)],salmon_side,0.032)
-fin("Salmon_Belly_Fin",[(-1.82,-0.1,0.737),(-1.82,0.10,0.600),(-1.82,0.20,0.747)],salmon_side,0.027)
+fin("Salmon_Tail_Fork",[(-2.04,0.90,0.87),(-2.04,1.25,1.10),(-2.04,1.15,0.86),(-2.04,1.25,0.65)],salmon_side,0.035)
+fin("Salmon_Dorsal_Fin",[(-2.04,0.16,1.009),(-2.04,0.38,1.20),(-2.04,0.53,1.013)],salmon_side,0.032)
+fin("Salmon_Belly_Fin",[(-2.04,-0.1,0.737),(-2.04,0.10,0.600),(-2.04,0.20,0.747)],salmon_side,0.027)
 for side in (-1,1):
-    fin("Salmon_Pectoral_Fin"+str(side),[(-1.82+side*0.11,-0.64,0.82),(-1.82+side*0.33,-0.38,0.73),(-1.82+side*0.13,-0.25,0.82)],salmon_wood,0.022)
+    fin("Salmon_Pectoral_Fin"+str(side),[(-2.04+side*0.11,-0.64,0.82),(-2.04+side*0.33,-0.38,0.73),(-2.04+side*0.13,-0.25,0.82)],salmon_wood,0.022)
 
 # Engrave interleaved scales on fish's visible flanks as raised almond-like cuts.
 for side in (-1,1):
@@ -191,24 +191,12 @@ for side in (-1,1):
         for i in range(23):
             sy=-0.71+i*0.067+(row%2)*0.032
             circ=max(0.10, 1-(sy/1.02)**2)
-            xcoord=-1.82+side*(0.143*math.sqrt(circ)+0.004)
+            xcoord=-2.04+side*(0.244*math.sqrt(circ)+0.004)
             zcoord=0.819+row*0.046
             # hundreds of small, physically present scales on the GLB
-            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xcoord,sy,zcoord),(0.006,0.037,0.018),salmon_ridge,10,8)
+            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xcoord,sy,zcoord),(0.009,0.040,0.024),salmon_ridge,10,8)
             ob.rotation_euler[0]=(-0.16 if side==1 else 0.16)
 
-# Chisel slash traces across upper back and shoulders: visible carved ridges.
-# Every groove is a small stained cut on the visible upper silhouette.
-for idx in range(170):
-    x=-0.84+idx/169.0*1.88
-    for side in (-1,1):
-        y=side*(0.12+0.26*(0.5+0.5*math.sin(idx*2.4)))
-        # upper ellipsoid estimate, with hump shaping at shoulders
-        rad=max(0.12, 1-((x-0.14)/1.24)**2-(y/0.60)**2)
-        z=1.06+0.62*math.sqrt(rad)
-        if x<0.1: z=max(z,1.25+0.67*math.sqrt(max(.03,1-((x+0.55)/.65)**2-(y/.62)**2)))
-        # groove should touch surface; slender almond strokes.
-        if z < 1.47: continue
-        curve_line("CarvedFurSlash_%03d_%+d"%(idx,side),[(x-0.031,y, z+0.009),(x,y+side*0.015,z+0.012),(x+0.034,y+side*0.035,z+0.008)],0.005,walnut_dark)
+# Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
 # No ground, stage, writing or cameras: 3DCodeVerse owns the render studio.
