@@ -20,10 +20,10 @@ def material(name, rgb, rough=0.72, metallic=0.0):
         bs.inputs["Metallic"].default_value=metallic
     return mat
 
-walnut=material("Wood_Dark_Charred_Walnut",(0.049,0.024,0.010))
-walnut_warm=material("Wood_Highlight_Old_Polish",(0.104,0.051,0.021))
-walnut_mid=material("Wood_Facet_Satin",(0.072,0.035,0.015))
-walnut_dark=material("Wood_Deep_Gouges",(0.018,0.009,0.006))
+walnut=material("Wood_Dark_Charred_Walnut",(0.057,0.030,0.017))
+walnut_warm=material("Wood_Highlight_Old_Polish",(0.071,0.039,0.021))
+walnut_mid=material("Wood_Facet_Satin",(0.065,0.034,0.017))
+walnut_dark=material("Wood_Deep_Gouges",(0.034,0.018,0.009))
 salmon_wood=material("Salmon_Warm_Carved_Wood",(0.128,0.063,0.031))
 salmon_side=material("Salmon_Dark_Upper_Body",(0.069,0.030,0.013))
 salmon_ridge=material("Salmon_Etched_Scales",(0.162,0.080,0.037))
@@ -159,9 +159,9 @@ bear.data.update()
 for face in bear.data.polygons:
     center=face.center
     n=noise.noise(Vector((center.x*7.7,center.y*7.7,center.z*7.7)))
-    if n>0.63: face.material_index=2
-    elif n < -0.63: face.material_index=3
-    elif n>0.25: face.material_index=1
+    if n>0.70: face.material_index=2
+    elif n < -0.70: face.material_index=3
+    elif n>0.48: face.material_index=1
     else: face.material_index=0
     face.use_smooth=True
 
@@ -193,9 +193,18 @@ sphere("MouthOpening",(-1.964,0,0.863),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
     curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
 
+# v5 silhouette correction: the old bear was stretched like a weasel.
+# Compact the anatomy in one consistent transformation, before creating the fish.
+# Includes integrated mesh plus all paws, eyes and lips; preserves true 3D.
+for ob in list(bpy.data.objects):
+    ob.location.x *= 0.785
+    ob.scale.x *= 0.785
+
+bear_names_before_fish = {ob.name for ob in bpy.data.objects}
+
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-1.976
+FISH_X=-1.597
 FISH_Z=0.875
 FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
@@ -288,6 +297,14 @@ for side in (-1,1):
             xx=FISH_X+FISH_SKEW*sy+side*(rx*norm+0.002)
             ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.007,0.030,0.017),salmon_ridge,10,8)
             ob.rotation_euler[0]=-0.12 if side==1 else 0.12
+
+# v5 fish-to-bear ratio: make the salmon 22% shorter, preserving the
+# sculpted tapered body and separate fins; don't turn it into a broad paddle.
+# Body objects have already been resized, so only process newly added fish.
+for ob in list(bpy.data.objects):
+    if ob.name not in bear_names_before_fish:
+        ob.location.y *= 0.78
+        ob.scale.y *= 0.78
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
