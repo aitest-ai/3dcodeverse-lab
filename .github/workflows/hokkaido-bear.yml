@@ -1,0 +1,78 @@
+name: Generate Hokkaido Wood Bear (Official 3DCodeVerse)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hokkaido-bear.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  official-harness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm access to required API key
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        shell: bash
+        run: |
+          if [[ -z "$GEMINI_API_KEY" ]]; then
+            echo "::error::No GEMINI_API_KEY configured in repository Actions secrets. Cannot run official generative Harness."
+            exit 2
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download official Harness mirror
+        run: |
+          git clone --depth 1 --branch upstream-3dcodeverse https://github.com/aitest-ai/3dcodeverse-lab.git official
+          git -C official rev-parse HEAD
+      - name: Install Blender 5.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz -o "$RUNNER_TEMP/blender.tar.xz"
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Install official dependencies
+        shell: bash
+        run: |
+          python -m venv official/.venv
+          source official/.venv/bin/activate
+          bash official/harness/setup.sh --no-gpu
+          3dcode doctor --no-gpu | tee doctor.log
+      - name: Generate wooden bear with official agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          source official/.venv/bin/activate
+          3dcode make "Traditional Hokkaido kibori-kuma wood carved bear souvenir sculpture: four thick sturdy legs, stocky bear anatomy and distinctive round ears, broad muzzle tightly biting a large whole salmon crosswise in jaws with clearly shaped fish head, eye, fins and tail. Body in dark brown hand carved wood with deep overlapping chisel fur cuts as real geometric relief. Accurate carved bear face with eyes, nose, claws. No pedestal, no text, no flat picture; true 3D sculpture. Match traditional Hokkaido tourist woodcarving, maintain recognizable fish and connected joints." --track static_object --language blender --generator single-shot:gemini:gemini-3.7-flash --planner gemini:gemini-3.7-flash --judge gemini:gemini-3.7-flash --rounds 1 --candidates 1 --max-minutes 20 --slug hokkaido-kibori-bear --runs-dir "$GITHUB_WORKSPACE/generated-runs" 2>&1 | tee generator.log
+      - name: Audit real generated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          find generated-runs -type f | sort | head -100
+          test -s generated-runs/hokkaido-kibori-bear/record.json
+          find generated-runs/hokkaido-kibori-bear -name '*.glb' -size +10k -print -quit | grep -q '.glb'
+      - name: Upload real run and diagnostics (no fabricated fallback)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-bear-official-harness
+          path: |
+            generated-runs/
+            doctor.log
+            generator.log
+          retention-days: 14
+          if-no-files-found: warn
