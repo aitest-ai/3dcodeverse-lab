@@ -89,44 +89,97 @@ def fin(name, pts, mat, thick=0.015):
     return obj
 
 # ============================================================================
-# BEAR ANATOMY (v4): a single compact, grounded carved mass with articulated
-# shoulder / upper forelegs, true haunches and broad tapering paws.
-# Bear faces -X; Y is its left/right; Z is vertical until GLB export.
+# v6 Organic carving geometry: smoothly lofted torso and tapering limbs.
+# No stacked body spheres or columnar legs. All geometry is real Blender mesh.
+# Coordinates: -X bear forward, Y left/right, Z upward before GLB export.
 # ============================================================================
+def cat_profile(a,b,t):
+    # smooth interpolation between consecutive measured section parameters
+    t=t*t*(3-2*t)
+    return tuple(u*(1-t)+v*t for u,v in zip(a,b))
+
+def make_loft(name, sections, along_x, mat, segments=36, steps=5):
+    rings=[]
+    for k in range(len(sections)-1):
+        if k==0: rings.append(sections[k])
+        for n in range(1,steps+1):
+            rings.append(cat_profile(sections[k],sections[k+1],n/steps))
+    vertices=[]
+    for sec in rings:
+        if along_x:
+            x, cz, ry, rz=sec
+            for j in range(segments):
+                angle=math.tau*j/segments
+                vertices.append((x,ry*math.cos(angle),cz+rz*math.sin(angle)))
+        else:
+            z,cx,cy,rx,ry=sec
+            for j in range(segments):
+                angle=math.tau*j/segments
+                vertices.append((cx+rx*math.cos(angle),cy+ry*math.sin(angle),z))
+    faces=[]
+    for k in range(len(rings)-1):
+        for j in range(segments):
+            a=k*segments+j
+            na=k*segments+(j+1)%segments
+            b=(k+1)*segments+j
+            nb=(k+1)*segments+(j+1)%segments
+            faces.append((a,na,nb,b) if along_x else (a,b,nb,na))
+    faces.append(tuple(range(segments-1,-1,-1)))
+    faces.append(tuple((len(rings)-1)*segments+j for j in range(segments)))
+    mesh=bpy.data.meshes.new(name+'_Mesh')
+    mesh.from_pydata(vertices,[],faces)
+    mesh.update()
+    obj=bpy.data.objects.new(name,mesh)
+    bpy.context.collection.objects.link(obj)
+    mesh.materials.append(mat)
+    return obj
+
 bear_parts=[]
+bear_parts.append(make_loft("SolidContinuousTorso",[
+    (-1.54,1.13,0.07,0.09),
+    (-1.38,1.15,0.38,0.34),
+    (-1.15,1.18,0.52,0.47),
+    (-0.79,1.24,0.61,0.61),
+    (-0.41,1.28,0.64,0.63),
+    ( 0.04,1.22,0.61,0.57),
+    ( 0.53,1.17,0.57,0.54),
+    ( 0.88,1.14,0.52,0.50),
+    ( 1.15,1.15,0.34,0.34),
+    ( 1.32,1.14,0.04,0.06),
+],True,walnut,48))
+
+# Sculpt a short broad skull and compact projecting muzzle into torso tip.
 def mass(name,loc,scale):
-    ob=sphere(name,loc,scale,walnut,seg=48,rings=28)
-    bear_parts.append(ob)
-    return ob
-
-# Shorter barrel and smooth withers; no ringed sausage body.
-mass("Ribcage",(0.13,0.0,1.13),(1.09,0.58,0.55))
-mass("UpperBack",(-0.34,0.0,1.26),(0.80,0.61,0.53))
-mass("Withers",(-0.71,0.0,1.34),(0.49,0.61,0.59))
-mass("Rump",(0.90,0.0,1.11),(0.52,0.55,0.52))
-mass("NeckFold",(-1.00,0.0,1.15),(0.53,0.50,0.46))
-mass("BroadSkull",(-1.39,0.0,1.16),(0.50,0.45,0.39))
-mass("CheekLower",(-1.57,0.0,0.998),(0.34,0.38,0.25))
-mass("ShortMuzzle",(-1.78,0.0,0.995),(0.27,0.29,0.18))
-mass("LowerJaw",(-1.75,0.0,0.828),(0.265,0.255,0.105))
-
+    obj=sphere(name,loc,scale,walnut,seg=48,rings=32)
+    bear_parts.append(obj)
+    return obj
+mass("RoundedBearCranium",(-1.48,0,1.14),(0.50,0.47,0.42))
+mass("UpperSnout",(-1.82,0,0.97),(0.27,0.29,0.205))
+mass("JawMass",(-1.76,0,0.82),(0.30,0.275,0.105))
 for side in (-1,1):
-    mass("RoundEar_%s"%side,(-1.35,side*0.35,1.49),(0.145,0.137,0.165))
-mass("ShortTail",(1.42,0,1.11),(0.13,0.145,0.115))
+    mass("SmallRoundEar_%s"%side,(-1.38,side*0.34,1.47),(0.14,0.145,0.17))
+mass("VeryShortTail",(1.30,0,1.12),(0.12,0.13,0.13))
 
-# Forelegs are planted and strong; rear thighs flow backward with bent hocks.
-# Paws face -X and have carved grooves rather than bead-shaped attached toes.
-for is_front, xroot, xshin, px in ((True,-0.78,-0.87,-1.02),
-                                 (False,0.91,0.94,0.78)):
+def shaped_leg(name,x_shoulder,y,px,front):
+    # Full-volume limb: merges with torso at top, extends to one broad foot.
+    # Hind thigh is thicker, shin tapers then flares toward the paw.
+    sidey=y
+    return make_loft(name,[
+      (0.055,px-0.075,sidey,0.19,0.19),
+      (0.130,px,sidey,0.29,0.24),
+      (0.250,px+0.045,sidey,0.285,0.24),
+      (0.405,x_shoulder-0.065,sidey,0.205,0.205),
+      (0.620,x_shoulder,sidey,0.245,0.23),
+      (0.870,x_shoulder,sidey*0.97,0.325 if front else 0.36,0.27),
+      (1.100,x_shoulder+0.025,sidey*0.94,0.33 if front else 0.34,0.31),
+      (1.280,x_shoulder+0.080,sidey*0.90,0.23,0.24),
+      (1.390,x_shoulder+0.075,sidey*0.88,0.055,0.07),
+    ],False,walnut,32)
+
+for is_front,x,px in ((True,-0.78,-1.02),(False,0.87,0.78)):
     for side in (-1,1):
-        y=side*0.435
-        typ="Fore" if is_front else "Rear"
-        mass("%sShoulder_%s"%(typ,side),(xroot,y*0.91,0.88),
-             (0.305,0.258,0.465) if is_front else (0.345,0.285,0.43))
-        mass("%sShin_%s"%(typ,side),(xshin,y,0.465),
-             (0.225,0.23,0.375))
-        mass("%sFoot_%s"%(typ,side),(px,y,0.185),
-             (0.315,0.27,0.19))
+        bear_parts.append(shaped_leg(('Foreleg' if is_front else 'Rearleg')+str(side),
+                                     x,side*0.435,px,is_front))
 
 # Fuse body and feet with voxel remeshing so there are no floating intersections.
 bpy.ops.object.select_all(action='DESELECT')
@@ -137,7 +190,7 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.023
+bear.data.remesh_voxel_size=0.020
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
@@ -193,18 +246,11 @@ sphere("MouthOpening",(-1.964,0,0.863),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
     curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
 
-# v5 silhouette correction: the old bear was stretched like a weasel.
-# Compact the anatomy in one consistent transformation, before creating the fish.
-# Includes integrated mesh plus all paws, eyes and lips; preserves true 3D.
-for ob in list(bpy.data.objects):
-    ob.location.x *= 0.785
-    ob.scale.x *= 0.785
-
 bear_names_before_fish = {ob.name for ob in bpy.data.objects}
 
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-1.597
+FISH_X=-1.988
 FISH_Z=0.875
 FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
@@ -308,7 +354,7 @@ for ob in list(bpy.data.objects):
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
-# v4 geometry rebuild notes:
+# v6 geometry rebuild notes: organic cross-section trunk and limbs, not stacked spheres.
 # Shoulder/body/head united by the official Blender remesh workflow.
 # No full-body sine ribs; fixed paw shapes; compact skull/muzzle; skewed fish.
 # All outputs must be judged from official 3DCodeVerse multi-angle render, not generated images.
