@@ -5,7 +5,7 @@ Z-up Blender scene; harness exports Y-up GLB. No external assets, network or mod
 import bpy
 import math
 import random
-from mathutils import Vector, noise
+from mathutils import Vector, Matrix, noise
 
 random.seed(1837)
 
@@ -358,5 +358,13 @@ for ob in list(bpy.data.objects):
 # Shoulder/body/head united by the official Blender remesh workflow.
 # No full-body sine ribs; fixed paw shapes; compact skull/muzzle; skewed fish.
 # All outputs must be judged from official 3DCodeVerse multi-angle render, not generated images.
+
+# v7: Align the bear's face with the official Harness GLB front view.
+# Blender -X faces forwards in our sculpt, but the glTF front is Blender -Y.
+# Apply the same world rotation to every component, including the salmon.
+turn = Matrix.Rotation(math.pi / 2.0, 4, 'Z')
+ground = Matrix.Translation(Vector((0.0, 0.0, -0.052)))
+for ob in list(bpy.data.objects):
+    ob.matrix_world = ground @ turn @ ob.matrix_world
 
 # No ground, stage, writing or cameras: 3DCodeVerse owns the render studio.
