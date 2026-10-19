@@ -166,36 +166,100 @@ sphere("MouthOpening",(-1.864,0,0.856),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
     curve_line("LipCrease"+str(side),[(-1.95,side*0.11,0.881),(-1.83,side*0.26,0.860),(-1.65,side*0.25,0.850)],0.010,walnut_dark)
 
-# --- Salmon: lengthwise across the bear's jaws along Y ---
-# Entire fish is wood, carved with dark back and warm sides.
-fish_center=(-2.04,0.0,0.865)
-fish=sphere("Salmon_Whole_Tapered_Body",fish_center,(0.245,0.91,0.238),salmon_wood,64,32)
-# Upper dark stripe through back; unlike photo texture this remains in GLB.
-sphere("Salmon_Dark_Dorsal",(-2.04,0,0.946),(0.161,0.84,0.089),salmon_side,48,22)
-# Carved salmon head at negative Y; blunt jaws, eye and gill.
-sphere("Salmon_Head",(-2.04,-0.882,0.867),(0.202,0.208,0.195),salmon_side,32,20)
-sphere("Salmon_Jaw",(-1.83,-1.059,0.811),(0.135,0.110,0.057),salmon_wood,20,12)
-for sx in (-1,1):
-    sphere("Salmon_Eye"+str(sx),(-2.04+sx*0.145,-0.936,0.908),(0.018,0.018,0.020),eye_mat,16,10)
-    curve_line("GillSlit"+str(sx),[(-2.04+sx*0.147,-0.78,0.975),(-2.04+sx*0.152,-0.75,0.895),(-2.04+sx*0.139,-0.80,0.81)],0.009,walnut_dark)
-# A separate forked tail, beyond positive Y end.
-fin("Salmon_Tail_Fork",[(-2.04,0.90,0.87),(-2.04,1.25,1.10),(-2.04,1.15,0.86),(-2.04,1.25,0.65)],salmon_side,0.035)
-fin("Salmon_Dorsal_Fin",[(-2.04,0.16,1.009),(-2.04,0.38,1.20),(-2.04,0.53,1.013)],salmon_side,0.032)
-fin("Salmon_Belly_Fin",[(-2.04,-0.1,0.737),(-2.04,0.10,0.600),(-2.04,0.20,0.747)],salmon_side,0.027)
-for side in (-1,1):
-    fin("Salmon_Pectoral_Fin"+str(side),[(-2.04+side*0.11,-0.64,0.82),(-2.04+side*0.33,-0.38,0.73),(-2.04+side*0.13,-0.25,0.82)],salmon_wood,0.022)
+# --- Salmon: physically shaped body sections from fish head to narrow tail stock.
+# The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
+FISH_X=-2.055
+FISH_Z=0.875
+stations=[
+    (-1.23, 0.012, 0.018),
+    (-1.16, 0.090, 0.080),
+    (-1.04, 0.158, 0.132),
+    (-0.88, 0.188, 0.173),
+    (-0.60, 0.212, 0.216),
+    (-0.25, 0.242, 0.239),
+    ( 0.10, 0.228, 0.231),
+    ( 0.45, 0.188, 0.195),
+    ( 0.73, 0.139, 0.147),
+    ( 0.91, 0.072, 0.089),
+    ( 1.04, 0.032, 0.045),
+]
+N=36
+vertices=[]
+faces=[]
+for jy,rx,rz in stations:
+    for k in range(N):
+        ang=math.tau*k/N
+        vertices.append((FISH_X+rx*math.cos(ang),jy,FISH_Z+rz*math.sin(ang)))
+for j in range(len(stations)-1):
+    for k in range(N):
+        i=j*N+k
+        faces.append((i,j*N+(k+1)%N,(j+1)*N+(k+1)%N,(j+1)*N+k))
+faces.append(tuple(range(N-1,-1,-1)))
+faces.append(tuple((len(stations)-1)*N+k for k in range(N)))
+fish_mesh=bpy.data.meshes.new("Salmon_Sculptural_Profile_Mesh")
+fish_mesh.from_pydata(vertices,[],faces)
+fish_mesh.update()
+fish_obj=bpy.data.objects.new("Salmon_Tapered_Body",fish_mesh)
+bpy.context.collection.objects.link(fish_obj)
+fish_mesh.materials.append(salmon_wood)
+fish_mesh.materials.append(salmon_side)
+for poly in fish_mesh.polygons:
+    poly.use_smooth=True
+    poly.material_index=1 if poly.center.z>FISH_Z+0.080 else 0
 
-# Engrave interleaved scales on fish's visible flanks as raised almond-like cuts.
+# Natural salmon head: eye on each visible side and curved engraved gill marks.
+for side in (-1,1):
+    sphere("Salmon_Eye"+str(side),(FISH_X+side*0.156,-1.01,FISH_Z+0.027),(0.016,0.020,0.019),eye_mat,16,10)
+    curve_line("GillCut"+str(side),[
+        (FISH_X+side*0.190,-0.86,FISH_Z+0.12),
+        (FISH_X+side*0.192,-0.83,FISH_Z+0.02),
+        (FISH_X+side*0.184,-0.88,FISH_Z-0.11)],0.007,walnut_dark)
+# Mouth is a small notch at the fish's pointed head.
+curve_line("Salmon_Open_Mouth",[(FISH_X-0.065,-1.18,FISH_Z-0.028),(FISH_X,-1.229,FISH_Z-0.030),
+                                (FISH_X+0.065,-1.18,FISH_Z-0.028)],0.006,walnut_dark)
+
+# Traditional forked salmon tail in the true fish vertical fin plane (Y/Z).
+fin("Salmon_Forked_Tail",[
+    (FISH_X,1.01,FISH_Z),
+    (FISH_X,1.39,FISH_Z+0.27),
+    (FISH_X,1.20,FISH_Z),
+    (FISH_X,1.39,FISH_Z-0.27)
+],salmon_side,0.040)
+fin("Salmon_DorsalFin",[
+    (FISH_X,0.12,FISH_Z+0.22),
+    (FISH_X,0.29,FISH_Z+0.41),
+    (FISH_X,0.51,FISH_Z+0.20)
+],salmon_side,0.037)
+fin("Salmon_AnalFin",[
+    (FISH_X,0.39,FISH_Z-0.18),
+    (FISH_X,0.63,FISH_Z-0.35),
+    (FISH_X,0.73,FISH_Z-0.14)
+],salmon_side,0.032)
+for side in (-1,1):
+    fin("Salmon_PectoralFin"+str(side),[
+        (FISH_X+side*0.13,-0.83,FISH_Z-0.04),
+        (FISH_X+side*0.34,-0.55,FISH_Z-0.19),
+        (FISH_X+side*0.20,-0.40,FISH_Z-0.09)
+    ],salmon_side,0.024)
+
+def fish_radius_at(y):
+    for i in range(len(stations)-1):
+        if stations[i][0] <= y <= stations[i+1][0]:
+            t=(y-stations[i][0])/(stations[i+1][0]-stations[i][0])
+            return stations[i][1]*(1-t)+stations[i+1][1]*t
+    return 0.01
+
+# Fine etched scales on flanks, following the actual fish taper.
 for side in (-1,1):
     for row in range(3):
-        for i in range(23):
-            sy=-0.71+i*0.067+(row%2)*0.032
-            circ=max(0.10, 1-(sy/1.02)**2)
-            xcoord=-2.04+side*(0.244*math.sqrt(circ)+0.004)
-            zcoord=0.819+row*0.046
-            # hundreds of small, physically present scales on the GLB
-            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xcoord,sy,zcoord),(0.009,0.040,0.024),salmon_ridge,10,8)
-            ob.rotation_euler[0]=(-0.16 if side==1 else 0.16)
+        for i in range(22):
+            sy=-0.76+i*0.077+(row%2)*0.025
+            zz=FISH_Z+(row-1)*0.056
+            rx=fish_radius_at(sy)
+            norm=max(0.12,1-((zz-FISH_Z)/0.24)**2)**0.5
+            xx=FISH_X+side*(rx*norm+0.002)
+            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.007,0.030,0.017),salmon_ridge,10,8)
+            ob.rotation_euler[0]=-0.12 if side==1 else 0.12
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
