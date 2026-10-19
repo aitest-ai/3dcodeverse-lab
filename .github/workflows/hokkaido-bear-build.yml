@@ -1,0 +1,125 @@
+name: 3DCodeVerse Offline Bear Sculpting and GLB Export
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/hokkaido-bear-build.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          ref: upstream-3dcodeverse
+          path: upstream
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-delay 4 --output "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/blender/blender" --background --factory-startup --python-expr 'import bpy; print("Blender",bpy.app.version_string)'
+      - name: Install official 3DCodeVerse Harness dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -e upstream/harness
+          (cd upstream/harness/runtime_js && npm ci && npx --no puppeteer browsers install chrome)
+          3dcodeverse --help > /dev/null
+          3dcodeverse doctor --no-gpu || true
+      - name: Create official Harness workspace and load Blender model
+        shell: bash
+        run: |
+          set -euo pipefail
+          3dcode make "A traditional Hokkaido carved wooden bear tourist souvenir biting a salmon crosswise; full quadruped dark walnut sculpture with broad head, short muscular paws, carved fur and detailed salmon" \
+            --track static_object --language blender \
+            --generator single-shot:openai:openai/gpt-4.1 \
+            --planner openai:openai/gpt-4.1 --judge openai:openai/gpt-4.1 \
+            --rounds 0 --candidates 1 --no-run --slug hokkaido-bear \
+            --runs-dir "$GITHUB_WORKSPACE/runs"
+          cp tasks/hokkaido-bear/model.py runs/hokkaido-bear/src/model.py
+          python -m py_compile runs/hokkaido-bear/src/model.py
+      - name: OFFICIAL 3DCodeVerse spatial build and measurement
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p packaged
+          3dcode tools build --workspace runs/hokkaido-bear --json '{}' --json-out | tee packaged/build-tool.log
+          test -s runs/hokkaido-bear/artifacts/object.glb
+          3dcode tools measure --workspace runs/hokkaido-bear --json '{}' --json-out | tee packaged/measure-tool.log
+          cp runs/hokkaido-bear/artifacts/object.glb packaged/hokkaido_bear_official_harness.glb
+          cp runs/hokkaido-bear/artifacts/measurement.json packaged/measurement.json
+          cp runs/hokkaido-bear/artifacts/build.json packaged/build.json
+          cp runs/hokkaido-bear/spec.json packaged/spec.json
+          cp tasks/hokkaido-bear/model.py packaged/model.py
+      - name: Official 3DCodeVerse multiview render
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          3dcode tools render_views --workspace runs/hokkaido-bear --json '{"size":640,"mode":"shaded"}' --json-out | tee packaged/render-tool.log
+      - name: Collect preview and diagnostics
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p packaged
+          python - <<'PY'
+          import pathlib,shutil,json
+          root=pathlib.Path('runs/hokkaido-bear/artifacts')
+          folder=pathlib.Path('packaged')
+          images=list(root.rglob('*.png')) if root.exists() else []
+          ranked=sorted(images,key=lambda p:(0 if 'sheet' in p.name else 1,len(str(p))))
+          for i,p in enumerate(ranked[:10]): shutil.copy2(p,folder/f'preview_{i:02d}_{p.name}')
+          pkg=folder/'hokkaido_bear_official_harness.glb'
+          (folder/'status.json').write_text(json.dumps({'official_harness_build_glb':pkg.exists(),'glb_bytes':pkg.stat().st_size if pkg.exists() else 0,'preview_count':len(ranked),'method':'Official spatial build/measure/render on assistant-authored Blender code; AI agent generation not invoked'},indent=2))
+          PY
+      - name: Upload actual official build and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-bear-offline-harness
+          path: packaged/
+          retention-days: 30
+          if-no-files-found: warn
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-offline-harness
+          path: output
+      - name: Push verified model to results branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s output/hokkaido_bear_official_harness.glb
+          if git ls-remote --exit-code --heads origin results-hokkaido-bear >/dev/null; then
+            git fetch origin results-hokkaido-bear
+            git switch -C results-hokkaido-bear FETCH_HEAD
+          else
+            git switch --orphan results-hokkaido-bear
+            git rm -rf . >/dev/null || true
+          fi
+          mkdir -p hokkaido-bear
+          cp -a output/. hokkaido-bear/
+          git add -A
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Official 3DCodeVerse Harness Hokkaido bear geometry output" || true
+          git push origin HEAD:refs/heads/results-hokkaido-bear
