@@ -104,22 +104,27 @@ jobs:
         with:
           name: hokkaido-bear-offline-harness
           path: output
-      - name: Push verified model to results branch
+      - name: Publish confirmed output to main models folder
         shell: bash
         run: |
           set -euo pipefail
           test -s output/hokkaido_bear_official_harness.glb
-          if git ls-remote --exit-code --heads origin results-hokkaido-bear >/dev/null; then
-            git fetch origin results-hokkaido-bear
-            git switch -C results-hokkaido-bear FETCH_HEAD
-          else
-            git switch --orphan results-hokkaido-bear
-            git rm -rf . >/dev/null || true
-          fi
-          mkdir -p hokkaido-bear
-          cp -a output/. hokkaido-bear/
-          git add -A
+          test -s output/preview_00_sheet.png
+          test -s output/measurement.json
+          DEST="models/hokkaido-bear/latest"
+          mkdir -p "$DEST"
+          cp -a output/. "$DEST/"
+          printf "source_commit=%s\nactions_run=%s\nmethod=official 3DCodeVerse build on Blender source; no AI generator\n" "$GITHUB_SHA" "$GITHUB_RUN_ID" > "$DEST/PROVENANCE.txt"
+          echo "Built model sha256:"
+          sha256sum "$DEST/hokkaido_bear_official_harness.glb"
+          git add -f "$DEST"
+          git status --short
+          git diff --cached --stat
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "Official 3DCodeVerse Harness Hokkaido bear geometry output" || true
-          git push origin HEAD:refs/heads/results-hokkaido-bear
+          if git diff --cached --quiet; then
+            echo "Files unchanged; nothing to publish."
+          else
+            git commit -m "Publish real 3DCodeVerse bear GLB and multiview renders [run $GITHUB_RUN_ID]"
+            git push origin HEAD:main
+          fi
