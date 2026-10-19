@@ -2,7 +2,7 @@ name: 3DCodeVerse Offline Bear Sculpting and GLB Export
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/hokkaido-bear-build.yml']
+    paths: ['.github/workflows/hokkaido-bear-build.yml', 'tasks/hokkaido-bear/**']
   workflow_dispatch:
 permissions:
   contents: read
