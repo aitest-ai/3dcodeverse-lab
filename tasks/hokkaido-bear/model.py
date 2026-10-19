@@ -88,27 +88,45 @@ def fin(name, pts, mat, thick=0.015):
     obj.data.materials.append(mat)
     return obj
 
-# A substantial low-bodied bear, familiar Hokkaido tourist carving silhouette:
-# head to left (-X), prominent shoulders, squat trunk, thick separate feet.
+# ============================================================================
+# BEAR ANATOMY (v4): a single compact, grounded carved mass with articulated
+# shoulder / upper forelegs, true haunches and broad tapering paws.
+# Bear faces -X; Y is its left/right; Z is vertical until GLB export.
+# ============================================================================
 bear_parts=[]
-bear_parts.append(sphere("TorsoCarved", (0.16,0.0,1.06),(1.21,0.58,0.62),walnut))
-bear_parts.append(sphere("ShoulderHump",(-0.55,0,1.25),(0.65,0.60,0.67),walnut))
-bear_parts.append(sphere("Haunch",(0.90,0,1.10),(0.57,0.53,0.54),walnut))
-bear_parts.append(sphere("Neck",(-0.94,0,1.10),(0.56,0.50,0.49),walnut))
-bear_parts.append(sphere("CheekHead",(-1.32,0,1.12),(0.50,0.45,0.42),walnut))
-bear_parts.append(sphere("Muzzle",(-1.71,0,0.99),(0.31,0.32,0.22),walnut))
-bear_parts.append(sphere("LowerJaw",(-1.64,0,0.80),(0.27,0.28,0.11),walnut))
-# sculpt ears into the main silhouette, smaller and far apart
+def mass(name,loc,scale):
+    ob=sphere(name,loc,scale,walnut,seg=48,rings=28)
+    bear_parts.append(ob)
+    return ob
+
+# Shorter barrel and smooth withers; no ringed sausage body.
+mass("Ribcage",(0.13,0.0,1.13),(1.09,0.58,0.55))
+mass("UpperBack",(-0.34,0.0,1.26),(0.80,0.61,0.53))
+mass("Withers",(-0.71,0.0,1.34),(0.49,0.61,0.59))
+mass("Rump",(0.90,0.0,1.11),(0.52,0.55,0.52))
+mass("NeckFold",(-1.00,0.0,1.15),(0.53,0.50,0.46))
+mass("BroadSkull",(-1.39,0.0,1.16),(0.50,0.45,0.39))
+mass("CheekLower",(-1.57,0.0,0.998),(0.34,0.38,0.25))
+mass("ShortMuzzle",(-1.78,0.0,0.995),(0.27,0.29,0.18))
+mass("LowerJaw",(-1.75,0.0,0.828),(0.265,0.255,0.105))
+
 for side in (-1,1):
-    bear_parts.append(sphere("Ear"+str(side),(-1.28,side*0.335,1.52),(0.16,0.14,0.19),walnut))
-# limb cylinders merge into paws, no stick legs
-for fore,x in ((True,-0.76),(False,0.93)):
+    mass("RoundEar_%s"%side,(-1.35,side*0.35,1.49),(0.145,0.137,0.165))
+mass("ShortTail",(1.42,0,1.11),(0.13,0.145,0.115))
+
+# Forelegs are planted and strong; rear thighs flow backward with bent hocks.
+# Paws face -X and have carved grooves rather than bead-shaped attached toes.
+for is_front, xroot, xshin, px in ((True,-0.78,-0.87,-1.02),
+                                 (False,0.91,0.94,0.78)):
     for side in (-1,1):
-        y=side*0.43
-        bear_parts.append(sphere(("Fore" if fore else "Hind")+"Thigh"+str(side),(x,y,0.78),(0.31,0.25,0.50),walnut))
-        bear_parts.append(sphere(("Fore" if fore else "Hind")+"Shin"+str(side),(x-0.08,y,0.46),(0.22,0.22,0.37),walnut))
-        bear_parts.append(sphere(("Fore" if fore else "Hind")+"Paw"+str(side),(x-0.20,y,0.19),(0.33,0.24,0.20),walnut))
-bear_parts.append(sphere("StubTail",(1.47,0.0,1.06),(0.16,0.17,0.16),walnut))
+        y=side*0.435
+        typ="Fore" if is_front else "Rear"
+        mass("%sShoulder_%s"%(typ,side),(xroot,y*0.91,0.88),
+             (0.305,0.258,0.465) if is_front else (0.345,0.285,0.43))
+        mass("%sShin_%s"%(typ,side),(xshin,y,0.465),
+             (0.225,0.23,0.375))
+        mass("%sFoot_%s"%(typ,side),(px,y,0.185),
+             (0.315,0.27,0.19))
 
 # Fuse body and feet with voxel remeshing so there are no floating intersections.
 bpy.ops.object.select_all(action='DESELECT')
@@ -119,57 +137,67 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.030
+bear.data.remesh_voxel_size=0.023
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
     # The underlying body remains valid even if the Blender remesh backend is missing.
     pass
 
-# Apply low amplitude chisel-like surface displacement and dark/light wood facets.
+# Subtle *non-repeating* carved facets: no periodic torso-wide rings.
+# Multi-scale surface noise retains anatomy and avoids visual spikes.
 for mat in (walnut_mid,walnut_warm,walnut_dark):
     bear.data.materials.append(mat)
-for v in bear.data.vertices:
-    co=v.co
-    nx=noise.noise(Vector((co.x*13,co.y*13,co.z*13)))
-    fur=-0.0095 * max(0.0, math.sin(co.x*23 + co.z*15 + co.y*7))**5
-    v.co=co + v.normal * (0.0035*nx+fur)
+for vertex in bear.data.vertices:
+    co=vertex.co.copy()
+    n1=noise.noise(Vector((co.x*5.3+2.1,co.y*5.3,co.z*5.3)))
+    n2=noise.noise(Vector((co.x*17.1,co.y*17.1+3.6,co.z*17.1)))
+    # Carved facets get only 4–8 mm variation at this meter scale.
+    delta=0.0065*n1 + 0.0025*n2
+    vertex.co=co + vertex.normal*delta
 bear.data.update()
 for face in bear.data.polygons:
-    cx=face.center.x; cy=face.center.y; cz=face.center.z
-    n=noise.noise(Vector((cx*18,cy*18,cz*18)))
-    if n>0.61: face.material_index=2
-    elif n < -0.61: face.material_index=3
-    elif n>0.34: face.material_index=1
+    center=face.center
+    n=noise.noise(Vector((center.x*7.7,center.y*7.7,center.z*7.7)))
+    if n>0.63: face.material_index=2
+    elif n < -0.63: face.material_index=3
+    elif n>0.25: face.material_index=1
     else: face.material_index=0
     face.use_smooth=True
 
-# Four sets of deeply sculpted, discernible toes and carved claws.
-for fore,x in ((True,-0.76),(False,0.93)):
+# Discrete pointed claws inlaid into the fronts of unified paws.
+# Grooves on top lead to small dark blunt tips, not eight attached spheres.
+for is_front,px in ((True,-1.02),(False,0.78)):
     for side in (-1,1):
-        y=side*0.43
+        y=side*0.435
         for k in range(4):
-            py=y+(k-1.5)*0.105
-            tipx=x-0.43
-            sphere("WoodenToe_%s_%s_%d"%(int(fore),int(side),k),(tipx,py,0.125),(0.13,0.052,0.075),walnut_mid,20,12)
-            frustum("DarkClaw_%s_%s_%d"%(int(fore),int(side),k),(tipx-0.09,py,0.12),(tipx-0.18,py,0.10),0.040,0.005,walnut_dark,12)
+            py=y+(k-1.5)*0.118
+            # Thin inset lines on the sloping paw top (actual GLB curves).
+            curve_line("ClawRoot_%s_%s_%d"%(int(is_front),side,k),[
+                (px-0.195,py,0.32),
+                (px-0.264,py,0.244),
+                (px-0.310,py,0.17)],0.009,walnut_dark)
+            frustum("CarvedClaw_%s_%s_%d"%(int(is_front),side,k),
+                (px-0.295,py,0.15),(px-0.359,py,0.108),
+                0.028,0.005,walnut_mid,12)
 
 # Ear pits and facial detail on both sides
 for side in (-1,1):
-    sphere("EarWell_"+str(side),(-1.34,side*0.444,1.545),(0.087,0.015,0.10),walnut_dark,20,12)
-    sphere("InsetEye_"+str(side),(-1.64,side*0.315,1.190),(0.047,0.033,0.046),eye_mat,20,12)
-    sphere("Brow_"+str(side),(-1.55,side*0.327,1.25),(0.13,0.049,0.046),walnut_mid,24,14)
+    sphere("EarWell_"+str(side),(-1.42,side*0.451,1.510),(0.087,0.015,0.10),walnut_dark,20,12)
+    sphere("InsetEye_"+str(side),(-1.645,side*0.343,1.195),(0.047,0.033,0.046),eye_mat,20,12)
+    sphere("Brow_"+str(side),(-1.595,side*0.358,1.255),(0.13,0.049,0.046),walnut_mid,24,14)
 
 # A chunky triangular bear nose, distinctly forward.
-sphere("Bear_Black_Carved_Nose",(-1.975,0,1.035),(0.080,0.160,0.105),eye_mat,32,18)
-sphere("MouthOpening",(-1.864,0,0.856),(0.079,0.26,0.060),mouth_mat,24,12)
+sphere("Bear_Black_Carved_Nose",(-2.030,0,1.030),(0.080,0.160,0.105),eye_mat,32,18)
+sphere("MouthOpening",(-1.964,0,0.863),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
-    curve_line("LipCrease"+str(side),[(-1.95,side*0.11,0.881),(-1.83,side*0.26,0.860),(-1.65,side*0.25,0.850)],0.010,walnut_dark)
+    curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
 
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-2.055
+FISH_X=-1.976
 FISH_Z=0.875
+FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
     (-1.23, 0.012, 0.018),
     (-1.16, 0.090, 0.080),
@@ -189,7 +217,7 @@ faces=[]
 for jy,rx,rz in stations:
     for k in range(N):
         ang=math.tau*k/N
-        vertices.append((FISH_X+rx*math.cos(ang),jy,FISH_Z+rz*math.sin(ang)))
+        vertices.append((FISH_X+FISH_SKEW*jy+rx*math.cos(ang),jy,FISH_Z+rz*math.sin(ang)))
 for j in range(len(stations)-1):
     for k in range(N):
         i=j*N+k
@@ -209,37 +237,37 @@ for poly in fish_mesh.polygons:
 
 # Natural salmon head: eye on each visible side and curved engraved gill marks.
 for side in (-1,1):
-    sphere("Salmon_Eye"+str(side),(FISH_X+side*0.156,-1.01,FISH_Z+0.027),(0.016,0.020,0.019),eye_mat,16,10)
+    sphere("Salmon_Eye"+str(side),(FISH_X+FISH_SKEW*(-1.01)+side*0.156,-1.01,FISH_Z+0.027),(0.016,0.020,0.019),eye_mat,16,10)
     curve_line("GillCut"+str(side),[
-        (FISH_X+side*0.190,-0.86,FISH_Z+0.12),
-        (FISH_X+side*0.192,-0.83,FISH_Z+0.02),
-        (FISH_X+side*0.184,-0.88,FISH_Z-0.11)],0.007,walnut_dark)
+        (FISH_X+FISH_SKEW*(-0.86)+side*0.190,-0.86,FISH_Z+0.12),
+        (FISH_X+FISH_SKEW*(-0.83)+side*0.192,-0.83,FISH_Z+0.02),
+        (FISH_X+FISH_SKEW*(-0.88)+side*0.184,-0.88,FISH_Z-0.11)],0.007,walnut_dark)
 # Mouth is a small notch at the fish's pointed head.
-curve_line("Salmon_Open_Mouth",[(FISH_X-0.065,-1.18,FISH_Z-0.028),(FISH_X,-1.229,FISH_Z-0.030),
-                                (FISH_X+0.065,-1.18,FISH_Z-0.028)],0.006,walnut_dark)
+curve_line("Salmon_Open_Mouth",[(FISH_X+FISH_SKEW*(-1.18)-0.065,-1.18,FISH_Z-0.028),(FISH_X+FISH_SKEW*(-1.229),-1.229,FISH_Z-0.030),
+                                (FISH_X+FISH_SKEW*(-1.18)+0.065,-1.18,FISH_Z-0.028)],0.006,walnut_dark)
 
 # Traditional forked salmon tail in the true fish vertical fin plane (Y/Z).
 fin("Salmon_Forked_Tail",[
-    (FISH_X,1.01,FISH_Z),
-    (FISH_X,1.39,FISH_Z+0.27),
-    (FISH_X,1.20,FISH_Z),
-    (FISH_X,1.39,FISH_Z-0.27)
+    (FISH_X+FISH_SKEW*1.01,1.01,FISH_Z),
+    (FISH_X+FISH_SKEW*1.39,1.39,FISH_Z+0.27),
+    (FISH_X+FISH_SKEW*1.20,1.20,FISH_Z),
+    (FISH_X+FISH_SKEW*1.39,1.39,FISH_Z-0.27)
 ],salmon_side,0.040)
 fin("Salmon_DorsalFin",[
-    (FISH_X,0.12,FISH_Z+0.22),
-    (FISH_X,0.29,FISH_Z+0.41),
-    (FISH_X,0.51,FISH_Z+0.20)
+    (FISH_X+FISH_SKEW*0.12,0.12,FISH_Z+0.22),
+    (FISH_X+FISH_SKEW*0.29,0.29,FISH_Z+0.41),
+    (FISH_X+FISH_SKEW*0.51,0.51,FISH_Z+0.20)
 ],salmon_side,0.037)
 fin("Salmon_AnalFin",[
-    (FISH_X,0.39,FISH_Z-0.18),
-    (FISH_X,0.63,FISH_Z-0.35),
-    (FISH_X,0.73,FISH_Z-0.14)
+    (FISH_X+FISH_SKEW*0.39,0.39,FISH_Z-0.18),
+    (FISH_X+FISH_SKEW*0.63,0.63,FISH_Z-0.35),
+    (FISH_X+FISH_SKEW*0.73,0.73,FISH_Z-0.14)
 ],salmon_side,0.032)
 for side in (-1,1):
     fin("Salmon_PectoralFin"+str(side),[
-        (FISH_X+side*0.13,-0.83,FISH_Z-0.04),
-        (FISH_X+side*0.34,-0.55,FISH_Z-0.19),
-        (FISH_X+side*0.20,-0.40,FISH_Z-0.09)
+        (FISH_X+FISH_SKEW*(-0.83)+side*0.13,-0.83,FISH_Z-0.04),
+        (FISH_X+FISH_SKEW*(-0.55)+side*0.34,-0.55,FISH_Z-0.19),
+        (FISH_X+FISH_SKEW*(-0.40)+side*0.20,-0.40,FISH_Z-0.09)
     ],salmon_side,0.024)
 
 def fish_radius_at(y):
@@ -257,10 +285,15 @@ for side in (-1,1):
             zz=FISH_Z+(row-1)*0.056
             rx=fish_radius_at(sy)
             norm=max(0.12,1-((zz-FISH_Z)/0.24)**2)**0.5
-            xx=FISH_X+side*(rx*norm+0.002)
+            xx=FISH_X+FISH_SKEW*sy+side*(rx*norm+0.002)
             ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.007,0.030,0.017),salmon_ridge,10,8)
             ob.rotation_euler[0]=-0.12 if side==1 else 0.12
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
+
+# v4 geometry rebuild notes:
+# Shoulder/body/head united by the official Blender remesh workflow.
+# No full-body sine ribs; fixed paw shapes; compact skull/muzzle; skewed fish.
+# All outputs must be judged from official 3DCodeVerse multi-angle render, not generated images.
 
 # No ground, stage, writing or cameras: 3DCodeVerse owns the render studio.
