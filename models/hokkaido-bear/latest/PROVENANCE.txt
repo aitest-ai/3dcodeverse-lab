@@ -1,0 +1,3 @@
+source_commit=045ccef24c59da7507540152774ca7fc0f6ae83a
+actions_run=39342533866
+method=official 3DCodeVerse build on Blender source; no AI generator

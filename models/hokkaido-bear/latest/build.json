@@ -1,0 +1,6576 @@
+{
+  "ok": true,
+  "language": "blender",
+  "glb_path": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.glb",
+  "extra_paths": {
+    "stl": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.stl"
+  },
+  "stdout_tail": "INFO MeshOptimizer is available, use library at /home/runner/work/_temp/blender/lib/libbf_intern_meshopt_bridge.so",
+  "stderr_tail": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/src/model.py:15: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0\n  mat.use_nodes=True",
+  "error_type": "",
+  "error_message": "",
+  "error_file": "",
+  "error_line": null,
+  "duration_ms": 173005,
+  "census": {
+    "objects": [
+      {
+        "name": "Bear_Black_Carved_Nose",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Inset_Eyes_and_Nose"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.0,
+          -1.80525,
+          1.003
+        ],
+        "tri_count": 1088,
+        "vert_count": 546,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.16,
+          -1.87485,
+          0.898
+        ],
+        "bbox_max": [
+          0.16,
+          -1.73565,
+          1.108
+        ]
+      },
+      {
+        "name": "Brow_-1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.31,
+          -1.5138,
+          1.243
+        ],
+        "tri_count": 624,
+        "vert_count": 314,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.261,
+          -1.6269,
+          1.197
+        ],
+        "bbox_max": [
+          0.359,
+          -1.4007,
+          1.289
+        ]
+      },
+      {
+        "name": "Brow_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.31,
+          -1.5138,
+          1.243
+        ],
+        "tri_count": 624,
+        "vert_count": 314,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.359,
+          -1.6269,
+          1.197
+        ],
+        "bbox_max": [
+          -0.261,
+          -1.4007,
+          1.289
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_-1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.612,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.58764,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          0.63636,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_-1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.494,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.46964,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          0.51836,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_-1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.376,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.35164,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          0.40036,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_-1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.258,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.23364,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          0.28236,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.258,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.28236,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.23364,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.376,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.40036,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.35164,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.494,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.51836,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.46964,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_0_1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.612,
+          0.39411,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.63636,
+          0.34675,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.58764,
+          0.44147,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_-1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.612,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.58764,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          0.63636,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_-1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.494,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.46964,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          0.51836,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_-1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.376,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.35164,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          0.40036,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_-1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.258,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.23364,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          0.28236,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.258,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.28236,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.23364,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.376,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.40036,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.35164,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.494,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.51836,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.46964,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "CarvedClaw_1_1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Facet_Satin"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.612,
+          -1.17189,
+          0.077
+        ],
+        "tri_count": 44,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.63636,
+          -1.21925,
+          0.03259
+        ],
+        "bbox_max": [
+          -0.58764,
+          -1.12453,
+          0.12141
+        ]
+      },
+      {
+        "name": "ClawRoot_0_-1_0",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.603,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          0.621,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_-1_1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.485,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          0.503,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_-1_2",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.367,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          0.385,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_-1_3",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.249,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          0.267,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_1_0",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.267,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.249,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_1_1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.385,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.367,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_1_2",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.503,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.485,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_0_1_3",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.621,
+          0.40225,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.603,
+          0.51475,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_-1_0",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.603,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          0.621,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_-1_1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.485,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          0.503,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_-1_2",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.367,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          0.385,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_-1_3",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.249,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          0.267,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_1_0",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.267,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.249,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_1_1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.385,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.367,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_1_2",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.503,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.485,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "ClawRoot_1_1_3",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.621,
+          -1.16375,
+          0.11325
+        ],
+        "bbox_max": [
+          -0.603,
+          -1.05125,
+          0.27405
+        ]
+      },
+      {
+        "name": "EarWell_-1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.451,
+          -1.2354,
+          1.458
+        ],
+        "tri_count": 440,
+        "vert_count": 222,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.436,
+          -1.31109,
+          1.358
+        ],
+        "bbox_max": [
+          0.466,
+          -1.15971,
+          1.558
+        ]
+      },
+      {
+        "name": "EarWell_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.451,
+          -1.2354,
+          1.458
+        ],
+        "tri_count": 440,
+        "vert_count": 222,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.466,
+          -1.31109,
+          1.358
+        ],
+        "bbox_max": [
+          -0.436,
+          -1.15971,
+          1.558
+        ]
+      },
+      {
+        "name": "GillCut-1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.82301,
+          -2.0873,
+          0.6505
+        ],
+        "bbox_max": [
+          0.88653,
+          -2.06941,
+          0.88501
+        ]
+      },
+      {
+        "name": "GillCut1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.8231,
+          -1.71529,
+          0.65042
+        ],
+        "bbox_max": [
+          0.88643,
+          -1.68825,
+          0.88504
+        ]
+      },
+      {
+        "name": "InsetEye_-1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Inset_Eyes_and_Nose"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.278,
+          -1.5573,
+          1.193
+        ],
+        "tri_count": 440,
+        "vert_count": 222,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.245,
+          -1.59819,
+          1.147
+        ],
+        "bbox_max": [
+          0.311,
+          -1.51641,
+          1.239
+        ]
+      },
+      {
+        "name": "InsetEye_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Inset_Eyes_and_Nose"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.278,
+          -1.5573,
+          1.193
+        ],
+        "tri_count": 440,
+        "vert_count": 222,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.311,
+          -1.59819,
+          1.147
+        ],
+        "bbox_max": [
+          -0.245,
+          -1.51641,
+          1.239
+        ]
+      },
+      {
+        "name": "Kuma_Handcarved_OnePiece",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Dark_Charred_Walnut",
+          "Wood_Facet_Satin",
+          "Wood_Highlight_Old_Polish",
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 4,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 122468,
+        "vert_count": 61236,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "bbox_min": [
+          -0.71933,
+          -1.81853,
+          -0.00256
+        ],
+        "bbox_max": [
+          0.71806,
+          1.23148,
+          1.85691
+        ]
+      },
+      {
+        "name": "LipCrease-1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.10529,
+          -1.74768,
+          0.79009
+        ],
+        "bbox_max": [
+          0.26867,
+          -1.52182,
+          0.84191
+        ]
+      },
+      {
+        "name": "LipCrease1",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26867,
+          -1.74768,
+          0.79009
+        ],
+        "bbox_max": [
+          -0.10529,
+          -1.52182,
+          0.84191
+        ]
+      },
+      {
+        "name": "MouthOpening",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Mouth_Dark_Shadow"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.0,
+          -1.70868,
+          0.778
+        ],
+        "tri_count": 528,
+        "vert_count": 266,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26,
+          -1.77741,
+          0.718
+        ],
+        "bbox_max": [
+          0.26,
+          -1.63995,
+          0.838
+        ]
+      },
+      {
+        "name": "Salmon_AnalFin",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 8,
+        "vert_count": 6,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.73,
+          -1.79105,
+          0.413
+        ],
+        "bbox_max": [
+          -0.39,
+          -1.69135,
+          0.623
+        ]
+      },
+      {
+        "name": "Salmon_DorsalFin",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 8,
+        "vert_count": 6,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.51,
+          -1.8244,
+          0.963
+        ],
+        "bbox_max": [
+          -0.12,
+          -1.70945,
+          1.173
+        ]
+      },
+      {
+        "name": "Salmon_Eye-1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Inset_Eyes_and_Nose"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          1.01,
+          -2.06205,
+          0.79
+        ],
+        "tri_count": 288,
+        "vert_count": 146,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.99,
+          -2.07805,
+          0.771
+        ],
+        "bbox_max": [
+          1.03,
+          -2.04605,
+          0.809
+        ]
+      },
+      {
+        "name": "Salmon_Eye1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Inset_Eyes_and_Nose"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          1.01,
+          -1.75005,
+          0.79
+        ],
+        "tri_count": 288,
+        "vert_count": 146,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.99,
+          -1.76605,
+          0.771
+        ],
+        "bbox_max": [
+          1.03,
+          -1.73405,
+          0.809
+        ]
+      },
+      {
+        "name": "Salmon_Forked_Tail",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 12,
+        "vert_count": 8,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -1.39,
+          -1.73395,
+          0.493
+        ],
+        "bbox_max": [
+          -1.01,
+          -1.61405,
+          1.033
+        ]
+      },
+      {
+        "name": "Salmon_Open_Mouth",
+        "type": "CURVE",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Wood_Deep_Gouges"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 32,
+        "vert_count": 24,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          1.17508,
+          -1.9927,
+          0.727
+        ],
+        "bbox_max": [
+          1.235,
+          -1.85546,
+          0.741
+        ]
+      },
+      {
+        "name": "Salmon_PectoralFin-1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 8,
+        "vert_count": 6,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.4,
+          -2.22175,
+          0.573
+        ],
+        "bbox_max": [
+          0.83,
+          -1.99315,
+          0.723
+        ]
+      },
+      {
+        "name": "Salmon_PectoralFin1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 8,
+        "vert_count": 6,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.4,
+          -1.78115,
+          0.573
+        ],
+        "bbox_max": [
+          0.83,
+          -1.49375,
+          0.723
+        ]
+      },
+      {
+        "name": "Salmon_Tapered_Body",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Warm_Carved_Wood",
+          "Salmon_Dark_Upper_Body"
+        ],
+        "n_material_slots": 2,
+        "modifiers": [],
+        "location": [
+          0.0,
+          0.0,
+          -0.052
+        ],
+        "tri_count": 788,
+        "vert_count": 396,
+        "has_uv": false,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0,
+          1
+        ],
+        "bbox_min": [
+          -1.04,
+          -2.0804,
+          0.524
+        ],
+        "bbox_max": [
+          1.23,
+          -1.5615,
+          1.002
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.76,
+          -2.07161,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.73398,
+          -2.07542,
+          0.69408
+        ],
+        "bbox_max": [
+          0.78602,
+          -2.06781,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.683,
+          -2.06995,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.65698,
+          -2.07375,
+          0.69408
+        ],
+        "bbox_max": [
+          0.70902,
+          -2.06614,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.01,
+          -2.02316,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.03602,
+          -2.02696,
+          0.69408
+        ],
+        "bbox_max": [
+          0.01602,
+          -2.01935,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.087,
+          -2.01208,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.11302,
+          -2.01588,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.06098,
+          -2.00827,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.164,
+          -1.99637,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.19002,
+          -2.00018,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.13798,
+          -1.99257,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.241,
+          -1.97973,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26702,
+          -1.98354,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.21498,
+          -1.97593,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.318,
+          -1.96309,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.34402,
+          -1.96689,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.29198,
+          -1.95929,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.395,
+          -1.94645,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.42102,
+          -1.95025,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.36898,
+          -1.94264,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.472,
+          -1.92851,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.49802,
+          -1.93231,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.44598,
+          -1.9247,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.549,
+          -1.90732,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.57502,
+          -1.91112,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.52298,
+          -1.90351,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.626,
+          -1.88613,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.65202,
+          -1.88994,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.59998,
+          -1.88233,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.703,
+          -1.86494,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.72902,
+          -1.86875,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.67698,
+          -1.86114,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.606,
+          -2.06828,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.57998,
+          -2.07208,
+          0.69408
+        ],
+        "bbox_max": [
+          0.63202,
+          -2.06447,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.78,
+          -1.83417,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.80602,
+          -1.83797,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.75398,
+          -1.83036,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.857,
+          -1.79821,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.88302,
+          -1.80201,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.83098,
+          -1.79441,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.529,
+          -2.06661,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.50298,
+          -2.07042,
+          0.69408
+        ],
+        "bbox_max": [
+          0.55502,
+          -2.06281,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.452,
+          -2.06494,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.42598,
+          -2.06875,
+          0.69408
+        ],
+        "bbox_max": [
+          0.47802,
+          -2.06114,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.375,
+          -2.06328,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.34898,
+          -2.06708,
+          0.69408
+        ],
+        "bbox_max": [
+          0.40102,
+          -2.05947,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.298,
+          -2.06161,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.27198,
+          -2.06541,
+          0.69408
+        ],
+        "bbox_max": [
+          0.32402,
+          -2.05781,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.221,
+          -2.0564,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.19498,
+          -2.0602,
+          0.69408
+        ],
+        "bbox_max": [
+          0.24702,
+          -2.05259,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.144,
+          -2.04532,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.11798,
+          -2.04912,
+          0.69408
+        ],
+        "bbox_max": [
+          0.17002,
+          -2.04151,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_0_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.067,
+          -2.03424,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.04098,
+          -2.03804,
+          0.69408
+        ],
+        "bbox_max": [
+          0.09302,
+          -2.03043,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.735,
+          -2.0766,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.70898,
+          -2.08041,
+          0.75008
+        ],
+        "bbox_max": [
+          0.76102,
+          -2.0728,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.658,
+          -2.07512,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.63198,
+          -2.07892,
+          0.75008
+        ],
+        "bbox_max": [
+          0.68402,
+          -2.07131,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.035,
+          -2.02592,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.06102,
+          -2.02973,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.00898,
+          -2.02212,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.112,
+          -2.01387,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.13802,
+          -2.01767,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.08598,
+          -2.01006,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.189,
+          -1.99698,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.21502,
+          -2.00079,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.16298,
+          -1.99318,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.266,
+          -1.9801,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.29202,
+          -1.9839,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.23998,
+          -1.97629,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.343,
+          -1.96321,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.36902,
+          -1.96702,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.31698,
+          -1.95941,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.42,
+          -1.94633,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.44602,
+          -1.95013,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.39398,
+          -1.94252,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.497,
+          -1.92659,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.52302,
+          -1.93039,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.47098,
+          -1.92279,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.574,
+          -1.90503,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.60002,
+          -1.90883,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.54798,
+          -1.90123,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.651,
+          -1.88347,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.67702,
+          -1.88727,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.62498,
+          -1.87967,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.728,
+          -1.86191,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.75402,
+          -1.86571,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.70198,
+          -1.85811,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.581,
+          -2.07363,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.55498,
+          -2.07744,
+          0.75008
+        ],
+        "bbox_max": [
+          0.60702,
+          -2.06983,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.805,
+          -1.82556,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.83102,
+          -1.82936,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.77898,
+          -1.82175,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.882,
+          -1.78881,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.90802,
+          -1.79262,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.85598,
+          -1.78501,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.504,
+          -2.07215,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.47798,
+          -2.07595,
+          0.75008
+        ],
+        "bbox_max": [
+          0.53002,
+          -2.06834,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.427,
+          -2.07066,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.40098,
+          -2.07447,
+          0.75008
+        ],
+        "bbox_max": [
+          0.45302,
+          -2.06686,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.35,
+          -2.06918,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.32398,
+          -2.07298,
+          0.75008
+        ],
+        "bbox_max": [
+          0.37602,
+          -2.06537,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.273,
+          -2.06769,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.24698,
+          -2.0715,
+          0.75008
+        ],
+        "bbox_max": [
+          0.29902,
+          -2.06389,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.196,
+          -2.05942,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.16998,
+          -2.06322,
+          0.75008
+        ],
+        "bbox_max": [
+          0.22202,
+          -2.05562,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.119,
+          -2.04825,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.09298,
+          -2.05206,
+          0.75008
+        ],
+        "bbox_max": [
+          0.14502,
+          -2.04445,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_1_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.042,
+          -2.03709,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.01598,
+          -2.04089,
+          0.75008
+        ],
+        "bbox_max": [
+          0.06802,
+          -2.03329,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.76,
+          -2.07161,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.73398,
+          -2.07542,
+          0.80608
+        ],
+        "bbox_max": [
+          0.78602,
+          -2.06781,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.683,
+          -2.06995,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.65698,
+          -2.07375,
+          0.80608
+        ],
+        "bbox_max": [
+          0.70902,
+          -2.06614,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.01,
+          -2.02316,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.03602,
+          -2.02696,
+          0.80608
+        ],
+        "bbox_max": [
+          0.01602,
+          -2.01935,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.087,
+          -2.01208,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.11302,
+          -2.01588,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.06098,
+          -2.00827,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.164,
+          -1.99637,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.19002,
+          -2.00018,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.13798,
+          -1.99257,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.241,
+          -1.97973,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26702,
+          -1.98354,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.21498,
+          -1.97593,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.318,
+          -1.96309,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.34402,
+          -1.96689,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.29198,
+          -1.95929,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.395,
+          -1.94645,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.42102,
+          -1.95025,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.36898,
+          -1.94264,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.472,
+          -1.92851,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.49802,
+          -1.93231,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.44598,
+          -1.9247,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.549,
+          -1.90732,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.57502,
+          -1.91112,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.52298,
+          -1.90351,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.626,
+          -1.88613,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.65202,
+          -1.88994,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.59998,
+          -1.88233,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.703,
+          -1.86494,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.72902,
+          -1.86875,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.67698,
+          -1.86114,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.606,
+          -2.06828,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.57998,
+          -2.07208,
+          0.80608
+        ],
+        "bbox_max": [
+          0.63202,
+          -2.06447,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.78,
+          -1.83417,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.80602,
+          -1.83797,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.75398,
+          -1.83036,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.857,
+          -1.79821,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.88302,
+          -1.80201,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.83098,
+          -1.79441,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.529,
+          -2.06661,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.50298,
+          -2.07042,
+          0.80608
+        ],
+        "bbox_max": [
+          0.55502,
+          -2.06281,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.452,
+          -2.06494,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.42598,
+          -2.06875,
+          0.80608
+        ],
+        "bbox_max": [
+          0.47802,
+          -2.06114,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.375,
+          -2.06328,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.34898,
+          -2.06708,
+          0.80608
+        ],
+        "bbox_max": [
+          0.40102,
+          -2.05947,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.298,
+          -2.06161,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.27198,
+          -2.06541,
+          0.80608
+        ],
+        "bbox_max": [
+          0.32402,
+          -2.05781,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.221,
+          -2.0564,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.19498,
+          -2.0602,
+          0.80608
+        ],
+        "bbox_max": [
+          0.24702,
+          -2.05259,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.144,
+          -2.04532,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.11798,
+          -2.04912,
+          0.80608
+        ],
+        "bbox_max": [
+          0.17002,
+          -2.04151,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_-1_2_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.067,
+          -2.03424,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.04098,
+          -2.03804,
+          0.80608
+        ],
+        "bbox_max": [
+          0.09302,
+          -2.03043,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.76,
+          -1.68799,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.73398,
+          -1.69179,
+          0.69408
+        ],
+        "bbox_max": [
+          0.78602,
+          -1.68418,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.683,
+          -1.67348,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.65698,
+          -1.67729,
+          0.69408
+        ],
+        "bbox_max": [
+          0.70902,
+          -1.66968,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.01,
+          -1.57474,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.03602,
+          -1.57855,
+          0.69408
+        ],
+        "bbox_max": [
+          0.01602,
+          -1.57094,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.087,
+          -1.56965,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.11302,
+          -1.57346,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.06098,
+          -1.56585,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.164,
+          -1.56919,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.19002,
+          -1.57299,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.13798,
+          -1.56538,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.241,
+          -1.56966,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26702,
+          -1.57346,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.21498,
+          -1.56585,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.318,
+          -1.57013,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.34402,
+          -1.57393,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.29198,
+          -1.56633,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.395,
+          -1.5706,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.42102,
+          -1.57441,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.36898,
+          -1.5668,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.472,
+          -1.57237,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.49802,
+          -1.57618,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.44598,
+          -1.56857,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.549,
+          -1.57739,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.57502,
+          -1.5812,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.52298,
+          -1.57359,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.626,
+          -1.58241,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.65202,
+          -1.58621,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.59998,
+          -1.57861,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.703,
+          -1.58743,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.72902,
+          -1.59123,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.67698,
+          -1.58362,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.606,
+          -1.65898,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.57998,
+          -1.66279,
+          0.69408
+        ],
+        "bbox_max": [
+          0.63202,
+          -1.65518,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.78,
+          -1.60203,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.80602,
+          -1.60584,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.75398,
+          -1.59823,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.857,
+          -1.62182,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.88302,
+          -1.62562,
+          0.69408
+        ],
+        "bbox_max": [
+          -0.83098,
+          -1.61801,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.529,
+          -1.64448,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.50298,
+          -1.64828,
+          0.69408
+        ],
+        "bbox_max": [
+          0.55502,
+          -1.64067,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.452,
+          -1.62998,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.42598,
+          -1.63378,
+          0.69408
+        ],
+        "bbox_max": [
+          0.47802,
+          -1.62617,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.375,
+          -1.61547,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.34898,
+          -1.61928,
+          0.69408
+        ],
+        "bbox_max": [
+          0.40102,
+          -1.61167,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.298,
+          -1.60097,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.27198,
+          -1.60477,
+          0.69408
+        ],
+        "bbox_max": [
+          0.32402,
+          -1.59717,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.221,
+          -1.59001,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.19498,
+          -1.59382,
+          0.69408
+        ],
+        "bbox_max": [
+          0.24702,
+          -1.58621,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.144,
+          -1.58492,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.11798,
+          -1.58873,
+          0.69408
+        ],
+        "bbox_max": [
+          0.17002,
+          -1.58112,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_0_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.067,
+          -1.57983,
+          0.707
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.04098,
+          -1.58364,
+          0.69408
+        ],
+        "bbox_max": [
+          0.09302,
+          -1.57603,
+          0.71992
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.735,
+          -1.67775,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.70898,
+          -1.68155,
+          0.75008
+        ],
+        "bbox_max": [
+          0.76102,
+          -1.67394,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.658,
+          -1.66306,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.63198,
+          -1.66687,
+          0.75008
+        ],
+        "bbox_max": [
+          0.68402,
+          -1.65926,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.035,
+          -1.56673,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.06102,
+          -1.57053,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.00898,
+          -1.56292,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.112,
+          -1.56261,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.13802,
+          -1.56642,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.08598,
+          -1.55881,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.189,
+          -1.56333,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.21502,
+          -1.56713,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.16298,
+          -1.55952,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.266,
+          -1.56404,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.29202,
+          -1.56785,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.23998,
+          -1.56024,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.343,
+          -1.56476,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.36902,
+          -1.56856,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.31698,
+          -1.56095,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.42,
+          -1.56547,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.44602,
+          -1.56928,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.39398,
+          -1.56167,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.497,
+          -1.56904,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.52302,
+          -1.57284,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.47098,
+          -1.56524,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.574,
+          -1.57443,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.60002,
+          -1.57823,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.54798,
+          -1.57063,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.651,
+          -1.57982,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.67702,
+          -1.58362,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.62498,
+          -1.57602,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.728,
+          -1.58521,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.75402,
+          -1.58901,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.70198,
+          -1.58141,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.581,
+          -1.64838,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.55498,
+          -1.65218,
+          0.75008
+        ],
+        "bbox_max": [
+          0.60702,
+          -1.64457,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.805,
+          -1.60539,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.83102,
+          -1.6092,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.77898,
+          -1.60159,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.882,
+          -1.62597,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.90802,
+          -1.62977,
+          0.75008
+        ],
+        "bbox_max": [
+          -0.85598,
+          -1.62216,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.504,
+          -1.63369,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.47798,
+          -1.6375,
+          0.75008
+        ],
+        "bbox_max": [
+          0.53002,
+          -1.62989,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.427,
+          -1.61901,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.40098,
+          -1.62281,
+          0.75008
+        ],
+        "bbox_max": [
+          0.45302,
+          -1.6152,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.35,
+          -1.60432,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.32398,
+          -1.60813,
+          0.75008
+        ],
+        "bbox_max": [
+          0.37602,
+          -1.60052,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.273,
+          -1.58964,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.24698,
+          -1.59344,
+          0.75008
+        ],
+        "bbox_max": [
+          0.29902,
+          -1.58583,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.196,
+          -1.58174,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.16998,
+          -1.58554,
+          0.75008
+        ],
+        "bbox_max": [
+          0.22202,
+          -1.57794,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.119,
+          -1.57674,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.09298,
+          -1.58054,
+          0.75008
+        ],
+        "bbox_max": [
+          0.14502,
+          -1.57293,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_1_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.042,
+          -1.57173,
+          0.763
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.01598,
+          -1.57553,
+          0.75008
+        ],
+        "bbox_max": [
+          0.06802,
+          -1.56793,
+          0.77592
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_0",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.76,
+          -1.68799,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.73398,
+          -1.69179,
+          0.80608
+        ],
+        "bbox_max": [
+          0.78602,
+          -1.68418,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_1",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.683,
+          -1.67348,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.65698,
+          -1.67729,
+          0.80608
+        ],
+        "bbox_max": [
+          0.70902,
+          -1.66968,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_10",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.01,
+          -1.57474,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.03602,
+          -1.57855,
+          0.80608
+        ],
+        "bbox_max": [
+          0.01602,
+          -1.57094,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_11",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.087,
+          -1.56965,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.11302,
+          -1.57346,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.06098,
+          -1.56585,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_12",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.164,
+          -1.56919,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.19002,
+          -1.57299,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.13798,
+          -1.56538,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_13",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.241,
+          -1.56966,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.26702,
+          -1.57346,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.21498,
+          -1.56585,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_14",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.318,
+          -1.57013,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.34402,
+          -1.57393,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.29198,
+          -1.56633,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_15",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.395,
+          -1.5706,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.42102,
+          -1.57441,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.36898,
+          -1.5668,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_16",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.472,
+          -1.57237,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.49802,
+          -1.57618,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.44598,
+          -1.56857,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_17",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.549,
+          -1.57739,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.57502,
+          -1.5812,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.52298,
+          -1.57359,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_18",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.626,
+          -1.58241,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.65202,
+          -1.58621,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.59998,
+          -1.57861,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_19",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.703,
+          -1.58743,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.72902,
+          -1.59123,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.67698,
+          -1.58362,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_2",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.606,
+          -1.65898,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.57998,
+          -1.66279,
+          0.80608
+        ],
+        "bbox_max": [
+          0.63202,
+          -1.65518,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_20",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.78,
+          -1.60203,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.80602,
+          -1.60584,
+          0.80608
+        ],
+        "bbox_max": [
+          -0.75398,
+          -1.59823,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_21",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          -0.857,
+          -1.62182,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          -0.882,
+          -1.62562,
+          0.809
+        ],
+        "bbox_max": [
+          -0.832,
+          -1.61801,
+          0.829
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_3",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.529,
+          -1.64448,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.50298,
+          -1.64828,
+          0.80608
+        ],
+        "bbox_max": [
+          0.55502,
+          -1.64067,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_4",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.452,
+          -1.62998,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.42598,
+          -1.63378,
+          0.80608
+        ],
+        "bbox_max": [
+          0.47802,
+          -1.62617,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_5",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.375,
+          -1.61547,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.34898,
+          -1.61928,
+          0.80608
+        ],
+        "bbox_max": [
+          0.40102,
+          -1.61167,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_6",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.298,
+          -1.60097,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.27198,
+          -1.60477,
+          0.80608
+        ],
+        "bbox_max": [
+          0.32402,
+          -1.59717,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_7",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.221,
+          -1.59001,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.19498,
+          -1.59382,
+          0.80608
+        ],
+        "bbox_max": [
+          0.24702,
+          -1.58621,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_8",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.144,
+          -1.58492,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.11798,
+          -1.58873,
+          0.80608
+        ],
+        "bbox_max": [
+          0.17002,
+          -1.58112,
+          0.83192
+        ]
+      },
+      {
+        "name": "SalmonScale_1_2_9",
+        "type": "MESH",
+        "parent": null,
+        "in_scene": true,
+        "in_view_layer": true,
+        "hidden": false,
+        "materials": [
+          "Salmon_Etched_Scales"
+        ],
+        "n_material_slots": 1,
+        "modifiers": [],
+        "location": [
+          0.067,
+          -1.57983,
+          0.819
+        ],
+        "tri_count": 140,
+        "vert_count": 72,
+        "has_uv": true,
+        "has_vertex_colors": false,
+        "material_indices_used": [
+          0
+        ],
+        "bbox_min": [
+          0.04098,
+          -1.58364,
+          0.80608
+        ],
+        "bbox_max": [
+          0.09302,
+          -1.57603,
+          0.83192
+        ]
+      }
+    ],
+    "n_mesh_objects": 165,
+    "tri_count": 148356,
+    "materials": [
+      "Inset_Eyes_and_Nose",
+      "Mouth_Dark_Shadow",
+      "Salmon_Dark_Upper_Body",
+      "Salmon_Etched_Scales",
+      "Salmon_Warm_Carved_Wood",
+      "Wood_Dark_Charred_Walnut",
+      "Wood_Deep_Gouges",
+      "Wood_Facet_Satin",
+      "Wood_Highlight_Old_Polish"
+    ],
+    "cameras": [],
+    "lights": [],
+    "warnings": [],
+    "frame": "z_up_neg_y_front",
+    "scene_bbox_min": [
+      -1.39,
+      -2.22175,
+      -0.00256
+    ],
+    "scene_bbox_max": [
+      1.235,
+      1.23148,
+      1.85691
+    ],
+    "build_report": {
+      "traceback": "",
+      "error_source": "",
+      "warnings": [],
+      "exported": {
+        "glb": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.glb",
+        "stl": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.stl"
+      },
+      "exec_ms": 172314
+    }
+  },
+  "gates": [],
+  "harness_failure": false
+}
