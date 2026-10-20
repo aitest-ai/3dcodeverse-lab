@@ -20,10 +20,10 @@ def material(name, rgb, rough=0.72, metallic=0.0):
         bs.inputs["Metallic"].default_value=metallic
     return mat
 
-walnut=material("Wood_Dark_Charred_Walnut",(0.057,0.030,0.017))
-walnut_warm=material("Wood_Highlight_Old_Polish",(0.071,0.039,0.021))
-walnut_mid=material("Wood_Facet_Satin",(0.065,0.034,0.017))
-walnut_dark=material("Wood_Deep_Gouges",(0.034,0.018,0.009))
+walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022))
+walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
+walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
+walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
 salmon_wood=material("Salmon_Warm_Carved_Wood",(0.128,0.063,0.031))
 salmon_side=material("Salmon_Dark_Upper_Body",(0.069,0.030,0.013))
 salmon_ridge=material("Salmon_Etched_Scales",(0.162,0.080,0.037))
@@ -190,33 +190,55 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.020
+bear.data.remesh_voxel_size=0.014
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
     # The underlying body remains valid even if the Blender remesh backend is missing.
     pass
 
-# Subtle *non-repeating* carved facets: no periodic torso-wide rings.
-# Multi-scale surface noise retains anatomy and avoids visual spikes.
-for mat in (walnut_mid,walnut_warm,walnut_dark):
+# v9 true carved wood relief, sculpted INTO the organic remesh geometry.
+# Each anisotropic notch sinks below its surrounding facets. The overlapping
+# staggered gouges follow the body direction (and never become fake spikes).
+for mat in (walnut_mid, walnut_warm, walnut_dark):
     bear.data.materials.append(mat)
-for vertex in bear.data.vertices:
-    co=vertex.co.copy()
-    n1=noise.noise(Vector((co.x*5.3+2.1,co.y*5.3,co.z*5.3)))
-    n2=noise.noise(Vector((co.x*17.1,co.y*17.1+3.6,co.z*17.1)))
-    # Carved facets get only 4–8 mm variation at this meter scale.
-    delta=0.0065*n1 + 0.0025*n2
-    vertex.co=co + vertex.normal*delta
+def clamp(v,a=0.0,b=1.0):
+    return max(a,min(b,v))
+def chisel_profile(co):
+    # Incisions run diagonally down and backwards as in a real kibori kuma.
+    # Spatial cell staggering prevents the previous repetitive banding.
+    u=co.x*11.3+co.y*0.5+0.62*math.sin(co.z*2.1)
+    v=co.z*11.4-co.x*3.2+co.y*0.7
+    row=math.floor(v)
+    cu=(u + 0.5*(row%2))%1.0-0.5
+    cv=(v%1.0)-0.52
+    skew=cu+0.30*cv
+    d=(skew/0.44)**2+(cv/0.31)**2
+    if d>=1.0: return 0.0
+    taper=max(0.0,1.0-d)
+    # One side of the gouge lifts slightly while the hollow cuts deep.
+    return (taper**1.5) * (0.012 if skew<0.03 else 0.020)
+
+for vert in bear.data.vertices:
+    p=vert.co.copy()
+    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0017
+    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0042
+    # do not disturb soles, small ears, nose or face
+    trunk=clamp((p.x+1.29)/0.28)*clamp((1.43-p.x)/0.22)*clamp((p.z-0.55)/0.33)
+    relief=chisel_profile(p)*trunk
+    vert.co=p + vert.normal*(facet+micro-relief)
 bear.data.update()
 for face in bear.data.polygons:
-    center=face.center
-    n=noise.noise(Vector((center.x*7.7,center.y*7.7,center.z*7.7)))
-    if n>0.70: face.material_index=2
-    elif n < -0.70: face.material_index=3
-    elif n>0.48: face.material_index=1
+    p=face.center
+    nc=noise.noise(Vector((p.x*5.4,p.y*5.4,p.z*5.4)))
+    mark=chisel_profile(p)
+    if mark>0.009 and p.z>0.78 and p.x>-1.25:
+        face.material_index=3
+    elif nc>0.52: face.material_index=2
+    elif nc>0.16: face.material_index=1
     else: face.material_index=0
-    face.use_smooth=True
+    # visible tiny chisel facets without making the surface polygonal everywhere
+    face.use_smooth= not (mark>0.014 and p.z>0.8 and p.x>-1.2)
 
 # Discrete pointed claws inlaid into the fronts of unified paws.
 # Grooves on top lead to small dark blunt tips, not eight attached spheres.
@@ -236,12 +258,31 @@ for is_front,px in ((True,-1.02),(False,0.78)):
 
 # Ear pits and facial detail on both sides
 for side in (-1,1):
-    sphere("EarWell_"+str(side),(-1.42,side*0.451,1.510),(0.087,0.015,0.10),walnut_dark,20,12)
+    sphere("EarWell_"+str(side),(-1.42,side*0.463,1.510),(0.095,0.020,0.105),walnut_dark,28,16)
     sphere("InsetEye_"+str(side),(-1.79,side*0.278,1.245),(0.047,0.033,0.046),eye_mat,20,12)
     sphere("Brow_"+str(side),(-1.74,side*0.31,1.295),(0.13,0.049,0.046),walnut_mid,24,14)
 
+# v9 deeper facial sculpting: subtle cheek ridge, inset eyelid/corner, nostrils.
+# The eyes are carved into the mass instead of floating as buttons.
+for side in (-1,1):
+    sphere("EyeSocket_%s"%side,(-1.765,side*0.274,1.229),
+           (0.073,0.035,0.073),walnut_dark,32,18)
+    sphere("EyeCarvedInset_%s"%side,(-1.799,side*0.306,1.251),
+           (0.029,0.029,0.031),eye_mat,24,16)
+    curve_line("UpperEyelid_%s"%side,[
+        (-1.83,side*0.319,1.29),(-1.79,side*0.331,1.313),
+        (-1.731,side*0.312,1.286)],0.010,walnut_mid)
+    curve_line("CheekCut_%s"%side,[
+        (-1.74,side*0.345,1.05),(-1.59,side*0.405,1.02),
+        (-1.46,side*0.42,1.11)],0.008,walnut_dark)
+
 # A chunky triangular bear nose, distinctly forward.
 sphere("Bear_Black_Carved_Nose",(-2.075,0,1.055),(0.080,0.160,0.105),eye_mat,32,18)
+# Short, heavy triangular bear nose with nostril dimples.
+for side in (-1,1):
+    sphere("NostrilInset_%s"%side,(-2.137,side*0.090,1.052),
+        (0.016,0.023,0.012),walnut_dark,16,10)
+
 sphere("MouthOpening",(-1.964,0,0.830),(0.079,0.26,0.060),mouth_mat,24,12)
 for side in (-1,1):
     curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
@@ -272,7 +313,14 @@ stations=[
     ( 0.91, 0.072, 0.089),
     ( 1.04, 0.032, 0.045),
 ]
-N=36
+N=72
+# refine all fish stations to support actual engraved fish scales, not stuck-on beads
+refined=[]
+for idx in range(len(stations)-1):
+    for sub in range(7):
+        refined.append(cat_profile(stations[idx],stations[idx+1],sub/7))
+refined.append(stations[-1])
+stations=refined
 vertices=[]
 faces=[]
 for jy,rx,rz in stations:
@@ -292,6 +340,20 @@ fish_obj=bpy.data.objects.new("Salmon_Tapered_Body",fish_mesh)
 bpy.context.collection.objects.link(fish_obj)
 fish_mesh.materials.append(salmon_wood)
 fish_mesh.materials.append(salmon_side)
+# Engrave overlapping fish-scale dimples directly into actual mesh vertices.
+# This survives GLB export, instead of 132 floating ellipsoid scale beads.
+for vert in fish_mesh.vertices:
+    p=vert.co
+    flank=clamp((abs(p.x-FISH_X-FISH_SKEW*p.y)-0.095)/0.075)
+    u=(p.y+1.1)*21.2
+    v=(p.z-FISH_Z)*25.0
+    r=math.floor(v)
+    du=(u+0.5*(r%2))%1.0-0.5
+    dv=(v%1.0)-0.50
+    dent=max(0.0,1.0-((du/0.39)**2+(dv/0.36)**2))
+    normal=vert.normal if vert.normal.length>0 else Vector((1,0,0))
+    p.x-= (0.0038*dent*flank)* (1 if p.x>FISH_X+FISH_SKEW*p.y else -1)
+fish_mesh.update()
 for poly in fish_mesh.polygons:
     poly.use_smooth=True
     poly.material_index=1 if poly.center.z>FISH_Z+0.080 else 0
@@ -338,19 +400,7 @@ def fish_radius_at(y):
             return stations[i][1]*(1-t)+stations[i+1][1]*t
     return 0.01
 
-# Fine etched scales on flanks, following the actual fish taper.
-for side in (-1,1):
-    for row in range(3):
-        for i in range(22):
-            sy=-0.76+i*0.077+(row%2)*0.025
-            zz=FISH_Z+(row-1)*0.056
-            rx=fish_radius_at(sy)
-            norm=max(0.12,1-((zz-FISH_Z)/0.24)**2)**0.5
-            xx=FISH_X+FISH_SKEW*sy+side*(rx*norm-0.001)
-            ob=sphere("SalmonScale_%d_%d_%d"%(side,row,i),(xx,sy,zz),(0.004,0.025,0.010),salmon_ridge,10,8)
-            ob.rotation_euler[0]=-0.12 if side==1 else 0.12
-
-# v5 fish-to-bear ratio: make the salmon 22% shorter, preserving the
+# Salmon scales are cut into the body vertices above, not separate beads.\n\n# v5 fish-to-bear ratio: make the salmon 22% shorter, preserving the
 # sculpted tapered body and separate fins; don't turn it into a broad paddle.
 # Body objects have already been resized, so only process newly added fish.
 for ob in list(bpy.data.objects):
