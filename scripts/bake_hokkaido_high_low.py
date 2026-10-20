@@ -71,7 +71,7 @@ scene.cycles.samples=12
 scene.render.bake.use_clear=True
 scene.render.bake.margin=12
 scene.render.bake.use_selected_to_active=True
-scene.render.bake.max_ray_distance=.06
+scene.render.bake.max_ray_distance=.035
 
 # High-poly sculpt is the actual 3DCodeVerse geometry.
 # Use 3D Object coordinates for wood grain so the texture does not depend
@@ -81,22 +81,22 @@ wood.use_nodes=True
 nodes=wood.node_tree.nodes;links=wood.node_tree.links
 bs=nodes.get('Principled BSDF')
 coord=nodes.new('ShaderNodeTexCoord')
-n=nodes.new('ShaderNodeTexNoise');n.inputs['Scale'].default_value=4.2
-n.inputs['Detail'].default_value=4
-wave=nodes.new('ShaderNodeTexWave');wave.wave_type='BANDS'
-wave.bands_direction='X';wave.inputs['Scale'].default_value=21.0
-wave.inputs['Distortion'].default_value=3.0
-wave.inputs['Detail'].default_value=3.0
+grain_coords=nodes.new('ShaderNodeVectorMath')
+grain_coords.operation='MULTIPLY'
+grain_coords.inputs[1].default_value=(2.0,13.0,13.0)
+n=nodes.new('ShaderNodeTexNoise')
+n.inputs['Scale'].default_value=2.4
+n.inputs['Detail'].default_value=3.0
+n.inputs['Roughness'].default_value=.48
 ramp=nodes.new('ShaderNodeValToRGB')
-ramp.color_ramp.elements[0].position=.18
-ramp.color_ramp.elements[0].color=(.085,.039,.019,1)
-ramp.color_ramp.elements[1].position=.86
-ramp.color_ramp.elements[1].color=(.235,.120,.059,1)
-ramp.color_ramp.elements.new(.49).color=(.155,.072,.034,1)
-links.new(coord.outputs['Generated'],n.inputs['Vector'])
-links.new(coord.outputs['Generated'],wave.inputs['Vector'])
-links.new(n.outputs['Fac'],wave.inputs['Distortion'])
-links.new(wave.outputs['Fac'],ramp.inputs['Fac'])
+ramp.color_ramp.elements[0].position=.15
+ramp.color_ramp.elements[0].color=(.033,.016,.008,1)
+ramp.color_ramp.elements[1].position=.85
+ramp.color_ramp.elements[1].color=(.105,.052,.025,1)
+ramp.color_ramp.elements.new(.48).color=(.067,.033,.016,1)
+links.new(coord.outputs['Generated'],grain_coords.inputs[0])
+links.new(grain_coords.outputs['Vector'],n.inputs['Vector'])
+links.new(n.outputs['Fac'],ramp.inputs['Fac'])
 links.new(ramp.outputs['Color'],bs.inputs['Base Color'])
 hi.data.materials.clear();hi.data.materials.append(wood)
 for poly in hi.data.polygons:poly.material_index=0
@@ -177,7 +177,7 @@ links.new(node_base.outputs['Color'],bs_low.inputs['Base Color'])
 bs_low.inputs['Metallic'].default_value=0.
 normal_node=nt.nodes.new('ShaderNodeNormalMap')
 normal_node.space='TANGENT'
-normal_node.inputs['Strength'].default_value=1.0
+normal_node.inputs['Strength'].default_value=.70
 links.new(node_normal.outputs['Color'],normal_node.inputs['Color'])
 links.new(normal_node.outputs['Normal'],bs_low.inputs['Normal'])
 node_orm=nt.nodes.new('ShaderNodeTexImage');node_orm.image=orm
