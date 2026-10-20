@@ -24,9 +24,9 @@ walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022))
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
-salmon_wood=material("Salmon_Warm_Carved_Wood",(0.128,0.063,0.031))
-salmon_side=material("Salmon_Dark_Upper_Body",(0.069,0.030,0.013))
-salmon_ridge=material("Salmon_Etched_Scales",(0.162,0.080,0.037))
+salmon_wood=material("Salmon_Warm_Carved_Wood",(0.190,0.108,0.055),0.64)
+salmon_side=material("Salmon_Dark_Upper_Body",(0.112,0.056,0.027),0.68)
+salmon_ridge=material("Salmon_Etched_Scales",(0.220,0.125,0.068))
 eye_mat=material("Inset_Eyes_and_Nose",(0.007,0.006,0.004),0.2)
 mouth_mat=material("Mouth_Dark_Shadow",(0.010,0.007,0.004))
 
@@ -139,10 +139,10 @@ bear_parts.append(make_loft("SolidContinuousTorso",[
     (-1.54,1.13,0.07,0.09),
     (-1.38,1.15,0.38,0.34),
     (-1.15,1.18,0.52,0.47),
-    (-0.79,1.24,0.61,0.61),
-    (-0.41,1.28,0.64,0.63),
-    ( 0.04,1.22,0.61,0.57),
-    ( 0.53,1.17,0.57,0.54),
+    (-0.79,1.32,0.63,0.66),
+    (-0.41,1.29,0.65,0.67),
+    ( 0.04,1.18,0.60,0.54),
+    ( 0.53,1.14,0.55,0.50),
     ( 0.88,1.14,0.52,0.50),
     ( 1.15,1.15,0.34,0.34),
     ( 1.32,1.14,0.04,0.06),
@@ -205,19 +205,21 @@ for mat in (walnut_mid, walnut_warm, walnut_dark):
 def clamp(v,a=0.0,b=1.0):
     return max(a,min(b,v))
 def chisel_profile(co):
-    # Incisions run diagonally down and backwards as in a real kibori kuma.
-    # Spatial cell staggering prevents the previous repetitive banding.
-    u=co.x*11.3+co.y*0.5+0.62*math.sin(co.z*2.1)
-    v=co.z*11.4-co.x*3.2+co.y*0.7
+    # v10: long, shallow, diagonal V-gouges like carving-knife cuts.
+    # The previous approximately round dimple lattice was NOT authentic.
+    u=co.x*5.65+co.z*0.72+0.18*math.sin(co.y*2.8)
+    v=co.z*15.5-co.x*5.2+co.y*1.2
     row=math.floor(v)
-    cu=(u + 0.5*(row%2))%1.0-0.5
-    cv=(v%1.0)-0.52
-    skew=cu+0.30*cv
-    d=(skew/0.44)**2+(cv/0.31)**2
+    # A unique offset in each staggered band breaks grid regularity.
+    j=math.sin(row*12.9898+43.5)*43758.5453
+    jitter=(j-math.floor(j)-0.5)*0.22
+    cu=(u+0.5*(row%2)+jitter)%1.0-0.5
+    cv=(v%1.0)-0.50
+    slant=cu+0.11*cv
+    d=(slant/0.445)**2+(cv/0.31)**2
     if d>=1.0: return 0.0
-    taper=max(0.0,1.0-d)
-    # One side of the gouge lifts slightly while the hollow cuts deep.
-    return (taper**1.5) * (0.012 if skew<0.03 else 0.020)
+    # tapered cross-section with a narrow hollow (no holes, no bumps).
+    return 0.011*(max(0.0,1.0-d)**1.35)
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
@@ -232,13 +234,13 @@ for face in bear.data.polygons:
     p=face.center
     nc=noise.noise(Vector((p.x*5.4,p.y*5.4,p.z*5.4)))
     mark=chisel_profile(p)
-    if mark>0.009 and p.z>0.78 and p.x>-1.25:
-        face.material_index=3
+    if mark>0.007 and p.z>0.78 and p.x>-1.25:
+        face.material_index=1
     elif nc>0.52: face.material_index=2
     elif nc>0.16: face.material_index=1
     else: face.material_index=0
     # visible tiny chisel facets without making the surface polygonal everywhere
-    face.use_smooth= not (mark>0.014 and p.z>0.8 and p.x>-1.2)
+    face.use_smooth=True
 
 # Discrete pointed claws inlaid into the fronts of unified paws.
 # Grooves on top lead to small dark blunt tips, not eight attached spheres.
@@ -301,13 +303,13 @@ FISH_X=-1.80
 FISH_Z=0.815
 FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
-    (-1.23, 0.012, 0.018),
-    (-1.16, 0.090, 0.080),
-    (-1.04, 0.158, 0.132),
+    (-1.23, 0.054, 0.071),
+    (-1.16, 0.104, 0.117),
+    (-1.04, 0.162, 0.172),
     (-0.88, 0.188, 0.173),
-    (-0.60, 0.212, 0.216),
-    (-0.25, 0.242, 0.239),
-    ( 0.10, 0.228, 0.231),
+    (-0.60, 0.224, 0.251),
+    (-0.25, 0.253, 0.273),
+    ( 0.10, 0.236, 0.261),
     ( 0.45, 0.188, 0.195),
     ( 0.73, 0.139, 0.147),
     ( 0.91, 0.072, 0.089),
