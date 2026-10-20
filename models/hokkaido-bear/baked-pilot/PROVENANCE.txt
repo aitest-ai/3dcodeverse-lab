@@ -1,0 +1,6 @@
+source=3DCodeVerse GLB
+recipe=scripts/bake_hokkaido_high_low.py
+run=39386906784
+normal=Cycles high-to-low
+albedo=Cycles high-to-low diffuse color
+ao=Cycles low-poly AO

@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "original_faces": 112116,
+  "low_faces": 28000,
+  "uv_non_degenerate": 1.0,
+  "uv_density_spread": 1.180330120978313,
+  "normal": true,
+  "albedo": true,
+  "ao": true,
+  "metallic_roughness": true,
+  "textures": 3,
+  "images": 3,
+  "model_size": 4702440,
+  "baking": "real Blender Cycles (not generated map fake)"
+}

@@ -1,0 +1,22 @@
+{
+  "source": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb",
+  "target_triangles": 28000,
+  "high_faces": 112116,
+  "low_faces": 28000,
+  "uv_coordinate_valid": true,
+  "uv_coordinate_in_0_1": 1.0,
+  "nondegenerate_uv_triangle_ratio": 1.0,
+  "uv_density_p10_med_p90": [
+    0.07807266359294798,
+    0.08577722270038138,
+    0.09215151646376342
+  ],
+  "uv_density_spread_p90_over_p10": 1.180330120978313,
+  "resolution": 1024,
+  "normal": "Blender Cycles high-to-low tangent-space NORMAL selected-to-active",
+  "base_color": "Blender Cycles high-to-low DIFFUSE COLOR from 3D wood shader",
+  "ao": "Blender Cycles self AO from decimated body",
+  "roughness": "derived from physically baked albedo and AO (not baked from high)",
+  "other_parts": "original GLB fish and eyes preserved, texture workflow targets bear torso",
+  "glb_bytes": 4702440
+}
