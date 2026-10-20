@@ -28,10 +28,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p output
-          blender --background --threads 4 --python scripts/bake_hokkaido_high_low.py -- \
+          blender --background --threads 4 --python-exit-code 1 --python scripts/bake_hokkaido_high_low.py -- \
             --source models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb \
             --out output \
-            --resolution 1024 \
+            --resolution 2048 \
             --target-triangles 28000 2>&1 | tee output/bake_execution.log
       - name: Inspect actual GLB with strict texture requirements
         shell: bash
