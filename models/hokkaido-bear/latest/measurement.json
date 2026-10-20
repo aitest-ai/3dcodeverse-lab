@@ -224,7 +224,7 @@
       ],
       "tri_count": 288,
       "islands": 1,
-      "volume_m3": 1.5298767926549927e-05,
+      "volume_m3": 1.529876792654993e-05,
       "watertight": true
     },
     {
@@ -241,7 +241,7 @@
       ],
       "tri_count": 288,
       "islands": 1,
-      "volume_m3": 1.5298767926549933e-05,
+      "volume_m3": 1.5298767926549937e-05,
       "watertight": true
     },
     {
@@ -258,7 +258,7 @@
       ],
       "tri_count": 528,
       "islands": 1,
-      "volume_m3": 0.004364395654043644,
+      "volume_m3": 0.004364395654043643,
       "watertight": true
     },
     {
@@ -309,8 +309,8 @@
       ],
       "tri_count": 112116,
       "islands": 1,
-      "volume_m3": null,
-      "watertight": false
+      "volume_m3": 3.048619869507768,
+      "watertight": true
     },
     {
       "name": "InsetEye_-1",
@@ -343,7 +343,7 @@
       ],
       "tri_count": 440,
       "islands": 1,
-      "volume_m3": 0.00025138962756700474,
+      "volume_m3": 0.00025138962756700447,
       "watertight": true
     },
     {
@@ -394,7 +394,7 @@
       ],
       "tri_count": 1088,
       "islands": 1,
-      "volume_m3": 0.0006702170362730585,
+      "volume_m3": 0.0006702170362730579,
       "watertight": true
     },
     {
@@ -445,7 +445,7 @@
       ],
       "tri_count": 720,
       "islands": 1,
-      "volume_m3": 9.302513388487314e-05,
+      "volume_m3": 9.302513388487322e-05,
       "watertight": true
     },
     {
@@ -462,7 +462,7 @@
       ],
       "tri_count": 840,
       "islands": 1,
-      "volume_m3": 0.0007140145473485694,
+      "volume_m3": 0.0007140145473485682,
       "watertight": true
     },
     {
@@ -479,7 +479,7 @@
       ],
       "tri_count": 840,
       "islands": 1,
-      "volume_m3": 0.000714014547348567,
+      "volume_m3": 0.0007140145473485682,
       "watertight": true
     },
     {
@@ -1074,7 +1074,7 @@
       ],
       "tri_count": 624,
       "islands": 1,
-      "volume_m3": 0.001042446545611641,
+      "volume_m3": 0.0010424465456116416,
       "watertight": true
     },
     {
@@ -1108,13 +1108,13 @@
       ],
       "tri_count": 1088,
       "islands": 1,
-      "volume_m3": 0.004829486334647492,
+      "volume_m3": 0.004829486334647493,
       "watertight": true
     }
   ],
   "ground_gap_m": -0.0005539357662200928,
   "footprint_offset_m": 0.4997686165171296,
-  "materials": 8,
+  "materials": 7,
   "frame": "y_up_pos_z_front",
   "extra": {
     "findings": [],
@@ -1190,29 +1190,29 @@
       "part_count": 64,
       "assembly_depth": 2,
       "tri_count": 134076,
-      "materials": 8,
-      "silhouette": 3.971,
-      "feature_density": 15836.7,
+      "materials": 7,
+      "silhouette": 3.991,
+      "feature_density": 18179.8,
       "symmetry_groups": 12,
       "hollowness": 0.0,
-      "index": 0.7694,
+      "index": 0.7645,
       "band": "intricate",
       "components": {
         "part_count": 1.0,
         "assembly_depth": 0.3333,
         "tri_count": 1.0,
-        "materials": 1.0,
-        "silhouette": 0.3738,
+        "materials": 0.9358,
+        "silhouette": 0.3752,
         "feature_density": 1.0,
         "symmetry_groups": 1.0,
         "hollowness": 0.0
       },
       "extra": {
         "silhouette_fill": 0.515,
-        "mirror_symmetry": 0.739,
-        "watertight_fraction": 0.578,
+        "mirror_symmetry": 0.738,
+        "watertight_fraction": 0.594,
         "repeated_parts": 52,
-        "small_sharp_edges": 14214
+        "small_sharp_edges": 16317
       }
     }
   }
