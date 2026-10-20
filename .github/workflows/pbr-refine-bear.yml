@@ -97,4 +97,8 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m "Publish validated PBR wooden bear GLB (normal, roughness, AO)" || exit 0
+          # A separate Skill/code commit may have reached main since this run started.
+          # Rebase only our own generated artifact commit; never force push.
+          git fetch origin main
+          git rebase origin/main
           git push origin HEAD:main
