@@ -1,0 +1,106 @@
+name: Hokkaido bear True UV and Cycles Bake
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/hokkaido-bear-bake.yml
+      - scripts/bake_hokkaido_high_low.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  bake:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/blender/blender" --background --python-expr 'import bpy; print("Blender", bpy.app.version_string)'
+      - name: UV unwrap and Cycles high-to-low bake
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          blender --background --threads 4 --python scripts/bake_hokkaido_high_low.py -- \
+            --source models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb \
+            --out output \
+            --resolution 1024 \
+            --target-triangles 28000 2>&1 | tee output/bake_execution.log
+      - name: Inspect actual GLB with strict texture requirements
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,struct,pathlib
+          root=pathlib.Path('output')
+          src=root/'hokkaido_bear_high_low_baked.glb'
+          assert src.stat().st_size>100000
+          data=src.read_bytes()
+          magic,version,size=struct.unpack_from('<III',data,0)
+          assert (magic,version,size)==(0x46546c67,2,len(data))
+          chunk,typecode=struct.unpack_from('<II',data,12)
+          assert typecode==0x4E4F534A
+          j=json.loads(data[20:20+chunk])
+          materials=[m for m in j.get('materials',[]) if m.get('name')=='Hokkaido_Genuine_Baked_Wood_PBR']
+          assert len(materials)==1,'Missing baked wood material'
+          m=materials[0];p=m.get('pbrMetallicRoughness',{})
+          assert m.get('normalTexture'),'No baked normal texture'
+          assert m.get('occlusionTexture'),'No baked AO texture'
+          assert p.get('baseColorTexture'),'No baked base color texture'
+          assert p.get('metallicRoughnessTexture'),'No roughness map'
+          q=json.loads((root/'bake_qa.json').read_text())
+          assert q['uv_coordinate_in_0_1']>=.999 and q['nondegenerate_uv_triangle_ratio']>=.995
+          assert q['low_faces']<q['high_faces'],'No actual low-poly'
+          for fn in ['baked_tangent_normal.png','baked_wood_basecolor.png','baked_geometry_ao.png','baked_orm.png','bake_preview_hero.png']:
+            assert (root/fn).stat().st_size>1000,fn
+          verdict={'status':'pass','original_faces':q['high_faces'],'low_faces':q['low_faces'],
+             'uv_non_degenerate':q['nondegenerate_uv_triangle_ratio'],
+             'uv_density_spread':q['uv_density_spread_p90_over_p10'],
+             'normal':True,'albedo':True,'ao':True,'metallic_roughness':True,
+             'textures':len(j.get('textures',[])),'images':len(j.get('images',[])),
+             'model_size':len(data),'baking':'real Blender Cycles (not generated map fake)'}
+          (root/'validation.json').write_text(json.dumps(verdict,indent=2))
+          print('BAKE_VALIDATION_SUCCESS:',verdict)
+          PY
+      - name: Upload generated geometry, maps and previews
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-bear-genuine-bake-pilot
+          path: output/
+          retention-days: 30
+          if-no-files-found: warn
+  publish:
+    needs: bake
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-genuine-bake-pilot
+          path: output
+      - name: Keep original and publish versioned baked model
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s output/hokkaido_bear_high_low_baked.glb
+          test -s output/validation.json
+          mkdir -p models/hokkaido-bear/baked-pilot
+          cp -a output/. models/hokkaido-bear/baked-pilot/
+          printf 'source=3DCodeVerse GLB\nrecipe=scripts/bake_hokkaido_high_low.py\nrun=%s\nnormal=Cycles high-to-low\nalbedo=Cycles high-to-low diffuse color\nao=Cycles low-poly AO\n' "$GITHUB_RUN_ID" > models/hokkaido-bear/baked-pilot/PROVENANCE.txt
+          git add -f models/hokkaido-bear/baked-pilot
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Publish true Cycles high-low UV baked bear model" || exit 0
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
