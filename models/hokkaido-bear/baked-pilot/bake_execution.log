@@ -1,69 +1,69 @@
-07:30:29 | INFO: Data are loaded, start creating Blender stuff
-07:30:29 | INFO: Blender create Mesh node Sphere.016
-07:30:29 | INFO: Blender create Mesh node Sphere.011
-07:30:29 | INFO: Blender create Mesh node Sphere.008
-07:30:29 | INFO: Blender create Mesh node Cone.012
-07:30:29 | INFO: Blender create Mesh node Cone.013
-07:30:29 | INFO: Blender create Mesh node Cone.014
-07:30:29 | INFO: Blender create Mesh node Cone.015
-07:30:29 | INFO: Blender create Mesh node Cone.008
-07:30:29 | INFO: Blender create Mesh node Cone.009
-07:30:29 | INFO: Blender create Mesh node Cone.010
-07:30:29 | INFO: Blender create Mesh node Cone.011
-07:30:29 | INFO: Blender create Mesh node Cone.004
-07:30:29 | INFO: Blender create Mesh node Cone.005
-07:30:29 | INFO: Blender create Mesh node Cone.006
-07:30:29 | INFO: Blender create Mesh node Cone.007
-07:30:29 | INFO: Blender create Mesh node Cone
-07:30:29 | INFO: Blender create Mesh node Cone.001
-07:30:29 | INFO: Blender create Mesh node Cone.002
-07:30:29 | INFO: Blender create Mesh node Cone.003
-07:30:29 | INFO: Blender create Mesh node CheekCut_1
-07:30:29 | INFO: Blender create Mesh node CheekCut_-1
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_1_0
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_1_1
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_1_2
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_1_3
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_-1_0
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_-1_1
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_-1_2
-07:30:29 | INFO: Blender create Mesh node ClawRoot_0_-1_3
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_1_0
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_1_1
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_1_2
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_1_3
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_-1_0
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_-1_1
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_-1_2
-07:30:29 | INFO: Blender create Mesh node ClawRoot_1_-1_3
-07:30:29 | INFO: Blender create Mesh node Sphere.009
-07:30:29 | INFO: Blender create Mesh node Sphere.006
-07:30:29 | INFO: Blender create Mesh node Sphere.015
-07:30:29 | INFO: Blender create Mesh node Sphere.013
-07:30:29 | INFO: Blender create Mesh node Sphere.014
-07:30:29 | INFO: Blender create Mesh node Sphere.012
-07:30:29 | INFO: Blender create Mesh node GillCut1
-07:30:29 | INFO: Blender create Mesh node GillCut-1
-07:30:29 | INFO: Blender create Mesh node Sphere.010
-07:30:29 | INFO: Blender create Mesh node Sphere.007
-07:30:29 | INFO: Blender create Mesh node SolidContinuousTorso_Mesh
-07:30:29 | INFO: Blender create Mesh node LipCrease1
-07:30:29 | INFO: Blender create Mesh node LipCrease-1
-07:30:29 | INFO: Blender create Mesh node Sphere.019
-07:30:29 | INFO: Blender create Mesh node Sphere.018
-07:30:29 | INFO: Blender create Mesh node Sphere.017
-07:30:29 | INFO: Blender create Mesh node Salmon_AnalFinMesh
-07:30:29 | INFO: Blender create Mesh node Salmon_DorsalFinMesh
-07:30:29 | INFO: Blender create Mesh node Sphere.021
-07:30:29 | INFO: Blender create Mesh node Sphere.020
-07:30:29 | INFO: Blender create Mesh node Salmon_Forked_TailMesh
-07:30:29 | INFO: Blender create Mesh node Salmon_Open_Mouth
-07:30:29 | INFO: Blender create Mesh node Salmon_PectoralFin1Mesh
-07:30:29 | INFO: Blender create Mesh node Salmon_PectoralFin-1Mesh
-07:30:29 | INFO: Blender create Mesh node Salmon_Sculptural_Profile_Mesh
-07:30:29 | INFO: Blender create Mesh node UpperEyelid_1
-07:30:29 | INFO: Blender create Mesh node UpperEyelid_-1
-07:30:29 | INFO: glTF import finished in 0.28s
+07:33:50 | INFO: Data are loaded, start creating Blender stuff
+07:33:50 | INFO: Blender create Mesh node Sphere.016
+07:33:50 | INFO: Blender create Mesh node Sphere.011
+07:33:50 | INFO: Blender create Mesh node Sphere.008
+07:33:50 | INFO: Blender create Mesh node Cone.012
+07:33:50 | INFO: Blender create Mesh node Cone.013
+07:33:50 | INFO: Blender create Mesh node Cone.014
+07:33:50 | INFO: Blender create Mesh node Cone.015
+07:33:50 | INFO: Blender create Mesh node Cone.008
+07:33:50 | INFO: Blender create Mesh node Cone.009
+07:33:50 | INFO: Blender create Mesh node Cone.010
+07:33:50 | INFO: Blender create Mesh node Cone.011
+07:33:50 | INFO: Blender create Mesh node Cone.004
+07:33:50 | INFO: Blender create Mesh node Cone.005
+07:33:50 | INFO: Blender create Mesh node Cone.006
+07:33:50 | INFO: Blender create Mesh node Cone.007
+07:33:50 | INFO: Blender create Mesh node Cone
+07:33:50 | INFO: Blender create Mesh node Cone.001
+07:33:50 | INFO: Blender create Mesh node Cone.002
+07:33:50 | INFO: Blender create Mesh node Cone.003
+07:33:50 | INFO: Blender create Mesh node CheekCut_1
+07:33:50 | INFO: Blender create Mesh node CheekCut_-1
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_1_0
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_1_1
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_1_2
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_1_3
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_-1_0
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_-1_1
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_-1_2
+07:33:50 | INFO: Blender create Mesh node ClawRoot_0_-1_3
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_1_0
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_1_1
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_1_2
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_1_3
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_-1_0
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_-1_1
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_-1_2
+07:33:50 | INFO: Blender create Mesh node ClawRoot_1_-1_3
+07:33:50 | INFO: Blender create Mesh node Sphere.009
+07:33:50 | INFO: Blender create Mesh node Sphere.006
+07:33:50 | INFO: Blender create Mesh node Sphere.015
+07:33:50 | INFO: Blender create Mesh node Sphere.013
+07:33:50 | INFO: Blender create Mesh node Sphere.014
+07:33:50 | INFO: Blender create Mesh node Sphere.012
+07:33:50 | INFO: Blender create Mesh node GillCut1
+07:33:50 | INFO: Blender create Mesh node GillCut-1
+07:33:50 | INFO: Blender create Mesh node Sphere.010
+07:33:50 | INFO: Blender create Mesh node Sphere.007
+07:33:50 | INFO: Blender create Mesh node SolidContinuousTorso_Mesh
+07:33:50 | INFO: Blender create Mesh node LipCrease1
+07:33:50 | INFO: Blender create Mesh node LipCrease-1
+07:33:50 | INFO: Blender create Mesh node Sphere.019
+07:33:50 | INFO: Blender create Mesh node Sphere.018
+07:33:50 | INFO: Blender create Mesh node Sphere.017
+07:33:50 | INFO: Blender create Mesh node Salmon_AnalFinMesh
+07:33:50 | INFO: Blender create Mesh node Salmon_DorsalFinMesh
+07:33:50 | INFO: Blender create Mesh node Sphere.021
+07:33:50 | INFO: Blender create Mesh node Sphere.020
+07:33:50 | INFO: Blender create Mesh node Salmon_Forked_TailMesh
+07:33:50 | INFO: Blender create Mesh node Salmon_Open_Mouth
+07:33:50 | INFO: Blender create Mesh node Salmon_PectoralFin1Mesh
+07:33:50 | INFO: Blender create Mesh node Salmon_PectoralFin-1Mesh
+07:33:50 | INFO: Blender create Mesh node Salmon_Sculptural_Profile_Mesh
+07:33:50 | INFO: Blender create Mesh node UpperEyelid_1
+07:33:50 | INFO: Blender create Mesh node UpperEyelid_-1
+07:33:50 | INFO: glTF import finished in 0.34s
 LOWPOLY 112116 28000
 NEW_UV 1 1.0
 /home/runner/work/3dcodeverse-lab/3dcodeverse-lab/scripts/bake_hokkaido_high_low.py:59: DeprecationWarning: Arrays of 2-dimensional vectors are deprecated. Use arrays of 3-dimensional vectors instead. (deprecated in NumPy 2.0)
@@ -81,143 +81,143 @@ Info: Baking map saved to internal image, save it externally or pack it
 BAKED_GEOMETRY_AO
 INFO Draco is available, use library at /home/runner/work/_temp/blender/lib/libbf_intern_draco_bridge.so
 INFO MeshOptimizer is available, use library at /home/runner/work/_temp/blender/lib/libbf_intern_meshopt_bridge.so
-07:30:34 | INFO: Starting glTF 2.0 export
-07:30:34 | INFO: Extracting primitive: Sphere.016
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.011
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.008
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.012
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.013
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.014
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.015
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.008
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.009
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.010
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.011
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.004
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.005
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.006
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.007
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.001
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.002
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Cone.003
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: CheekCut_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: CheekCut_-1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_1_0
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_1_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_1_2
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_1_3
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_-1_0
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_-1_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_-1_2
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_0_-1_3
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_1_0
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_1_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_1_2
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_1_3
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_-1_0
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_-1_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_-1_2
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: ClawRoot_1_-1_3
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.009
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.006
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.015
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.013
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.014
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.012
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: GillCut1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: GillCut-1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.010
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.007
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: SolidContinuousTorso_Mesh.001
-07:30:34 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: LipCrease1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: LipCrease-1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.019
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.018
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.017
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_AnalFinMesh
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_DorsalFinMesh
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.021
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Sphere.020
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_Forked_TailMesh
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_Open_Mouth
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_PectoralFin1Mesh
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_PectoralFin-1Mesh
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: Salmon_Sculptural_Profile_Mesh
-07:30:34 | INFO: Primitives created: 2
-07:30:34 | INFO: Extracting primitive: UpperEyelid_1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Extracting primitive: UpperEyelid_-1
-07:30:34 | INFO: Primitives created: 1
-07:30:34 | INFO: Finished glTF 2.0 export in 0.13304948806762695 s
+07:33:56 | INFO: Starting glTF 2.0 export
+07:33:56 | INFO: Extracting primitive: Sphere.016
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.011
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.008
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.012
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.013
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.014
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.015
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.008
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.009
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.010
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.011
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.004
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.005
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.006
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.007
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.001
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.002
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Cone.003
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: CheekCut_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: CheekCut_-1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_1_0
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_1_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_1_2
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_1_3
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_-1_0
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_-1_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_-1_2
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_0_-1_3
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_1_0
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_1_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_1_2
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_1_3
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_-1_0
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_-1_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_-1_2
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: ClawRoot_1_-1_3
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.009
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.006
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.015
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.013
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.014
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.012
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: GillCut1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: GillCut-1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.010
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.007
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: SolidContinuousTorso_Mesh.001
+07:33:56 | WARNING: More than one shader node tex image used for a texture. The resulting glTF sampler will behave like the first shader node tex image.
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: LipCrease1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: LipCrease-1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.019
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.018
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.017
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_AnalFinMesh
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_DorsalFinMesh
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.021
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Sphere.020
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_Forked_TailMesh
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_Open_Mouth
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_PectoralFin1Mesh
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_PectoralFin-1Mesh
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: Salmon_Sculptural_Profile_Mesh
+07:33:56 | INFO: Primitives created: 2
+07:33:56 | INFO: Extracting primitive: UpperEyelid_1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Extracting primitive: UpperEyelid_-1
+07:33:56 | INFO: Primitives created: 1
+07:33:56 | INFO: Finished glTF 2.0 export in 0.18144583702087402 s
 
-COMPLETE_BAKE {"source": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb", "target_triangles": 28000, "high_faces": 112116, "low_faces": 28000, "uv_coordinate_valid": true, "uv_coordinate_in_0_1": 1.0, "nondegenerate_uv_triangle_ratio": 1.0, "uv_density_p10_med_p90": [0.07807266359294798, 0.08577722270038138, 0.09215151646376342], "uv_density_spread_p90_over_p10": 1.180330120978313, "resolution": 1024, "normal": "Blender Cycles high-to-low tangent-space NORMAL selected-to-active", "base_color": "Blender Cycles high-to-low DIFFUSE COLOR from 3D wood shader", "ao": "Blender Cycles self AO from decimated body", "roughness": "derived from physically baked albedo and AO (not baked from high)", "other_parts": "original GLB fish and eyes preserved, texture workflow targets bear torso", "glb_bytes": 4702440}
+COMPLETE_BAKE {"source": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb", "target_triangles": 28000, "high_faces": 112116, "low_faces": 28000, "uv_coordinate_valid": true, "uv_coordinate_in_0_1": 1.0, "nondegenerate_uv_triangle_ratio": 1.0, "uv_density_p10_med_p90": [0.07807266359294798, 0.08577722270038138, 0.09215151646376342], "uv_density_spread_p90_over_p10": 1.180330120978313, "resolution": 1024, "normal": "Blender Cycles high-to-low tangent-space NORMAL selected-to-active", "base_color": "Blender Cycles high-to-low DIFFUSE COLOR from 3D wood shader", "ao": "Blender Cycles self AO from decimated body", "roughness": "derived from physically baked albedo and AO (not baked from high)", "other_parts": "original GLB fish and eyes preserved, texture workflow targets bear torso", "glb_bytes": 4280828}
 /home/runner/work/3dcodeverse-lab/3dcodeverse-lab/scripts/bake_hokkaido_high_low.py:228: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
   scene.world.use_nodes=True
-00:13.844  render           | Saved: '/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/output/bake_preview_hero.png'
-00:22.472  render           | Saved: '/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/output/bake_preview_side.png'
+00:17.228  render           | Saved: '/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/output/bake_preview_hero.png'
+00:26.921  render           | Saved: '/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/output/bake_preview_side.png'
 RENDER_COMPLETE
 Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
 

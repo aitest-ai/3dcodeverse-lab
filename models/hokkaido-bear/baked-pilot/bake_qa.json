@@ -18,5 +18,5 @@
   "ao": "Blender Cycles self AO from decimated body",
   "roughness": "derived from physically baked albedo and AO (not baked from high)",
   "other_parts": "original GLB fish and eyes preserved, texture workflow targets bear torso",
-  "glb_bytes": 4702440
+  "glb_bytes": 4280828
 }
