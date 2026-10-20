@@ -94,6 +94,9 @@ jobs:
           set -euo pipefail
           test -s output/hokkaido_bear_high_low_baked.glb
           test -s output/validation.json
+          # Publish on the latest remote main to avoid stale-run conflicts.
+          git fetch origin main
+          git reset --hard origin/main
           mkdir -p models/hokkaido-bear/baked-pilot
           cp -a output/. models/hokkaido-bear/baked-pilot/
           printf 'source=3DCodeVerse GLB\nrecipe=scripts/bake_hokkaido_high_low.py\nrun=%s\nnormal=Cycles high-to-low\nalbedo=Cycles high-to-low diffuse color\nao=Cycles low-poly AO\n' "$GITHUB_RUN_ID" > models/hokkaido-bear/baked-pilot/PROVENANCE.txt
@@ -101,6 +104,4 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m "Publish true Cycles high-low UV baked bear model" || exit 0
-          git fetch origin main
-          git rebase origin/main
           git push origin HEAD:main
