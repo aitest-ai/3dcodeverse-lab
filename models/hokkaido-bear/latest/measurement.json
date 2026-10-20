@@ -2,24 +2,24 @@
   "bbox_min": [
     -1.3900005568857505,
     -0.0005539357662200928,
-    -1.2342160993918339
+    -1.2343050843610361
   ],
   "bbox_max": [
     1.2349947146403213,
-    1.857090875506401,
+    1.9278605431318283,
     2.221750206426849
   ],
   "extents": [
     2.624995271526072,
-    1.8576448112726212,
-    3.455966305818683
+    1.9284144788980484,
+    3.4560552907878854
   ],
   "center": [
     -0.07750292112271462,
-    0.9282684698700905,
-    0.4937670535175076
+    0.9636533036828041,
+    0.49372256103290646
   ],
-  "tri_count": 133172,
+  "tri_count": 134076,
   "n_meshes": 64,
   "n_islands": 64,
   "parts": [
@@ -61,13 +61,13 @@
       "name": "Salmon_Tapered_Body",
       "bbox_min": [
         -1.0400005427377088,
-        0.5239999741315842,
-        1.5614999195523895
+        0.48999999463558197,
+        1.5535000225492164
       ],
       "bbox_max": [
-        1.2299993726587528,
-        1.002000018954277,
-        2.0804002867954856
+        1.229999386820113,
+        1.036000058054924,
+        2.087000095493242
       ],
       "tri_count": 10220,
       "islands": 1,
@@ -173,7 +173,7 @@
       ],
       "tri_count": 288,
       "islands": 1,
-      "volume_m3": 2.4210941921924413e-05,
+      "volume_m3": 2.4210941921924488e-05,
       "watertight": true
     },
     {
@@ -224,7 +224,7 @@
       ],
       "tri_count": 288,
       "islands": 1,
-      "volume_m3": 1.5298767926549937e-05,
+      "volume_m3": 1.529876792654993e-05,
       "watertight": true
     },
     {
@@ -258,7 +258,7 @@
       ],
       "tri_count": 528,
       "islands": 1,
-      "volume_m3": 0.004364395654043644,
+      "volume_m3": 0.004364395654043643,
       "watertight": true
     },
     {
@@ -298,16 +298,16 @@
     {
       "name": "Kuma_Handcarved_OnePiece",
       "bbox_min": [
-        -0.7183916931006326,
+        -0.7169764501706818,
         -0.0005539357662200928,
-        -1.2342160993918339
+        -1.2343050843610361
       ],
       "bbox_max": [
-        0.7168112035425793,
-        1.857090875506401,
-        1.8190694754486822
+        0.7171269256122648,
+        1.9278605431318283,
+        1.8190690606089122
       ],
-      "tri_count": 111212,
+      "tri_count": 112116,
       "islands": 1,
       "volume_m3": null,
       "watertight": false
@@ -326,7 +326,7 @@
       ],
       "tri_count": 440,
       "islands": 1,
-      "volume_m3": 0.00025138962756700447,
+      "volume_m3": 0.0002513896275670043,
       "watertight": true
     },
     {
@@ -411,7 +411,7 @@
       ],
       "tri_count": 1088,
       "islands": 1,
-      "volume_m3": 0.0006702170362730577,
+      "volume_m3": 0.0006702170362730585,
       "watertight": true
     },
     {
@@ -428,7 +428,7 @@
       ],
       "tri_count": 720,
       "islands": 1,
-      "volume_m3": 9.302513388487322e-05,
+      "volume_m3": 9.302513388487329e-05,
       "watertight": true
     },
     {
@@ -462,7 +462,7 @@
       ],
       "tri_count": 840,
       "islands": 1,
-      "volume_m3": 0.000714014547348567,
+      "volume_m3": 0.0007140145473485694,
       "watertight": true
     },
     {
@@ -1074,7 +1074,7 @@
       ],
       "tri_count": 624,
       "islands": 1,
-      "volume_m3": 0.0010424465456116414,
+      "volume_m3": 0.0010424465456116401,
       "watertight": true
     },
     {
@@ -1091,7 +1091,7 @@
       ],
       "tri_count": 624,
       "islands": 1,
-      "volume_m3": 0.0010424465456116414,
+      "volume_m3": 0.0010424465456116408,
       "watertight": true
     },
     {
@@ -1113,7 +1113,7 @@
     }
   ],
   "ground_gap_m": -0.0005539357662200928,
-  "footprint_offset_m": 0.49981257079220703,
+  "footprint_offset_m": 0.4997686165171296,
   "materials": 8,
   "frame": "y_up_pos_z_front",
   "extra": {
@@ -1189,30 +1189,30 @@
       "version": 1,
       "part_count": 64,
       "assembly_depth": 2,
-      "tri_count": 133172,
+      "tri_count": 134076,
       "materials": 8,
-      "silhouette": 4.003,
-      "feature_density": 19275.3,
+      "silhouette": 3.971,
+      "feature_density": 15836.7,
       "symmetry_groups": 12,
       "hollowness": 0.0,
-      "index": 0.7697,
+      "index": 0.7694,
       "band": "intricate",
       "components": {
         "part_count": 1.0,
         "assembly_depth": 0.3333,
         "tri_count": 1.0,
         "materials": 1.0,
-        "silhouette": 0.376,
+        "silhouette": 0.3738,
         "feature_density": 1.0,
         "symmetry_groups": 1.0,
         "hollowness": 0.0
       },
       "extra": {
-        "silhouette_fill": 0.52,
-        "mirror_symmetry": 0.737,
+        "silhouette_fill": 0.515,
+        "mirror_symmetry": 0.739,
         "watertight_fraction": 0.578,
         "repeated_parts": 52,
-        "small_sharp_edges": 17326
+        "small_sharp_edges": 14214
       }
     }
   }
