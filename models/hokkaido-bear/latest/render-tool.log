@@ -1,7 +1,7 @@
 {
   "ok": true,
   "failed": false,
-  "text": "shaded render\n4 view(s) via ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver), contact sheet first\n- front_right_high [shaded] cam=(5.01, 5.12, 5.58) fov=35 → artifacts/tool_renders/r00_d19b25aa/view_front_right_high.png\n- back_left_high [shaded] cam=(-5.17, 5.12, -4.6) fov=35 → artifacts/tool_renders/r00_d19b25aa/view_back_left_high.png\n- front [shaded] cam=(-0.08, 0.96, 7.48) fov=35 → artifacts/tool_renders/r00_d19b25aa/view_front.png\n- top [shaded] cam=(-0.08, 8.02, 0.49) fov=35 → artifacts/tool_renders/r00_d19b25aa/view_top.png",
+  "text": "shaded render\n4 view(s) via ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver), contact sheet first\n- front_right_high [shaded] cam=(5.01, 5.12, 5.58) fov=35 → artifacts/tool_renders/r00_41b10599/view_front_right_high.png\n- back_left_high [shaded] cam=(-5.17, 5.12, -4.6) fov=35 → artifacts/tool_renders/r00_41b10599/view_back_left_high.png\n- front [shaded] cam=(-0.08, 0.96, 7.48) fov=35 → artifacts/tool_renders/r00_41b10599/view_front.png\n- top [shaded] cam=(-0.08, 8.02, 0.49) fov=35 → artifacts/tool_renders/r00_41b10599/view_top.png",
   "numbers": {
     "n_views": 4,
     "views": [
@@ -12,11 +12,11 @@
     ]
   },
   "images": [
-    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_d19b25aa/sheet.png",
-    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_d19b25aa/view_front_right_high.png",
-    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_d19b25aa/view_back_left_high.png",
-    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_d19b25aa/view_front.png",
-    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_d19b25aa/view_top.png"
+    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_41b10599/sheet.png",
+    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_41b10599/view_front_right_high.png",
+    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_41b10599/view_back_left_high.png",
+    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_41b10599/view_front.png",
+    "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/tool_renders/r00_41b10599/view_top.png"
   ],
-  "duration_ms": 14017
+  "duration_ms": 16623
 }

@@ -11,7 +11,7 @@
   "error_message": "",
   "error_file": "",
   "error_line": null,
-  "duration_ms": 148016,
+  "duration_ms": 148230,
   "census": {
     "objects": [
       {
@@ -2301,7 +2301,7 @@
         "glb": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.glb",
         "stl": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/runs/hokkaido_bear/artifacts/object.stl"
       },
-      "exec_ms": 147503
+      "exec_ms": 147714
     }
   },
   "gates": [],
