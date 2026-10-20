@@ -1,0 +1,100 @@
+name: Hokkaido bear PBR material lab
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pbr-refine-bear.yml
+      - scripts/pbr_refine_bear.py
+permissions:
+  contents: read
+jobs:
+  pbr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/blender/blender" -b --python-expr "import bpy; print('BLENDER_VERSION:',bpy.app.version_string)"
+      - name: Build PBR maps directly onto official 3DCodeVerse GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p output
+          blender --background --threads 4 --python scripts/pbr_refine_bear.py -- \
+            --source models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb \
+            --output output \
+            --res 2048 2>&1 | tee output/pbr-process.log
+          test -s output/hokkaido_bear_pbr.glb
+          test -s output/preview_three_quarter.png
+          test -s output/wood_basecolor.png
+          test -s output/wood_normal.png
+          test -s output/wood_orm.png
+      - name: Validate exported GLB PBR structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import pathlib, json, struct
+          p=pathlib.Path('output/hokkaido_bear_pbr.glb')
+          data=p.read_bytes()
+          magic,version,length=struct.unpack_from('<III',data,0)
+          assert magic==0x46546c67 and version==2 and length==len(data)
+          n,typecode=struct.unpack_from('<II',data,12)
+          assert typecode==0x4e4f534a
+          obj=json.loads(data[20:20+n])
+          materials=obj.get('materials',[])
+          chosen=[m for m in materials if 'HandCarved_Walnut_PBR' in m.get('name','')]
+          assert chosen,[(m.get('name')) for m in materials]
+          target=chosen[0]
+          pbr=target.get('pbrMetallicRoughness',{})
+          assert target.get('normalTexture'), 'No normal map in GLB'
+          assert pbr.get('baseColorTexture'), 'No basecolor map in GLB'
+          assert pbr.get('metallicRoughnessTexture'), 'No ORM/roughness map in GLB'
+          stats={'status':'pass','glb_bytes':len(data),'materials':len(materials),
+                  'textures':len(obj.get('textures',[])),'images':len(obj.get('images',[])),
+                  'normal':True,'basecolor':True,'metallic_roughness':True,
+                  'ao':bool(target.get('occlusionTexture')),'material_name':target['name']}
+          pathlib.Path('output/glb_pbr_validation.json').write_text(json.dumps(stats,indent=2))
+          print('GLB_PBR_VALIDATED',stats)
+          PY
+      - name: Upload actual material-enhanced model
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-bear-pbr
+          path: output/
+          if-no-files-found: warn
+          retention-days: 30
+  publish:
+    needs: pbr
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-pbr
+          path: output
+      - name: Publish versioned official-geometry PBR output
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s output/hokkaido_bear_pbr.glb
+          test -s output/glb_pbr_validation.json
+          mkdir -p models/hokkaido-bear/pbr-latest
+          cp -a output/. models/hokkaido-bear/pbr-latest/
+          printf 'source=main/models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb\nprocess=scripts/pbr_refine_bear.py\nrun=%s\nupstream=official 3DCodeVerse Harness geometry\nmaterial=custom Blender PBR, not an AI generated mesh\n' "$GITHUB_RUN_ID" > models/hokkaido-bear/pbr-latest/PROVENANCE.txt
+          git add -f models/hokkaido-bear/pbr-latest
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Publish validated PBR wooden bear GLB (normal, roughness, AO)" || exit 0
+          git push origin HEAD:main
