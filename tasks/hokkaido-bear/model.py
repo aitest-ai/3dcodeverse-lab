@@ -418,6 +418,48 @@ for ob in list(bpy.data.objects):
 # No full-body sine ribs; fixed paw shapes; compact skull/muzzle; skewed fish.
 # All outputs must be judged from official 3DCodeVerse multi-angle render, not generated images.
 
+# v11 woodwork: genuine UV texture embedded in exported GLB.
+# No external image assets or image-generation dependency.
+import numpy as np
+TEX_W=1024
+TEX_H=1024
+_u=np.linspace(0,1,TEX_W,dtype=np.float32)[None,:]
+_v=np.linspace(0,1,TEX_H,dtype=np.float32)[:,None]
+warp=(1.35*np.sin(2*np.pi*(_v*2.1+0.18*np.sin(_u*5.2)))+
+      .72*np.sin(2*np.pi*(_v*4.9-_u*1.8)))
+fibers=np.sin(2*np.pi*(43*_u+warp+0.90*np.sin(2*np.pi*_v*1.4)))
+fine=np.sin(2*np.pi*(118*_u+2.0*np.sin(_v*10.4)))
+cross=np.sin(2*np.pi*(2.2*_v+0.7*np.sin(_u*15.0)))
+rings=np.sin(2*np.pi*(16*_u+0.12*warp))
+vignettes=np.sin(2*np.pi*(_u*2.7+_v*.35))
+value=1.0+0.165*fibers+0.055*fine+0.065*rings+0.036*cross+0.025*vignettes
+value=np.clip(value,0.57,1.36)
+pixels=np.empty((TEX_H,TEX_W,4),dtype=np.float32)
+pixels[:,:,0]=np.clip(0.200*value,0,1)
+pixels[:,:,1]=np.clip(0.105*value,0,1)
+pixels[:,:,2]=np.clip(0.051*value,0,1)
+pixels[:,:,3]=1
+wood_image=bpy.data.images.new('HokkaidoWalnutWoodGrainGLB',width=TEX_W,height=TEX_H,alpha=True)
+wood_image.pixels.foreach_set(pixels.ravel())
+wood_image.update()
+try: wood_image.pack()
+except Exception: pass
+
+wooduv=bear.data.uv_layers.new(name='WoodGrainUV')
+for loop in bear.data.loops:
+    p=bear.data.vertices[loop.vertex_index].co
+    angle=math.atan2(p.y,p.z-1.18)
+    uu=(angle/math.tau+0.5)%1.0
+    vv=(p.x+2.26)/4.0
+    wooduv.data[loop.index].uv=(uu,vv)
+
+bs=walnut.node_tree.nodes.get('Principled BSDF')
+image_node=walnut.node_tree.nodes.new('ShaderNodeTexImage')
+image_node.name='Embedded Hokkaido walnut grain'
+image_node.image=wood_image
+image_node.interpolation='Linear'
+walnut.node_tree.links.new(image_node.outputs['Color'],bs.inputs['Base Color'])
+
 # v7: Align the bear's face with the official Harness GLB front view.
 # Blender -X faces forwards in our sculpt, but the glTF front is Blender -Y.
 # Apply the same world rotation to every component, including the salmon.
