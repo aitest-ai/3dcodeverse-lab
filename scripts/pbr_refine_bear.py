@@ -106,17 +106,27 @@ print('PBR_EXPORT_OK',path.stat().st_size,qa,flush=True)
 scene=bpy.context.scene
 scene.render.engine='CYCLES'
 scene.cycles.samples=12
-scene.render.resolution_x=680;scene.render.resolution_y=600;scene.render.resolution_percentage=100
+scene.render.resolution_x=900;scene.render.resolution_y=700;scene.render.resolution_percentage=100
 scene.render.image_settings.file_format='PNG'
-scene.world.color=(0.65,0.65,0.65)
+scene.world.use_nodes=True
+world_bg=scene.world.node_tree.nodes.get('Background')
+if world_bg:
+    world_bg.inputs['Color'].default_value=(.83,.86,.90,1.0)
+    world_bg.inputs['Strength'].default_value=.85
+scene.view_settings.view_transform='AgX'
+# Studio floor is added only after GLB export; it is NOT included in the model.
 mins=Vector((min((o.matrix_world@Vector(v)).x for o in meshes for v in o.bound_box),min((o.matrix_world@Vector(v)).y for o in meshes for v in o.bound_box),min((o.matrix_world@Vector(v)).z for o in meshes for v in o.bound_box)))
 maxs=Vector((max((o.matrix_world@Vector(v)).x for o in meshes for v in o.bound_box),max((o.matrix_world@Vector(v)).y for o in meshes for v in o.bound_box),max((o.matrix_world@Vector(v)).z for o in meshes for v in o.bound_box)))
 center=(mins+maxs)/2
-radius=(maxs-mins).length*.75
+radius=(maxs-mins).length*.65
+bpy.ops.mesh.primitive_plane_add(size=200,location=(center.x,center.y,mins.z-.055))
+floor=bpy.context.object;floor.name='RENDER_ONLY_STUDIO_FLOOR'
+floor_mat=bpy.data.materials.new('Pale gray studio floor');floor_mat.diffuse_color=(.82,.83,.84,1)
+floor.data.materials.append(floor_mat)
 bpy.ops.object.camera_add(location=center+Vector((radius*.70,-radius*1.0,radius*.45)))
 camera=bpy.context.object;camera.name='PBR_Preview_Camera';scene.camera=camera
 camera.rotation_euler=(center-camera.location).to_track_quat('-Z','Y').to_euler()
-camera.data.type='ORTHO';camera.data.ortho_scale=radius*2.05
+camera.data.type='ORTHO';camera.data.ortho_scale=radius*1.38
 for loc,power,size in [((3,-4,6),900,5),((-4,-2,3),500,4),((1,5,5),800,5)]:
     bpy.ops.object.light_add(type='AREA',location=center+Vector(loc))
     light=bpy.context.object;light.data.energy=power;light.data.shape='DISK';light.data.size=size
