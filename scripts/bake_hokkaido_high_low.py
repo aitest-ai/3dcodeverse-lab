@@ -33,7 +33,8 @@ dec.ratio=min(1.0,args.target_triangles/max(source_faces,1))
 bpy.ops.object.modifier_apply(modifier=dec.name)
 print('LOWPOLY',source_faces,len(lo.data.polygons),flush=True)
 # UV remap after decimation: never reuse the stretched pseudo-cylindrical UV.
-lo.data.uv_layers.clear()
+while len(lo.data.uv_layers):
+    lo.data.uv_layers.remove(lo.data.uv_layers[0])
 bpy.ops.object.mode_set(mode='EDIT')
 bpy.ops.mesh.select_all(action='SELECT')
 bpy.ops.uv.smart_project(island_margin=0.012)
@@ -49,7 +50,8 @@ assert finite and in01>0.999,'UV coordinate coverage failed'
 print('NEW_UV',len(lo.data.uv_layers),in01,flush=True)
 
 # Mark nonzero UV triangles and approximate world-space texel density spread.
-lo.data.calc_loop_triangles()
+if hasattr(lo.data,'calc_loop_triangles'):
+    lo.data.calc_loop_triangles()
 areas2=[];ratios=[]
 for t in lo.data.loop_triangles:
     ids=np.array(t.loops)
