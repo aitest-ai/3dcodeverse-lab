@@ -1,0 +1,18 @@
+{
+  "source": "models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb",
+  "output": "/home/runner/work/3dcodeverse-lab/3dcodeverse-lab/output/hokkaido_bear_pbr.glb",
+  "resolution": 2048,
+  "bear_mesh": "Kuma_Handcarved_OnePiece",
+  "bear_faces": 112116,
+  "mesh_count": 64,
+  "uv_valid": true,
+  "uv_inside_0_1_ratio": 1.0,
+  "color_space": {
+    "basecolor": "sRGB",
+    "normal": "Non-Color",
+    "orm": "Non-Color"
+  },
+  "normal_map": "OpenGL +Y",
+  "orm": "R=AO G=Roughness B=Metallic",
+  "note": "Postprocessed official 3DCodeVerse-built GLB in Blender; upstream skills used as guidance, not as executed 3DCodeVerse AI agents."
+}

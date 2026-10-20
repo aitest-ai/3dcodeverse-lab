@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "glb_bytes": 12273056,
+  "materials": 7,
+  "textures": 3,
+  "images": 3,
+  "normal": true,
+  "basecolor": true,
+  "metallic_roughness": true,
+  "ao": true,
+  "material_name": "Hokkaido_HandCarved_Walnut_PBR"
+}

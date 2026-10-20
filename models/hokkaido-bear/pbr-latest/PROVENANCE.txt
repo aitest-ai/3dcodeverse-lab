@@ -1,0 +1,5 @@
+source=main/models/hokkaido-bear/latest/hokkaido_bear_official_harness.glb
+process=scripts/pbr_refine_bear.py
+run=39365291166
+upstream=official 3DCodeVerse Harness geometry
+material=custom Blender PBR, not an AI generated mesh
