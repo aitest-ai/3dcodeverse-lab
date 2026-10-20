@@ -445,6 +445,11 @@ wood_image.update()
 try: wood_image.pack()
 except Exception: pass
 
+# Consistent body material: no scattered opaque material patches.
+# Wood grain and relief both survive GLB without camouflage-like artifacts.
+for poly in bear.data.polygons:
+    poly.material_index=0
+
 wooduv=bear.data.uv_layers.new(name='WoodGrainUV')
 for loop in bear.data.loops:
     p=bear.data.vertices[loop.vertex_index].co
