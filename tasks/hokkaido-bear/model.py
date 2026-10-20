@@ -190,7 +190,7 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.014
+bear.data.remesh_voxel_size=0.021
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
