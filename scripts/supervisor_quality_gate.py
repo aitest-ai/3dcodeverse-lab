@@ -64,7 +64,7 @@ def image_info(path: pathlib.Path) -> dict:
             "mean_rgb":[round(v,1) for v in stat.mean],
             "std_rgb":[round(v,1) for v in stat.stddev]}
 
-def audit(model: pathlib.Path, hero: pathlib.Path, side: pathlib.Path, review_path: pathlib.Path) -> dict:
+def audit(model: pathlib.Path, hero: pathlib.Path, side: pathlib.Path, review_path: pathlib.Path, allow_untextured_sculpt: bool = False) -> dict:
     technical=[]
     def gate(name, ok, details):
         technical.append({"name":name,"passed":bool(ok),"details":details})
@@ -73,12 +73,12 @@ def audit(model: pathlib.Path, hero: pathlib.Path, side: pathlib.Path, review_pa
     try:
         info=glb_info(model)
         gate("valid_glb_2",True,info)
-        gate("genuine_pbr_channels",bool(info["pbr_material_count"] and info["ao_material_count"] and
+        gate("genuine_pbr_channels_or_raw_sculpt",allow_untextured_sculpt or bool(info["pbr_material_count"] and info["ao_material_count"] and
             info["embedded_image_count"]>=3),info)
     except Exception as exc:
         info={"error":str(exc)}
         gate("valid_glb_2",False,info)
-        gate("genuine_pbr_channels",False,info)
+        gate("genuine_pbr_channels_or_raw_sculpt",False,info)
 
     images={}
     for key,path in (("hero",hero),("side",side)):
@@ -139,8 +139,9 @@ def main():
     p.add_argument("--side",type=pathlib.Path,required=True)
     p.add_argument("--review",type=pathlib.Path,required=True)
     p.add_argument("--report",type=pathlib.Path,required=True)
+    p.add_argument("--allow-untextured-sculpt",action="store_true",help="For upstream raw geometry candidates ONLY; still needs visual approval.")
     a=p.parse_args()
-    report=audit(a.model,a.hero,a.side,a.review)
+    report=audit(a.model,a.hero,a.side,a.review,a.allow_untextured_sculpt)
     a.report.parent.mkdir(parents=True,exist_ok=True)
     a.report.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     print("SUPERVISOR_RESULT",report["decision"],file=sys.stderr)
