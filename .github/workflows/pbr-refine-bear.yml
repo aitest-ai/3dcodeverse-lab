@@ -73,8 +73,40 @@ jobs:
           path: output/
           if-no-files-found: warn
           retention-days: 30
-  publish:
+
+  supervise:
+    name: Verify PBR candidate before release
     needs: pbr
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-pbr
+          path: candidate
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'Pillow>=10,<13'
+      - name: Fail closed without verified aesthetic approval of exact assets
+        run: |
+          mkdir -p art-review
+          python scripts/supervisor_quality_gate.py \
+            --model candidate/hokkaido_bear_pbr.glb \
+            --hero candidate/preview_three_quarter.png \
+            --side candidate/preview_side.png \
+            --review reviews/hokkaido-bear/pbr-latest.visual-review.json \
+            --report art-review/art_supervisor_report.json
+      - name: Save supervisor verdict even when rejected
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-pbr-supervisor-report
+          path: art-review/
+          retention-days: 90
+          if-no-files-found: warn
+  publish:
+    needs: [pbr, supervise]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
