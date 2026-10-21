@@ -93,8 +93,42 @@ jobs:
           path: packaged/
           retention-days: 30
           if-no-files-found: warn
-  publish:
+
+  supervise:
+    name: Original-sculpt visual quality before latest promotion
     needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-offline-harness
+          path: candidate
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'Pillow>=10,<13'
+      - name: Review model's actual rendered views (unreviewed = reject)
+        run: |
+          mkdir -p art-review
+          python scripts/supervisor_quality_gate.py \
+            --allow-untextured-sculpt \
+            --model candidate/hokkaido_bear_official_harness.glb \
+            --hero candidate/preview_04_view_front_right_high.png \
+            --side candidate/preview_03_view_back_left_high.png \
+            --review reviews/hokkaido-bear/sculpt-latest.visual-review.json \
+            --report art-review/art_supervisor_report.json
+      - name: Save rejected candidate diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-sculpt-supervisor-report
+          path: art-review/
+          retention-days: 90
+          if-no-files-found: warn
+  publish:
+    needs: [build, supervise]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
