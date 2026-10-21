@@ -1,0 +1,100 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido bear biting salmon — existing 2K baked-pilot",
+  "inspected_on": "2026-10-21",
+  "reviewer": "ChatGPT visual inspection of actual Blender renders (hero and side)",
+  "review_status": "rejected",
+  "model_sha256": "8d343bf9d50de921ae3e82a51a2c93f0389be431f841bf20566c7ec841962f8d",
+  "hero_sha256": "c251031fe96f307e0fd071398e7f1ab0ba5ca04895e4694ff7fc96fe702fe050",
+  "side_sha256": "b943477a421dd22fd8c91a9e2376b31b3a457593705501ed88acbdf5c35bea50",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 1.5,
+      "reason": "Elongated barrel-shaped torso; top shoulder hump swollen and repetitive; hindquarters/neck not anatomically convincing."
+    },
+    "face_and_expression": {
+      "score": 1,
+      "reason": "Eyes resemble stuck-on spheres; forehead, broad muzzle, mouth opening and realistic biting contact are absent."
+    },
+    "salmon_shape_and_bite": {
+      "score": 0.5,
+      "reason": "The pale simplified fish hangs in front of the face with disconnected mouth contact, fins as planar triangles and no readable realistic head/tail volume."
+    },
+    "carving_detail_and_wood": {
+      "score": 1,
+      "reason": "The surface looks like matte clay with stamped repetitive fur ridges and many pinholes instead of convincingly incised grain and chisel planes."
+    },
+    "paws_and_limbs": {
+      "score": 1,
+      "reason": "Leg silhouettes are tubular and squared; toe and claw ornaments visibly float or project like thin wires."
+    },
+    "multi_view_presentation": {
+      "score": 2,
+      "reason": "Hero and side views exist and are visible, but inconsistent studio framing and lighting do not reveal fine carved detail."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-001",
+      "severity": "blocker",
+      "part": "salmon-to-mouth contact",
+      "views": [
+        "hero",
+        "side"
+      ],
+      "finding": "Salmon appears pasted in front of the bear face; no jaws enclosing fish.",
+      "required_fix": "Resculpt teeth/jaws contact and fish body; confirm fish has intersection/contact with mouth in side and frontal views."
+    },
+    {
+      "id": "KUMA-002",
+      "severity": "blocker",
+      "part": "bear anatomy",
+      "views": [
+        "hero",
+        "side"
+      ],
+      "finding": "Over-elongated torso with swollen and segmented withers, oversimplified head.",
+      "required_fix": "Rebuild cranium, neck, torso and forequarter as cohesive sculpt guided by actual Hokkaido wooden souvenir views."
+    },
+    {
+      "id": "KUMA-003",
+      "severity": "critical",
+      "part": "wood craftsmanship",
+      "views": [
+        "hero",
+        "side"
+      ],
+      "finding": "Clay-like flat brown body with repeated stamped pattern, no plausible hand-carving grain.",
+      "required_fix": "Use anisotropic wood shader, carved macroplanes plus irregular oriented knife cuts; bake from real geometric detail."
+    },
+    {
+      "id": "KUMA-004",
+      "severity": "critical",
+      "part": "paws and claws",
+      "views": [
+        "side"
+      ],
+      "finding": "Multiple claws appear as sharp disconnected wire-like spikes.",
+      "required_fix": "Rebuild broad paws with individually integrated small claw tips and remove floating geometry."
+    },
+    {
+      "id": "KUMA-005",
+      "severity": "major",
+      "part": "face",
+      "views": [
+        "hero",
+        "side"
+      ],
+      "finding": "Eyes appear as attached buttons; snout/nose lack crisp separation.",
+      "required_fix": "Carve eye sockets, brows, lips and wider flattened bear nose into head surface."
+    }
+  ],
+  "improvement_tasks": [
+    "Reference-lock: compare against at least front, side, three-quarter real Hokkaido kibori-kuma souvenir photos.",
+    "Correct high-poly silhouette and muzzle-jaw/fish bite intersection before touching material resolution.",
+    "Close and integrate paws/claws and salmon fins; remove floating protrusions.",
+    "Repair gross shoulder topology and stamp-pattern artifacts using real sculpted knife cuts.",
+    "Re-run existing 3DCodeVerse => high-low Cycles bake => six-view turntable QA.",
+    "Request fresh image-by-image visual review tied to the SHA256 of resulting GLB and render views; do not infer passing aesthetic quality from metadata."
+  ]
+}
