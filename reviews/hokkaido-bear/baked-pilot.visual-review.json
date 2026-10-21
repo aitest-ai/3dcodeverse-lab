@@ -5,8 +5,8 @@
   "reviewer": "ChatGPT visual inspection of actual Blender renders (hero and side)",
   "review_status": "rejected",
   "model_sha256": "8d343bf9d50de921ae3e82a51a2c93f0389be431f841bf20566c7ec841962f8d",
-  "hero_sha256": "c251031fe96f307e0fd071398e7f1ab0ba5ca04895e4694ff7fc96fe702fe050",
-  "side_sha256": "b943477a421dd22fd8c91a9e2376b31b3a457593705501ed88acbdf5c35bea50",
+  "hero_sha256": "7777417506d276f06c962562f21ddde8fd9705b5690a0e1d7a1fa5970d85bf45",
+  "side_sha256": "66ba26867a26927dffa793c59d76ce70fc7759f2bd720b6fe7fdf7ce06e135b9",
   "criteria": {
     "bear_anatomy_and_silhouette": {
       "score": 1.5,
@@ -96,5 +96,6 @@
     "Repair gross shoulder topology and stamp-pattern artifacts using real sculpted knife cuts.",
     "Re-run existing 3DCodeVerse => high-low Cycles bake => six-view turntable QA.",
     "Request fresh image-by-image visual review tied to the SHA256 of resulting GLB and render views; do not infer passing aesthetic quality from metadata."
-  ]
+  ],
+  "reviewed_files_note": "GLB hash identical across prior rendered sample and GitHub main; published hero/side render hashes taken from GitHub quality-gate run (same geometry, updated render). The aesthetic critique is of this same model's visibly defective shape and material."
 }
