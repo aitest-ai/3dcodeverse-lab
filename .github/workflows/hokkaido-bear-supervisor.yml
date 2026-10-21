@@ -1,0 +1,42 @@
+name: Hokkaido Bear Art Supervisor
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/hokkaido-bear-supervisor.yml'
+      - 'scripts/supervisor_quality_gate.py'
+      - 'reviews/hokkaido-bear/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  art-quality:
+    name: Supervised artistic release decision (fail closed)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image integrity checker
+        run: python -m pip install 'Pillow>=10,<13'
+      - name: Check real GLB, previews, and reviewer scorecard
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p quality-output
+          python scripts/supervisor_quality_gate.py \
+            --model models/hokkaido-bear/baked-pilot/hokkaido_bear_high_low_baked.glb \
+            --hero models/hokkaido-bear/baked-pilot/bake_preview_hero.png \
+            --side models/hokkaido-bear/baked-pilot/bake_preview_side.png \
+            --review reviews/hokkaido-bear/baked-pilot.visual-review.json \
+            --report quality-output/art_supervisor_report.json
+      - name: Preserve transparent verdict even if rejected
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-art-supervision-report
+          path: quality-output/
+          retention-days: 90
+          if-no-files-found: warn
