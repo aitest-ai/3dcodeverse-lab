@@ -86,6 +86,13 @@ def fin(name, pts, mat, thick=0.015):
     obj=bpy.data.objects.new(name,mesh)
     bpy.context.collection.objects.link(obj)
     obj.data.materials.append(mat)
+    bevel=obj.modifiers.new("RoundedCarvedFinEdges","BEVEL")
+    bevel.width=min(0.019,thick*.52)
+    bevel.segments=3
+    if hasattr(bevel,"affect"): bevel.affect="EDGES"
+    bpy.context.view_layer.objects.active=obj
+    try: bpy.ops.object.modifier_apply(modifier=bevel.name)
+    except Exception: pass
     return obj
 
 # ============================================================================
@@ -139,8 +146,8 @@ bear_parts.append(make_loft("SolidContinuousTorso",[
     (-1.48,1.15,0.09,0.10),
     (-1.31,1.19,0.42,0.38),
     (-1.02,1.22,0.55,0.52),
-    (-0.73,1.33,0.635,0.67),
-    (-0.42,1.34,0.65,0.65),
+    (-0.73,1.34,0.635,0.675),
+    (-0.42,1.31,0.65,0.63),
     ( 0.01,1.28,0.60,0.59),
     ( 0.43,1.23,0.58,0.55),
     ( 0.83,1.17,0.52,0.50),
@@ -166,7 +173,8 @@ bear_parts.append(make_loft("CarvedBroadBearSkull",[
 ],True,walnut,48,6))
 mass("ShortHeavyUpperMuzzle",(-1.96,0,0.995),(0.305,0.295,0.185))
 # Keep a *real* gap between upper bite lip and separate low lower jaw.
-mass("CarvedLowerJaw",(-1.87,0,0.759),(0.286,0.292,0.108))
+# The lower jaw is independent of the remeshed cranium so the bite opening is real.
+# A separate connected jaw will be joined at the rear after carving the mouth cavity.
 for side in (-1,1):
     mass("SmallRoundEar_%s"%side,(-1.40,side*0.45,1.565),(0.145,0.145,0.17))
 mass("VeryShortTail",(1.30,0,1.12),(0.115,0.12,0.115))
@@ -207,6 +215,38 @@ try:
 except Exception:
     # The underlying body remains valid even if the Blender remesh backend is missing.
     pass
+
+# v15 mouth anatomy: subtract an oblate cavity from the fused skull, then
+# make a contiguous, upward-curving separate lower jaw which touches the neck.
+# The crosswise salmon sits IN this space instead of being glued onto the nose.
+bpy.ops.mesh.primitive_uv_sphere_add(segments=40,ring_count=28,location=(-2.065,0,0.797))
+bite_cutter=bpy.context.object
+bite_cutter.name="TEMP_BiteMouth_Cutter"
+bite_cutter.scale=(0.36,0.355,0.187)
+bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
+boolmod=bear.modifiers.new("PhysicalOpenBiteCavity","BOOLEAN")
+boolmod.operation="DIFFERENCE"
+boolmod.solver="EXACT"
+boolmod.object=bite_cutter
+bpy.context.view_layer.objects.active=bear
+try:
+    bpy.ops.object.modifier_apply(modifier=boolmod.name)
+except Exception as exc:
+    raise RuntimeError("Real jaw cavity boolean failed, cannot fake the bite") from exc
+bpy.data.objects.remove(bite_cutter,do_unlink=True)
+
+# A broad, shallow bowl-shaped lower mandible, anchored into the rear of skull.
+# The mouth remains visibly open until the salmon is inserted.
+lower_jaw=make_loft("Kuma_SeparateLowerMandible",[
+    (-2.37,0.605,0.075,0.055),
+    (-2.25,0.615,0.225,0.092),
+    (-2.10,0.640,0.305,0.105),
+    (-1.90,0.690,0.330,0.127),
+    (-1.69,0.745,0.305,0.152),
+    (-1.50,0.828,0.220,0.164),
+    (-1.35,0.900,0.08,0.10),
+],True,walnut,48,5)
+for poly in lower_jaw.data.polygons:poly.use_smooth=True
 
 # v9 true carved wood relief, sculpted INTO the organic remesh geometry.
 # Each anisotropic notch sinks below its surrounding facets. The overlapping
@@ -255,39 +295,41 @@ for is_front,px in ((True,-1.02),(False,0.78)):
                 (px-0.248,py,0.142),(px-0.320,py,0.107),
                 0.027,0.008,walnut_mid,12)
 
-# v14 facial landmarks on both actual side surfaces, with shallow inset eyes.
-# The old double floating black globes were visibly non-anatomical.
+# v15: side-visible eyes, broad nose bridge and contiguous bite lips.
+# Black eyeballs are very small and physically seated in dark eye sockets.
 for side in (-1,1):
-    # Ear bowl sits facing out, along widest rounded ear edge.
-    sphere("InsetEarBowl_%s"%side,(-1.45,side*0.572,1.583),
-           (0.105,0.013,0.090),walnut_dark,28,16)
-    sphere("RecessedEyeSocket_%s"%side,(-1.764,side*0.355,1.251),
-           (0.087,0.022,0.063),walnut_mid,28,16)
-    sphere("SmallEye_%s"%side,(-1.777,side*0.378,1.255),
-           (0.034,0.019,0.031),eye_mat,24,16)
-    curve_line("OverhangingBrow_%s"%side,[
-        (-1.862,side*0.37,1.299),
-        (-1.77,side*0.393,1.325),
-        (-1.679,side*0.375,1.295)],0.014,walnut_mid)
-    curve_line("CarvedCheekFur_%s"%side,[
-        (-1.92,side*0.300,1.07),
-        (-1.75,side*0.415,1.045),
-        (-1.55,side*0.435,1.10)],0.010,walnut_dark)
+    sphere("EarBowl_%s"%side,(-1.45,side*0.573,1.58),
+           (0.10,0.018,0.096),walnut_dark,28,18)
+    sphere("EyeSocketDark_%s"%side,(-1.840,side*0.405,1.291),
+           (0.081,0.034,0.062),walnut_dark,32,18)
+    sphere("Eye_Inset_%s"%side,(-1.869,side*0.429,1.294),
+           (0.033,0.021,0.027),eye_mat,24,14)
+    # Eyelids are partly buried into the cranium, unlike loose wire brows.
+    curve_line("BrowFur_%s"%side,[
+        (-1.955,side*0.40,1.345),(-1.87,side*0.44,1.357),
+        (-1.77,side*0.43,1.327)],0.016,walnut_mid)
+    sphere("CheekMass_%s"%side,(-1.733,side*0.392,1.005),
+           (0.260,0.103,0.190),walnut,32,16)
+    curve_line("CheekCarving_%s"%side,[
+        (-1.93,side*0.40,1.064),(-1.79,side*0.47,0.992),
+        (-1.62,side*0.45,1.028)],0.008,walnut_dark)
+# Distinctive flattened nose projects ahead of upper lip.
+sphere("TriangularWideNose",(-2.193,0,1.045),
+       (0.089,0.170,0.071),eye_mat,36,20)
+for side in (-1,1):
+    sphere("Nostril_%s"%side,(-2.264,side*0.090,1.037),
+           (0.015,0.021,0.013),walnut_dark,16,10)
 
-# Broad flattened nose and a dark inset lower crease.
-sphere("CarvedBroadNose",(-2.157,0,1.012),(0.078,0.158,0.073),eye_mat,32,18)
-for side in (-1,1):
-    sphere("NostrilCut_%s"%side,(-2.215,side*0.088,1.008),
-           (0.013,0.017,0.011),walnut_dark,16,10)
-# Upper lip is a carved curve, crossing in front of the fish at the clamping point.
-curve_line("UpperLipBite",[
-    (-2.05,-0.27,0.833),(-2.16,-0.15,0.875),
-    (-2.195,0,0.884),(-2.16,0.15,0.875),
-    (-2.05,0.27,0.833)],0.023,walnut_mid)
-curve_line("LowerLipBite",[
-    (-1.985,-0.28,0.699),(-2.035,-0.13,0.676),
-    (-2.040,0,0.668),(-2.035,0.13,0.676),
-    (-1.985,0.28,0.699)],0.020,walnut_mid)
+# The upper and lower jaw physically OVERLAP the depressed salmon flanks
+# at the bite. A visible dark recess between is provided by the 3D boolean.
+curve_line("ActualUpperLip",[
+    (-2.195,-0.260,0.941),(-2.289,-0.135,0.982),
+    (-2.315,0,0.995),(-2.289,0.135,0.982),
+    (-2.195,0.260,0.941)],0.025,walnut_mid)
+curve_line("ActualLowerLip",[
+    (-2.190,-0.260,0.635),(-2.294,-0.135,0.602),
+    (-2.325,0,0.593),(-2.294,0.135,0.602),
+    (-2.190,0.260,0.635)],0.028,walnut_mid)
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -299,7 +341,7 @@ bear_names_before_fish = {ob.name for ob in bpy.data.objects}
 
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-1.735
+FISH_X=-1.735  # fish center within the 3D bite cavity
 FISH_Z=0.824
 FISH_SKEW=0.050  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
@@ -328,7 +370,9 @@ faces=[]
 for jy,rx,rz in stations:
     for k in range(N):
         ang=math.tau*k/N
-        vertices.append((FISH_X+FISH_SKEW*jy+rx*math.cos(ang),jy,FISH_Z+rz*math.sin(ang)))
+        # Anatomical compression exactly where bear jaws clamp the fish.
+        bite_pressure=1.0-0.31*math.exp(-((jy/0.245)**2))
+        vertices.append((FISH_X+FISH_SKEW*jy+rx*bite_pressure*math.cos(ang),jy,FISH_Z+rz*bite_pressure*math.sin(ang)))
 for j in range(len(stations)-1):
     for k in range(N):
         i=j*N+k
@@ -409,7 +453,7 @@ for ob in list(bpy.data.objects):
     if ob.name not in bear_names_before_fish:
         ob.location.y *= 0.77
         ob.scale.y *= 0.77
-        ob.location.z -= 0.057  # nose and eyes remain above the salmon
+        ob.location.z -= 0.057  # central bite is aligned with the carved jaw recess
 
 # Physical jaw/fish alignment invariant for the source-space profile:
 # the fish mid-body must intersect the mouth plane on both X and Z axes.
@@ -417,6 +461,11 @@ mouth_center=Vector((-2.04*0.87,0.0,0.777))
 fish_center=Vector((FISH_X,0.0,FISH_Z-0.057))
 assert abs(fish_center.x-mouth_center.x)<0.18, "Fish no longer reaches the bear mouth"
 assert abs(fish_center.z-mouth_center.z)<0.10, "Fish is vertically detached from bite"
+# Actual fish belly/dorsal surface at clamp; release gate uses these not only centers.
+clamp_waist=min(stations,key=lambda q:abs(q[0]))
+compressed_rz=clamp_waist[2]*(1-.31)
+assert 0.54 < fish_center.z-compressed_rz < 0.67, "Fish belly is outside mandible"
+assert 0.91 < fish_center.z+compressed_rz < 1.00, "Fish top is outside upper lip"
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
