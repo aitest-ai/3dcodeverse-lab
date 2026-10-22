@@ -1,0 +1,72 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido wooden salmon bear sculpt v16 actual Harness GLB",
+  "inspected_on": "2026-10-22",
+  "reviewer": "ChatGPT inspected actual Blender Cycles four-view preview of artifact from run 39725018772",
+  "review_status": "rejected",
+  "model_sha256": "968b9c80f7df78aec442fd0b0702f8aa1cb7ad2fe1109a2c21ce3ba042d6c328",
+  "hero_sha256": "ced5d08b7a33a1b6f66f8687041124bb132e6ff5850c5cc471fa6afdd4160b30",
+  "side_sha256": "fe09237bca28a90cc55dcee7e283f89660c3087587ed58d16b35e633308634b7",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/39725018772",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2,
+      "reason": "Body and head still look like simple long capsule and barrel forms, front legs remain column-like."
+    },
+    "face_and_expression": {
+      "score": 1.8,
+      "reason": "The glossy plastic nose was corrected, but eye sockets still read as small decorative pins, not carved bear expression."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.5,
+      "reason": "Mouth cavity and raised jaw are visible; the fish still appears like a single long pale torpedo held across the snout, especially from the side."
+    },
+    "carving_detail_and_wood": {
+      "score": 0.5,
+      "reason": "The increased anisotropic relief has turned into strongly pitted pebble-like blobs and holes across the entire torso. This looks like weathered clay, not intentional long chisel grooves."
+    },
+    "paws_and_limbs": {
+      "score": 1.7,
+      "reason": "Claws are short but feet remain featureless cylinders; calf and ankle structures are not anatomical."
+    },
+    "multi_view_presentation": {
+      "score": 3.5,
+      "reason": "Four consistent authentic Cycles views are valid and capture model imperfections clearly."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V16-001",
+      "severity": "blocker",
+      "part": "surface sculpt",
+      "finding": "Deep noise grooves read as dense pits and holes instead of directional carving.",
+      "required_fix": "Revert excessive amplitude; use sparse elongated strokes and larger unified carving facets; compare front/back side."
+    },
+    {
+      "id": "KUMA-V16-002",
+      "severity": "critical",
+      "part": "bite contact",
+      "finding": "Jaw opening now exists but upper/lower lip attachments still look decorative and fish isn't integrated in the facial anatomy.",
+      "required_fix": "Refine jaw cross-section and visible fish compression, avoid detached wood tubes."
+    },
+    {
+      "id": "KUMA-V16-003",
+      "severity": "critical",
+      "part": "head",
+      "finding": "Eyes look like tiny detached accents; facial contours are still oversimplified.",
+      "required_fix": "Align pupil and inset socket with external head mesh and add credible brow and cheek planes."
+    },
+    {
+      "id": "KUMA-V16-004",
+      "severity": "major",
+      "part": "paws and overall anatomy",
+      "finding": "Legs are thick cylinder sections and paws lack broad molded toes.",
+      "required_fix": "Unify and broaden paw fronts, model four shortened recessed toe separations."
+    }
+  ],
+  "improvement_tasks": [
+    "Replace pits with shallow anisotropic engraved fur cuts; prioritize visible quality, not polygon count.",
+    "Preserve v15 physical mouth cavity and v16 matte nose/tail improvements.",
+    "Re-run official GLB build and reject unless inspected visual quality improves."
+  ]
+}
