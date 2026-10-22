@@ -2,7 +2,7 @@ name: 3DCodeVerse Offline Bear Sculpting and GLB Export
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/hokkaido-bear-build.yml', 'tasks/hokkaido-bear/**']
+    paths: ['.github/workflows/hokkaido-bear-build.yml', 'tasks/hokkaido-bear/**', 'scripts/render_official_glb_bpy.py']
   workflow_dispatch:
 permissions:
   contents: read
@@ -63,11 +63,29 @@ jobs:
           cp runs/hokkaido_bear/artifacts/build.json packaged/build.json
           cp runs/hokkaido_bear/spec.json packaged/spec.json
           cp tasks/hokkaido-bear/model.py packaged/model.py
-      - name: Official 3DCodeVerse multiview render
-        continue-on-error: true
+      - name: Blender Cycles render of actual official Harness GLB
+        shell: bash
         run: |
-          set -o pipefail
-          3dcode tools render_views --workspace runs/hokkaido_bear --json '{"size":640,"mode":"shaded"}' --json-out | tee packaged/render-tool.log
+          set -euo pipefail
+          blender --background --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            runs/hokkaido_bear/artifacts/object.glb \
+            runs/hokkaido_bear/artifacts 2>&1 | tee packaged/render-tool.log
+          python -m pip install -q 'Pillow>=10,<13'
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          root=Path('runs/hokkaido_bear/artifacts')
+          names=['view_front_right_high.png','view_front.png','view_back_left_high.png','view_top.png']
+          canvas=Image.new('RGB',(1920,1440),(238,240,242))
+          for i,name in enumerate(names):
+              p=root/name
+              assert p.exists() and p.stat().st_size>12000,p
+              im=Image.open(p).convert('RGB').resize((960,720))
+              canvas.paste(im,((i%2)*960,(i//2)*720))
+          canvas.save(root/'sheet.png',compress_level=4)
+          print('REAL_CYCLES_MULTIVIEW_SHEET_OK')
+          PY
       - name: Collect preview and diagnostics
         if: always()
         shell: bash
