@@ -136,16 +136,16 @@ def make_loft(name, sections, along_x, mat, segments=36, steps=5):
 
 bear_parts=[]
 bear_parts.append(make_loft("SolidContinuousTorso",[
-    (-1.54,1.13,0.07,0.09),
-    (-1.38,1.15,0.38,0.34),
-    (-1.15,1.18,0.52,0.47),
-    (-0.79,1.32,0.63,0.66),
-    (-0.41,1.29,0.65,0.67),
-    ( 0.04,1.18,0.60,0.54),
-    ( 0.53,1.14,0.55,0.50),
-    ( 0.88,1.14,0.52,0.50),
-    ( 1.15,1.15,0.34,0.34),
-    ( 1.32,1.14,0.04,0.06),
+    (-1.48,1.15,0.09,0.10),
+    (-1.31,1.19,0.42,0.38),
+    (-1.02,1.22,0.55,0.52),
+    (-0.73,1.33,0.635,0.67),
+    (-0.42,1.34,0.65,0.65),
+    ( 0.01,1.28,0.60,0.59),
+    ( 0.43,1.23,0.58,0.55),
+    ( 0.83,1.17,0.52,0.50),
+    ( 1.12,1.14,0.34,0.32),
+    ( 1.30,1.14,0.055,0.075),
 ],True,walnut,48))
 
 # Sculpt a short broad skull and compact projecting muzzle into torso tip.
@@ -153,12 +153,23 @@ def mass(name,loc,scale):
     obj=sphere(name,loc,scale,walnut,seg=48,rings=32)
     bear_parts.append(obj)
     return obj
-mass("RoundedBearCranium",(-1.48,0,1.14),(0.50,0.47,0.42))
-mass("UpperSnout",(-1.82,0,0.97),(0.27,0.29,0.205))
-mass("JawMass",(-1.76,0,0.82),(0.30,0.275,0.105))
+# Sculpt review 14: ONE coherent heavy skull loft, not another glued sphere.
+# Key profile: squared brow, cheek mass, low heavy muzzle and short snout.
+bear_parts.append(make_loft("CarvedBroadBearSkull",[
+    (-2.10,1.01,0.10,0.085),
+    (-1.99,1.09,0.245,0.205),
+    (-1.85,1.17,0.38,0.325),
+    (-1.63,1.22,0.49,0.43),
+    (-1.41,1.24,0.50,0.45),
+    (-1.22,1.22,0.42,0.36),
+    (-1.09,1.18,0.20,0.18),
+],True,walnut,48,6))
+mass("ShortHeavyUpperMuzzle",(-1.96,0,0.995),(0.305,0.295,0.185))
+# Keep a *real* gap between upper bite lip and separate low lower jaw.
+mass("CarvedLowerJaw",(-1.87,0,0.759),(0.286,0.292,0.108))
 for side in (-1,1):
-    mass("SmallRoundEar_%s"%side,(-1.38,side*0.34,1.47),(0.14,0.145,0.17))
-mass("VeryShortTail",(1.30,0,1.12),(0.12,0.13,0.13))
+    mass("SmallRoundEar_%s"%side,(-1.40,side*0.45,1.565),(0.145,0.145,0.17))
+mass("VeryShortTail",(1.30,0,1.12),(0.115,0.12,0.115))
 
 def shaped_leg(name,x_shoulder,y,px,front):
     # Full-volume limb: merges with torso at top, extends to one broad foot.
@@ -205,21 +216,13 @@ for mat in (walnut_mid, walnut_warm, walnut_dark):
 def clamp(v,a=0.0,b=1.0):
     return max(a,min(b,v))
 def chisel_profile(co):
-    # v10: long, shallow, diagonal V-gouges like carving-knife cuts.
-    # The previous approximately round dimple lattice was NOT authentic.
-    u=co.x*5.65+co.z*0.72+0.18*math.sin(co.y*2.8)
-    v=co.z*15.5-co.x*5.2+co.y*1.2
-    row=math.floor(v)
-    # A unique offset in each staggered band breaks grid regularity.
-    j=math.sin(row*12.9898+43.5)*43758.5453
-    jitter=(j-math.floor(j)-0.5)*0.22
-    cu=(u+0.5*(row%2)+jitter)%1.0-0.5
-    cv=(v%1.0)-0.50
-    slant=cu+0.11*cv
-    d=(slant/0.445)**2+(cv/0.31)**2
-    if d>=1.0: return 0.0
-    # tapered cross-section with a narrow hollow (no holes, no bumps).
-    return 0.011*(max(0.0,1.0-d)**1.35)
+    # Irregular anisotropic chips rather than periodic fish scales.
+    # Combine nonlinear noise fields; avoid a regular tiled grid.
+    q=Vector((co.x*7.5 + 0.8*co.z,co.y*15.0,co.z*23.0-co.x*4.0))
+    broad=noise.noise(q)
+    detail=noise.noise(q*2.85+Vector((7.3,1.5,4.9)))
+    v=max(0.0,0.33*broad+0.67*detail-0.31)
+    return min(0.006,v*0.024)
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
@@ -242,52 +245,49 @@ for face in bear.data.polygons:
     # visible tiny chisel facets without making the surface polygonal everywhere
     face.use_smooth=True
 
-# Discrete pointed claws inlaid into the fronts of unified paws.
-# Grooves on top lead to small dark blunt tips, not eight attached spheres.
+# Short claws contained in the volume of paws, not long floating wires.
 for is_front,px in ((True,-1.02),(False,0.78)):
     for side in (-1,1):
         y=side*0.435
         for k in range(4):
-            py=y+(k-1.5)*0.118
-            # Thin inset lines on the sloping paw top (actual GLB curves).
-            curve_line("ClawRoot_%s_%s_%d"%(int(is_front),side,k),[
-                (px-0.195,py,0.32),
-                (px-0.264,py,0.244),
-                (px-0.310,py,0.17)],0.009,walnut_dark)
-            frustum("CarvedClaw_%s_%s_%d"%(int(is_front),side,k),
-                (px-0.295,py,0.15),(px-0.359,py,0.108),
-                0.028,0.005,walnut_mid,12)
+            py=y+(k-1.5)*0.108
+            frustum("ShortInlaidClaw_%s_%s_%d"%(int(is_front),side,k),
+                (px-0.248,py,0.142),(px-0.320,py,0.107),
+                0.027,0.008,walnut_mid,12)
 
-# Ear pits and facial detail on both sides
+# v14 facial landmarks on both actual side surfaces, with shallow inset eyes.
+# The old double floating black globes were visibly non-anatomical.
 for side in (-1,1):
-    sphere("EarWell_"+str(side),(-1.42,side*0.463,1.510),(0.095,0.020,0.105),walnut_dark,28,16)
-    sphere("InsetEye_"+str(side),(-1.79,side*0.278,1.245),(0.047,0.033,0.046),eye_mat,20,12)
-    sphere("Brow_"+str(side),(-1.74,side*0.31,1.295),(0.13,0.049,0.046),walnut_mid,24,14)
+    # Ear bowl sits facing out, along widest rounded ear edge.
+    sphere("InsetEarBowl_%s"%side,(-1.45,side*0.572,1.583),
+           (0.105,0.013,0.090),walnut_dark,28,16)
+    sphere("RecessedEyeSocket_%s"%side,(-1.764,side*0.355,1.251),
+           (0.087,0.022,0.063),walnut_mid,28,16)
+    sphere("SmallEye_%s"%side,(-1.777,side*0.378,1.255),
+           (0.034,0.019,0.031),eye_mat,24,16)
+    curve_line("OverhangingBrow_%s"%side,[
+        (-1.862,side*0.37,1.299),
+        (-1.77,side*0.393,1.325),
+        (-1.679,side*0.375,1.295)],0.014,walnut_mid)
+    curve_line("CarvedCheekFur_%s"%side,[
+        (-1.92,side*0.300,1.07),
+        (-1.75,side*0.415,1.045),
+        (-1.55,side*0.435,1.10)],0.010,walnut_dark)
 
-# v9 deeper facial sculpting: subtle cheek ridge, inset eyelid/corner, nostrils.
-# The eyes are carved into the mass instead of floating as buttons.
+# Broad flattened nose and a dark inset lower crease.
+sphere("CarvedBroadNose",(-2.157,0,1.012),(0.078,0.158,0.073),eye_mat,32,18)
 for side in (-1,1):
-    sphere("EyeSocket_%s"%side,(-1.765,side*0.274,1.229),
-           (0.073,0.035,0.073),walnut_dark,32,18)
-    sphere("EyeCarvedInset_%s"%side,(-1.799,side*0.306,1.251),
-           (0.029,0.029,0.031),eye_mat,24,16)
-    curve_line("UpperEyelid_%s"%side,[
-        (-1.83,side*0.319,1.29),(-1.79,side*0.331,1.313),
-        (-1.731,side*0.312,1.286)],0.010,walnut_mid)
-    curve_line("CheekCut_%s"%side,[
-        (-1.74,side*0.345,1.05),(-1.59,side*0.405,1.02),
-        (-1.46,side*0.42,1.11)],0.008,walnut_dark)
-
-# A chunky triangular bear nose, distinctly forward.
-sphere("Bear_Black_Carved_Nose",(-2.075,0,1.055),(0.080,0.160,0.105),eye_mat,32,18)
-# Short, heavy triangular bear nose with nostril dimples.
-for side in (-1,1):
-    sphere("NostrilInset_%s"%side,(-2.137,side*0.090,1.052),
-        (0.016,0.023,0.012),walnut_dark,16,10)
-
-sphere("MouthOpening",(-1.964,0,0.830),(0.079,0.26,0.060),mouth_mat,24,12)
-for side in (-1,1):
-    curve_line("LipCrease"+str(side),[(-2.00,side*0.11,0.884),(-1.92,side*0.26,0.861),(-1.75,side*0.25,0.852)],0.010,walnut_dark)
+    sphere("NostrilCut_%s"%side,(-2.215,side*0.088,1.008),
+           (0.013,0.017,0.011),walnut_dark,16,10)
+# Upper lip is a carved curve, crossing in front of the fish at the clamping point.
+curve_line("UpperLipBite",[
+    (-2.05,-0.27,0.833),(-2.16,-0.15,0.875),
+    (-2.195,0,0.884),(-2.16,0.15,0.875),
+    (-2.05,0.27,0.833)],0.023,walnut_mid)
+curve_line("LowerLipBite",[
+    (-1.985,-0.28,0.699),(-2.035,-0.13,0.676),
+    (-2.040,0,0.668),(-2.035,0.13,0.676),
+    (-1.985,0.28,0.699)],0.020,walnut_mid)
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -299,9 +299,9 @@ bear_names_before_fish = {ob.name for ob in bpy.data.objects}
 
 # --- Salmon: physically shaped body sections from fish head to narrow tail stock.
 # The cross section tapers asymmetrically so a real fish profile, not an elongated oval.
-FISH_X=-1.80
-FISH_Z=0.815
-FISH_SKEW=0.105  # sculpt fish obliquely to show more than an end-on silhouette
+FISH_X=-1.735
+FISH_Z=0.824
+FISH_SKEW=0.050  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
     (-1.23, 0.054, 0.071),
     (-1.16, 0.104, 0.117),
@@ -407,9 +407,16 @@ def fish_radius_at(y):
 # Body objects have already been resized, so only process newly added fish.
 for ob in list(bpy.data.objects):
     if ob.name not in bear_names_before_fish:
-        ob.location.y *= 0.78
-        ob.scale.y *= 0.78
-        ob.location.z -= 0.075  # nose and eyes remain above the salmon
+        ob.location.y *= 0.77
+        ob.scale.y *= 0.77
+        ob.location.z -= 0.057  # nose and eyes remain above the salmon
+
+# Physical jaw/fish alignment invariant for the source-space profile:
+# the fish mid-body must intersect the mouth plane on both X and Z axes.
+mouth_center=Vector((-2.04*0.87,0.0,0.777))
+fish_center=Vector((FISH_X,0.0,FISH_Z-0.057))
+assert abs(fish_center.x-mouth_center.x)<0.18, "Fish no longer reaches the bear mouth"
+assert abs(fish_center.z-mouth_center.z)<0.10, "Fish is vertically detached from bite"
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
