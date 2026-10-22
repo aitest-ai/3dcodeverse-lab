@@ -20,9 +20,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
       - name: Install Blender 5.2.2 LTS
         shell: bash
         run: |
@@ -36,10 +33,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Blender static_object only: no Chromium/Puppeteer/Three.js render host.
+          # Upstream setup explicitly supports --no-node / --no-chrome.
           python -m pip install -e upstream/harness
-          (cd upstream/harness/runtime_js && npm ci && npx --no puppeteer browsers install chrome)
           3dcodeverse --help > /dev/null
-          3dcodeverse doctor --no-gpu || true
+          3dcode tools --help > /dev/null
       - name: Create official Harness workspace and load Blender model
         shell: bash
         run: |
