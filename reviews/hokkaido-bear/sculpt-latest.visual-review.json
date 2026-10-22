@@ -1,0 +1,103 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido bear sculpt v14 — genuine official Harness GLB, Blender Cycles four-view preview",
+  "inspected_on": "2026-10-22",
+  "reviewer": "ChatGPT visual review of actual official 3DCodeVerse GLB rendered by Blender Cycles; four views inspected",
+  "review_status": "rejected",
+  "model_sha256": "0dc30a2092b655f90e41ed49a1e77978eb0b2093bdfaec3fe8385965c71b4117",
+  "hero_sha256": "3929d5c5b612fe43ec9daba29a70fedb7ec4e9d4394f8bdba22965d89d139b49",
+  "side_sha256": "f01560824457402641035b20575952b64c547da7a41504c6e7f743c5e2abef2c",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/39715230927",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2,
+      "reason": "One-piece bulky quadruped and thick head improve basic proportions, but neck, shoulders, rump and barrel are too uniform and toy-like rather than recognizable carved grizzly anatomy."
+    },
+    "face_and_expression": {
+      "score": 1.2,
+      "reason": "Eyes are tiny or hidden, no clearly sculpted eyelid and eye socket profile, the large rounded snout conceals the bite geometry."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1,
+      "reason": "Large pale fish is still suspended directly across the mouth; no visible upper/lower jaw clamping fish, fish tail and fins remain flat triangular extrusions."
+    },
+    "carving_detail_and_wood": {
+      "score": 1,
+      "reason": "Brown material looks like matte clay or wax; virtually no legible hand-chisel cut grain or multi-scale directional fur carving."
+    },
+    "paws_and_limbs": {
+      "score": 1.8,
+      "reason": "Feet are thicker and previously long wired claws are shorter, but the paws look like blunt socks and toe anatomy remains simple blobs."
+    },
+    "multi_view_presentation": {
+      "score": 3.5,
+      "reason": "Four real Blender Cycles render views now produced and framed; lighting is legible but lacks close-up diagnostic shots of face and bite."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V14-001",
+      "severity": "blocker",
+      "part": "jaw-fish contact",
+      "views": [
+        "view_front_right_high",
+        "view_front"
+      ],
+      "finding": "Fish appears simply held in front of nose with no convincing upper/lower mouth closure.",
+      "required_fix": "Create a deep jaw recess and physically separated upper/lower lips that visibly overlap salmon's dorsal and ventral contours in front and profile views."
+    },
+    {
+      "id": "KUMA-V14-002",
+      "severity": "critical",
+      "part": "head and eyes",
+      "views": [
+        "view_front_right_high",
+        "view_front",
+        "view_top"
+      ],
+      "finding": "Oversized featureless helmet-like skull; eyes lost in surface.",
+      "required_fix": "Create eye sockets on true external head surface, raised eyebrows, deep cheeks, wider triangular muzzle and readable nose."
+    },
+    {
+      "id": "KUMA-V14-003",
+      "severity": "critical",
+      "part": "wood craftsmanship",
+      "views": [
+        "all"
+      ],
+      "finding": "Smooth clay/matte brown shell without credible directional hand-carved fur and chisel planes.",
+      "required_fix": "Add 3D sculpted multi-scale directional gouges grouped by anatomical region and stained highlights, then bake to normals."
+    },
+    {
+      "id": "KUMA-V14-004",
+      "severity": "critical",
+      "part": "salmon anatomy",
+      "views": [
+        "view_front_right_high",
+        "view_front",
+        "view_top"
+      ],
+      "finding": "Salmon reads as a plank/torpedo with simple thin triangular fins, shallow facial features and disproportionately prominent body.",
+      "required_fix": "Remodel anatomically recognizable salmon head, gill plate, lower jaw, rounded fins, dorsal ridge, stalk and tapered forked tail. Deepen fish scale cuts."
+    },
+    {
+      "id": "KUMA-V14-005",
+      "severity": "major",
+      "part": "feet",
+      "views": [
+        "view_back_left_high",
+        "view_front_right_high"
+      ],
+      "finding": "Legs are still cylinders and paws have little tendon/toe structure.",
+      "required_fix": "Sculpt stocky but tapered muscular legs and four distinctly carved fused toes per paw; shorten protruding tips."
+    }
+  ],
+  "improvement_tasks": [
+    "Focus next revision exclusively on true jaw-to-salmon bite and readable eyes/nose; do not spend time on texture resolution.",
+    "Replace regular torso barrel with deeper shoulder hump that tapers continuously to rump.",
+    "Improve anatomically believable fish gill, tail, fins and position; inspect same four real GLB views.",
+    "Create directional hand-chisel surface relief only after macro anatomy passes.",
+    "Preserve current official Harness => Blender Cycles actual GLB multiview => fail-closed supervisor pipeline.",
+    "Never mark as delivered unless all six criteria average >=4/5, every individual criterion >=3, and no critical/blocker defects remain."
+  ]
+}
