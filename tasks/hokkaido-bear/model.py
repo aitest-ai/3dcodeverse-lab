@@ -24,10 +24,10 @@ walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022))
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
-salmon_wood=material("Salmon_Warm_Carved_Wood",(0.190,0.108,0.055),0.64)
-salmon_side=material("Salmon_Dark_Upper_Body",(0.112,0.056,0.027),0.68)
+salmon_wood=material("Salmon_Warm_Carved_Wood",(0.130,0.073,0.031),0.68)
+salmon_side=material("Salmon_Dark_Upper_Body",(0.082,0.043,0.020),0.73)
 salmon_ridge=material("Salmon_Etched_Scales",(0.220,0.125,0.068))
-eye_mat=material("Inset_Eyes_and_Nose",(0.007,0.006,0.004),0.2)
+eye_mat=material("Inset_Eyes_and_Nose",(0.019,0.011,0.006),0.60)
 mouth_mat=material("Mouth_Dark_Shadow",(0.010,0.007,0.004))
 
 def sphere(name, position, size, mat, seg=40, rings=24):
@@ -209,7 +209,7 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.021
+bear.data.remesh_voxel_size=0.019
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
@@ -240,9 +240,9 @@ bpy.data.objects.remove(bite_cutter,do_unlink=True)
 lower_jaw=make_loft("Kuma_SeparateLowerMandible",[
     (-2.37,0.605,0.075,0.055),
     (-2.25,0.615,0.225,0.092),
-    (-2.10,0.640,0.305,0.105),
-    (-1.90,0.690,0.330,0.127),
-    (-1.69,0.745,0.305,0.152),
+    (-2.10,0.626,0.248,0.082),
+    (-1.90,0.651,0.274,0.105),
+    (-1.69,0.725,0.284,0.135),
     (-1.50,0.828,0.220,0.164),
     (-1.35,0.900,0.08,0.10),
 ],True,walnut,48,5)
@@ -261,15 +261,15 @@ def chisel_profile(co):
     q=Vector((co.x*7.5 + 0.8*co.z,co.y*15.0,co.z*23.0-co.x*4.0))
     broad=noise.noise(q)
     detail=noise.noise(q*2.85+Vector((7.3,1.5,4.9)))
-    v=max(0.0,0.33*broad+0.67*detail-0.31)
-    return min(0.006,v*0.024)
+    v=max(0.0,0.40*broad+0.60*detail-0.115)
+    return min(0.020,v*0.062)
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
-    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0017
-    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0042
+    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0027
+    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0060
     # do not disturb soles, small ears, nose or face
-    trunk=clamp((p.x+1.29)/0.28)*clamp((1.43-p.x)/0.22)*clamp((p.z-0.55)/0.33)
+    trunk=clamp((p.x+1.85)/0.26)*clamp((1.43-p.x)/0.22)*clamp((p.z-0.52)/0.33)
     relief=chisel_profile(p)*trunk
     vert.co=p + vert.normal*(facet+micro-relief)
 bear.data.update()
@@ -300,22 +300,22 @@ for is_front,px in ((True,-1.02),(False,0.78)):
 for side in (-1,1):
     sphere("EarBowl_%s"%side,(-1.45,side*0.573,1.58),
            (0.10,0.018,0.096),walnut_dark,28,18)
-    sphere("EyeSocketDark_%s"%side,(-1.840,side*0.405,1.291),
-           (0.081,0.034,0.062),walnut_dark,32,18)
-    sphere("Eye_Inset_%s"%side,(-1.869,side*0.429,1.294),
-           (0.033,0.021,0.027),eye_mat,24,14)
+    sphere("EyeSocketDark_%s"%side,(-1.833,side*0.382,1.282),
+           (0.063,0.021,0.051),walnut_dark,32,18)
+    sphere("Eye_Inset_%s"%side,(-1.845,side*0.398,1.287),
+           (0.020,0.013,0.019),eye_mat,24,14)
     # Eyelids are partly buried into the cranium, unlike loose wire brows.
     curve_line("BrowFur_%s"%side,[
         (-1.955,side*0.40,1.345),(-1.87,side*0.44,1.357),
         (-1.77,side*0.43,1.327)],0.016,walnut_mid)
-    sphere("CheekMass_%s"%side,(-1.733,side*0.392,1.005),
-           (0.260,0.103,0.190),walnut,32,16)
+    sphere("CheekMass_%s"%side,(-1.695,side*0.367,1.029),
+           (0.206,0.058,0.128),walnut,32,16)
     curve_line("CheekCarving_%s"%side,[
         (-1.93,side*0.40,1.064),(-1.79,side*0.47,0.992),
         (-1.62,side*0.45,1.028)],0.008,walnut_dark)
 # Distinctive flattened nose projects ahead of upper lip.
-sphere("TriangularWideNose",(-2.193,0,1.045),
-       (0.089,0.170,0.071),eye_mat,36,20)
+sphere("TriangularWideNose",(-2.183,0,1.045),
+       (0.074,0.153,0.064),walnut_dark,36,20)
 for side in (-1,1):
     sphere("Nostril_%s"%side,(-2.264,side*0.090,1.037),
            (0.015,0.021,0.013),walnut_dark,16,10)
@@ -325,11 +325,11 @@ for side in (-1,1):
 curve_line("ActualUpperLip",[
     (-2.195,-0.260,0.941),(-2.289,-0.135,0.982),
     (-2.315,0,0.995),(-2.289,0.135,0.982),
-    (-2.195,0.260,0.941)],0.025,walnut_mid)
+    (-2.195,0.260,0.941)],0.015,walnut_dark)
 curve_line("ActualLowerLip",[
-    (-2.190,-0.260,0.635),(-2.294,-0.135,0.602),
-    (-2.325,0,0.593),(-2.294,0.135,0.602),
-    (-2.190,0.260,0.635)],0.028,walnut_mid)
+    (-2.190,-0.245,0.635),(-2.294,-0.125,0.600),
+    (-2.325,0,0.590),(-2.294,0.125,0.600),
+    (-2.190,0.245,0.635)],0.015,walnut_dark)
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -398,7 +398,7 @@ for vert in fish_mesh.vertices:
     dv=(v%1.0)-0.50
     dent=max(0.0,1.0-((du/0.39)**2+(dv/0.36)**2))
     normal=vert.normal if vert.normal.length>0 else Vector((1,0,0))
-    p.x-= (0.0038*dent*flank)* (1 if p.x>FISH_X+FISH_SKEW*p.y else -1)
+    p.x-= (0.0065*dent*flank)* (1 if p.x>FISH_X+FISH_SKEW*p.y else -1)
 fish_mesh.update()
 for poly in fish_mesh.polygons:
     poly.use_smooth=True
@@ -418,15 +418,21 @@ curve_line("Salmon_Open_Mouth",[(FISH_X+FISH_SKEW*(-1.18)-0.065,-1.18,FISH_Z-0.0
 # Traditional forked salmon tail in the true fish vertical fin plane (Y/Z).
 fin("Salmon_Forked_Tail",[
     (FISH_X+FISH_SKEW*1.01,1.01,FISH_Z),
-    (FISH_X+FISH_SKEW*1.39,1.39,FISH_Z+0.27),
-    (FISH_X+FISH_SKEW*1.20,1.20,FISH_Z),
-    (FISH_X+FISH_SKEW*1.39,1.39,FISH_Z-0.27)
-],salmon_side,0.040)
+    (FISH_X+FISH_SKEW*1.12,1.12,FISH_Z+0.14),
+    (FISH_X+FISH_SKEW*1.37,1.37,FISH_Z+0.235),
+    (FISH_X+FISH_SKEW*1.30,1.30,FISH_Z+0.08),
+    (FISH_X+FISH_SKEW*1.22,1.22,FISH_Z),
+    (FISH_X+FISH_SKEW*1.30,1.30,FISH_Z-0.08),
+    (FISH_X+FISH_SKEW*1.37,1.37,FISH_Z-0.235),
+    (FISH_X+FISH_SKEW*1.12,1.12,FISH_Z-0.14)
+],salmon_side,0.052)
 fin("Salmon_DorsalFin",[
     (FISH_X+FISH_SKEW*0.12,0.12,FISH_Z+0.22),
-    (FISH_X+FISH_SKEW*0.29,0.29,FISH_Z+0.41),
+    (FISH_X+FISH_SKEW*0.24,0.24,FISH_Z+0.28),
+    (FISH_X+FISH_SKEW*0.28,0.28,FISH_Z+0.37),
+    (FISH_X+FISH_SKEW*0.34,0.34,FISH_Z+0.34),
     (FISH_X+FISH_SKEW*0.51,0.51,FISH_Z+0.20)
-],salmon_side,0.037)
+],salmon_side,0.051)
 fin("Salmon_AnalFin",[
     (FISH_X+FISH_SKEW*0.39,0.39,FISH_Z-0.18),
     (FISH_X+FISH_SKEW*0.63,0.63,FISH_Z-0.35),
