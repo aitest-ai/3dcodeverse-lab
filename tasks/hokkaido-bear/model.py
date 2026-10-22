@@ -20,7 +20,7 @@ def material(name, rgb, rough=0.72, metallic=0.0):
         bs.inputs["Metallic"].default_value=metallic
     return mat
 
-walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022))
+walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022),0.52)
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
@@ -209,7 +209,7 @@ bpy.ops.object.join()
 bear=active
 bear.name="Kuma_Handcarved_OnePiece"
 # Converting remeshed body to a single mesh preserves geometry on glTF export.
-bear.data.remesh_voxel_size=0.019
+bear.data.remesh_voxel_size=0.021
 try:
     bpy.ops.object.voxel_remesh()
 except Exception:
@@ -256,18 +256,23 @@ for mat in (walnut_mid, walnut_warm, walnut_dark):
 def clamp(v,a=0.0,b=1.0):
     return max(a,min(b,v))
 def chisel_profile(co):
-    # Irregular anisotropic chips rather than periodic fish scales.
-    # Combine nonlinear noise fields; avoid a regular tiled grid.
-    q=Vector((co.x*7.5 + 0.8*co.z,co.y*15.0,co.z*23.0-co.x*4.0))
-    broad=noise.noise(q)
-    detail=noise.noise(q*2.85+Vector((7.3,1.5,4.9)))
-    v=max(0.0,0.40*broad+0.60*detail-0.115)
-    return min(0.020,v*0.062)
+    # v17 authentic *elongated* shallow V-cut grooves, never pointwise pitting.
+    # A cut is much longer in the body direction than wide across the grain.
+    # Random offset per band avoids obviously tiled/swimming fish-scale motifs.
+    horizontal=co.x*7.7+co.z*1.55+0.20*noise.noise(Vector((co.y*2.1,co.x*1.7,co.z*1.9)))
+    vertical=co.z*12.4-co.x*2.9+co.y*.55
+    strip=math.floor(vertical)
+    local_jitter=noise.noise(Vector((strip*.47,co.y*.41,1.37)))*.20
+    u=(horizontal+(strip%2)*.37+local_jitter)%1.0-.5
+    v=(vertical+.09*noise.noise(Vector((co.x*3.3,co.y*2.5,co.z*4.3))))%1.0-.5
+    distance=(u/.52)**2+(v/.30)**2
+    if distance>=1.0:return 0.0
+    return 0.0082*(1.0-distance)**1.35
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
-    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0027
-    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0060
+    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0011
+    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0018
     # do not disturb soles, small ears, nose or face
     trunk=clamp((p.x+1.85)/0.26)*clamp((1.43-p.x)/0.22)*clamp((p.z-0.52)/0.33)
     relief=chisel_profile(p)*trunk
@@ -497,9 +502,9 @@ vignettes=np.sin(2*np.pi*(_u*2.7+_v*.35))
 value=1.0+0.055*fibers+0.018*fine+0.024*rings+0.013*cross+0.010*vignettes
 value=np.clip(value,0.57,1.36)
 pixels=np.empty((TEX_H,TEX_W,4),dtype=np.float32)
-pixels[:,:,0]=np.clip(0.171*value,0,1)
-pixels[:,:,1]=np.clip(0.083*value,0,1)
-pixels[:,:,2]=np.clip(0.040*value,0,1)
+pixels[:,:,0]=np.clip(0.152*value,0,1)
+pixels[:,:,1]=np.clip(0.072*value,0,1)
+pixels[:,:,2]=np.clip(0.032*value,0,1)
 pixels[:,:,3]=1
 wood_image=bpy.data.images.new('HokkaidoWalnutWoodGrainGLB',width=TEX_W,height=TEX_H,alpha=True)
 wood_image.pixels.foreach_set(pixels.ravel())
