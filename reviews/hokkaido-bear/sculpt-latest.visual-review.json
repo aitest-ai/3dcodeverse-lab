@@ -1,88 +1,73 @@
 {
   "schema": "3dcodeverse-art-supervision/v1",
-  "asset": "Hokkaido woodcarved bear sculpt v17 — real 3DCodeVerse Harness GLB with Cycles four-view render",
-  "inspected_on": "2026-10-22",
-  "reviewer": "ChatGPT inspected actual Blender Cycles four-view preview from official Harness model in GitHub run 39725914106",
+  "asset": "Traditional Hokkaido kibori-kuma bear biting salmon v18 — genuine Harness GLB",
+  "inspected_on": "2026-10-23",
+  "reviewer": "ChatGPT direct inspection of four actual Blender Cycles GLB renders, not AI-generated images",
   "review_status": "rejected",
-  "model_sha256": "b659c740f82674df4fac4b44c3605405b79eab1e0ffb3fbfda2a65ba90cb242d",
-  "hero_sha256": "44714299f5a420e6196dd2566379ff4e8a675bed9bc952a5f2fba0072890c4c2",
-  "side_sha256": "9b465fa61e9901883dd31f5c97a1f91dc4f0c2da335806a8c101b3e2ed9eb4ce",
-  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/39725914106",
+  "model_sha256": "d4c29a3167c51e8b958bd13d5ab7c4b73f83f2e6b1a36b99c05a41609c75bdd0",
+  "hero_sha256": "7dd6f5c305138076fd4d734be2231afcd2b572203a0bb14c7176de4d8104b4b8",
+  "side_sha256": "83bf47898b54fe77647552d1a8d56ff2137ff00fe4decdebe3bd0f9446525272",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/39884430413",
   "criteria": {
     "bear_anatomy_and_silhouette": {
-      "score": 2,
-      "reason": "Large neck/head silhouette is clearer than v14, but the smooth long barrel body and very straight legs still look like a stylized toy, not a stocky anatomically convincing Hokkaido bear."
+      "score": 2.4,
+      "reason": "Shoulder-rump distance is visibly shorter and hump stronger; head-to-body proportions remain rounded and stylized, feet still column-like."
     },
     "face_and_expression": {
-      "score": 1.8,
-      "reason": "Nose is now a matte brown carving rather than glossy black plastic, yet eyebrows, eyes and small ears are detached-looking and face lacks realistic expression."
+      "score": 1.7,
+      "reason": "The bear's forehead is like a smooth helmet and eyes/ears are attached-looking details. Nose overlaps the fish without believable cheeks or brow."
     },
     "salmon_shape_and_bite": {
       "score": 1.5,
-      "reason": "Actual lower jaw and compressed fish are present, but fish appears suspended under the nose; mouth contact is still not realistic and fish body lacks recognizable natural anatomy."
+      "reason": "Salmon has somewhat fuller head and gill form but continues to read as a long tan wedge/plank across an open shelf-like mouth. Operculum is not convincingly continuous."
     },
     "carving_detail_and_wood": {
-      "score": 1.4,
-      "reason": "v16's severe pebble-shaped pits are removed. However, fur is now a very repetitive ribbed/striped embossing with a waxy sheen, not varied directional hand-chisel cuts."
+      "score": 1.3,
+      "reason": "Torso remains marked by regular, rippled fur scars instead of irregular hand-cut sharp fur grooves; material reads waxy grey-brown rather than stained wood."
     },
     "paws_and_limbs": {
-      "score": 1.7,
-      "reason": "Front feet and calves are still simple column masses with tiny protruding claw dashes instead of carved paw anatomy."
+      "score": 2,
+      "reason": "Feet slightly broader, but each leg remains a tubular column and toe cuts are very small separate scratches."
     },
     "multi_view_presentation": {
       "score": 3.5,
-      "reason": "Four real Blender Cycles views are consistent, sharply framed, and clearly expose flaws."
+      "reason": "Actual front, three-quarter, back-left and top rendered views are all readable and reveal the shape issues."
     }
   },
   "defects": [
     {
-      "id": "KUMA-V17-001",
+      "id": "KUMA-V18-001",
       "severity": "blocker",
-      "part": "bear mouth vs salmon",
-      "views": [
-        "view_front",
-        "view_front_right_high"
-      ],
-      "finding": "Fish remains an elongated brown-gold slab sitting in front of a broad bear muzzle, despite actual cavity and separated mandible.",
-      "required_fix": "Resculpt cranium-to-muzzle proportions, define teeth/lower lip integrated with fish compression, rebuild fish head and operculum."
+      "part": "salmon-to-mouth contact",
+      "finding": "Fish appears to rest on broad, separated jaw ledges rather than be clamped by a recognizable bite; gill plate and head are still geometric.",
+      "required_fix": "Resculpt upper snout, lower jaw and teeth/lip profile around natural salmon head/body with true intersection and depth."
     },
     {
-      "id": "KUMA-V17-002",
+      "id": "KUMA-V18-002",
       "severity": "critical",
-      "part": "wood carving",
-      "views": [
-        "all"
-      ],
-      "finding": "v16 crater-like noise became v17 evenly ribbed rounded bands and unnaturally glossy finish.",
-      "required_fix": "Replace regular relief with sparse individually aligned sweeping carving planes and reduce exaggerated gloss."
+      "part": "bear face and body",
+      "finding": "The torso is less long but the face is flat and eyes look like stuck-on pins, with many smooth toy-like convex surfaces.",
+      "required_fix": "Separate short snout plane from broad cranium, build continuous cheeks, inset eye sockets and correct ears; improve front-paw anatomy."
     },
     {
-      "id": "KUMA-V17-003",
+      "id": "KUMA-V18-003",
       "severity": "critical",
-      "part": "anatomy",
-      "views": [
-        "view_back_left_high",
-        "view_top"
-      ],
-      "finding": "Barrel torso, huge shoulders, narrow face and straight cylinder legs produce unnatural long-bodied toy silhouette.",
-      "required_fix": "Use proportionally shorter torso, shaped shoulder muscles and tapered bulky paws rather than only shader changes."
+      "part": "carving texture",
+      "finding": "Across shoulder and torso fur appears as repeating soft sine-ripple markings, not fine carved wood gouges.",
+      "required_fix": "Use irregular directional strokes organized around shoulders and neck, sparse sharp chisel facets and subdued wood-specular response."
     },
     {
-      "id": "KUMA-V17-004",
+      "id": "KUMA-V18-004",
       "severity": "major",
-      "part": "eyes and muzzle",
-      "views": [
-        "view_front",
-        "view_front_right_high"
-      ],
-      "finding": "Tiny eye pins and brows not deeply integrated in skull; nose/upper mouth still simplified.",
-      "required_fix": "Sculpt eye sockets into continuous cranium mesh and add faceted eyebrow/cheek planes."
+      "part": "feet",
+      "finding": "Paws are wide but look like four socks with token grooves.",
+      "required_fix": "Integrate carved toes and low wedge-shaped nail tips into front and hind foot mesh."
     }
   ],
   "improvement_tasks": [
-    "Do NOT promote v17; preserve GLB and preview as rejected candidate.",
-    "Next focus on macro silhouette and actual fish-vs-mouth contact; existing texture groove amplitude experiments have failed visually.",
-    "Geometry must converge on short bulky Hokkaido carved bear from museum/artisan reference before more PBR work.",
-    "Use official Harness GLB multiangle preview and require approval by the fail-closed supervisor; bind SHA256 to inspected outputs."
+    "Reject v18 (technical GLB build succeeded). Keep artifact and hashes for repeatable comparison.",
+    "Focus next iteration on facial high-poly continuity, jaw bite intersection and recognizably natural salmon before material tinkering.",
+    "Retain compact torso proportion as a promising change; refine limb anatomy instead of lengthening the barrel.",
+    "Reference real Asahikawa salmon-carved bear and Yakumo fur-carving photos without copying source images into generated 3D."
   ]
 }
