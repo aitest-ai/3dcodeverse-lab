@@ -24,8 +24,8 @@ walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022),0.52)
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
-salmon_wood=material("Salmon_Warm_Carved_Wood",(0.130,0.073,0.031),0.68)
-salmon_side=material("Salmon_Dark_Upper_Body",(0.082,0.043,0.020),0.73)
+salmon_wood=material("Salmon_Warm_Carved_Wood",(0.145,0.084,0.041),0.72)
+salmon_side=material("Salmon_Dark_Upper_Body",(0.096,0.051,0.024),0.76)
 salmon_ridge=material("Salmon_Etched_Scales",(0.220,0.125,0.068))
 eye_mat=material("Inset_Eyes_and_Nose",(0.019,0.011,0.006),0.60)
 mouth_mat=material("Mouth_Dark_Shadow",(0.010,0.007,0.004))
@@ -142,18 +142,21 @@ def make_loft(name, sections, along_x, mat, segments=36, steps=5):
     return obj
 
 bear_parts=[]
+# v18: reference-guided massing. Broad withers, deep neck, shorter ribcage;
+# tuck the rump near hind paws. Different belly and topline curvature.
 bear_parts.append(make_loft("SolidContinuousTorso",[
-    (-1.48,1.15,0.09,0.10),
-    (-1.31,1.19,0.42,0.38),
-    (-1.02,1.22,0.55,0.52),
-    (-0.73,1.34,0.635,0.675),
-    (-0.42,1.31,0.65,0.63),
-    ( 0.01,1.28,0.60,0.59),
-    ( 0.43,1.23,0.58,0.55),
-    ( 0.83,1.17,0.52,0.50),
-    ( 1.12,1.14,0.34,0.32),
-    ( 1.30,1.14,0.055,0.075),
-],True,walnut,48))
+    (-1.48,1.17,0.10,0.13),
+    (-1.31,1.18,0.44,0.41),
+    (-1.03,1.22,0.575,0.58),
+    (-0.75,1.32,0.670,0.695),
+    (-0.42,1.32,0.650,0.675),
+    (-0.06,1.26,0.585,0.610),
+    ( 0.30,1.17,0.555,0.585),
+    ( 0.58,1.13,0.565,0.590),
+    ( 0.79,1.11,0.505,0.540),
+    ( 0.96,1.10,0.280,0.320),
+    ( 1.06,1.11,0.035,0.055),
+],True,walnut,56))
 
 # Sculpt a short broad skull and compact projecting muzzle into torso tip.
 def mass(name,loc,scale):
@@ -177,25 +180,25 @@ mass("ShortHeavyUpperMuzzle",(-1.96,0,0.995),(0.305,0.295,0.185))
 # A separate connected jaw will be joined at the rear after carving the mouth cavity.
 for side in (-1,1):
     mass("SmallRoundEar_%s"%side,(-1.40,side*0.45,1.565),(0.145,0.145,0.17))
-mass("VeryShortTail",(1.30,0,1.12),(0.115,0.12,0.115))
+mass("VeryShortTail",(1.045,0,1.11),(0.115,0.13,0.12))
 
 def shaped_leg(name,x_shoulder,y,px,front):
     # Full-volume limb: merges with torso at top, extends to one broad foot.
     # Hind thigh is thicker, shin tapers then flares toward the paw.
     sidey=y
     return make_loft(name,[
-      (0.055,px-0.075,sidey,0.19,0.19),
-      (0.130,px,sidey,0.29,0.24),
-      (0.250,px+0.045,sidey,0.285,0.24),
-      (0.405,x_shoulder-0.065,sidey,0.205,0.205),
-      (0.620,x_shoulder,sidey,0.245,0.23),
-      (0.870,x_shoulder,sidey*0.97,0.325 if front else 0.36,0.27),
-      (1.100,x_shoulder+0.025,sidey*0.94,0.33 if front else 0.34,0.31),
-      (1.280,x_shoulder+0.080,sidey*0.90,0.23,0.24),
-      (1.390,x_shoulder+0.075,sidey*0.88,0.055,0.07),
+      (0.055,px-0.13,sidey,0.26,0.265),
+      (0.115,px-0.072,sidey,0.34,0.275),
+      (0.210,px+0.025,sidey,0.33,0.255),
+      (0.350,x_shoulder-0.077,sidey,0.24,0.233),
+      (0.550,x_shoulder+0.008,sidey,0.212,0.225),
+      (0.740,x_shoulder+0.010,sidey*0.98,0.270 if front else 0.325,0.268),
+      (0.990,x_shoulder+0.03,sidey*0.94,0.348 if front else 0.355,0.325),
+      (1.160,x_shoulder+0.08,sidey*0.92,0.31 if front else 0.30,0.300),
+      (1.365,x_shoulder+0.09,sidey*0.88,0.075,0.095),
     ],False,walnut,32)
 
-for is_front,x,px in ((True,-0.78,-1.02),(False,0.87,0.78)):
+for is_front,x,px in ((True,-0.80,-1.04),(False,0.67,0.57)):
     for side in (-1,1):
         bear_parts.append(shaped_leg(('Foreleg' if is_front else 'Rearleg')+str(side),
                                      x,side*0.435,px,is_front))
@@ -290,15 +293,21 @@ for face in bear.data.polygons:
     # visible tiny chisel facets without making the surface polygonal everywhere
     face.use_smooth=True
 
-# Short claws contained in the volume of paws, not long floating wires.
-for is_front,px in ((True,-1.02),(False,0.78)):
+# v18: Subtle paw digits are embedded in broad continuous paws.
+# Thin, dark V-separation lines trace over the toe face; short claws remain
+# inside the realistic silhouette rather than floating like nails.
+for is_front,px in ((True,-1.04),(False,0.57)):
     for side in (-1,1):
         y=side*0.435
         for k in range(4):
-            py=y+(k-1.5)*0.108
-            frustum("ShortInlaidClaw_%s_%s_%d"%(int(is_front),side,k),
-                (px-0.248,py,0.142),(px-0.320,py,0.107),
-                0.027,0.008,walnut_mid,12)
+            py=y+(k-1.5)*0.115
+            curve_line("CarvedToeSeparation_%s_%s_%d"%(int(is_front),side,k),[
+                (px-0.275,py,0.195),
+                (px-0.328,py,0.125),
+                (px-0.336,py,0.071)],0.0065,walnut_dark)
+            frustum("TaperedInlaidClaw_%s_%s_%d"%(int(is_front),side,k),
+                (px-0.293,py,0.103),(px-0.338,py,0.073),
+                0.022,0.007,walnut_mid,12)
 
 # v15: side-visible eyes, broad nose bridge and contiguous bite lips.
 # Black eyeballs are very small and physically seated in dark eye sockets.
@@ -350,10 +359,10 @@ FISH_X=-1.735  # fish center within the 3D bite cavity
 FISH_Z=0.824
 FISH_SKEW=0.050  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
-    (-1.23, 0.054, 0.071),
-    (-1.16, 0.104, 0.117),
-    (-1.04, 0.162, 0.172),
-    (-0.88, 0.188, 0.173),
+    (-1.23, 0.080, 0.088),
+    (-1.16, 0.130, 0.122),
+    (-1.04, 0.184, 0.174),
+    (-0.88, 0.198, 0.187),
     (-0.60, 0.224, 0.251),
     (-0.25, 0.253, 0.273),
     ( 0.10, 0.236, 0.261),
@@ -416,6 +425,13 @@ for side in (-1,1):
         (FISH_X+FISH_SKEW*(-0.86)+side*0.190,-0.86,FISH_Z+0.12),
         (FISH_X+FISH_SKEW*(-0.83)+side*0.192,-0.83,FISH_Z+0.02),
         (FISH_X+FISH_SKEW*(-0.88)+side*0.184,-0.88,FISH_Z-0.11)],0.007,walnut_dark)
+# A gill plate is a shallow anatomical bony contour formed into each fish
+# flank, not a painted-on black line. Respect the fish-body x/y transforms below.
+for side in (-1,1):
+    sphere("SalmonCarvedOperculum_%s"%side,
+        (FISH_X+FISH_SKEW*(-0.970)+side*0.145,-0.970,FISH_Z-0.003),
+        (0.029,0.147,0.143),salmon_side,30,20)
+
 # Mouth is a small notch at the fish's pointed head.
 curve_line("Salmon_Open_Mouth",[(FISH_X+FISH_SKEW*(-1.18)-0.065,-1.18,FISH_Z-0.028),(FISH_X+FISH_SKEW*(-1.229),-1.229,FISH_Z-0.030),
                                 (FISH_X+FISH_SKEW*(-1.18)+0.065,-1.18,FISH_Z-0.028)],0.006,walnut_dark)
