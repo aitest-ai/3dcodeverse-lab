@@ -219,9 +219,10 @@ except Exception:
     # The underlying body remains valid even if the Blender remesh backend is missing.
     pass
 
-# v15 mouth anatomy: subtract an oblate cavity from the fused skull, then
-# make a contiguous, upward-curving separate lower jaw which touches the neck.
-# The crosswise salmon sits IN this space instead of being glued onto the nose.
+# v19 bite-only repair: the fish was supported by a long, flat mandible shelf.
+# Keep the true Boolean mouth cavity, but shorten the chin and create a cupped
+# lower bite that intersects the salmon at its compressed central cross-section.
+# The fish and jaw remain separate physical meshes for genuine GLB inspection.
 bpy.ops.mesh.primitive_uv_sphere_add(segments=40,ring_count=28,location=(-2.065,0,0.797))
 bite_cutter=bpy.context.object
 bite_cutter.name="TEMP_BiteMouth_Cutter"
@@ -238,16 +239,18 @@ except Exception as exc:
     raise RuntimeError("Real jaw cavity boolean failed, cannot fake the bite") from exc
 bpy.data.objects.remove(bite_cutter,do_unlink=True)
 
-# A broad, shallow bowl-shaped lower mandible, anchored into the rear of skull.
-# The mouth remains visibly open until the salmon is inserted.
+# v19: compact cupped mandible instead of a projecting flat tray.
+# Front x=-2.15 (previously -2.37); at x=-2.02 the jaw top reaches
+# z~0.72, intersecting the compressed fish belly (z~0.59) in the bite.
+# The rear two sections penetrate the cheek/skull to anchor the jaw.
 lower_jaw=make_loft("Kuma_SeparateLowerMandible",[
-    (-2.37,0.605,0.075,0.055),
-    (-2.25,0.615,0.225,0.092),
-    (-2.10,0.626,0.248,0.082),
-    (-1.90,0.651,0.274,0.105),
-    (-1.69,0.725,0.284,0.135),
-    (-1.50,0.828,0.220,0.164),
-    (-1.35,0.900,0.08,0.10),
+    (-2.15,0.633,0.055,0.038),
+    (-2.10,0.640,0.125,0.061),
+    (-2.02,0.657,0.185,0.081),
+    (-1.91,0.676,0.221,0.092),
+    (-1.78,0.705,0.245,0.106),
+    (-1.61,0.783,0.257,0.143),
+    (-1.42,0.880,0.170,0.165),
 ],True,walnut,48,5)
 for poly in lower_jaw.data.polygons:poly.use_smooth=True
 
@@ -334,16 +337,17 @@ for side in (-1,1):
     sphere("Nostril_%s"%side,(-2.264,side*0.090,1.037),
            (0.015,0.021,0.013),walnut_dark,16,10)
 
-# The upper and lower jaw physically OVERLAP the depressed salmon flanks
-# at the bite. A visible dark recess between is provided by the 3D boolean.
+# v19: lip contours lie at the actual fish clamp, not ~0.25 units
+# ahead of it. The two small arcs pinch the salmon in front and side views;
+# their endpoints disappear into the muzzle/mandible rather than floating.
 curve_line("ActualUpperLip",[
-    (-2.195,-0.260,0.941),(-2.289,-0.135,0.982),
-    (-2.315,0,0.995),(-2.289,0.135,0.982),
-    (-2.195,0.260,0.941)],0.015,walnut_dark)
+    (-1.955,-0.260,0.935),(-2.045,-0.155,0.947),
+    (-2.085,0,0.951),(-2.045,0.155,0.947),
+    (-1.955,0.260,0.935)],0.015,walnut_dark)
 curve_line("ActualLowerLip",[
-    (-2.190,-0.245,0.635),(-2.294,-0.125,0.600),
-    (-2.325,0,0.590),(-2.294,0.125,0.600),
-    (-2.190,0.245,0.635)],0.015,walnut_dark)
+    (-1.945,-0.240,0.654),(-2.035,-0.135,0.642),
+    (-2.080,0,0.631),(-2.035,0.135,0.642),
+    (-1.945,0.240,0.654)],0.015,walnut_dark)
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -488,7 +492,14 @@ mouth_center=Vector((-2.04*0.87,0.0,0.777))
 fish_center=Vector((FISH_X,0.0,FISH_Z-0.057))
 assert abs(fish_center.x-mouth_center.x)<0.18, "Fish no longer reaches the bear mouth"
 assert abs(fish_center.z-mouth_center.z)<0.10, "Fish is vertically detached from bite"
-# Actual fish belly/dorsal surface at clamp; release gate uses these not only centers.
+# v19 regression check: a shortened chin and relocated lips must straddle
+# the fish in both X and Z; this is only a geometry sanity check, NOT art QA.
+jaw_tip_x=-2.15*0.87
+lower_lip_x=-2.080*0.87
+upper_lip_x=-2.085*0.87
+assert abs(jaw_tip_x-fish_center.x)<0.20, "Jaw tip no longer cups salmon"
+assert abs(lower_lip_x-fish_center.x)<0.15, "Lower lip detached in X"
+assert abs(upper_lip_x-fish_center.x)<0.15, "Upper lip detached in X"
 clamp_waist=min(stations,key=lambda q:abs(q[0]))
 compressed_rz=clamp_waist[2]*(1-.31)
 assert 0.54 < fish_center.z-compressed_rz < 0.67, "Fish belly is outside mandible"
