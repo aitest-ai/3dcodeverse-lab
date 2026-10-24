@@ -1,0 +1,74 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Traditional Hokkaido kibori-kuma bear biting salmon v19 — genuine Harness GLB",
+  "inspected_on": "2026-10-24",
+  "reviewer": "ChatGPT direct visual inspection of v19 four-view Blender Cycles renders exported from official 3DCodeVerse Harness GLB; not AI-generated images",
+  "review_status": "rejected",
+  "source_commit": "f831e186614ac348feeac4c4ff84852307788918",
+  "model_sha256": "565fa01d771dbf395405bbfe53985d9bf30edaf4679a8329742fd7f1569f323a",
+  "hero_sha256": "7a1ed5c55cd1238b0ec99b8333eeb4d86255a4df6edbff0deef6c087f51eb8ae",
+  "side_sha256": "bf8c6b24c21688372dcf7d60c4ccd55a70ea3eff82bea241192ee482f8e33975",
+  "sheet_sha256": "7810f378976d11e542c5c7c3070884ac8708280f9c8d13c0528705e784813f36",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40053539281",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.4,
+      "reason": "Broad shoulders and shorter torso remain an improvement from earlier iterations, but face-to-body proportions are stylized and legs still look tubular."
+    },
+    "face_and_expression": {
+      "score": 1.7,
+      "reason": "Helmet-like forehead, applied ears and eye details; nose is too smooth and large, and the muzzle does not naturally wrap the fish."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.8,
+      "reason": "The v19 shorter lower jaw removes the obvious projecting lower tray, but fish still looks like a flat tan plank pressed under the nose. Upper and lower contact is not anatomically legible."
+    },
+    "carving_detail_and_wood": {
+      "score": 1.3,
+      "reason": "Repeating rounded ripple impressions across torso; smooth waxy surface rather than irregular directional hand-carved facets and dark wood grain."
+    },
+    "paws_and_limbs": {
+      "score": 2,
+      "reason": "Paws remain wide sock-like columns with superficial toe slits and weak claw integration."
+    },
+    "multi_view_presentation": {
+      "score": 3.5,
+      "reason": "Genuine four-view front, three-quarter, rear-side and top Cycles renders are complete and clear enough to identify problems."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V19-001",
+      "severity": "blocker",
+      "part": "salmon-to-mouth contact",
+      "finding": "Shortened mandible no longer protrudes as a tray, but it is mostly hidden behind fish and the fish still reads as held below the nose rather than between upper and lower teeth/lips.",
+      "required_fix": "Rebuild the fish-bite contact as a continuous sculptural cheek, muzzle, and jaw envelope with visible contact in profile and front view; avoid simply adding more lines or floating geometry."
+    },
+    {
+      "id": "KUMA-V19-002",
+      "severity": "critical",
+      "part": "face and eyes",
+      "finding": "Eyes and ears are still attached-looking spheres, with little eye socket or brow anatomy.",
+      "required_fix": "Carve integrated eye hollows, shorten the nose bridge, transition the cheek to skull with one continuous mesh."
+    },
+    {
+      "id": "KUMA-V19-003",
+      "severity": "critical",
+      "part": "wood carving",
+      "finding": "Torso shows regular ripples and soft waxy material, not hand-carved wood.",
+      "required_fix": "Replace periodic embossing with irregular anisotropic shallow V-cut geometry following shoulder and flank hair direction; verify against actual renders."
+    },
+    {
+      "id": "KUMA-V19-004",
+      "severity": "major",
+      "part": "paws",
+      "finding": "Feet still read as cylindrical boots with tiny scratches rather than integrated toes and nails.",
+      "required_fix": "Reprofile front paws with organic flattened palm, embedded toes and low triangular nails."
+    }
+  ],
+  "improvement_tasks": [
+    "v19 geometry patch successfully built and rendered; technical success does not imply artistic acceptance.",
+    "Retain the shortened mandible as a modest improvement; next pass should focus on integrated facial anatomy and bite silhouette, not repeated micro-adjustment to lip curves.",
+    "Keep v19 candidate only. The fail-closed gate must reject this review because mean score is below 4 and blocker/critical defects remain."
+  ]
+}
