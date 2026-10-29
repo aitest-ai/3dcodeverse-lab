@@ -24,7 +24,8 @@ walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022),0.52)
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
-salmon_wood=material("Salmon_Warm_Carved_Wood",(0.145,0.084,0.041),0.72)
+salmon_wood=material("Salmon_Warm_Carved_Wood",(0.137,0.086,0.051),0.76)
+salmon_belly=material("Salmon_Pale_Heartwood_Belly",(0.180,0.114,0.072),0.84)
 salmon_side=material("Salmon_Dark_Upper_Body",(0.096,0.051,0.024),0.76)
 salmon_ridge=material("Salmon_Etched_Scales",(0.220,0.125,0.068))
 eye_mat=material("Inset_Eyes_and_Nose",(0.019,0.011,0.006),0.60)
@@ -174,7 +175,7 @@ bear_parts.append(make_loft("CarvedBroadBearSkull",[
     (-1.22,1.22,0.42,0.36),
     (-1.09,1.18,0.20,0.18),
 ],True,walnut,48,6))
-mass("ShortHeavyUpperMuzzle",(-1.96,0,0.995),(0.305,0.295,0.185))
+mass("ShortHeavyUpperMuzzle",(-1.965,0,0.990),(0.274,0.278,0.174))
 # v20 SHAPE-FIRST: cheeks are actual integrated sculpt volumes, fused BEFORE
 # the voxel remesh. They must not be glued-on side spheres after export.
 for side in (-1,1):
@@ -184,7 +185,7 @@ for side in (-1,1):
 # The lower jaw is independent of the remeshed cranium so the bite opening is real.
 # A separate connected jaw will be joined at the rear after carving the mouth cavity.
 for side in (-1,1):
-    mass("SmallRoundEar_%s"%side,(-1.40,side*0.45,1.565),(0.145,0.145,0.17))
+    mass("SmallRoundEar_%s"%side,(-1.43,side*0.411,1.535),(0.137,0.112,0.133))
 mass("VeryShortTail",(1.045,0,1.11),(0.115,0.13,0.12))
 
 def shaped_leg(name,x_shoulder,y,px,front):
@@ -296,23 +297,34 @@ for mat in (walnut_mid, walnut_warm, walnut_dark):
 def clamp(v,a=0.0,b=1.0):
     return max(a,min(b,v))
 def chisel_profile(co):
-    # v17 authentic *elongated* shallow V-cut grooves, never pointwise pitting.
-    # A cut is much longer in the body direction than wide across the grain.
-    # Random offset per band avoids obviously tiled/swimming fish-scale motifs.
-    horizontal=co.x*7.7+co.z*1.55+0.20*noise.noise(Vector((co.y*2.1,co.x*1.7,co.z*1.9)))
-    vertical=co.z*12.4-co.x*2.9+co.y*.55
-    strip=math.floor(vertical)
-    local_jitter=noise.noise(Vector((strip*.47,co.y*.41,1.37)))*.20
-    u=(horizontal+(strip%2)*.37+local_jitter)%1.0-.5
-    v=(vertical+.09*noise.noise(Vector((co.x*3.3,co.y*2.5,co.z*4.3))))%1.0-.5
-    distance=(u/.52)**2+(v/.30)**2
-    if distance>=1.0:return 0.0
-    return 0.0082*(1.0-distance)**1.35
+    """Irregular long shallow blade-cut displacement, not a tiled stamp.
+
+    Coordinates are in the Z-up original bear frame. Branchless cell hashing
+    gives each blade stroke its own angle, length, start, and depth.
+    Only shallow negative V-cuts enter the *actual voxel-remeshed geometry*.
+    """
+    u=co.x*4.75+co.z*0.75
+    v=co.z*8.1-co.x*0.72+co.y*0.58
+    row=math.floor(v)
+    col=math.floor(u)
+    seed=Vector((row*.853+2.31,col*1.71,co.y*.77+4.07))
+    n=noise.noise(seed)
+    n2=noise.noise(Vector((col*1.39,row*1.17,co.y*.6)))
+    if n < -0.22: return 0.0  # irregular gaps; avoid a repeating fish-scale grid
+    center_u=0.50 + 0.20*n
+    center_v=0.51 + 0.16*n2
+    du=(u-col-center_u) / (0.32 + 0.09*abs(n2))
+    dv=(v-row-center_v + 0.17*n*du) / (0.18 + 0.04*abs(n))
+    along=1.0-abs(du)
+    across=1.0-abs(dv)
+    if along<=0 or across<=0: return 0.0
+    # V-shaped cut with tapered ends; no rounded raised scale bumps.
+    return (0.013+0.007*abs(n))*along*across*across
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
-    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0011
-    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0018
+    micro=noise.noise(Vector((p.x*29+7,p.y*27,p.z*26)))*0.0008
+    facet=noise.noise(Vector((p.x*9,p.y*9.5,p.z*10)))*0.0015
     # do not disturb soles, small ears, nose or face
     trunk=clamp((p.x+1.85)/0.26)*clamp((1.43-p.x)/0.22)*clamp((p.z-0.52)/0.33)
     relief=chisel_profile(p)*trunk
@@ -340,38 +352,38 @@ for is_front,px in ((True,-1.04),(False,0.57)):
                 (px-0.388,py,0.092),(px-0.443,py,0.066),
                 0.017,0.003,walnut_mid,12)
 
-# v15: side-visible eyes, broad nose bridge and contiguous bite lips.
-# Black eyeballs are very small and physically seated in dark eye sockets.
+# v21: eye hollows are carved by booleans BEFORE remesh detail above.
+# No raised eyebrows, pasted cheeks or oversized boar-like oval nose.
 for side in (-1,1):
-    sphere("EarBowl_%s"%side,(-1.45,side*0.573,1.58),
-           (0.10,0.018,0.096),walnut_dark,28,18)
-    # The cavity is a boolean depression above; only a tiny pupil is separate.
-    sphere("Eye_Inset_%s"%side,(-1.846,side*0.346,1.287),
-           (0.018,0.019,0.018),eye_mat,24,14)
-    # Eyelids are partly buried into the cranium, unlike loose wire brows.
-    curve_line("BrowFur_%s"%side,[
-        (-1.955,side*0.40,1.345),(-1.87,side*0.44,1.357),
-        (-1.77,side*0.43,1.327)],0.016,walnut_mid)
-    curve_line("CheekCarving_%s"%side,[
-        (-1.93,side*0.40,1.064),(-1.79,side*0.47,0.992),
-        (-1.62,side*0.45,1.028)],0.008,walnut_dark)
-# Distinctive flattened nose projects ahead of upper lip.
-sphere("TriangularWideNose",(-2.183,0,1.045),
-       (0.074,0.153,0.064),walnut_dark,36,20)
-for side in (-1,1):
-    sphere("Nostril_%s"%side,(-2.264,side*0.090,1.037),
-           (0.015,0.021,0.013),walnut_dark,16,10)
+    sphere("EarBowl_%s"%side,(-1.474,side*0.506,1.558),
+           (0.074,0.015,0.075),walnut_dark,28,18)
+    # Tiny pupil, mostly recessed in the carved eye socket.
+    sphere("Eye_Inset_%s"%side,(-1.846,side*0.347,1.287),
+           (0.017,0.019,0.017),eye_mat,24,14)
 
-# v20: thick wood contact ridge, NOT black freestanding "mouth strings".
-# Upper and lower arcs bracket the salmon's compressed waist in side view.
-curve_line("ActualUpperLip",[
-    (-1.950,-0.252,0.955),(-2.015,-0.150,0.962),
-    (-2.043,0,0.966),(-2.015,0.150,0.962),
-    (-1.950,0.252,0.955)],0.020,walnut_mid)
-curve_line("ActualLowerLip",[
-    (-1.935,-0.235,0.616),(-2.010,-0.140,0.601),
-    (-2.044,0,0.598),(-2.010,0.140,0.601),
-    (-1.935,0.235,0.616)],0.019,walnut_mid)
+# A REAL triangular nose, carved from a rounded triangular prism rather than
+# a sphere: wider bridge at the top, point at bottom, tucked into muzzle.
+nose_verts=[
+    (-2.269,-0.106,1.103),(-2.269,0.106,1.103),(-2.276,0.0,1.013),
+    (-2.177,-0.120,1.109),(-2.177,0.120,1.109),(-2.184,0.0,0.997)
+]
+nose_faces=[(0,2,1),(3,4,5),(0,1,4,3),(1,2,5,4),(2,0,3,5)]
+nose_mesh=bpy.data.meshes.new("TriangularCarvedNoseMesh")
+nose_mesh.from_pydata(nose_verts,[],nose_faces)
+nose_mesh.update()
+nose=bpy.data.objects.new("Bear_IntegratedTriangularNose",nose_mesh)
+bpy.context.collection.objects.link(nose)
+nose_mesh.materials.append(walnut_dark)
+bevel=nose.modifiers.new("RoundedNoseCarving","BEVEL")
+bevel.width=0.019
+bevel.segments=3
+bpy.context.view_layer.objects.active=nose
+bpy.ops.object.modifier_apply(modifier=bevel.name)
+for face in nose.data.polygons:
+    face.use_smooth=True
+
+# Do not add freestanding dark lip curves. Physical head cavity and the
+# curved, volumetric mandible must read as a real bite without black outlines.
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -387,17 +399,19 @@ FISH_X=-1.735  # fish center within the 3D bite cavity
 FISH_Z=0.824
 FISH_SKEW=0.050  # sculpt fish obliquely to show more than an end-on silhouette
 stations=[
-    (-1.23, 0.080, 0.088),
-    (-1.16, 0.130, 0.122),
-    (-1.04, 0.184, 0.174),
-    (-0.88, 0.198, 0.187),
-    (-0.60, 0.224, 0.251),
-    (-0.25, 0.253, 0.273),
-    ( 0.10, 0.236, 0.261),
-    ( 0.45, 0.188, 0.195),
-    ( 0.73, 0.139, 0.147),
-    ( 0.91, 0.072, 0.089),
-    ( 1.04, 0.032, 0.045),
+    (-1.29, 0.060, 0.068),
+    (-1.22, 0.105, 0.113),
+    (-1.15, 0.161, 0.148),
+    (-1.04, 0.204, 0.186),
+    (-0.88, 0.216, 0.207),
+    (-0.64, 0.225, 0.241),
+    (-0.36, 0.239, 0.256),
+    (-0.12, 0.234, 0.257),
+    ( 0.10, 0.232, 0.246),
+    ( 0.42, 0.198, 0.210),
+    ( 0.70, 0.139, 0.151),
+    ( 0.93, 0.071, 0.084),
+    ( 1.06, 0.031, 0.042),
 ]
 N=72
 # refine all fish stations to support actual engraved fish scales, not stuck-on beads
@@ -428,41 +442,56 @@ fish_obj=bpy.data.objects.new("Salmon_Tapered_Body",fish_mesh)
 bpy.context.collection.objects.link(fish_obj)
 fish_mesh.materials.append(salmon_wood)
 fish_mesh.materials.append(salmon_side)
-# Engrave overlapping fish-scale dimples directly into actual mesh vertices.
-# This survives GLB export, instead of 132 floating ellipsoid scale beads.
+fish_mesh.materials.append(salmon_belly)
+# v21: gill carving and shallow irregular scales are recessed IN the fish mesh.
+# No separate pasted gill globes or black pipe-like outlines.
 for vert in fish_mesh.vertices:
     p=vert.co
-    flank=clamp((abs(p.x-FISH_X-FISH_SKEW*p.y)-0.095)/0.075)
-    u=(p.y+1.1)*21.2
-    v=(p.z-FISH_Z)*25.0
-    r=math.floor(v)
-    du=(u+0.5*(r%2))%1.0-0.5
-    dv=(v%1.0)-0.50
-    dent=max(0.0,1.0-((du/0.39)**2+(dv/0.36)**2))
-    normal=vert.normal if vert.normal.length>0 else Vector((1,0,0))
-    p.x-= (0.0065*dent*flank)* (1 if p.x>FISH_X+FISH_SKEW*p.y else -1)
+    center_x=FISH_X+FISH_SKEW*p.y
+    flank=clamp((abs(p.x-center_x)-0.12)/0.07)
+    vertical=(p.z-FISH_Z)
+    if flank>0:
+        gill_y=-0.880+0.19*(vertical*vertical)
+        gill=(math.exp(-((p.y-gill_y)/0.028)**2) *
+              math.exp(-((vertical)/0.175)**4))
+        # Less regular, very shallow chiseled scale wedges.
+        stripe=p.y*13.7+vertical*4.1
+        rows=vertical*15.1
+        offset=0.34*(math.floor(rows)%2)
+        saw=abs((stripe+offset)%1.0-0.5)
+        wedge=max(0.0,1.0-saw/0.26)
+        patch=max(0.0,1.0-abs(rows%1.0-0.5)/0.35)
+        small_scale=0.0018*wedge*patch
+        displaced=(0.009*gill+small_scale)*flank
+        p.x-=displaced*(1 if p.x>center_x else -1)
 fish_mesh.update()
 for poly in fish_mesh.polygons:
     poly.use_smooth=True
-    poly.material_index=1 if poly.center.z>FISH_Z+0.080 else 0
+    p=poly.center
+    flank=abs(p.x-FISH_X-FISH_SKEW*p.y)
+    gill_y=-0.880+0.19*(p.z-FISH_Z)**2
+    if abs(p.y-gill_y)<0.034 and flank>0.14 and abs(p.z-FISH_Z)<0.17:
+        poly.material_index=1
+    elif p.z>FISH_Z+0.095:
+        poly.material_index=1
+    elif p.z<FISH_Z-0.105:
+        poly.material_index=2
+    else:
+        poly.material_index=0
 
-# Natural salmon head: eye on each visible side and curved engraved gill marks.
+# Inset eyes positioned within the broadened fish head, not a free-floating
+# button farther out than the profile.
 for side in (-1,1):
-    sphere("Salmon_Eye"+str(side),(FISH_X+FISH_SKEW*(-1.01)+side*0.156,-1.01,FISH_Z+0.027),(0.016,0.020,0.019),eye_mat,16,10)
-    curve_line("GillCut"+str(side),[
-        (FISH_X+FISH_SKEW*(-0.86)+side*0.190,-0.86,FISH_Z+0.12),
-        (FISH_X+FISH_SKEW*(-0.83)+side*0.192,-0.83,FISH_Z+0.02),
-        (FISH_X+FISH_SKEW*(-0.88)+side*0.184,-0.88,FISH_Z-0.11)],0.007,walnut_dark)
-# A gill plate is a shallow anatomical bony contour formed into each fish
-# flank, not a painted-on black line. Respect the fish-body x/y transforms below.
-for side in (-1,1):
-    sphere("SalmonCarvedOperculum_%s"%side,
-        (FISH_X+FISH_SKEW*(-0.970)+side*0.145,-0.970,FISH_Z-0.003),
-        (0.029,0.147,0.143),salmon_side,30,20)
+    sphere("Salmon_InsetEye_%s"%side,
+        (FISH_X+FISH_SKEW*(-1.025)+side*0.192,-1.025,FISH_Z+0.042),
+        (0.012,0.014,0.016),eye_mat,16,10)
 
 # Mouth is a small notch at the fish's pointed head.
-curve_line("Salmon_Open_Mouth",[(FISH_X+FISH_SKEW*(-1.18)-0.065,-1.18,FISH_Z-0.028),(FISH_X+FISH_SKEW*(-1.229),-1.229,FISH_Z-0.030),
-                                (FISH_X+FISH_SKEW*(-1.18)+0.065,-1.18,FISH_Z-0.028)],0.006,walnut_dark)
+curve_line("Salmon_MouthIncision",[
+    (FISH_X+FISH_SKEW*(-1.265)-0.035,-1.265,FISH_Z-0.015),
+    (FISH_X+FISH_SKEW*(-1.288),-1.288,FISH_Z-0.019),
+    (FISH_X+FISH_SKEW*(-1.265)+0.035,-1.265,FISH_Z-0.015)
+],0.0035,walnut_dark)
 
 # Traditional forked salmon tail in the true fish vertical fin plane (Y/Z).
 fin("Salmon_Forked_Tail",[
@@ -530,8 +559,10 @@ assert 0.54 < fish_center.z-compressed_rz < 0.67, "Fish belly is outside mandibl
 assert 0.91 < fish_center.z+compressed_rz < 1.00, "Fish top is outside upper lip"
 # Numerical intersection alone cannot certify recognizable sculptural contact.
 # These are guards, not an artistic pass.
-assert abs((fish_center.z+compressed_rz)-0.966)<0.055, "Upper ridge has lost contact"
-assert abs((fish_center.z-compressed_rz)-0.598)<0.055, "Lower ridge has lost contact"
+# This is a geometry guard for the *actual sculpted cavity*, not removable
+# decorative lip curves. It does not prove believable bite on rendered views.
+assert 0.87 < fish_center.z+compressed_rz < 1.00, "Salmon is above mouth cavity"
+assert 0.56 < fish_center.z-compressed_rz < 0.68, "Salmon is below mandible"
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
