@@ -134,6 +134,35 @@ for poly in bear.data.polygons:
     pc=poly.center
     if -2.14<pc.x<-1.99 and abs(abs(pc.y)-.325)<.068 and 1.35<pc.z<1.49:
         pass
+# Remove only tiny disconnected remesh scraps. E.g. a tiny 8-vertex
+# component from the boolean eye-cut phase; NEVER delete the cranium,
+# lips or ears. This is true mesh cleanup, not rendering or review bypass.
+import bmesh
+bm=bmesh.new()
+bm.from_mesh(bear.data)
+bm.verts.ensure_lookup_table()
+seen=set(); debris=[]; component_sizes=[]
+for rootv in bm.verts:
+    if rootv in seen:continue
+    queue=[rootv];seen.add(rootv);comp=[]
+    while queue:
+        cur=queue.pop()
+        comp.append(cur)
+        for e in cur.link_edges:
+            nxt=e.other_vert(cur)
+            if nxt not in seen:
+                seen.add(nxt);queue.append(nxt)
+    component_sizes.append(len(comp))
+    if len(comp)<32: debris.extend(comp)
+removed_scrap_vertices=len(debris)
+if debris:
+    bmesh.ops.delete(bm,geom=debris,context='VERTS')
+bm.to_mesh(bear.data)
+bear.data.update()
+bm.free()
+print("V28B_TOPOLOGY_CLEANUP",removed_scrap_vertices,component_sizes,flush=True)
+assert removed_scrap_vertices<50,"Large geometry unexpectedly disconnected"
+
 # A SMALL sculpted triangular nose instead of an oversized oval button.
 nosev=[(-2.589,-.120,1.216),(-2.589,.120,1.216),(-2.601,0,1.122),
        (-2.502,-.126,1.218),(-2.502,.126,1.218),(-2.506,0,1.117)]
@@ -294,6 +323,7 @@ report={
  "gill_vertices_engraved":gill_count,
  "colored_eye_socket_faces":eye_marked,
  "shortened_fish_meshes":shortened_meshes,
+ "isolated_remesh_scrap_vertices_removed":removed_scrap_vertices,
  "contact":{"waist_samples":len(proximity),
             "minimum_source_units":round(proximity[0],5),
             "median_source_units":round(proximity[len(proximity)//2],5),
