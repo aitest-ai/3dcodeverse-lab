@@ -1,0 +1,98 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido carved bear with salmon v27 - continuous jaw and anatomy study",
+  "source_commit": "59beb4fe65f29c181ef9709e1e9d44c37d866305",
+  "review_status": "rejected",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40968995487",
+  "reviewer": "Direct inspection of genuine Blender Cycles same-camera v25-v27 GLB rendering and local trimesh topology verification",
+  "inspected_on": "2026-10-30",
+  "model_sha256": "63ac8cdcc3b2b7fab931619ae50362400aa35160087d58aa083880c2dbbbf0a4",
+  "four_view_sha256": "825844372d48063070e6e2b1d33b8d82d3dc45267571a03d797b7143bcbfc292",
+  "comparison_sha256": "d4ed2279cb1ad5be237fa593bb99df4dec085b83ef42f6623d8d73d3fae181ca",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.8,
+      "reason": "Compact torso and rounded head remain visibly toy-like with unnatural limb taper; not significantly improved from v26."
+    },
+    "face_and_expression": {
+      "score": 2.7,
+      "reason": "The v26 jagged lower-jaw artifact is removed and chin surface appears continuous, but mouth geometry reads as a bulb below the fish rather than an enclosing jaw."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2.5,
+      "reason": "Actual salmon waist compressed with measurable jaw proximity (26/208 waist samples within 0.03 source units), but head and fish silhouette still read as a broad paddle resting under the snout."
+    },
+    "carving_detail_and_wood": {
+      "score": 3.4,
+      "reason": "Preserved v25 high-poly directional gouges; some surface areas remain unnaturally repetitive; not a production-ready handmade woodcarving."
+    },
+    "paws_and_limbs": {
+      "score": 2.9,
+      "reason": "Three-toe surface grooves and softened ankle contour remain; paw proportion and long upright legs still look like boots."
+    },
+    "multi_view_presentation": {
+      "score": 4.8,
+      "reason": "Full v25/v27 same-camera Blender Cycles render and genuine mesh exported; GLB main bear and salmon bodies independently verified watertight."
+    }
+  },
+  "geometry_evidence": {
+    "real_glb": true,
+    "real_blender_cycles_four_views": true,
+    "mesh_count": 12,
+    "bear_vertices": 117120,
+    "bear_watertight": true,
+    "bear_connected_components": 1,
+    "salmon_body_vertices": 4420,
+    "salmon_watertight": true,
+    "fish_waist_vertices_modified": 934,
+    "max_fish_waist_vertical_shift": 0.04831,
+    "chin_recess_vertices": 1630,
+    "chin_smoothed_vertices": 3706,
+    "upper_lip_vertices_modified": 1278,
+    "ankle_vertex_edits": 9116,
+    "toe_valley_vertex_edits": 968,
+    "fish_head_vertex_edits": 682,
+    "gill_vertex_edits": 68,
+    "distance_units": "original Blender local model units",
+    "contact_probe": {
+      "samples": 208,
+      "nearest": 0.00404,
+      "median": 0.06466,
+      "within_0_03": 26
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V27-001",
+      "severity": "blocker",
+      "part": "mouth geometry",
+      "finding": "Bear nose still appears to rest on a large fish paddle; even with smooth chin and local contact, the front and 3/4 render do not show credible enclosed biting.",
+      "required_fix": "Use anatomically constrained multi-view sculpt in front/side, build a clear upper/lower jaw silhouette around the fish; don't use more local Gaussian distance tuning as substitute for correct anatomy."
+    },
+    {
+      "id": "KUMA-V27-002",
+      "severity": "critical",
+      "part": "salmon head/body silhouette",
+      "finding": "Fish appears broad flat and pale, with minimal gill/eye features and geometric fins; contour does not read convincingly as a salmon.",
+      "required_fix": "Build salmon anatomy from separately authored dorsal/ventral/head landmarks; sculpt head, cheek/gill and caudal peduncle before material and shading."
+    },
+    {
+      "id": "KUMA-V27-003",
+      "severity": "major",
+      "part": "paws and limbs",
+      "finding": "Three-toe divisions visible but legs still shaped like boots, shoulder-to-wrist anatomy weak.",
+      "required_fix": "Replace original ring-loft limb blockout using reference matched ankle/hock and paw silhouette, preserve watertightness."
+    },
+    {
+      "id": "KUMA-V27-004",
+      "severity": "major",
+      "part": "surface fur",
+      "finding": "Directional chisel grooves are real mesh and recognizable, but repetitions still look patterned.",
+      "required_fix": "Keep real-mesh stroke method and improve stroke length and distribution based on anatomical regions, not random noise."
+    }
+  ],
+  "approved_for_game": false,
+  "artistic_mean": 3.18,
+  "technical_pass": true,
+  "recommendation": "Maintain v25 fur method and v27 anti-spike chin smoothing; build v28 independent silhouette-controlled head+salmon prototype, evaluate before whole-bear integration."
+}
