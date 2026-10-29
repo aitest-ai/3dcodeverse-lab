@@ -175,6 +175,11 @@ bear_parts.append(make_loft("CarvedBroadBearSkull",[
     (-1.09,1.18,0.20,0.18),
 ],True,walnut,48,6))
 mass("ShortHeavyUpperMuzzle",(-1.96,0,0.995),(0.305,0.295,0.185))
+# v20 SHAPE-FIRST: cheeks are actual integrated sculpt volumes, fused BEFORE
+# the voxel remesh. They must not be glued-on side spheres after export.
+for side in (-1,1):
+    mass("IntegratedCheekVolume_%s"%side,
+         (-1.725,side*0.342,1.043),(0.265,0.188,0.183))
 # Keep a *real* gap between upper bite lip and separate low lower jaw.
 # The lower jaw is independent of the remeshed cranium so the bite opening is real.
 # A separate connected jaw will be joined at the rear after carving the mouth cavity.
@@ -202,6 +207,15 @@ for is_front,x,px in ((True,-0.80,-1.04),(False,0.67,0.57)):
     for side in (-1,1):
         bear_parts.append(shaped_leg(('Foreleg' if is_front else 'Rearleg')+str(side),
                                      x,side*0.435,px,is_front))
+
+# v20: three low, flattened toe pads on each paw. Each pad genuinely joins
+# the foot during the SAME voxel remesh (not attached round buttons later).
+for is_front,px in ((True,-1.04),(False,0.57)):
+    for side in (-1,1):
+        for k in range(3):
+            toe_y=side*0.435+(k-1)*0.130
+            mass("FusedToePad_%s_%s_%d"%(int(is_front),side,k),
+                 (px-0.318,toe_y,0.112),(0.134,0.074,0.084))
 
 # Fuse body and feet with voxel remeshing so there are no floating intersections.
 bpy.ops.object.select_all(action='DESELECT')
@@ -239,20 +253,40 @@ except Exception as exc:
     raise RuntimeError("Real jaw cavity boolean failed, cannot fake the bite") from exc
 bpy.data.objects.remove(bite_cutter,do_unlink=True)
 
-# v19: compact cupped mandible instead of a projecting flat tray.
-# Front x=-2.15 (previously -2.37); at x=-2.02 the jaw top reaches
-# z~0.72, intersecting the compressed fish belly (z~0.59) in the bite.
-# The rear two sections penetrate the cheek/skull to anchor the jaw.
+# v20 physical inset sockets: cut into unified skull, never represent the
+# hollow solely by a dark sphere stuck onto an otherwise smooth face.
+for side in (-1,1):
+    bpy.ops.mesh.primitive_uv_sphere_add(
+        segments=32,ring_count=20,
+        location=(-1.845,side*0.395,1.282))
+    cutter=bpy.context.object
+    cutter.name="TEMP_RealCarvedEyeSocket_%s"%side
+    cutter.scale=(0.096,0.072,0.077)
+    bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
+    socket_cut=bear.modifiers.new("InsetEyeSocket_%s"%side,"BOOLEAN")
+    socket_cut.operation="DIFFERENCE"
+    socket_cut.solver="EXACT"
+    socket_cut.object=cutter
+    bpy.context.view_layer.objects.active=bear
+    try:
+        bpy.ops.object.modifier_apply(modifier=socket_cut.name)
+    except Exception as exc:
+        raise RuntimeError("Real eye socket sculpt failed") from exc
+    bpy.data.objects.remove(cutter,do_unlink=True)
+
+# v20: cupped JAW, recessed beneath the salmon instead of a horizontal shelf.
+# The mouth remains visibly open and the rear mandible intersects the skull.
 lower_jaw=make_loft("Kuma_SeparateLowerMandible",[
-    (-2.15,0.633,0.055,0.038),
-    (-2.10,0.640,0.125,0.061),
-    (-2.02,0.657,0.185,0.081),
-    (-1.91,0.676,0.221,0.092),
-    (-1.78,0.705,0.245,0.106),
-    (-1.61,0.783,0.257,0.143),
-    (-1.42,0.880,0.170,0.165),
-],True,walnut,48,5)
-for poly in lower_jaw.data.polygons:poly.use_smooth=True
+    (-2.17,0.575,0.060,0.039),
+    (-2.105,0.580,0.135,0.055),
+    (-2.025,0.602,0.195,0.071),
+    (-1.910,0.634,0.236,0.089),
+    (-1.775,0.673,0.251,0.112),
+    (-1.605,0.780,0.253,0.143),
+    (-1.415,0.881,0.171,0.159),
+],True,walnut,48,6)
+for poly in lower_jaw.data.polygons:
+    poly.use_smooth=True
 
 # v9 true carved wood relief, sculpted INTO the organic remesh geometry.
 # Each anisotropic notch sinks below its surrounding facets. The overlapping
@@ -296,37 +330,28 @@ for face in bear.data.polygons:
     # visible tiny chisel facets without making the surface polygonal everywhere
     face.use_smooth=True
 
-# v18: Subtle paw digits are embedded in broad continuous paws.
-# Thin, dark V-separation lines trace over the toe face; short claws remain
-# inside the realistic silhouette rather than floating like nails.
+# v20: toe pads are fused with each foot. Three discreet tapered claws per paw
+# start WITHIN the flattened toe outline, avoiding the v19 four-prong boot.
 for is_front,px in ((True,-1.04),(False,0.57)):
     for side in (-1,1):
-        y=side*0.435
-        for k in range(4):
-            py=y+(k-1.5)*0.115
-            curve_line("CarvedToeSeparation_%s_%s_%d"%(int(is_front),side,k),[
-                (px-0.275,py,0.195),
-                (px-0.328,py,0.125),
-                (px-0.336,py,0.071)],0.0065,walnut_dark)
-            frustum("TaperedInlaidClaw_%s_%s_%d"%(int(is_front),side,k),
-                (px-0.293,py,0.103),(px-0.338,py,0.073),
-                0.022,0.007,walnut_mid,12)
+        for k in range(3):
+            py=side*0.435+(k-1)*0.130
+            frustum("InlaidThreeToeClaw_%s_%s_%d"%(int(is_front),side,k),
+                (px-0.388,py,0.092),(px-0.443,py,0.066),
+                0.017,0.003,walnut_mid,12)
 
 # v15: side-visible eyes, broad nose bridge and contiguous bite lips.
 # Black eyeballs are very small and physically seated in dark eye sockets.
 for side in (-1,1):
     sphere("EarBowl_%s"%side,(-1.45,side*0.573,1.58),
            (0.10,0.018,0.096),walnut_dark,28,18)
-    sphere("EyeSocketDark_%s"%side,(-1.833,side*0.382,1.282),
-           (0.063,0.021,0.051),walnut_dark,32,18)
-    sphere("Eye_Inset_%s"%side,(-1.845,side*0.398,1.287),
-           (0.020,0.013,0.019),eye_mat,24,14)
+    # The cavity is a boolean depression above; only a tiny pupil is separate.
+    sphere("Eye_Inset_%s"%side,(-1.846,side*0.346,1.287),
+           (0.018,0.019,0.018),eye_mat,24,14)
     # Eyelids are partly buried into the cranium, unlike loose wire brows.
     curve_line("BrowFur_%s"%side,[
         (-1.955,side*0.40,1.345),(-1.87,side*0.44,1.357),
         (-1.77,side*0.43,1.327)],0.016,walnut_mid)
-    sphere("CheekMass_%s"%side,(-1.695,side*0.367,1.029),
-           (0.206,0.058,0.128),walnut,32,16)
     curve_line("CheekCarving_%s"%side,[
         (-1.93,side*0.40,1.064),(-1.79,side*0.47,0.992),
         (-1.62,side*0.45,1.028)],0.008,walnut_dark)
@@ -337,17 +362,16 @@ for side in (-1,1):
     sphere("Nostril_%s"%side,(-2.264,side*0.090,1.037),
            (0.015,0.021,0.013),walnut_dark,16,10)
 
-# v19: lip contours lie at the actual fish clamp, not ~0.25 units
-# ahead of it. The two small arcs pinch the salmon in front and side views;
-# their endpoints disappear into the muzzle/mandible rather than floating.
+# v20: thick wood contact ridge, NOT black freestanding "mouth strings".
+# Upper and lower arcs bracket the salmon's compressed waist in side view.
 curve_line("ActualUpperLip",[
-    (-1.955,-0.260,0.935),(-2.045,-0.155,0.947),
-    (-2.085,0,0.951),(-2.045,0.155,0.947),
-    (-1.955,0.260,0.935)],0.015,walnut_dark)
+    (-1.950,-0.252,0.955),(-2.015,-0.150,0.962),
+    (-2.043,0,0.966),(-2.015,0.150,0.962),
+    (-1.950,0.252,0.955)],0.020,walnut_mid)
 curve_line("ActualLowerLip",[
-    (-1.945,-0.240,0.654),(-2.035,-0.135,0.642),
-    (-2.080,0,0.631),(-2.035,0.135,0.642),
-    (-1.945,0.240,0.654)],0.015,walnut_dark)
+    (-1.935,-0.235,0.616),(-2.010,-0.140,0.601),
+    (-2.044,0,0.598),(-2.010,0.140,0.601),
+    (-1.935,0.235,0.616)],0.019,walnut_mid)
 
 # Compact the front-to-back silhouette by about 13%, but keep its thickness.
 # This happens before fish generation so the salmon remains properly crosswise.
@@ -492,11 +516,11 @@ mouth_center=Vector((-2.04*0.87,0.0,0.777))
 fish_center=Vector((FISH_X,0.0,FISH_Z-0.057))
 assert abs(fish_center.x-mouth_center.x)<0.18, "Fish no longer reaches the bear mouth"
 assert abs(fish_center.z-mouth_center.z)<0.10, "Fish is vertically detached from bite"
-# v19 regression check: a shortened chin and relocated lips must straddle
+# v20 regression check: cupped jaw and sculpted lip surfaces must straddle
 # the fish in both X and Z; this is only a geometry sanity check, NOT art QA.
-jaw_tip_x=-2.15*0.87
-lower_lip_x=-2.080*0.87
-upper_lip_x=-2.085*0.87
+jaw_tip_x=-2.17*0.87
+lower_lip_x=-2.044*0.87
+upper_lip_x=-2.043*0.87
 assert abs(jaw_tip_x-fish_center.x)<0.20, "Jaw tip no longer cups salmon"
 assert abs(lower_lip_x-fish_center.x)<0.15, "Lower lip detached in X"
 assert abs(upper_lip_x-fish_center.x)<0.15, "Upper lip detached in X"
@@ -504,6 +528,10 @@ clamp_waist=min(stations,key=lambda q:abs(q[0]))
 compressed_rz=clamp_waist[2]*(1-.31)
 assert 0.54 < fish_center.z-compressed_rz < 0.67, "Fish belly is outside mandible"
 assert 0.91 < fish_center.z+compressed_rz < 1.00, "Fish top is outside upper lip"
+# Numerical intersection alone cannot certify recognizable sculptural contact.
+# These are guards, not an artistic pass.
+assert abs((fish_center.z+compressed_rz)-0.966)<0.055, "Upper ridge has lost contact"
+assert abs((fish_center.z-compressed_rz)-0.598)<0.055, "Lower ridge has lost contact"
 
 # Fur grooves are geometry relief recessed into the remeshed bear body, not loose curves.
 
