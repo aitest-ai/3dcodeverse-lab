@@ -85,7 +85,7 @@ jobs:
           from pathlib import Path
           import trimesh
           root=Path('candidate')
-          model=root/'v26_bite_paw_sculpt.glb'
+          model=root/'v27_contact_sculpt.glb'
           control=root/'v25_directional_sculpt.glb'
           assert model.exists() and model.stat().st_size>300000
           src=json.loads((root/'sculpt_report.json').read_text())
