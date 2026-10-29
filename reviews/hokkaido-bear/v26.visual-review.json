@@ -1,0 +1,98 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido wooden bear / salmon v26 actual high-poly jaw + paw vertex sculpt",
+  "review_status": "rejected",
+  "reviewer": "ChatGPT direct vision of actual identical-camera v25/v26 Blender Cycles and independent trimesh geometry inspection",
+  "inspected_on": "2026-10-29",
+  "source_commit": "e8663690b5a893dcf67288f8778fd1fdd5103b35",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40894384053",
+  "model_sha256": "44ee8cceb3dd24867135eafea839f7370a90b2ff3fa63ed854faa0ff4eb856f5",
+  "baseline_sha256": "494f38f2ca1cce86caec46cd8560d1512430aa7b9088c8f258f6ff60ab3915f0",
+  "four_view_sha256": "16b70cdc29b19c7c1792288d554b394ebf693ad566a05825cc1833cbc41b6174",
+  "comparison_sha256": "3a2f20fa02e53822eb61839253907f9e041d79dfa73c6b9ba0414608909edcac",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.8,
+      "reason": "Heavy bear torso retains v25 silhouette; overall anatomy remains too geometric; no major improvement."
+    },
+    "face_and_expression": {
+      "score": 2.1,
+      "reason": "Raised lower jaw surface produces ragged tooth-like protrusion beneath the fish, a regression relative to v25's smoother lower rim."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2.4,
+      "reason": "Fish body really compresses vertically by up to 0.059571 world units at central cross-section, but front and three-quarter views still do not show a convincing, enveloping anatomical bite."
+    },
+    "carving_detail_and_wood": {
+      "score": 3.4,
+      "reason": "Preserved v25 effective directional mesh-carved shoulder/back fur; still overly regular in patches."
+    },
+    "paws_and_limbs": {
+      "score": 2.9,
+      "reason": "All four paw-fronts show shallow three-toe divisions and somewhat improved tapered ankle geometry; limbs remain stiff, but this sculpt operation is useful."
+    },
+    "multi_view_presentation": {
+      "score": 4.8,
+      "reason": "Real GLB and identical 3D Cycles camera and light A/B captures verified; main bear and salmon are watertight connected meshes."
+    }
+  },
+  "geometry_evidence": {
+    "actual_blender_glb": true,
+    "actual_four_view_cycles": true,
+    "glb_meshes": 12,
+    "main_bear_vertices": 117120,
+    "main_bear_watertight": true,
+    "main_bear_connected_components": 1,
+    "salmon_body_vertices": 4420,
+    "salmon_watertight": true,
+    "salmon_body_components": 1,
+    "fish_waist_modified_vertices": 951,
+    "fish_max_vertical_compression": 0.059571,
+    "lower_jaw_raised_vertices": 888,
+    "lower_jaw_tip_recess_vertices": 607,
+    "upper_lip_lowered_vertices": 603,
+    "ankle_vertices_modified": 10302,
+    "toe_valley_vertex_edits": 1267
+  },
+  "defects": [
+    {
+      "id": "KUMA-V26-001",
+      "severity": "blocker",
+      "part": "bear lower mouth and bite",
+      "finding": "Jaw contact editing causes jagged, tooth-like bumps exposed below the fish, not a convincing bite; this version regresses visually around the mouth.",
+      "required_fix": "Do not reuse the positive lip-raise brush. Reconstruct an anatomically connected lower jaw with a stable side silhouette and actual contact profile; smooth/retopologize the mouth region while preserving a central fish waist."
+    },
+    {
+      "id": "KUMA-V26-002",
+      "severity": "critical",
+      "part": "salmon anatomical head",
+      "finding": "The salmon still looks like a pale, tapering plank with overly simple head, fins, and a tiny point-eye. Waist constriction alone does not establish anatomical fish shape.",
+      "required_fix": "Reference-locked salmon head, gill profile, belly curve and tail peduncle, sculpt eye cavities directly on fish surface."
+    },
+    {
+      "id": "KUMA-V26-003",
+      "severity": "major",
+      "part": "bear feet",
+      "finding": "Three-toe divisions are now visible on all feet, especially in front orthographic, but linework remains shallow and whole limbs are cylindrical.",
+      "required_fix": "Preserve the toe groove method as a candidate, resculpt shoulder/ankle/paw silhouette before adding further claw detail."
+    },
+    {
+      "id": "KUMA-V26-004",
+      "severity": "major",
+      "part": "fur and expression",
+      "finding": "Direction-following chisel fur is retained, yet some patterning looks regular; head and ears remain soft toy-like.",
+      "required_fix": "Vary stroke lengths anatomically and re-form eye-brow/ear shape against real wooden carving references."
+    }
+  ],
+  "approval": {
+    "for_game": false,
+    "technical_build": true,
+    "artistic_pass": false,
+    "auto_promotion": false
+  },
+  "reusable_assets": [
+    "Retain v25 directional high-poly fur incision process",
+    "Retain v26 paw grooving test for future anatomy pass",
+    "Reject v26 jaw-lift formula and keep artifacts only as failed comparison"
+  ]
+}
