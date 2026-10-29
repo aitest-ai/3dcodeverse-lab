@@ -178,3 +178,63 @@ jobs:
             git commit -m "Publish real 3DCodeVerse bear GLB and multiview renders [run $GITHUB_RUN_ID]"
             git push origin HEAD:main
           fi
+
+
+  preview_candidate:
+    name: Quarantine v20 shape preview (never auto-approve)
+    needs: build
+    if: needs.build.result == 'success'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: hokkaido-bear-offline-harness
+          path: candidate
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Publish authentic neutral views with an explicit UNREVIEWED gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'Pillow>=10,<13'
+          DEST="experiments/hokkaido-v20/preview"
+          mkdir -p "$DEST"
+          test -s candidate/hokkaido_bear_official_harness.glb
+          test -s candidate/preview_00_sheet.png
+          test -s candidate/preview_02_view_front.png
+          test -s candidate/preview_03_view_back_left_high.png
+          test -s candidate/preview_04_view_front_right_high.png
+          cp candidate/preview_00_sheet.png "$DEST/four_views.png"
+          cp candidate/preview_02_view_front.png "$DEST/front.png"
+          cp candidate/preview_03_view_back_left_high.png "$DEST/rear_three_quarter.png"
+          cp candidate/preview_04_view_front_right_high.png "$DEST/front_three_quarter.png"
+          cp candidate/preview_01_view_top.png "$DEST/top.png"
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          im=Image.open('experiments/hokkaido-v20/preview/four_views.png').convert('RGB')
+          im.thumbnail((960,720))
+          im.save('experiments/hokkaido-v20/preview/mobile_review.jpg', quality=76, optimize=True)
+          PY
+          sha256sum candidate/hokkaido_bear_official_harness.glb > "$DEST/source_glb_sha256.txt"
+          printf '%s\n' \
+            'Status: UNREVIEWED / NOT APPROVED FOR GAME' \
+            "Source commit: $GITHUB_SHA" \
+            "Action run: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            'Method: official 3DCodeVerse Harness -> real Blender Cycles render' \
+            'Rule: real geometry + art review must pass before promotion to models/hokkaido-bear/latest' \
+            > "$DEST/STATUS.txt"
+          git add "$DEST"
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "Quarantine v20 actual bear sculpt previews without approving release"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
