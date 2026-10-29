@@ -93,8 +93,8 @@ for side in (-1,1):
       (-1.65,side*.29,1.18,.17,.205),
       (-1.48,side*.235,1.24,.16,.18)],headwood,n=40))
     # Inset ears, fused before voxel sculpt.
-    parts.append(uvball("EAR_UNDERCUT_%d"%side,(-1.62,side*.456,1.678),
-                 (.090,.066,.095),headwood))
+    parts.append(uvball("EAR_UNDERCUT_%d"%side,(-1.62,side*.393,1.64),
+                 (.112,.090,.133),headwood))
 # Fuse body + cheek + both lips into *one* true closed high-poly mesh.
 bpy.ops.object.select_all(action='DESELECT')
 for ob in parts:ob.select_set(True)
@@ -214,17 +214,13 @@ bpy.ops.object.select_all(action='DESELECT')
 fish.select_set(True);bpy.context.view_layer.objects.active=fish
 fish.data.remesh_voxel_size=.012
 bpy.ops.object.voxel_remesh()
-# Darken ONLY recessed eye-socket triangles of actual fish mesh: no
-# detached pupil spheres. Keep diffuse body elsewhere.
-fish.data.materials.append(dark)
-eye_centers=[Vector((-2.454+sign*.146,-1.139,.913)) for sign in (-1,1)]
+# A single material for the complete salmon sculpt. Assigning a second
+# material only to eye cavity faces split the glTF mesh into primitives and
+# failed the raw watertight QA; the dark patch also read as a flat black dot.
+# Preserve the negative eye socket geometry but no applied painted eyes.
 eye_marked=0
 for poly in fish.data.polygons:
     poly.use_smooth=True
-    c=poly.center
-    if min((c-v).length for v in eye_centers)<.054:
-        poly.material_index=1
-        eye_marked+=1
 # Fin geometry: 3D, with root intersecting body. The tail is sharply forked
 # and originates at narrow peduncle rather than simply ending a flat plank.
 def fin(name,profile,width):
