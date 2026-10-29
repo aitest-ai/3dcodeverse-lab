@@ -1,0 +1,74 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido kibori-kuma v20 corrected-foot candidate — genuine Harness GLB",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct inspection of corrected v20 real Blender Cycles four-view GLB renders",
+  "review_status": "rejected",
+  "source_commit": "ceea061f8f86cb6a5ecc4a43cee22641641181cd",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40826013337",
+  "model_sha256": "013578074e581d9c6c7d0f90e6df21b13955966d6bc6f08b6da3ea9a1bf331c0",
+  "hero_sha256": "d4d8b3222f725695f2ec7dc8395ab4d3a06ef6ed4998dd62ef71c475560fa209",
+  "side_sha256": "0d8a538f164c9016d53efc2e0eac9a7f1825c8ac34bbcede956c95bcdd2f6c60",
+  "sheet_sha256": "4365f4efaeb72d565eb09bfc3792e645368cdb972768c58c6f1fc5245d5ca87b",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 3,
+      "reason": "Heavy mass and broad shoulders recognizable but hindquarters and legs still stiff; not yet handcrafted-quality silhouette."
+    },
+    "face_and_expression": {
+      "score": 1.9,
+      "reason": "Pig-like smooth oversized oval nose; curved eyebrow-like protrusions and protruding ball-like ears."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.7,
+      "reason": "Fish still appears carried on top of lower muzzle as a flat board, not held securely between visible upper and lower jaws."
+    },
+    "carving_detail_and_wood": {
+      "score": 1.6,
+      "reason": "Back has repeating soft stamped-scale ripples rather than hand-carved directional angular gouges."
+    },
+    "paws_and_limbs": {
+      "score": 2.8,
+      "reason": "Toe-floor intersection fixed and toes are fused but toes look rounded and leg shafts remain boot-like."
+    },
+    "multi_view_presentation": {
+      "score": 4.5,
+      "reason": "Genuine Cycles front, high front-right, rear-side and top renders exist with exact GLB linkage."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V20C-001",
+      "severity": "blocker",
+      "part": "bite",
+      "finding": "Nose rests on a broad plank-like salmon while lower jaw is obscured.",
+      "required_fix": "Rebuild integrated contact anatomy and widen the fish head; do not merely move lip curves."
+    },
+    {
+      "id": "KUMA-V20C-002",
+      "severity": "critical",
+      "part": "face",
+      "finding": "Rounded pig-like nose and attached-looking ear, eye and cheek details.",
+      "required_fix": "Use a smaller triangular carved nose, integrated ear forms and eliminate detached facial ornament curves."
+    },
+    {
+      "id": "KUMA-V20C-003",
+      "severity": "critical",
+      "part": "wood relief",
+      "finding": "Regular stamp-pattern gouges resemble soft clay rather than directional chiselling.",
+      "required_fix": "Replace tile-like patterns with irregular recessed linear blade marks along anatomical flow."
+    },
+    {
+      "id": "KUMA-V20C-004",
+      "severity": "major",
+      "part": "salmon",
+      "finding": "Head tapers sharply and fins remain simple flat shapes.",
+      "required_fix": "Resculpt whole fish silhouette, remove separate gill badges, cut gill on actual fish body."
+    }
+  ],
+  "improvement_tasks": [
+    "Corrected v20 build and real four-view renders are verified and stored. Do not promote to latest; artistic gate remains rejected.",
+    "Earlier v20 source review tied to 40825464918; this revised review is tied only to 40826013337 and different GLB SHA-256.",
+    "Next iteration should change facial, salmon and chisel geometry together under a shape-only review; do not call materials a solution."
+  ]
+}
