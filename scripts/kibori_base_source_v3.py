@@ -22,7 +22,12 @@ def main():
  page=PAGES[args.source]
  log=[]
  s=requests.Session();s.headers["User-Agent"]="Mozilla/5.0 (educational asset quality research)"
- r=s.get(page,timeout=45);r.raise_for_status()
+ try:
+  r=s.get(page,timeout=45);r.raise_for_status()
+ except Exception as e:
+  report.write_text(json.dumps({"source":page,"status":"blocked_page_request","error":str(e)[:400]},indent=2))
+  print("SOURCE_PROBE blocked_page_request",str(e)[:160])
+  return 2
  html=r.text
  links=re.findall(r'(?:href|src|data-url|fileUrl)\s*[=:]\s*["\']([^"\']+)["\']',html,re.I)
  links+=re.findall(r'https?[^"\'<>\s]+?\.glb(?:\?[^"\'<>\s]*)?',html,re.I)
