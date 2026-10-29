@@ -1,0 +1,82 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido woodcarved bear biting salmon v20 shape-first, first genuine Harness GLB (before sole-height correction)",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT visual inspection of all four actual Blender Cycles renders from official 3DCodeVerse Harness GLB, not illustration",
+  "review_status": "rejected",
+  "source_commit": "bd7da6ae417ca59dc15c0ab5c97b34800b7c1334",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40825464918",
+  "model_sha256": "6b41c6393cf97e0db804433942f5aaac221ce97904e11a4bf70d0d147256cec1",
+  "hero_sha256": "b933e9b8c6381bb477f02111782b7060e0d62a29973d7486077a537b65c78366",
+  "side_sha256": "679dcf92deb69d18cf9449d669c55ce632a9198c969c5bfdb0b7feafbe78d591",
+  "sheet_sha256": "101cca5b763085a0cb6e90448671169406391bb20d9d0bbc8986e20a196832b6",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 3,
+      "reason": "Heavy shoulders and compact body silhouette exist, but vertical shoulder transition and column-shaped lower legs remain."
+    },
+    "face_and_expression": {
+      "score": 1.9,
+      "reason": "Large pig-like round nose, dangling eyebrow/cheek curves and attached-looking ears undermine recognizable carved bear anatomy."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.7,
+      "reason": "Salmon still reads as a broad flat plank in front of the snout; upper/lower bite contact not legible in front or 3/4."
+    },
+    "carving_detail_and_wood": {
+      "score": 1.6,
+      "reason": "Uniform rounded stamped ripples over shoulders and back resemble soft clay, not directional irregular chisel marks."
+    },
+    "paws_and_limbs": {
+      "score": 2.7,
+      "reason": "Toe pads are genuinely fused and less mechanical than v19, but three round toe lobes and vertical boots still appear; first run toes also penetrate floor."
+    },
+    "multi_view_presentation": {
+      "score": 4.5,
+      "reason": "Actual four-angle source GLB preview is sharp, genuine, and traceable to build run."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V20-001",
+      "severity": "blocker",
+      "part": "bite",
+      "finding": "The nose visually rests on a separate flat salmon beam; lower jaw is visible only as dark shelf underneath.",
+      "required_fix": "Move to a single anatomical muzzle/jaw envelope and reshape fish shoulder; validate visible upper and lower contact from front and 3/4."
+    },
+    {
+      "id": "KUMA-V20-002",
+      "severity": "critical",
+      "part": "face",
+      "finding": "Large smooth oval nose and floating eyebrow-like curves; ears protrude as spheres.",
+      "required_fix": "Rebuild a small triangular bear nose and remove decorative detached eye/cheek lines; move ears deeper into skull and sculpt actual recesses."
+    },
+    {
+      "id": "KUMA-V20-003",
+      "severity": "critical",
+      "part": "wood carving",
+      "finding": "Repeated rounded stamped skin texture on torso looks waxy.",
+      "required_fix": "Replace tiled dimple displacement by directional nonuniform recessed cuts tied to anatomy."
+    },
+    {
+      "id": "KUMA-V20-004",
+      "severity": "major",
+      "part": "fish",
+      "finding": "Fish snout is tapering too sharply, gill plate and fins read as separate geometric accessories.",
+      "required_fix": "Broaden fish head silhouette, reshape fins and integrate gill geometry."
+    },
+    {
+      "id": "KUMA-V20-005",
+      "severity": "major",
+      "part": "ground",
+      "finding": "First run three-toe pads exceed intended sole plane by approximately 0.024 world Z units.",
+      "required_fix": "Already patched in follow-up source commit ceea061f8f86cb6a5ecc4a43cee22641641181cd; check fresh render."
+    }
+  ],
+  "improvement_tasks": [
+    "v20 first GLB technically built and rendered; artistic pass is still REJECTED.",
+    "Foot sole height fix committed separately; do not assign first-build review to corrected build without comparing model hashes.",
+    "Next shape iteration must address the actual sculptural bite and fish profile, not materials-only changes.",
+    "Keep official Harness build artifacts and four-view evidence. Never auto-approve release."
+  ]
+}
