@@ -181,7 +181,7 @@ jobs:
 
 
   preview_candidate:
-    name: Quarantine v20 shape preview (never auto-approve)
+    name: Quarantine v20 per-run preview (never auto-approve)
     needs: build
     if: needs.build.result == 'success'
     runs-on: ubuntu-24.04
@@ -203,7 +203,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install -q 'Pillow>=10,<13'
-          DEST="experiments/hokkaido-v20/preview"
+          DEST="experiments/hokkaido-v20/runs/$GITHUB_RUN_ID"
           mkdir -p "$DEST"
           test -s candidate/hokkaido_bear_official_harness.glb
           test -s candidate/preview_00_sheet.png
@@ -215,12 +215,14 @@ jobs:
           cp candidate/preview_03_view_back_left_high.png "$DEST/rear_three_quarter.png"
           cp candidate/preview_04_view_front_right_high.png "$DEST/front_three_quarter.png"
           cp candidate/preview_01_view_top.png "$DEST/top.png"
-          python - <<'PY'
+          python - "$DEST" <<'PY'
           from PIL import Image
           from pathlib import Path
-          im=Image.open('experiments/hokkaido-v20/preview/four_views.png').convert('RGB')
+          import sys
+          dest=Path(sys.argv[1])
+          im=Image.open(dest/'four_views.png').convert('RGB')
           im.thumbnail((960,720))
-          im.save('experiments/hokkaido-v20/preview/mobile_review.jpg', quality=76, optimize=True)
+          im.save(dest/'mobile_review.jpg', quality=76, optimize=True)
           PY
           sha256sum candidate/hokkaido_bear_official_harness.glb > "$DEST/source_glb_sha256.txt"
           printf '%s\n' \
