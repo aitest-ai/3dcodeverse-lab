@@ -1,0 +1,127 @@
+name: Hokkaido v26 Jaw Contact and Paw Sculpt A/B (NOT APPROVED)
+on:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v26/sculpt.py
+      - experiments/hokkaido-v24/model.py
+      - .github/workflows/hokkaido-v26-bite-paw.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sculpt-and-compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install official Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --retry-delay 3 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Build v26 and preserve prior v25 GLB as true control
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p candidate
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python experiments/hokkaido-v25/sculpt.py 2>&1 | tee candidate/build.log
+          test -s candidate/v25_directional_sculpt.glb
+          test -s candidate/v26_bite_paw_sculpt.glb
+          test -s candidate/sculpt_report.json
+          sha256sum candidate/*.glb > candidate/source_sha256.txt
+      - name: Render both same-camera real GLBs with Blender Cycles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'Pillow>=10,<13' 'trimesh>=4,<5' 'networkx>=3,<5'
+          mkdir -p candidate/before candidate/after
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/v25_directional_sculpt.glb candidate/before \
+            2>&1 | tee candidate/before_render.log
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/v26_bite_paw_sculpt.glb candidate/after \
+            2>&1 | tee candidate/after_render.log
+          python - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          root=Path('candidate')
+          names=['view_front_right_high.png','view_front.png','view_back_left_high.png','view_top.png']
+          four=Image.new('RGB',(1920,1440),'#f2f2f2')
+          beforeafter=Image.new('RGB',(1920,1080),'#f2f2f2')
+          draw=ImageDraw.Draw(beforeafter)
+          for i,name in enumerate(names):
+              p=root/'after'/name
+              assert p.stat().st_size>12000
+              im=Image.open(p).convert('RGB')
+              four.paste(im.resize((960,720)),((i%2)*960,(i//2)*720))
+          four.save(root/'v26_four_views.png')
+          for row,label in enumerate(('v25 prior sculpt','v26 jaw/paw sculpt')):
+              folder=root/('before' if row==0 else 'after')
+              for col,name in enumerate(names[:2]):
+                  im=Image.open(folder/name).convert('RGB')
+                  beforeafter.paste(im.resize((960,540)),(col*960,row*540))
+              draw.text((15,row*540+12),label,fill='black',stroke_width=3,stroke_fill='white')
+          beforeafter.save(root/'v25_v26_same_camera.jpg',quality=86,optimize=True)
+          mobile=four.copy()
+          mobile.thumbnail((960,720))
+          mobile.save(root/'v26_mobile.jpg',quality=84,optimize=True)
+          PY
+      - name: Independent geometry and artifact checks (fail closed)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          import trimesh
+          root=Path('candidate')
+          model=root/'v26_bite_paw_sculpt.glb'
+          control=root/'v25_directional_sculpt.glb'
+          assert model.exists() and model.stat().st_size>300000
+          src=json.loads((root/'sculpt_report.json').read_text())
+          assert src['shoulder_flank_face_paths']['altered_vertices']>=100,src
+          assert src['dorsal_fur_paths']['altered_vertices']>=100,src
+          jaw=src.get('jaw_and_paw_study',{})
+          assert jaw.get('fish_waist_modified_vertices',0)>=20,jaw
+          assert jaw.get('engraved_toe_valley_vertex_edits',0)>=40,jaw
+          scene=trimesh.load(str(model),force='scene')
+          meshes=[g for g in scene.geometry.values() if hasattr(g,'vertices')]
+          assert len(meshes)>=5
+          main=max(meshes,key=lambda g:len(g.vertices))
+          status={
+            'real_blender_glb':True,'real_cycles_four_views':True,
+            'source_sha256':hashlib.sha256(model.read_bytes()).hexdigest(),
+            'baseline_sha256':hashlib.sha256(control.read_bytes()).hexdigest(),
+            'mesh_count':len(meshes),
+            'bear_main_is_watertight':bool(main.is_watertight),
+            'bear_connected_components':len(main.split(only_watertight=False)),
+            'side_vertices_modified':src['shoulder_flank_face_paths']['altered_vertices'],
+            'back_vertices_modified':src['dorsal_fur_paths']['altered_vertices'],
+            'fish_waist_vertices_modified':jaw.get('fish_waist_modified_vertices',0),
+            'jaw_raise_vertices':jaw.get('lower_jaw_raised_vertices',0),
+            'toe_valley_edits':jaw.get('engraved_toe_valley_vertex_edits',0),
+            'artistic_review':'UNREVIEWED',
+            'game_release_approved':False
+          }
+          (root/'QA.json').write_text(json.dumps(status,indent=2))
+          assert status['bear_main_is_watertight'] and status['bear_connected_components']==1,status
+          print(status)
+          PY
+      - name: Upload actual model, A-B renders, logs even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-v26-bite-paw-candidate-UNREVIEWED
+          path: candidate/
+          if-no-files-found: warn
+          retention-days: 30
