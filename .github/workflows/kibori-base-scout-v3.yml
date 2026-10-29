@@ -37,7 +37,7 @@ jobs:
         run: |
           mkdir -p candidate
           python scripts/kibori_base_source_v3.py \
-            --source "${{ inputs.source || 'innerscene' }}" \
+            --source "${{ inputs.source || 'pixor' }}" \
             --out candidate/brown_bear_source.glb \
             --report candidate/source_probe.json
           test -s candidate/brown_bear_source.glb
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: kibori-bear-CC0-base-UNREVIEWED
+          name: kibori-bear-CC0-${{ inputs.source || 'pixor' }}-UNREVIEWED
           path: candidate/
           retention-days: 30
           if-no-files-found: warn
@@ -112,17 +112,18 @@ jobs:
         if: always()
         shell: bash
         run: |
-          mkdir -p experiments/kibori-base-v3/candidate
-          cp candidate/qa.json experiments/kibori-base-v3/candidate/qa.json
-          if test -f candidate/source_probe.json; then cp candidate/source_probe.json experiments/kibori-base-v3/candidate/source_probe.json; fi
-          if test -f candidate/four_views.png; then cp candidate/four_views.png experiments/kibori-base-v3/candidate/four_views.png; fi
-          if test -f candidate/preview_mobile.jpg; then cp candidate/preview_mobile.jpg experiments/kibori-base-v3/candidate/preview_mobile.jpg; fi
-          if test -f candidate/preview_mobile.b64.txt; then cp candidate/preview_mobile.b64.txt experiments/kibori-base-v3/candidate/preview_mobile.b64.txt; fi
+          PUB="experiments/kibori-base-v3/candidate-${{ inputs.source || 'pixor' }}"
+          mkdir -p "$PUB"
+          cp candidate/qa.json $PUB/qa.json
+          if test -f candidate/source_probe.json; then cp candidate/source_probe.json $PUB/source_probe.json; fi
+          if test -f candidate/four_views.png; then cp candidate/four_views.png $PUB/four_views.png; fi
+          if test -f candidate/preview_mobile.jpg; then cp candidate/preview_mobile.jpg $PUB/preview_mobile.jpg; fi
+          if test -f candidate/preview_mobile.b64.txt; then cp candidate/preview_mobile.b64.txt $PUB/preview_mobile.b64.txt; fi
           for pic in view_front_right_high.png view_front.png view_back_left_high.png view_top.png; do
-            if test -f "candidate/$pic"; then cp "candidate/$pic" "experiments/kibori-base-v3/candidate/$pic"; fi
+            if test -f "candidate/$pic"; then cp "candidate/$pic" "$PUB/$pic"; fi
           done
-          printf '%s\n' 'Candidate only. Never use as approved sculpt or game release.' > experiments/kibori-base-v3/candidate/STATUS.txt
-          git add experiments/kibori-base-v3/candidate
+          printf '%s\n' 'Candidate only. Never use as approved sculpt or game release.' > $PUB/STATUS.txt
+          git add "$PUB"
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
