@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          python -m pip install -q 'Pillow>=10,<13' 'trimesh>=4,<5'
+          python -m pip install -q 'Pillow>=10,<13' 'trimesh>=4,<5' 'networkx>=3,<5'
           mkdir -p candidate/before candidate/after
           blender --background --factory-startup --threads 4 --python-exit-code 1 \
             --python scripts/render_official_glb_bpy.py -- \
