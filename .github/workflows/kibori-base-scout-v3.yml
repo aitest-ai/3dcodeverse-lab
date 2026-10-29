@@ -1,0 +1,120 @@
+name: Kibori Bear CC0 Base Scout v3 (Unreviewed)
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "Public CC0 source (Innerscene preferred)"
+        type: choice
+        options: [innerscene, pixor]
+        default: innerscene
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/kibori-base-scout-v3.yml
+      - scripts/kibori_base_source_v3.py
+permissions:
+  contents: write
+jobs:
+  source-and-clay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Set up downloader
+        run: |
+          python -m pip install -q requests playwright pillow
+          python -m playwright install --with-deps chromium
+          python -m py_compile scripts/kibori_base_source_v3.py
+      - name: Fetch publisher's original CC0 base (NOT procedural bear)
+        id: fetch
+        shell: bash
+        continue-on-error: true
+        run: |
+          mkdir -p candidate
+          python scripts/kibori_base_source_v3.py \
+            --source "${{ inputs.source || 'innerscene' }}" \
+            --out candidate/brown_bear_source.glb \
+            --report candidate/source_probe.json
+          test -s candidate/brown_bear_source.glb
+      - name: Install Blender only for a verified GLB
+        if: steps.fetch.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --output "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Genuine 4-angle neutral review renders
+        if: steps.fetch.outcome == 'success'
+        id: render
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p candidate
+          blender --background --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/brown_bear_source.glb candidate 2>&1 | tee candidate/render.log
+          python - <<'PY'
+          from PIL import Image, ImageDraw
+          from pathlib import Path
+          r=Path("candidate")
+          files=["view_front_right_high.png","view_front.png","view_back_left_high.png","view_top.png"]
+          labels=["THREE QUARTER","FRONT","REAR SIDE","TOP"]
+          sheet=Image.new("RGB",(1600,1200),(230,233,237))
+          draw=ImageDraw.Draw(sheet)
+          for idx,(name,label) in enumerate(zip(files,labels)):
+              im=Image.open(r/name).convert("RGB")
+              im.thumbnail((780,550))
+              x=idx%2*800+(800-im.width)//2
+              y=idx//2*600+(555-im.height)//2
+              sheet.paste(im,(x,y))
+              draw.text((idx%2*800+18,idx//2*600+565),label,fill=(35,35,40))
+          sheet.save(r/"four_views.png",optimize=True)
+          PY
+      - name: Candidate report (never auto-approve shape)
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p candidate
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('candidate')
+          probe=json.loads((p/'source_probe.json').read_text()) if (p/'source_probe.json').exists() else {"status":"missing"}
+          approved=False
+          report={"stage":"shape-first/reference-scout","source":probe.get("source"),"acquisition":probe.get("status"),
+             "model_sha256":probe.get("sha256"),"four_views_rendered":(p/"four_views.png").exists(),
+             "aesthetic_verdict":"UNREVIEWED","approved_for_game":approved,
+             "reason":"Human/vision review of shape, salmon-jaw contact and sculptural fidelity required. Source bear has no salmon."}
+          (p/'qa.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          print(report)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kibori-bear-CC0-base-UNREVIEWED
+          path: candidate/
+          retention-days: 30
+          if-no-files-found: warn
+      - name: Publish ONLY quality report and preview to quarantined folder
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p experiments/kibori-base-v3/candidate
+          cp candidate/qa.json experiments/kibori-base-v3/candidate/qa.json
+          if test -f candidate/source_probe.json; then cp candidate/source_probe.json experiments/kibori-base-v3/candidate/source_probe.json; fi
+          if test -f candidate/four_views.png; then cp candidate/four_views.png experiments/kibori-base-v3/candidate/four_views.png; fi
+          printf '%s\n' 'Candidate only. Never use as approved sculpt or game release.' > experiments/kibori-base-v3/candidate/STATUS.txt
+          git add experiments/kibori-base-v3/candidate
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "Record unreviewed CC0 bear base geometry scouting"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
