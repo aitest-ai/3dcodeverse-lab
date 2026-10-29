@@ -1,0 +1,85 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido traditional bear biting salmon v24b independent Blender real GLB candidate",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct visual inspection of actual v23b / v24 / v24b Blender Cycles renders and trimesh check of exported v24b GLB",
+  "review_status": "rejected",
+  "source_commit": "2b81c1afa0b977fd9690a4e23fcdc64396737989",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40874548246",
+  "model_sha256": "1ec7de24cf28d445a3baab65432efefb30ba032312605d248c69e199cc76572c",
+  "hero_sha256": "c7ed743853bf685601306a97247d6f89176be634ec9fdb09da91940a3bafea65",
+  "side_sha256": "a757152618f5c6448161aa69364643396c36572243e66281794b9c2c03109c58",
+  "sheet_sha256": "d1207db528307bbde8f078e6e9b5cb0e25d33e335f3b0af1fd5ef00246527164",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.8,
+      "reason": "Larger shoulder and tapered head read a little more naturally than v23b, but torso-to-limbs still resembles joined geometric blocks."
+    },
+    "face_and_expression": {
+      "score": 2.6,
+      "reason": "The previously glued lower-jaw spheres are gone, and muzzle is more continuous. Eyes/ears remain button-like; jaw still does not visibly clamp fish."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2.3,
+      "reason": "Fish was uniformly shortened along its length and deepened outside the central bite section. It is less plank-like but the head now resembles a blunt oval, external fish eyes appear as dots, and jaw contact remains unclear."
+    },
+    "carving_detail_and_wood": {
+      "score": 1,
+      "reason": "V24b deliberately concentrates on basic volume with matte wood colors only. True directional chisel geometry is not yet authored, so finished carving cannot pass."
+    },
+    "paws_and_limbs": {
+      "score": 2.2,
+      "reason": "Foot tips and lower ankles have more irregular contours than the original cylinders, but lack convincing wrist, knuckle and individual toe articulation."
+    },
+    "multi_view_presentation": {
+      "score": 4.7,
+      "reason": "Real full GLB and four unmodified Blender Cycles render views, with file hashes and independently reproduced geometry checks."
+    }
+  },
+  "geometry_evidence": {
+    "method": "independent Blender 5.2.2 LTS + Blender Cycles four views; actual GLB inspected with trimesh, not image-generated; not official 3DCodeVerse Harness generation",
+    "main_bear_vertex_count": 117120,
+    "main_bear_watertight": true,
+    "main_bear_components": 1,
+    "salmon_body_vertex_count": 4420,
+    "salmon_body_watertight": true,
+    "all_small_decorations_validated": false
+  },
+  "defects": [
+    {
+      "id": "KUMA-V24B-001",
+      "severity": "blocker",
+      "part": "fish-mouth contact",
+      "finding": "Even after remodeling jaw continuously, front and 45-degree renders show the salmon lying beneath the nose, not convincingly trapped by upper and lower jaw structures.",
+      "required_fix": "Stop adjusting primitive loft controls locally. Construct the head and clamping jaw from reference-matched sculpted surface geometry; inspect orthographic side and front at high resolution before adding a fish."
+    },
+    {
+      "id": "KUMA-V24B-002",
+      "severity": "critical",
+      "part": "salmon head and eyes",
+      "finding": "Shortening improves fish length-to-depth, but the head is now a rounded blunt volume, and the tiny eyes look like floating black dots.",
+      "required_fix": "Separate salmon head sculpt with anatomical mouth/gill/eye cavities built directly into its watertight body; no external eye beads."
+    },
+    {
+      "id": "KUMA-V24B-003",
+      "severity": "critical",
+      "part": "limb silhouette",
+      "finding": "Paws are slightly reshaped yet continue to resemble heavy cylindrical boots.",
+      "required_fix": "Use real bear anatomical reference silhouette, build shoulder/forearm/wrist/paw transitions and individual toe planes in a sculpt rather than multi-ring cylinders."
+    },
+    {
+      "id": "KUMA-V24B-004",
+      "severity": "major",
+      "part": "carved wood",
+      "finding": "The present matte brown surfaces remain bare and do not have directional hand-chiseled fur marks.",
+      "required_fix": "After shape approval, carve directionally with longer tapering negative gouges concentrated around shoulders and belly, not random pitting."
+    }
+  ],
+  "improvement_tasks": [
+    "v24b is a genuine generated GLB and technical success, not an artistically approved model.",
+    "Body and fish body are watertight but sculpt quality remains below gate: keep candidates separate and never overwrite formal model.",
+    "The 2D side/face reference proportions must become primary explicit constraints, especially salmon head, fish eye, jaw contact and limb contours.",
+    "Stop iterative parameter changes to axis-aligned ellipsoid/loft primitives as sole primary modeling technique; pursue physically sculpted high-poly mesh or reputable license-verifiable base mesh.",
+    "Only after reference-locked geometry is accepted should chisel relief, UV, high-to-low baking and final PBR texturing begin."
+  ]
+}
