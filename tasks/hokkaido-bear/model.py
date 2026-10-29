@@ -20,7 +20,7 @@ def material(name, rgb, rough=0.72, metallic=0.0):
         bs.inputs["Metallic"].default_value=metallic
     return mat
 
-walnut=material("Wood_Dark_Charred_Walnut",(0.095,0.049,0.022),0.52)
+walnut=material("Wood_Dark_Charred_Walnut",(0.100,0.050,0.024),0.78)
 walnut_warm=material("Wood_Highlight_Old_Polish",(0.148,0.080,0.039),0.58)
 walnut_mid=material("Wood_Facet_Satin",(0.112,0.058,0.026),0.61)
 walnut_dark=material("Wood_Deep_Gouges",(0.055,0.026,0.011))
@@ -286,6 +286,14 @@ lower_jaw=make_loft("Kuma_SeparateLowerMandible",[
     (-1.605,0.780,0.253,0.143),
     (-1.415,0.881,0.171,0.159),
 ],True,walnut,48,6)
+# v22 anatomy trial: give the side margins a shallow upward cup around the
+# salmon's compressed waist, rather than another flat shelf. These vertices
+# belong to the real lower-mandible mesh; there are no pasted lip curves.
+for vert in lower_jaw.data.vertices:
+    q=vert.co
+    if -2.11<q.x<-1.67 and q.z>0.69 and abs(q.y)>0.135:
+        q.z += 0.045*min(1.0,(abs(q.y)-0.135)/0.090)
+lower_jaw.data.update()
 for poly in lower_jaw.data.polygons:
     poly.use_smooth=True
 
@@ -310,7 +318,7 @@ def chisel_profile(co):
     seed=Vector((row*.853+2.31,col*1.71,co.y*.77+4.07))
     n=noise.noise(seed)
     n2=noise.noise(Vector((col*1.39,row*1.17,co.y*.6)))
-    if n < -0.22: return 0.0  # irregular gaps; avoid a repeating fish-scale grid
+    if n < -0.39: return 0.0  # irregular gaps, but not an almost empty carving
     center_u=0.50 + 0.20*n
     center_v=0.51 + 0.16*n2
     du=(u-col-center_u) / (0.32 + 0.09*abs(n2))
@@ -319,7 +327,7 @@ def chisel_profile(co):
     across=1.0-abs(dv)
     if along<=0 or across<=0: return 0.0
     # V-shaped cut with tapered ends; no rounded raised scale bumps.
-    return (0.013+0.007*abs(n))*along*across*across
+    return (0.019+0.011*abs(n))*along*across
 
 for vert in bear.data.vertices:
     p=vert.co.copy()
@@ -532,6 +540,39 @@ def fish_radius_at(y):
 
 # Salmon scales are cut into the body vertices above, not separate beads.\n\n# v5 fish-to-bear ratio: make the salmon 22% shorter, preserving the
 # sculpted tapered body and separate fins; don't turn it into a broad paddle.
+# v22: fish vertebral midline bends gently through the mouth. Both tail and
+# head move with the same real deformation; do not translate just the mesh
+# body while leaving fins/gills behind. The bite at y=0 remains stationary.
+def fish_bend_x(y):
+    return 0.070*math.sin(1.48*y)
+def fish_bend_z(y):
+    return 0.060*y + 0.039*y*y
+
+for ob in list(bpy.data.objects):
+    if ob.name in bear_names_before_fish:
+        continue
+    if ob.type=='MESH':
+        # Lofts/fins have full-source coordinates in their actual vertices;
+        # primitives such as sphere-eyes have local geometry + obj.location.
+        if abs(ob.location.y)<1.0e-8 and abs(ob.location.x)<1.0e-8:
+            for v in ob.data.vertices:
+                y=v.co.y
+                v.co.x+=fish_bend_x(y)
+                v.co.z+=fish_bend_z(y)
+            ob.data.update()
+        else:
+            y=ob.location.y
+            ob.location.x+=fish_bend_x(y)
+            ob.location.z+=fish_bend_z(y)
+    elif ob.type=='CURVE':
+        for sp in ob.data.splines:
+            if sp.type=='POLY':
+                for p in sp.points:
+                    y=p.co.y
+                    p.co.x+=fish_bend_x(y)
+                    p.co.z+=fish_bend_z(y)
+        ob.data.update()
+
 # Body objects have already been resized, so only process newly added fish.
 for ob in list(bpy.data.objects):
     if ob.name not in bear_names_before_fish:
