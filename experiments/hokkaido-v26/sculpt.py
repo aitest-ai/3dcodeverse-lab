@@ -190,6 +190,13 @@ fish.data.update()
 
 
 # --------------------------------------------------------------
+# Preserve the EXACT pre-v26 geometry as a true v25 A/B control.
+# The base v25 script's export was renamed to v26 below, so save this control
+# before applying any new jaw/paw/fish vertices.
+control=root/"v25_directional_sculpt.glb"
+bpy.ops.export_scene.gltf(filepath=str(control),export_format="GLB",
+                          export_apply=True,export_yup=True)
+assert control.stat().st_size>250000, "Missing baseline GLB"
 # V26 CONTACT AND ANATOMICAL PAW STUDY: localized high-poly edits
 # No free-standing cheek spheres, jaw strings, toe balls or texture fakery.
 # --------------------------------------------------------------
