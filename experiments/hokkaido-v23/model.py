@@ -120,23 +120,30 @@ parts.append(loft_x("UpperMuzzle_OneConnectedLip",[
 (-1.90,1.16,.31,.20),(-1.77,1.19,.25,.17)],bearwood))
 # Lower jaw is coupled behind the cheek but leaves an OPEN mouth at the front.
 parts.append(loft_x("LowerJaw_CuppedSingleWoodPiece",[
-(-2.382,.679,.083,.052),(-2.31,.689,.16,.067),
-(-2.16,.707,.24,.083),(-2.01,.744,.28,.110),
+(-2.392,.687,.073,.045),(-2.31,.699,.15,.066),
+(-2.16,.720,.23,.083),(-2.01,.747,.28,.116),
 (-1.83,.812,.29,.154),(-1.65,.88,.28,.17)],bearwood))
+# Two localized cheek-jaw catches are organically fused with the mandible.
+# A short, asymmetric C-shape holds the fish waist without a flat front tray.
+for side in (-1,1):
+    parts.append(uvball("IntegratedJawClamp_"+str(side),
+        (-2.251,side*.227,.780),(.145,.091,.109),bearwood))
 for side in (-1,1):
     # Big trapezoid upper legs fuse with torso. Toe mass merges into paw, not balls.
     for isfront,cx,footx in [(True,-.85,-1.04),(False,.66,.56)]:
         y=side*.44
         name=("Front" if isfront else "Rear")+("_L" if side<0 else "_R")
         parts.append(loft_z(name+"_BroadMuscularLeg",[
-        (.055,footx-.13,y,.285,.243),
-        (.13,footx-.1,y,.325,.257),
-        (.225,footx-.05,y,.325,.259),
-        (.39,cx-.055,y,.24,.225),
-        (.61,cx,y,.245,.236),
-        (.92,cx+.025,y*.96,.345,.314),
-        (1.14,cx+.03,y*.88,.36,.32),
-        (1.39,cx+.07,y*.83,.13,.12)],bearwood))
+        (.045,footx-.19,y,.164,.165),
+        (.098,footx-.15,y,.276,.238),
+        (.165,footx-.105,y,.307,.249),
+        (.243,footx-.045,y,.312,.247),
+        (.39,cx-.060,y,.218,.206),
+        (.59,cx-.015,y,.230,.225),
+        (.83,cx+.025,y*.97,.280,.290),
+        (1.055,cx+.03,y*.91,.356,.313),
+        (1.25,cx+.05,y*.86,.314,.292),
+        (1.40,cx+.07,y*.82,.125,.126)],bearwood))
     # Ears largely sunken into skull volume; no orbital buttons later.
     parts.append(uvball("EmbeddedEar_"+str(side),(-1.47,side*.406,1.568),
         (.133,.103,.137),bearwood))
@@ -164,6 +171,14 @@ for side in (-1,1):
     bpy.data.objects.remove(tool,do_unlink=True)
     uvball("CARVED_INSET_PUPIL_"+str(side),(-1.992,side*.331,1.387),
        (.019,.015,.017),inset,24,16)
+# Topology repair AFTER boolean socket sculpt: voxel remesh the body once
+# more so the last Boolean operations cannot leave open boundary fragments.
+bpy.ops.object.select_all(action='DESELECT')
+bear.select_set(True)
+bpy.context.view_layer.objects.active=bear
+bear.data.remesh_voxel_size=.015
+bpy.ops.object.voxel_remesh()
+for face in bear.data.polygons: face.use_smooth=True
 # Top brow, nose, jaw are already sculpted into bear before remesh.
 # Small triangular, bevelled wooden nose does not stick far forward.
 nose_v=[(-2.402,-.12,1.199),(-2.402,.12,1.199),(-2.425,0,1.094),
@@ -191,9 +206,9 @@ for j in range(len(sections)-1):
         refined.append(tuple((1-t)*x+t*y for x,y in zip(a,bb)))
 v=[];ff=[];N=52
 def fish_coords(y,rx,rz,a):
-    x=F_X+0.062*math.sin(y*1.4)+rx*math.cos(a)
+    x=F_X+0.077*math.sin(y*1.4)+rx*math.cos(a)
     # Nonplanar centerline; fish slopes down at head and rises toward tail.
-    z=F_Z+0.082*y+0.037*y*y+rz*math.sin(a)
+    z=F_Z+0.160*y+0.045*y*y+rz*math.sin(a)
     return x,y,z
 for y,rx,rz in refined:
     for k in range(N):
@@ -207,17 +222,17 @@ fish=mesh("SALMON_FULL_VOLUMETRIC_PROFILE",v,ff,salmonwood)
 # Gill cuts are real negative displacement, not separate opaque badges.
 for vert in fish.data.vertices:
     p=vert.co
-    baseline=F_X+.062*math.sin(p.y*1.4)
+    baseline=F_X+.077*math.sin(p.y*1.4)
     flank=abs(p.x-baseline)
     # Gill sits near fish head: the cut follows curvature through gill height.
     gy=-.935+.12*(p.z-.80)
     if -.99<p.y<-.74 and flank>.11:
-        cut=.009*math.exp(-((p.y-gy)/.028)**2)
+        cut=.018*math.exp(-((p.y-gy)/.030)**2)
         p.x-=math.copysign(cut, p.x-baseline)
 fish.data.update()
 
 def fish_at(y,r=.0):
-    return (F_X+.062*math.sin(y*1.4),y,F_Z+.082*y+.037*y*y+r)
+    return (F_X+.077*math.sin(y*1.4),y,F_Z+.160*y+.045*y*y+r)
 # Fish head faces are NOT flattened in the mouth direction.
 for side in (-1,1):
     y=-1.05
@@ -260,7 +275,7 @@ glb=OUT/"v23_highpoly_clay.glb"
 bpy.ops.export_scene.gltf(filepath=str(glb),export_format="GLB",
     export_apply=True,export_yup=True)
 assert glb.stat().st_size>250000, "GLB export missing geometry"
-report={"version":"v23","type":"real-blender-highpoly-clay-not-approved",
+report={"version":"v23b","type":"real-blender-highpoly-clay-not-approved",
     "torso_reference":"compact four-foot Hokkaido carved bear, no vendor models copied",
     "fish_axis":"crosswise along original Y; anatomically nonplanar body",
     "mouth_target":{"fish_center_z":fish_center,"fish_top":fish_top,
