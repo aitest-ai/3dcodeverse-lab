@@ -1,0 +1,94 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido bear with salmon v25 landmark-guided true high-poly chisel sculpt",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct inspection of matching-camera v24b and v25 true Blender Cycles renders, plus independent GLB trimesh verification",
+  "review_status": "rejected",
+  "source_commit": "963e97350614a4097ed61b8f02b5e547564ddf1f",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40888016815",
+  "model_sha256": "fa4c4f51b99e990e23561149ec8e15dcbb8997a26f8963c0db4dca1ee2e1d5b6",
+  "control_sha256": "a38f0e007e9d8184202f17f4d5eddacc946d595a1a54efb997fbda7a50940715",
+  "four_view_sha256": "8ea6b7236065766e3304164ed7cd1b6ba74ed787fa5aa1ff7596ef20ae772ffc",
+  "comparison_sha256": "f7551a263c4601871090c6bfe3f1f258efd48dacd74ac8c1228208bde60e6573",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.8,
+      "reason": "Same compact bear proportions as v24b, whose square shoulder transitions and heavy vertical legs remain recognizable yet unnatural."
+    },
+    "face_and_expression": {
+      "score": 2.7,
+      "reason": "A few face/upper-lower lip vertices are actually sculpted and fish-eye beads are pulled into the head; face remains simplified with button-like ear shapes."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2.3,
+      "reason": "Fish still reads as a crosswise lozenge/paddle lying in front of nose, without obvious anatomical hold from front and 3/4 views; visual blocker remains."
+    },
+    "carving_detail_and_wood": {
+      "score": 3.4,
+      "reason": "Clear improvement: visible oriented actual geometric fur gouges on back, shoulder, neck and flank. However patterned repetition and unfinished paws/head detail prevent hand-carved realism."
+    },
+    "paws_and_limbs": {
+      "score": 2.2,
+      "reason": "Still heavy cylindrical boots, without believable knuckle and toe anatomy. No improvement from added fur alone."
+    },
+    "multi_view_presentation": {
+      "score": 4.8,
+      "reason": "Genuine Blender Cycles renders of control and experiment under exactly matching cameras; hash-verified actual GLB and four-angle views."
+    }
+  },
+  "geometry_evidence": {
+    "blender_cycles_real_render": true,
+    "glb_meshes": 12,
+    "main_bear_vertices": 117120,
+    "bear_watertight": true,
+    "bear_connected_components": 1,
+    "salmon_body_vertices": 4420,
+    "salmon_watertight": true,
+    "directional_fur_paths_side": 335,
+    "back": 132,
+    "altered_side_vertices": 18338,
+    "altered_back_vertices": 3725,
+    "lip_sculpt_modified_vertices": 1929,
+    "gill_carved_vertices": 142,
+    "eye_recess_sculpt_vertices_each": 12,
+    "networkx_ci_dependency_missing_in_first_run": true,
+    "independent_trimesh_local_validation": "PASS"
+  },
+  "defects": [
+    {
+      "id": "KUMA-V25-001",
+      "severity": "blocker",
+      "part": "salmon jaw contact",
+      "finding": "Salmon still sits in front of the bear's snout; the mouth does not visually clamp the fish despite new lip vertex displacement.",
+      "required_fix": "Build a separate jaw/fish contact study using actual reference-matched head and fish silhouette; don't keep merely sculpting fine fur while the bite is wrong."
+    },
+    {
+      "id": "KUMA-V25-002",
+      "severity": "critical",
+      "part": "bear legs and feet",
+      "finding": "Strong, repeated cylindrical ankle and boot paw geometry remain visible in front and three-quarter views.",
+      "required_fix": "Re-sculpt ankle-knuckle-toe transition with guided front and side silhouette; preserve watertightness."
+    },
+    {
+      "id": "KUMA-V25-003",
+      "severity": "major",
+      "part": "wood carving",
+      "finding": "Direction-following chisel geometry is visible and superior to v24b; texture still sometimes reads as repeated comb strokes rather than varied handcrafted fur.",
+      "required_fix": "Keep actual geometry method, reduce regular repetition with localized regions and tapering, leave forehead/muzzle smooth."
+    },
+    {
+      "id": "KUMA-V25-004",
+      "severity": "major",
+      "part": "face and salmon details",
+      "finding": "Small visible improvements to eyes; actual facial structure, fins and snout require more anatomy.",
+      "required_fix": "Use profile and facial landmarks from verified reference images and eye sockets integrated into the fish mesh."
+    }
+  ],
+  "improvement_tasks": [
+    "PRESERVE v25 true geometric directional carving method as reusable component for future 3D modeling.",
+    "Do not promote v25 to models/hokkaido-bear/latest, despite a clearly better carved fur appearance.",
+    "Separate next development into a high-detail head/fish bite prototype plus a paw/ankle sculpt prototype.",
+    "Correct missing graph-engine dependency for GitHub Actions and rerun automated geometry gate; local independent trimesh already passed."
+  ],
+  "approved_for_game": false
+}
