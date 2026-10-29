@@ -1,0 +1,81 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido v23 separate original high-poly clay bear/salmon prototype",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct visual inspection of real Blender Cycles 4-view GLB image, compared to actual v22 Cycles image; additional trimesh mesh diagnostics",
+  "review_status": "rejected",
+  "source_commit": "cb1fd6135e45dfc29e797fb2139c7586a1c45e01",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40841841153",
+  "model_sha256": "1b0cea9d05a2ea3d284de686803e0ecb7e94f1ec9f1f7cd2130605b28d5c90bd",
+  "hero_sha256": "be4152cc661a93fc033de851fda4fa52ccc1ee745c416017628e8b6780464361",
+  "side_sha256": "0c62b6336bd0ed4a63b56124e30bd187d2774326a611c94652135b915b3ce428",
+  "sheet_sha256": "75d9cea3595eee35080a8765051462d57b9b22d2bbcae133fe18076b582378b6",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.5,
+      "reason": "Clean compact mass but still leg-and-body junctions look like flattened cylinders; silhouettes are less anatomically convincing than v22."
+    },
+    "face_and_expression": {
+      "score": 2.6,
+      "reason": "Tiny triangle nose and carved eye sockets; overall face is round toy-like and ears are applied-looking."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.9,
+      "reason": "Visible lower rim below fish in front view but no genuine legible bite; fish remains a long paddle/plank in silhouette."
+    },
+    "carving_detail_and_wood": {
+      "score": 1,
+      "reason": "Intentionally matte clay to isolate geometry, not a final wood sculpt; final carving quality cannot pass yet."
+    },
+    "paws_and_limbs": {
+      "score": 1.5,
+      "reason": "All four limbs look like blocky boot cylinders with no articulated toes, tendon-to-paw transitions or claws."
+    },
+    "multi_view_presentation": {
+      "score": 4.7,
+      "reason": "Actual 4-angle Cycles renders from reproducible 12-mesh GLB; detailed provenance and hash retained."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V23-001",
+      "severity": "blocker",
+      "part": "salmon mouth enclosure",
+      "finding": "Fish still lies across the bear's snout; actual 3D cross sections do not guarantee recognizable upper/lower mouth contact.",
+      "required_fix": "Introduce consistent lateral fish-head silhouette and reposition inner mouth opening so upper and lower carved muzzle surround fish section visibly from side/front."
+    },
+    {
+      "id": "KUMA-V23-002",
+      "severity": "critical",
+      "part": "anatomy",
+      "finding": "Fore/hind legs and foot bottoms are thick vertical extrusions; polished clay makes primitive construction obvious.",
+      "required_fix": "Reference-lock ankle/knuckle/toe silhouette and keep paws unified with legs during remesh."
+    },
+    {
+      "id": "KUMA-V23-003",
+      "severity": "critical",
+      "part": "mesh integrity",
+      "finding": "GLB main bear mesh is not watertight in trimesh (raw and vertex-welded), and decomposes into three connected components despite being labelled one connected high-poly form.",
+      "required_fix": "Repair boolean/voxel remesh mesh integrity and recheck actual output topology before texture baking."
+    },
+    {
+      "id": "KUMA-V23-004",
+      "severity": "major",
+      "part": "salmon geometry",
+      "finding": "Fish crosswise body remains visually straight, flat and thin in front view; fins are simplistic blades.",
+      "required_fix": "Use stronger asymmetrical bent centerline, enlarged head/gill landmark and tapered three-dimensional peduncle/tail."
+    }
+  ],
+  "diagnostics": {
+    "real_glb": true,
+    "real_cycles_four_views": true,
+    "mesh_count": 12,
+    "bear_highpoly_source_vertex_count": 87946,
+    "tool_note": "Trimesh GLB main bear geometry reports is_watertight=False; welded copy still false. These are geometry integrity warnings, not an artistic test."
+  },
+  "improvement_tasks": [
+    "DO NOT promote v23 over v22; independent new workflow is technically operable but artistic/mesh QA fail.",
+    "Preserve first v23 output as audit baseline. Build a second candidate only after repairing mesh integrity and fish/feet shape.",
+    "No external copyrighted mesh was cloned; reference photos used only for study."
+  ]
+}
