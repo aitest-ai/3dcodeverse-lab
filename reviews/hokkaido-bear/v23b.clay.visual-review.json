@@ -1,0 +1,78 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "V23b geometry-closure and jaw-curve trial; real Blender GLB",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct multiview visual check and trimesh GLB geometry analysis",
+  "review_status": "rejected",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40842650733",
+  "source_commit": "89a9776c918880d523b6f0e6a188d965c4777c78",
+  "model_sha256": "2fa7cc45ec27fc8575bff2dd657d3212343433ec7c0e23f210dc8fc662bee73e",
+  "hero_sha256": "e8556f50c07e2faa3698181a982eba14cd603f2a33877e9d51dbf217fc2a0be2",
+  "side_sha256": "bc2f749b5d197fdc8231a75b344105437e401da9c6ea73108e83e34a9a1fe9e8",
+  "sheet_sha256": "36697170b3852ab2743dba2071ad99430e03f2a8714f3fb4719e801a34ea1d0d",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 2.6,
+      "reason": "Four-legged silhouette remains toy-like, with thick column legs; front paw taper is marginally improved."
+    },
+    "face_and_expression": {
+      "score": 2.4,
+      "reason": "Additional jaw catches become two visible round globes, reducing the natural facial transition; upper snout remains simplistic."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2,
+      "reason": "Tail curves more strongly and does not float away from fin geometry, but salmon remains straight-looking across mouth and visually lies under the nose."
+    },
+    "carving_detail_and_wood": {
+      "score": 1,
+      "reason": "Clay phase deliberately omitted wood-carving, which cannot receive final approval."
+    },
+    "paws_and_limbs": {
+      "score": 1.8,
+      "reason": "Toe-to-sole geometry is rounder but still reads as four tubular boots, not sculpted paws."
+    },
+    "multi_view_presentation": {
+      "score": 4.7,
+      "reason": "True Blender Cycles all-four-views from a repeatable 12-mesh real GLB; hash verified."
+    }
+  },
+  "geometry_evidence": {
+    "glb_meshes": 12,
+    "bear_highpoly_vertices": 118272,
+    "bear_watertight": true,
+    "bear_connected_components": 1,
+    "salmon_body_watertight": true,
+    "method": "trimesh on exported GLB, re-welded copy also watertight",
+    "technical_progress": true,
+    "artistic_progress": "not demonstrated"
+  },
+  "defects": [
+    {
+      "id": "V23B-001",
+      "severity": "blocker",
+      "part": "jaw bites",
+      "finding": "New fused jaw catch geometry is visually two spherical lumps under the fish, rather than continuous carved lower jaw.",
+      "required_fix": "Do not add glued-on volumes. Use sculpt brushes or subD mesh with one joined lip and open mouth."
+    },
+    {
+      "id": "V23B-002",
+      "severity": "critical",
+      "part": "salmon silhouette",
+      "finding": "Fish remains a linear paddle, despite a mathematically stronger centerline curve.",
+      "required_fix": "Reference-match side silhouette and manually sculpt head, belly, narrow caudal peduncle and gill in high poly."
+    },
+    {
+      "id": "V23B-003",
+      "severity": "critical",
+      "part": "bear anatomy",
+      "finding": "Forelegs, hind legs and paws still resemble cylinders with rounded ends.",
+      "required_fix": "Replace ring loft / ellipsoid primitive foundation using a genuinely anatomical sculpt or multi-view matched base geometry."
+    }
+  ],
+  "improvement_tasks": [
+    "Mesh integrity SUCCESS: bear one watertight connected highpoly mesh and salmon body watertight. Preserve this technique.",
+    "Art quality FAILURE: stop adding spherical/cylindrical correction components; geometry closure and believable art are separate gates.",
+    "Next actual modeling must use multiview reference silhouettes and hand-defined sculptural anchor curves, not more parametric primitive tweaking.",
+    "Candidate quarantine; no promotion to models/hokkaido-bear/latest."
+  ]
+}
