@@ -181,7 +181,7 @@ jobs:
 
 
   preview_candidate:
-    name: Quarantine v20 per-run preview (never auto-approve)
+    name: Quarantine real per-run preview (never auto-approve)
     needs: build
     if: needs.build.result == 'success'
     runs-on: ubuntu-24.04
@@ -203,7 +203,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install -q 'Pillow>=10,<13'
-          DEST="experiments/hokkaido-v20/runs/$GITHUB_RUN_ID"
+          DEST="experiments/hokkaido-bear/runs/$GITHUB_RUN_ID"
           mkdir -p "$DEST"
           test -s candidate/hokkaido_bear_official_harness.glb
           test -s candidate/preview_00_sheet.png
@@ -232,11 +232,11 @@ jobs:
             'Method: official 3DCodeVerse Harness -> real Blender Cycles render' \
             'Rule: real geometry + art review must pass before promotion to models/hokkaido-bear/latest' \
             > "$DEST/STATUS.txt"
-          git add "$DEST"
+          git add -f "$DEST"
           if ! git diff --cached --quiet; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git commit -m "Quarantine v20 actual bear sculpt previews without approving release"
+            git commit -m "Quarantine actual bear sculpt preview for run $GITHUB_RUN_ID (unreviewed)"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
