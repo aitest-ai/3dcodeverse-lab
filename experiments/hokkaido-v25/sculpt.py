@@ -165,23 +165,17 @@ for side in (-1,1):
     # Relocate the old black bead to the genuine local surface and shrink it.
     obj=bpy.data.objects.get("SalmonTinyInsetEye_"+str(side))
     if obj is not None:
-        obj.location.x=x0-side*.007
-        obj.location.y=y0
-        obj.location.z=z0
-        obj.scale=(.006,.008,.008)
+        # The base has already rotated objects +90 degrees about Z:
+        # update world-space location, NOT their original local axes.
+        from mathutils import Matrix
+        world=Matrix.Translation(Vector((0,0,-.055))) @ Matrix.Rotation(math.pi/2,4,'Z')
+        obj.location=world @ Vector((x0-side*.007,y0,z0))
+        obj.scale=(.52,.52,.52)
 fish.data.update()
 
 # Etch 2 curved gills into the fish flank. Keep the fish surface closed.
 gill_affected=0
-for v in fish.data.vertices:
-    p=v.co
-    gy=-.82+.18*(p.z-.75) # near and behind the eye in the y/z profile
-    gy2=gy+.087
-    gap=min(abs(p.y-gy),abs(p.y-gy2))
-    if gap<.019 and .71<p.z<1.02 and .64<abs(p.x+2.197)<100:
-        # Fish x is near -2.2; use side-facing normal rather than an absolute-world-x gate.
-        pass
-# Actual flank-local displacement using mesh normals and side signs.
+# Flank-local displacement using mesh normals and side signs.
 for v in fish.data.vertices:
     p=v.co;n=v.normal
     yy=(p.y/.82)
