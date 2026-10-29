@@ -571,7 +571,8 @@ for ob in list(bpy.data.objects):
                     y=p.co.y
                     p.co.x+=fish_bend_x(y)
                     p.co.z+=fish_bend_z(y)
-        ob.data.update()
+        # Curve control-point edits are recognized automatically by Blender;
+        # bpy.types.Curve has no .update() method (v22 build regression).
 
 # Body objects have already been resized, so only process newly added fish.
 for ob in list(bpy.data.objects):
