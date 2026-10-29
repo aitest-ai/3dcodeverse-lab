@@ -1,0 +1,38 @@
+{
+  "workflow_run_id": 40814302144,
+  "workflow_url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40814302144",
+  "candidates": [
+    {
+      "name": "meshy_bear",
+      "page": "https://www.meshy.ai/ja/3d-models/%E6%9C%A8%E5%BD%AB%E3%82%8A%E3%81%AE%E7%86%8A%2C%20%E6%97%A5%E6%9C%AC%E3%81%AE%E5%B7%A5%E8%8A%B8%E5%93%81%2C%20%E9%AE%AD%E3%82%92%E5%92%A5%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B-0193a5a5-027c-7d36-89f8-a5c35105a5a6",
+      "source_license": "CC0 stated on community listing",
+      "access_policy": "Community model download can require paid account; do not circumvent.",
+      "http_status": 200,
+      "title": "木彫りの熊, 日本の工芸品, 鮭を咥えている – 無料3Dモデルをダウンロード | Meshy",
+      "public_page_captured": true,
+      "screenshot_sha256": "3cf9053742afa0d8865b33bf96df910710b73ffa036dc941c34fcd584eb7e434"
+    },
+    {
+      "name": "booth_bear",
+      "page": "https://booth.pm/ja/items/8884329",
+      "source_license": "Creator terms permit use but prohibit raw-asset redistribution",
+      "access_policy": "Paid ¥200; do not download without purchase.",
+      "http_status": 200,
+      "title": "【3Dモデル】木彫りの熊 Ver.3 - hokugo-wd - BOOTH",
+      "public_page_captured": true,
+      "screenshot_sha256": "398bef43a704752fdc7ffbff56177629f26a14d90cb4c25a2a3c69df7549184f"
+    },
+    {
+      "name": "sketchfab_scan",
+      "page": "https://sketchfab.com/3d-models/wood-carved-bear-d72978ac57d2494788dcdc7037496b14",
+      "source_license": "CC BY-NC",
+      "access_policy": "Non-commercial reference only; honor attribution.",
+      "http_status": 200,
+      "title": "Wood-carved bear　木彫りの熊 - Download Free 3D model by Honma (@sekizo) [d72978a]",
+      "public_page_captured": true,
+      "screenshot_sha256": "af2bdc047d69446c0d82ba6894d75bad467e335855757e8a454c30d18092adc4"
+    }
+  ],
+  "model_glb_acquired": false,
+  "shape_approved": false
+}
