@@ -87,7 +87,10 @@ jobs:
           p=pathlib.Path('candidate')
           probe=json.loads((p/'source_probe.json').read_text()) if (p/'source_probe.json').exists() else {"status":"missing"}
           approved=False
+          import os
           report={"stage":"shape-first/reference-scout","source":probe.get("source"),"acquisition":probe.get("status"),
+             "github_run_id":int(os.environ.get("GITHUB_RUN_ID","0")),
+             "github_run_url":f"https://github.com/{os.environ.get('GITHUB_REPOSITORY','')}/actions/runs/{os.environ.get('GITHUB_RUN_ID','')}",
              "model_sha256":probe.get("sha256"),"four_views_rendered":(p/"four_views.png").exists(),
              "aesthetic_verdict":"UNREVIEWED","approved_for_game":approved,
              "reason":"Human/vision review of shape, salmon-jaw contact and sculptural fidelity required. Source bear has no salmon."}
