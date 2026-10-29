@@ -1,0 +1,97 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "v28/v28b isolated bear head and salmon geometric sculpt experiment",
+  "review_status": "rejected",
+  "date": "2026-10-30",
+  "inspected": "Actual four-angle Blender Cycles images for v28 and corrected v28b, independently parsed GLBs, verified exact SHA-256",
+  "source_commit_initial": "825c04e47ad41ba3c97bf423f7ad9cf02736bfb7",
+  "source_commit_corrected": "3400d04976c6bc96d9ac172047b1247aef221e79",
+  "build_initial": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40973700703",
+  "build_corrected": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40974850367",
+  "hashes": {
+    "v28_glb": "2e992123e8803af039dad9c54a1fc18953bdbb1668f50989dfacae7ddaa6ee1a",
+    "v28_four_views": "3ecd44767c98575ba1ec40ca26a19266fae056421caa9a4b97e024b8229a7b2c",
+    "v28b_corrected_glb": "0c76537cfd7e5fd0d29eba78e3f90d6f31306a6d6b6a748cd8bbfa2d0c0c1fe3",
+    "v28b_corrected_four_views": "41fc60efaee8aea1516b9cf784cfa7a2ba72ed74478302042fc9884c6568ac47",
+    "same_angle_comparison": "d2cab8134774559737396fe7b9882c9881fd7ddeb007a8415a892db9b9c0d2d2"
+  },
+  "criteria": {
+    "bear_head_silhouette": {
+      "score": 2.5,
+      "reason": "Entire original head is more connected than previous patched jaw, but front remains rounded and toy-like with dark hollow eyes and applied-looking nose."
+    },
+    "salmon_head_body_silhouette": {
+      "score": 2.7,
+      "reason": "Fish visibly has a fuller belly and tapered tail, and v28b shortened the fish by 21%. Gill/eye anatomy and fin shapes remain simplified; body resembles a smooth toy fish."
+    },
+    "mouth_bite_legibility": {
+      "score": 2.1,
+      "reason": "From the front the upper muzzle rests above a horizontal fish; lower jaw is a separate visible lump below but reads poorly as a real C-shaped bite. Local proximity alone does not solve it."
+    },
+    "mesh_detail_and_integrity": {
+      "score": 4.7,
+      "reason": "Both genuine Blender GLB primary meshes watertight with one connected component each, except small boolean scrap removed from bear head; 4 true Cycles angles recorded."
+    }
+  },
+  "technical_validation": {
+    "method": "Blender 5.2.2 procedural mesh and real glTF GLB export plus Cycles render, independently checked with trimesh",
+    "status": "passed",
+    "bear_head": {
+      "watertight": true,
+      "components": 1,
+      "vertex_count": 45554
+    },
+    "salmon_body": {
+      "watertight": true,
+      "components": 1,
+      "vertex_count": 25532
+    },
+    "mesh_count": 8,
+    "fish_mesh_length_scaling": 0.79,
+    "small_boolean_scrap_vertices_removed": 8,
+    "contact": {
+      "waist_samples": 1490,
+      "nearest_source_units": 0.00034,
+      "median_source_units": 0.03947,
+      "near_03_source_units": 587
+    },
+    "note": "Geometry contact metrics are not proof that mouth clamp looks correct. Original v28 before v28b also passed watertight QA."
+  },
+  "artistic_review": {
+    "approved": false,
+    "scope": "ONLY isolated head and salmon; no legs, full torso, fur details or textures in this artifact",
+    "score_average_3_subjective_anatomy": 2.43,
+    "defects": [
+      {
+        "id": "V28B-001",
+        "severity": "blocker",
+        "part": "Bite",
+        "finding": "Bear still looks like it has its muzzle resting on top of the fish; lower jaw visible beneath but does not convincingly enclose fish.",
+        "fix": "Use cross-section profile-matched side and frontal anatomical mouth with negative space actually visible, not only numerical closest-vertex distance."
+      },
+      {
+        "id": "V28B-002",
+        "severity": "critical",
+        "part": "Bear face",
+        "finding": "Cranium still a round, toy-like loft. Large eye sockets appear empty and dark; muzzle and separate triangular nose are overly simplified.",
+        "fix": "Use multi-view artist sculpt and natural brow/ridge, not more consecutive rounded ring lofts."
+      },
+      {
+        "id": "V28B-003",
+        "severity": "critical",
+        "part": "Salmon",
+        "finding": "Shorter fish has improved head/fish length ratio but still stylized, with simple blocky fins and nearly invisible gill cuts.",
+        "fix": "Reference-trace real salmon lateral head profile, operculum, lower jaw, dorsal/adipose/pectoral fins, and muscular caudal peduncle."
+      },
+      {
+        "id": "V28B-004",
+        "severity": "resolved_technical",
+        "part": "Connectivity",
+        "finding": "Early v28b ear and multimat experiments failed (disconnected ear islands, multi-primitive fish seam); final corrected version removed dark spots and cleaned an isolated 8-vertex mesh fragment.",
+        "fix": "Retain cleanup while avoiding edits that reintroduce disconnected components."
+      }
+    ]
+  },
+  "promotion_allowed": false,
+  "next_stage": "Use verified multi-angle photographs/artist-guided digital sculpt, especially front/side bear jaw and realistic salmon head. New geometry must prove improvement in matching-perspective render before full-bear integration."
+}
