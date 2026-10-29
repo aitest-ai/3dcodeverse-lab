@@ -1,0 +1,5 @@
+Status: UNREVIEWED / NOT APPROVED FOR GAME
+Source commit: ed4c1d52ef452925913da3742382becb422f9053
+Action run: https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40836206685
+Method: official 3DCodeVerse Harness -> real Blender Cycles render
+Rule: real geometry + art review must pass before promotion to models/hokkaido-bear/latest
