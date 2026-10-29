@@ -215,7 +215,7 @@ for is_front,px in ((True,-1.04),(False,0.57)):
         for k in range(3):
             toe_y=side*0.435+(k-1)*0.130
             mass("FusedToePad_%s_%s_%d"%(int(is_front),side,k),
-                 (px-0.318,toe_y,0.112),(0.134,0.074,0.084))
+                 (px-0.318,toe_y,0.136),(0.134,0.074,0.076))
 
 # Fuse body and feet with voxel remeshing so there are no floating intersections.
 bpy.ops.object.select_all(action='DESELECT')
