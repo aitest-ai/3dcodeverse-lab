@@ -7,7 +7,7 @@ on:
       - .github/workflows/kibori-target-screen-v4.yml
       - scripts/woodcarving_candidate_screen_v4.py
 permissions:
-  contents: read
+  contents: write
 jobs:
   source-evidence:
     runs-on: ubuntu-24.04
@@ -32,3 +32,25 @@ jobs:
           path: candidate-audit/
           retention-days: 30
           if-no-files-found: warn
+
+      - name: Publish noncopyright summary for status tracking
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p experiments/kibori-target-v4
+          python - <<'PY'
+          import json,os,pathlib
+          source=pathlib.Path("candidate-audit/manifest.json")
+          manifest=json.loads(source.read_text()) if source.exists() else {"candidates":[],"error":"audit did not finish"}
+          compact=[]
+          for c in manifest.get("candidates",[]):
+              compact.append({k:c.get(k) for k in ["name","page","source_license","access_policy","http_status","title","public_page_captured","screenshot_sha256","error"] if c.get(k) is not None})
+          info={"workflow_run_id":int(os.environ.get("GITHUB_RUN_ID","0")),"workflow_url":"https://github.com/"+os.environ.get("GITHUB_REPOSITORY","")+"/actions/runs/"+os.environ.get("GITHUB_RUN_ID",""),"candidates":compact,"model_glb_acquired":False,"shape_approved":False}
+          pathlib.Path("experiments/kibori-target-v4/status.json").write_text(json.dumps(info,ensure_ascii=False,indent=2)+"\n")
+          PY
+          git add experiments/kibori-target-v4/status.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Record woodcarving source audit evidence status" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
