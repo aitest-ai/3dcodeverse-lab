@@ -195,6 +195,9 @@ nose=mesh("BEAR_TRIANGULAR_NOSE",nose_v,nose_f,inset)
 b=nose.modifiers.new("BevelNoseWood","BEVEL");b.width=.015;b.segments=2
 
 # LOCK THREE: full 3D salmon with head + deep belly; bend head and tail together.
+# Track bear geometry before fish creation so all fish pieces can be proportionally
+# resized as one coherent sculpt rather than leaving fins and eyes detached.
+pre_fish_names=set(bpy.data.objects.keys())
 F_X=-2.197
 F_Z=.895
 sections=[
@@ -216,7 +219,9 @@ v=[];ff=[];N=52
 def fish_coords(y,rx,rz,a):
     x=F_X+0.09*math.sin(y*1.37)+rx*math.cos(a)
     # Nonplanar centerline; fish slopes down at head and rises toward tail.
-    z=F_Z+0.160*y+0.045*y*y+rz*math.sin(a)
+    # Increase fish belly and head depth *outside* the compressed bite waist.
+    belly=1.26-0.26*math.exp(-((y)/.29)**2)
+    z=F_Z+0.160*y+0.045*y*y+rz*belly*math.sin(a)
     return x,y,z
 for y,rx,rz in refined:
     for k in range(N):
@@ -264,6 +269,19 @@ for side in (-1,1):
       (fish_at(-.48)[0]+side*.16,-.48,fish_at(-.48)[2]-.06)
     ],finwood,.023)
 
+# v24b: proportion-locked salmon: shorten length, not width/height. The same
+# 0.82 longitudinal factor applies to real fish body, tail, all fins, eye
+# primitives; mouth-center y=0 remains fixed. Avoid disjoint accessories.
+for ob in list(bpy.data.objects):
+    if ob.name in pre_fish_names: continue
+    if ob.type=='MESH':
+        # UV sphere eyes are positioned by object.location; mesh body and fins
+        # are positioned by individual mesh vertices in local space.
+        ob.location.y*=0.82
+        for vertex in ob.data.vertices:
+            vertex.co.y*=0.82
+        ob.data.update()
+
 # Sanity checks on the sculpt, before scene rotation or image rendering.
 jaw_top=.711+.093
 fish_center=fish_at(0)[2]
@@ -283,7 +301,7 @@ glb=OUT/"v24_highpoly_shape.glb"
 bpy.ops.export_scene.gltf(filepath=str(glb),export_format="GLB",
     export_apply=True,export_yup=True)
 assert glb.stat().st_size>250000, "GLB export missing geometry"
-report={"version":"v24","type":"real-blender-highpoly-clay-not-approved",
+report={"version":"v24b","type":"real-blender-highpoly-clay-not-approved",
     "torso_reference":"compact four-foot Hokkaido carved bear, no vendor models copied",
     "fish_axis":"crosswise along original Y; anatomically nonplanar body",
     "mouth_target":{"fish_center_z":fish_center,"fish_top":fish_top,
