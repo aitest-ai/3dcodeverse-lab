@@ -1,0 +1,106 @@
+name: Hokkaido v24 Reference-Anchored Shape (CANDIDATE)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v24/model.py
+      - .github/workflows/hokkaido-v24-shape.yml
+permissions:
+  contents: read
+jobs:
+  clay-sculpt:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install genuine Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-delay 4 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Build v24 anatomy and salmon silhouette without glued-on jaw balls
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p candidate
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python experiments/hokkaido-v24/model.py 2>&1 | tee candidate/build.log
+          test -s candidate/v24_highpoly_shape.glb
+          test -s candidate/shape_report.json
+          sha256sum candidate/v24_highpoly_shape.glb > candidate/source_model.sha256
+      - name: True Blender Cycles four-angle orthographic comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install 'Pillow>=10,<13' 'trimesh>=4,<5'
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- candidate/v24_highpoly_shape.glb candidate \
+            2>&1 | tee candidate/render.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          import json,hashlib,os
+          d=Path("candidate")
+          files=["view_front_right_high.png","view_front.png","view_back_left_high.png","view_top.png"]
+          sheet=Image.new("RGB",(1920,1440),(235,238,241))
+          for i,name in enumerate(files):
+              img=Image.open(d/name).convert("RGB")
+              assert img.width>=640 and img.height>=480 and img.getbbox()
+              sheet.paste(img.resize((960,720)),((i%2)*960,(i//2)*720))
+          sheet.save(d/"four_views.png",compress_level=5)
+          sheet.thumbnail((960,720))
+          sheet.save(d/"mobile_preview.jpg",quality=80,optimize=True)
+          report=json.loads((d/"shape_report.json").read_text())
+          report["sha256"]=hashlib.sha256((d/"v23_highpoly_clay.glb").read_bytes()).hexdigest()
+          report["rendered_from_real_glb"]=True
+          report["github_run_url"]="https://github.com/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"]
+          report["approved_for_game"]=False
+          (d/"shape_report.json").write_text(json.dumps(report,indent=2))
+          PY
+      - name: Actual image and source audit (no automatic art pass)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib,struct,json,hashlib
+          root=pathlib.Path("candidate")
+          path=root/"v23_highpoly_clay.glb"
+          with path.open("rb") as f:
+            magic,version,size,chunk,kind=struct.unpack("<IIIII",f.read(20))
+            assert magic==0x46546c67 and version==2 and size==path.stat().st_size
+            assert kind==0x4e4f534a
+            doc=json.loads(f.read(chunk))
+          assert len(doc.get("meshes",[]))>=4,"Unexpected low mesh count"
+          for n in ["view_front.png","view_front_right_high.png","view_back_left_high.png","view_top.png"]:
+            assert (root/n).stat().st_size>12000
+          # Genuinely inspect mesh manifoldness: art acceptance stays separate.
+          import trimesh
+          scene=trimesh.load(str(path),force="scene")
+          meshes=[(n,g) for n,g in scene.geometry.items() if hasattr(g,"is_watertight")]
+          bear_list=[(n,g) for n,g in meshes if "BEAR_CONNECTED" in n or "Torso_OneHeavyVolume" in n]
+          if not bear_list:
+            bear_list=sorted(meshes,key=lambda item:len(item[1].vertices),reverse=True)[:1]
+          main_bear_watertight=bool(bear_list and bear_list[0][1].is_watertight)
+          status={"actual_glb":True,"actual_cycles_four_views":True,"mesh_count":len(doc["meshes"]),
+            "bear_watertight":main_bear_watertight,"approved_for_game":False,
+            "sha256":hashlib.sha256(path.read_bytes()).hexdigest(),
+            "artistic_result":"UNREVIEWED",
+            "reason":"Visual silhouette and bite assessment must use actual rendered images."}
+          (root/"QA.json").write_text(json.dumps(status,indent=2))
+          print(status)
+          PY
+      - name: Preserve authentic GLB and all diagnostics even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-v24-highpoly-UNREVIEWED
+          path: candidate/
+          retention-days: 30
+          if-no-files-found: warn
