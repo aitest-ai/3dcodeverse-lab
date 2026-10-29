@@ -32,7 +32,7 @@ jobs:
           set -euo pipefail
           mkdir -p candidate
           blender --background --factory-startup --threads 4 --python-exit-code 1 \
-            --python experiments/hokkaido-v25/sculpt.py 2>&1 | tee candidate/build.log
+            --python experiments/hokkaido-v26/sculpt.py 2>&1 | tee candidate/build.log
           test -s candidate/v25_directional_sculpt.glb
           test -s candidate/v26_bite_paw_sculpt.glb
           test -s candidate/sculpt_report.json
