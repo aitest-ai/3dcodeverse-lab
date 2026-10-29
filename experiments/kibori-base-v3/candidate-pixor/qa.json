@@ -1,0 +1,12 @@
+{
+  "stage": "shape-first/reference-scout",
+  "source": "https://pixor.art/library/creatures/bear/",
+  "acquisition": "candidate_unreviewed",
+  "github_run_id": 40800776323,
+  "github_run_url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40800776323",
+  "model_sha256": "0e4098c297f93b05adbc589a717f91241836f198fdee48a0dec94a0d782f9a68",
+  "four_views_rendered": true,
+  "aesthetic_verdict": "UNREVIEWED",
+  "approved_for_game": false,
+  "reason": "Human/vision review of shape, salmon-jaw contact and sculptural fidelity required. Source bear has no salmon."
+}

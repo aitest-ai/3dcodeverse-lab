@@ -1,0 +1,21 @@
+{
+  "source": "https://pixor.art/library/creatures/bear/",
+  "license_notice": "Source webpage states CC0; visually verify provenance before derivative publication",
+  "status": "candidate_unreviewed",
+  "attempts": [
+    {
+      "page": "https://pixor.art/library/creatures/bear/",
+      "html_bytes": 166876,
+      "candidate_links": [
+        "https://pixor.art/library/files/bear/pixor-library-bear.glb"
+      ]
+    },
+    {
+      "candidate": "https://pixor.art/library/files/bear/pixor-library-bear.glb",
+      "size": 65300,
+      "glb": true
+    }
+  ],
+  "sha256": "0e4098c297f93b05adbc589a717f91241836f198fdee48a0dec94a0d782f9a68",
+  "size": 65300
+}
