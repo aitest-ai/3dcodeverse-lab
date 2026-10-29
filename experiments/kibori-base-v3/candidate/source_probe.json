@@ -1,0 +1,27 @@
+{
+  "source": "https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5",
+  "license_notice": "Source webpage states CC0; visually verify provenance before derivative publication",
+  "status": "candidate_unreviewed",
+  "attempts": [
+    {
+      "page": "https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5",
+      "html_bytes": 49572,
+      "candidate_links": [
+        "https://www.innerscene.com/downloads",
+        "https://www.innerscene.com/api/library/brown-bear-7da82cb5/download"
+      ]
+    },
+    {
+      "candidate": "https://www.innerscene.com/downloads",
+      "size": 33722,
+      "glb": false
+    },
+    {
+      "candidate": "https://www.innerscene.com/api/library/brown-bear-7da82cb5/download",
+      "size": 8956948,
+      "glb": true
+    }
+  ],
+  "sha256": "94929b0997b2508bb36242323468ea1ad45872693791275c3e93898215a19f50",
+  "size": 8956948
+}

@@ -1,0 +1,10 @@
+{
+  "stage": "shape-first/reference-scout",
+  "source": "https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5",
+  "acquisition": "candidate_unreviewed",
+  "model_sha256": "94929b0997b2508bb36242323468ea1ad45872693791275c3e93898215a19f50",
+  "four_views_rendered": true,
+  "aesthetic_verdict": "UNREVIEWED",
+  "approved_for_game": false,
+  "reason": "Human/vision review of shape, salmon-jaw contact and sculptural fidelity required. Source bear has no salmon."
+}
