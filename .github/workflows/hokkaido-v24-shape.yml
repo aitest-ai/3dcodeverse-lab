@@ -58,7 +58,7 @@ jobs:
           sheet.thumbnail((960,720))
           sheet.save(d/"mobile_preview.jpg",quality=80,optimize=True)
           report=json.loads((d/"shape_report.json").read_text())
-          report["sha256"]=hashlib.sha256((d/"v23_highpoly_clay.glb").read_bytes()).hexdigest()
+          report["sha256"]=hashlib.sha256((d/"v24_highpoly_shape.glb").read_bytes()).hexdigest()
           report["rendered_from_real_glb"]=True
           report["github_run_url"]="https://github.com/"+os.environ["GITHUB_REPOSITORY"]+"/actions/runs/"+os.environ["GITHUB_RUN_ID"]
           report["approved_for_game"]=False
@@ -71,7 +71,7 @@ jobs:
           python - <<'PY'
           import pathlib,struct,json,hashlib
           root=pathlib.Path("candidate")
-          path=root/"v23_highpoly_clay.glb"
+          path=root/"v24_highpoly_shape.glb"
           with path.open("rb") as f:
             magic,version,size,chunk,kind=struct.unpack("<IIIII",f.read(20))
             assert magic==0x46546c67 and version==2 and size==path.stat().st_size
