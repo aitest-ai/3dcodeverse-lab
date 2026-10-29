@@ -109,6 +109,9 @@ jobs:
           cp candidate/qa.json experiments/kibori-base-v3/candidate/qa.json
           if test -f candidate/source_probe.json; then cp candidate/source_probe.json experiments/kibori-base-v3/candidate/source_probe.json; fi
           if test -f candidate/four_views.png; then cp candidate/four_views.png experiments/kibori-base-v3/candidate/four_views.png; fi
+          for pic in view_front_right_high.png view_front.png view_back_left_high.png view_top.png; do
+            if test -f "candidate/$pic"; then cp "candidate/$pic" "experiments/kibori-base-v3/candidate/$pic"; fi
+          done
           printf '%s\n' 'Candidate only. Never use as approved sculpt or game release.' > experiments/kibori-base-v3/candidate/STATUS.txt
           git add experiments/kibori-base-v3/candidate
           if ! git diff --cached --quiet; then
