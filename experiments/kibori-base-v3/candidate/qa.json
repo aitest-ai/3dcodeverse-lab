@@ -2,6 +2,8 @@
   "stage": "shape-first/reference-scout",
   "source": "https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5",
   "acquisition": "candidate_unreviewed",
+  "github_run_id": 40800062847,
+  "github_run_url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40800062847",
   "model_sha256": "94929b0997b2508bb36242323468ea1ad45872693791275c3e93898215a19f50",
   "four_views_rendered": true,
   "aesthetic_verdict": "UNREVIEWED",
