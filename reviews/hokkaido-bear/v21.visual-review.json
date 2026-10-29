@@ -1,0 +1,75 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido salmon-bearing wood-carved bear v21 real 3DCodeVerse GLB",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct inspection of actual v20-v21 comparison and actual v21 4-view Blender Cycles renders; not AI-generated illustrations",
+  "review_status": "rejected",
+  "source_commit": "ed4c1d52ef452925913da3742382becb422f9053",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40836206685",
+  "model_sha256": "7d6cee674c0df372a6446ac7090eaf11fb19aef58f0ed527d59caa7343456881",
+  "hero_sha256": "50168cc27d902ae1699877c968cc529921a3ad164c24f0fafd081e3c5c046670",
+  "side_sha256": "04c256967a9baddc3db9d01c437e67d2138d2494ed67f8e8c9f573fba4eccf4c",
+  "sheet_sha256": "fe57662461115ae05cc4cf9a570bc2c8d38484e203ea6c2fddea7ac5e0d44e4c",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 3,
+      "reason": "Body is recognizably a quadruped bear, yet shoulders and legs are rigid and back has an artificial flat shell."
+    },
+    "face_and_expression": {
+      "score": 2.5,
+      "reason": "Smaller triangulated nose removes the v20 boar-like oval, and fewer pasted facial lines; ears and eyes still feel mechanically assembled."
+    },
+    "salmon_shape_and_bite": {
+      "score": 1.8,
+      "reason": "Even after fuller fish head and engraved gill, fish is a long flat plank directly in front of muzzle. Lower bite is still barely visible from front."
+    },
+    "carving_detail_and_wood": {
+      "score": 1.8,
+      "reason": "Scalloped repeating ripples reduced, but new sparse blade cuts are too weak against a featureless flat back shell; no convincing anatomical fur direction."
+    },
+    "paws_and_limbs": {
+      "score": 2.8,
+      "reason": "Embedded paw toes remain, but forelimbs and rear legs are too cylindrical and large; feet read as heavy boots."
+    },
+    "multi_view_presentation": {
+      "score": 4.6,
+      "reason": "Actual 1920 x 1440 four-view comparison sheet and authentic official-Harness GLB inspected, each asset SHA-256 recorded."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V21-001",
+      "severity": "blocker",
+      "part": "bear jaw/salmon joint",
+      "finding": "Front and three-quarter Cycles renders still show a broad fish floating across/under nose with insufficient upper-lower jaw enclosure.",
+      "required_fix": "Rebuild the bite as a single spatially coherent mouth with visible jaw silhouette from the front; validate by side and 3/4 actual GLB renders."
+    },
+    {
+      "id": "KUMA-V21-002",
+      "severity": "critical",
+      "part": "fish silhouette",
+      "finding": "Long, almost flat fish with plank-like head and rectangular flank; fish eye and gill details barely read.",
+      "required_fix": "Curve fish centerline, add asymmetric dorsal-belly profile and prominent anatomical head/gill, eliminate obvious fin-plate intersections."
+    },
+    {
+      "id": "KUMA-V21-003",
+      "severity": "critical",
+      "part": "wood sculpt",
+      "finding": "V21 removed uniform stamps but leaves large smooth flat shell on back, with sparse stray straight engravings.",
+      "required_fix": "Sculpt fur groups following shoulder-to-flank anatomy, not only random sparse surface cuts or material."
+    },
+    {
+      "id": "KUMA-V21-004",
+      "severity": "major",
+      "part": "bear limbs",
+      "finding": "Leg cylinders still look like boots and feet have spherical toe clusters.",
+      "required_fix": "Reshape shoulders, wrists, paw pads as integrated anatomical slopes and carve knuckles in primary mesh."
+    }
+  ],
+  "improvement_tasks": [
+    "Do NOT promote v21 to models/hokkaido-bear/latest; technically valid but visually failed.",
+    "V20-to-v21 improvement includes triangular nose and fewer glued lines, but more bland torso and unchanged fish/bite structure.",
+    "Use actual silhouette/sketch-lock of the bear jaw and non-straight fish before new wood material passes.",
+    "Avoid pixor candidate primitive base; its four-view look was more toy-like, not a valid quality improvement."
+  ]
+}
