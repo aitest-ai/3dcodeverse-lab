@@ -1,0 +1,102 @@
+name: Hokkaido v28 Independent Head Salmon Geometry (UNREVIEWED)
+on:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v28/head_fish.py
+      - .github/workflows/hokkaido-v28-head-salmon.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  head-and-salmon:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --retry-delay 4 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Build real independent bear head + salmon GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p candidate
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python experiments/hokkaido-v28/head_fish.py 2>&1 | tee candidate/build.log
+          test -s candidate/v28_head_salmon_real.glb
+          test -s candidate/shape_report.json
+          sha256sum candidate/v28_head_salmon_real.glb > candidate/source_model.sha256
+      - name: Real Blender Cycles four-view anatomy inspection
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'Pillow>=10,<13' 'trimesh>=4,<5' 'networkx>=3,<5'
+          mkdir -p candidate/views
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/v28_head_salmon_real.glb candidate/views 2>&1 | tee candidate/render.log
+          python - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          import json
+          root=Path('candidate')
+          views=root/'views'
+          files=['view_front_right_high.png','view_front.png','view_back_left_high.png','view_top.png']
+          sheet=Image.new('RGB',(1920,1440),(235,236,240))
+          for i,n in enumerate(files):
+              im=Image.open(views/n).convert('RGB')
+              assert im.size==(960,720),(n,im.size)
+              sheet.paste(im,((i%2)*960,(i//2)*720))
+          sheet.save(root/'v28_four_views.png',compress_level=4)
+          mobile=sheet.copy();mobile.thumbnail((960,720))
+          mobile.save(root/'v28_mobile.jpg',quality=82,optimize=True)
+          PY
+      - name: Verify exported mesh topology and measurable contact
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          import trimesh
+          root=Path('candidate')
+          report=json.loads((root/'shape_report.json').read_text())
+          path=root/'v28_head_salmon_real.glb'
+          scene=trimesh.load(str(path),force='scene')
+          meshes=[(n,g) for n,g in scene.geometry.items() if hasattr(g,'vertices')]
+          assert len(meshes)>=4,meshes
+          meshes.sort(key=lambda x:len(x[1].vertices),reverse=True)
+          main=meshes[:2]
+          result={
+            'mesh_count':len(meshes),
+            'two_largest_meshes':[{'name':n,'vertices':len(g.vertices),
+                'watertight':bool(g.is_watertight),
+                'connected_parts':len(g.split(only_watertight=False))}
+                for n,g in main],
+            'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+            'bite_contact':report['contact'],
+            'real_glb':True,'real_cycles_renders':True,
+            'art_status':'UNREVIEWED','approved_for_game':False
+          }
+          (root/'QA.json').write_text(json.dumps(result,indent=2))
+          print(json.dumps(result,indent=2))
+          assert all(g.is_watertight and len(g.split(only_watertight=False))==1 for _,g in main),result
+          assert report['contact']['waist_samples']>=24
+          PY
+      - name: Quarantine all candidate files including failures
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hokkaido-v28-independent-head-fish-UNREVIEWED
+          path: candidate/
+          if-no-files-found: warn
+          retention-days: 30
