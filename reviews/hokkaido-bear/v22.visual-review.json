@@ -1,0 +1,76 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Traditional Hokkaido carved bear biting salmon v22 - real Harness GLB with Blender Cycles",
+  "inspected_on": "2026-10-29",
+  "reviewer": "ChatGPT direct visual inspection of actual v22 Blender Cycles multiview and v21/v22 comparison, not image-generation",
+  "review_status": "rejected",
+  "source_commit": "4fcb38eb4e33c2d08653bba4736cdd7c9f7507e3",
+  "github_actions_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40837739277",
+  "model_sha256": "5e9fc6244c99610df0b972cb7cffd9dea295ac1fa07894d7641ca49f506a81cd",
+  "hero_sha256": "726f29b1df4b0dcb19cb755969bce4938cf554d2630de2a7387468903b310a28",
+  "side_sha256": "b8ca420d1fdeac1ea54663241d2a6433913fad52cab86d6a2afa1942cec0a579",
+  "sheet_sha256": "f52fde85a5f146604af1efc6f12314f41047512118f4469415610b54bce3fe3b",
+  "criteria": {
+    "bear_anatomy_and_silhouette": {
+      "score": 3,
+      "reason": "Quadruped silhouette remains recognizable, but shoulders and back resemble a rigid shell and thigh-to-paw transitions are not convincingly sculpted."
+    },
+    "face_and_expression": {
+      "score": 2.5,
+      "reason": "Small triangular dark nose is better than v20, but snout and eye/ear anatomical structure still looks synthetic."
+    },
+    "salmon_shape_and_bite": {
+      "score": 2,
+      "reason": "Fish tail and the head-to-body alignment bend together rather than detach, but the near-front fish still presents as a flat horizontal plank and lower jaw clamp is visually ambiguous."
+    },
+    "carving_detail_and_wood": {
+      "score": 2,
+      "reason": "Higher roughness removes part of the waxy shine; deepened cuts now resemble irregular shallow dents instead of directional blade-carved fur."
+    },
+    "paws_and_limbs": {
+      "score": 2.7,
+      "reason": "Feet touch ground without floating parts; paws and forelegs still read as rounded boots, with only weak carved digit anatomy."
+    },
+    "multi_view_presentation": {
+      "score": 4.6,
+      "reason": "Real Blender Cycles front/three-quarter/rear/top renders made from the exact 3DCodeVerse-Harness-produced GLB, captured and compared against v21."
+    }
+  },
+  "defects": [
+    {
+      "id": "KUMA-V22-001",
+      "severity": "blocker",
+      "part": "mouth-to-fish bite",
+      "finding": "Even after raised jaw edge, fish still appears held against the nose, without a visible bite joint from the front or front-right camera.",
+      "required_fix": "Stop moving lip/mesh endpoints locally; remodel the whole high-poly muzzle, mouth gap and jaw around an explicit fish intersection profile verified in orthographic front/side."
+    },
+    {
+      "id": "KUMA-V22-002",
+      "severity": "critical",
+      "part": "chisel surface",
+      "finding": "Deeper stochastic normal displacement produces pitting rather than recognizable grain-following chiselled fur.",
+      "required_fix": "Define long directional cutting strokes attached to shoulder, belly and flank anatomy, and visually inspect a true high-poly carved sculpt before texture baking."
+    },
+    {
+      "id": "KUMA-V22-003",
+      "severity": "critical",
+      "part": "fish shape",
+      "finding": "A curved centerline is a measurable improvement but head, gill and fins still lack the strong landmarks of carved salmon.",
+      "required_fix": "Use reference-locked front/side fish profiles and visible fish-head gill plates; refine volumetric anatomy before wood materials."
+    },
+    {
+      "id": "KUMA-V22-004",
+      "severity": "major",
+      "part": "bear anatomy",
+      "finding": "Blocky back, raised cheeks, columnar limbs and boot-like paws still cap realism.",
+      "required_fix": "Rebuild base anatomy from verified silhouette references, rather than repeatedly deforming the existing primitive-style loft."
+    }
+  ],
+  "improvement_tasks": [
+    "Successfully fixed Blender Curve.update regression; real v22 GLB generated and all four Cycles views rendered. This is technical success only.",
+    "No promotion to latest allowed while blocker/critical defects persist. Continue fail-closed.",
+    "Do not keep simply increasing cut depth or random noise; the new pockmarks are not real chisel cuts.",
+    "Next modeling track should start with reference-locked silhouette and jaw/fish assembly as distinct high-poly anatomical forms, before retopology, wood shader, or high-res texture.",
+    "Use actual reference photos/museum craftsmanship descriptions; never claim they directly authorize reusing a third-party copyrighted model."
+  ]
+}
