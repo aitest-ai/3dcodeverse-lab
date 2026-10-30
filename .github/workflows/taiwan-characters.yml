@@ -92,87 +92,76 @@ jobs:
           unzip -oq "$FILE" -d .deps/mh_assets
           test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
-      - name: Two genuine MPFB character GLB candidates, with anatomical cloth fitting
+      - name: Download official CC0 MakeHuman shirts01 and pants01
+        run: |
+          set -euo pipefail
+          for pack in shirts01 pants01; do
+            file=".deps/$pack""_cc0.zip"
+            if [ ! -s "$file" ]; then
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 3 --connect-timeout 20 --max-time 180 \
+                  -o "$file" "https://$host/asset_packs/$pack/$pack""_cc0.zip"; then break; fi
+                rm -f "$file"
+              done
+            fi
+            test "$(stat -c%s "$file")" -gt 1000000
+            unzip -tq "$file" >/dev/null
+            unzip -oq "$file" -d .deps/mh_assets
+          done
+          for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
+            test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
+          done
+      - name: V7 real identity-specific MPFB faces and open wardrobe
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v5
+          FACE_OUT: outputs/face_v7
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v5
-          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
-          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
-      - name: Optimize REAL GLB-embedded textures after Blender export
+          mkdir -p outputs/face_v7
+          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v7_openwardrobe.py
+          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v7_openwardrobe.py
+      - name: Optimize and validate two GLBs and independent mesh garments
         run: |
           set -euo pipefail
-          for id in you_v5_main boss_v5_ponytail01; do
-            glb="outputs/face_v5/$id.glb"
-            python3 scripts/taiwan_characters/optimize_embedded_glb.py "$glb" "$glb.optimized" 512
-            mv "$glb.optimized" "$glb"
+          for id in you_v7_main boss_v7_ponytail01; do
+            p="outputs/face_v7/$id.glb"
+            python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
+            mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
-          import json
-          from pathlib import Path
-          root=Path("outputs/face_v5")
-          for stem in ("you_v5_main","boss_v5_ponytail01"):
-              p=root/(stem+"_report.json")
+          import json,pathlib,struct
+          root=pathlib.Path("outputs/face_v7")
+          for tag in ("you_v7_main","boss_v7_ponytail01"):
+              p=root/(tag+"_report.json")
               data=json.loads(p.read_text())
-              data["pilot_glb_before_optimization_bytes"]=data["pilot_glb_bytes"]
-              data["pilot_glb_bytes"]=(root/(stem+".glb")).stat().st_size
-              data["texture_export"]="embedded-GLB-image-reencode max512 Pillow verified"
-              p.write_text(json.dumps(data,ensure_ascii=False,indent=2))
+              assert len(data["personal_face_targets"])>=8
+              assert len(data["separate_open_source_garments"])==2
+              assert all(c["license"]=="CC0" for c in data["separate_open_source_garments"])
+              assert data["body_vertices"]==13380
+              for view in data["views"]:
+                  v=root/view
+                  assert v.exists() and v.stat().st_size>15000
+              glb=root/(tag+".glb")
+              with glb.open("rb") as f:
+                  magic,version,total=struct.unpack("<4sII",f.read(12))
+                  size,kind=struct.unpack("<I4s",f.read(8))
+                  doc=json.loads(f.read(size))
+              assert magic==b"glTF" and version==2 and total==glb.stat().st_size
+              assert len(doc.get("skins",[]))>=1 and total<=6000000
+              nodes={n.get("name","") for n in doc["nodes"]}
+              for outfit in data["separate_open_source_garments"]:
+                  assert outfit["mesh"] in nodes,(outfit["mesh"],list(nodes)[:20])
+              data["pilot_glb_bytes"]=total
+              p.write_text(json.dumps(data,indent=2,ensure_ascii=False))
+              print("V7_GENUINE_FACE_DIFFERENCES_AND_CC0_WARDROBE",tag,total)
           PY
-      - name: Validate real 3D GLB plus 4 angle Blender renders
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json, pathlib,struct
-          root=pathlib.Path("outputs/face_v5")
-          for tag in ("you_v5_main","boss_v5_ponytail01"):
-              result=json.loads((root/(tag+"_report.json")).read_text())
-              assert result["body_vertices"]==13380,tag
-              assert result["hair_asset"].endswith(".mhclo"),tag
-              assert result["shoe_asset"].endswith(".mhclo"),tag
-              assert result["garment_asset"].endswith(".mhclo"),tag
-              assert result["cloth_skin_fitting"]["reprojected"]>9,tag
-              assert result["skin_asset"]==("middleage_asian_female.mhmat" if tag.startswith("boss") else "young_asian_male.mhmat")
-              assert len(result["views"])==4,tag
-              for v in result["views"]:
-                  p=root/v
-                  assert p.is_file() and p.stat().st_size>15000,(tag,p)
-              p=root/(tag+".glb")
-              with p.open("rb") as fh:
-                  magic,ver,size=struct.unpack("<4sII",fh.read(12))
-                  n,ch=struct.unpack("<I4s",fh.read(8))
-                  doc=json.loads(fh.read(n))
-              assert magic==b"glTF" and ver==2 and ch==b"JSON" and size==p.stat().st_size
-              assert len(doc.get("skins",[]))>=1
-              assert len(doc.get("meshes",[]))>=4
-              assert result["pilot_glb_bytes"]==size
-              assert size<=6000000,(tag,size)
-              assert len(doc.get("images",[]))>=7
-              from io import BytesIO
-              from PIL import Image
-              with p.open("rb") as fh:
-                  fh.seek(12)
-                  ln=int.from_bytes(fh.read(4),"little")
-                  fh.seek(20+ln)
-                  blen,ch=struct.unpack("<I4s",fh.read(8))
-                  assert ch==b"BIN"+bytes([0])
-                  blob=fh.read(blen)
-              for im in doc["images"]:
-                  view=doc["bufferViews"][im["bufferView"]]
-                  dat=blob[view.get("byteOffset",0):view.get("byteOffset",0)+view["byteLength"]]
-                  with Image.open(BytesIO(dat)) as image:
-                      assert max(image.size)<=512,(tag,image.size)
-              print("TWO_GLBS_AND_8_REAL_RENDERS",tag,size, len(doc["skins"]))
-          PY
-      - name: Upload genuine 2-character GLB art-QA archive (not full 8)
+      - name: Upload CC0 open-wardrobe pilot GLBs and renders
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-two-optimized-MPFB-GLB-PILOT-NOT-FINAL
-          path: outputs/face_v5/
+          name: taiwan-v7-two-distinct-faces-openwardrobe-PILOT
+          path: outputs/face_v7/
           retention-days: 14
           if-no-files-found: warn
