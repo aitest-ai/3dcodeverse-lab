@@ -29,7 +29,7 @@ if not rigs or not meshes:
     raise RuntimeError("Horse source missing mesh or armature; don't fake it.")
 actions=[a.name for a in bpy.data.actions]
 print("HORSE_IMPORT",name,"meshes",len(meshes),"rigs",len(rigs),"actions",actions)
-if len(actions)<3:
+if len(actions)<10:
     raise RuntimeError("Expected several authored horse animations, got "+str(actions))
 bone_count=sum(len(r.data.bones) for r in rigs)
 if bone_count<15:
@@ -49,29 +49,6 @@ if min(extent)<.01 or max(extent)>1000:
     raise RuntimeError("Degenerate mesh or impossible scale: "+str(tuple(extent)))
 print("HORSE_BOUNDING_BOX",list(minimum),list(maximum),"bones",bone_count,"verts",vert_count)
 
-# White version is an authored palette derivative, NOT the official second
-# Quaternius horse. Keep geometry, skeleton, and full animations intact.
-if name=="Horse_White":
-    surface={}
-    for obj in meshes:
-        for poly in obj.data.polygons:
-            if poly.material_index < len(obj.material_slots):
-                mat=obj.material_slots[poly.material_index].material
-                if mat:
-                    surface[mat.name]=surface.get(mat.name,0.0)+poly.area
-    if not surface:raise RuntimeError("No materials to recolor")
-    main_name=max(surface,key=surface.get)
-    changed=0
-    for mat in bpy.data.materials:
-        if mat.name==main_name:
-            mat.diffuse_color=(.86,.85,.81,1)
-            if mat.use_nodes:
-                bsdf=next((node for node in mat.node_tree.nodes if node.type=="BSDF_PRINCIPLED"),None)
-                if bsdf and not bsdf.inputs["Base Color"].is_linked:
-                    bsdf.inputs["Base Color"].default_value=(.86,.85,.81,1)
-            changed+=1
-    if not changed:raise RuntimeError("Unable to recolor main horse coat material")
-    print("HORSE_PALETTE_DERIVATIVE",main_name,changed)
 # Save original assembled and editable scene before adding QA-only camera/light.
 blend=out/(name+"_blender5.blend")
 bpy.ops.wm.save_as_mainfile(filepath=str(blend))
@@ -129,10 +106,10 @@ manifest={
  "schema_version":1,"asset_id":name,"model_file":glb.name,"source_file":blend.name,
  "format":"glTF 2.0 GLB","unit":"imported scene source units; normalize in consuming game",
  "license":"CC0-1.0","creator":"Quaternius",
- "source":"https://poly.pizza/m/qvTrSG9pZF",
- "source_mirror":"https://github.com/crisleyhguimaraes/space-ship/blob/main/docs/ASSETS.md",
- "is_recolor_derivative":name=="Horse_White",
- "clips":actions,"min_animation_count":3,"requirements":{"skins":True,"animated":True,"visual_review":True},
+ "source":"https://quaternius.com/packs/ultimateanimatedanimals.html",
+ "source_host":"https://pixeltriks.com/browse?pack=quaternius-ultimate-animated-animals",
+ "is_original_horse":True,
+ "clips":actions,"min_animation_count":10,"requirements":{"skins":True,"animated":True,"visual_review":True},
  "quality":"STYLIZED_GAMEPLAY_PROTOTYPE_NOT_PHOTOREALISTIC",
  "legal":"Original Quaternius publicly shared CC0 animal pack. No additional third-party model rights implied."
 }
