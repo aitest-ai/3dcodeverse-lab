@@ -1,0 +1,85 @@
+name: Blender 5 MPFB Human — Real Basemesh and Rig
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mpfb5-human.yml'
+      - 'scripts/characters/**'
+  pull_request:
+    paths:
+      - '.github/workflows/mpfb5-human.yml'
+      - 'scripts/characters/**'
+permissions:
+  contents: read
+jobs:
+  build-human:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python syntax
+        run: python3 -m compileall -q scripts/characters
+      - name: Install Linux headless dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Download Blender 5.2.3 LTS and check upstream SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl --fail --location --retry 4 -o ".tools/$FILE" "$BASE/$FILE"
+          curl --fail --location --retry 4 -o ".tools/SHA256" "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib, re
+          from pathlib import Path
+          name="blender-5.2.3-linux-x64.tar.xz"
+          line=next(s for s in Path(".tools/SHA256").read_text().splitlines() if name in s)
+          expected=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line).group().lower()
+          assert hashlib.file_digest(open(".tools/"+name,"rb"),"sha256").hexdigest()==expected
+          print("Verified official Blender archive SHA256")
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Fetch official MPFB 2.0.18 source (no asset pack redistribution)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .deps
+          git clone --quiet --depth 1 https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          echo "MPFB_SOURCE_SHA=$(git -C .deps/mpfb2 rev-parse HEAD)" >> "$GITHUB_ENV"
+          test -f .deps/mpfb2/LICENSE.CODE.md
+          test -f .deps/mpfb2/LICENSE.ASSETS.md
+      - name: Build official MPFB extension with Blender CLI
+        run: |
+          set -euo pipefail
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          test -s .tools/mpfb.zip
+      - name: Install into isolated Blender user extension repository
+        run: |
+          set -euo pipefail
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          blender --command extension list
+      - name: Generate actual MPFB human basemesh, skeleton and GLB
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p outputs/human_mpfb
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/create_mpfb_human.py
+      - name: Independently examine exported GLB content
+        run: python3 scripts/characters/verify_mpfb_human.py outputs/human_mpfb
+      - name: Four-view proof sheet from REAL rendered PNGs
+        run: |
+          python3 scripts/characters/contact_sheet.py outputs/human_mpfb
+          test -s outputs/human_mpfb/preview_contact_sheet.png
+      - name: Upload BLEND, GLB, previews and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpfb-real-human-${{ github.run_number }}
+          path: outputs/human_mpfb/
+          retention-days: 14
+          if-no-files-found: warn
