@@ -68,7 +68,7 @@ def validate(folder):
             if "foot." + side not in nodes:
                 raise ValueError("Articulated foot bone not exported: foot." + side)
         meshes = [m.get("name", "").lower() for m in doc.get("meshes", [])]
-        if sum("ankle" in n or "foot" in n or "toe" in n for n in meshes) < 12:
+        if sum("ankle" in n or "foot" in n or "toe" in n or "heel" in n for n in meshes) < 12:
             raise ValueError("Mecha ankle or foot geometry missing")
         report_path = folder / "report.json"
         if report_path.is_file():
