@@ -126,6 +126,12 @@ for n,bone,loc,size,mat in parts:
 
 rig.animation_data_create()
 poses=rig.pose.bones
+# Blender pose-bone Location uses bone LOCAL axes, not world XYZ.
+# Root rests along global +Z, so local-Z is NOT necessarily world +Z.
+root_inverse=rig.data.bones["root"].matrix_local.to_3x3().inverted()
+def shift_root_in_world(x=0.0,y=0.0,z=0.0):
+ poses["root"].location += root_inverse @ Vector((x,y,z))
+
 floor_clearance_samples=[]
 # Blender bone local X is the mechanical hinge axis. Keep the low foot
 # corners above the ground after each pose is set, without modifying mesh vertices.
@@ -153,8 +159,8 @@ for clip in clips:
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
    # Two stance pulses per running cycle; endpoints match exactly.
-   poses["root"].location.z=.025*(1-math.cos(4*math.pi*phase))
-   poses["root"].location.y=.035*math.sin(2*math.pi*phase)
+   shift_root_in_world(y=.035*math.sin(2*math.pi*phase),
+                       z=.025*(1-math.cos(4*math.pi*phase)))
    for side,sign in (("L",1),("R",-1)):
     poses["thigh."+side].rotation_euler[0]=sign*.58*z
     poses["shin."+side].rotation_euler[0]=max(0,-sign*z)*.55
@@ -172,7 +178,7 @@ for clip in clips:
   if clip=="Dodge":
    amt=max(0,1-abs(frame-25)/20)
    poses["spine"].rotation_euler[1]=.3*amt
-   poses["root"].location.x=.14*amt
+   shift_root_in_world(x=.14*amt)
    for side,sign in (("L",1),("R",-1)):
     poses["thigh."+side].rotation_euler[0]=sign*.11*amt
     poses["shin."+side].rotation_euler[0]=-.18*amt
@@ -181,8 +187,9 @@ for clip in clips:
   # This is a deterministic pose correction, not runtime IK/physics.
   ground_before=lowest_sole_z()
   target_clearance=.014
-  correction=max(-.30,min(.35,target_clearance-ground_before))
-  poses["root"].location.z+=correction
+  correction=target_clearance-ground_before
+  # Move strictly along world Z: root bone's local Z is not vertical.
+  shift_root_in_world(z=correction)
   floor_after=lowest_sole_z()
   floor_clearance_samples.append({"clip":clip,"frame":frame,
                                   "min_sole_z":round(floor_after,5),
