@@ -135,7 +135,25 @@ body.data.update()
 bpy.context.view_layer.update()
 # Ask official MPFB to refit eyeballs, garments, the skin weights and skeleton
 # against the changed anatomy rather than leaving the neutral female rig.
-HumanService.refit(body)
+from mathutils.kdtree import KDTree
+kd=KDTree(13380)
+for i in range(13380):
+    kd.insert(oldworld@old_coords[i],i)
+kd.balance()
+face_asset_adjustments={}
+for obj in tuple(sc.objects):
+    if obj.type!="MESH" or obj in (body,cloth) or obj in original_hair:continue
+    if any(x in obj.name.lower() for x in ("shoes","teeth","tongue")):continue
+    world=obj.matrix_world.copy(); inverse=world.inverted(); count=0
+    for vertex in obj.data.vertices:
+        p=world@vertex.co
+        found,ind,dist=kd.find(p)
+        if ind is None or dist>.12:continue
+        delta=(oldworld@body.data.vertices[ind].co)-(oldworld@old_coords[ind])
+        vertex.co=inverse@(p+delta)
+        count+=1
+    obj.data.update()
+    face_asset_adjustments[obj.name]=count
 bpy.context.view_layer.update()
 newcoords=[v.co.copy() for v in body.data.vertices]
 shifted=sum((a-b).length>.002 for a,b in zip(old_coords,newcoords))
@@ -561,7 +579,7 @@ report={
  "textures":[{"name":im.name,"width":im.size[0],"height":im.size[1]} for im in bpy.data.images if im.has_data],
  "height_m":round(height,4),"glb_bytes":glbpath.stat().st_size,
  "mpfb_genuine_phenotype":phen,
- "mpfb_macro_adjusted_vertices":shifted,
+ "mpfb_macro_adjusted_vertices":shifted,"face_asset_adjustments":face_asset_adjustments,
  "garment_fitting":fit_stats,
  "mesh_count":len(doc.get("meshes",[])),"material_count":len(doc.get("materials",[])),
  "skin_count":len(doc.get("skins",[])),
