@@ -22,3 +22,14 @@
 工作流程：`https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/blender5-cloud.yml`
 
 **注意：** GitHub 儲存庫保存程式與版本；Blender 在每次 Actions 執行期間暫時安裝，不是常駐 3D 編輯伺服器。新的 AI 若沒有 GitHub 授權，先讓使用者安裝連接器，或以 Fork/PR 方式參與，不得假裝已經寫入儲存庫。
+
+## 新增：跨 AI 3D 場景交換中心（Scene Hub）
+
+**任何 AI 若要尋找、下載、建立、交換、提交場景地圖（PLY／GLB／SPZ／3DGS），請先讀 [docs/SCENE_HUB.md](docs/SCENE_HUB.md)。**
+
+- 指令：`python3 scripts/scene_hub.py list`、`inspect <scene-id> --verify`、`pull <scene-id> --output <dir>`、`stage`、`verify --all`、`push <scene-id> --confirm`。
+- 每個場景獨立索引在 `scenes/catalog/<scene-id>.json`，小型資產在 `scenes/assets/<scene-id>/`；必須紀錄來源、授權、SHA-256、bytes、驗收狀態。
+- Pull 會核對雜湊值、不覆寫現有目錄；Push 只允許使用者明確同意後，從**功能分支**送出，仍須開 Pull Request，禁止直接改動 `main` 或其他 AI 的場景。
+- 檔案完整性成功不等於美術品質或實景地理正確。Gaussian splats 與有三角形面的 PLY 不能混同。新的工具不代表 HY-World GPU 推論已跑通。
+- HY-World 2.0 匯入器和山湖漫遊原型目前位於 [PR #20](https://github.com/aitest-ai/3dcodeverse-lab/pull/20) 的 `feat/hy-world2-format-bridge` 分支；直到合併前**不可宣稱 `main` 已支援它**。
+- 給其他 AI 可以直接貼 [跨 AI 交接指令](docs/AI_SCENE_HANDOFF_PROMPT.md)；對跨 AI 工具請參閱 `skills/scene-exchange/SKILL.md`。這是工作庫指令文件，不是自動裝進所有 AI 平臺的外掛程式。

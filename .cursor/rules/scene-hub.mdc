@@ -1,0 +1,10 @@
+---
+description: Scene Hub and 3D map asset sharing across AI agents
+globs:
+  - "scenes/**"
+  - "scripts/scene_hub.py"
+  - "docs/SCENE_HUB.md"
+alwaysApply: true
+---
+
+Read `AGENTS.md`, `docs/SCENE_HUB.md`, and `skills/scene-exchange/SKILL.md` before touching scene assets. Discover with `python3 scripts/scene_hub.py list`; verify provenance and licenses. Pull by verified SHA-256. Use feature branches, explicit permission and PR review to push. Never overwrite other agents' assets or confuse Gaussian splats with mesh PLY. HY-World 2.0 bridge is still draft PR #20 until merged.
