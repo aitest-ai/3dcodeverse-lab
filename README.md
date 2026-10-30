@@ -58,3 +58,12 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 
 **真實進度：** 腳踝 V3 程式與流程已提交，雲端 Blender 與視覺品質仍需該次 Actions 真的成功執行後再驗收。腳底修正是關鍵影格計算，不等於完整 IK、碰撞或物理模擬。
 
+
+## 🐎 賽馬 3D 角色（Blender 5 實測）
+
+- [原始 CC0 馬模型、驗收數據與 13 段動畫製作規範](docs/RACING_HORSE_PIPELINE.md)
+- [雙馬原始素材／授權與 SHA256 來源目錄](resources/horses/source_registry.json)
+- [Blender 賽馬製作及 gallop 動畫驗收工作流程](https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/racing-horse.yml)
+- [賽馬 WebGL/Three.js 即時動畫測試頁](examples/racing-horse/index.html)
+
+已通過 GitHub Actions #29：兩匹 Quaternius 原版 CC0 馬、各 50 根骨、13 段動畫，Blender 5.2.3 匯出 GLB／BLEND，六視角 + 兩張真 Gallop 影格；**屬低多邊形遊戲原型，並非寫實高模**。可在 GitHub Actions Artifacts 下載 racing-horses-29，含兩匹馬及網頁 demo。高模與真實賽馬運動驗收另行進行.
