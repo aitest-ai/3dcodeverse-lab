@@ -1,0 +1,94 @@
+name: Racing Horse V2.2 — Material & Mane Detail
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v22.yml'
+      - 'scripts/horses/horse_v22_finish.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v22.yml'
+      - 'scripts/horses/horse_v22_finish.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m py_compile scripts/horses/horse_v22_finish.py
+      - name: Restore verified V2 horse BLEND
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41005528336'
+          name: racing-horse-V2-6
+          github-token: ${{ github.token }}
+          path: inputs/horse_v2
+      - name: Install headless dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 xvfb
+      - name: Download verified official Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          p=Path(".tools/blender-5.2.3-linux-x64.tar.xz")
+          line=next(x for x in Path(".tools/SHA256").read_text().splitlines() if p.name in x)
+          expected=re.search(r"[0-9a-fA-F]{64}",line).group().lower()
+          with p.open("rb") as f:assert hashlib.file_digest(f,"sha256").hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Produce two non-destructive V2.2 horses and Cycles image views
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/horses/horse_v22_finish.py -- \
+              "inputs/horse_v2/$horse" "outputs/horse_v22/$horse"
+          done
+      - name: Validate actual GLB content not just Blender source
+        run: |
+          python3 - <<'PY'
+          import json,struct
+          from pathlib import Path
+          for horse in ("Horse","Horse_White"):
+              folder=Path("outputs/horse_v22")/horse
+              report=json.loads((folder/"quality_report.json").read_text())
+              raw=(folder/(horse+"_V22.glb")).read_bytes()
+              magic,ver,size=struct.unpack_from("<4sII",raw,0)
+              assert magic==b"glTF" and ver==2 and size==len(raw)
+              n,typ=struct.unpack_from("<I4s",raw,12)
+              assert typ==b"JSON"
+              gltf=json.loads(raw[20:20+n])
+              assert report["bones"]==50
+              assert len(report["animation_actions"])==13
+              assert 90<=report["strand_count"]<=180
+              assert report["new_rigged_hair_vertices"]>=450
+              assert len(gltf.get("animations",[]))==13
+              assert any("ManeTail_IndividualWisps" in m.get("name","") for m in gltf.get("meshes",[]))
+              assert any(len(s["joints"])>=45 for s in gltf.get("skins",[]))
+              assert all((folder/("V22_"+p+".png")).stat().st_size>10000
+                         for p in ("front","side","back","isometric"))
+              print("V22_STRUCTURE_PASS",horse,"skins",len(gltf.get("skins",[])))
+          PY
+      - name: Publish actual V2.2 renders, GLBs, BLEND, report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-v22-${{ github.run_number }}
+          path: outputs/horse_v22/
+          retention-days: 14
+          if-no-files-found: warn
