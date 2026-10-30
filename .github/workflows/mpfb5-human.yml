@@ -14,7 +14,7 @@ permissions:
 jobs:
   build-human:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - name: Validate Python syntax
@@ -77,24 +77,59 @@ jobs:
           find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print | head -n 3
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print -quit)"
-      - name: Generate actual MPFB human basemesh, skeleton and GLB
+      - name: Fetch extra verified hair/clothing asset packs (CC0 + CC-BY)
+        shell: bash
+        run: |
+          set -euo pipefail
+          for spec in hair02:ccby shirts01:cc0 pants01:cc0; do
+            name="${spec%%:*}"
+            license="${spec##*:}"
+            base="https://files2.makehumancommunity.org/asset_packs/$name"
+            archive=".tools/${name}_${license}.zip"
+            curl -fL --retry 3 --retry-all-errors --connect-timeout 30 --max-time 480 -o "$archive" "$base/${name}_${license}.zip"
+            test "$(stat -c%s "$archive")" -gt 500000
+            unzip -tq "$archive" >/dev/null
+            sha256sum "$archive" | tee -a .tools/asset_archive_checksums.txt
+            unzip -oq "$archive" -d .deps/mh_assets
+          done
+          test -n "$(find .deps/mh_assets -name 'elvs_wavy_bob.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'toigo_fisherman_sweater.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'cortu_cargo_pants.mhclo' -print -quit)"
+      - name: Build 3 independently dressed human character styles
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
         run: |
-          mkdir -p outputs/human_mpfb
-          xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/create_mpfb_human.py
-      - name: Independently examine exported GLB content
-        run: python3 scripts/characters/verify_mpfb_human.py outputs/human_mpfb
-      - name: Four-view proof sheet from REAL rendered PNGs
+          set -euo pipefail
+          for style in studio street sport; do
+            echo "::group::Blender model: $style"
+            HUMAN_STYLE="$style" ASSET_OUT="$PWD/outputs/human_$style" \
+              xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/create_mpfb_human.py
+            python3 scripts/characters/verify_mpfb_human.py "outputs/human_$style"
+            python3 scripts/characters/contact_sheet.py "outputs/human_$style"
+            echo "::endgroup::"
+          done
+      - name: Verify each build has six real image views and traceable license
         run: |
-          python3 scripts/characters/contact_sheet.py outputs/human_mpfb
-          test -s outputs/human_mpfb/preview_contact_sheet.png
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for style in ("studio","street","sport"):
+              folder=Path("outputs")/("human_"+style)
+              data=json.loads((folder/"asset_manifest.json").read_text())
+              assert data["style"]==style
+              assert (folder/"preview_contact_sheet.png").stat().st_size>10000
+              assert len(list(folder.glob("preview_*.png")))==7
+              if style=="studio":
+                  assert "Elvaerwyn" in data["attribution"]
+                  assert any(a["license"].startswith("CC-BY") for a in data["asset_sources"])
+              print("VERIFIED",style,"assets",len(data["asset_sources"]))
+          PY
       - name: Upload BLEND, GLB, previews and reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: mpfb-real-human-${{ github.run_number }}
-          path: outputs/human_mpfb/
+          name: mpfb-multi-style-human-${{ github.run_number }}
+          path: outputs/human_*/
           retention-days: 14
           if-no-files-found: warn
