@@ -1,0 +1,31 @@
+name: Horse V3 — Licensed High-detail Source Audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v3-audit.yml'
+      - 'scripts/horses/v3_audit_cc0_standing_horse.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v3-audit.yml'
+      - 'scripts/horses/v3_audit_cc0_standing_horse.py'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate auditor
+        run: python3 -m py_compile scripts/horses/v3_audit_cc0_standing_horse.py
+      - name: Verify actual CC0 source asset links and GLB contents
+        run: python3 -u scripts/horses/v3_audit_cc0_standing_horse.py
+      - name: Upload evidence and actual asset if publicly reachable
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: horse-v3-source-audit-${{ github.run_number }}
+          path: outputs/horse_v3_candidate/
+          retention-days: 14
+          if-no-files-found: warn
