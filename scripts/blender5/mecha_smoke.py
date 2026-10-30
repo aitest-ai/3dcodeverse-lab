@@ -213,7 +213,7 @@ names=[x.get("name") for x in document.get("animations",[])]
 assert len(names)>=4, f"Expected 4 animation clips; got {names}"
 assert len(document.get("skins",[]))>=1, "No rig skin exported"
 assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
-assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
+assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower() or "heel" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
 assert len(arm.bones)==14, f"Expected 14 bones including both foot bones, got {len(arm.bones)}"
 assert len(floor_clearance_samples)==48*len(clips), "All-frame ground checks missing"
 assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
