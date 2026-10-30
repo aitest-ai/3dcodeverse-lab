@@ -14,7 +14,37 @@ import os
 from pathlib import Path
 from mathutils import Vector
 
-OUT = Path(os.environ.get("ASSET_OUT", "outputs/human_mpfb")).resolve()
+STYLES = {
+    "studio": {
+        "description": "Formal look with high-detail licensed wavy bob hair",
+        "hair": ("elvs_wavy_bob.mhclo", "Hair", "hair02", "CC-BY 4.0", "Elvaerwyn"),
+        "outfit": [("female_elegantsuit01.mhclo", "Clothes", "system", "CC0", "makehuman_system"),
+                   ("shoes02.mhclo", "Clothes", "system", "CC0", "makehuman_system")],
+    },
+    "street": {
+        "description": "Casual layered outfit with bob hair, sweater and cargo pants",
+        "hair": ("bob02.mhclo", "Hair", "system", "CC0", "makehuman_system"),
+        "outfit": [("toigo_fisherman_sweater.mhclo", "Clothes", "shirts01", "CC0", "MargaretToigo"),
+                   ("cortu_cargo_pants.mhclo", "Clothes", "pants01", "CC0", "Cortu"),
+                   ("shoes03.mhclo", "Clothes", "system", "CC0", "makehuman_system")],
+    },
+    "sport": {
+        "description": "Sport outfit with tied-back ponytail",
+        "hair": ("ponytail01.mhclo", "Hair", "system", "CC0", "makehuman_system"),
+        "outfit": [("female_sportsuit01.mhclo", "Clothes", "system", "CC0", "makehuman_system"),
+                   ("shoes04.mhclo", "Clothes", "system", "CC0", "makehuman_system")],
+    },
+    "legacy": {
+        "description": "Original reference for comparison",
+        "hair": ("long01.mhclo", "Hair", "system", "CC0", "makehuman_system"),
+        "outfit": [("female_casualsuit01.mhclo", "Clothes", "system", "CC0", "makehuman_system"),
+                   ("shoes01.mhclo", "Clothes", "system", "CC0", "makehuman_system")],
+    },
+}
+STYLE = os.environ.get("HUMAN_STYLE", "studio").strip().lower()
+if STYLE not in STYLES:
+    raise RuntimeError(f"Unknown human style {STYLE!r}; choose {list(STYLES)}")
+OUT = Path(os.environ.get("ASSET_OUT", f"outputs/human_{STYLE}")).resolve()
 OUT.mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action="SELECT")
 bpy.ops.object.delete(use_global=False)
@@ -78,26 +108,39 @@ if asset_root:
     skin_name = "young_caucasian_female.mhmat"
     HumanService.set_character_skin(asset_file(skin_name), body, skin_type="GAMEENGINE")
     asset_records.append({"file": skin_name, "category": "skins", "license": "CC0"})
+    # Resolve each MPFB item from the upstream source archive, and log license
+    # for every component. High-poly Hair 02 is CC-BY, not CC0.
     items = [
-        ("eyes", "low-poly.mhclo", "Eyes"),
-        ("eyebrows", "eyebrow001.mhclo", "Eyebrows"),
-        ("eyelashes", "eyelashes01.mhclo", "Eyelashes"),
-        ("tongue", "tongue01.mhclo", "Tongue"),
-        ("teeth", "teeth_base.mhclo", "Teeth"),
-        ("hair", "long01.mhclo", "Hair"),
-        ("clothes", "female_casualsuit01.mhclo", "Clothes"),
-        ("clothes", "shoes01.mhclo", "Clothes"),
+        ("eyes", "high-poly.mhclo", "Eyes", "system", "CC0", "makehuman_system"),
+        ("eyebrows", "eyebrow001.mhclo", "Eyebrows", "system", "CC0", "makehuman_system"),
+        ("eyelashes", "eyelashes01.mhclo", "Eyelashes", "system", "CC0", "makehuman_system"),
+        ("tongue", "tongue01.mhclo", "Tongue", "system", "CC0", "makehuman_system"),
+        ("teeth", "teeth_base.mhclo", "Teeth", "system", "CC0", "makehuman_system"),
+        ("hair",) + STYLES[STYLE]["hair"],
     ]
-    for subdir, filename, kind in items:
+    items += [("clothes",) + entry for entry in STYLES[STYLE]["outfit"]]
+    package_urls = {
+        "system": "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+        "hair02": "https://static.makehumancommunity.org/assets/assetpacks/hair02.html",
+        "shirts01": "https://static.makehumancommunity.org/assets/assetpacks/shirts01.html",
+        "pants01": "https://static.makehumancommunity.org/assets/assetpacks/pants01.html",
+    }
+    for subdir, filename, kind, package, license_name, creator in items:
         path = asset_file(filename)
-        print("LOADING_CC0_ASSET", subdir, path)
+        print("LOADING_ASSET", STYLE, package, kind, path)
         item = HumanService.add_mhclo_asset(
             path, body, asset_type=kind, subdiv_levels=0,
             material_type="GAMEENGINE")
         if item is None:
             raise RuntimeError("Failed to add asset " + filename)
+        item["origin_pack"] = package
+        item["origin_license"] = license_name
+        item["origin_creator"] = creator
         added_objects.append(item)
-        asset_records.append({"file": filename, "category": subdir, "license": "CC0"})
+        asset_records.append({"file": filename, "category": subdir,
+                              "pack": package, "license": license_name,
+                              "author": creator,
+                              "source_url": package_urls[package]})
     print("LOADED_CC0_ASSETS", [x["file"] for x in asset_records])
 else:
     print("NO_SYSTEM_ASSET_PACK: neutral body only")
@@ -144,7 +187,7 @@ if not glb.exists() or glb.stat().st_size < 10000:
     raise RuntimeError("Human GLB missing or unusually tiny")
 
 manifest = {
-  "schema_version":1, "asset_id":"human_mpfb_blender5",
+  "schema_version":1, "asset_id":f"human_mpfb_{STYLE}", "style":STYLE,
   "format":"glTF 2.0 GLB", "unit":"meter",
   "coordinate_system":"Blender Z-up; GLB Y-up on import",
   "model_file":glb.name, "source_file":blend.name,
@@ -154,13 +197,16 @@ manifest = {
   "license_note":"MPFB plugin GPLv3+; MPFB bundled core geometry/data CC0. This model uses original authored neutral test material. Verify upstream files/licensing before commercial asset publication.",
   "quality_status":"LICENSED_ASSET_CHARACTER_NEEDS_VISUAL_REVIEW" if asset_records else "BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY",
   "features":["human topology","deform skeleton","PBR skin","licensed CC0 assets" if asset_records else "neutral test skin"],
-  "asset_sources":[{"source_url":"https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html", "license":"CC0","assets":asset_records}] if asset_records else [],
+  "asset_sources":asset_records,
+  "attribution": "Hair02 assets by Elvaerwyn, CC-BY 4.0" if STYLE == "studio" else "All selected extra assets CC0; authors listed by asset",
+  "character_style":STYLES[STYLE]["description"],
   "missing_before_high_quality":["premium hair strand detail","real skin microdetail","expressions","manual garment and joint deformation QA"] if asset_records else ["photorealistic skin details","eyes/eyelashes","hair","clothing","facial expressions"]
 }
 (OUT/"asset_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
 report={
     "blender":bpy.app.version_string,"source_extension":"MPFB 2.0.18",
     "body_vertices":len(body.data.vertices),"body_faces":len(body.data.polygons),
+    "character_style":STYLE,
     "height_m":round(height,4),"rig_bones":bone_count,
     "weight_groups":len(body.vertex_groups),
     "glb_bytes":glb.stat().st_size, "asset_count":len(added_objects), "asset_details":asset_records,
@@ -210,11 +256,22 @@ else:
     scene.render.resolution_y=640
 scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="PNG"
+# Two close-ups are essential for hairline, eye and garment inspection.
 views={"front":(0,-5.5,1.2),"side":(5.5,0,1.2),
-       "back":(0,5.5,1.2),"isometric":(4.6,-4.6,2.45)}
+       "back":(0,5.5,1.2),"isometric":(4.6,-4.6,2.45),
+       "face":(0,-4.0,1.55), "outfit":(1.2,-4.8,1.0)}
+
 for name,loc in views.items():
     cam.location=loc
-    target=Vector((0,0,0.95))
+    if name=="face":
+        cam_data.ortho_scale=.72
+        target=Vector((0,0,1.50))
+    elif name=="outfit":
+        cam_data.ortho_scale=1.35
+        target=Vector((0,0,1.00))
+    else:
+        cam_data.ortho_scale=2.45
+        target=Vector((0,0,0.95))
     cam.rotation_euler=(target-cam.location).to_track_quat("-Z","Y").to_euler()
     path=OUT/("preview_"+name+".png")
     scene.render.filepath=str(path)
