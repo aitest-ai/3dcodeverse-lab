@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scene_id": "demo-forest-island",
+  "title": "Forest Island Smoke Test (Original Synthetic Mesh)",
+  "description": "Small procedurally generated grid terrain and primitive trees for cross-AI scene exchange. Not a HY-World model or actual location.",
+  "asset_kind": "triangle_mesh",
+  "review_status": "unverified",
+  "source": "Original procedural Python mesh authored for interoperability testing; no HY-World inference performed.",
+  "license": "CC0-1.0 for this original synthetic mesh only; verify other assets independently.",
+  "created_at": "2026-10-30",
+  "files": [
+    {
+      "path": "scenes/assets/demo-forest-island/scene.ply",
+      "sha256": "e6bc2c8614a1e32ca3d06a0f63c41eaed160a5b2b3fce278085db3a64ceb58a1",
+      "bytes": 28015
+    }
+  ],
+  "preview_url": "https://hyworld2-mountain-river-demo.vercel.app/",
+  "notes": "Preview URL is a separate mountain-river procedural demo, NOT a rendering of this exact forest-island sample. No real-world accuracy, scale or collision certified."
+}
