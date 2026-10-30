@@ -52,7 +52,7 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 - [範例：機甲膝蓋、腳踝、腳掌和 4 段動畫](scripts/blender5/mecha_smoke.py)
 - [自動驗證器（GLB + asset_manifest）](scripts/blender5/validate_glb.py)
 - [Three.js 匯入／動畫播放範例](examples/threejs/load-animated-glb.js)
-- [Blender 5 GitHub Actions](../../actions/workflows/blender5-cloud.yml)
+- [Blender 5 GitHub Actions](https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/blender5-cloud.yml)
 
 **如何讓別的 AI 使用：** 叫它先閱讀 `AGENTS.md` 與 `docs/AI_ASSET_PIPELINE.md`，建立新的 `scripts/blender5/<asset_id>.py`，再由 GitHub Actions 生成 `.blend`、`.glb`、`asset_manifest.json` 和報告；完成後把 GLB 放到它自己的 Three.js、Unity、Godot 等專案。需要具備 GitHub 寫入權限才可直接提交，否則只能提出 Fork/PR 或交付差異檔。
 
