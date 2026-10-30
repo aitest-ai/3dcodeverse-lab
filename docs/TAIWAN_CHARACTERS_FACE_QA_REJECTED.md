@@ -68,3 +68,13 @@
 - 主角 \`you_v5_main.glb\`：11,710,208 → **3,794,088 bytes**；老闆娘 \`boss_v5_ponytail01.glb\`：13,128,664 → **3,471,744 bytes**。
 - Actions 自動斷言每張嵌入貼圖 <=512px、GLB <6MB、每位至少有 1 skin、多個 mesh、4 張實際 Blender 角度圖、真正 13,380 身體源頂點與合法 report。
 - 目前 GitHub Actions 只交付 **兩人先導測試**，沒有默默恢復不合格的八人批次，PR 繼續 Draft。
+
+
+## V7 正式檢查記錄：獨立臉型和開源服裝
+
+- GitHub Actions 成功：https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41052056989
+- MPFB 原生 facial detail targets：you 9 個、boss 10 個，在貼合五官、衣物與骨架之前套用。
+- 真正開源上下身分離 CC0：you 的 namuhekam_male_polo_shirt（namuhekam）+ cortu_cargo_pants（Cortu）；boss 的 toigo_fisherman_sweater + toigo_wool_pants（MargaretToigo）。來源為官方 shirts01/pants01 資產包。每件都為獨立 MHCLO mesh，具有自動貼合與獨立 rigging。
+- GLB 檔案真實驗證：you 3,830,844 bytes；boss 3,759,124 bytes；每人 4 張實際 Blender Cycles PNG。
+- 不合格項目：boss 的臉仍顯年輕、毛衣下擺有局部破圖；沒有 8 個 ARKit 表情，也沒有動態穿模驗證。仍不得稱為遊戲正式成品。
+- V8 計畫加強 boss 的老化變形（head-age、眼袋、笑紋）與適合年齡的皮膚材質，結果須依實際 Blender 渲染審查，不能自動認定完成。
