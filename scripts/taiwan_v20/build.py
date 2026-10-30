@@ -29,6 +29,24 @@ os.environ['FACE_EXPORT_GLB'] = '1'
 os.environ['FACE_HAIR_CHOICE'] = 'ponytail01'
 # A real source rebuild: inherits mature V17 phenotype, CC0 assets and helpers removal.
 g = runpy.run_path(str(base), run_name='__v20_original_mpfb_build__')
+# MPFB images can be lazy: V17's pre-render has_data filter skipped them.
+# Force loading, resize with preserved aspect ratio, and pack the ACTUAL pixels.
+texture_sizes = []
+for image in bpy.data.images:
+    if image.source != 'FILE': continue
+    if not image.has_data:
+        image.reload()
+        if len(image.pixels): _ = image.pixels[0]
+    if not image.has_data or min(image.size) < 1:
+        raise RuntimeError('Missing source texture pixels: '+image.name)
+    old_size = list(image.size)
+    factor = min(1., 512/max(old_size))
+    if factor < 1.:
+        image.scale(max(1,round(old_size[0]*factor)), max(1,round(old_size[1]*factor)))
+    image.pack()
+    assert max(image.size) <= 512 and image.packed_file is not None
+    texture_sizes.append({'name':image.name,'before':old_size,'after':list(image.size)})
+print('V20_REAL_SOURCE_TEXTURES_CAPPED',json.dumps(texture_sizes),flush=True)
 body, rig = g['body'], g['rig']
 shirt, pants = g['garment_items']
 meshes = [body, *g['attached']]
@@ -80,7 +98,7 @@ def export(path, animate=False):
     doc = GLB(path).doc
     assert len(doc['skins']) == 1 and len(doc['skins'][0]['joints']) == 53
     assert any(len(m.get('extras',{}).get('targetNames',[])) == 10 for m in doc['meshes'])
-    assert path.stat().st_size < 6000000
+    assert path.stat().st_size < 6000000, ('GLB exceeds size limit', path.name, path.stat().st_size)
     return {'file':path.name,'bytes':path.stat().st_size,
             'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
             'animations':len(doc.get('animations',[]))}
@@ -168,7 +186,7 @@ report = {'character':ID, 'status':'SOURCE_PIPELINE_INTEGRATED_NOT_ART_APPROVED'
     'body_source_digest':body_signature, 'changed_meshes':changed,
     'non_target_mesh_data_unchanged':all(digest_mesh(o)==initial[o.name] for o in meshes if ID!='jie' or o!=pants),
     'repair':repair, 'v19_geometry_bidirectional_error_m':parity,
-    'native_source_builder_git_blob':blob,
+    'native_source_builder_git_blob':blob, 'source_texture_sizes':texture_sizes,
     'build_commit':os.getenv('GITHUB_SHA'), 'blender':bpy.app.version_string,
     'neutral_glb':neutral_glb, 'stress_glb':stress_glb,
     'editable_blend':{'file':blend.name,'bytes':blend.stat().st_size},
