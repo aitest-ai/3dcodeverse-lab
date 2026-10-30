@@ -1,0 +1,93 @@
+name: Taiwan V18 - True Rig Pose and Wardrobe Stress
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v18-rig-motion-qa.yml'
+      - 'scripts/taiwan_characters/v18_actual_pose_qa.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  dynamic-stress:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify V18 Python syntax
+        run: python3 -m compileall -q scripts/taiwan_characters
+      - name: Download verified V17 original four-role MPFB test GLBs
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v17-four-real-MPFB-knitted-layer-PILOT
+          run-id: 41138623403
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input
+      - name: Install headless rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install official verified Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 4 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 4 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          name="blender-5.2.3-linux-x64.tar.xz"
+          line=next(x for x in pathlib.Path(".tools/SHA256").read_text().splitlines() if name in x)
+          expected=re.search(r"[0-9a-fA-F]{64}",line).group().lower()
+          with open(".tools/"+name,"rb") as f:
+              assert hashlib.file_digest(f,"sha256").hexdigest()==expected
+          print("OFFICIAL_BLENDER_SHA_VERIFIED",expected)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Rig two real V17 characters and render neutral/reach/bend/step
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V18_INPUT: input/outputs/face_v17
+          V18_OUTPUT: outputs/motion_v18
+        run: |
+          set -euo pipefail
+          for id in boss jie; do
+            V18_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/v18_actual_pose_qa.py
+          done
+      - name: Verify both real rigged GLB pose clips and JSON QA
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          root=pathlib.Path("outputs/motion_v18")
+          for id in ("boss","jie"):
+              d=json.loads((root/(id+"_v18_motion_report.json")).read_text())
+              assert d["bones"]==53
+              assert d["actual_glb_animations"]>=1
+              assert d["actual_animation_channels"]>=4
+              assert d["per_pose"]["actual_hand_displacement_m"]>=0.035
+              assert d["art_approved"] is False
+              assert d["animation_scope"].endswith("NOT locomotion or polished walk")
+              for pose in ("neutral","arms_reach","torso_bend","step"):
+                  item=d["per_pose"][pose]
+                  assert item["rays"]==1295
+                  assert (root/item["render"]).is_file()
+                  print("V18_POSE",id,pose,
+                        "body_front",item["body_front_rays"],
+                        "cloth_wrong",item["cloth_layer_wrong"])
+              assert (root/d["glb"]).is_file()
+              print("V18_REAL_ANIMATED_GLB",id,d["glb_bytes"],d["actual_animation_channels"])
+          PY
+      - name: Publish V18 actual pose images and animated GLBs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v18-real-armature-2roles-motion-stress-PILOT
+          path: |
+            outputs/motion_v18/*.glb
+            outputs/motion_v18/*.png
+            outputs/motion_v18/*_report.json
+          retention-days: 14
+          if-no-files-found: warn
