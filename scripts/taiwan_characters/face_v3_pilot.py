@@ -60,7 +60,7 @@ haircatalog=sorted({p.name for p in ASSETS.rglob("*.mhclo") if any(
   w in p.name.lower() for w in ("short","bob","hair","crop","buzz","long"))})
 print("FACE_V3_HAIR_CATALOG",json.dumps(haircatalog))
 preferred=(("short01.mhclo","short02.mhclo","bob02.mhclo") if ID=="you"
-           else ("bob02.mhclo","short02.mhclo","long01.mhclo"))
+           else ("short03.mhclo","short04.mhclo","bob01.mhclo"))
 found=next((p for name in preferred for p in ASSETS.rglob(name)),None)
 if found is None:
     raise RuntimeError("Official CC0 head hair assets unavailable: "+str(haircatalog))
@@ -68,12 +68,35 @@ hair=HumanService.add_mhclo_asset(str(found),body,asset_type="Hair",
                    subdiv_levels=0,material_type="GAMEENGINE")
 if hair is None:raise RuntimeError("Could not apply scalp-fitted hair "+str(found))
 hair.name="HairFitted_"+ID
+# The source "system" hair material is platinum or over-bright. Tint boss
+# into a dark brown with natural original texture variation, not flat paint.
+if ID=="boss":
+    for mat in hair.data.materials:
+        if not mat or not mat.use_nodes:continue
+        tree=mat.node_tree
+        for node in list(tree.nodes):
+            if node.type!="BSDF_PRINCIPLED":continue
+            inp=node.inputs.get("Base Color")
+            if not inp:continue
+            if inp.is_linked:
+                prev=inp.links[0].from_socket
+                tree.links.remove(inp.links[0])
+                mul=tree.nodes.new("ShaderNodeMixRGB")
+                mul.name="TaiwanDarkHairTextureTint"
+                mul.blend_type="MULTIPLY"
+                mul.inputs[0].default_value=1.0
+                mul.inputs[2].default_value=(.26,.22,.20,1)
+                tree.links.new(prev,mul.inputs[1])
+                tree.links.new(mul.outputs[0],inp)
+            else:
+                old=inp.default_value
+                inp.default_value=(old[0]*.26,old[1]*.22,old[2]*.20,1)
 attached.append(hair)
 print("FACE_V3_HAIR_ATTACHED",ID,found.name)
 # Include a real fitted garment where available, so upper-body render
 # does not show unclothed test body. Deliberately not final character apparel.
 garments=(("male_casualsuit01.mhclo","male_sportsuit01.mhclo","female_casualsuit01.mhclo") 
-          if ID=="you" else ("female_casualsuit01.mhclo","female_elegantsuit01.mhclo"))
+          if ID=="you" else ("female_elegantsuit01.mhclo","female_casualsuit01.mhclo"))
 garmentpath=next((p for name in garments for p in ASSETS.rglob(name)),None)
 if garmentpath:
     clothes=HumanService.add_mhclo_asset(str(garmentpath),body,asset_type="Clothes",
