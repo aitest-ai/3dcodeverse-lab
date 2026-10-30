@@ -22,13 +22,28 @@ def safe_id(value):
         raise ValueError("無效的角色或台詞 ID")
     return value
 
+def numeric_setting(value, name):
+    if isinstance(value, bool) or not isinstance(value, (int, float, str)):
+        raise ValueError(name + "必須為數字")
+    try:
+        return float(value)
+    except (ValueError, TypeError, OverflowError) as exc:
+        raise ValueError(name + "必須為數字") from exc
+
 def validate_line(raw):
+    if not isinstance(raw, dict):
+        raise ValueError("每筆台詞必須為 JSON 物件")
     line = dict(raw)
-    line["id"] = safe_id(line["id"])
-    line["text"] = str(line["text"]).strip()
-    line["emotion"] = ALIASES.get(line.get("emotion", "natural"), line.get("emotion", "natural"))
-    line["strength"] = float(line.get("strength", 0.6))
-    line["speed"] = float(line.get("speed", 1.0))
+    line["id"] = safe_id(line.get("id"))
+    if not isinstance(line.get("text"), str):
+        raise ValueError("台詞內容必須為文字")
+    line["text"] = line["text"].strip()
+    emotion = line.get("emotion", "natural")
+    if not isinstance(emotion, str):
+        raise ValueError("情緒必須為文字")
+    line["emotion"] = ALIASES.get(emotion, emotion)
+    line["strength"] = numeric_setting(line.get("strength", 0.6), "情緒強度")
+    line["speed"] = numeric_setting(line.get("speed", 1.0), "語速")
     line["language"] = line.get("language", "zh")
     if not 1 <= len(line["text"]) <= 2000:
         raise ValueError("台詞長度必須在 1 到 2000 字元")
@@ -38,19 +53,24 @@ def validate_line(raw):
         raise ValueError("情緒強度超出範圍")
     if not 0.75 <= line["speed"] <= 1.33:
         raise ValueError("語速超出範圍")
-    if line["language"] not in LANGUAGES:
+    if not isinstance(line["language"], str) or line["language"] not in LANGUAGES:
         raise ValueError("不支援的語言")
     return line
 
 def load_project(path):
     obj = json.loads(Path(path).read_text(encoding="utf-8"))
-    safe_id(obj["character"]["id"])
+    if (not isinstance(obj, dict) or not isinstance(obj.get("character"), dict)
+            or not isinstance(obj.get("lines"), list)):
+        raise ValueError("專案需要角色物件與台詞陣列")
+    safe_id(obj["character"].get("id"))
     lines = [validate_line(line) for line in obj["lines"]]
     if not lines or len({line["id"] for line in lines}) != len(lines):
         raise ValueError("需要非空且不重複的台詞 ID")
     return obj["character"], lines
 
 def emotion_vector(emotion):
+    if not isinstance(emotion, str):
+        raise ValueError("情緒必須為文字")
     key = ALIASES.get(emotion, emotion)
     if key == "natural":
         return None
@@ -97,7 +117,8 @@ def generate(api_base, payload):
 def run(project, output, provider="plan", api_base="", model="IndexTTS-2.5", reference=""):
     role, lines = load_project(project)
     output = Path(output)
-    output.mkdir(parents=True, exist_ok=True)
+    if provider not in {"plan", "autoip-draft", "vllm"}:
+        raise ValueError("未知的服務模式")
     reference_bytes = b""
     if provider == "vllm":
         if not reference or not api_base:
@@ -105,6 +126,13 @@ def run(project, output, provider="plan", api_base="", model="IndexTTS-2.5", ref
         reference_bytes = Path(reference).read_bytes()
         if len(reference_bytes) > 20 * 1024 * 1024:
             raise ValueError("參考音檔超過 20MB")
+    # Reserve a fresh run directory atomically before any API request. Never reuse
+    # a directory, even for plan mode: it may contain a generated manifest.
+    output.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        output.mkdir()
+    except FileExistsError as exc:
+        raise ValueError("輸出路徑已存在；請使用新的版本資料夾，既有音訊不會覆寫") from exc
     manifest = {"schema_version": "1.0", "character": role,
                 "provider": provider, "samples": []}
     for line in lines:
@@ -117,14 +145,16 @@ def run(project, output, provider="plan", api_base="", model="IndexTTS-2.5", ref
         elif provider == "vllm":
             wav = generate(api_base, vllm_payload(line, model, reference_bytes))
             filename = role["id"] + "__" + line["id"] + ".wav"
-            (output / filename).write_bytes(wav)
+            with (output / filename).open("xb") as audio_file:
+                audio_file.write(wav)
             entry.update({"status": "generated", "file": filename,
                           "sha256": hashlib.sha256(wav).hexdigest()})
         else:
             raise ValueError("未知的服務模式")
         manifest["samples"].append(entry)
     dest = output / "manifest.json"
-    dest.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with dest.open("x", encoding="utf-8") as manifest_file:
+        manifest_file.write(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     return dest
 
 def main():

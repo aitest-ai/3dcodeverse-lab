@@ -1,63 +1,71 @@
-# Emotion Voice Studio｜臺灣遊戲與動畫的角色情緒語音原型
+# Emotion Voice Studio｜角色情緒語音工作室
 
-狀態：**已建立台詞編輯器、JSON/Manifest 工作流程、IndexTTS-2.5 vLLM API 用戶端與單元測試；尚未在 GPU 或 AutoIP 帳號上實際生成 AI 配音。**
+**2026-10-31 狀態：已從官方 IndexTTS-2.5 示範服務實際取得自然、開心、生氣三段人聲。第四段悲傷遇到免費額度限制。AutoIP API 與自架 vLLM 仍未完成真實產音驗證。**
 
-此工具以獨立資料夾提供，之後可以搬移到專屬 repository。**不會修改 3DCodeVerse 的既有機甲、馬匹、GLB 或 Blender 工作流程。**
+請先閱讀 [真實測試報告](reports/2026-10-31-evaluation.md)。不要把單元測試通過，或 plan／autoip-draft，描述成真實人聲生成。
 
-## 怎麼試？
+## 離線台詞編輯器
 
-不用 GPU：下載此資料夾並以瀏覽器打開 studio.html。你可以增加台詞、選擇自然／開心／生氣／悲傷等 9 種情緒、調整強度 0.1–1 和語速 0.75–1.33，匯入／匯出角色台詞 JSON。
+下載整個資料夾，以瀏覽器開啟 `studio.html`。`studio-data.js` 必須在同一資料夾。支援台詞、情緒、強度、語速及語言設定，以及 JSON 匯入／匯出。匯入會保留授權與自訂 metadata；不支援或格式錯誤的資料會被拒絕，不會默默改寫。
 
-「瀏覽器預聽」只使用裝置內建 TTS，**不是 IndexTTS，不能代表真實情緒配音品質**。
+「瀏覽器預聽」只是裝置 TTS，不是 IndexTTS，也不會套用情緒。實測三段配音已另行交付使用者，不存放於公開 Git。
 
-離線檢查台詞（Python 3.10+，無須套件、無須 GPU）：
+## 不需 GPU 的測試
 
-~~~bash
+```bash
 cd experiments/emotion-voice-lab
 python3 -m unittest discover -s tests -v
-python3 voice_studio.py --provider plan --output outputs/preview
-python3 voice_studio.py --provider autoip-draft --output outputs/autoip-draft
-~~~
+node --test tests/studio-data.test.js
+python3 voice_studio.py --provider plan --output outputs/preview-v1
+python3 voice_studio.py --provider autoip-draft --output outputs/autoip-v1
+```
 
-產出的 manifest.json 會列出各角色台詞、情緒及狀態。plan 與 autoip-draft 都**不產生 WAV，也不會扣任何點數**。
+目前為 16 項 Python 測試與 6 項 Node 測試。plan 與 autoip-draft 不產生 WAV，不呼叫付費服務。
 
-## 真正生成 IndexTTS-2.5 WAV
+**輸出路徑必須是尚不存在的全新資料夾。** 即使只是 plan，也不能覆蓋先前的 manifest。重試時換用 `outputs/preview-v2` 等新版本。批次中斷會保留已完成的音檔，但不寫成功 manifest。
 
-先自行啟動或租用一個符合 [vLLM-Omni 官方 IndexTTS-2.5 部署文件](https://github.com/vllm-project/vllm-omni/blob/main/recipes/IndexTeam/IndexTTS-2_5.md) 的服務。需具 NVIDIA GPU 或能存取 GPU 服務，且持有已取得聲音使用授權的 WAV 參考音檔。
+## 自架 vLLM 用戶端
 
-~~~bash
+依 [vLLM-Omni 官方部署文件](https://github.com/vllm-project/vllm-omni/blob/main/recipes/IndexTeam/IndexTTS-2_5.md) 啟動相容服務，並準備已獲明確授權的 WAV 參考音檔：
+
+```bash
 python3 voice_studio.py \
   --provider vllm \
   --project cases.json \
   --reference /private/authorized_reference.wav \
   --api-base http://127.0.0.1:8092 \
   --model IndexTTS-2.5 \
-  --output outputs/first-real-voice
-~~~
+  --output outputs/first-run-v1
+```
 
-模型名稱必須與你啟動的伺服器一致；某些部署使用模型絕對路徑。此功能依 vLLM-Omni 的 POST /v1/audio/speech 契約發出 WAV 參考聲音、8 維情緒向量、情緒強度、語速及語言，生成 WAV 並記錄 SHA-256。執行時不需要將任何聲音上傳到 GitHub。這是可用的客戶端程式，**但目前未做過真實伺服器端到端測試**。
+模型名稱必須與伺服器一致。遠端服務僅使用 HTTPS。參考聲音會傳送至你設定的服務；勿將私人錄音或金鑰提交到 Git。此用戶端目前通過 mock HTTP 測試；官方 Gradio demo 的成功不能冒充此路徑也已實測。不同部署的語言範圍仍需核對，介面可選不代表每個後端都已驗證。
 
-安全建議：若改用遠端服務，僅能使用 HTTPS，且注意參考錄音會傳送至服務端。不可提交任何含有真人聲音或 API 密鑰的檔案至公開 repo。
+## 官方示範服務的真實測試
 
-## AutoIP 狀態
+`probe_official_demo.py` 使用 `gradio_client==2.0.3`，僅取服務內建範例聲音，固定同一句話與語速，最多四次合成；遇到額度／存取錯誤即停止，不改帳號或 IP。這不是正式批次配音服務。
 
-使用者提供的 2026-10-31 公告確認有 voice_engine=indextts2、emotion、emotion_strength、speed 等參數，但 AutoIP 公開資料尚不足以確認完整 REST URL、認證、音色 ID、非同步工作狀態與音檔取得方式。本工具只能用 autoip-draft 模式產生**待驗證請求草稿**；並不假裝已成功串接。等有完整官方 API 文件再寫真正 adapter。
+```bash
+python3 -m pip install gradio_client==2.0.3
+python3 probe_official_demo.py --output demo-probe-report.json
+```
 
-## 驗收方式
+本次已完成三段，完整紀錄在測試報告。示範聲音的正式角色／商用權利尚未確認，只作功能評估；未完成臺灣口音與情緒自然度的人工驗收。
 
-第一輪固定同一句「你怎麼現在才來？我都快收攤了啦！」，測自然、開心、生氣、悲傷四種情緒。使用同一個、已取得授權的參考聲音，讓至少三位聽眾就音色一致、情緒自然、臺灣口音、發音正確四項各評 1–5 分，並記錄成本與生成時間。
+## AutoIP
 
-中文支援不代表自然臺灣國語，也不代表有臺語能力，不能免除人工試聽。生成結果若將來跨 AI 共用，應儲存在有適當存取權限的音訊儲存服務，透過角色 ID、台詞 ID、版本及 SHA-256 索引；不直接將敏感音檔公開。
+公告提供 `voice_engine=indextts2`、`emotion`、`emotion_strength`、`speed`。完整 REST endpoint、認證、voice ID、工作狀態及取得音檔流程尚待官方文件核對。目前 `autoip-draft` 只有待驗證欄位草稿，不會送出請求，也不扣點。
 
-## 給其他 AI
+## 跨 AI 協作
 
-閱讀同資料夾的 AGENTS.md、cases.json 與 voice_studio.py。新增角色時，先寫 JSON，再跑單元測試／plan；真實生成經品質驗收後再建立 PR。請勿把計畫、請求草稿或尚未驗證的情緒效果描述為已生成音檔。
+先讀 [AGENTS.md](AGENTS.md)。保持角色與台詞 ID 唯一，產音使用新的版本資料夾；原始聲音、生成音訊、權重與金鑰不得提交公開 Git。新增模型或角色必須記錄授權、版本、SHA-256 與人工評分，從獨立分支／PR 提交，不修改本庫機甲、馬匹或 Blender 工作流程。
 
-## 來源與授權
+本工具可日後獨立成另一個 repository，目前保留於 PR #33 分支，不代表已合併或正式上線。
 
-- IndexTTS 官方程式庫：https://github.com/index-tts/index-tts
-- 模型資料：https://huggingface.co/IndexTeam/IndexTTS-2.5
-- vLLM-Omni 使用文件：https://github.com/vllm-project/vllm-omni/blob/main/recipes/IndexTeam/IndexTTS-2_5.md
-- AutoIP 官方首頁：https://autoip.app/
+## 來源
 
-IndexTTS 模型使用 **bilibili Model Use License**（請自行核對使用條件）；本 PoC 既未附帶模型權重，也未重製上游程式庫。
+- [IndexTTS 官方倉庫](https://github.com/index-tts/index-tts)
+- [IndexTTS-2.5 模型卡](https://huggingface.co/IndexTeam/IndexTTS-2.5)
+- [官方示範服務](https://huggingface.co/spaces/IndexTeam/IndexTTS-2.5-Demo)
+- [AutoIP](https://autoip.app/)
+
+模型授權與參考聲音權利須分別核對。本庫不附帶上游模型權重。

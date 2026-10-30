@@ -24,6 +24,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Editor import/export regression tests
+        run: node --test experiments/emotion-voice-lab/tests/studio-data.test.js
       - name: Syntax
         run: python -m compileall -q experiments/emotion-voice-lab
       - name: Unit tests (no GPU, no AI fees)
