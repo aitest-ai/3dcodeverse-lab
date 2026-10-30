@@ -48,3 +48,14 @@
 - **人工審查仍不接受發佈**：`boss` 厚瀏海遮一眼；女性老闆娘雖年齡變形已套用，臉部仍過平滑、缺乏真實 50+ 歲肌膚和不對稱特徵；`you` 臉部過白偏蠟像；`boss` 上衣胸前與肩有貼圖/穿模異常；兩位皆無鞋，僅供頭部與衣物原型測試。
 - 8 ARKit morphs 此兩人先導尚未重新建立；更**沒有正式驗證表情、可動性或 8 人 34 檔案最終 ZIP**。
 - 最新人工狀態：`FACE_TOPOLOGY_AND_EYE_ALIGNMENT_PASS`，但 `ART_APPROVAL=BLOCKED`。下一步優先解決髮際線遮眼、皮膚反射粗糙度/年齡細節、胸前布料瑕疵，兩人合格才升級到全八人表情動畫。
+
+
+## 2026-10-30｜v4 → v5：臉部、年齡貼圖、髮型、穿模與真實 GLB
+
+- **v4 人工 QA**：Actions 41047071687。每位角色 4 視角，測試老闆娘 short02、short04、bob01；眉眼遮擋改善但發現程式以字母順序誤選 \`middleage_african_female.mhmat\`，且衣服破碎色塊是 **身體穿出衣服** 而非只有布料材質問題。v4 **REJECTED**。
+- **v5 人工 QA**：Actions 41047917200。改正使用 \`young_asian_male.mhmat\`（you）與 \`middleage_asian_female.mhmat\`（boss），老闆娘對照 ponytail01/short04/long01，偏好 \`ponytail01\`，不再遮眼。
+- 服裝校正是以真實 13,380 頂點身體 BVH 最近表面與法線作穿模修補，修正 you 4,905 個服裝頂點、boss 1,992 個；其中估算原始 signed distance 為負的分別是 108、78。換上不帶破碎印刷的雙色布料材質，並裝配官方 CC0 鞋子。
+- **真 GLB 導出**：Actions 41048710339；兩人各 1 GLB，1 skin、53 joints、9 3D meshes、8 image maps，來源身體確實保留 13,380 頂點。未優化 GLB：you 11,710,208 bytes、boss 13,128,664 bytes。
+- **驗證過的 GLB 紋理優化**：用 Pillow 改寫 GLB 內真正的 PNG bufferView，8 張貼圖最多 512×512；原始骨架 nodes、meshes、accessors 與每個非圖像 bufferView 位元組都保持完全一致。you 3,794,088 bytes；boss 3,471,744 bytes。對應實作 \`scripts/taiwan_characters/optimize_embedded_glb.py\`。v6 曾嘗試直接在 Blender 內縮圖失敗（貼圖未先載入，處理張數 0），已改採可靠的 GLB 後處理。
+- **依然不准正式發布**：兩個 GLB 的 morph targets 數量仍為 0（原要求 8 個表情尚未做）；動態與服裝穿模測試未通過；角色風格仍偏普通 NPC，沒有達到高品質遊戲近景角色的皮膚與衣物細節；其餘六位尚未製作同一套真正的來源人體與原生 fitted assets。
+- v5 結果只可描述為 \`TWO_CHARACTER_STRUCTURAL_PILOT\`，**不是 8 人完整資產，也不是 ART_APPROVED**。
