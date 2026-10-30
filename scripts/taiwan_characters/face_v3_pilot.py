@@ -14,7 +14,7 @@ ASSETS=Path(os.environ["MAKEHUMAN_ASSET_ROOT"]).resolve()
 assert ASSETS.is_dir()
 PROFILES={
  "you":{"gender":.95,"age":.48,"weight":.39,"muscle":.56,"height":.53,"proportions":.52},
- "boss":{"gender":.05,"age":.79,"weight":.77,"muscle":.30,"height":.42,"proportions":.45}}
+ "boss":{"gender":.05,"age":.90,"weight":.77,"muscle":.30,"height":.42,"proportions":.45}}
 def need(filename):
     matches=list(ASSETS.rglob(filename))
     if not matches:raise RuntimeError("Missing original licensed MakeHuman asset: "+filename)
@@ -54,6 +54,33 @@ for filename,category in [
                       subdiv_levels=0,material_type="GAMEENGINE")
     if asset is None:raise RuntimeError("MPFB failed to fit "+filename)
     attached.append(asset)
+# Add headwear on the SAME MPFB mesh so original MHCLO metadata does the
+# vertex fitting, instead of creating artificial shell-shaped hairstyles.
+haircatalog=sorted({p.name for p in ASSETS.rglob("*.mhclo") if any(
+  w in p.name.lower() for w in ("short","bob","hair","crop","buzz","long"))})
+print("FACE_V3_HAIR_CATALOG",json.dumps(haircatalog))
+preferred=(("short01.mhclo","short02.mhclo","bob02.mhclo") if ID=="you"
+           else ("bob02.mhclo","short02.mhclo","long01.mhclo"))
+found=next((p for name in preferred for p in ASSETS.rglob(name)),None)
+if found is None:
+    raise RuntimeError("Official CC0 head hair assets unavailable: "+str(haircatalog))
+hair=HumanService.add_mhclo_asset(str(found),body,asset_type="Hair",
+                   subdiv_levels=0,material_type="GAMEENGINE")
+if hair is None:raise RuntimeError("Could not apply scalp-fitted hair "+str(found))
+hair.name="HairFitted_"+ID
+attached.append(hair)
+print("FACE_V3_HAIR_ATTACHED",ID,found.name)
+# Include a real fitted garment where available, so upper-body render
+# does not show unclothed test body. Deliberately not final character apparel.
+garments=(("male_casualsuit01.mhclo","male_sportsuit01.mhclo","female_casualsuit01.mhclo") 
+          if ID=="you" else ("female_casualsuit01.mhclo","female_elegantsuit01.mhclo"))
+garmentpath=next((p for name in garments for p in ASSETS.rglob(name)),None)
+if garmentpath:
+    clothes=HumanService.add_mhclo_asset(str(garmentpath),body,asset_type="Clothes",
+                      subdiv_levels=0,material_type="GAMEENGINE")
+    if clothes is None:raise RuntimeError("Failed garment "+str(garmentpath))
+    attached.append(clothes)
+    print("FACE_V3_GARMENT",ID,garmentpath.name)
 # Morph geometry is visibly real, not merely shape key weights in Blender.
 TargetService.bake_targets(body)
 for mod in tuple(body.modifiers):
@@ -111,6 +138,8 @@ report={"character":ID,"status":"FACE_ONLY_PILOT_REQUIRES_VISUAL_APPROVAL",
         "phenotype":macro,"body_vertices":len(body.data.vertices),
         "head_top_m":top,"height_m":height,"bones":len(rig.data.bones),
         "attached_original_face_assets":[x.name for x in attached],
+        "hair_asset":found.name,
+        "garment_asset":garmentpath.name if garmentpath else None,
         "textures":texture_dimensions,
         "views":[ID+"_v3_"+x+".png" for x in views],
         "note":"Face-only QA; no proof yet of acceptable art, expressions, garments or final license metadata."}
