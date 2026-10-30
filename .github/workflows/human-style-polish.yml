@@ -4,12 +4,12 @@ on:
   push:
     paths:
       - '.github/workflows/human-style-polish.yml'
-      - 'scripts/characters/polish_from_glb.py'
+      - 'scripts/characters/polish_original_blend.py'
       - 'scripts/characters/contact_sheet.py'
   pull_request:
     paths:
       - '.github/workflows/human-style-polish.yml'
-      - 'scripts/characters/polish_from_glb.py'
+      - 'scripts/characters/polish_original_blend.py'
 permissions:
   contents: read
   actions: read
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compile procedural character script
-        run: python3 -m py_compile scripts/characters/polish_from_glb.py
+        run: python3 -m py_compile scripts/characters/polish_original_blend.py
       - name: Restore VERIFIED source character GLB with packed CC0 textures
         uses: actions/download-artifact@v4
         with:
@@ -32,6 +32,7 @@ jobs:
       - name: Ensure skinned 27MB MPFB source is present
         run: |
           test -s inputs/baseline/human_mpfb_blender5.glb
+          test -s inputs/baseline/human_mpfb_blender5.blend
           test "$(stat -c%s inputs/baseline/human_mpfb_blender5.glb)" -gt 20000000
           sha256sum inputs/baseline/human_mpfb_blender5.glb
       - name: Install headless Blender requirements
@@ -58,16 +59,16 @@ jobs:
           PY
           tar -xf ".tools/$FILE" -C .tools
           echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
-      - name: Make THREE independent character styles without asset-pack downloads
+      - name: Polish original BLEND without costly re-import or asset download
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
-          BASE_GLB: inputs/baseline/human_mpfb_blender5.glb
+          BASE_SOURCE: inputs/baseline
         run: |
           set -euo pipefail
           for style in studio street sport; do
             echo "::group::Style $style"
             HUMAN_STYLE="$style" ASSET_OUT="$PWD/outputs/human_$style" \
-              xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/polish_from_glb.py
+              xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/polish_original_blend.py
             /usr/bin/python3 scripts/characters/contact_sheet.py "outputs/human_$style"
             echo "::endgroup::"
           done
@@ -92,8 +93,9 @@ jobs:
               assert len(gltf.get("images",[]))>=9
               assert len(gltf.get("materials",[]))>=9
               names=[m.get("name","") for m in gltf["meshes"]]
-              assert any("hairstrands" in x.lower() for x in names),names
-              assert report["bone_count"]>=50 and report["hair_remaining_vertices"]>300
+              assert any("long01" in x.lower() for x in names),names
+              assert report["bones"]>=50 and report["hair_vertices"]>300
+              assert report["relinked_images"]>=7
               assert report["height_m"]>1.0
               assert (folder/"preview_contact_sheet.png").stat().st_size>10000
               assert all((folder/("preview_"+x+".png")).stat().st_size>10000
