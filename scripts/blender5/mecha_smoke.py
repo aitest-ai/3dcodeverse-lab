@@ -83,7 +83,7 @@ for side,x in (("L",.27),("R",-.27)):
  for suffix,offset in (("Outer",.19),("Inner",-.19)):
   n="kneeAxle"+side+suffix
   bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.103,depth=.07,rotation=(0,math.pi/2,0))
-  ob=bpy.context.object;ob.name=n
+  ob=bpy.context.object;ob.name=n;ob.data.name=n
   bpy.ops.object.transform_apply(location=False,rotation=True,scale=False)
   # Bake pivot into mesh coordinates so the armature modifier uses one common origin.
   for vertex in ob.data.vertices:
@@ -100,7 +100,7 @@ for side,x in (("L",.27),("R",-.27)):
  for suffix,offset in (("Outer",.14),("Inner",-.14)):
   bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.088,depth=.045,
                                       rotation=(0,math.pi/2,0))
-  ob=bpy.context.object;ob.name="ankleAxle"+side+suffix
+  ob=bpy.context.object;ob.name="ankleAxle"+side+suffix;ob.data.name=ob.name
   bpy.ops.object.transform_apply(location=False,rotation=True,scale=False)
   for vertex in ob.data.vertices:
    vertex.co.x += x+offset
@@ -114,7 +114,7 @@ for side,x in (("L",.27),("R",-.27)):
 
 for n,bone,loc,size,mat in parts:
  bpy.ops.mesh.primitive_cube_add(size=1)
- ob=bpy.context.object;ob.name=n;ob.dimensions=size
+ ob=bpy.context.object;ob.name=n;ob.data.name=n;ob.dimensions=size
  bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
  for v in ob.data.vertices:v.co+=Vector(loc)
  ob.data.materials.append(mats[mat])
