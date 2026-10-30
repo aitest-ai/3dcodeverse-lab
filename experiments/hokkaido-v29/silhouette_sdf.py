@@ -133,7 +133,8 @@ for profile,width in [(dorsal,.038),(anal,.031)]:
 for sign in [-1,1]:
     pectoral=[(-.93,.893),(-.70,.684),(-.52,.818),(-.71,.935)]
     mask=sdf_polygon(Y,Z,pectoral)[None,:,:]
-    sheet=.050-np.abs(xx-(-2.61+sign*.145))
+    # Move pectoral fin ROOT inside flank; its outside wing still projects.
+    sheet=.066-np.abs(xx-(-2.61+sign*.104))
     fish=smoothmax(fish,smoothmin(mask,sheet,.016),.035)
 # Carve salmon ocular depressions and two unmistakable oblique operculum
 # grooves into highpoly mesh; do not paint fake floating pupils.
