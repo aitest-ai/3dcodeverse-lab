@@ -1,0 +1,161 @@
+name: Taiwan V20 - Native MPFB Four Role Source Integration
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v20-source.yml'
+      - 'scripts/taiwan_v20/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v20-source-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-source-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile source integration modules
+        run: python3 -m compileall -q scripts/taiwan_v20
+      - name: Retrieve pinned V19 reference only (not character build input)
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v19-tucked-waist-8view-byte-preserved-PILOT
+          run-id: 41143850409
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: reference_v19
+      - name: Install native rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Install SHA256-verified official Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools .deps
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f:
+              assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Install official MPFB 2.0.18 and record exact source revision
+        run: |
+          set -euo pipefail
+          git clone --depth 1 -q https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          mkdir -p outputs/v20/qa
+          git -C .deps/mpfb2 rev-parse HEAD > outputs/v20/qa/mpfb_source_revision.txt
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          python3 scripts/taiwan_characters/verify_faceunits_pack.py
+      - name: Restore source CC0 packs (never substitute GLB for source build)
+        id: assetcache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: taiwan-v20-cc0-source-packs-v1
+      - name: Download and verify original CC0 source packs
+        run: |
+          set -euo pipefail
+          mkdir -p .deps/mh_assets
+          for pack in makehuman_system_assets shirts01 pants01; do
+            if [ "$pack" = makehuman_system_assets ]; then
+              file=.tools/makehuman_system_assets_cc0.zip
+            else
+              file=".deps/${pack}_cc0.zip"
+            fi
+            if ! unzip -tq "$file" >/dev/null 2>&1; then
+              rm -f "$file"
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 1 --connect-timeout 20 --max-time 240 -o "$file" "https://$host/asset_packs/$pack/${pack}_cc0.zip"; then break; fi
+                rm -f "$file"
+              done
+            fi
+            test -s "$file"
+            unzip -tq "$file" >/dev/null
+            unzip -oq "$file" -d .deps/mh_assets
+            sha256sum "$file" >> outputs/v20/qa/original_pack_sha256.txt
+          done
+          test "$(stat -c%s .tools/makehuman_system_assets_cc0.zip)" -gt 200000000
+      - name: Preserve verified source cache even if later art tests fail
+        if: steps.assetcache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: taiwan-v20-cc0-source-packs-v1
+      - name: Build four original source people with native V19 waist integration
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
+          FACEUNITS_ROOT: .deps/mh_faceunits
+          V19_REFERENCE_DIR: reference_v19
+          V20_OUT: outputs/v20
+        run: |
+          set -euo pipefail
+          for id in jie you boss uncle; do
+            FACE_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v20/build.py
+          done
+      - name: Reopen delivered BLENDs and exported animation to audit all sampled frames
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V20_OUT: outputs/v20
+        run: xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v20/roundtrip.py
+      - name: Verify real face-accessory morphs and complete manifest
+        run: |
+          set -euo pipefail
+          for id in you boss uncle jie; do
+            python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "outputs/v20/models/${id}_v20_source.glb"
+          done
+          python3 - <<'PY'
+          import json,pathlib,hashlib,shutil
+          p=pathlib.Path('outputs/v20');reports={}
+          for role in ('you','boss','uncle','jie'):
+              d=json.loads((p/'qa'/f'{role}_v20_build.json').read_text())
+              assert d['native_body_vertices']==13380 and d['bones']==53
+              assert len(d['body_shape_keys'])==10
+              assert d['non_target_mesh_data_unchanged'] and not d['art_approved']
+              assert (p/'models'/d['neutral_glb']['file']).stat().st_size==d['neutral_glb']['bytes']
+              assert all((p/'renders'/x).is_file() for x in d['renders'])
+              if role=='jie':
+                  assert d['repair']['native_mpfb_before_export']
+                  assert d['native_motion_frames']==49 and d['native_motion_visible_waist_hits']==0
+                  assert d['v19_geometry_bidirectional_error_m']<.00002
+              else: assert d['changed_meshes']==[]
+              reports[role]=d['neutral_glb']
+          reopened=json.loads((p/'qa'/'v20_reopened_deliverables.json').read_text())
+          assert reopened['visible_waist_skin']==0 and len(reopened['source_blends_reopened'])==4
+          shutil.copy('.deps/mh_faceunits/faceunits_manifest.json',p/'qa'/'faceunits_manifest.json')
+          (p/'source').mkdir(exist_ok=True)
+          for folder in ('taiwan_v20','taiwan_characters','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('.github/workflows/taiwan-v20-source.yml',p/'source'/'taiwan-v20-source.yml')
+          (p/'qa'/'v20_manifest.json').write_text(json.dumps({'status':'SOURCE_INTEGRATION_PILOT','roles':reports,'source_body_vertices':13380,'roles_present':4,'roles_requested':8,'art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          print('V20_ALL_SOURCE_INTEGRATION_CHECKS_COMPLETE',reports)
+          PY
+      - name: Publish source integration candidate with evidence, not a final release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v20-four-native-sources-waist-integration-PILOT
+          path: outputs/v20/**
+          retention-days: 30
+          if-no-files-found: warn
