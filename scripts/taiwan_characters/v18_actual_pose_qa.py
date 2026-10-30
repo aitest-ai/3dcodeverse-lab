@@ -128,10 +128,52 @@ def sample_visibility():
     counts["note"]="Orthographic -Y neutral camera, central 37x35 sample; does not capture sleeves or side seams"
     return counts
 
+def calibrate_arm_raise_axis():
+    """Test actual FK result instead of assuming left/right local bone axes.
+    Choose a real wrist-height-raising axis for EACH arm separately.
+    """
+    rig_axes={}
+    proof={}
+    for side in ("l","r"):
+        upper=rig.pose.bones["upperarm_"+side]
+        wrist=rig.pose.bones["hand_"+side]
+        for bone in rig.pose.bones:
+            bone.rotation_mode="XYZ"
+            bone.rotation_euler=(0.0,0.0,0.0)
+        bpy.context.view_layer.update()
+        original=rig.matrix_world@wrist.head
+        options=[]
+        for axis in (0,1,2):
+            for radians in (-1.15,-.85,.85,1.15):
+                trial=[0.,0.,0.]
+                trial[axis]=radians
+                upper.rotation_euler=trial
+                bpy.context.view_layer.update()
+                moved=rig.matrix_world@wrist.head
+                height=moved.z-original.z
+                # Penalize wrist crossing the torso centreline.
+                score=height-max(0,.11-abs(moved.x))*.25
+                options.append((score,height,tuple(trial),tuple(moved)))
+                upper.rotation_euler=(0.,0.,0.)
+        pick=max(options,key=lambda x:x[0])
+        if pick[1]<.13:
+            raise RuntimeError("No real local-arm rotation raises wrist >=13cm: "+str((side,options)))
+        rig_axes["upperarm_"+side]=pick[2]
+        proof[side]={"neutral_wrist_z":round(original.z,5),
+                     "raised_wrist_z":round(pick[3][2],5),
+                     "actual_vertical_lift_m":round(pick[1],5),
+                     "rotation_euler_xyz":pick[2]}
+        bpy.context.view_layer.update()
+    for bone in rig.pose.bones:
+        bone.rotation_euler=(0.,0.,0.)
+    bpy.context.view_layer.update()
+    return rig_axes,proof
+
+raise_axes,raise_proof=calibrate_arm_raise_axis()
 poses=[
  ("neutral",1,{}),
- ("arms_reach",13,{"upperarm_l":(0,0,-.85),"upperarm_r":(0,0,.85)}),
- ("torso_bend",25,{"spine_02":(.32,0,0),"upperarm_l":(0,0,-.35),"upperarm_r":(0,0,.35)}),
+ ("arms_raise",13,raise_axes),
+ ("torso_bend",25,{"spine_02":(.32,0,0)}),
  ("step",37,{"thigh_l":(.48,0,0),"calf_l":(-.30,0,0),
              "thigh_r":(-.25,0,0),"calf_r":(.12,0,0)}),
  ("reset",49,{})
@@ -151,10 +193,10 @@ def wrist_position(frame):
     bone=rig.pose.bones["hand_l"]
     return tuple(rig.matrix_world@bone.head)
 neutral_wrist=Vector(wrist_position(1))
-reach_wrist=Vector(wrist_position(13))
-if (neutral_wrist-reach_wrist).length<.035:
-    raise RuntimeError("Rig arm reach did not visibly move hand >=3.5cm")
-report["actual_hand_displacement_m"]=round((neutral_wrist-reach_wrist).length,5)
+raise_wrist=Vector(wrist_position(13))
+if (neutral_wrist-raise_wrist).length<.13:
+    raise RuntimeError("Rig calibrated arm raise did not visibly move hand >=13cm")
+report["actual_hand_displacement_m"]=round((neutral_wrist-raise_wrist).length,5)
 scene.frame_set(1)
 bpy.context.view_layer.update()
 
@@ -182,6 +224,7 @@ data={
     "base_sha256":hashlib.sha256(source.read_bytes()).hexdigest(),
     "status":"PILOT_POSE_STRESS_NOT_ART_APPROVED",
     "pose_names":[x[0] for x in poses],
+    "calibrated_arm_raise":raise_proof,
     "angles_in_radians":{n:a for n,frame,a in poses},
     "bones":len(rig.data.bones),
     "shape_key_meshes":{m.name:list(m.data.shape_keys.key_blocks.keys())[1:] for m in meshes if m.data.shape_keys},
@@ -189,7 +232,7 @@ data={
     "actual_animation_channels":num_channels,
     "glb":glb.name,"glb_bytes":glb.stat().st_size,
     "per_pose":report,
-    "animation_scope":"4 keyed stress poses + reset; NOT locomotion or polished walk",
+    "animation_scope":"Neutral, two real wrist-raising FK arms, torso bend, step, reset. Not a walk cycle.",
     "manual_review_required":True,
     "art_approved":False,
 }
