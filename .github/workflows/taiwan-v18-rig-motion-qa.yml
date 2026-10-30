@@ -47,7 +47,7 @@ jobs:
           PY
           tar -xf ".tools/$FILE" -C .tools
           echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
-      - name: Rig two real V17 characters and render neutral/reach/bend/step
+      - name: Rig two real V17 characters and render neutral/true raised arms/bend/step
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           V18_INPUT: input/outputs/face_v17
@@ -67,10 +67,11 @@ jobs:
               assert d["bones"]==53
               assert d["actual_glb_animations"]>=1
               assert d["actual_animation_channels"]>=4
-              assert d["per_pose"]["actual_hand_displacement_m"]>=0.035
+              assert d["per_pose"]["actual_hand_displacement_m"]>=0.13
+              assert all(x["actual_vertical_lift_m"]>=0.13 for x in d["calibrated_arm_raise"].values())
               assert d["art_approved"] is False
-              assert d["animation_scope"].endswith("NOT locomotion or polished walk")
-              for pose in ("neutral","arms_reach","torso_bend","step"):
+              assert d["animation_scope"].endswith("Not a walk cycle.")
+              for pose in ("neutral","arms_raise","torso_bend","step"):
                   item=d["per_pose"][pose]
                   assert item["rays"]==1295
                   assert (root/item["render"]).is_file()
