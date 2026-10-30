@@ -119,15 +119,26 @@ for name,xyz,power in (("Key",(3,-4,4),440),("Fill",(-3,-3,3),260),("Rim",(-2,3,
     sc.collection.objects.link(o);o.location=xyz
     o.rotation_euler=(Vector((0,0,1.1))-o.location).to_track_quat("-Z","Y").to_euler()
     lamp.energy=power;lamp.size=3.3
-def render(view):
+def render(view,version):
     look=top-.69
     if view=="front":cam.location=(0,-2.4,look);cdata.ortho_scale=.40
     else:cam.location=(1.15,-2.4,look);cdata.ortho_scale=.42
     cam.rotation_euler=(Vector((0,0,look))-cam.location).to_track_quat("-Z","Y").to_euler()
-    sc.render.filepath=str(OUT/("boss_v18_smoothed_hem_"+view+".png"))
+    sc.render.filepath=str(OUT/("boss_v18_"+version+"_hem_"+view+".png"))
     bpy.ops.render.render(write_still=True)
 
-for view in ("front","threequarter"):render(view)
+# True apples-to-apples compare in one Blender import and exact same camera.
+deltas={idx:shirt.data.vertices[idx].co-pre_points[idx] for idx in moved}
+for idx,delta in deltas.items():
+    shirt.data.vertices[idx].co-=delta
+    for block in keys:block.data[idx].co-=delta
+shirt.data.update()
+for view in ("front","threequarter"):render(view,"before")
+for idx,delta in deltas.items():
+    shirt.data.vertices[idx].co+=delta
+    for block in keys:block.data[idx].co+=delta
+shirt.data.update()
+for view in ("front","threequarter"):render(view,"after")
 bpy.ops.object.select_all(action="DESELECT")
 for o in bpy.context.scene.objects:
     if o.type in ("ARMATURE","MESH"):o.select_set(True)
