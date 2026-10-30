@@ -42,9 +42,27 @@ if len(source_actions)!=13 or "Gallop" not in source_actions:
     raise RuntimeError("Refuse source without all 13 original actions")
 source_bones=len(rig.data.bones)
 source_vertices=len(body.data.vertices)
+source_faces=len(body.data.polygons)
 if source_bones!=50:raise RuntimeError("Unexpected source bone count")
 print("HORSE_V2_BASELINE",horse,source_vertices,source_bones,source_actions,flush=True)
 
+# The original flat-shaded GLTF has over 75% duplicate seam vertices.
+# Catmull-Clark on unwelded triangles contracts each flat face into a detached
+# plate. Safely merge vertices only at exactly coincident rest coordinates,
+# BEFORE smooth/subdiv, preserving vertex groups and material assignments.
+bpy.ops.object.select_all(action="DESELECT")
+body.select_set(True);bpy.context.view_layer.objects.active=body
+bpy.ops.object.mode_set(mode="EDIT")
+bpy.ops.mesh.select_all(action="SELECT")
+bpy.ops.mesh.remove_doubles(threshold=0.000001)
+bpy.ops.object.mode_set(mode="OBJECT")
+welded_vertices=len(body.data.vertices)
+print("HORSE_SOURCE_SEAM_WELD",source_vertices,welded_vertices,
+      "faces",source_faces,flush=True)
+if not (source_vertices*.15 < welded_vertices < source_vertices*.65):
+    raise RuntimeError("Expected exact duplicate source seams to weld; inspect topology")
+if not body.vertex_groups or not any(m.type=="ARMATURE" for m in body.modifiers):
+    raise RuntimeError("Welding damaged skinning")
 # Smooth only the coat/body, not the small hard-edged hoof polygons. The
 # original source geometry is not altered until a real Subsurf evaluation.
 soft={"Main","Main_Dark","Main_Light","Muzzle","Hair"}
@@ -65,8 +83,8 @@ while body.modifiers[0] != sub:
     bpy.ops.object.modifier_move_up(modifier=sub.name)
 bpy.ops.object.modifier_apply(modifier=sub.name)
 new_vertices=len(body.data.vertices)
-if new_vertices < source_vertices*1.6:
-    raise RuntimeError("Subdivision did not add expected true mesh detail")
+if new_vertices < welded_vertices*2.4 or len(body.data.polygons)<source_faces*2:
+    raise RuntimeError("Subdivision did not add expected continuous mesh detail")
 if not any(m.type=="ARMATURE" for m in body.modifiers):
     raise RuntimeError("Subdivision accidentally discarded skin modifier")
 if not body.vertex_groups:
@@ -181,8 +199,11 @@ for view,offset in views.items():
 report={
     "horse":horse,"source_blend":str(blend_src.name),
     "blender":bpy.app.version_string,
-    "source_vertices":source_vertices,"new_vertices":new_vertices,
-    "subdivision_ratio":round(new_vertices/source_vertices,2),
+    "source_vertices":source_vertices,
+    "seam_weld_vertices":welded_vertices,
+    "seam_removed_count":source_vertices-welded_vertices,
+    "new_vertices":new_vertices,
+    "subdivision_ratio_vs_welded":round(new_vertices/welded_vertices,2),
     "bones":source_bones,"actions":source_actions,
     "pbr_materials":pbr_settings,
     "glb_bytes":out_glb.stat().st_size,
