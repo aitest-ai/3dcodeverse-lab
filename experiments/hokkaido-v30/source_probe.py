@@ -34,13 +34,14 @@ try:
     # avoid fetching arbitrary iframe/media URLs or authenticated resources.
     for c in candidates:
         url=c.get("url")
-        if not url or not url.lower().split("?")[0].endswith(".glb"):continue
+        if not url or not (url.lower().split("?")[0].endswith(".glb") or
+                              url.lower().split("?")[0].endswith("/download")):continue
         try:
             m=s.get(url,timeout=35)
             if m.status_code==200 and m.content[:4]==b"glTF" and len(m.content)>120000:
                 dest=ROOT/"brown_bear_source_CC0_candidate.glb"
                 dest.write_bytes(m.content)
-                out.update(verified_glb=True,direct_url=url,bytes=len(m.content),
+                out.update(verified_glb=True,can_redistribute=bool(out["contains_cc0"] and out["contains_creator"]),direct_url=url,bytes=len(m.content),
                            sha256=hashlib.sha256(m.content).hexdigest())
                 break
         except requests.RequestException as e:
