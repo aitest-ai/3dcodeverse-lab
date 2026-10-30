@@ -122,27 +122,27 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v9
+          FACE_OUT: outputs/face_v10
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v9
+          mkdir -p outputs/face_v10
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v9_art_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v10_portrait_qa.py
           done
       - name: Independently validate four original 3D outfits and faces
         run: |
           set -euo pipefail
-          for id in you_v9_main boss_v9_ponytail01 uncle_v9_main jie_v9_main; do
-            p="outputs/face_v9/$id.glb"
+          for id in you_v10_main boss_v10_ponytail01 uncle_v10_main jie_v10_main; do
+            p="outputs/face_v10/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
           import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v9")
-          names=("you_v9_main","boss_v9_ponytail01","uncle_v9_main","jie_v9_main")
+          root=pathlib.Path("outputs/face_v10")
+          names=("you_v10_main","boss_v10_ponytail01","uncle_v10_main","jie_v10_main")
           profiles=set()
           for tag in names:
               p=root/(tag+"_report.json")
@@ -151,6 +151,11 @@ jobs:
               assert len(data["separate_open_source_garments"])==2
               assert data["body_vertices"]==13380
               assert all(x["license"]=="CC0" for x in data["separate_open_source_garments"])
+              assert all(qa["vertices"]>200 for qa in data["wardrobe_topology_qa"].values())
+              if tag.startswith("jie"):
+                  assert "toigo_basic_tucked_t-shirt" in data["separate_open_source_garments"][0]["file"],data
+              if tag.startswith("uncle"):
+                  assert len(data["personal_face_targets"])>=13
               for png in data["views"]:
                   assert (root/png).stat().st_size>15000
               glb=root/(tag+".glb")
@@ -174,7 +179,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v9-four-role-revised-faces-wardrobe-ART-QA
-          path: outputs/face_v9/
+          name: taiwan-v10-four-role-revised-faces-wardrobe-ART-QA
+          path: outputs/face_v10/
           retention-days: 14
           if-no-files-found: warn
