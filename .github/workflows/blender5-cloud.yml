@@ -25,6 +25,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check Blender Python scripts parse
         run: python3 -m compileall -q scripts/blender5
+      - name: Run offline GLB validator regression tests
+        run: python3 -m unittest discover -s scripts/blender5 -p 'test_*.py' -v
       - name: Install headless rendering dependencies
         run: |
           sudo apt-get update -qq
