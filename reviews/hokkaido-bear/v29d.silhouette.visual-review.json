@@ -1,0 +1,103 @@
+{
+  "schema": "3dcodeverse-art-supervision/v1",
+  "asset": "Hokkaido wooden bear salmon: v29 through v29d 2D-front-side silhouette distance-field prototype",
+  "inspected_on": "2026-10-30",
+  "reviewer": "Direct visual inspection of actual Blender Cycles 4-angle GLB render: v28b baseline, v29, v29b, v29c, v29d; independent QA and SHA-256 from exported actual GLB",
+  "status": "rejected",
+  "overall_artistic_result": "NOT APPROVED; new SDF pipeline tech valid but visual realism not improved over v28b",
+  "workflow_runs": {
+    "v29": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40988129818",
+    "v29b": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40988723021",
+    "v29c": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40989073875",
+    "v29d": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/40989493951"
+  },
+  "sha256": {
+    "v29_glb": "0b8189515e9caced34235a57f70193394d05204d88e7",
+    "v29b_glb": "9d692cdb84318d4ab39d3a73a9127ce6805e8267d9af5a24d1598db8b9161a0b",
+    "v29d_glb": "a72c60c635e26baaa86d2256fc6125ff25ac724111844d82abed63deaad3dd63",
+    "comparison_image": "570c543c946cdbcdded98df1975d0f9f86b4e809aa5b9f3e5cc9bc60b8c6a420"
+  },
+  "independent_mesh_validation": {
+    "real_blender_cycles_render": true,
+    "real_glb": true,
+    "v29": {
+      "mesh_count": 3,
+      "bear_head_vertices": 18280,
+      "salmon_vertices": 9180,
+      "watertight_both": true,
+      "components_both": 1
+    },
+    "v29b": {
+      "mesh_count": 3,
+      "bear_head_vertices": 15776,
+      "salmon_vertices": 8868,
+      "watertight_both": true,
+      "components_both": 1
+    },
+    "v29d": {
+      "mesh_count": 3,
+      "bear_head_vertices": 15934,
+      "salmon_vertices": 8872,
+      "watertight_both": true,
+      "components_both": 1
+    },
+    "geometry_technique": "Two manually authored 2D side and front contours -> 3D SDF -> skimage marching cubes -> manifold PLY -> genuine Blender GLB -> Blender Cycles render",
+    "technical_pass": true
+  },
+  "artistic_criteria": {
+    "bear_head_and_expression": {
+      "score": 1.9,
+      "reason": "v29b/d rounded head fixes boxy SDF intersection but erases meaningful eye/brow/nasal bridge and reads as a blank soft toy. v29 original worse box-like striped shape."
+    },
+    "salmon_anatomy": {
+      "score": 2.5,
+      "reason": "Tail peduncle remains a recognizable fish silhouette and fins no longer float, but gill/head features are not distinct; central fish is still a flattened paddle."
+    },
+    "bite_legibility": {
+      "score": 2,
+      "reason": "Upper muzzle appears resting on a horizontal fish and the lower jaw is a small underside nub; no convincing side/front C-shaped anatomical clamp."
+    },
+    "carving_and_material": {
+      "score": 1,
+      "reason": "These are deliberately bare form studies, not finished relief-carved wooden figures; v25 fur technique has not been reapplied."
+    },
+    "multiview_and_reproducibility": {
+      "score": 4.8,
+      "reason": "Full genuine exported GLBs, four Cycles render angles, reproducible original source scripts and CI watertight tests."
+    }
+  },
+  "defects": [
+    {
+      "id": "V29-001",
+      "severity": "blocker",
+      "part": "mouth",
+      "finding": "Bite silhouette is still anatomically incorrect after four separate SDF variants.",
+      "next_fix": "Use an actual side/front reference-aligned sculpture of open mouth, including underjaw, cheek and eye planes, rather than only mathematical contours."
+    },
+    {
+      "id": "V29-002",
+      "severity": "critical",
+      "part": "face",
+      "finding": "v29b smooth rounded head eliminates eye sockets visually; v29c/d attempted projection onto real surface but no perceivable eye hollow in render.",
+      "next_fix": "Build separately bounded brow ridges, eye sockets and cheek planes in multiview sculpt; verify with close-up before smoothing/export."
+    },
+    {
+      "id": "V29-003",
+      "severity": "major",
+      "part": "fish head",
+      "finding": "Fish eye and gill remain subtle, and fish body resembles a broad board from front view.",
+      "next_fix": "Sculpt real salmon head transition, operculum, mouth and caudal tail using high-quality manually authored mesh, or licensed traceable base model."
+    },
+    {
+      "id": "V29-004",
+      "severity": "resolved_technical",
+      "part": "closed geometry",
+      "finding": "A 116-vertex detached pectoral/gill strip in first v29 tests was resolved by embedding fin roots and carving gills by skin displacement, not separate cutters.",
+      "next_fix": "Preserve the topology QA; never silently delete substantial detached geometry."
+    }
+  ],
+  "art_approved": false,
+  "game_latest_changed": false,
+  "promotion_forbidden": true,
+  "next_recommended_step": "Pivot from equation-only procedural anatomy to explicit artist-sculpted or licensed high-quality bear + salmon base mesh. Retain SDF for topology, silhouette guards and remix, not as sole high-fidelity authoring."
+}
