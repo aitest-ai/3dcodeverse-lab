@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Emotion Voice Studio｜角色情緒語音工作室</title>
+<style>
+:root{color-scheme:light;font-family:"Noto Sans TC",system-ui,sans-serif;color:#283a35;background:#f4f2e9}*{box-sizing:border-box}
+body{margin:0}.shell{max-width:1050px;margin:auto;padding:30px 18px 70px}h1{font-size:clamp(25px,5vw,38px);margin:6px 0 8px}
+p{line-height:1.7}.eyebrow{font-size:13px;letter-spacing:.16em;font-weight:700;color:#527a68}.muted{color:#677a72;font-size:14px}
+.flex{display:flex;gap:13px;flex-wrap:wrap}.panel{background:#fffefa;border:1px solid #dfdfd3;border-radius:18px;padding:24px;box-shadow:0 6px 30px #3154470e;margin:20px 0}
+label{display:block;font-weight:650;font-size:14px;margin-bottom:7px}.field{margin:14px 0;min-width:180px;flex:1}
+input,textarea,select{font:inherit;width:100%;padding:11px;border-radius:10px;border:1px solid #bfc9c1;background:#fff;color:#283a35}textarea{resize:vertical;min-height:86px;line-height:1.6}
+input[type=range]{padding:0;accent-color:#456f5b}button{border:0;border-radius:10px;background:#47735d;color:white;font-weight:700;padding:12px 18px;font:inherit;cursor:pointer}
+button.secondary{background:#e4ece6;color:#2b5841}button.danger{background:#f5e6dd;color:#934c36}
+button:disabled{opacity:.5}.tiny{font-size:12px;color:#6a7973}
+.lines{display:grid;gap:16px}.line{background:#f7f9f4;border:1px solid #dce6dc;border-radius:14px;padding:16px}
+.linehead{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.note{border-left:4px solid #bf8d42;background:#fff6e8;padding:12px 15px;border-radius:0 9px 9px 0}
+#status{white-space:pre-wrap}.score{font-weight:700;color:#365e49}
+@media(max-width:650px){.shell{padding:16px}.panel{padding:17px}.field{min-width:135px}.flex button{flex-grow:1}}
+</style>
+</head>
+<body><main class="shell">
+<div class="eyebrow">CROSS-PROJECT AUDIO LAB · PROTOTYPE</div>
+<h1>角色情緒語音工作室</h1>
+<p class="muted">為遊戲、動畫與教學共用的角色台詞建立情緒設定。這是本機離線台詞編輯器，不需帳號、不會上傳資料。</p>
+<p class="note"><strong>重要：</strong>「瀏覽器預聽」使用裝置內建 TTS，<strong>不是 IndexTTS，也不會真正套用情緒</strong>。匯出的 JSON 可交給 Python 產音工具，由已部署的 IndexTTS-2.5 服務產生正式 WAV。</p>
+<section class="panel">
+<h2>角色設定</h2>
+<div class="flex">
+<div class="field"><label for="roleId">角色 ID（英數）</label><input id="roleId" value="taiwan_nightmarket_auntie"></div>
+<div class="field"><label for="roleName">角色名稱</label><input id="roleName" value="臺灣夜市阿姨（測試角色）"></div>
+</div>
+<p class="muted">請勿將真實人物未授權的聲音、參考錄音或 API 金鑰上傳到公開 GitHub。</p>
+</section>
+<section class="panel">
+<div class="linehead"><h2>台詞與情緒</h2><button type="button" id="add" class="secondary">＋ 新增台詞</button></div>
+<div id="lines" class="lines"></div>
+</section>
+<section class="panel">
+<h2>輸出</h2>
+<p>先下載 JSON，使用同資料夾的 voice_studio.py 測試，再依需求進行 IndexTTS 產音。</p>
+<div class="flex">
+<button id="save">下載台詞 JSON</button>
+<button id="load" class="secondary">匯入 JSON</button>
+<button id="stop" class="secondary">停止預聽</button>
+</div>
+<input type="file" id="upload" accept="application/json,.json" hidden>
+<p id="status" class="muted" role="status">範例已載入；尚未產生 AI 音檔。</p>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+const emotions=[["natural","自然"],["happy","開心"],["angry","生氣"],["sad","悲傷"],["afraid","害怕"],["disgusted","厭惡"],["melancholic","憂鬱"],["surprised","驚訝"],["calm","平靜"]];
+const baseText="你怎麼現在才來？我都快收攤了啦！";
+let lines=[
+{id:"same_natural",text:baseText,emotion:"natural",strength:0.6,speed:1,language:"zh"},
+{id:"same_happy",text:baseText,emotion:"happy",strength:0.65,speed:1,language:"zh"},
+{id:"same_angry",text:baseText,emotion:"angry",strength:0.7,speed:1,language:"zh"},
+{id:"same_sad",text:baseText,emotion:"sad",strength:0.6,speed:0.9,language:"zh"}
+];
+const $=id=>document.getElementById(id), message=x=>$("status").textContent=x;
+function node(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el}
+function field(title,element){const wrap=node("div","field");const label=node("label","",title);label.appendChild(element);wrap.appendChild(label);return wrap}
+function input(value,onchange){const e=node("input");e.value=value;e.addEventListener("input",()=>onchange(e.value));return e}
+function btn(title,css,click){const b=node("button",css,title);b.type="button";b.addEventListener("click",click);return b}
+function render(){
+const target=$("lines");target.replaceChildren();
+lines.forEach((line,i)=>{
+const card=node("div","line"),top=node("div","linehead");
+const title=node("strong","",String(i+1)+"．"+line.id);
+top.append(title,btn("移除","danger",()=>{lines.splice(i,1);render()}));card.append(top);
+card.append(field("台詞 ID",input(line.id,v=>{line.id=v;title.textContent=String(i+1)+"．"+v})));
+const area=node("textarea");area.value=line.text;area.addEventListener("input",()=>line.text=area.value);card.append(field("台詞內容",area));
+const controls=node("div","flex"),sel=node("select");
+emotions.forEach(x=>{const o=node("option","",x[1]);o.value=x[0];sel.appendChild(o)});
+sel.value=line.emotion;sel.addEventListener("change",()=>line.emotion=sel.value);controls.append(field("情緒",sel));
+const strength=input(line.strength,v=>{line.strength=Number(v);strVal.textContent=v});
+strength.type="range";strength.min="0.1";strength.max="1";strength.step="0.05";
+const strVal=node("span","score",String(line.strength));const sf=field("情緒強度 ",strength);sf.querySelector("label").appendChild(strVal);controls.append(sf);
+const speed=input(line.speed,v=>{line.speed=Number(v);speedVal.textContent=v});
+speed.type="range";speed.min="0.75";speed.max="1.33";speed.step="0.01";
+const speedVal=node("span","score",String(line.speed));const vf=field("語速 ",speed);vf.querySelector("label").appendChild(speedVal);controls.append(vf);
+card.append(controls);
+const actions=node("div","flex");
+actions.append(btn("▶ 瀏覽器預聽（無情緒）","secondary",()=>{
+if(!("speechSynthesis" in window)){message("此瀏覽器不支援內建預聽");return}
+speechSynthesis.cancel();
+const utter=new SpeechSynthesisUtterance(line.text);utter.lang="zh-TW";utter.rate=line.speed;
+speechSynthesis.speak(utter);message("正在用瀏覽器內建語音預聽；不是 IndexTTS，未套用情緒");
+}));
+card.append(actions);target.append(card);
+});
+}
+$("add").addEventListener("click",()=>{lines.push({id:"line_"+String(lines.length+1).padStart(2,"0"),text:"請輸入新台詞。",emotion:"natural",strength:0.6,speed:1,language:"zh"});render()});
+$("stop").addEventListener("click",()=>{if("speechSynthesis" in window)speechSynthesis.cancel();message("已停止預聽")});
+$("save").addEventListener("click",()=>{
+const id=$("roleId").value;
+if(!/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(id)){message("角色 ID 必須為英數、底線或連字號");return}
+if(lines.length===0){message("請先新增台詞");return}
+const ids=new Set();
+for(const l of lines){
+if(!/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/.test(l.id)||ids.has(l.id)||!l.text.trim()||l.text.length>2000){message("請修正空台詞、超長台詞、重複或不合法的台詞 ID");return}
+ids.add(l.id);
+}
+const obj={schema_version:"1.0",character:{id:id,name:$("roleName").value,consent:"僅使用本人或取得明確授權的聲音"},lines:lines};
+const blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json;charset=utf-8"});
+const link=document.createElement("a");const url=URL.createObjectURL(blob);link.href=url;link.download=id+"_dialogue.json";link.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+message("已匯出 JSON；還沒有生成 AI 配音");
+});
+$("load").addEventListener("click",()=>$("upload").click());
+$("upload").addEventListener("change",async e=>{
+const f=e.target.files[0];if(!f)return;
+try{const obj=JSON.parse(await f.text());if(!obj.character||!Array.isArray(obj.lines))throw new Error("格式錯誤");
+$("roleId").value=String(obj.character.id||"");$("roleName").value=String(obj.character.name||"");
+lines=obj.lines.map(l=>({id:String(l.id||""),text:String(l.text||""),emotion:emotions.some(e=>e[0]===l.emotion)?l.emotion:"natural",strength:Number(l.strength??0.6),speed:Number(l.speed??1),language:"zh"}));
+render();message("已匯入 "+lines.length+" 筆台詞");}catch(err){message("匯入失敗："+err.message)}e.target.value="";
+});
+render();
+})();
+</script>
+</body>
+</html>
