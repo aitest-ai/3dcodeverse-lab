@@ -1,4 +1,4 @@
-name: Taiwan Street Game - 8 MPFB Characters ZIP
+name: Taiwan Street Game - V15 Four-Role Wardrobe Geometry Pilot
 on:
   workflow_dispatch:
   pull_request:
@@ -116,25 +116,25 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: V14 original MPFB face and child accessory interpolation
+      - name: V15 front-waist boundary repair and chest source-mesh QA
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
           FACEUNITS_ROOT: .deps/mh_faceunits
-          FACE_OUT: outputs/face_v14
+          FACE_OUT: outputs/face_v15
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v14
+          mkdir -p outputs/face_v15
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v14_interpolated_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v15_waist_qa.py
           done
-      - name: Validate V14 face and accessory skinning and real GLB shapes
+      - name: Validate V15 waist profile, shape keys and four real GLBs
         run: |
           set -euo pipefail
-          for stem in you_v14_main boss_v14_ponytail01 uncle_v14_main jie_v14_main; do
-            p="outputs/face_v14/$stem.glb"
+          for stem in you_v15_main boss_v15_ponytail01 uncle_v15_main jie_v15_main; do
+            p="outputs/face_v15/$stem.glb"
             ok=0
             for maxpx in 512 448 384 320; do
               if python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" "$maxpx"; then
@@ -147,12 +147,23 @@ jobs:
           done
           python3 - <<'PY'
           import json,pathlib,struct
-          root=pathlib.Path("outputs/face_v14")
-          for stem in ("you_v14_main","boss_v14_ponytail01","uncle_v14_main","jie_v14_main"):
+          root=pathlib.Path("outputs/face_v15")
+          for stem in ("you_v15_main","boss_v15_ponytail01","uncle_v15_main","jie_v15_main"):
               d=json.loads((root/(stem+"_report.json")).read_text())
               assert d["body_vertices"]==13380
               assert len(d["arkit_style_shape_keys"])==10
               assert len(d["expression_previews"])==3
+              if d["character"]=="jie":
+                  before=d["front_waist_before"]
+                  after=d["front_waist_after"]
+                  assert before and after, "missing real boundary loop data"
+                  assert after["front_max_bare_gap_m"]<=.006, after
+                  assert d["waistband_repair"]["moved_vertices"]>=0
+                  assert "waist_front" in str(d["views"]), d["views"]
+                  print("V15_JIE_FRONT_BOUNDARY_PASS",before["front_max_bare_gap_m"],after["front_max_bare_gap_m"])
+              if d["character"]=="boss":
+                  assert d["boss_chest_depth_diagnostic"], "no genuine chest profile"
+                  assert "chest_front" in str(d["views"]), d["views"]
               assert len(d['separate_open_source_garments'])==2
               child=d["fitted_face_accessory_keys_after_renaming"]
               assert any("mouthOpen" in keys for name,keys in child.items()
@@ -170,17 +181,17 @@ jobs:
                                  for m in doc["meshes"]}
               assert any("mouthOpen" in keys for name,keys in accessory_targets.items()
                          if "teeth" in name.lower() or "tongue" in name.lower()),accessory_targets
-              print("V14_FACE_AND_ORAL_ACCESSORY_MORPHS_VERIFIED",stem,total,child)
+              print("V15_FOUR_FACE_AND_WAIST_GEOMETRY_VERIFIED",stem,total,child)
           PY
-      - name: Publish two real Blender V14 oral animation QA candidates
+      - name: Publish V15 four character Blender QA with front-waist and chest closeups
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v14-4-roles-10-shape-face-accessory-PILOT
+          name: taiwan-v15-real-waist-boundary-and-chest-diagnostics-PILOT
           path: |
-            outputs/face_v14/*.glb
-            outputs/face_v14/*.png
-            outputs/face_v14/*_report.json
+            outputs/face_v15/*.glb
+            outputs/face_v15/*.png
+            outputs/face_v15/*_report.json
             .deps/mh_faceunits/faceunits_manifest.json
           retention-days: 14
           if-no-files-found: warn
