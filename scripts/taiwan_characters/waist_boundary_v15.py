@@ -154,7 +154,17 @@ def repair_waistband(trousers, profile, project_outside=None):
         candidate.z+=rise
         if project_outside is not None:
             candidate=project_outside(candidate)
-        v.co=inv@candidate
+        # Preserve the fitted clothing's facial morph deltas: translate ALL
+        # original shape-key positions by the same local-space displacement.
+        # Changing Mesh.vertices alone would cause expression-induced seams.
+        old_local=v.co.copy()
+        new_local=inv@candidate
+        delta_local=new_local-old_local
+        keys=trousers.data.shape_keys.key_blocks if trousers.data.shape_keys else []
+        old_positions=[(key,key.data[v.index].co.copy()) for key in keys]
+        v.co=new_local
+        for key,old_key_pos in old_positions:
+            key.data[v.index].co=old_key_pos+delta_local
         moved+=1;max_applied=max(max_applied,rise)
     trousers.data.update()
     return {"moved_vertices":moved,"maximum_applied_rise_m":round(max_applied,5),
