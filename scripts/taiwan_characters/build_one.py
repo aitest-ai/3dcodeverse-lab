@@ -2,7 +2,7 @@
 NEVER reimport a skinned GLB as the editable source. Blender 5.2, offline CI.
 All coordinates and topology checks are in Blender meters.
 """
-import bpy, bmesh, json, math, os, struct, random
+import bpy, bmesh, json, math, os, struct, random, sys
 from array import array
 from pathlib import Path
 from mathutils import Vector
