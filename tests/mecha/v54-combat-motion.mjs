@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {createMechCombatMotion} from '../../examples/threejs/mech-combat-v54.js';
+const f=createMechCombatMotion();
+assert.equal(f.impulse('invalid'),false);
+assert.ok(f.impulse('light'));
+let state=f.update(.016);
+assert.ok(state.pitch<0 && state.arm<0);
+for(let i=0;i<130;i++)state=f.update(.016);
+assert.ok(Math.abs(state.pitch)<.01 && Math.abs(state.arm)<.01);
+f.reset();
+f.impulse('charged');state=f.update(.016);const charged=state.arm;
+f.reset();f.impulse('light');state=f.update(.016);assert.ok(charged<state.arm);
+assert.ok(f.impulse('hit',{damage:30}));
+state=f.update(.016);assert.ok(Number.isFinite(state.roll));
+f.reset();assert.equal(f.dodge(-1),true);assert.equal(f.dodge(-1),false);
+let deepest=0;
+for(let i=0;i<35;i++){state=f.update(.016);deepest=Math.min(deepest,state.dodgeLean);}
+assert.ok(deepest<-.10,'real left visual lean');
+for(let i=0;i<45;i++)f.update(.016);
+assert.equal(f.dodge(1),true,'cooldown clears');
+f.dispose();assert.equal(f.impulse('heavy'),false);
+console.log('PASS v5.4: bounded/damped recoil, shot strength, hit, visual dodge cooldown & disposal');
