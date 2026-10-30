@@ -359,9 +359,11 @@ def mc_pose(P, hz_scale):
     V = {k: Vector(v) for k, v in P.items()}
     rots = {}
     hipline = V["thigh_l"] - V["thigh_r"]; shline = V["upperarm_l"] - V["upperarm_r"]
-    yaw_h = math.atan2(-hipline.y, hipline.x); yaw_s = math.atan2(-shline.y, shline.x)
-    rots["hips"] = Rz(yaw_h) @ dirR(_D("hips"), (V["spine_01"] - V["pelvis"]))
-    rots["spine"] = Rz(yaw_s) @ dirR(_D("spine"), (V["neck_01"] - V["spine_01"]))
+    TWIST, SWAY = 0.30, 0.35   # a chunky Q-style torso looks wrong with a full adult waist twist / side sway
+    yaw_h = TWIST * math.atan2(-hipline.y, hipline.x); yaw_s = TWIST * math.atan2(-shline.y, shline.x)
+    def damp(v): v = Vector(v); v.x *= SWAY; return v
+    rots["hips"] = Rz(yaw_h) @ dirR(_D("hips"), damp(V["spine_01"] - V["pelvis"]))
+    rots["spine"] = Rz(yaw_s) @ dirR(_D("spine"), damp(V["neck_01"] - V["spine_01"]))
     rots["neck"] = dirR(_D("neck"), (V["Head"] - V["neck_01"]))
     rots["head"] = dirR(_D("head"), (V["Head_tail"] - V["Head"]))
     for sd in ("L", "R"):
