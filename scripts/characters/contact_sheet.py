@@ -3,9 +3,9 @@ from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 import sys
 p=Path(sys.argv[1] if len(sys.argv)>1 else "outputs/human_mpfb")
-names=["front","side","back","isometric"]
+names=["front","side","back","isometric","face","outfit"]
 tile=520;pad=26;header=42
-sheet=Image.new("RGB",(2*tile+3*pad,2*(tile+header)+3*pad),(26,32,42))
+sheet=Image.new("RGB",(3*tile+4*pad,2*(tile+header)+3*pad),(26,32,42))
 font=ImageFont.load_default()
 draw=ImageDraw.Draw(sheet)
 for i,n in enumerate(names):
@@ -14,7 +14,7 @@ for i,n in enumerate(names):
   with Image.open(file) as im:
     im=im.convert("RGB")
     im.thumbnail((tile,tile),Image.Resampling.LANCZOS)
-    row,col=divmod(i,2)
+    row,col=divmod(i,3)
     x=pad+col*(tile+pad)+(tile-im.width)//2
     y=pad+row*(tile+header+pad)+header+(tile-im.height)//2
     sheet.paste(im,(x,y))
