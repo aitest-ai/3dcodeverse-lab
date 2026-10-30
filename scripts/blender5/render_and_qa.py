@@ -109,6 +109,9 @@ qa = {
     "summary": totals,
     "warnings": warnings[:100],
     "warning_count": len(warnings),
+    "foot_slide_review_required": any(
+        item["max_grounded_slide_per_frame_m"] > 0.015 for item in totals.values()),
+    "ground_penetration_pass": all(s["sole_z_m"] >= -.01 for s in samples),
 }
 (folder / "motion_qa.json").write_text(json.dumps(qa, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -161,6 +164,10 @@ for clip in manifest["clips"]:
                               "file": str(path.relative_to(folder))})
 (folder / "preview_index.json").write_text(
     json.dumps(image_records, ensure_ascii=False, indent=2), encoding="utf-8")
+# Render images before failing, so the evidence remains in Actions artifacts.
+if not qa["ground_penetration_pass"]:
+    raise RuntimeError(
+        "Ground penetration detected in saved .blend animation; see motion_qa.json")
 print("MOTION_QA_FINISHED", json.dumps({"frames": len(samples),
                                      "warnings": len(warnings),
                                      "previews": len(image_records)}))
