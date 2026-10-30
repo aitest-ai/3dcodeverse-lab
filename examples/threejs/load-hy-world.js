@@ -28,7 +28,7 @@ export async function loadHYWorld(manifestURL, parent) {
     throw new Error("Unsupported world manifest type/version");
   }
   const filename = manifest.model_file;
-  if (typeof filename !== "string" || !/^[A-Za-z0-9_-]+\\.(ply|spz|glb)$/i.test(filename)) {
+  if (typeof filename !== "string" || !/^[A-Za-z0-9_-]+\.(ply|spz|glb)$/i.test(filename)) {
     throw new Error("Unsafe model filename");
   }
   const assetURL = new URL(filename, new URL(manifestURL, location.href)).href;
@@ -50,15 +50,15 @@ export async function loadHYWorld(manifestURL, parent) {
 
   let object = null;
   if (manifest.asset_type === "gaussian_splats") {
-    if (!/\\.(ply|spz)$/i.test(filename)) throw new Error("Splats need .ply/.spz");
+    if (!/\.(ply|spz)$/i.test(filename)) throw new Error("Splats need .ply/.spz");
     // Wait for the data to load before publishing the object to the scene.
     const packedSplats = await new SplatLoader().loadAsync(assetURL);
     object = new SplatMesh({ packedSplats });
   } else if (manifest.asset_type === "mesh_scene") {
-    if (!/\\.glb$/i.test(filename)) throw new Error("GLB required");
+    if (!/\.glb$/i.test(filename)) throw new Error("GLB required");
     object = (await new GLTFLoader().loadAsync(assetURL)).scene;
   } else {
-    if (!/\\.ply$/i.test(filename)) throw new Error("PLY required");
+    if (!/\.ply$/i.test(filename)) throw new Error("PLY required");
     const geometry = await new PLYLoader().loadAsync(assetURL);
     const hasColors = Boolean(geometry.getAttribute("color"));
     if (manifest.asset_type === "triangle_mesh") {
