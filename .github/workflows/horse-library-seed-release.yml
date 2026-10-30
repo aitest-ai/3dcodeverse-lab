@@ -1,14 +1,19 @@
 name: Horse Asset Library — Seed Immutable V2.3 Release
 on:
+  workflow_dispatch:
   push:
     paths:
       - '.github/workflows/horse-library-seed-release.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/horse-library-seed-release.yml'
+      - 'assets/horses/registry.json'
 permissions:
   contents: write
   actions: read
 jobs:
   seed:
-    if: github.repository == 'aitest-ai/3dcodeverse-lab' && github.ref == 'refs/heads/feat/racing-horse-cc0-pipeline'
+    if: github.repository == 'aitest-ai/3dcodeverse-lab' && (github.ref == 'refs/heads/feat/racing-horse-cc0-pipeline' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'aitest-ai/3dcodeverse-lab' && github.event.pull_request.head.ref == 'feat/racing-horse-cc0-pipeline'))
     runs-on: ubuntu-24.04
     timeout-minutes: 12
     env:
