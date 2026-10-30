@@ -76,6 +76,11 @@ try:
         download_url=BASE+"/api/library/"+public_part["id"]+"/download"
         try:
             resolved,download_headers,glb=request(download_url,max_size=12_000_000)
+            report["official_response"]={"bytes":len(glb),
+                 "content_type":download_headers.get("Content-Type"),
+                 "redirect_host":urllib.parse.urlsplit(resolved).hostname,
+                 "first_bytes_hex":glb[:24].hex(),
+                 "prefix_text":glb[:160].decode("utf-8","replace") if glb[:4]!=b"glTF" else "GLB_BINARY"}
             if len(glb)!=int(public_part.get("size",0)):
                 raise RuntimeError("Download byte length different from the creator's public published size")
             sha=hashlib.sha256(glb).hexdigest()
