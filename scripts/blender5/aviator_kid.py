@@ -151,7 +151,7 @@ def lathe(name, bone, center, profile, mat, sx=1.0, sy=1.0, seg=20, rot=None, ac
 E = ellipsoid
 # --- head
 E("head", "head", (0, 0, 1.19), (.205, .2, .205), "skin", 24, 14)
-E("hair_back", "head", (0, .035, 1.215), (.212, .19, .19), "hair", 20, 12)
+E("hair_back", "head", (0, .035, 1.208), (.206, .182, .182), "hair", 20, 12)
 for sg in (1, -1):
     E("ear_" + ("L" if sg > 0 else "R"), "head", (sg * .2, 0, 1.17), (.03, .02, .04), "skin", 10, 6)
     E("eye_" + ("L" if sg > 0 else "R"), "head", (sg * .078, -.186, 1.18), (.03, .02, .042), "eye", 12, 8)
@@ -159,12 +159,12 @@ for sg in (1, -1):
     E("cheek_" + ("L" if sg > 0 else "R"), "head", (sg * .125, -.139, 1.115), (.034, .012, .022), "cheek", 10, 6, rot=Rz(sg * -0.5))
 E("mouth", "head", (0, -.172, 1.09), (.03, .008, .011), "eye", 10, 6)
 # --- cap + goggles (accessories)
-E("cap", "head", (0, .008, 1.215), (.222, .216, .2), "cap", 24, 12, cut_below=0.12, acc=True)
-E("cap_brim", "head", (0, -.2, 1.245), (.125, .095, .02), "cap", 20, 8, acc=True)
-torus("goggle_strap", "head", (0, .008, 1.29), .214, .014, "goggle_strap", acc=True)
+E("cap", "head", (0, .008, 1.208), (.236, .23, .222), "cap", 24, 12, cut_below=0.12, acc=True)   # clearly outside head/hair (>=2 cm at crown) so no z-fighting
+E("cap_brim", "head", (0, -.215, 1.245), (.13, .1, .02), "cap", 20, 8, acc=True)
+torus("goggle_strap", "head", (0, .008, 1.29), .232, .014, "goggle_strap", acc=True)
 for sg in (1, -1):
-    E("goggle_lens_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.19, 1.305), (.052, .03, .052), "goggle_lens", 14, 8, acc=True)
-    E("goggle_rim_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.178, 1.305), (.062, .02, .062), "accent", 14, 8, acc=True)
+    E("goggle_lens_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.215, 1.305), (.052, .03, .052), "goggle_lens", 14, 8, acc=True)
+    E("goggle_rim_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.203, 1.305), (.062, .02, .062), "accent", 14, 8, acc=True)
 # --- torso, scarf, pack, emblem
 lathe("torso", "spine", (0, 0, .77), [(-.215, .150), (-.205, .172), (-.12, .176), (.05, .172), (.14, .162), (.19, .132), (.215, .075)], "jacket", sx=1.0, sy=.78, seg=24)   # flared jacket hem, squared shoulders
 lathe("waist_trim", "hips", (0, 0, .575), [(-.02, .171), (-.012, .180), (.012, .180), (.02, .171)], "jacket_trim", sx=1.0, sy=.80, seg=24)   # jacket hem band
