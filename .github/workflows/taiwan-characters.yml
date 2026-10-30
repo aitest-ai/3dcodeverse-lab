@@ -22,6 +22,17 @@ jobs:
         run: python3 -m compileall -q scripts/taiwan_characters
       # All v11 humans are generated independently from genuine MPFB2 source.
       # The obsolete original female BLEND download is intentionally removed.
+      - name: Verify official CC0 ARKit-style 52 faceunit source and filenames
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_faceunits_pack.py
+          python3 -m json.tool .deps/mh_faceunits/faceunits_manifest.json >/dev/null
+      - name: Upload official faceunit target audit manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-original-CC0-faceunits-target-audit
+          path: .deps/mh_faceunits/faceunits_manifest.json
+          retention-days: 14
       - name: Install CPU rendering and image checking requirements
         run: |
           sudo apt-get update -qq
@@ -109,27 +120,34 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v12
+          FACEUNITS_ROOT: .deps/mh_faceunits
+          FACE_OUT: outputs/face_v13
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v12
+          mkdir -p outputs/face_v13
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v12_portrait_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v13_arkit_qa.py
           done
       - name: Independently validate four original 3D outfits and faces
         run: |
           set -euo pipefail
-          for id in you_v12_main boss_v12_ponytail01 uncle_v12_main jie_v12_main; do
-            p="outputs/face_v12/$id.glb"
-            python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
+          for id in you_v13_main boss_v13_ponytail01 uncle_v13_main jie_v13_main; do
+            p="outputs/face_v13/$id.glb"
+            ok=0
+            for maxpx in 512 448 384 320; do
+              if python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" "$maxpx"; then
+                ok=1;break
+              fi
+            done
+            test "$ok" -eq 1
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
           import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v12")
-          names=("you_v12_main","boss_v12_ponytail01","uncle_v12_main","jie_v12_main")
+          root=pathlib.Path("outputs/face_v13")
+          names=("you_v13_main","boss_v13_ponytail01","uncle_v13_main","jie_v13_main")
           profiles=set()
           for tag in names:
               p=root/(tag+"_report.json")
@@ -137,6 +155,12 @@ jobs:
               assert len(data["personal_face_targets"])>=8
               assert len(data["separate_open_source_garments"])==2
               assert data["body_vertices"]==13380
+              assert len(data["arkit_style_shape_keys"])==10,tag
+              assert all(m["nonzero_vertices"]>=10 for m in data["arkit_style_shape_keys"].values())
+              if tag.startswith(("you","boss")):
+                  assert len(data["expression_previews"])==3
+                  for image in data["expression_previews"]:
+                      assert (root/image).stat().st_size>15000, image
               assert all(x["license"]=="CC0" for x in data["separate_open_source_garments"])
               assert all(qa["vertices"]>200 for qa in data["wardrobe_topology_qa"].values())
               if tag.startswith("jie"):
@@ -155,6 +179,15 @@ jobs:
                   doc=json.loads(f.read(length))
               assert magic==b"glTF" and version==2 and total==glb.stat().st_size<=6000000
               assert doc.get("skins"),tag
+              keys=set(data["arkit_style_shape_keys"])
+              morphmeshes=[m for m in doc.get("meshes",[]) if m.get("extras",{}).get("targetNames")]
+              assert morphmeshes,(tag,"missing glTF targetNames")
+              for mesh in morphmeshes:
+                  names=mesh["extras"]["targetNames"]
+                  assert set(names)==keys,(tag,names,keys)
+                  for prim in mesh["primitives"]:
+                      assert len(prim.get("targets",[]))==10,(tag,prim.keys())
+              print("REAL_TEN_ARKIT_TARGETS_VERIFIED",tag,sorted(keys))
               names_in_glb={n.get("name","") for n in doc["nodes"]}
               for cloth in data["separate_open_source_garments"]:
                   assert cloth["mesh"] in names_in_glb
@@ -169,7 +202,11 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v12-four-role-revised-faces-wardrobe-ART-QA
-          path: outputs/face_v12/
+          name: taiwan-v13-four-role-faceunits-10-shapes-REAL-ART-QA
+          path: |
+            outputs/face_v13/*.png
+            outputs/face_v13/*.glb
+            outputs/face_v13/*_report.json
+            .deps/mh_faceunits/faceunits_manifest.json
           retention-days: 14
           if-no-files-found: warn
