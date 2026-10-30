@@ -3,7 +3,7 @@ Does not use Animatica AI. Runs on CPU-based GitHub Actions.
 """
 import bpy, math, json, struct, sys
 from pathlib import Path
-from mathutils import Vector
+from mathutils import Vector, Matrix, Euler
 
 out=Path("outputs")
 out.mkdir(parents=True,exist_ok=True)
@@ -126,6 +126,12 @@ for n,bone,loc,size,mat in parts:
 
 rig.animation_data_create()
 poses=rig.pose.bones
+# Blender pose-bone Location uses bone LOCAL axes, not world XYZ.
+# Root rests along global +Z, so local-Z is NOT necessarily world +Z.
+root_inverse=rig.data.bones["root"].matrix_local.to_3x3().inverted()
+def shift_root_in_world(x=0.0,y=0.0,z=0.0):
+ poses["root"].location += root_inverse @ Vector((x,y,z))
+
 floor_clearance_samples=[]
 # Blender bone local X is the mechanical hinge axis. Keep the low foot
 # corners above the ground after each pose is set, without modifying mesh vertices.
@@ -142,25 +148,89 @@ def lowest_sole_z():
     floors.append((transform @ V((x+xoff,y,.008))).z)
  return min(floors)
 
+def set_bone_world_axis(name, world_head, world_tail):
+ """Set the bone pose matrix in armature space, preserving the rest bone roll."""
+ rest=rig.data.bones[name]
+ direction=(world_tail-world_head).normalized()
+ rest_dir=(rest.tail_local-rest.head_local).normalized()
+ rotation=rest_dir.rotation_difference(direction) @ rest.matrix_local.to_quaternion()
+ pb=poses[name]
+ pb.rotation_mode="QUATERNION"
+ pb.matrix=Matrix.LocRotScale(world_head,rotation,Vector((1,1,1)))
+ bpy.context.view_layer.update()
+
+def place_planted_leg(side,phase):
+ """Two-link sagittal IK with constant stance foot position (world coordinates).
+    Locomotion-in-place demo: not actual forward root translation or physics.
+ """
+ p=(phase+(0.5 if side=="R" else 0.0)) % 1.0
+ stance_share=.58
+ x=.27 if side=="L" else -.27
+ anchor_y=-.07 if side=="L" else .07
+ swing_up=0.0
+ offset_y=0.0
+ if p >= stance_share:
+  u=(p-stance_share)/(1.0-stance_share)
+  raised=math.sin(math.pi*u)**2
+  swing_up=.205*raised
+  offset_y=-.135*raised
+ # Explicit, slightly crouched hip goal stays inside the pelvis armor.
+ # Pose-matrix assignment keys the small hip offset, keeping the IK target reachable.
+ hip=Vector((.25 if side=="L" else -.25,0.0,.755))
+ world_root_motion=rig.data.bones["root"].matrix_local.to_3x3() @ poses["root"].location
+ hip.y+=world_root_motion.y
+ ankle=Vector((x,anchor_y+offset_y,.105+swing_up))
+ dy=ankle.y-hip.y
+ dz=ankle.z-hip.z
+ length=math.hypot(dy,dz)
+ l1=(rig.data.bones["thigh."+side].tail_local-rig.data.bones["thigh."+side].head_local).length
+ l2=(rig.data.bones["shin."+side].tail_local-rig.data.bones["shin."+side].head_local).length
+ if not abs(l1-l2)+.0001 < length < l1+l2-.0001:
+  raise RuntimeError("IK target unreachable for "+side+" at phase "+str(phase)+" distance "+str(length))
+ a=(l1*l1-l2*l2+length*length)/(2.0*length)
+ height=math.sqrt(max(0,l1*l1-a*a))
+ ey,ez=dy/length,dz/length
+ # Knee points in -Y (forward) when the leg is vertical.
+ knee=Vector(((hip.x+ankle.x)/2.0,
+              hip.y+a*ey+height*ez,
+              hip.z+a*ez-height*ey))
+ set_bone_world_axis("thigh."+side,hip,knee)
+ set_bone_world_axis("shin."+side,knee,ankle)
+ # The sole is world-level even when the shin pitches.
+ foot_rest=rig.data.bones["foot."+side]
+ poses["foot."+side].rotation_mode="QUATERNION"
+ poses["foot."+side].matrix=Matrix.LocRotScale(
+    ankle,foot_rest.matrix_local.to_quaternion(),Vector((1,1,1)))
+ bpy.context.view_layer.update()
+
 clips=("Idle","Run","Punch","Dodge")
 for clip in clips:
  a=bpy.data.actions.new("Mecha_"+clip)
  rig.animation_data.action=a
- for frame in (1,13,25,37,48):
-  z=math.sin(2*math.pi*(frame-1)/47)
-  for b in poses:b.rotation_mode="XYZ";b.rotation_euler=(0,0,0);b.location=(0,0,0)
+ for frame in range(1,49):
+  phase=(frame-1)/47.0
+  z=math.sin(2*math.pi*phase)
+  for b in poses:
+   b.location=(0,0,0)
+   if b.name.startswith(("thigh.","shin.","foot.")):
+    # One persistent rotation mode across ALL Actions; Blender does not
+    # animate PoseBone.rotation_mode itself.
+    b.rotation_mode="QUATERNION"
+    b.rotation_quaternion=(1,0,0,0)
+   else:
+    b.rotation_mode="XYZ"
+    b.rotation_euler=(0,0,0)
+  # Refresh matrix cache after resetting all pose channels, before IK.
+  bpy.context.view_layer.update()
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
-   poses["root"].location.z=.04*abs(z)
+   # Locomotion-in-place with world-planted stance feet and moving swing feet.
+   shift_root_in_world(y=.030*math.sin(2*math.pi*phase),
+                       z=-.035+.012*(1-math.cos(4*math.pi*phase)))
+   bpy.context.view_layer.update()
    for side,sign in (("L",1),("R",-1)):
-    poses["thigh."+side].rotation_euler[0]=sign*.58*z
-    poses["shin."+side].rotation_euler[0]=max(0,-sign*z)*.55
+    place_planted_leg(side,phase)
     poses["upper_arm."+side].rotation_euler[0]=-sign*.46*z
-    # A separate ankle counter-rotates to keep the foot relatively level
-    # on the support phase and slightly lift the toe during the swing.
-    poses["foot."+side].rotation_euler[0]=(
-       -sign*.38*z-max(0,-sign*z)*.34
-    )
   if clip=="Punch":
    amt=max(0,1-abs(frame-25)/18)
    poses["upper_arm.R"].rotation_euler[0]=-1.15*amt
@@ -169,26 +239,38 @@ for clip in clips:
   if clip=="Dodge":
    amt=max(0,1-abs(frame-25)/20)
    poses["spine"].rotation_euler[1]=.3*amt
-   poses["root"].location.x=.14*amt
+   shift_root_in_world(x=.14*amt)
    for side,sign in (("L",1),("R",-1)):
-    poses["thigh."+side].rotation_euler[0]=sign*.11*amt
-    poses["shin."+side].rotation_euler[0]=-.18*amt
-    poses["foot."+side].rotation_euler[0]=.09*amt
+    poses["thigh."+side].rotation_quaternion=Euler((sign*.11*amt,0,0)).to_quaternion()
+    poses["shin."+side].rotation_quaternion=Euler((-.18*amt,0,0)).to_quaternion()
+    poses["foot."+side].rotation_quaternion=Euler((.09*amt,0,0)).to_quaternion()
   # Reconcile the two feet with the ground at the sampled key poses.
   # This is a deterministic pose correction, not runtime IK/physics.
   ground_before=lowest_sole_z()
-  target_clearance=.012
-  correction=max(-.30,min(.35,target_clearance-ground_before))
-  poses["root"].location.z+=correction
+  target_clearance=.014
+  correction=target_clearance-ground_before
+  # Move strictly along world Z: root bone's local Z is not vertical.
+  shift_root_in_world(z=correction)
   floor_after=lowest_sole_z()
-  floor_clearance_samples.append({"clip":clip,"frame":frame,"min_sole_z":round(floor_after,5)})
+  floor_clearance_samples.append({"clip":clip,"frame":frame,
+                                  "min_sole_z":round(floor_after,5),
+                                  "root_ground_correction":round(correction,5)})
   for b in poses:
-   b.keyframe_insert(data_path="rotation_euler",frame=frame)
-   if b.name=="root":b.keyframe_insert(data_path="location",frame=frame)
+   channel="rotation_quaternion" if b.rotation_mode=="QUATERNION" else "rotation_euler"
+   b.keyframe_insert(data_path=channel,frame=frame)
+   # Key ALL locations, including zero in Idle/Punch/Dodge, so the
+   # IK offsets from Run cannot leak into another animation.
+   b.keyframe_insert(data_path="location",frame=frame)
  rig.animation_data.action=None
  track=rig.animation_data.nla_tracks.new()
  track.name=clip
  track.strips.new(clip,1,a)
+ # Do not let completed clips contaminate the next clip during authoring.
+ track.mute=True
+
+# Re-enable separate NLA tracks for Blender export and manual editing.
+for track in rig.animation_data.nla_tracks:
+ track.mute=False
 
 bpy.context.scene.frame_start=1
 bpy.context.scene.frame_end=48
@@ -208,20 +290,21 @@ names=[x.get("name") for x in document.get("animations",[])]
 assert len(names)>=4, f"Expected 4 animation clips; got {names}"
 assert len(document.get("skins",[]))>=1, "No rig skin exported"
 assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
-assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
+assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower() or "heel" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
 assert len(arm.bones)==14, f"Expected 14 bones including both foot bones, got {len(arm.bones)}"
+assert len(floor_clearance_samples)==48*len(clips), "All-frame ground checks missing"
 assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
 report={"blender_version":bpy.app.version_string,"bones":len(arm.bones),
         "mesh_parts":len(parts)+8,"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins",
         "ankle_design":"2 new ankle bones, feet, toe caps, heels and axle pins",
-        "ground_contact":"keyframe-level sole height correction, not full IK or physics",
+        "ground_contact":"48 sampled frames; Run uses analytic two-bone planted-foot IK; no dynamic physics",
         "sole_samples":floor_clearance_samples,"animations":names,
         "skins":len(document["skins"]),"glb_bytes":total,
         "method":"procedural Blender Python (not Choreographer AI)"}
 (out/"report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
 manifest={
  "schema_version":1,"asset_id":"mecha_blender5","format":"glTF 2.0 GLB",
- "source":"Blender 5.2 procedural animation, NOT generative AI",
+ "source":"Blender 5.2 procedural animation; Run has two-bone stance IK; NOT generative AI",
  "blender_version":bpy.app.version_string,
  "coordinate_system":"Blender Z-up; glTF export converts to Y-up",
  "unit":"meter","model_file":"mecha_blender5.glb",
