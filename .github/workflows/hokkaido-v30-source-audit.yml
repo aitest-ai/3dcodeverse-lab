@@ -1,0 +1,33 @@
+name: Hokkaido v30 CC0 Brown Bear Source Probe
+on:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v30/**
+      - .github/workflows/hokkaido-v30-source-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-external-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probe CC0 brown-bear source and extract exact download link
+        shell: bash
+        run: |
+          set -euo pipefail
+          pip install -q requests beautifulsoup4
+          python experiments/hokkaido-v30/source_probe.py
+      - name: Save source provenance (no invented download success)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-v30-source-audit
+          path: candidate/
+          if-no-files-found: warn
+          retention-days: 30
