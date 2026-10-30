@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-10-30",
+  "purpose": "CC0 prototype first; high fidelity model candidates later. Never bypass download/login restrictions.",
+  "sources": [
+    {
+      "id": "quaternius-ultimate-animals",
+      "name": "Quaternius Ultimate Animated Animals / Horse",
+      "priority": 1,
+      "role": "gameplay_prototype",
+      "license": "CC0-1.0",
+      "creator": "Quaternius",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "download_page": "https://drive.google.com/drive/folders/1uJ3N5HfB7jKTseJUNQr3N4YaN0UuEtHk?usp=sharing",
+      "formats": [
+        "gltf",
+        "blend",
+        "fbx",
+        "obj"
+      ],
+      "expected": "Horse + Horse White (pack), clips gallop/walk/idle etc; exact names need file inspection",
+      "retrieval": "public_shared_drive_folder; test with gdown metadata; only import after successful download and archive scan",
+      "readiness": "source_page_license_confirmed_asset_bytes_not_yet_verified"
+    },
+    {
+      "id": "sketchfab-maxdesign-horse",
+      "name": "MAXDESIGN Horse ready for games",
+      "priority": 2,
+      "role": "animated_alternative",
+      "license": "CC-BY, verify specific license/version on download",
+      "creator": "MAXDESIGN-3D",
+      "source": "https://sketchfab.com/3d-models/horse-6d0f9c1ce82f41048a282b6c47a50684",
+      "approx_triangles": 14600,
+      "expected": "animated, but inspect clips after download",
+      "retrieval": "login_manual; never scrape signed URLs",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "sketchfab-maxdesign-white",
+      "name": "MAXDESIGN White Horse",
+      "priority": 3,
+      "role": "animated_alternative",
+      "license": "CC-BY, verify original listing",
+      "creator": "MAXDESIGN-3D",
+      "source": "https://sketchfab.com/3d-models/horse-d9af6902210645d995e37ba4319957b6",
+      "approx_triangles": 14800,
+      "retrieval": "login_manual",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "sketchfab-maxdilan-horse",
+      "name": "OrelvysRodriguez Horse",
+      "priority": 4,
+      "role": "higher_detail_source",
+      "license": "CC-BY, attribution required despite description",
+      "creator": "OrelvysRodriguez",
+      "source": "https://sketchfab.com/3d-models/horse-e62e8fae743b40b7b8c382ccca863725",
+      "approx_triangles": 70500,
+      "approx_vertices": 36200,
+      "retrieval": "login_manual; no automated access unless official authenticated API",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "rigger-addon",
+      "name": "Rigger Blender 5.2 Horse / Quadruped presets",
+      "priority": 1,
+      "role": "rigging_option",
+      "license": "GPL-3.0-or-later software only",
+      "source": "https://github.com/asu37/Rigger",
+      "readiness": "not_installed; test with actual horse mesh later"
+    },
+    {
+      "id": "unirig",
+      "name": "UniRig",
+      "priority": 2,
+      "role": "rigging_option_gpu",
+      "license": "MIT code; checkpoint separate review",
+      "source": "https://github.com/VAST-AI-Research/UniRig",
+      "readiness": "not_installed_gpu_needed"
+    },
+    {
+      "id": "dessie",
+      "name": "Dessie horse pose reconstruction",
+      "priority": 3,
+      "role": "research_only",
+      "license": "review code/checkpoint separately",
+      "source": "https://celiali.github.io/Dessie/",
+      "readiness": "research_only"
+    }
+  ]
+}
