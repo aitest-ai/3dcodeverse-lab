@@ -59,3 +59,12 @@
 - **驗證過的 GLB 紋理優化**：用 Pillow 改寫 GLB 內真正的 PNG bufferView，8 張貼圖最多 512×512；原始骨架 nodes、meshes、accessors 與每個非圖像 bufferView 位元組都保持完全一致。you 3,794,088 bytes；boss 3,471,744 bytes。對應實作 \`scripts/taiwan_characters/optimize_embedded_glb.py\`。v6 曾嘗試直接在 Blender 內縮圖失敗（貼圖未先載入，處理張數 0），已改採可靠的 GLB 後處理。
 - **依然不准正式發布**：兩個 GLB 的 morph targets 數量仍為 0（原要求 8 個表情尚未做）；動態與服裝穿模測試未通過；角色風格仍偏普通 NPC，沒有達到高品質遊戲近景角色的皮膚與衣物細節；其餘六位尚未製作同一套真正的來源人體與原生 fitted assets。
 - v5 結果只可描述為 \`TWO_CHARACTER_STRUCTURAL_PILOT\`，**不是 8 人完整資產，也不是 ART_APPROVED**。
+
+
+### 正式可重跑的兩人 6 MB 體積檢查（Success）
+
+- GitHub Actions：**41050118969**，成功，artifact 名稱 \`taiwan-two-optimized-MPFB-GLB-PILOT-NOT-FINAL\`。
+- 從合法實際 Blender 匯出的 2 個 GLB 出發，在獨立 Python 程式 \`optimize_embedded_glb.py\` 對貼圖的 GLB bufferView 進行 PNG 縮圖及 4-byte 對齊重建；不重新建模、不修改骨骼與 mesh buffers。
+- 主角 \`you_v5_main.glb\`：11,710,208 → **3,794,088 bytes**；老闆娘 \`boss_v5_ponytail01.glb\`：13,128,664 → **3,471,744 bytes**。
+- Actions 自動斷言每張嵌入貼圖 <=512px、GLB <6MB、每位至少有 1 skin、多個 mesh、4 張實際 Blender 角度圖、真正 13,380 身體源頂點與合法 report。
+- 目前 GitHub Actions 只交付 **兩人先導測試**，沒有默默恢復不合格的八人批次，PR 繼續 Draft。
