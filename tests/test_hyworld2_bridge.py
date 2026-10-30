@@ -67,6 +67,18 @@ class BridgeTests(unittest.TestCase):
         file.write_bytes(struct.pack("<4sII", b"glTF", 2, 12))
         self.assertEqual(bridge.inspect_asset(file)["asset_type"], "mesh_scene")
 
+    def test_checked_in_smoke_cube_fixture(self):
+        fixture = MODULE.parents[2] / "examples/threejs/worlds/smoke_cube/smoke_cube.ply"
+        manifest_file = fixture.parent / "world_manifest.json"
+        actual = bridge.inspect_asset(fixture)
+        expected = json.loads(manifest_file.read_text(encoding="utf-8"))
+        self.assertEqual(actual["asset_type"], "triangle_mesh")
+        self.assertEqual(actual["vertex_count"], 8)
+        self.assertEqual(actual["face_count"], 12)
+        self.assertEqual(expected["file_bytes"], fixture.stat().st_size)
+        import hashlib
+        self.assertEqual(expected["sha256"], hashlib.sha256(fixture.read_bytes()).hexdigest())
+
     def test_truncated_ply(self):
         file = self.root / "bad.ply"
         file.write_bytes(b"ply\nformat ascii 1.0\nelement vertex 1\n")
