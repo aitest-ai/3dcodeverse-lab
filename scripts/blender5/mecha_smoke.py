@@ -84,6 +84,7 @@ for side,x in (("L",.27),("R",-.27)):
   n="kneeAxle"+side+suffix
   bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.103,depth=.07,rotation=(0,math.pi/2,0))
   ob=bpy.context.object;ob.name=n
+  bpy.ops.object.transform_apply(location=False,rotation=True,scale=False)
   # Bake pivot into mesh coordinates so the armature modifier uses one common origin.
   for vertex in ob.data.vertices:
    vertex.co.x += x+offset
@@ -100,6 +101,7 @@ for side,x in (("L",.27),("R",-.27)):
   bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.088,depth=.045,
                                       rotation=(0,math.pi/2,0))
   ob=bpy.context.object;ob.name="ankleAxle"+side+suffix
+  bpy.ops.object.transform_apply(location=False,rotation=True,scale=False)
   for vertex in ob.data.vertices:
    vertex.co.x += x+offset
    vertex.co.z += .105
