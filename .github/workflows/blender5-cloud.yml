@@ -19,6 +19,8 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - name: Check Blender Python scripts parse
+        run: python3 -m compileall -q scripts/blender5
       - name: Install headless rendering dependencies
         run: |
           sudo apt-get update -qq
