@@ -177,6 +177,9 @@ top=cloth.copy(); top.data=cloth.data.copy(); sc.collection.objects.link(top)
 pants=cloth.copy();pants.data=cloth.data.copy();sc.collection.objects.link(pants)
 top.name="Top_"+cid
 pants.name="Pants_"+cid
+# Blender glTF mesh.name comes from mesh DATA name, not object name.
+top.data.name="Top_"+cid
+pants.data.name="Pants_"+cid
 for garment,keep_above in ((top,True),(pants,False)):
     m=garment.matrix_world
     bm=bmesh.new();bm.from_mesh(garment.data)
