@@ -1,0 +1,100 @@
+{
+  "asset_id": "aviator_kid",
+  "blender_version": "5.2.3 LTS",
+  "method": "procedural Blender Python (original geometry)",
+  "bones": 17,
+  "mesh_objects": 47,
+  "polygon_count": 5108,
+  "height_m_rest_pose_with_cap": 1.493,
+  "glb_bytes": 384092,
+  "clips": [
+    "Cheer",
+    "Idle",
+    "Run",
+    "Salute",
+    "Sit",
+    "Walk",
+    "Wave"
+  ],
+  "joint_limits_deg": {
+    "knee_flex": [
+      0,
+      140
+    ],
+    "elbow_flex": [
+      0,
+      150
+    ],
+    "thigh_swing": [
+      -35,
+      100
+    ],
+    "shoulder_swing": [
+      -60,
+      180
+    ],
+    "spine_lean": [
+      -20,
+      35
+    ],
+    "head_nod": [
+      -40,
+      40
+    ]
+  },
+  "measurements": {
+    "Walk": {
+      "knee_flex_max_deg": 0.0,
+      "min_sole_z_m": 2.9802322387695312e-08,
+      "hand_torso_clearance_min": 1.0744876602185869,
+      "max_stance_slip_m": 0.0277,
+      "loop_closure_error_m": 0.0
+    },
+    "Run": {
+      "knee_flex_max_deg": 0.0,
+      "min_sole_z_m": 0.0,
+      "hand_torso_clearance_min": 0.881039980226801,
+      "max_stance_slip_m": 0.0222,
+      "loop_closure_error_m": 0.0
+    },
+    "Idle": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.1798182983671337,
+      "loop_closure_error_m": 0.0
+    },
+    "Wave": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.0900061031572617
+    },
+    "Salute": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.0900061031572617
+    },
+    "Cheer": {
+      "knee_flex_max_deg": 55.150095420953484,
+      "min_sole_z_m": 0.0029999983962625265,
+      "hand_torso_clearance_min": 1.7140842596544128,
+      "loop_closure_error_m": 0.0
+    },
+    "Sit": {
+      "knee_flex_max_deg": 45.858834518116424,
+      "min_sole_z_m": 0.012928809970617294,
+      "hand_torso_clearance_min": 2.3881865246951297
+    }
+  },
+  "automated_checks_passed": [
+    "GLB has one skin and all required clips",
+    "walk/run stance foot slip within threshold (evaluated on deformed rig)",
+    "sole never below ground on Idle/Walk/Run/Cheer",
+    "knee flexion within limit",
+    "hands clear of torso in Walk/Run"
+  ],
+  "not_checked_automatically": [
+    "visual quality / likeness",
+    "cloth-like secondary motion (none exists)",
+    "armor-style mesh interpenetration beyond hand vs torso",
+    "in-engine retargeting",
+    "performance on real GPUs"
+  ],
+  "foot_ground_method": "2-bone sagittal IK per frame with constant-velocity stance foot (no runtime IK); toe/heel pitch is keyed"
+}
