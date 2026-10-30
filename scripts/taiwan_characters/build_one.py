@@ -246,11 +246,12 @@ bs=next((n for n in skinmat.node_tree.nodes if n.type=="BSDF_PRINCIPLED"),None)
 if bs:
     sock=bs.inputs["Base Color"]
     for ln in list(sock.links):
+        upstream_socket=ln.from_socket
         skinmat.node_tree.links.remove(ln)
         mul=skinmat.node_tree.nodes.new("ShaderNodeMixRGB")
         mul.blend_type="MULTIPLY";mul.inputs[0].default_value=1
         mul.inputs[2].default_value=(*cfg["skin"],1)
-        skinmat.node_tree.links.new(ln.from_socket,mul.inputs[1])
+        skinmat.node_tree.links.new(upstream_socket,mul.inputs[1])
         skinmat.node_tree.links.new(mul.outputs[0],sock)
     if not sock.is_linked:sock.default_value=(*cfg["skin"],1)
     bs.inputs["Roughness"].default_value=.65
