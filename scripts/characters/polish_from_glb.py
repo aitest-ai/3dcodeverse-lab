@@ -49,12 +49,13 @@ def tint_material(original, name, rgb):
     links=list(input_color.links)
     if links:
         link=links[0]
+        source_socket=link.from_socket
         result.node_tree.links.remove(link)
         mix=result.node_tree.nodes.new("ShaderNodeMixRGB")
         mix.blend_type="MULTIPLY"
         mix.inputs[0].default_value=1.0
         mix.inputs[2].default_value=(*rgb,1.0)
-        result.node_tree.links.new(link.from_socket,mix.inputs[1])
+        result.node_tree.links.new(source_socket,mix.inputs[1])
         result.node_tree.links.new(mix.outputs[0],input_color)
     else:
         input_color.default_value=(*rgb,1.0)
