@@ -36,3 +36,15 @@
 
 ## 狀態
 `REJECTED_HUMAN_VISUAL_QA`。技術結構測試曾成功，**美術驗收尚未通過**。
+
+
+## 2026-10-30｜真正同源 MPFB 臉部重建 v3，兩位先導結果
+
+- **執行證據**：https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41024748080 （工作成功；artifact `taiwan-face-v3-PILOT-NOT-APPROVED`）。
+- 兩名試作角色：`you`、`boss`；每人三張真實 Blender Cycles PNG 正面、側面、全身，以及 JSON 診斷。
+- 已在**同一個真實 MPFB 宏觀變形人體**上裝配正式系統 eyes/eyebrow/eyelashes/teeth/tongue、官方 CC0 髮型、服裝和 53 骨 game_engine rig。保留 13,380 真正身體頂點，實際刪除 helper。
+- 具體素材：`you`：short01.mhclo、male_casualsuit01.mhclo；`boss`：short03.mhclo、female_elegantsuit01.mhclo，boss 頭髮材質已深色化。
+- 比 v1/v2 的顯著改善：眼睛確實張開且位於正確眼眶；沒有方形黑洞嘴；側面鼻唇比合理；髮型、衣物使用系統原生 MHCLO fitting，不再懸浮球體。
+- **人工審查仍不接受發佈**：`boss` 厚瀏海遮一眼；女性老闆娘雖年齡變形已套用，臉部仍過平滑、缺乏真實 50+ 歲肌膚和不對稱特徵；`you` 臉部過白偏蠟像；`boss` 上衣胸前與肩有貼圖/穿模異常；兩位皆無鞋，僅供頭部與衣物原型測試。
+- 8 ARKit morphs 此兩人先導尚未重新建立；更**沒有正式驗證表情、可動性或 8 人 34 檔案最終 ZIP**。
+- 最新人工狀態：`FACE_TOPOLOGY_AND_EYE_ALIGNMENT_PASS`，但 `ART_APPROVAL=BLOCKED`。下一步優先解決髮際線遮眼、皮膚反射粗糙度/年齡細節、胸前布料瑕疵，兩人合格才升級到全八人表情動畫。
