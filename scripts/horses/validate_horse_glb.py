@@ -22,7 +22,7 @@ def inspect(folder):
     skins=doc.get("skins",[])
     prims=[primitive for m in meshes for primitive in m.get("primitives",[])]
     if not meshes or not skins:raise RuntimeError("Horse must contain rigged mesh and skin")
-    if len(animations)<3:
+    if len(animations)<10:
         raise RuntimeError("Horse GLB lost most animations: "+str(animations))
     if not any("JOINTS_0" in p.get("attributes",{}) and "WEIGHTS_0" in p.get("attributes",{}) for p in prims):
         raise RuntimeError("Horse mesh weights/indices not exported")
