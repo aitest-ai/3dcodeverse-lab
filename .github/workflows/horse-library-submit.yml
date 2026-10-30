@@ -1,0 +1,62 @@
+name: Horse Library — Validate Other AI Horse Submissions
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'assets/horses/submissions/**'
+      - 'scripts/horses/validate_horse_submission.py'
+      - '.github/workflows/horse-library-submit.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify-candidates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest schema and check real GLBs from approved repository Actions runs
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,subprocess,sys
+          from pathlib import Path
+          candidates=sorted(Path("assets/horses/submissions").glob("*.json"))
+          if not candidates:
+              print("NO_NEW_HORSE_SUBMISSIONS")
+              raise SystemExit(0)
+          for manifest in candidates:
+              data=json.loads(manifest.read_text())
+              cmd=["python3","scripts/horses/validate_horse_submission.py",str(manifest)]
+              subprocess.run(cmd,check=True)
+              run_id=data["build"]["run_id"]
+              artifact_name=data["build"]["artifact_name"]
+              rel=data["build"].get("artifact_model_path",data["model_file"])
+              rel_path=Path(str(rel))
+              if not isinstance(run_id,int) or run_id<1:
+                  raise RuntimeError("Submission run_id must reference a real Actions build")
+              if rel_path.is_absolute() or ".." in rel_path.parts or str(rel_path).startswith("."):
+                  raise RuntimeError("Unsafe artifact model subpath")
+              folder=Path("outputs/candidates")/data["asset_id"]
+              folder.mkdir(parents=True,exist_ok=True)
+              subprocess.run(["gh","run","download",str(run_id),
+                              "-R","aitest-ai/3dcodeverse-lab",
+                              "--name",artifact_name,"--dir",str(folder)],check=True)
+              file=folder/rel_path
+              if not file.is_file():
+                  raise RuntimeError("Source build artifact missing model path "+str(file))
+              subprocess.run(["python3","scripts/horses/validate_horse_submission.py",
+                              str(manifest),"--glb",str(file),
+                              "--output",str(folder/"validated.json")],check=True)
+              print("AI_HORSE_SUBMISSION_STRUCTURAL_PASS_REVIEW_STILL_REQUIRED",data["asset_id"])
+          PY
+      - name: Save validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-candidate-validation-${{ github.run_number }}
+          path: outputs/candidates/**/validated.json
+          if-no-files-found: warn
+          retention-days: 14

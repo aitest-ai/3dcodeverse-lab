@@ -58,3 +58,33 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 
 **真實進度：** 腳踝 V3 程式與流程已提交，雲端 Blender 與視覺品質仍需該次 Actions 真的成功執行後再驗收。腳底修正是關鍵影格計算，不等於完整 IK、碰撞或物理模擬。
 
+
+## 🐎 賽馬 3D 角色（Blender 5 實測）
+
+- [原始 CC0 馬模型、驗收數據與 13 段動畫製作規範](docs/RACING_HORSE_PIPELINE.md)
+- [雙馬原始素材／授權與 SHA256 來源目錄](resources/horses/source_registry.json)
+- [Blender 賽馬製作及 gallop 動畫驗收工作流程](https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/racing-horse.yml)
+- [賽馬 WebGL/Three.js 即時動畫測試頁](examples/racing-horse/index.html)
+
+已通過 GitHub Actions #29：兩匹 Quaternius 原版 CC0 馬、各 50 根骨、13 段動畫，Blender 5.2.3 匯出 GLB／BLEND，六視角 + 兩張真 Gallop 影格；**屬低多邊形遊戲原型，並非寫實高模**。可在 GitHub Actions Artifacts 下載 racing-horses-29，含兩匹馬及網頁 demo。高模與真實賽馬運動驗收另行進行.
+
+## 🐎 多 AI 共用馬匹模型庫（已上線）
+
+跨 ChatGPT、Claude、Copilot、Codex、Cursor 或其他能操作 GitHub 的 AI 共用：
+
+- **[Horse Library v2.3.0｜正式馬模型 GitHub Release](https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0)**：保存深棕馬、白馬 GLB、可編輯 BLEND／貼圖 ZIP、SHA256SUMS，避免暫存 Actions 到期。
+- **[現有資產登錄表](assets/horses/registry.json)**：機器可讀 ID、版本、SHA256、動畫、授權及下載位置；其他 AI 應先讀。
+- **[跨 AI 新增、推送、驗收、取回新馬的操作流程](docs/HORSE_AI_COLLABORATION.md)**：新馬請建立新 ID／版本、發獨立 PR、通過來源授權及真正 GLB 驗證，核准後才發新 Release。
+- [給 AI 的統一入口](AGENTS.md)；另外有 [Claude](CLAUDE.md)、[Copilot](.github/copilot-instructions.md) 與 Cursor 提示檔。
+
+```bash
+# 先安裝、登入 GitHub CLI 並取得此私有庫的讀取權限
+gh repo clone aitest-ai/3dcodeverse-lab
+cd 3dcodeverse-lab
+git checkout feat/racing-horse-cc0-pipeline
+python3 scripts/horses/horse_assets.py list
+python3 scripts/horses/horse_assets.py pull horse-brown --dest ./public/models
+python3 scripts/horses/horse_assets.py pull horse-white --dest ./public/models
+```
+
+**實際通過**：[GitHub Release 獨立下載、兩馬 SHA256／50 骨／13 動畫及新馬投稿流程驗證](https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41021728481)。現階段此入口在 `feat/racing-horse-cc0-pipeline`（[PR #13](https://github.com/aitest-ai/3dcodeverse-lab/pull/13)），尚未合併 main；其他 AI 必須讀對分支。正式模型已透過 GitHub Release 長期保存，但其他 AI 仍需私有庫授權。

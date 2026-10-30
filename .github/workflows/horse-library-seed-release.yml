@@ -1,0 +1,107 @@
+name: Horse Asset Library — Seed Immutable V2.3 Release
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/horse-library-seed-release.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/horse-library-seed-release.yml'
+      - 'assets/horses/registry.json'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  seed:
+    if: github.repository == 'aitest-ai/3dcodeverse-lab' && (github.ref == 'refs/heads/feat/racing-horse-cc0-pipeline' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == 'aitest-ai/3dcodeverse-lab' && github.event.pull_request.head.ref == 'feat/racing-horse-cc0-pipeline'))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: horses-v2.3.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore two V2.3 horses from prior validated Blender CI
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41017062152'
+          name: racing-horse-v23-2
+          github-token: ${{ github.token }}
+          path: inputs/v23
+      - name: Check both GLBs against machine-readable trusted registry
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import sys
+          sys.path.insert(0,"scripts/horses")
+          from horse_assets import load_registry,locate,verify
+          data=load_registry()
+          for asset_id,folder,model in [
+              ("horse-brown","Horse","Horse_V23.glb"),
+              ("horse-white","Horse_White","Horse_White_V23.glb")]:
+              item=locate(data,asset_id)
+              result=verify(Path("inputs/v23")/folder/model,item)
+              assert result["animations"]==13 and result["bones"]==50 and result["images"]>=3
+              print("REGISTERED_HORSE_VERIFIED",asset_id,result)
+          PY
+      - name: Create immutable release file names and editable source packages
+        run: |
+          set -euo pipefail
+          mkdir -p dist/horse-brown dist/horse-white
+          cp inputs/v23/Horse/Horse_V23.glb dist/horse-brown-v2.3.glb
+          cp inputs/v23/Horse_White/Horse_White_V23.glb dist/horse-white-v2.3.glb
+          cp inputs/v23/Horse/Horse_V23.blend dist/horse-brown/
+          cp inputs/v23/Horse_White/Horse_White_V23.blend dist/horse-white/
+          cp inputs/v23/Horse/maps/*.png dist/horse-brown/
+          cp inputs/v23/Horse_White/maps/*.png dist/horse-white/
+          cp inputs/v23/Horse/V23_*.png dist/horse-brown/
+          cp inputs/v23/Horse_White/V23_*.png dist/horse-white/
+          cp assets/horses/registry.json dist/registry-v2.3.json
+          cat > dist/HORSE_LIBRARY_README.md <<'EOF'
+          # Shared horse assets v2.3.0 — 3DCodeVerse Lab
+          Original horse models: Quaternius Ultimate Animated Animals, CC0
+          https://quaternius.com/packs/ultimateanimatedanimals.html
+          Geometry/material derivations and procedural textures: aitest-ai
+          Verified with Blender 5.2.3 + real Chromium WebGL, 50 bones,
+          13 named animations per GLB, embedded PBR images, rigged mane wisps.
+          This is stylized game prototype, NOT photo-realistic horse anatomy.
+          To add more: read repository AGENTS.md and docs/HORSE_AI_COLLABORATION.md.
+          Do not replace this release or delete old versions. Publish new tag.
+          EOF
+          cp dist/HORSE_LIBRARY_README.md dist/horse-brown/LICENSE_AND_SOURCE.md
+          cp dist/HORSE_LIBRARY_README.md dist/horse-white/LICENSE_AND_SOURCE.md
+          (cd dist/horse-brown && zip -q -r ../horse-brown-v2.3.zip .)
+          (cd dist/horse-white && zip -q -r ../horse-white-v2.3.zip .)
+          (cd dist && sha256sum horse-brown-v2.3.glb horse-white-v2.3.glb horse-brown-v2.3.zip horse-white-v2.3.zip > SHA256SUMS.txt)
+      - name: Create persistent GitHub Release only once; never overwrite an existing asset
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "ALREADY_PUBLISHED: $TAG; no files replaced"
+            exit 0
+          fi
+          gh release create "$TAG" \
+            dist/horse-brown-v2.3.glb \
+            dist/horse-white-v2.3.glb \
+            dist/horse-brown-v2.3.zip \
+            dist/horse-white-v2.3.zip \
+            dist/SHA256SUMS.txt \
+            dist/registry-v2.3.json \
+            dist/HORSE_LIBRARY_README.md \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "3DCodeVerse Horse Library v2.3.0 (CC0)" \
+            --notes-file dist/HORSE_LIBRARY_README.md \
+            --latest=false
+          gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json url,assets \
+            --jq '{url: .url, asset_count: (.assets|length)}'
+      - name: Always upload reproducible seed package
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-library-release-seed-${{ github.run_number }}
+          path: dist/
+          retention-days: 14
+          if-no-files-found: warn

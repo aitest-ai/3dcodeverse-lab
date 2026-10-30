@@ -1,0 +1,56 @@
+name: Racing Horse V2.1 — Calibrate Gallop Forward Travel
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-motion-calibration.yml'
+      - 'scripts/motion/horse_root_motion_fit.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-motion-calibration.yml'
+      - 'scripts/motion/horse_root_motion_fit.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  calibrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m py_compile scripts/motion/horse_root_motion_fit.py
+      - name: Restore actual evaluated hoof mesh traces
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41012482918'
+          name: horse-hoof-surface-2
+          github-token: ${{ github.token }}
+          path: inputs/hoof_surface
+      - name: Compute single per-cycle world translation minimizing planted hoof residual
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            python3 scripts/motion/horse_root_motion_fit.py \
+              "inputs/hoof_surface/$horse/hoof_surface_qa.json" \
+              --output "inputs/hoof_surface/$horse/race_motion_calibration.json"
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for horse in ("Horse","Horse_White"):
+              file=Path("inputs/hoof_surface")/horse/"race_motion_calibration.json"
+              d=json.loads(file.read_text())
+              assert d["fit_contact_step_count"]>=30
+              assert d["rms_residual_reduction_percent"]>25
+              assert d["translated_contact_step_rms"]<d["raw_contact_step_rms"]
+              print("CALIBRATION_PASS",horse,d["rms_residual_reduction_percent"])
+          PY
+      - name: Publish calibrated speed and honest residuals
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-contact-root-calibration-${{ github.run_number }}
+          path: inputs/hoof_surface/**/race_motion_calibration.json
+          retention-days: 14
+          if-no-files-found: warn

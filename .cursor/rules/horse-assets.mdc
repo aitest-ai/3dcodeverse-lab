@@ -1,0 +1,8 @@
+---
+description: Shared racing horse GLB/BLEND assets across agents
+globs: ["**/*horse*", "**/*Horse*", "assets/horses/**", "scripts/horses/**"]
+alwaysApply: false
+---
+Read @AGENTS.md, @assets/horses/registry.json and @docs/HORSE_AI_COLLABORATION.md.
+
+Existing assets are horse-brown and horse-white version 2.3.0 (50 bones, 13 clips, true UV/PBR), hosted at GitHub Releases tag horses-v2.3.0. Use scripts/horses/horse_assets.py list/pull and verify SHA256, rather than re-generating missing models. For additional variants create a new ID, branch, manifest, CI and PR; do not replace approved assets. While PR #13 is unmerged, use branch feat/racing-horse-cc0-pipeline, not main.

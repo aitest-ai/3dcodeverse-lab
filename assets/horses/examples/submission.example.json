@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "asset_id": "horse-example-chestnut",
+  "version": "0.1.0",
+  "title": "Example Chestnut Racing Horse",
+  "asset_type": "animated_horse",
+  "status": "candidate_pending_review",
+  "creator": "Your AI project or original artist",
+  "source_url": "https://example.com/replace-with-real-source",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "redistribution_allowed": true,
+  "third_party_dependencies": [],
+  "attribution": "Credit external author if license demands it, do not omit.",
+  "model_file": "horse-example-chestnut.glb",
+  "model_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "blender_file": "horse-example-chestnut.blend",
+  "required_clips": [
+    "Idle",
+    "Walk",
+    "Gallop"
+  ],
+  "build": {
+    "repository": "aitest-ai/3dcodeverse-lab",
+    "run_id": 0,
+    "artifact_name": "horse-example-chestnut-1",
+    "artifact_model_path": "horse-example-chestnut.glb"
+  },
+  "quality": {
+    "front_png": "preview_front.png",
+    "side_png": "preview_side.png",
+    "back_png": "preview_back.png",
+    "known_issues": [
+      "Replace this example with actual inspection findings."
+    ]
+  },
+  "note": "This is an example schema. Replace all placeholders before submitting; never mark as approved automatically."
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>3DCodeVerse 賽馬模型測試</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:#f4f1e9;color:#22342e}
+header{padding:12px 18px;background:#edf1e6;border-bottom:1px solid #d4decf}
+header b{font-size:18px}header small{display:block;color:#577264;margin-top:3px}
+#viewport{position:relative;width:100vw;height:calc(100vh - 150px);min-height:350px}
+#status{position:absolute;top:14px;left:14px;background:#fff9;border-radius:10px;padding:8px 12px;max-width:80%;font-size:13px}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;padding:10px 18px;background:white}
+label{display:flex;gap:6px;align-items:center;font-size:14px}
+button,select{border:1px solid #aec2b3;background:#e8f1e9;color:#234632;border-radius:8px;padding:8px 12px;cursor:pointer}
+input{accent-color:#487b56}
+@media(max-width:600px){#viewport{height:65vh}.controls{gap:8px}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.181.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.181.0/examples/jsm/"}}</script>
+</head>
+<body>
+<header><b>3DCodeVerse | 賽馬角色測試場</b><small>Quaternius CC0 馬匹 · 來源實際 GLB · 動畫與轉向示範</small></header>
+<div id="viewport"><div id="status">正在載入馬模型與動畫……</div></div>
+<div class="controls">
+  <label>動畫 <select id="clip"><option value="Gallop">奔馳 Gallop</option><option value="Walk">走路 Walk</option><option value="Idle">待機 Idle</option></select></label>
+  <label>速度 <input type="range" min="0.2" max="2.3" step="0.1" value="1" id="speed"/><span id="speedOut">1.0×</span></label>
+  <label><input id="orbit" type="checkbox"/>沿跑道前進（Gallop 接觸速度校正）</label>
+  <button id="focus">近看馬匹</button>
+  <button id="trackView">觀看跑道</button>
+  <button id="pause">暫停動畫</button>
+</div>
+<script type="module">
+import * as THREE from "three";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+
+const host=document.getElementById("viewport");
+const status=document.getElementById("status");
+const scene=new THREE.Scene();scene.background=new THREE.Color("#d9e5db");
+const camera=new THREE.PerspectiveCamera(50,host.clientWidth/host.clientHeight,.1,300);
+camera.position.set(6.4,3.9,8.5);
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
+renderer.setSize(host.clientWidth,host.clientHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.shadowMap.enabled=true;
+host.appendChild(renderer.domElement);
+const controls=new OrbitControls(camera,renderer.domElement);
+controls.target.set(0,1,0);controls.enableDamping=true;
+scene.add(new THREE.HemisphereLight("#f6faf8","#a6a093",2));
+const light=new THREE.DirectionalLight("#fff9ec",2.9);
+light.position.set(4,13,8);light.castShadow=true;light.shadow.mapSize.set(1024,1024);
+scene.add(light);
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:"#688e6e",roughness:1}));
+ground.rotation.x=-Math.PI/2;ground.position.y=-.04;ground.receiveShadow=true;scene.add(ground);
+for(let i=0;i<2;i++){
+const ring=new THREE.Mesh(new THREE.RingGeometry(6.5+i*2.0,7.2+i*2.0,128),new THREE.MeshStandardMaterial({color:i?"#b79371":"#cbaa87",side:THREE.DoubleSide,roughness:1}));
+ring.rotation.x=-Math.PI/2;ring.position.y=.002+i*.01;scene.add(ring);
+}
+const loader=new GLTFLoader(),clock=new THREE.Clock(),horses=[];
+let gaitCalibration=null;
+function setHorseClip(h,name){
+const clip=h.animations.find(a=>a.name===name)
+||h.animations.find(a=>a.name.toLowerCase().includes(name.toLowerCase()));
+if(!clip)throw new Error("模型沒有 "+name+" 動畫。實有："+h.animations.map(a=>a.name).join(", "));
+const next=h.mixer.clipAction(clip);next.reset().play();
+if(h.action&&h.action!==next)next.crossFadeFrom(h.action,.2,false);
+h.action=next;
+h.currentClip=name;
+}
+async function addHorse(url,lane){
+const gltf=await loader.loadAsync(url);
+if(!gltf.animations.length)throw new Error(url+" 沒有動畫。");
+const outer=new THREE.Group();
+scene.add(outer);
+const bbox=new THREE.Box3().setFromObject(gltf.scene),size=bbox.getSize(new THREE.Vector3());
+const scale=1.6/Math.max(.1,size.y);gltf.scene.scale.setScalar(scale);
+gltf.scene.updateMatrixWorld(true);
+const normalizedBox=new THREE.Box3().setFromObject(gltf.scene);
+gltf.scene.position.y-=normalizedBox.min.y;
+outer.add(gltf.scene);
+outer.position.set(lane===0?-2.8:2.8,0,0);
+const mixer=new THREE.AnimationMixer(gltf.scene);
+const obj={outer,mixer,animations:gltf.animations,action:null,lane,
+  modelScale:scale,trackAngle:0,currentClip:"Gallop"};
+horses.push(obj);setHorseClip(obj,document.getElementById("clip").value);
+gltf.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
+return obj;
+}
+let paused=false;
+try{
+const raw=await fetch("./race_motion_calibration.json");
+if(raw.ok){
+  const candidate=await raw.json();
+  if(candidate.action==="Gallop"&&Number.isFinite(candidate.fitted_root_y_source_units_per_action_frame))gaitCalibration=candidate;
+}
+const [h1,h2]=await Promise.all([
+  addHorse("./models/Horse_game.glb",0),
+  addHorse("./models/Horse_White_game.glb",1)
+]);
+status.textContent="載入成功：兩匹馬，13 段動畫；"+(gaitCalibration?"奔馳移動採用實際馬蹄幾何校正（仍非碰撞模擬）":"未讀到移動校正檔，採保守預設速度")+"；可拖曳旋轉視角";
+}catch(e){status.textContent="載入失敗："+e.message+"。請在含 models 資料夾的目錄啟動 HTTP 伺服器。";console.error(e)}
+document.getElementById("focus").addEventListener("click",()=>{
+  camera.position.set(6.4,3.9,8.5);controls.target.set(0,1,0);controls.update();
+});
+document.getElementById("trackView").addEventListener("click",()=>{
+  camera.position.set(12,9,17);controls.target.set(0,1,0);controls.update();
+});
+document.getElementById("clip").addEventListener("change",e=>horses.forEach(h=>setHorseClip(h,e.target.value)));
+document.getElementById("pause").addEventListener("click",e=>{paused=!paused;e.target.textContent=paused?"繼續動畫":"暫停動畫";});
+document.getElementById("speed").addEventListener("input",e=>{document.getElementById("speedOut").textContent=(+e.target.value).toFixed(1)+"×"});
+function animate(){
+requestAnimationFrame(animate);
+const dt=Math.min(clock.getDelta(),.06),speed=+document.getElementById("speed").value;
+if(!paused){
+for(const h of horses){
+h.mixer.update(dt*speed);
+if(document.getElementById("orbit").checked){
+const rx=7+(h.lane*2);
+const rz=5+(h.lane*1.4);
+// Translate the in-place Gallop by the speed fitted from Blender's
+// 40-sample deformed hoof material. Not a dynamic foot IK/collision solve.
+const gallop=h.animations.find(a=>a.name==="Gallop");
+const actionSpan=gaitCalibration ? gaitCalibration.source_action_frame_range[1]-gaitCalibration.source_action_frame_range[0] : 14.4;
+const rootUnitsPerFrame=gaitCalibration ? Math.abs(gaitCalibration.fitted_root_y_source_units_per_action_frame) : 0.22;
+let worldSpeed=gallop ? rootUnitsPerFrame*actionSpan/Math.max(.05,gallop.duration)*h.modelScale : 0;
+if(h.currentClip==="Walk")worldSpeed*=.4; // heuristic until Walk is measured
+if(h.currentClip==="Idle")worldSpeed=0;
+const angle=h.trackAngle;
+const localTrackRadius=Math.max(.1,Math.hypot(rx*Math.cos(angle),rz*Math.sin(angle)));
+h.trackAngle=(angle+dt*speed*worldSpeed/localTrackRadius)%(Math.PI*2);
+h.outer.position.set(Math.sin(h.trackAngle)*rx,0,Math.cos(h.trackAngle)*rz);
+// Horse's local forward is +Z in imported glTF.
+h.outer.rotation.y=Math.atan2(rx*Math.cos(h.trackAngle),-rz*Math.sin(h.trackAngle));
+}else{
+h.outer.position.set(h.lane===0?-2.8:2.8,0,0);
+h.outer.rotation.y=0;
+}
+}
+}
+controls.update();renderer.render(scene,camera);
+}
+animate();
+new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();renderer.setSize(w,h)}).observe(host);
+</script>
+</body></html>

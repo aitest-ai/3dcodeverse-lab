@@ -1,0 +1,69 @@
+name: Horse V3 — Reject Unsafe or Low-quality Candidate Models
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v3-gate.yml'
+      - 'scripts/horses/v3_acceptance_gate.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v3-gate.yml'
+      - 'scripts/horses/v3_acceptance_gate.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  vet-candidates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m py_compile scripts/horses/v3_acceptance_gate.py
+      - name: Restore verified animated V2.2 models
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41013238601'
+          name: horse-v22-5
+          github-token: ${{ github.token }}
+          path: inputs/v22
+      - name: Restore actual public static source, remaining in quarantine
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41015815565'
+          name: horse-v3-anatomy-review-2
+          github-token: ${{ github.token }}
+          path: inputs/v3_static_quarantine
+      - name: Independently inspect two real GLBs using new V3 gate
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/v3_gate
+          python3 scripts/horses/v3_acceptance_gate.py \
+             inputs/v22/Horse/Horse_V22.glb --output outputs/v3_gate/horse_v22_baseline.json
+          python3 scripts/horses/v3_acceptance_gate.py \
+             inputs/v3_static_quarantine/standing_horse_quarantine.glb \
+             --output outputs/v3_gate/standing_horse_v3_quarantined.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          reports={p.stem:json.loads(p.read_text()) for p in Path("outputs/v3_gate").glob("*.json")}
+          assert len(reports)==2
+          original=reports["horse_v22_baseline"]
+          high=reports["standing_horse_v3_quarantined"]
+          assert original["animations"]==13 and original["largest_skin_joints"]==50
+          assert high["skins"]==0 and high["animations"]==0
+          assert high["triangle_count"]>100000
+          assert original["status"]!="V3_APPROVED" and high["status"]!="V3_APPROVED"
+          assert any("SOURCE_SHA256" in x for x in high["blockers"])
+          print("V3_ACCEPTANCE_GATE_OK: both incomplete models properly blocked")
+          print("V3_CANDIDATE_TRIANGLES",high["triangle_count"])
+          PY
+      - name: Publish signed-off gate reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-v3-gate-${{ github.run_number }}
+          path: outputs/v3_gate/
+          retention-days: 14
+          if-no-files-found: warn

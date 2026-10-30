@@ -1,0 +1,85 @@
+name: Racing Horse V2.1 — Actual Hoof-Surface Motion QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-hoof.yml'
+      - 'scripts/motion/horse_hoof_surface_qa.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-hoof.yml'
+      - 'scripts/motion/horse_hoof_surface_qa.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  hoof-contact:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Python source
+        run: python3 -m py_compile scripts/motion/horse_hoof_surface_qa.py
+      - name: Restore last passing Horse V2 BLEND files
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41005528336'
+          name: racing-horse-V2-6
+          github-token: ${{ github.token }}
+          path: inputs/horse_v2
+      - name: Install headless runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Fetch Blender 5.2.3 with upstream SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,re
+          f=Path(".tools/blender-5.2.3-linux-x64.tar.xz")
+          row=next(x for x in Path(".tools/SHA256").read_text().splitlines() if f.name in x)
+          sha=re.search(r"[a-fA-F0-9]{64}",row).group().lower()
+          with f.open("rb") as stream:assert hashlib.file_digest(stream,"sha256").hexdigest()==sha
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Evaluate Hooves material mesh over 40 Gallop samples
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/motion/horse_hoof_surface_qa.py -- "inputs/horse_v2/$horse"
+          done
+      - name: Verify four independent hoof-mesh groups and results
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for horse in ("Horse","Horse_White"):
+              d=Path("inputs/horse_v2")/horse
+              m=json.loads((d/"hoof_surface_qa.json").read_text())
+              assert len(m["hoof_metrics"])==4 and m["frames"]==40
+              assert min(m["hoof_mesh_counts"].values())>20
+              assert (d/"hoof_surface_trace.svg").stat().st_size>1000
+              print("HOOF_SURFACE_PASS",horse,
+                    {k:v["max_contact_step_xy_by_horse_height"] for k,v in m["hoof_metrics"].items()})
+          PY
+      - name: Publish evidence and numeric logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-hoof-surface-${{ github.run_number }}
+          path: |
+            inputs/horse_v2/Horse/hoof_surface_qa.json
+            inputs/horse_v2/Horse/hoof_surface_trace.svg
+            inputs/horse_v2/Horse_White/hoof_surface_qa.json
+            inputs/horse_v2/Horse_White/hoof_surface_trace.svg
+          retention-days: 14
+          if-no-files-found: warn

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "2026-10-30 Blender 5.2, Quaternius CC0 original Horse and Horse White V2 40-frame evaluated hoof geometry",
+  "action": "Gallop",
+  "source_action_frame_range": [
+    0,
+    14.40000057220459
+  ],
+  "horse_height_source_units": 4.751768840011209,
+  "fitted_root_y_source_units_per_action_frame": -0.373507705,
+  "speed_abs_by_horse_height_per_action_frame": 0.078604,
+  "contact_pairs": 46,
+  "raw_step_rms_source_units": 0.152943,
+  "corrected_step_rms_source_units": 0.066121,
+  "relative_residual_reduction_percent": 56.77,
+  "caveat": "In-place animation estimated velocity from near-ground hoof material vertices. Not physical collision or proven race speed. Applies only to Gallop; Walk coefficient heuristic if enabled.",
+  "source_artifact": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41012482918"
+}

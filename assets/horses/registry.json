@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "registry_name": "3DCodeVerse shared horse asset library",
+  "repository": "aitest-ai/3dcodeverse-lab",
+  "default_registry_path": "assets/horses/registry.json",
+  "registry_branch": "feat/racing-horse-cc0-pipeline",
+  "updated": "2026-10-30",
+  "policy": {
+    "license": "only self-authored or verifiably redistributable assets",
+    "submission": "branch -> PR -> validation -> owner review -> versioned release",
+    "immutable_releases": true,
+    "never_replace_approved_models": true,
+    "default_format": "glTF 2.0 GLB",
+    "consumer": "GitHub access required for private repo"
+  },
+  "distribution": {
+    "preferred": "github_release",
+    "release_tag": "horses-v2.3.0",
+    "release_status": "PUBLISHED_AND_PULLED_VERIFIED",
+    "fallback": "actions_artifact",
+    "fallback_run_id": 41017062152,
+    "fallback_artifact_name": "racing-horse-v23-2",
+    "fallback_retention_days": 14,
+    "release_url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0",
+    "release_verification_workflow_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41021728481",
+    "release_notes": "Immutable versioned release with two GLB models, two editable Blender ZIPs and SHA256SUMS. Both models independently re-downloaded using gh CLI in Actions and verified against this catalog."
+  },
+  "horses": [
+    {
+      "id": "horse-brown",
+      "version": "2.3.0",
+      "label": "深棕馬／Quaternius Horse",
+      "stage": "validated_stylized_gameplay_prototype",
+      "format": "glb",
+      "author": "Quaternius (original); aitest-ai (UV/PBR and materials)",
+      "license": "CC0-1.0",
+      "license_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source_url": "https://pixeltriks.com/characters/animals/quaternius_Horse.gltf",
+      "source_consent": "publicly redistributed Quaternius CC0 model with original procedural textures",
+      "skeleton_bones": 50,
+      "animation_count": 13,
+      "clips": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ],
+      "triangles_note": "V2.2 smoothly subdivided 13,092 main triangles plus wisps; consult GLB for actual counts",
+      "textures": [
+        "coat_albedo.png",
+        "coat_normal.png",
+        "coat_roughness.png"
+      ],
+      "model": {
+        "release_file": "horse-brown-v2.3.glb",
+        "bytes": 3693280,
+        "sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c"
+      },
+      "editable": {
+        "release_file": "horse-brown-v2.3.zip",
+        "source_file": "Horse_V23.blend"
+      },
+      "release": {
+        "tag": "horses-v2.3.0",
+        "url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0"
+      },
+      "fallback": {
+        "run_id": 41017062152,
+        "artifact_name": "racing-horse-v23-2",
+        "model_path": "Horse/Horse_V23.glb"
+      },
+      "validation": {
+        "blender_ci": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41017062152",
+        "browser_ci": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41018572531",
+        "human_visual_review": true,
+        "physical_gait_qa": false,
+        "realism": "stylized; not high fidelity"
+      }
+    },
+    {
+      "id": "horse-white",
+      "version": "2.3.0",
+      "label": "白馬／Quaternius Horse White",
+      "stage": "validated_stylized_gameplay_prototype",
+      "format": "glb",
+      "author": "Quaternius (original); aitest-ai (UV/PBR and materials)",
+      "license": "CC0-1.0",
+      "license_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source_url": "https://pixeltriks.com/characters/animals/quaternius_Horse_White.gltf",
+      "source_consent": "publicly redistributed Quaternius CC0 model with original procedural textures",
+      "skeleton_bones": 50,
+      "animation_count": 13,
+      "clips": [
+        "Attack_Headbutt",
+        "Attack_Kick",
+        "Death",
+        "Eating",
+        "Gallop",
+        "Gallop_Jump",
+        "Idle",
+        "Idle_2",
+        "Idle_Headlow",
+        "Idle_HitReact1",
+        "Idle_HitReact2",
+        "Jump_toIdle",
+        "Walk"
+      ],
+      "triangles_note": "V2.2 smoothly subdivided 13,092 main triangles plus wisps; consult GLB for actual counts",
+      "textures": [
+        "coat_albedo.png",
+        "coat_normal.png",
+        "coat_roughness.png"
+      ],
+      "model": {
+        "release_file": "horse-white-v2.3.glb",
+        "bytes": 3635768,
+        "sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903"
+      },
+      "editable": {
+        "release_file": "horse-white-v2.3.zip",
+        "source_file": "Horse_White_V23.blend"
+      },
+      "release": {
+        "tag": "horses-v2.3.0",
+        "url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0"
+      },
+      "fallback": {
+        "run_id": 41017062152,
+        "artifact_name": "racing-horse-v23-2",
+        "model_path": "Horse_White/Horse_White_V23.glb"
+      },
+      "validation": {
+        "blender_ci": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41017062152",
+        "browser_ci": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41018572531",
+        "human_visual_review": true,
+        "physical_gait_qa": false,
+        "realism": "stylized; not high fidelity"
+      }
+    }
+  ],
+  "candidate_process": {
+    "manifest_template": "assets/horses/new-horse-submission.example.json",
+    "required_outputs": [
+      "model.glb",
+      "asset_manifest.json",
+      "validation.json",
+      "front.png",
+      "side.png",
+      "back.png"
+    ],
+    "publish_gate": "owner reviewed PR and tests; release created manually or via trusted workflow only",
+    "submission_directory": "assets/horses/submissions",
+    "submission_validator": "scripts/horses/validate_horse_submission.py",
+    "candidate_ci": ".github/workflows/horse-library-submit.yml",
+    "owner_publish_workflow": ".github/workflows/horse-library-publish.yml"
+  }
+}

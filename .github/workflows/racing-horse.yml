@@ -1,0 +1,106 @@
+name: Racing Horse — Original CC0 13-Clip Blender 5 GLB
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse.yml'
+      - 'scripts/horses/fetch_horses.py'
+      - 'scripts/horses/build_horse_blender.py'
+      - 'scripts/horses/validate_horse_glb.py'
+      - 'scripts/horses/make_horse_sheet.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse.yml'
+      - 'scripts/horses/**'
+permissions:
+  contents: read
+jobs:
+  build-two-cc0-horses:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile model tools
+        run: python3 -m compileall -q scripts/horses
+      - name: Install free creator-published source downloader and Pillow
+        run: |
+          python3 -m pip install --break-system-packages 'gdown==5.2.0'
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends python3-pil xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download BOTH ORIGINAL 13-clip Quaternius CC0 horses
+        run: python3 -u scripts/horses/fetch_horses.py
+      - name: Install official Blender 5.2.3 LTS (SHA256 verified)
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          name="blender-5.2.3-linux-x64.tar.xz"
+          txt=Path(".tools/SHA256").read_text()
+          row=next(line for line in txt.splitlines() if name in line)
+          sha=re.search(r"\b[a-f0-9A-F]{64}\b",row).group().lower()
+          with open(".tools/"+name,"rb") as f:
+              assert hashlib.file_digest(f,"sha256").hexdigest()==sha
+          print("BLENDER_SHA256_PASS")
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Build and render BOTH horses with their original animation actions
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            echo "::group::Build $horse"
+            mkdir -p "outputs/horse/$horse"
+            xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/horses/build_horse_blender.py -- \
+              "inputs/horses/$horse.gltf" "outputs/horse/$horse"
+            echo "::endgroup::"
+          done
+      - name: Verify original Gallop animation really changes bone poses
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/horses/qa_gallop.py -- "outputs/horse/$horse"
+          done
+      - name: Verify both game-engine GLBs retain all rigged animation clips
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            python3 scripts/horses/validate_horse_glb.py "outputs/horse/$horse"
+            /usr/bin/python3 scripts/horses/make_horse_sheet.py "outputs/horse/$horse"
+          done
+      - name: Package ready-to-open Three.js horse demo with both GLBs
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/horse/demo/models
+          cp examples/racing-horse/index.html outputs/horse/demo/index.html
+          cp outputs/horse/Horse/Horse_game.glb outputs/horse/demo/models/
+          cp outputs/horse/Horse_White/Horse_White_game.glb outputs/horse/demo/models/
+          cat > outputs/horse/demo/README.txt <<'EOF'
+          3DCodeVerse horse preview
+          Start a local static server in this directory:
+              python3 -m http.server 8000
+          Open http://localhost:8000 in your web browser.
+          The viewer uses publicly hosted Three.js modules; an internet connection is needed.
+          Horses: original Quaternius CC0 Ultimate Animated Animals.
+          Model animation clips: 13, including Gallop, Walk, Idle.
+          This is a stylized prototype, not a high-realism racing horse.
+          EOF
+      - name: Deliver source-proof, GLB, BLEND, previews, validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: racing-horses-${{ github.run_number }}
+          path: outputs/horse/
+          retention-days: 14
+          if-no-files-found: warn

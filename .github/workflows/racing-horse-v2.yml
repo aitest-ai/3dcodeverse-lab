@@ -1,0 +1,100 @@
+name: Racing Horse V2 — Surface Polish and Real Cycles QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v2.yml'
+      - 'scripts/horses/horse_v2_polish.py'
+      - 'scripts/horses/validate_horse_v2.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v2.yml'
+      - 'scripts/horses/horse_v2_polish.py'
+      - 'scripts/horses/validate_horse_v2.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  refine:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 42
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile source scripts
+        run: python3 -m py_compile scripts/horses/horse_v2_polish.py scripts/horses/validate_horse_v2.py
+      - name: Restore 2 previously verified CC0 BLEND and GLB horses
+        uses: actions/download-artifact@v4
+        with:
+          name: racing-horses-29
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41001881540'
+          github-token: ${{ github.token }}
+          path: inputs/horse_v1
+      - name: Verify 2 real Blender sources available
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            test -s "inputs/horse_v1/$horse/${horse}_blender5.blend"
+            test -s "inputs/horse_v1/$horse/${horse}_game.glb"
+            sha256sum "inputs/horse_v1/$horse/${horse}_blender5.blend"
+          done
+      - name: Install headless renderer prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Fetch Blender 5.2.3 LTS with official SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o ".tools/SHA256" "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,re
+          archive=Path(".tools/blender-5.2.3-linux-x64.tar.xz")
+          row=next(s for s in Path(".tools/SHA256").read_text().splitlines() if archive.name in s)
+          expected=re.search(r"[0-9a-fA-F]{64}",row).group().lower()
+          with archive.open("rb") as f:
+              assert hashlib.file_digest(f,"sha256").hexdigest()==expected
+          print("BLENDER_ARCHIVE_SHA_OK")
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Refine both original skinned horses; preserve original animation actions
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            echo "::group::V2 $horse"
+            xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/horses/horse_v2_polish.py -- \
+              "inputs/horse_v1/$horse" "outputs/horse_v2/$horse"
+            echo "::endgroup::"
+          done
+      - name: Independently verify GLBs truly contain improved geometry and all 13 clips
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            python3 scripts/horses/validate_horse_v2.py \
+              "inputs/horse_v1/$horse/${horse}_game.glb" \
+              "outputs/horse_v2/$horse/${horse}_V2.glb"
+          done
+      - name: Prepare web preview using V2 instead of older faceted models
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/horse_v2/demo/models
+          cp examples/racing-horse/index.html outputs/horse_v2/demo/index.html
+          cp outputs/horse_v2/Horse/Horse_V2.glb outputs/horse_v2/demo/models/Horse_game.glb
+          cp outputs/horse_v2/Horse_White/Horse_White_V2.glb outputs/horse_v2/demo/models/Horse_White_game.glb
+          echo 'Horse V2: start python3 -m http.server 8000 in demo/; then open http://localhost:8000' > outputs/horse_v2/demo/README.txt
+      - name: Upload edited source BLEND, game GLB, and REAL images
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: racing-horse-V2-${{ github.run_number }}
+          path: outputs/horse_v2/
+          retention-days: 14
+          if-no-files-found: warn

@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-10-30",
+  "purpose": "CC0 prototype first; high fidelity model candidates later. Never bypass download/login restrictions.",
+  "sources": [
+    {
+      "id": "quaternius-ultimate-animals",
+      "name": "Quaternius Ultimate Animated Animals / Horse",
+      "priority": 1,
+      "role": "gameplay_prototype",
+      "license": "CC0-1.0",
+      "creator": "Quaternius",
+      "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "download_page": "https://drive.google.com/drive/folders/1uJ3N5HfB7jKTseJUNQr3N4YaN0UuEtHk?usp=sharing",
+      "formats": [
+        "gltf",
+        "blend",
+        "fbx",
+        "obj"
+      ],
+      "expected": "Horse + Horse White (pack), clips gallop/walk/idle etc; exact names need file inspection",
+      "retrieval": "original CC0 GLTF publicly downloadable from PixelTriks asset host; author Drive has quota limits",
+      "readiness": "installed_and_blender5_tested_13_animations_2026_10_30",
+      "verified_assets": [
+        {
+          "horse": "Horse",
+          "url": "https://pixeltriks.com/characters/animals/quaternius_Horse.gltf",
+          "sha256": "7714521cb70c8f8fa5eb8be17267f51ceb619708b192745514eeecf5505483db",
+          "animations": 13,
+          "bones": 50
+        },
+        {
+          "horse": "Horse_White",
+          "url": "https://pixeltriks.com/characters/animals/quaternius_Horse_White.gltf",
+          "sha256": "d5630a28469d39516a3cfeca0af707b46e15563fbc588caee25d05c08dd5a26c",
+          "animations": 13,
+          "bones": 50
+        }
+      ]
+    },
+    {
+      "id": "sketchfab-maxdesign-horse",
+      "name": "MAXDESIGN Horse ready for games",
+      "priority": 2,
+      "role": "animated_alternative",
+      "license": "CC-BY, verify specific license/version on download",
+      "creator": "MAXDESIGN-3D",
+      "source": "https://sketchfab.com/3d-models/horse-6d0f9c1ce82f41048a282b6c47a50684",
+      "approx_triangles": 14600,
+      "expected": "animated, but inspect clips after download",
+      "retrieval": "login_manual; never scrape signed URLs",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "sketchfab-maxdesign-white",
+      "name": "MAXDESIGN White Horse",
+      "priority": 3,
+      "role": "animated_alternative",
+      "license": "CC-BY, verify original listing",
+      "creator": "MAXDESIGN-3D",
+      "source": "https://sketchfab.com/3d-models/horse-d9af6902210645d995e37ba4319957b6",
+      "approx_triangles": 14800,
+      "retrieval": "login_manual",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "sketchfab-maxdilan-horse",
+      "name": "OrelvysRodriguez Horse",
+      "priority": 4,
+      "role": "higher_detail_source",
+      "license": "CC-BY, attribution required despite description",
+      "creator": "OrelvysRodriguez",
+      "source": "https://sketchfab.com/3d-models/horse-e62e8fae743b40b7b8c382ccca863725",
+      "approx_triangles": 70500,
+      "approx_vertices": 36200,
+      "retrieval": "login_manual; no automated access unless official authenticated API",
+      "readiness": "metadata_only"
+    },
+    {
+      "id": "rigger-addon",
+      "name": "Rigger Blender 5.2 Horse / Quadruped presets",
+      "priority": 1,
+      "role": "rigging_option",
+      "license": "GPL-3.0-or-later software only",
+      "source": "https://github.com/asu37/Rigger",
+      "readiness": "not_installed; test with actual horse mesh later"
+    },
+    {
+      "id": "unirig",
+      "name": "UniRig",
+      "priority": 2,
+      "role": "rigging_option_gpu",
+      "license": "MIT code; checkpoint separate review",
+      "source": "https://github.com/VAST-AI-Research/UniRig",
+      "readiness": "not_installed_gpu_needed"
+    },
+    {
+      "id": "dessie",
+      "name": "Dessie horse pose reconstruction",
+      "priority": 3,
+      "role": "research_only",
+      "license": "review code/checkpoint separately",
+      "source": "https://celiali.github.io/Dessie/",
+      "readiness": "research_only"
+    },
+    {
+      "id": "unusable-thirdparty-3clip-quaternius-horse",
+      "name": "Public third-party Quaternius/Poly Pizza CC0 GLB",
+      "role": "rejected_source",
+      "license": "CC0 claimed",
+      "source": "https://github.com/crisleyhguimaraes/space-ship/blob/main/docs/ASSETS.md",
+      "readiness": "REJECTED_malformed_mesh_and_long_spikes_in_Blender5",
+      "notes": "Earlier source downloaded correctly but Blender mesh had severe spike deformation even after meshopt dequantization. Do NOT promote as the primary racing horse."
+    },
+    {
+      "id": "blendswap-fdoss-all-gaits",
+      "name": "Horse Rigged All Gaits",
+      "creator": "fdoss001",
+      "source": "https://blendswap.com/blend/28627",
+      "license": "listing says CC0, but third-party base mesh attribution needs CC BY verification",
+      "role": "high_detail_animated_candidate",
+      "size_approx_mb": 584,
+      "status": "BLOCKED_PROVENANCE_REVIEW_LOGIN_REQUIRED",
+      "dependencies": [
+        {
+          "creator": "Tarnyloo",
+          "source": "https://blendswap.com/blend/17172",
+          "license": "CC-BY",
+          "claim": "Model creator discussion says horse mesh reused from this CC-BY original"
+        }
+      ],
+      "allowed_next_action": "Only import after authenticating download and preserving original horse mesh creator's CC BY attribution. Do not relabel entire package CC0."
+    },
+    {
+      "id": "innerscene-standing-horse",
+      "name": "Standing horse",
+      "source": "https://www.innerscene.com/tools/library/3d-parts/standing-horse-01d8563f",
+      "license": "CC0 (source page claims original model)",
+      "creator": "Innerscene",
+      "role": "anatomically_improved_static_candidate",
+      "format": "GLB",
+      "size_approx_mb": 4.8,
+      "status": "REJECTED_AESTHETIC_QUALITY_AND_STATIC_NOT_FOR_GAME_RUNTIME",
+      "caveat": "Static mesh with no rig/animations, do not overwrite Quaternius animated V2.2. Must validate actual topology and provenance.",
+      "official_public_download_url": "https://www.innerscene.com/api/library/standing-horse-01d8563f/download",
+      "source_audit_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41015815565",
+      "published_sha256": "0ca21251cd3d98d2af263885a5ab21147057b1fd152f08a1f8703f9bc0ebe2cd",
+      "received_sha256": "a4ce47c4cdc181830b5134d69598a27b4378d17f08081bbe324f7f9ad78dee90",
+      "published_bytes": 4990516,
+      "received_bytes": 4990756,
+      "observed_triangles": 208238,
+      "observed_vertices": 104752,
+      "observed_meshes": 32,
+      "observed_materials": 7,
+      "observed_textures": 0,
+      "observed_skins": 0,
+      "observed_animations": 0,
+      "judgment": "Blender Cycles four-view V3 render failed manual artistic acceptance: horse barrel/chest/rump inflated and spherical, hooves and tail stylized block shapes. Geometry density far higher than useful topology. Keep Quaternius V2.2.",
+      "source_integrity": "PUBLISHED_SHA256_AND_SIZE_MISMATCH; quarantined review only, not approved for redistribution or project import"
+    },
+    {
+      "id": "creative-machine-horse-rig",
+      "name": "Horse Rig",
+      "source": "https://sketchfab.com/3d-models/horse-rig-bd71883bad9845389ef4ec2801004801",
+      "license": "CC-BY",
+      "creator": "CreativeMachine",
+      "role": "higher_detail_rigged_candidate",
+      "triangles": 42000,
+      "status": "DOWNLOAD_REQUIRES_SITE_PERMISSION_NOT_IMPORTED",
+      "caveat": "Rigged, but Gallop animation not confirmed. Attribution required."
+    }
+  ],
+  "validation": {
+    "blender": "5.2.3 LTS",
+    "pass_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41001881540",
+    "qa": "13 clips + skin + front/side/back/iso + gallop bone changes"
+  }
+}
