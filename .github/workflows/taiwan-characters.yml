@@ -69,40 +69,54 @@ jobs:
           blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
           blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
           blender --command extension list
-      - name: Build eight independent MPFB characters
-        env:
-          LIBGL_ALWAYS_SOFTWARE: '1'
-          BASE_SOURCE: inputs/baseline
-          CHARACTER_OUT: outputs/taiwan_characters
+# ART-REJECTED: production 34-file zip disabled until true MPFB face pilot passes human review.
+      - name: Restore cached official CC0 asset pack
+        uses: actions/cache@v4
+        with:
+          path: .tools/makehuman_system_assets_cc0.zip
+          key: makehuman-asset-packs-2026-10-30-v1
+      - name: Retrieve and unpack official MakeHuman CC0 face assets
         run: |
           set -euo pipefail
-          mkdir -p outputs/taiwan_characters
-          for id in you boss uncle jie oldman cop shui bro; do
-            echo "::group::Build $id"
-            CHARACTER_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/build_one.py
-            echo "::endgroup::"
-          done
-      - name: Independently validate GLBs and pack exact deliverables
+          FILE=.tools/makehuman_system_assets_cc0.zip
+          if [ ! -s "$FILE" ]; then
+            for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+              if curl -fL --retry 2 --connect-timeout 25 --max-time 420 \
+                  -o "$FILE" "https://$host/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip"; then break; fi
+              rm -f "$FILE"
+            done
+          fi
+          test "$(stat -c%s "$FILE")" -gt 200000000
+          unzip -tq "$FILE" >/dev/null
+          mkdir -p .deps/mh_assets
+          unzip -oq "$FILE" -d .deps/mh_assets
+          test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
+      - name: Face-first prototype (two characters only)
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
+          FACE_OUT: outputs/face_v3
         run: |
-          /usr/bin/python3 scripts/taiwan_characters/package.py
-          test -s outputs/taiwan-characters.zip
-          unzip -l outputs/taiwan-characters.zip
-      - name: Upload requested ZIP
-        uses: actions/upload-artifact@v4
-        with:
-          name: taiwan-characters
-          path: outputs/taiwan-characters.zip
-          retention-days: 14
-          if-no-files-found: error
-      - name: Upload inspection evidence even if incomplete
+          set -euo pipefail
+          mkdir -p outputs/face_v3
+          for id in you boss; do
+            FACE_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v3_pilot.py
+          done
+      - name: Validate presence of genuine Blender renders
+        run: |
+          set -euo pipefail
+          for id in you boss; do
+            test -s outputs/face_v3/"$id"_v3_face.png
+            test -s outputs/face_v3/"$id"_v3_front.png
+            test -s outputs/face_v3/"$id"_v3_side.png
+            python3 -m json.tool outputs/face_v3/"$id"_v3_report.json >/dev/null
+          done
+      - name: Upload face QA render evidence (NOT final game characters)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-characters-inspection
-          path: |
-            outputs/taiwan_characters/*.png
-            outputs/taiwan_characters/*_report.json
-            outputs/taiwan_characters/asset_manifest.json
-            outputs/taiwan_characters/report.json
+          name: taiwan-face-v3-PILOT-NOT-APPROVED
+          path: outputs/face_v3/
           retention-days: 14
           if-no-files-found: warn
