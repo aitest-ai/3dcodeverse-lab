@@ -99,77 +99,83 @@ jobs:
               done
             fi
             test "$(stat -c%s "$file")" -gt 1000000
-            unzip -tq "$file" >/dev/null
+            test "$(stat -c%s "$file")" -gt 200000
+          unzip -tq "$file" >/dev/null
             unzip -oq "$file" -d .deps/mh_assets
           done
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: Four anatomically different MPFB heads and native CC0 outfits
+      - name: Download official CC0 Faceunits 01 ARKit blendshape targets
+        run: |
+          set -euo pipefail
+          mkdir -p .deps/faceunits
+          file=.deps/faceunits01_cc0.zip
+          for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+            if curl -fL --retry 2 --connect-timeout 20 --max-time 120 \
+                -o "$file" "https://$host/functional/faceunits01.zip"; then break; fi
+            rm -f "$file"
+          done
+          unzip -tq "$file"
+          unzip -oq "$file" -d .deps/faceunits
+          find .deps/faceunits -type f | head -30
+          test "$(find .deps/faceunits -name '*.target*' | wc -l)" -ge 8
+      - name: Test source-authentic ARKit expressions on different male faces
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v12
+          MAKEHUMAN_FACEUNITS_ROOT: .deps/faceunits
+          FACE_OUT: outputs/face_v13
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v12
-          for id in you boss uncle jie; do
-            FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v12_portrait_qa.py
+          mkdir -p outputs/face_v13
+          for id in you jie; do
+            FACE_ID="$id" xvfb-run -a blender -b \
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v13_real_arkit.py
           done
-      - name: Independently validate four original 3D outfits and faces
+      - name: Validate 8 nonzero ARKit keys, skinned GLB and 7 real Blender images each
         run: |
           set -euo pipefail
-          for id in you_v12_main boss_v12_ponytail01 uncle_v12_main jie_v12_main; do
-            p="outputs/face_v12/$id.glb"
+          for id in you_v13_main jie_v13_main; do
+            p="outputs/face_v13/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
-          import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v12")
-          names=("you_v12_main","boss_v12_ponytail01","uncle_v12_main","jie_v12_main")
-          profiles=set()
-          for tag in names:
-              p=root/(tag+"_report.json")
-              data=json.loads(p.read_text())
-              assert len(data["personal_face_targets"])>=8
-              assert len(data["separate_open_source_garments"])==2
-              assert data["body_vertices"]==13380
-              assert all(x["license"]=="CC0" for x in data["separate_open_source_garments"])
-              assert all(qa["vertices"]>200 for qa in data["wardrobe_topology_qa"].values())
-              if tag.startswith("jie"):
-                  assert "toigo_basic_tucked_t-shirt" in data["separate_open_source_garments"][0]["file"],data
-                  assert data["waistband_repair"]["moved_vertices"]>=10,data
-                  assert data["waistband_repair"]["height_m"]>=.02
-                  assert data["hair_asset"]=="short02.mhclo"
-              if tag.startswith("uncle"):
-                  assert len(data["personal_face_targets"])>=13
-              for png in data["views"]:
-                  assert (root/png).stat().st_size>15000
-              glb=root/(tag+".glb")
-              with glb.open("rb") as f:
-                  magic,version,total=struct.unpack("<4sII",f.read(12))
-                  length,kind=struct.unpack("<I4s",f.read(8))
-                  doc=json.loads(f.read(length))
-              assert magic==b"glTF" and version==2 and total==glb.stat().st_size<=6000000
-              assert doc.get("skins"),tag
-              names_in_glb={n.get("name","") for n in doc["nodes"]}
-              for cloth in data["separate_open_source_garments"]:
-                  assert cloth["mesh"] in names_in_glb
-              digest=hashlib.sha256(json.dumps(data["personal_face_targets"],sort_keys=True).encode()).hexdigest()
-              assert digest not in profiles,"duplicate face parameter set"
-              profiles.add(digest)
-              data["pilot_glb_bytes"]=total
-              p.write_text(json.dumps(data,ensure_ascii=False,indent=2))
-              print("FOUR_ROLE_OPEN_CLOTHING_VERIFIED",tag,total)
+          import json, pathlib, struct
+          root=pathlib.Path("outputs/face_v13")
+          required={"mouthOpen","mouthSmileLeft","mouthSmileRight",
+            "eyeBlinkLeft","eyeBlinkRight","browInnerUp","mouthFrownLeft","mouthFrownRight"}
+          for name in ("you_v13_main","jie_v13_main"):
+              info=json.loads((root/(name+"_report.json")).read_text())
+              assert info["body_vertices"]==13380
+              assert set(info["arkit_shape_keys"])==required
+              assert all(row["changed_source_vertices"]>3 and row["max_offset_m"]>.00001
+                for row in info["arkit_shape_keys"].values())
+              assert len(info["views"])==4 and len(info["expression_renders"])==3
+              for filename in info["views"]+info["expression_renders"]:
+                  assert (root/filename).stat().st_size>15000,filename
+              p=root/(name+".glb")
+              with p.open("rb") as fh:
+                  magic,version,total=struct.unpack("<4sII",fh.read(12))
+                  length,kind=struct.unpack("<I4s",fh.read(8))
+                  doc=json.loads(fh.read(length))
+              assert magic==b"glTF" and version==2 and total==p.stat().st_size<=6000000
+              assert doc.get("skins")
+              candidate=[]
+              for m in doc.get("meshes",[]):
+                  for primitive in m.get("primitives",[]):
+                      count=len(primitive.get("targets",[]))
+                      if count>=8:candidate.append((m.get("name"),count))
+              assert candidate,("No real morphs in exported GLB",name)
+              print("VERIFIED_REAL_ARKIT_8_MORPHS",name,candidate)
           PY
-      - name: Archive real 4-character GLBs and Blender preview images
+      - name: Archive expression test GLB and real face renders (not final)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v12-four-role-revised-faces-wardrobe-ART-QA
-          path: outputs/face_v12/
+          name: taiwan-v13-genuine-ARKit-2-male-pilot-NOT-FINAL
+          path: outputs/face_v13/
           retention-days: 14
           if-no-files-found: warn
