@@ -96,3 +96,25 @@ animate();
 
 > 請讀取 https://github.com/aitest-ai/3dcodeverse-lab 的 AGENTS.md 與 docs/AI_ASSET_PIPELINE.md，依 Blender 5.2.3 工作流程創作【角色／物件描述】，預期整合到【系統網址／repo】，需要【動作清單】；新建 scripts/blender5/<asset_id>.py，輸出可匯入的 .glb、.blend、asset_manifest.json、report.json，透過 GitHub Actions 驗證後提交 PR。必須保留現有程式，不得宣稱未執行的測試已成功。如果沒有 GitHub 權限，請先說明並提出 PR/Fork 或交付檔案的方法。
 
+
+
+## 機甲 V4：逐影格動作品質報告與三視角預覽（待雲端實測）
+
+本版新增了獨立的 `scripts/blender5/render_and_qa.py`，針對 `MechaRig`：
+
+- 每段動畫檢查全部 48 格（4 段 × 48 格 × 左右腳 = 384 筆腳部量測）。
+- 計算腳底最低位置 `sole_z_m`、膝蓋彎曲角度 `knee_flex_deg`、腳掌接觸地面時逐格位移 `stance_drift_m`。
+- 產生 `outputs/motion_qa.json`，列出各動作的最小腳底高度、最大膝彎角度、最大逐格腳滑距離及警告。
+- 每段動作輸出正面、側面、等角三個角度，合計 12 張 `outputs/previews/*.png`，並合成一張 `outputs/preview_contact_sheet.png`。
+
+機甲程式的腳底高度修正已由原本 **每段 5 個指定影格** 改為 **每段 48 格全覆蓋**；但這只是姿態對地面高度的逐格補償，**不等於完整的雙腿 IK、重心動力學或零腳滑保證**。報告會把仍然滑動的距離直接量出來，供後續迭代。
+
+預覽與品質報告是第二段 Blender 背景工作流程，在獨立開啟已產生的 `.blend` 後執行，不會把驗收地板或攝影機加入原本輸出的 GLB。自訂角色若不是 `MechaRig`，仍可先使用通用的 `validate_glb.py`；只有機甲範例會自動執行這份專用的逐格檢查。
+
+### 如何使用成果
+
+1. 點選該次成功的 GitHub Actions 執行。
+2. 在 Artifacts 下載 `blender5-mecha-<run_number>`。
+3. 先看 `preview_contact_sheet.png` 和 `motion_qa.json`，再使用 `.glb`。
+4. 只有 GitHub Actions 顯示成功，且實際預覽合格，才能說 **Blender 成品完成驗收**。提交程式碼本身不是完成渲染。
+
