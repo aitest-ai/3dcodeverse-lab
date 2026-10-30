@@ -1,0 +1,80 @@
+name: Racing Horse V2.2 — Package Playable WebGL Demo
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-web-demo.yml'
+      - 'examples/racing-horse/index.html'
+      - 'examples/racing-horse/race_motion_calibration.json'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-web-demo.yml'
+      - 'examples/racing-horse/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package-web:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore V2.2 latest validated horse model pair
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41013238601'
+          name: horse-v22-5
+          github-token: ${{ github.token }}
+          path: inputs/horse_v22
+      - name: Assemble local browser demo with source data
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/demo/models
+          cp inputs/horse_v22/Horse/Horse_V22.glb outputs/demo/models/Horse_game.glb
+          cp inputs/horse_v22/Horse_White/Horse_White_V22.glb outputs/demo/models/Horse_White_game.glb
+          cp examples/racing-horse/index.html outputs/demo/
+          cp examples/racing-horse/race_motion_calibration.json outputs/demo/
+          cat > outputs/demo/README.txt <<'EOF'
+          3DCodeVerse Racing Horse V2.2 demo — Quaternius CC0
+          In this folder, run python3 -m http.server 8000
+          Then visit http://localhost:8000
+          Internet is required for the CDN-hosted Three.js modules.
+          The root motion calibration estimates contact-frame travel and
+          does NOT guarantee physically correct hoof collisions on terrain.
+          Do not open file:// directly.
+          EOF
+      - name: Check real GLB animation, mesh skins and website JS syntax
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,struct,re
+          folder=Path("outputs/demo")
+          calib=json.loads((folder/"race_motion_calibration.json").read_text())
+          assert calib["relative_residual_reduction_percent"]>40
+          for horse in ("Horse","Horse_White"):
+              fn="Horse_game.glb" if horse=="Horse" else "Horse_White_game.glb"
+              raw=(folder/"models"/fn).read_bytes()
+              magic,version,size=struct.unpack_from("<4sII",raw,0)
+              assert magic==b"glTF" and version==2 and size==len(raw)
+              n,kind=struct.unpack_from("<I4s",raw,12)
+              assert kind==b"JSON"
+              d=json.loads(raw[20:20+n])
+              assert len(d.get("animations",[]))==13
+              assert len(d.get("meshes",[]))>=2
+              assert any(len(x["joints"])>=45 for x in d.get("skins",[]))
+          html=(folder/"index.html").read_text()
+          js=re.search(r'<script type="module">(.*?)</script>',html,re.DOTALL)
+          assert js
+          (folder/"validate_module.mjs").write_text(js.group(1))
+          print("DEMO_FILES_OK")
+          PY
+          node --check outputs/demo/validate_module.mjs
+          rm outputs/demo/validate_module.mjs
+      - name: Upload ready-to-serve website and model files
+        uses: actions/upload-artifact@v4
+        with:
+          name: racing-horse-web-demo-${{ github.run_number }}
+          path: outputs/demo/
+          retention-days: 14
