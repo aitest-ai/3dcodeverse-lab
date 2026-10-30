@@ -1299,3 +1299,36 @@ try:
 except Exception as beauty_error:
  (out/"preview_pbr_error.txt").write_text(str(beauty_error),encoding="utf-8")
  print("V49_PBR_PREVIEW_FAILED",repr(beauty_error))
+
+
+# True Blender frames from Mecha_Run, without concept-art synthesis.
+# Solo the Run NLA strip (all six clips share the same 1..48 interval).
+# SHA differentiation catches a static or incorrectly muted animation.
+for tr in rig.animation_data.nla_tracks:
+ tr.mute=(tr.name!="Run")
+preview_scene.render.engine="BLENDER_WORKBENCH"
+preview_scene.render.resolution_x=560
+preview_scene.render.resolution_y=560
+preview_scene.render.resolution_percentage=100
+preview_scene.render.film_transparent=True
+camera.location=(4.0,-5.8,3.1)
+camera.rotation_euler=(PreviewVector((0.,0.,1.42))-camera.location).to_track_quat("-Z","Y").to_euler()
+run_preview={}
+for test_frame in (1,13,25,37):
+ preview_scene.frame_set(test_frame)
+ target=out/("preview_run_%02d.png"%test_frame)
+ preview_scene.render.filepath=str(target.resolve())
+ bpy.ops.render.render(write_still=True)
+ run_preview[str(test_frame)]=hashlib.sha256(target.read_bytes()).hexdigest()
+for tr in rig.animation_data.nla_tracks:
+ tr.mute=False
+assert len(set(run_preview.values()))>=3, "Run animation preview is not visibly changing"
+(out/"run_visual_qa.json").write_text(json.dumps({
+ "clip":"Mecha_Run",
+ "frames":[1,13,25,37],
+ "render_engine":"BLENDER_WORKBENCH",
+ "hashes":run_preview,
+ "distinct":len(set(run_preview.values())),
+ "note":"real Blender motion snapshots, not a full dynamic IK/physics guarantee"
+},indent=2),encoding="utf-8")
+print("V50_RUN_ANIMATION_PREVIEWS_PASS",run_preview)
