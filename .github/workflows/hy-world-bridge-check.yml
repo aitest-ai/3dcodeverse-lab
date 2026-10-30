@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'scripts/hyworld2/**'
+      - 'scripts/blender5/hyworld_mesh_to_glb.py'
       - 'tests/test_hyworld2_bridge.py'
       - 'examples/threejs/load-hy-world.js'
       - '.github/workflows/hy-world-bridge-check.yml'
@@ -20,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate Python source syntax
-        run: python3 -m py_compile scripts/hyworld2/pack_world.py
+        run: python3 -m py_compile scripts/hyworld2/pack_world.py scripts/blender5/hyworld_mesh_to_glb.py
       - name: Run isolated format and packaging tests
         run: python3 -m unittest discover -s tests -p 'test_hyworld2_bridge.py' -v
       - name: Check browser loader syntax
