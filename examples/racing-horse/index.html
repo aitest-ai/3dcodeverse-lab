@@ -24,7 +24,7 @@ input{accent-color:#487b56}
 <div class="controls">
   <label>動畫 <select id="clip"><option value="Gallop">奔馳 Gallop</option><option value="Walk">走路 Walk</option><option value="Idle">待機 Idle</option></select></label>
   <label>速度 <input type="range" min="0.2" max="2.3" step="0.1" value="1" id="speed"/><span id="speedOut">1.0×</span></label>
-  <label><input id="orbit" type="checkbox"/>沿跑道前進（測試）</label>
+  <label><input id="orbit" type="checkbox"/>沿跑道前進（Gallop 接觸速度校正）</label>
   <button id="pause">暫停動畫</button>
 </div>
 <script type="module">
@@ -56,6 +56,7 @@ const ring=new THREE.Mesh(new THREE.RingGeometry(6.5+i*2.0,7.2+i*2.0,128),new TH
 ring.rotation.x=-Math.PI/2;ring.position.y=.002+i*.01;scene.add(ring);
 }
 const loader=new GLTFLoader(),clock=new THREE.Clock(),horses=[];
+let gaitCalibration=null;
 function setHorseClip(h,name){
 const clip=h.animations.find(a=>a.name===name)
 ||h.animations.find(a=>a.name.toLowerCase().includes(name.toLowerCase()));
@@ -63,6 +64,7 @@ if(!clip)throw new Error("模型沒有 "+name+" 動畫。實有："+h.animations
 const next=h.mixer.clipAction(clip);next.reset().play();
 if(h.action&&h.action!==next)next.crossFadeFrom(h.action,.2,false);
 h.action=next;
+h.currentClip=name;
 }
 async function addHorse(url,lane){
 const gltf=await loader.loadAsync(url);
@@ -77,18 +79,24 @@ gltf.scene.position.y-=normalizedBox.min.y;
 outer.add(gltf.scene);
 outer.position.set(lane===0?-2.8:2.8,0,0);
 const mixer=new THREE.AnimationMixer(gltf.scene);
-const obj={outer,mixer,animations:gltf.animations,action:null,lane};
+const obj={outer,mixer,animations:gltf.animations,action:null,lane,
+  modelScale:scale,trackAngle:0,currentClip:"Gallop"};
 horses.push(obj);setHorseClip(obj,document.getElementById("clip").value);
 gltf.scene.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}});
 return obj;
 }
-let paused=false,raceTime=0;
+let paused=false;
 try{
+const raw=await fetch("./race_motion_calibration.json");
+if(raw.ok){
+  const candidate=await raw.json();
+  if(candidate.action==="Gallop"&&Number.isFinite(candidate.fitted_root_y_source_units_per_action_frame))gaitCalibration=candidate;
+}
 const [h1,h2]=await Promise.all([
   addHorse("./models/Horse_game.glb",0),
   addHorse("./models/Horse_White_game.glb",1)
 ]);
-status.textContent="載入成功：兩匹馬，動畫 "+h1.animations.map(a=>a.name).join("／")+"；滑鼠拖曳可旋轉視角";
+status.textContent="載入成功：兩匹馬，13 段動畫；"+(gaitCalibration?"奔馳移動採用實際馬蹄幾何校正（仍非碰撞模擬）":"未讀到移動校正檔，採保守預設速度")+"；可拖曳旋轉視角";
 }catch(e){status.textContent="載入失敗："+e.message+"。請在含 models 資料夾的目錄啟動 HTTP 伺服器。";console.error(e)}
 document.getElementById("clip").addEventListener("change",e=>horses.forEach(h=>setHorseClip(h,e.target.value)));
 document.getElementById("pause").addEventListener("click",e=>{paused=!paused;e.target.textContent=paused?"繼續動畫":"暫停動畫";});
@@ -97,15 +105,25 @@ function animate(){
 requestAnimationFrame(animate);
 const dt=Math.min(clock.getDelta(),.06),speed=+document.getElementById("speed").value;
 if(!paused){
-raceTime+=dt*speed;
 for(const h of horses){
 h.mixer.update(dt*speed);
 if(document.getElementById("orbit").checked){
-const angle=raceTime*(h.lane===0?.18:.172);
 const rx=7+(h.lane*2);
 const rz=5+(h.lane*1.4);
-h.outer.position.set(Math.sin(angle)*rx,0,Math.cos(angle)*rz);
-h.outer.rotation.y=angle+.35;
+// Translate the in-place Gallop by the speed fitted from Blender's
+// 40-sample deformed hoof material. Not a dynamic foot IK/collision solve.
+const gallop=h.animations.find(a=>a.name==="Gallop");
+const actionSpan=gaitCalibration ? gaitCalibration.source_action_frame_range[1]-gaitCalibration.source_action_frame_range[0] : 14.4;
+const rootUnitsPerFrame=gaitCalibration ? Math.abs(gaitCalibration.fitted_root_y_source_units_per_action_frame) : 0.22;
+let worldSpeed=gallop ? rootUnitsPerFrame*actionSpan/Math.max(.05,gallop.duration)*h.modelScale : 0;
+if(h.currentClip==="Walk")worldSpeed*=.4; // heuristic until Walk is measured
+if(h.currentClip==="Idle")worldSpeed=0;
+const angle=h.trackAngle;
+const localTrackRadius=Math.max(.1,Math.hypot(rx*Math.cos(angle),rz*Math.sin(angle)));
+h.trackAngle=(angle+dt*speed*worldSpeed/localTrackRadius)%(Math.PI*2);
+h.outer.position.set(Math.sin(h.trackAngle)*rx,0,Math.cos(h.trackAngle)*rz);
+// Horse's local forward is +Z in imported glTF.
+h.outer.rotation.y=Math.atan2(rx*Math.cos(h.trackAngle),-rz*Math.sin(h.trackAngle));
 }else{
 h.outer.position.set(h.lane===0?-2.8:2.8,0,0);
 h.outer.rotation.y=0;
