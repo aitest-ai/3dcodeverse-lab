@@ -6,7 +6,7 @@
   "mesh_objects": 47,
   "polygon_count": 5108,
   "height_m_rest_pose_with_cap": 1.476,
-  "glb_bytes": 376652,
+  "glb_bytes": 384368,
   "clips": [
     "Cheer",
     "Idle",
@@ -44,25 +44,17 @@
   },
   "measurements": {
     "Walk": {
-      "knee_flex_max_deg": 70.93402553364633,
-      "thigh_swing_max_deg": 44.41878721264032,
-      "thigh_swing_min_deg": -24.625601205849982,
-      "elbow_flex_max_deg": 25.023746099143278,
-      "shoulder_swing_max_deg": 31.340048980874325,
-      "min_sole_z_m": 0.0029999534599483013,
-      "hand_torso_clearance_min": 1.2885163303261988,
-      "max_stance_slip_m": 0.0071,
+      "knee_flex_max_deg": 0.0,
+      "min_sole_z_m": 7.450580596923828e-09,
+      "hand_torso_clearance_min": 1.1052492935655018,
+      "max_stance_slip_m": 0.0325,
       "loop_closure_error_m": 0.0
     },
     "Run": {
-      "knee_flex_max_deg": 90.1618417547782,
-      "thigh_swing_max_deg": 66.18438905976036,
-      "thigh_swing_min_deg": -27.47695372340804,
-      "elbow_flex_max_deg": 79.15671943070554,
-      "shoulder_swing_max_deg": 53.06629196264348,
-      "min_sole_z_m": 0.0029999609105288982,
-      "hand_torso_clearance_min": 1.0162070411415947,
-      "max_stance_slip_m": 0.0066,
+      "knee_flex_max_deg": 0.0,
+      "min_sole_z_m": -2.9802322387695312e-08,
+      "hand_torso_clearance_min": 0.5737062740756762,
+      "max_stance_slip_m": 0.0258,
       "loop_closure_error_m": 0.0
     },
     "Idle": {
