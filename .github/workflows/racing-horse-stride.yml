@@ -1,0 +1,83 @@
+name: Racing Horse V2 — Full Gallop Stride Measurement
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-stride.yml'
+      - 'scripts/motion/horse_stride_audit.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-stride.yml'
+      - 'scripts/motion/horse_stride_audit.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m py_compile scripts/motion/horse_stride_audit.py
+      - name: Restore independently verified V2 horse assets
+        uses: actions/download-artifact@v4
+        with:
+          name: racing-horse-V2-6
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41005528336'
+          github-token: ${{ github.token }}
+          path: inputs/horse_v2
+      - name: Install minimal Blender 5 dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download trusted Blender 5.2.3 archive with SHA256 check
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl --fail -L --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl --fail -L --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          file=Path(".tools/blender-5.2.3-linux-x64.tar.xz")
+          line=next(s for s in Path(".tools/SHA256").read_text().splitlines() if file.name in s)
+          sha=re.search(r"[0-9a-fA-F]{64}",line).group().lower()
+          with file.open("rb") as f:assert hashlib.file_digest(f,"sha256").hexdigest()==sha
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Evaluate 40 frames for 4 hoof proxy bones on BOTH horses
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/motion/horse_stride_audit.py -- "inputs/horse_v2/$horse"
+          done
+      - name: Verify audit outputs exist
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          for horse in ("Horse","Horse_White"):
+              p=Path("inputs/horse_v2")/horse
+              r=json.loads((p/"stride_qa.json").read_text())
+              assert r["sample_count"]==40
+              assert len(r["limbs"])==4
+              assert (p/"gallop_stride_chart.svg").stat().st_size>1000
+              print("PASS",horse,{k:v["range_as_horse_height"] for k,v in r["limbs"].items()})
+          PY
+      - name: Upload actual Gallop pose measurements and graphs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-V2-stride-${{ github.run_number }}
+          path: |
+            inputs/horse_v2/Horse/stride_qa.json
+            inputs/horse_v2/Horse/gallop_stride_chart.svg
+            inputs/horse_v2/Horse_White/stride_qa.json
+            inputs/horse_v2/Horse_White/gallop_stride_chart.svg
+          retention-days: 14
+          if-no-files-found: warn
