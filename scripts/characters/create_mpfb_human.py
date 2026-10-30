@@ -40,7 +40,7 @@ except ImportError as e:
 HumanService = service("mpfb.services.humanservice", "HumanService")
 
 print("MPFB creating real MakeHuman basemesh")
-body = HumanService.create_human(mask_helpers=True, extra_vertex_groups=True, feet_on_ground=True, scale=0.01)
+body = HumanService.create_human(mask_helpers=True, extra_vertex_groups=True, feet_on_ground=True, scale=0.1)
 assert body and body.type == "MESH", "MPFB did not return a human mesh"
 body.name = "Human_Body_MakeHumanTopology"
 print("MPFB adding game-engine rig")
