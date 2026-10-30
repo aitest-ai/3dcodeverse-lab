@@ -18,6 +18,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Bundle tracked source only for reproducibility
+        run: git archive --format=zip --output=emotion-voice-source.zip HEAD experiments/emotion-voice-lab .github/workflows/emotion-voice-studio-tests.yml .github/workflows/emotion-voice-live-eval.yml .github/workflows/emotion-voice-live-probe.yml
+      - name: Preserve source snapshot, no audio or credentials
+        uses: actions/upload-artifact@v4
+        with:
+          name: emotion-voice-source
+          path: emotion-voice-source.zip
+          retention-days: 7
       - name: Install bounded API client, no model or GPU rental
         run: python -m pip install 'gradio_client==2.0.3'
       - name: Evaluate official bundled demo voice, at most four calls
