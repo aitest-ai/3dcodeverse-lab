@@ -206,6 +206,14 @@ def profile(obj):
     obj.data.update()
 for ob in [o for o in sc.objects if o.type=="MESH" and o not in original_hair]:
     profile(ob)
+# The nose, eyes and lips move substantially between MPFB age/gender targets.
+# Derive all facial landmarks from the actual final skull, not a fixed z.
+head_top=max((body.matrix_world @ v.co).z for v in body.data.vertices)
+face_eye_z=head_top-.111
+face_mouth_z=head_top-.182
+face_brow_z=head_top-.074
+head_shift=head_top-1.70
+print("FACE_LANDMARKS",cid,head_top,face_eye_z,face_mouth_z)
 
 # ARKit-style facial targets on the *actual skinned body*, with measurable
 # nonzero vertex offsets (do not put names on empty extras / fake material nodes).
@@ -223,11 +231,11 @@ for keyname in REQUIRED_KEYS:
         # Negative Y is the front of the MPFB model. Keep back of skull still.
         front=max(0.0,min(1.0,(-y-.025)/.075))
         dx=dy=dz=0.0
-        mouth=front*gauss(z,1.515,.029)*gauss(x,0,.064)
-        eye=front*gauss(z,1.595,.023)
-        brow=front*gauss(z,1.637,.026)
+        mouth=front*gauss(z,face_mouth_z,.029)*gauss(x,0,.064)
+        eye=front*gauss(z,face_eye_z,.028)
+        brow=front*gauss(z,face_brow_z,.025)
         if keyname=="mouthOpen":
-            dz=(-.018 if z<1.515 else .005)*mouth
+            dz=(-.018 if z<face_mouth_z else .005)*mouth
             dy=-.005*mouth
         elif keyname=="mouthSmile":
             dz=.013*mouth*gauss(abs(x),.040,.020)
@@ -235,9 +243,9 @@ for keyname in REQUIRED_KEYS:
         elif keyname=="mouthFrown":
             dz=-.012*mouth*gauss(abs(x),.043,.022)
         elif keyname=="eyeBlinkLeft":
-            dz=(-.009 if z>=1.595 else .007)*eye*gauss(x,-.042,.023)
+            dz=(-.009 if z>=face_eye_z else .007)*eye*gauss(x,-.042,.023)
         elif keyname=="eyeBlinkRight":
-            dz=(-.009 if z>=1.595 else .007)*eye*gauss(x,.042,.023)
+            dz=(-.009 if z>=face_eye_z else .007)*eye*gauss(x,.042,.023)
         elif keyname=="browDownLeft":
             dz=-.011*brow*gauss(x,-.043,.032)
         elif keyname=="browDownRight":
@@ -373,6 +381,7 @@ def rigid(obj,bone):
     # Bone-parent rigid accessories using KEEP TRANSFORM; armature skinning
     # without inverse bind caused hats to hover and masks to shift over eyes.
     if bone not in bone_names:raise RuntimeError("No rigid attach bone "+bone)
+    if bone=="head":obj.location.z+=head_shift
     world=obj.matrix_world.copy()
     obj.parent=rig
     obj.parent_type="BONE"
@@ -409,17 +418,40 @@ black=material("HairBlack_"+cid,(.012,.012,.011),.90)
 gray=material("HairGray_"+cid,(.38,.38,.34),.9)
 white=material("WhiteCloth_"+cid,(.77,.77,.72))
 gold=material("Gold_"+cid,(.78,.51,.16),.3,.65)
+# Reconstruct hair from the real scalp triangles; synthetic ellipsoid
+# "hair" was the main visible uncanny floating-egg defect.
 if cfg["hair"]!="bald":
-    hc=gray if cfg["hair"]=="gray" else black
-    sphere("HairCrown_"+cid,(0,.000,1.648),(.083,.080,.053),hc)
-    rand=random.Random(cid)
-    for i in range(16 if cfg["hair"]!="curl" else 24):
-        ang=2*math.pi*i/(16 if cfg["hair"]!="curl" else 24)
-        x=.064*math.cos(ang);y=.051*math.sin(ang)-.009
-        z=1.642+.014*rand.random()
-        ob=sphere("HairLock_%02d_%s"%(i,cid),(x,y,z),
-                  (.015,.014,.020 if cfg["hair"]=="short" else .027),hc)
-        ob.rotation_euler[1]=.25*math.cos(ang)
+    hairmat=gray if cfg["hair"]=="gray" else black
+    verts=[];faces=[];mapindex={}
+    for polygon in body.data.polygons:
+        inds=list(polygon.vertices)
+        pts=[body.data.vertices[k] for k in inds]
+        if min((body.matrix_world@v.co).z for v in pts)<head_top-.082:
+            continue
+        face=[]
+        for index in inds:
+            if index not in mapindex:
+                v=body.data.vertices[index]
+                # Geometry is stored in world-space, then rigidly follows head.
+                p=body.matrix_world@v.co
+                n=body.matrix_world.to_3x3()@v.normal
+                n.normalize()
+                mapindex[index]=len(verts)
+                verts.append(tuple(p+n*.006))
+            face.append(mapindex[index])
+        faces.append(tuple(face))
+    if len(faces)<50:raise RuntimeError("Scalp shell selection failed "+str(len(faces)))
+    hairmesh=bpy.data.meshes.new("HairScalp_"+cid)
+    hairmesh.from_pydata(verts,[],faces);hairmesh.update()
+    hair_obj=bpy.data.objects.new("HairScalp_"+cid,hairmesh)
+    sc.collection.objects.link(hair_obj)
+    hairmesh.materials.append(hairmat)
+    # The scalp is already exactly positioned on the skull; don't apply
+    # another head_shifting operation intended for old absolute props.
+    keep=head_shift;head_shift=0.0
+    rigid(hair_obj,"head")
+    head_shift=keep
+    print("ANATOMICAL_SCALP",cid,"faces",len(faces))
 if cid=="boss":
     # A contoured bib apron following the rounded torso (not a floating box).
     cap("Headscarf_boss",(.61,.27,.13))
@@ -517,7 +549,7 @@ for name,loc,power in (("Key",(3,-4,4),560),("Fill",(-3,-3,3),360),("Rim",(-2,3,
     ob=bpy.data.objects.new(name,lamp);sc.collection.objects.link(ob)
     ob.location=loc;ob.rotation_euler=(Vector((0,0,1.0))-ob.location).to_track_quat("-Z","Y").to_euler()
     lamp.energy=power;lamp.size=3
-facez=1.58*ratio
+facez=(head_top-.14)*ratio
 views={
  "front":((0,-5,1.1),(0,0,height*.52),height*1.33),
  "side":((5,0,1.1),(0,0,height*.52),height*1.33),
@@ -579,7 +611,8 @@ report={
  "textures":[{"name":im.name,"width":im.size[0],"height":im.size[1]} for im in bpy.data.images if im.has_data],
  "height_m":round(height,4),"glb_bytes":glbpath.stat().st_size,
  "mpfb_genuine_phenotype":phen,
- "mpfb_macro_adjusted_vertices":shifted,"face_asset_adjustments":face_asset_adjustments,
+ "mpfb_macro_adjusted_vertices":shifted,
+ "face_landmarks_m":{"head_top":head_top,"eyes":face_eye_z,"mouth":face_mouth_z},"face_asset_adjustments":face_asset_adjustments,
  "garment_fitting":fit_stats,
  "mesh_count":len(doc.get("meshes",[])),"material_count":len(doc.get("materials",[])),
  "skin_count":len(doc.get("skins",[])),
