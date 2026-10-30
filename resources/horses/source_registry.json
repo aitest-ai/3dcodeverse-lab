@@ -19,8 +19,24 @@
         "obj"
       ],
       "expected": "Horse + Horse White (pack), clips gallop/walk/idle etc; exact names need file inspection",
-      "retrieval": "public_shared_drive_folder; test with gdown metadata; only import after successful download and archive scan",
-      "readiness": "source_page_license_confirmed_asset_bytes_not_yet_verified"
+      "retrieval": "original CC0 GLTF publicly downloadable from PixelTriks asset host; author Drive has quota limits",
+      "readiness": "installed_and_blender5_tested_13_animations_2026_10_30",
+      "verified_assets": [
+        {
+          "horse": "Horse",
+          "url": "https://pixeltriks.com/characters/animals/quaternius_Horse.gltf",
+          "sha256": "7714521cb70c8f8fa5eb8be17267f51ceb619708b192745514eeecf5505483db",
+          "animations": 13,
+          "bones": 50
+        },
+        {
+          "horse": "Horse_White",
+          "url": "https://pixeltriks.com/characters/animals/quaternius_Horse_White.gltf",
+          "sha256": "d5630a28469d39516a3cfeca0af707b46e15563fbc588caee25d05c08dd5a26c",
+          "animations": 13,
+          "bones": 50
+        }
+      ]
     },
     {
       "id": "sketchfab-maxdesign-horse",
@@ -86,6 +102,20 @@
       "license": "review code/checkpoint separately",
       "source": "https://celiali.github.io/Dessie/",
       "readiness": "research_only"
+    },
+    {
+      "id": "unusable-thirdparty-3clip-quaternius-horse",
+      "name": "Public third-party Quaternius/Poly Pizza CC0 GLB",
+      "role": "rejected_source",
+      "license": "CC0 claimed",
+      "source": "https://github.com/crisleyhguimaraes/space-ship/blob/main/docs/ASSETS.md",
+      "readiness": "REJECTED_malformed_mesh_and_long_spikes_in_Blender5",
+      "notes": "Earlier source downloaded correctly but Blender mesh had severe spike deformation even after meshopt dequantization. Do NOT promote as the primary racing horse."
     }
-  ]
+  ],
+  "validation": {
+    "blender": "5.2.3 LTS",
+    "pass_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41001881540",
+    "qa": "13 clips + skin + front/side/back/iso + gallop bone changes"
+  }
 }
