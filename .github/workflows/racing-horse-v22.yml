@@ -78,7 +78,8 @@ jobs:
               assert 90<=report["strand_count"]<=180
               assert report["new_rigged_hair_vertices"]>=450
               assert len(gltf.get("animations",[]))==13
-              assert any("ManeTail_IndividualWisps" in m.get("name","") for m in gltf.get("meshes",[]))
+              assert any("ManeTail_IndividualWisps" in n.get("name","") and n.get("mesh") is not None
+                         for n in gltf.get("nodes",[]))
               assert any(len(s["joints"])>=45 for s in gltf.get("skins",[]))
               assert all((folder/("V22_"+p+".png")).stat().st_size>10000
                          for p in ("front","side","back","isometric"))
