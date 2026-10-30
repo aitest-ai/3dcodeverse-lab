@@ -193,6 +193,36 @@ for garment,keep_above in ((top,True),(pants,False)):
         raise RuntimeError("Garment split got too few faces: "+garment.name)
 bpy.data.objects.remove(cloth,do_unlink=True)
 
+# Fit every original clothing vertex OUTSIDE the actual anatomical MPFB
+# surface. The source MakeHuman body mask concealed this fit problem; simply
+# deleting the helpers exposes it. A real BVH fitting pass is required.
+from mathutils.bvhtree import BVHTree
+bpy.context.view_layer.update()
+body_bvh=BVHTree.FromObject(body,bpy.context.evaluated_depsgraph_get())
+body_inverse=body.matrix_world.inverted()
+fit_stats={}
+for garment in (top,pants):
+    to_local=garment.matrix_world.inverted()
+    adjusted=0
+    max_shift=0.0
+    for vert in garment.data.vertices:
+        p_body=body_inverse@(garment.matrix_world@vert.co)
+        hit=body_bvh.find_nearest(p_body)
+        if hit[0] is None: continue
+        nearest,normal,idx,dist=hit
+        signed=(p_body-nearest).dot(normal)
+        clearance=.018 if garment is top else .015
+        if signed<clearance:
+            push=clearance-signed
+            p_body+=normal*push
+            vert.co=to_local@(body.matrix_world@p_body)
+            adjusted+=1
+            max_shift=max(max_shift,push)
+    garment.data.update()
+    fit_stats[garment.name]={"vertices_adjusted":adjusted,"max_shift_m":round(max_shift,4)}
+    if adjusted<30:raise RuntimeError("Garment BVH fit did not modify enough vertices: "+garment.name)
+print("ANATOMICAL_GARMENT_FIT",json.dumps(fit_stats))
+
 def material(name,color,rough=.68,metal=0):
     mat=bpy.data.materials.new(name)
     mat.diffuse_color=(*color,1)
@@ -293,20 +323,20 @@ def cap(name,col,helmet=False):
     sphere(name,(0,-.001,1.696),(.124,.117,.065 if helmet else .048),m)
     cube(name+"_brim",(0,-.090,1.662),(.19,.12,.013),m,"head")
     return name
-black=material("HairBlack_"+cid,(.043,.043,.042),.85)
+black=material("HairBlack_"+cid,(.012,.012,.011),.90)
 gray=material("HairGray_"+cid,(.38,.38,.34),.9)
 white=material("WhiteCloth_"+cid,(.77,.77,.72))
 gold=material("Gold_"+cid,(.78,.51,.16),.3,.65)
 if cfg["hair"]!="bald":
     hc=gray if cfg["hair"]=="gray" else black
-    sphere("HairCrown_"+cid,(0,.002,1.685),(.115,.104,.061),hc)
+    sphere("HairCrown_"+cid,(0,.000,1.648),(.083,.080,.053),hc)
     rand=random.Random(cid)
     for i in range(16 if cfg["hair"]!="curl" else 24):
         ang=2*math.pi*i/(16 if cfg["hair"]!="curl" else 24)
-        x=.079*math.cos(ang);y=.063*math.sin(ang)-.013
-        z=1.662+.018*rand.random()
+        x=.064*math.cos(ang);y=.051*math.sin(ang)-.009
+        z=1.642+.014*rand.random()
         ob=sphere("HairLock_%02d_%s"%(i,cid),(x,y,z),
-                  (.023,.022,.033 if cfg["hair"]=="short" else .043),hc)
+                  (.015,.014,.020 if cfg["hair"]=="short" else .027),hc)
         ob.rotation_euler[1]=.25*math.cos(ang)
 if cid=="boss":
     cap("Headscarf_boss",(.61,.27,.13))
@@ -340,10 +370,23 @@ elif cid=="bro":
     ring("GoldNecklace_bro",(0,-.045,1.440),.125,.006,gold,(0,0,0),"neck_01")
 elif cid=="you":
     # ID card and lanyard visibly separate from clothing.
-    cube("IDCard_you",(0,-.179,1.284),(.089,.008,.105),
+    cube("IDCard_you",(0,-.134,1.284),(.075,.006,.090),
          material("IDCardPlastic_you",(.78,.81,.84)), "spine_03")
-    ring("Lanyard_you",(0,-.092,1.402),.115,.003,
-         material("Strap_you",(.16,.27,.44)),(0,0,0),"neck_01")
+    # Two hanging straps, not a large horizontal torus across both shoulders.
+    for side in (-1,1):
+        strap=cube("LanyardStrap_%s"%side,(side*.027,-.121,1.386),(.004,.006,.195),
+                   material("Strap_you",(.16,.27,.44)),"spine_03")
+        strap.rotation_euler[1]=side*.18
+
+# Explicit close-fitting sneakers cover the original source's partially sunken
+# footwear/foot overlap; attach each shoe to the corresponding foot bone.
+shoe_mat=material("Sneakers_"+cid,(.21,.23,.25),.8)
+sole_mat=material("Sole_"+cid,(.75,.73,.68),.85)
+for side,bone in ((-1,"foot_l"),(1,"foot_r")):
+    cube("Sneaker_%s_%s"%(cid,bone),(side*.099,-.053,.065),
+         (.145,.235,.102),shoe_mat,bone)
+    cube("Sole_%s_%s"%(cid,bone),(side*.099,-.061,.027),
+         (.151,.242,.018),sole_mat,bone)
 
 # Uniform height scaling; preserve original bone names and whole rig alignment.
 original_height=max((body.matrix_world@v.co).z for v in body.data.vertices)-min((body.matrix_world@v.co).z for v in body.data.vertices)
@@ -436,6 +479,7 @@ report={
  "source_texture_max_px":256,"top_texture":[128,128],"pants_texture":[128,128],
  "textures":[{"name":im.name,"width":im.size[0],"height":im.size[1]} for im in bpy.data.images if im.has_data],
  "height_m":round(height,4),"glb_bytes":glbpath.stat().st_size,
+ "garment_fitting":fit_stats,
  "mesh_count":len(doc.get("meshes",[])),"material_count":len(doc.get("materials",[])),
  "skin_count":len(doc.get("skins",[])),
  "rendered_views":list(views),
