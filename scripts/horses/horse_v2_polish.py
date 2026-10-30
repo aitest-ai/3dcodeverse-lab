@@ -26,12 +26,17 @@ bpy.ops.wm.open_mainfile(filepath=str(blend_src))
 scene=bpy.context.scene
 rigs=[o for o in scene.objects if o.type=="ARMATURE"]
 meshes=[o for o in scene.objects if o.type=="MESH"]
-if len(rigs)!=1 or len(meshes)!=1:
-    raise RuntimeError("Expected exactly one original Quaternius rigged horse")
-rig=rigs[0]
-body=meshes[0]
-if not any(m.type=="ARMATURE" for m in body.modifiers):
-    raise RuntimeError("Source skinning is missing")
+print("HORSE_V2_SCENE_OBJECTS",
+      [(o.name,o.type,len(o.data.vertices) if o.type=="MESH" else 0) for o in scene.objects],flush=True)
+skinned=[o for o in meshes if o.vertex_groups and
+         any(m.type=="ARMATURE" and m.object is not None for m in o.modifiers)]
+if not skinned or not rigs:
+    raise RuntimeError("Source scene has no armature-skinned horse mesh")
+body=max(skinned,key=lambda o:len(o.data.vertices))
+rig=next(m.object for m in body.modifiers if m.type=="ARMATURE" and m.object is not None)
+if len(body.data.vertices)<500:
+    raise RuntimeError("Selected source rigged geometry is too small")
+print("HORSE_V2_SELECTED",body.name,rig.name,"other_meshes",[o.name for o in meshes if o!=body],flush=True)
 source_actions=sorted(a.name for a in bpy.data.actions)
 if len(source_actions)!=13 or "Gallop" not in source_actions:
     raise RuntimeError("Refuse source without all 13 original actions")
