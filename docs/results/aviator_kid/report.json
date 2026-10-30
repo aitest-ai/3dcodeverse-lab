@@ -1,0 +1,19 @@
+{
+  "asset_id": "aviator_kid",
+  "blender_version": "5.2.3 LTS",
+  "method": "procedural Blender Python (original geometry)",
+  "bones": 17,
+  "mesh_objects": 47,
+  "polygon_count": 5688,
+  "height_m_rest_pose_with_cap": 1.476,
+  "glb_bytes": 414708,
+  "clips": ["Cheer", "Idle", "Run", "Salute", "Sit", "Walk", "Wave"],
+  "measurements": {
+    "Walk": {"knee_flex_max_deg": 70.93, "min_sole_z_m": -4.9e-08, "hand_torso_clearance_min": 1.2885, "max_stance_slip_m": 0.0071, "loop_closure_error_m": 0.0},
+    "Run": {"knee_flex_max_deg": 90.16, "min_sole_z_m": -4.2e-08, "hand_torso_clearance_min": 1.0162, "max_stance_slip_m": 0.0066, "loop_closure_error_m": 0.0},
+    "Idle": {"min_sole_z_m": -2.4e-08, "loop_closure_error_m": 0.0},
+    "Cheer": {"knee_flex_max_deg": 55.15, "min_sole_z_m": -4.8e-09, "loop_closure_error_m": 0.0},
+    "Sit": {"knee_flex_max_deg": 45.86, "min_sole_z_m": 0.012}
+  },
+  "note": "Condensed copy of the local run (Blender 5.2.3, SHA256-verified). Not produced by GitHub Actions."
+}
