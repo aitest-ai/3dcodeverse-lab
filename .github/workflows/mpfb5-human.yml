@@ -63,13 +63,29 @@ jobs:
           blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
           blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
           blender --command extension list
+      - name: Restore vetted MakeHuman asset archive cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .tools/hair02_ccby.zip
+            .tools/shirts01_cc0.zip
+            .tools/pants01_cc0.zip
+          key: makehuman-asset-packs-2026-10-30-v1
       - name: Download 267 MB official MakeHuman CC0 system asset pack
         shell: bash
         run: |
           set -euo pipefail
-          URL=https://files2.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip
-          curl --fail --location --retry 3 --connect-timeout 25 --max-time 480 --output .tools/makehuman_system_assets_cc0.zip "$URL"
-          test "$(stat -c%s .tools/makehuman_system_assets_cc0.zip)" -gt 200000000
+          ARCHIVE=.tools/makehuman_system_assets_cc0.zip
+          if [ ! -s "$ARCHIVE" ]; then
+            for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+              if curl --fail --location --retry 2 --connect-timeout 25 --max-time 420 --output "$ARCHIVE" \
+                "https://$host/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip"; then break; fi
+              rm -f "$ARCHIVE"
+            done
+          fi
+          test "$(stat -c%s "$ARCHIVE")" -gt 200000000
+          sha256sum "$ARCHIVE" | tee -a .tools/asset_archive_checksums.txt
           unzip -tq .tools/makehuman_system_assets_cc0.zip | tail -n 3
           mkdir -p .deps/mh_assets
           unzip -oq .tools/makehuman_system_assets_cc0.zip -d .deps/mh_assets
@@ -86,7 +102,13 @@ jobs:
             license="${spec##*:}"
             base="https://files2.makehumancommunity.org/asset_packs/$name"
             archive=".tools/${name}_${license}.zip"
-            curl -fL --retry 3 --retry-all-errors --connect-timeout 30 --max-time 480 -o "$archive" "$base/${name}_${license}.zip"
+            if [ ! -s "$archive" ]; then
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 2 --retry-all-errors --connect-timeout 25 --max-time 420 \
+                   -o "$archive" "https://$host/asset_packs/$name/${name}_${license}.zip"; then break; fi
+                rm -f "$archive"
+              done
+            fi
             test "$(stat -c%s "$archive")" -gt 500000
             unzip -tq "$archive" >/dev/null
             sha256sum "$archive" | tee -a .tools/asset_archive_checksums.txt
