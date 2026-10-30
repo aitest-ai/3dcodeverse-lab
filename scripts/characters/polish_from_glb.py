@@ -28,10 +28,10 @@ rigs=[o for o in scene.objects if o.type=="ARMATURE"]
 if len(rigs)!=1: raise RuntimeError("Expected one MakeHuman rig, got "+str(len(rigs)))
 rig=rigs[0]
 def pick(fragment):
-    found=[o for o in mesh_objects if fragment in o.name.lower()]
+    found=[o for o in mesh_objects if o.name.lower()==fragment.lower()] or [o for o in mesh_objects if fragment in o.name.lower()]
     if len(found)!=1: raise RuntimeError("Missing/ambiguous source mesh "+fragment+" "+str([o.name for o in found]))
     return found[0]
-body=pick("body_makehumantopology")
+body=pick("Human_Body_MakeHumanTopology")
 hair=pick(".long01")
 clothes=pick(".female_casualsuit01")
 shoes=pick(".shoes01")
