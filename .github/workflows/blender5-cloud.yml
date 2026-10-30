@@ -24,7 +24,7 @@ jobs:
       - name: Install headless rendering dependencies
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
       - name: Download Blender 5.2.3 LTS from official source and verify SHA256
         shell: bash
         run: |
@@ -80,6 +80,20 @@ jobs:
           python3 scripts/blender5/validate_glb.py outputs
           python3 -m json.tool outputs/report.json
           ls -lah outputs/
+      - name: Audit 48 animation frames and render 12 angle previews
+        if: ${{ env.BLENDER_SCENE == 'scripts/blender5/mecha_smoke.py' }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b --factory-startup --python scripts/blender5/render_and_qa.py -- outputs
+          test -s outputs/motion_qa.json
+          test -s outputs/preview_index.json
+          test "$(find outputs/previews -name '*.png' -type f | wc -l)" -eq 12
+      - name: Create one-page preview contact sheet
+        if: ${{ env.BLENDER_SCENE == 'scripts/blender5/mecha_smoke.py' }}
+        run: |
+          /usr/bin/python3 scripts/blender5/make_contact_sheet.py
+          test -s outputs/preview_contact_sheet.png
       - name: Upload downloadable model, BLEND, and report
         if: always()
         uses: actions/upload-artifact@v4
