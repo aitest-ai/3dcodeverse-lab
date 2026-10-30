@@ -118,7 +118,7 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: V8 real identity-specific MPFB faces and open wardrobe
+      - name: Four anatomically different MPFB heads and native CC0 outfits
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
@@ -127,48 +127,54 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p outputs/face_v8
-          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
-          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
-      - name: Optimize and validate two GLBs and independent mesh garments
+          for id in you boss uncle jie; do
+            FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v8_four_role_pilot.py
+          done
+      - name: Independently validate four original 3D outfits and faces
         run: |
           set -euo pipefail
-          for id in you_v8_main boss_v8_ponytail01; do
+          for id in you_v8_main boss_v8_ponytail01 uncle_v8_main jie_v8_main; do
             p="outputs/face_v8/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
-          import json,pathlib,struct
+          import pathlib,json,struct,hashlib
           root=pathlib.Path("outputs/face_v8")
-          for tag in ("you_v8_main","boss_v8_ponytail01"):
+          names=("you_v8_main","boss_v8_ponytail01","uncle_v8_main","jie_v8_main")
+          profiles=set()
+          for tag in names:
               p=root/(tag+"_report.json")
               data=json.loads(p.read_text())
               assert len(data["personal_face_targets"])>=8
               assert len(data["separate_open_source_garments"])==2
-              assert all(c["license"]=="CC0" for c in data["separate_open_source_garments"])
               assert data["body_vertices"]==13380
-              for view in data["views"]:
-                  v=root/view
-                  assert v.exists() and v.stat().st_size>15000
+              assert all(x["license"]=="CC0" for x in data["separate_open_source_garments"])
+              for png in data["views"]:
+                  assert (root/png).stat().st_size>15000
               glb=root/(tag+".glb")
               with glb.open("rb") as f:
                   magic,version,total=struct.unpack("<4sII",f.read(12))
-                  size,kind=struct.unpack("<I4s",f.read(8))
-                  doc=json.loads(f.read(size))
-              assert magic==b"glTF" and version==2 and total==glb.stat().st_size
-              assert len(doc.get("skins",[]))>=1 and total<=6000000
-              nodes={n.get("name","") for n in doc["nodes"]}
-              for outfit in data["separate_open_source_garments"]:
-                  assert outfit["mesh"] in nodes,(outfit["mesh"],list(nodes)[:20])
+                  length,kind=struct.unpack("<I4s",f.read(8))
+                  doc=json.loads(f.read(length))
+              assert magic==b"glTF" and version==2 and total==glb.stat().st_size<=6000000
+              assert doc.get("skins"),tag
+              names_in_glb={n.get("name","") for n in doc["nodes"]}
+              for cloth in data["separate_open_source_garments"]:
+                  assert cloth["mesh"] in names_in_glb
+              digest=hashlib.sha256(json.dumps(data["personal_face_targets"],sort_keys=True).encode()).hexdigest()
+              assert digest not in profiles,"duplicate face parameter set"
+              profiles.add(digest)
               data["pilot_glb_bytes"]=total
-              p.write_text(json.dumps(data,indent=2,ensure_ascii=False))
-              print("V8_GENUINE_FACE_DIFFERENCES_AND_CC0_WARDROBE",tag,total)
+              p.write_text(json.dumps(data,ensure_ascii=False,indent=2))
+              print("FOUR_ROLE_OPEN_CLOTHING_VERIFIED",tag,total)
           PY
-      - name: Upload CC0 open-wardrobe pilot GLBs and renders
+      - name: Archive real 4-character GLBs and Blender preview images
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v8-mature-face-openwardrobe-PILOT
+          name: taiwan-four-faces-cc0-wardrobe-NOT-ART-APPROVED
           path: outputs/face_v8/
           retention-days: 14
           if-no-files-found: warn
