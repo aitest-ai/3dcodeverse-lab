@@ -29,6 +29,8 @@ defs=[
 ("shin.L","thigh.L",(.27,0,.43),(.27,0,.1)),
 ("thigh.R","root",(-.25,0,.8),(-.27,0,.43)),
 ("shin.R","thigh.R",(-.27,0,.43),(-.27,0,.1)),
+("foot.L","shin.L",(.27,0,.1),(.27,-.22,.1)),
+("foot.R","shin.R",(-.27,0,.1),(-.27,-.22,.1)),
 ]
 for n,p,h,t in defs:
  b=arm.edit_bones.new(n);b.head=h;b.tail=t
@@ -65,6 +67,15 @@ parts=[
 ("kneeCapR","thigh.R",(-.27,-.21,.43),(.25,.09,.13),"accent"),
 ("kneeLinkL","shin.L",(.27,0,.345),(.14,.15,.16),"joint"),
 ("kneeLinkR","shin.R",(-.27,0,.345),(.14,.15,.16),"joint"),
+# Independent ankles and feet. The toes point forward (-Y); +Z is up.
+("ankleHousingL","shin.L",(.27,0,.12),(.22,.24,.22),"joint"),
+("ankleHousingR","shin.R",(-.27,0,.12),(.22,.24,.22),"joint"),
+("footL","foot.L",(.27,-.16,.069),(.40,.56,.12),"armor"),
+("footR","foot.R",(-.27,-.16,.069),(.40,.56,.12),"armor"),
+("toeCapL","foot.L",(.27,-.39,.077),(.39,.13,.10),"accent"),
+("toeCapR","foot.R",(-.27,-.39,.077),(.39,.13,.10),"accent"),
+("heelL","foot.L",(.27,.12,.068),(.38,.14,.11),"joint"),
+("heelR","foot.R",(-.27,.12,.068),(.38,.14,.11),"joint"),
 ]
 # Side axle pins rotate with the thigh and are visible from either side.
 # Cylinder local Z is turned toward world X, which is the knee hinge axis.
@@ -83,6 +94,22 @@ for side,x in (("L",.27),("R",-.27)):
   mod=ob.modifiers.new("Rigid skin","ARMATURE");mod.object=rig
   mod.use_deform_preserve_volume=False
 
+# Disc joints provide a visible axis of rotation at each ankle.
+for side,x in (("L",.27),("R",-.27)):
+ for suffix,offset in (("Outer",.14),("Inner",-.14)):
+  bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.088,depth=.045,
+                                      rotation=(0,math.pi/2,0))
+  ob=bpy.context.object;ob.name="ankleAxle"+side+suffix
+  for vertex in ob.data.vertices:
+   vertex.co.x += x+offset
+   vertex.co.z += .105
+  ob.data.materials.append(mats["accent"])
+  vg=ob.vertex_groups.new(name="foot."+side)
+  vg.add(list(range(len(ob.data.vertices))),1,"REPLACE")
+  mod=ob.modifiers.new("Rigid skin","ARMATURE")
+  mod.object=rig
+  mod.use_deform_preserve_volume=False
+
 for n,bone,loc,size,mat in parts:
  bpy.ops.mesh.primitive_cube_add(size=1)
  ob=bpy.context.object;ob.name=n;ob.dimensions=size
@@ -97,6 +124,22 @@ for n,bone,loc,size,mat in parts:
 
 rig.animation_data_create()
 poses=rig.pose.bones
+floor_clearance_samples=[]
+# Blender bone local X is the mechanical hinge axis. Keep the low foot
+# corners above the ground after each pose is set, without modifying mesh vertices.
+from mathutils import Vector as V
+def lowest_sole_z():
+ bpy.context.view_layer.update()
+ floors=[]
+ for side,x in (("L",.27),("R",-.27)):
+  p=poses["foot."+side]
+  inverse_rest=rig.data.bones["foot."+side].matrix_local.inverted()
+  transform=rig.matrix_world @ p.matrix @ inverse_rest
+  for xoff in (-.19,.19):
+   for y in (-.40,.15):
+    floors.append((transform @ V((x+xoff,y,.008))).z)
+ return min(floors)
+
 clips=("Idle","Run","Punch","Dodge")
 for clip in clips:
  a=bpy.data.actions.new("Mecha_"+clip)
@@ -111,6 +154,11 @@ for clip in clips:
     poses["thigh."+side].rotation_euler[0]=sign*.58*z
     poses["shin."+side].rotation_euler[0]=max(0,-sign*z)*.55
     poses["upper_arm."+side].rotation_euler[0]=-sign*.46*z
+    # A separate ankle counter-rotates to keep the foot relatively level
+    # on the support phase and slightly lift the toe during the swing.
+    poses["foot."+side].rotation_euler[0]=(
+       -sign*.38*z-max(0,-sign*z)*.34
+    )
   if clip=="Punch":
    amt=max(0,1-abs(frame-25)/18)
    poses["upper_arm.R"].rotation_euler[0]=-1.15*amt
@@ -120,6 +168,18 @@ for clip in clips:
    amt=max(0,1-abs(frame-25)/20)
    poses["spine"].rotation_euler[1]=.3*amt
    poses["root"].location.x=.14*amt
+   for side,sign in (("L",1),("R",-1)):
+    poses["thigh."+side].rotation_euler[0]=sign*.11*amt
+    poses["shin."+side].rotation_euler[0]=-.18*amt
+    poses["foot."+side].rotation_euler[0]=.09*amt
+  # Reconcile the two feet with the ground at the sampled key poses.
+  # This is a deterministic pose correction, not runtime IK/physics.
+  ground_before=lowest_sole_z()
+  target_clearance=.012
+  correction=max(-.30,min(.35,target_clearance-ground_before))
+  poses["root"].location.z+=correction
+  floor_after=lowest_sole_z()
+  floor_clearance_samples.append({"clip":clip,"frame":frame,"min_sole_z":round(floor_after,5)})
   for b in poses:
    b.keyframe_insert(data_path="rotation_euler",frame=frame)
    if b.name=="root":b.keyframe_insert(data_path="location",frame=frame)
@@ -146,9 +206,27 @@ names=[x.get("name") for x in document.get("animations",[])]
 assert len(names)>=4, f"Expected 4 animation clips; got {names}"
 assert len(document.get("skins",[]))>=1, "No rig skin exported"
 assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
+assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
+assert len(arm.bones)==14, f"Expected 14 bones including both foot bones, got {len(arm.bones)}"
+assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
 report={"blender_version":bpy.app.version_string,"bones":len(arm.bones),
-        "mesh_parts":len(parts)+4,"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins","animations":names,
+        "mesh_parts":len(parts)+8,"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins",
+        "ankle_design":"2 new ankle bones, feet, toe caps, heels and axle pins",
+        "ground_contact":"keyframe-level sole height correction, not full IK or physics",
+        "sole_samples":floor_clearance_samples,"animations":names,
         "skins":len(document["skins"]),"glb_bytes":total,
         "method":"procedural Blender Python (not Choreographer AI)"}
 (out/"report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
+manifest={
+ "schema_version":1,"asset_id":"mecha_blender5","format":"glTF 2.0 GLB",
+ "source":"Blender 5.2 procedural animation, NOT generative AI",
+ "blender_version":bpy.app.version_string,
+ "coordinate_system":"Blender Z-up; glTF export converts to Y-up",
+ "unit":"meter","model_file":"mecha_blender5.glb",
+ "source_file":"mecha_blender5.blend",
+ "clips":names,"min_animation_count":4,
+ "requirements":{"skins":True,"animated":True,"visual_review":True},
+ "license_note":"All generated geometry is original procedural geometry. Third-party textures and models must declare their own licenses."
+}
+(out/"asset_manifest.json").write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding="utf-8")
 print("SMOKE_TEST_PASSED",report)
