@@ -1,0 +1,26 @@
+name: Mecha v5.2 Runtime Motion and Terrain QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-motion-v52.js'
+      - 'examples/threejs/mech-ground-sampler-v52.js'
+      - 'tests/mecha/v52-motion-terrain.mjs'
+      - '.github/workflows/mecha-v52-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  runtime-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax checks
+        run: |
+          node --check examples/threejs/mech-motion-v52.js
+          node --check examples/threejs/mech-ground-sampler-v52.js
+          node --check tests/mecha/v52-motion-terrain.mjs
+      - name: Actual runtime logic tests
+        run: node tests/mecha/v52-motion-terrain.mjs
