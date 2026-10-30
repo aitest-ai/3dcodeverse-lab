@@ -92,31 +92,41 @@ jobs:
           unzip -oq "$FILE" -d .deps/mh_assets
           test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
-      - name: Face-first prototype (two characters only)
+      - name: Face v4 - generate real Blender character and hairline candidates
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v3
+          FACE_OUT: outputs/face_v4
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v3
-          for id in you boss; do
-            FACE_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v3_pilot.py
+          mkdir -p outputs/face_v4
+          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v4_pilot.py
+          for style in short02 short04 bob01; do
+            FACE_ID=boss FACE_HAIR_CHOICE="$style" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v4_pilot.py
           done
-      - name: Validate presence of genuine Blender renders
+      - name: Validate 4 Blender renders and genuine MakeHuman report data
         run: |
           set -euo pipefail
-          for id in you boss; do
-            test -s outputs/face_v3/"$id"_v3_face.png
-            test -s outputs/face_v3/"$id"_v3_front.png
-            test -s outputs/face_v3/"$id"_v3_side.png
-            python3 -m json.tool outputs/face_v3/"$id"_v3_report.json >/dev/null
-          done
-      - name: Upload face QA render evidence (NOT final game characters)
+          python3 - <<'PY'
+          import json, pathlib
+          root=pathlib.Path("outputs/face_v4")
+          for tag in ("you_v4_main","boss_v4_short02","boss_v4_short04","boss_v4_bob01"):
+              result=json.loads((root/(tag+"_report.json")).read_text())
+              assert result["body_vertices"]==13380,tag
+              assert result["hair_asset"].endswith(".mhclo"),tag
+              assert result["shoe_asset"].endswith(".mhclo"),tag
+              assert result["garment_asset"].endswith(".mhclo"),tag
+              assert len(result["views"])==4,tag
+              for v in result["views"]:
+                  p=root/v
+                  assert p.is_file() and p.stat().st_size>15000,(tag,p)
+              print("BLENDER_4_VIEWS_CREATED",tag,result["hair_asset"],result["skin_asset"])
+          PY
+      - name: Upload face v4 QA images (candidate only)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-face-v3-PILOT-NOT-APPROVED
-          path: outputs/face_v3/
+          name: taiwan-face-v4-HUMAN-VISUAL-QA-REQUIRED
+          path: outputs/face_v4/
           retention-days: 14
           if-no-files-found: warn
