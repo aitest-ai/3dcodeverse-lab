@@ -284,3 +284,42 @@ manifest={
 }
 (out/"asset_manifest.json").write_text(json.dumps(manifest,indent=2,ensure_ascii=False),encoding="utf-8")
 print("SMOKE_TEST_PASSED",report)
+
+# True Blender viewport render of the actual skinned armature/geometry.
+# This is NOT an AI-generated concept image or a trimesh rest-pose projection.
+try:
+ preview_scene=bpy.context.scene
+ preview_scene.render.engine="BLENDER_WORKBENCH"
+ preview_scene.render.resolution_x=720
+ preview_scene.render.resolution_y=720
+ preview_scene.render.resolution_percentage=100
+ preview_scene.render.image_settings.file_format="PNG"
+ preview_scene.render.image_settings.color_mode="RGBA"
+ preview_scene.render.film_transparent=True
+ preview_scene.display.shading.light="STUDIO"
+ preview_scene.display.shading.color_type="MATERIAL"
+ preview_scene.display.shading.show_cavity=True
+ preview_scene.frame_set(1)
+ camera_data=bpy.data.cameras.new("MechaV42_PreviewCamera")
+ camera=bpy.data.objects.new("MechaV42_PreviewCamera",camera_data)
+ bpy.context.collection.objects.link(camera)
+ preview_scene.camera=camera
+ camera_data.type="ORTHO"
+ camera_data.ortho_scale=3.15
+ from mathutils import Vector as PreviewVector
+ locations=[("front",(.0,-6.0,2.8)),
+            ("side",(6.0,-.2,2.5)),
+            ("back",(.0,6.0,2.8)),
+            ("three_quarter",(4.0,-5.2,3.5))]
+ for tag,xyz in locations:
+  camera.location=xyz
+  heading=PreviewVector((0.,0.,1.12))-camera.location
+  camera.rotation_euler=heading.to_track_quat("-Z","Y").to_euler()
+  preview_scene.render.filepath=str((out/("preview_"+tag+".png")).resolve())
+  bpy.ops.render.render(write_still=True)
+ print("V42_PREVIEW_RENDERED", [x[0] for x in locations])
+except Exception as preview_error:
+ # Do not relabel a successful structural build as a successful visual render.
+ (out/"preview_error.txt").write_text(str(preview_error),encoding="utf-8")
+ print("V42_PREVIEW_FAILED",repr(preview_error))
+
