@@ -92,25 +92,24 @@ jobs:
           unzip -oq "$FILE" -d .deps/mh_assets
           test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
-      - name: Face v5 - anatomically fit clothing and original Asian skin
+      - name: Two genuine MPFB character GLB candidates, with anatomical cloth fitting
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
           FACE_OUT: outputs/face_v5
+          FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
           mkdir -p outputs/face_v5
           FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
-          for style in ponytail01 short04 long01; do
-            FACE_ID=boss FACE_HAIR_CHOICE="$style" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
-          done
-      - name: Validate real Blender face and fitted garment results
+          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
+      - name: Validate real 3D GLB plus 4 angle Blender renders
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json, pathlib
+          import json, pathlib,struct
           root=pathlib.Path("outputs/face_v5")
-          for tag in ("you_v5_main","boss_v5_ponytail01","boss_v5_short04","boss_v5_long01"):
+          for tag in ("you_v5_main","boss_v5_ponytail01"):
               result=json.loads((root/(tag+"_report.json")).read_text())
               assert result["body_vertices"]==13380,tag
               assert result["hair_asset"].endswith(".mhclo"),tag
@@ -122,13 +121,22 @@ jobs:
               for v in result["views"]:
                   p=root/v
                   assert p.is_file() and p.stat().st_size>15000,(tag,p)
-              print("BLENDER_V5_4_VIEW_FACE_QA",tag,result["hair_asset"],result["cloth_skin_fitting"])
+              p=root/(tag+".glb")
+              with p.open("rb") as fh:
+                  magic,ver,size=struct.unpack("<4sII",fh.read(12))
+                  n,ch=struct.unpack("<I4s",fh.read(8))
+                  doc=json.loads(fh.read(n))
+              assert magic==b"glTF" and ver==2 and ch==b"JSON" and size==p.stat().st_size
+              assert len(doc.get("skins",[]))>=1
+              assert len(doc.get("meshes",[]))>=4
+              assert result["pilot_glb_bytes"]==size
+              print("TWO_GLBS_AND_8_REAL_RENDERS",tag,size, len(doc["skins"]))
           PY
-      - name: Upload V5 face QA renders for manual verification
+      - name: Upload genuine 2-character GLB art-QA archive (not full 8)
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-face-v5-CANDIDATES-NOT-APPROVED
+          name: taiwan-two-real-MPFB-GLB-PILOT-NOT-FINAL
           path: outputs/face_v5/
           retention-days: 14
           if-no-files-found: warn
