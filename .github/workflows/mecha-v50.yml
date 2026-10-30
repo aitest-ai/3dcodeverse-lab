@@ -87,6 +87,8 @@ jobs:
           for view in front side back three_quarter; do test -s "outputs/preview_${view}.png"; done
           test -s outputs/preview_pbr_hero.png
           test -s outputs/fullframe_gait_qa.json
+          test -s outputs/run_visual_qa.json
+          for frame in 01 13 25 37; do test -s "outputs/preview_run_${frame}.png"; done
           python3 scripts/blender5/validate_v50_gait.py outputs
           test -s outputs/bake_qa.json
           python3 scripts/blender5/validate_v50_bakes.py outputs
