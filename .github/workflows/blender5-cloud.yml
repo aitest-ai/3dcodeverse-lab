@@ -63,7 +63,7 @@ jobs:
           script = pathlib.Path(candidate).resolve()
           assert script.parent == base and script.is_file() and not script.is_symlink(), "Unreviewed or missing script"
           with open(os.environ['GITHUB_ENV'], 'a') as env:
-              env.write('BLENDER_SCENE=' + candidate + '\\n')
+              print('BLENDER_SCENE=' + candidate, file=env)
           print("Using:", candidate)
           PY
       - name: Build model, animations and GLB with Blender
