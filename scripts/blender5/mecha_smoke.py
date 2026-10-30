@@ -220,6 +220,8 @@ for clip in clips:
    else:
     b.rotation_mode="XYZ"
     b.rotation_euler=(0,0,0)
+  # Refresh matrix cache after resetting all pose channels, before IK.
+  bpy.context.view_layer.update()
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
    # Locomotion-in-place with world-planted stance feet and moving swing feet.
@@ -263,6 +265,12 @@ for clip in clips:
  track=rig.animation_data.nla_tracks.new()
  track.name=clip
  track.strips.new(clip,1,a)
+ # Do not let completed clips contaminate the next clip during authoring.
+ track.mute=True
+
+# Re-enable separate NLA tracks for Blender export and manual editing.
+for track in rig.animation_data.nla_tracks:
+ track.mute=False
 
 bpy.context.scene.frame_start=1
 bpy.context.scene.frame_end=48
