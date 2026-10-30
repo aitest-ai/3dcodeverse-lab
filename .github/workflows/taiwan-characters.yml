@@ -96,20 +96,40 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v6
+          FACE_OUT: outputs/face_v5
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v6
-          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v6_pilot.py
-          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v6_pilot.py
+          mkdir -p outputs/face_v5
+          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
+          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v5_pilot.py
+      - name: Optimize REAL GLB-embedded textures after Blender export
+        run: |
+          set -euo pipefail
+          for id in you_v5_main boss_v5_ponytail01; do
+            glb="outputs/face_v5/$id.glb"
+            python3 scripts/taiwan_characters/optimize_embedded_glb.py "$glb" "$glb.optimized" 512
+            mv "$glb.optimized" "$glb"
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("outputs/face_v5")
+          for stem in ("you_v5_main","boss_v5_ponytail01"):
+              p=root/(stem+"_report.json")
+              data=json.loads(p.read_text())
+              data["pilot_glb_before_optimization_bytes"]=data["pilot_glb_bytes"]
+              data["pilot_glb_bytes"]=(root/(stem+".glb")).stat().st_size
+              data["texture_export"]="embedded-GLB-image-reencode max512 Pillow verified"
+              p.write_text(json.dumps(data,ensure_ascii=False,indent=2))
+          PY
       - name: Validate real 3D GLB plus 4 angle Blender renders
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import json, pathlib,struct
-          root=pathlib.Path("outputs/face_v6")
-          for tag in ("you_v6_main","boss_v6_ponytail01"):
+          root=pathlib.Path("outputs/face_v5")
+          for tag in ("you_v5_main","boss_v5_ponytail01"):
               result=json.loads((root/(tag+"_report.json")).read_text())
               assert result["body_vertices"]==13380,tag
               assert result["hair_asset"].endswith(".mhclo"),tag
@@ -131,7 +151,21 @@ jobs:
               assert len(doc.get("meshes",[]))>=4
               assert result["pilot_glb_bytes"]==size
               assert size<=6000000,(tag,size)
-              assert all(max(item[1:3])<=512 for item in result["textures"])
+              assert len(doc.get("images",[]))>=7
+              from io import BytesIO
+              from PIL import Image
+              with p.open("rb") as fh:
+                  fh.seek(12)
+                  ln=int.from_bytes(fh.read(4),"little")
+                  fh.seek(20+ln)
+                  blen,ch=struct.unpack("<I4s",fh.read(8))
+                  assert ch==b"BIN"+bytes([0])
+                  blob=fh.read(blen)
+              for im in doc["images"]:
+                  view=doc["bufferViews"][im["bufferView"]]
+                  dat=blob[view.get("byteOffset",0):view.get("byteOffset",0)+view["byteLength"]]
+                  with Image.open(BytesIO(dat)) as image:
+                      assert max(image.size)<=512,(tag,image.size)
               print("TWO_GLBS_AND_8_REAL_RENDERS",tag,size, len(doc["skins"]))
           PY
       - name: Upload genuine 2-character GLB art-QA archive (not full 8)
@@ -139,6 +173,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: taiwan-two-optimized-MPFB-GLB-PILOT-NOT-FINAL
-          path: outputs/face_v6/
+          path: outputs/face_v5/
           retention-days: 14
           if-no-files-found: warn
