@@ -1,0 +1,105 @@
+name: Hokkaido v29c Original Multi-View Silhouette SDF (UNREVIEWED)
+on:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v29c/**
+      - .github/workflows/hokkaido-v29c-silhouette.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sdf-geometry-to-blender:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create genuinely closed 3D mesh from independently authored 2D front and side silhouettes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install -q 'numpy>=2,<3' 'scipy>=1.14,<2' 'scikit-image>=0.24,<1' 'trimesh>=4,<5' 'networkx>=3,<5' 'Pillow>=10,<13'
+          mkdir -p candidate
+          python experiments/hokkaido-v29c/silhouette_sdf.py 2>&1 | tee candidate/sdf_build.log
+          test -s candidate/v29c_bear_head.ply
+          test -s candidate/v29c_salmon.ply
+          test -s candidate/shape_report.json
+      - name: Install genuine Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --retry-delay 4 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: Convert exact original 3D mesh to authentic Blender GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python experiments/hokkaido-v29c/convert_blender.py 2>&1 | tee candidate/blender.log
+          test -s candidate/v29c_silhouette_real.blender.glb
+      - name: Actual Blender Cycles 4-angle sculpture renders
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p candidate/views
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/v29c_silhouette_real.blender.glb candidate/views \
+            2>&1 | tee candidate/render.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          root=Path('candidate')
+          files=['view_front_right_high.png','view_front.png','view_back_left_high.png','view_top.png']
+          sheet=Image.new('RGB',(1920,1440),(236,237,240))
+          for k,n in enumerate(files):
+              p=root/'views'/n
+              assert p.stat().st_size>12000,n
+              im=Image.open(p).convert('RGB')
+              assert im.size==(960,720),n
+              sheet.paste(im,((k%2)*960,(k//2)*720))
+          sheet.save(root/'v29c_four_views.png')
+          mobile=sheet.copy();mobile.thumbnail((960,720))
+          mobile.save(root/'v29c_mobile.jpg',quality=85,optimize=True)
+          PY
+      - name: Independent manifold QA and provenance verification (not art approval)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          import trimesh
+          root=Path('candidate')
+          path=root/'v29c_silhouette_real.blender.glb'
+          scene=trimesh.load(str(path),force='scene')
+          meshes=sorted([(n,g) for n,g in scene.geometry.items()
+                          if hasattr(g,'vertices')],key=lambda x:len(x[1].vertices),reverse=True)
+          assert len(meshes)>=2
+          body=meshes[:2]
+          results=[{'name':n,'vertex_count':len(g.vertices),
+                    'watertight':bool(g.is_watertight),
+                    'connected_components':len(g.split(only_watertight=False))}
+                    for n,g in body]
+          report={'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                  'real_blender_glb':True,'real_cycles_four_views':True,
+                  'mesh_count':len(meshes),'main_two_meshes':results,
+                  'art_review':'UNREVIEWED','approved_for_game':False}
+          (root/'QA.json').write_text(json.dumps(report,indent=2))
+          assert all(r['watertight'] and r['connected_components']==1 for r in results),report
+          print('V29C_REAL_CLOSED_GLBS_PASSED',json.dumps(report))
+          PY
+          sha256sum candidate/*.ply candidate/*.glb candidate/*.png > candidate/SHA256SUMS.txt
+      - name: Preserve exact GLB, front/side images and technical logs (no latest promotion)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-v29c-silhouette-original-candidate-UNREVIEWED
+          path: candidate/
+          retention-days: 30
+          if-no-files-found: warn
