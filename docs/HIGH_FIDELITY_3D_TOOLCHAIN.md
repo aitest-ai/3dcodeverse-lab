@@ -32,8 +32,8 @@
 **幾何與外觀**
 
 - [TRELLIS.2](https://github.com/microsoft/TRELLIS.2)：MIT 模型與程式，Linux + NVIDIA CUDA 24GB VRAM 以上為官方測試條件。圖片→高細節物件＋PBR；**不是自動完美綁骨工具**，有些相依套件另有授權。
-- [Hunyuan3D 2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1)：能做高品質幾何與 PBR；官方數值 10GB（形體）、21GB（材質）、約 29GB（整套）。採 **Tencent 自訂 Community License**，不是 MIT／Apache；授權範圍排除歐盟、英國和南韓等地區，使用與分發前先仔細審查。禁止將權重當成 CC0。
-- [MPFB](https://extensions.blender.org/add-ons/mpfb/)：Blender 的完整人體基底、比例、服裝與骨架工具。外掛 GPLv3+，核心資產依 MakeHuman 採 CC0；2026-10 官方版本 2.0.18 標示 Blender 4.2+。
+- [Pixal3D](https://github.com/TencentARC/Pixal3D)：SIGGRAPH 2026 影像轉高精度 3D／PBR，MIT 專案（第三方相依元件另有授權）；支援低 VRAM 模式和多視角推論，但仍需有 CUDA GPU，品質要以同一組參考圖實測。\n- [Hunyuan3D 2.1](https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1)：能做高品質幾何與 PBR；官方數值 10GB（形體）、21GB（材質）、約 29GB（整套）。採 **Tencent 自訂 Community License**，不是 MIT／Apache；授權範圍排除歐盟、英國和南韓等地區，使用與分發前先仔細審查。禁止將權重當成 CC0。
+- [Meta SAM 3D Body](https://github.com/facebookresearch/sam-3d-body)／[SAM 3D Objects](https://github.com/facebookresearch/sam-3d-objects)：適合從實際照片估計人體姿態／複雜場景中的物體形狀與位置，**採 Meta 自訂 SAM License**；Objects 可能輸出 Gaussian Splat 而非可直接綁骨的 GLB。研究用 SA-3DAO 素材集另有 **CC-BY-NC**，不可當成商業自由模型。\n- [MPFB](https://extensions.blender.org/add-ons/mpfb/)：Blender 的完整人體基底、比例、服裝與骨架工具。外掛 GPLv3+，核心資產依 MakeHuman 採 CC0；2026-10 官方版本 2.0.18 標示 Blender 4.2+。
 - [Smithsonian Open Access 3D](https://www.si.edu/openaccess/faq)：自然史標本、文物與動物相關靜態掃描；**僅指定 CC0 的單一作品才能當作自由素材**。高面數掃描通常需重新拓樸與減面。
 - [Blender Studio Rain](https://studio.blender.org/characters/rain/v3/)：免費 CC-BY 專業人物綁骨參考，需標示作者；若 .blend 要執行嵌入 Python，先審查腳本。
 
@@ -53,7 +53,7 @@
 
 | 檔案 | 已實作能力 | 限制 |
 | --- | --- | --- |
-| `resources/open_3d_tool_catalog.json` | 14 個資源、用途、硬體／授權、部署條件等機器可讀資訊 | 屬研究索引，不是套件安裝清單 |
+| `resources/open_3d_tool_catalog.json` | 17 個資源、用途、硬體／授權、部署條件等機器可讀資訊 | 屬研究索引，不是套件安裝清單 |
 | `scripts/assets/tool_catalog.py` | 可依類別、製作階段、GPU 條件篩選 | 不擅自下載外部程式 |
 | `scripts/assets/polyhaven_search.py` | 透過官方 Poly Haven API 查找 CC0 物件／HDRI／材質的**中繼資料** | 不自動下載；請遵守 API ToS |
 | `scripts/assets/glb_quality_report.py` | 統計三角面、UV、PBR、蒙皮、動畫、貼圖與效能警告 | 數字不是解剖學正確或美術品質證明 |
