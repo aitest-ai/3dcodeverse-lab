@@ -1170,8 +1170,9 @@ assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[])
 assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower() or "heel" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
 assert len(arm.bones)==15, f"Expected 15 bones including weapon socket, got {len(arm.bones)}"
 assert "weapon_socket.R" in {n.get("name") for n in document.get("nodes",[])}, "Missing weapon socket in exported GLB"
+assert sum(1 for m in document.get("meshes",[]) if m.get("name","").startswith("V49_") and ("Hub" in m.get("name","") or "Bearing" in m.get("name","")))>=10, "Mechanical open bearing parts missing"
 assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
-report={"v49_machine_parts":len(v49_parts),"hollow_bearings":8,"art_review_status":"candidate_requires_visual_signoff","design_language":"machined faceted flat-surface armor; no increased roundness","panel_type":"coplanar front and shallow chamfer","new_hard_surface_parts":len(v48_parts),"normal_bakes":bake_results,"blender_version":bpy.app.version_string,"bones":len(arm.bones),
+report={"v49_machine_parts":len(v49_parts),"hollow_bearings":sum(1 for o in bpy.data.objects if o.name.startswith("V49_") and ("Hub" in o.name or "Bearing" in o.name)),"art_review_status":"candidate_requires_visual_signoff","design_language":"machined faceted flat-surface armor; no increased roundness","panel_type":"coplanar front and shallow chamfer","new_hard_surface_parts":len(v48_parts),"normal_bakes":bake_results,"blender_version":bpy.app.version_string,"bones":len(arm.bones),
         "mesh_parts":sum(o.type=="MESH" and any(mod.type=="ARMATURE" and mod.object==rig for mod in o.modifiers) for o in bpy.data.objects),"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins",
         "ankle_design":"2 new ankle bones, feet, toe caps, heels and axle pins",
         "ground_contact":"keyframe-level sole height correction, not full IK or physics",
