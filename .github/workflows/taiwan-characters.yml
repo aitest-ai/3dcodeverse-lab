@@ -79,33 +79,6 @@ jobs:
           unzip -oq "$FILE" -d .deps/mh_assets
           test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
-      - name: Restore official CC0 clothing pack cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            .deps/shirts01_cc0.zip
-            .deps/pants01_cc0.zip
-          key: official-mh-shirts01-pants01-cc0-v1
-      - name: Download official CC0 MakeHuman shirts01 and pants01
-        run: |
-          set -euo pipefail
-          for pack in shirts01 pants01; do
-            file=".deps/$pack""_cc0.zip"
-            if [ ! -s "$file" ]; then
-              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
-                if curl -fL --retry 3 --connect-timeout 20 --max-time 180 \
-                  -o "$file" "https://$host/asset_packs/$pack/$pack""_cc0.zip"; then break; fi
-                rm -f "$file"
-              done
-            fi
-            test "$(stat -c%s "$file")" -gt 1000000
-            test "$(stat -c%s "$file")" -gt 200000
-          unzip -tq "$file" >/dev/null
-            unzip -oq "$file" -d .deps/mh_assets
-          done
-          for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
-            test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
-          done
       - name: Download official CC0 Faceunits 01 ARKit blendshape targets
         run: |
           set -euo pipefail
@@ -132,12 +105,12 @@ jobs:
           mkdir -p outputs/face_v13
           for id in you jie; do
             FACE_ID="$id" xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v13_real_arkit.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v13_fastface.py
           done
       - name: Validate 8 nonzero ARKit keys, skinned GLB and 7 real Blender images each
         run: |
           set -euo pipefail
-          for id in you_v13_main jie_v13_main; do
+          for id in you_v13_fastface jie_v13_fastface; do
             p="outputs/face_v13/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
@@ -147,7 +120,7 @@ jobs:
           root=pathlib.Path("outputs/face_v13")
           required={"mouthOpen","mouthSmileLeft","mouthSmileRight",
             "eyeBlinkLeft","eyeBlinkRight","browInnerUp","mouthFrownLeft","mouthFrownRight"}
-          for name in ("you_v13_main","jie_v13_main"):
+          for name in ("you_v13_fastface","jie_v13_fastface"):
               info=json.loads((root/(name+"_report.json")).read_text())
               assert info["body_vertices"]==13380
               assert set(info["arkit_shape_keys"])==required
@@ -175,7 +148,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v13-genuine-ARKit-2-male-pilot-NOT-FINAL
+          name: taiwan-v13-fast-original-ARKit-no-clothes-FACE-ONLY
           path: outputs/face_v13/
           retention-days: 14
           if-no-files-found: warn
