@@ -1,0 +1,86 @@
+name: Taiwan V19 - Tucked Waist Coverage and Byte Preservation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v19-waist.yml'
+      - 'scripts/taiwan_waist_v19/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v19-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  waist-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile V19 scripts
+        run: python3 -m compileall -q scripts/taiwan_waist_v19
+      - name: Fetch pinned genuine V18 animated character artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v18-real-armature-2roles-motion-stress-PILOT
+          run-id: 41140731630
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input
+      - name: Install CPU rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install official SHA256-verified Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          BASE=https://download.blender.org/release/Blender5.2
+          curl -fL --retry 3 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f:
+              assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          print('VERIFIED_BLENDER_SHA256',expected)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Repair true waistband and render actual animated before-after GLBs
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V19_SOURCE: input/jie_v18_poses_not_walk_cycle.glb
+          V19_OUT: outputs/v19_waist
+        run: |
+          set -euo pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_waist_v19/render_qa.py
+      - name: Verify report, image count, preservation and per-pose regression
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          root=pathlib.Path('outputs/v19_waist')
+          d=json.loads((root/'v19_waist_report.json').read_text())
+          assert len(d['rendered_images'])==17
+          assert all((root/n).is_file() for n in d['rendered_images'])
+          assert d['sampled_regression'] is False
+          assert d['repair']['all_other_binary_bytes_identical']
+          assert d['repair']['body_morphs_weights_uv_images_indices_unchanged']
+          assert d['repair']['maximum_displacement_m']<.045
+          assert d['art_approved'] is False
+          assert hashlib.sha256((root/'jie_v19_tucked_waist_PILOT.glb').read_bytes()).hexdigest()==d['repair']['candidate_sha256']
+          print('V19_VERIFIED',d['sum_before'],d['sum_after'],d['repair'])
+          PY
+      - name: Publish honest V19 pilot with actual render evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v19-tucked-waist-8view-byte-preserved-PILOT
+          path: |
+            outputs/v19_waist/*
+            scripts/taiwan_waist_v19/*.py
+          retention-days: 30
+          if-no-files-found: warn
