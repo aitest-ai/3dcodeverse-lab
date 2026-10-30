@@ -28,7 +28,12 @@ assert report["height_m"]>1 and report["height_m"]<2.4
 assert doc.get("materials"), "Expected PBR material"
 prim=[p for m in meshes for p in m.get("primitives",[])]
 assert any("JOINTS_0" in p.get("attributes",{}) and "WEIGHTS_0" in p.get("attributes",{}) for p in prim), "No vertex skin weights"
-assert manifest["quality_status"]=="BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY"
+assert manifest["quality_status"] in ("BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY", "LICENSED_ASSET_CHARACTER_NEEDS_VISUAL_REVIEW")
+if report.get("asset_count", 0):
+    assert report["asset_count"]>=7, "Expected full eyes/hair/outfit, not partial asset application"
+    assert len(meshes)>=5, "Expected multiple distinct meshes for eyes, hair and garments"
+    assert len(doc.get("images", []))>=1, "Expected at least one texture image in dressed GLB"
+    assert len(doc.get("materials", []))>=3, "Expected skin/clothing/hair materials"
 result={"verdict":"STRUCTURE_PASS_not_artistic_approval",
         "body_vertices":report["body_vertices"],"bone_count":report["rig_bones"],
         "height_m":report["height_m"],"glb_bytes":p.stat().st_size,
