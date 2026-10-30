@@ -105,6 +105,17 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
+      - name: Verify official CC0 ARKit-style 52 faceunit source and filenames
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_faceunits_pack.py
+          python3 -m json.tool .deps/mh_faceunits/faceunits_manifest.json >/dev/null
+      - name: Upload official faceunit target audit manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-original-CC0-faceunits-target-audit
+          path: .deps/mh_faceunits/faceunits_manifest.json
+          retention-days: 14
       - name: Four anatomically different MPFB heads and native CC0 outfits
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
