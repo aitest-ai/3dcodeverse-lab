@@ -21,6 +21,8 @@ def percentile(values, f):
     pos = clamp(f)*(len(seq)-1)
     lo = int(pos)
     hi = min(lo+1,len(seq)-1)
+    if hi == lo:
+        return seq[lo]
     return seq[lo]*(hi-pos)+seq[hi]*(pos-lo)
 
 def boundary_components(obj):
@@ -115,15 +117,15 @@ def waist_profile(shirt, trousers, bins=11, desired_overlap_m=.018):
         "waist_z_m":median(s["pants_front_edge_z_m"] for s in samples),
         "front_pants_median_y_m":median(p[1][1] for p in pants_loop)}
 
-def interpolate_rise(samples, x):
+def interpolate_field(samples, x, key):
     if x <= samples[0]["x_m"]:
-        return samples[0]["needed_rise_m"]
+        return samples[0][key]
     if x >= samples[-1]["x_m"]:
-        return samples[-1]["needed_rise_m"]
+        return samples[-1][key]
     for a,b in zip(samples,samples[1:]):
         if a["x_m"] <= x <= b["x_m"]:
             w=(x-a["x_m"])/(b["x_m"]-a["x_m"])
-            return a["needed_rise_m"]*(1-w)+b["needed_rise_m"]*w
+            return a[key]*(1-w)+b[key]*w
     raise AssertionError("non-monotonic samples")
 
 def repair_waistband(trousers, profile, project_outside=None):
@@ -139,14 +141,13 @@ def repair_waistband(trousers, profile, project_outside=None):
     moved=0; max_applied=0.0
     for v in trousers.data.vertices:
         world=trousers.matrix_world@v.co
-        edge_z=sampled_height(
-            [(0,(s["x_m"],0.0,s["pants_front_edge_z_m"])) for s in samples],world.x)
+        edge_z=interpolate_field(samples,world.x,"pants_front_edge_z_m")
         falloff=smoothstep01((world.z-(edge_z-.19))/.19)
         if falloff<=0:
             continue
         # Preserve continuous rear waistband, prioritizing visible front.
         front_factor=1.0 if world.y<=base_y else .75
-        rise=interpolate_rise(samples,world.x)*falloff*front_factor
+        rise=interpolate_field(samples,world.x,"needed_rise_m")*falloff*front_factor
         if rise<.0002:
             continue
         candidate=world.copy()
