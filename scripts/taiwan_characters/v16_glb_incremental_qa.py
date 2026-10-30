@@ -7,6 +7,8 @@ from pathlib import Path
 import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
+# Blender standalone --python does not always add the script folder to sys.path.
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 from sweater_visibility_v16 import torso_visibility
 
 root=Path(os.getenv("V16_FAST_OUT","outputs/fast_v16")).resolve()
