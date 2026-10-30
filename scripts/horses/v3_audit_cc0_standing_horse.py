@@ -59,6 +59,16 @@ try:
         if sp.scheme!="https" or sp.hostname not in ("www.innerscene.com","innerscene.com"):
             continue
         if u not in candidates and ".glb" in sp.path.lower():candidates.append(u)
+    report["asset_links_found"]=candidates[:25]
+    report["page_mentions_filename"]="horse-original.glb" in html
+    report["filename_contexts"]=[html[max(0,m.start()-550):min(len(html),m.end()+550)] for m in list(re.finditer("horse-original\\.glb",html,re.I))[:4]]
+    report["keyword_contexts"]=[html[max(0,m.start()-130):min(len(html),m.end()+200)] for m in list(re.finditer(r'(?:downloadUrl|modelUrl|modelPath|assetUrl|\\.glb)',html,re.I))[:12]]
+    report["script_paths"]=re.findall('src="([^"]+)"',html,re.I)[:16]
+    next_meta=re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',html,re.S)
+    if next_meta:
+        app=json.loads(next_meta.group(1))
+        part=app.get("props",{}).get("pageProps",{}).get("part",{})
+        report["part_meta"]={k:part.get(k) for k in ("id","shareId","fileHash","fileName","ext","size","kind","title","license","downloadUrl") if k in part}
     # Public downloaded-asset link comes from the *site's own Next.js*
     # page bundle, not a guessed private path: /api/library/{id}/download.
     public_part=report.get("part_meta",{})
@@ -87,16 +97,7 @@ try:
         except Exception as err:
             report["official_public_download_error"]=type(err).__name__+": "+str(err)
 
-    report["asset_links_found"]=candidates[:25]
-    report["page_mentions_filename"]="horse-original.glb" in html
-    report["filename_contexts"]=[html[max(0,m.start()-550):min(len(html),m.end()+550)] for m in list(re.finditer("horse-original\\.glb",html,re.I))[:4]]
-    report["keyword_contexts"]=[html[max(0,m.start()-130):min(len(html),m.end()+200)] for m in list(re.finditer(r'(?:downloadUrl|modelUrl|modelPath|assetUrl|\\.glb)',html,re.I))[:12]]
-    report["script_paths"]=re.findall('src="([^"]+)"',html,re.I)[:16]
-    next_meta=re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',html,re.S)
-    if next_meta:
-        app=json.loads(next_meta.group(1))
-        part=app.get("props",{}).get("pageProps",{}).get("part",{})
-        report["part_meta"]={k:part.get(k) for k in ("id","shareId","fileHash","fileName","ext","size","kind","title","license","downloadUrl") if k in part}
+
     # Inspect the public application's own asset download link code rather than
     # inventing a URL or bypassing authentication.
     for path in report["script_paths"][:9]:
