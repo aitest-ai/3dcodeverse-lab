@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/taiwan-v17-fast-layer-qa.yml'
       - 'scripts/taiwan_characters/v17_glb_layer_qa.py'
+      - 'scripts/taiwan_characters/garment_layer_v17.py'
 permissions:
   contents: read
   actions: read
