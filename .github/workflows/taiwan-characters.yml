@@ -92,6 +92,13 @@ jobs:
           unzip -oq "$FILE" -d .deps/mh_assets
           test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
           test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
+      - name: Restore official CC0 clothing pack cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: official-mh-shirts01-pants01-cc0-v1
       - name: Download official CC0 MakeHuman shirts01 and pants01
         run: |
           set -euo pipefail
@@ -111,29 +118,29 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: V7 real identity-specific MPFB faces and open wardrobe
+      - name: V8 real identity-specific MPFB faces and open wardrobe
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v7
+          FACE_OUT: outputs/face_v8
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v7
-          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v7_openwardrobe.py
-          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v7_openwardrobe.py
+          mkdir -p outputs/face_v8
+          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
+          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
       - name: Optimize and validate two GLBs and independent mesh garments
         run: |
           set -euo pipefail
-          for id in you_v7_main boss_v7_ponytail01; do
-            p="outputs/face_v7/$id.glb"
+          for id in you_v8_main boss_v8_ponytail01; do
+            p="outputs/face_v8/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
           import json,pathlib,struct
-          root=pathlib.Path("outputs/face_v7")
-          for tag in ("you_v7_main","boss_v7_ponytail01"):
+          root=pathlib.Path("outputs/face_v8")
+          for tag in ("you_v8_main","boss_v8_ponytail01"):
               p=root/(tag+"_report.json")
               data=json.loads(p.read_text())
               assert len(data["personal_face_targets"])>=8
@@ -155,13 +162,13 @@ jobs:
                   assert outfit["mesh"] in nodes,(outfit["mesh"],list(nodes)[:20])
               data["pilot_glb_bytes"]=total
               p.write_text(json.dumps(data,indent=2,ensure_ascii=False))
-              print("V7_GENUINE_FACE_DIFFERENCES_AND_CC0_WARDROBE",tag,total)
+              print("V8_GENUINE_FACE_DIFFERENCES_AND_CC0_WARDROBE",tag,total)
           PY
       - name: Upload CC0 open-wardrobe pilot GLBs and renders
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v7-two-distinct-faces-openwardrobe-PILOT
-          path: outputs/face_v7/
+          name: taiwan-v8-mature-face-openwardrobe-PILOT
+          path: outputs/face_v8/
           retention-days: 14
           if-no-files-found: warn
