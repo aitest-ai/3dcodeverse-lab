@@ -1,0 +1,51 @@
+name: Horse Alternate Source Structural Probe
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/horse-alt-probe.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/horse-alt-probe.yml'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect published Three.js horse without assuming its asset license
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/alt_horse
+          curl -fL --retry 2 --max-time 50 \
+            -o outputs/alt_horse/Horse_ThreeJS.glb \
+            https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/gltf/Horse.glb
+          python3 - <<'PY'
+          import json,struct,hashlib,pathlib
+          p=pathlib.Path("outputs/alt_horse/Horse_ThreeJS.glb")
+          raw=p.read_bytes()
+          assert raw[:4]==b"glTF"
+          size,typ=struct.unpack_from("<I4s",raw,12)
+          assert typ==b"JSON"
+          d=json.loads(raw[20:20+size])
+          obj={"original_url":"https://github.com/mrdoob/three.js/blob/master/examples/models/gltf/Horse.glb",
+               "asset":d.get("asset"),"meshes":len(d.get("meshes",[])),
+               "skins":len(d.get("skins",[])),
+               "animations":[a.get("name") for a in d.get("animations",[])],
+               "materials":len(d.get("materials",[])),
+               "sha256":hashlib.sha256(raw).hexdigest(),
+               "license_status":"UNKNOWN_DO_NOT_REPUBLISH_UNTIL_VERIFIED"}
+          print(json.dumps(obj,indent=2))
+          pathlib.Path("outputs/alt_horse/report.json").write_text(json.dumps(obj,indent=2))
+          assert obj["animations"] and obj["meshes"]
+          PY
+      - name: Upload temporary test assets (review licensing before redistribution)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alternate-horse-private-evaluation-${{ github.run_number }}
+          path: outputs/alt_horse/report.json
+          retention-days: 7
+          if-no-files-found: warn
