@@ -71,16 +71,21 @@ try:
         report["part_meta"]={k:part.get(k) for k in ("id","shareId","fileHash","fileName","ext","size","kind","title","license","downloadUrl") if k in part}
     # Inspect the public application's own asset download link code rather than
     # inventing a URL or bypassing authentication.
-    for path in report["script_paths"]:
-        if "/_next/static/chunks/pages/tools/library/3d-parts/" not in path:continue
+    for path in report["script_paths"][:9]:
+        if not path.startswith("/_next/static/chunks/"):continue
         try:
             script_url=urllib.parse.urljoin(URL,path)
-            _,_,raw_js=request(script_url,max_size=2_000_000)
+            _,_,raw_js=request(script_url,max_size=3_000_000)
             js=raw_js.decode("utf-8","replace")
-            hits=list(re.finditer(r'(?:download|/api/|fileHash)',js,re.I))[:30]
-            report["public_js_download_contexts"]=[js[max(0,m.start()-250):min(len(js),m.end()+300)] for m in hits]
+            hits=list(re.finditer(r'(?:download|/api/|fileHash|/v/|getSignedUrl)',js,re.I))[:45]
+            report.setdefault("public_js_download_contexts",[]).append({
+                "script":path,
+                "status":"FETCHED",
+                "size":len(js),
+                "contexts":[js[max(0,m.start()-160):min(len(js),m.end()+200)] for m in hits]
+            })
         except Exception as exc:
-            report["public_js_error"]=str(exc)[:300]
+            report.setdefault("public_js_download_contexts",[]).append({"script":path,"error":str(exc)[:300]})
 
     # Only try explicitly present links, no speculative path traversal.
     for url in candidates[:6]:
