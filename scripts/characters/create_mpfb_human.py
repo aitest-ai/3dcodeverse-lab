@@ -60,6 +60,48 @@ bsdf.inputs["Metallic"].default_value = 0
 body.data.materials.clear()
 body.data.materials.append(skin)
 
+# Optional official CC0 asset pack: real textures, eyes, hair and clothing.
+# Download the upstream 267 MB archive only on isolated CI runners; never
+# commit it to this repository or silently fetch third-party assets at runtime.
+asset_root = os.environ.get("MAKEHUMAN_ASSET_ROOT")
+added_objects = []
+asset_records = []
+if asset_root:
+    root = Path(asset_root)
+    if not root.is_dir():
+        raise RuntimeError("MAKEHUMAN_ASSET_ROOT not found: " + str(root))
+    def asset_file(name):
+        matches = list(root.rglob(name))
+        if not matches:
+            raise RuntimeError("CC0 system pack missing required asset: " + name)
+        return str(matches[0].resolve())
+    skin_name = "young_caucasian_female.mhmat"
+    HumanService.set_character_skin(asset_file(skin_name), body, skin_type="GAMEENGINE")
+    asset_records.append({"file": skin_name, "category": "skins", "license": "CC0"})
+    items = [
+        ("eyes", "low-poly.mhclo", "Eyes"),
+        ("eyebrows", "eyebrow001.mhclo", "Eyebrows"),
+        ("eyelashes", "eyelashes01.mhclo", "Eyelashes"),
+        ("tongue", "tongue01.mhclo", "Tongue"),
+        ("teeth", "teeth_base.mhclo", "Teeth"),
+        ("hair", "long01.mhclo", "Hair"),
+        ("clothes", "female_casualsuit01.mhclo", "Clothes"),
+        ("clothes", "shoes01.mhclo", "Clothes"),
+    ]
+    for subdir, filename, kind in items:
+        path = asset_file(filename)
+        print("LOADING_CC0_ASSET", subdir, path)
+        item = HumanService.add_mhclo_asset(
+            path, body, asset_type=kind, subdiv_levels=0,
+            material_type="GAMEENGINE")
+        if item is None:
+            raise RuntimeError("Failed to add asset " + filename)
+        added_objects.append(item)
+        asset_records.append({"file": filename, "category": subdir, "license": "CC0"})
+    print("LOADED_CC0_ASSETS", [x["file"] for x in asset_records])
+else:
+    print("NO_SYSTEM_ASSET_PACK: neutral body only")
+
 # MakeHuman can contain large helper groups. Verify final geometry while
 # preserving original topological detail rather than simplifying it away.
 for polygon in body.data.polygons:
@@ -86,6 +128,8 @@ bpy.ops.wm.save_as_mainfile(filepath=str(blend))
 bpy.ops.object.select_all(action="DESELECT")
 rig.select_set(True)
 body.select_set(True)
+for asset_obj in added_objects:
+    asset_obj.select_set(True)
 bpy.context.view_layer.objects.active=rig
 glb = OUT / "human_mpfb_blender5.glb"
 bpy.ops.export_scene.gltf(
@@ -108,9 +152,10 @@ manifest = {
   "requirements":{"skins":True,"animated":False,"visual_review":True},
   "source":"MakeHuman Community MPFB 2.0.18; Blender 5.2.3",
   "license_note":"MPFB plugin GPLv3+; MPFB bundled core geometry/data CC0. This model uses original authored neutral test material. Verify upstream files/licensing before commercial asset publication.",
-  "quality_status":"BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY",
-  "features":["human topology","deform skeleton","PBR neutral test skin"],
-  "missing_before_high_quality":["photorealistic skin details","eyes/eyelashes","hair","clothing","facial expressions"]
+  "quality_status":"LICENSED_ASSET_CHARACTER_NEEDS_VISUAL_REVIEW" if asset_records else "BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY",
+  "features":["human topology","deform skeleton","PBR skin","licensed CC0 assets" if asset_records else "neutral test skin"],
+  "asset_sources":[{"source_url":"https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html", "license":"CC0","assets":asset_records}] if asset_records else [],
+  "missing_before_high_quality":["premium hair strand detail","real skin microdetail","expressions","manual garment and joint deformation QA"] if asset_records else ["photorealistic skin details","eyes/eyelashes","hair","clothing","facial expressions"]
 }
 (OUT/"asset_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
 report={
@@ -118,7 +163,8 @@ report={
     "body_vertices":len(body.data.vertices),"body_faces":len(body.data.polygons),
     "height_m":round(height,4),"rig_bones":bone_count,
     "weight_groups":len(body.vertex_groups),
-    "glb_bytes":glb.stat().st_size,"status":"PENDING_RENDER_AND_GLTF_INSPECTION",
+    "glb_bytes":glb.stat().st_size, "asset_count":len(added_objects), "asset_details":asset_records,
+    "status":"PENDING_RENDER_AND_GLTF_INSPECTION",
 }
 (OUT/"report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
 
