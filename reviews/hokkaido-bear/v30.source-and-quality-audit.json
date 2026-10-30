@@ -1,0 +1,90 @@
+{
+  "schema": "3dcodeverse-provenance-and-visual-qa/v1",
+  "asset": "CC0 Innerscene Brown Bear — unmodified source GLB",
+  "review_date": "2026-10-30",
+  "source": {
+    "title": "Brown bear",
+    "publisher": "Innerscene (original model)",
+    "license": "CC0 1.0 as declared on its source page",
+    "source_page": "https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5",
+    "source_download": "https://www.innerscene.com/api/library/brown-bear-7da82cb5/download",
+    "license_page_verified": true,
+    "source_sha256": "c5a81d24099895be76427defc569040b5cdea990753707d2beedabf9eb1169be",
+    "actual_size_bytes": 8957188
+  },
+  "build": {
+    "github_actions": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41014587503",
+    "original_glb_magic_verified": true,
+    "actually_downloaded": true,
+    "actual_Blender_5_2_2_Cycles_4views": true,
+    "mesh_count": 54,
+    "total_triangles": 73680,
+    "total_vertices": 43810,
+    "bounding_box": [
+      2.394639384,
+      1.155860805,
+      0.808673828
+    ],
+    "main_body_vertices": 30865,
+    "main_body_watertight": false,
+    "all_mesh_components_watertight": false
+  },
+  "artistic_assessment": {
+    "approved": false,
+    "overall_category": "stylized neutral realistic cartoon, not appropriate for artisan Hokkaido salmon-bearing woodcarving",
+    "scores_out_of_5": {
+      "body_general_anatomy": 2.6,
+      "facial_landmarks": 1.6,
+      "paws_digits": 1.7,
+      "woodcarving_texture": 1,
+      "salmon_bite": 0
+    },
+    "strengths": [
+      "Existing full body and four leg proportions",
+      "The GLB is genuinely downloadable, with a verified publisher CC0 dedication",
+      "Separate components can be inspected independently"
+    ],
+    "blockers": [
+      "Bear muzzle is elongated and toy-like; no convincing brow/eye anatomy",
+      "Four paws read as heavy padded circles with simplistic claws, especially in side view",
+      "Main high-poly torso mesh is open and broken into many visual parts; not a watertight single sculpt",
+      "No salmon, mouth cavity or physical bite topology",
+      "No sculpted Hokkaido fur directional chisel relief"
+    ],
+    "next_step": "Do NOT integrate as official full-body replacement. Locate a realistic CC BY or CC0 artist-authored bear mesh with a credible side/front face; legal download and actual Blender render required. Use source for blockout only."
+  },
+  "alternatives": [
+    {
+      "category": "bear higher-fidelity lead",
+      "source": "https://sketchfab.com/3d-models/bear-realistic-3d-model-demo-free-d764eb6669e248d785d381f09e89b97c",
+      "creator": "WildMesh 3D",
+      "stated_license": "CC BY",
+      "status": "license webpage inspected; download requires supported legitimate platform access and source mesh has NOT been obtained",
+      "estimated_triangles": 13600
+    },
+    {
+      "category": "salmon lead",
+      "source": "https://sketchfab.com/3d-models/salmon-fish-37f181e4163d4b07a801bf9ecc494e6d",
+      "creator": "Chenchanchong",
+      "stated_license": "CC BY",
+      "status": "license webpage inspected; source mesh has NOT been obtained; attribution needed",
+      "estimated_triangles": 12000
+    },
+    {
+      "category": "scientific brown bear morphology reference ONLY",
+      "source": "https://yoshimoto.kahaku.go.jp/3d/en/NSMTM32303/",
+      "owner": "Japan National Museum of Nature and Science",
+      "stated_license": "CC BY-NC 4.0 site-wide",
+      "status": "reference viewing appropriate, no commercial redistribution or game mesh reuse without separate permission"
+    },
+    {
+      "category": "brown bear skull anatomy",
+      "source": "https://sketchfab.com/3d-models/brown-bear-skull-e01dc94d20df4b888c7a6979bffb45a9",
+      "owner": "University of Dundee Museum Collections",
+      "stated_license": "CC0",
+      "status": "anatomy-only museum surface scan; not a complete external bear"
+    }
+  ],
+  "promotion_allowed": false,
+  "game_latest_changed": false
+}
