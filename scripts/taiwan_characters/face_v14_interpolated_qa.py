@@ -451,7 +451,7 @@ for view,(pos,target,scale) in views.items():
 # Show actual facial movements using the final Blender mesh, not AI images.
 # These are evidence only; manual QA must still reject broken teeth/eyelids.
 expression_previews=[]
-if ID in ("you","boss"):
+if ID in ("you","boss","uncle","jie"):
     presets={
       "expression_smile":{"mouthSmileLeft":.80,"mouthSmileRight":.80},
       "expression_mouthOpen":{"mouthOpen":.82},
@@ -545,6 +545,6 @@ report={"character":ID,"status":"FACE_ONLY_PILOT_REQUIRES_VISUAL_APPROVAL",
         "pilot_glb_bytes":glb_path.stat().st_size if glb_path else None,
         "cloth_skin_fitting":{"reprojected":fit_count,"under_skin_before":initial_negative,
         "maximum_correction_m":greatest_offset,"clearance_m":clearance},
-        "note":"V14 uses official MPFB FaceService.interpolate_targets to propagate real CC0 expression targets onto original fitted MHCLO teeth/tongue/eyelash meshes before helper deletion. Manual mouth interior and blink art QA still mandatory."}
+        "note":"V14 original MPFB fitted MHCLO facial accessory interpolation. Structural validity does not imply art approval. All 4 characters receive mouth-open, smile and blink renders."}
 (OUT/(TAG+"_report.json")).write_text(json.dumps(report,indent=2,ensure_ascii=False))
 print("FACE_V14_PILOT",json.dumps(report))
