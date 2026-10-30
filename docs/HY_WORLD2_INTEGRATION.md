@@ -16,6 +16,12 @@
 **不能把 splat PLY 當作 mesh PLY 直接匯入 GLB。** 網格、3DGS、點雲需要不同載入器。
 本工具讀取 PLY 標頭辨識資料型別；不執行模型推論，也不保證場景實際品質。
 
+## 零 GPU 快速自測（無需真實 HY-World 權重）
+
+本庫提供 **手工撰寫的八頂點測試方塊**，用來先驗證 PLY 格式辨識及 Three.js 載入路線。這個方塊不是 HY-World 的生成成果，也不代表其美術品質。
+
+從本庫根目錄啟動 `python3 -m http.server 8000`，用瀏覽器開啟 `http://localhost:8000/examples/threejs/hyworld-viewer.html`，按預填測試方塊網址的「載入」，應可旋轉觀看方塊。若畫面空白，先查看瀏覽器 Console，並確認 WebGL2、模組 CDN 和本機靜態伺服器可用。
+
 ## 第一階段：先用現有 HY-World 輸出完成介面接線
 
 把官方產生的檔案複製到安全工作資料夾（不要將權重或未經授權的資料提交 GitHub）：
