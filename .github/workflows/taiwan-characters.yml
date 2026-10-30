@@ -109,27 +109,27 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v11
+          FACE_OUT: outputs/face_v12
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v11
+          mkdir -p outputs/face_v12
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v11_portrait_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v12_portrait_qa.py
           done
       - name: Independently validate four original 3D outfits and faces
         run: |
           set -euo pipefail
-          for id in you_v11_main boss_v11_ponytail01 uncle_v11_main jie_v11_main; do
-            p="outputs/face_v11/$id.glb"
+          for id in you_v12_main boss_v12_ponytail01 uncle_v12_main jie_v12_main; do
+            p="outputs/face_v12/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
           import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v11")
-          names=("you_v11_main","boss_v11_ponytail01","uncle_v11_main","jie_v11_main")
+          root=pathlib.Path("outputs/face_v12")
+          names=("you_v12_main","boss_v12_ponytail01","uncle_v12_main","jie_v12_main")
           profiles=set()
           for tag in names:
               p=root/(tag+"_report.json")
@@ -141,7 +141,8 @@ jobs:
               assert all(qa["vertices"]>200 for qa in data["wardrobe_topology_qa"].values())
               if tag.startswith("jie"):
                   assert "toigo_basic_tucked_t-shirt" in data["separate_open_source_garments"][0]["file"],data
-                  assert data["shirt_hem_extension"]["adjusted"]>=30,data
+                  assert data["waistband_repair"]["moved_vertices"]>=10,data
+                  assert data["waistband_repair"]["height_m"]>=.02
                   assert data["hair_asset"]=="short02.mhclo"
               if tag.startswith("uncle"):
                   assert len(data["personal_face_targets"])>=13
@@ -168,7 +169,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v11-four-role-revised-faces-wardrobe-ART-QA
-          path: outputs/face_v11/
+          name: taiwan-v12-four-role-revised-faces-wardrobe-ART-QA
+          path: outputs/face_v12/
           retention-days: 14
           if-no-files-found: warn
