@@ -143,13 +143,9 @@ for sign in [-1,1]:
                         ((yy+1.153)/1.00)**2+
                         ((zz-.909)/1.00)**2))
     fish=smoothmin(fish,-eye,.003)
-    for gy in [-.932,-.850]:
-        angleline=gy + .18*(zz-.90)
-        side_cut=.026-np.abs(xx-(-2.61+sign*.172))
-        gill_cut=.018-np.abs(yy-angleline)
-        zlimit=np.minimum(zz-.722,1.083-zz)
-        carving=smoothmin(smoothmin(side_cut,gill_cut,.007),zlimit,.006)
-        fish=smoothmin(fish,-carving,.002)
+    # Gill incisions will be carved via local vertex-normal displacement
+    # AFTER marching cubes; subtractive VDB cutters here previously carved
+    # off a 116-vertex fish-flank strip, failing component integrity QA.
 fish=gaussian_filter(fish,sigma=.56)
 def extract(name,field):
     verts,faces,normals,values=marching_cubes(field,level=0.0,spacing=(STEP,STEP,STEP),
@@ -157,6 +153,24 @@ def extract(name,field):
     verts+=np.array([X[0],Y[0],Z[0]])
     m=trimesh.Trimesh(vertices=verts,faces=faces,process=False)
     trimesh.repair.fix_normals(m)
+    if name=="v29_salmon":
+        # Surface-only nonsevering incisions: deform existing fish skin,
+        # preserving original faces/edge connectivity exactly.
+        normals=m.vertex_normals.copy()
+        vv=m.vertices.copy()
+        affected=0
+        for i,p in enumerate(vv):
+            x,y,z=p
+            if -.99<y<-.66 and .70<z<1.09 and abs(normals[i,0])>.37:
+                for gy in [-.931,-.848]:
+                    target=gy+.17*(z-.90)
+                    d=abs(y-target)
+                    if d<.018:
+                        depth=.011*(1-d/.018)
+                        vv[i,0]-=np.sign(normals[i,0])*depth
+                        affected+=1
+        m.vertices=vv
+        print("V29_REAL_GILL_VERTEX_STROKES",affected,flush=True)
     parts=m.split(only_watertight=False)
     # Never silently remove a substantial disconnected sculpt feature.
     if len(parts)>1:
