@@ -17,7 +17,7 @@ from mathutils import Vector
 STYLES = {
     "studio": {
         "description": "Formal look with high-detail licensed wavy bob hair",
-        "hair": ("elvs_wavy_bob.mhclo", "Hair", "hair02", "CC-BY 4.0", "Elvaerwyn"),
+        "hair": ("elvs_wavy_bob.mhclo", "Hair", "hair02", "CC-BY", "Elvaerwyn"),
         "outfit": [("female_elegantsuit01.mhclo", "Clothes", "system", "CC0", "makehuman_system"),
                    ("shoes02.mhclo", "Clothes", "system", "CC0", "makehuman_system")],
     },
@@ -198,7 +198,7 @@ manifest = {
   "quality_status":"LICENSED_ASSET_CHARACTER_NEEDS_VISUAL_REVIEW" if asset_records else "BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY",
   "features":["human topology","deform skeleton","PBR skin","licensed CC0 assets" if asset_records else "neutral test skin"],
   "asset_sources":asset_records,
-  "attribution": "Hair02 assets by Elvaerwyn, CC-BY 4.0" if STYLE == "studio" else "All selected extra assets CC0; authors listed by asset",
+  "attribution": "Hair02 assets by Elvaerwyn, CC-BY; verify the source-listed version before redistribution" if STYLE == "studio" else "All selected extra assets CC0; authors listed by asset",
   "character_style":STYLES[STYLE]["description"],
   "missing_before_high_quality":["premium hair strand detail","real skin microdetail","expressions","manual garment and joint deformation QA"] if asset_records else ["photorealistic skin details","eyes/eyelashes","hair","clothing","facial expressions"]
 }
