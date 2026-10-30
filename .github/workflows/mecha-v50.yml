@@ -1,0 +1,98 @@
+name: Blender 5.2 Mecha v5.0 Candidate
+on:
+  workflow_dispatch:
+    inputs:
+      scene_script:
+        description: 'Python script, e.g. scripts/blender5/mecha_v50.py'
+        required: false
+        type: string
+        default: 'scripts/blender5/mecha_v50.py'
+  push:
+    paths:
+      - '.github/workflows/mecha-v50.yml'
+      - 'scripts/blender5/mecha_v50.py'
+permissions:
+  contents: read
+jobs:
+  blender5-mecha:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Blender Python scripts parse
+        run: python3 -m compileall -q scripts/blender5
+      - name: Install headless rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download Blender 5.2.3 LTS from official source and verify SHA256
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          filename="blender-5.2.3-linux-x64.tar.xz"
+          lines=pathlib.Path(".tools/checksums.sha256").read_text().splitlines()
+          line=next((x for x in lines if filename in x),None)
+          assert line, "Official checksum line not found"
+          match=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line)
+          assert match, "Cannot parse Blender checksum"
+          with open(".tools/"+filename,"rb") as f:
+              digest=hashlib.file_digest(f,"sha256").hexdigest()
+          assert digest==match.group().lower(),"Blender checksum mismatch"
+          print("Official Blender SHA256 verified:",digest)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+      - name: Verify Blender is available
+        run: blender -b --factory-startup --version
+      - name: Select a reviewed Blender scene script
+        shell: bash
+        env:
+          REQUESTED_SCENE: ${{ inputs.scene_script || 'scripts/blender5/mecha_v50.py' }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, re
+          candidate = os.environ['REQUESTED_SCENE']
+          assert re.fullmatch(r'scripts/blender5/[A-Za-z0-9_-]+[.]py', candidate), "Invalid script path"
+          base = pathlib.Path("scripts/blender5").resolve()
+          script = pathlib.Path(candidate).resolve()
+          assert script.parent == base and script.is_file() and not script.is_symlink(), "Unreviewed or missing script"
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              print('BLENDER_SCENE=' + candidate, file=env)
+          print("Using:", candidate)
+          PY
+      - name: Build model, animations and GLB with Blender
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p outputs
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python "$BLENDER_SCENE"
+      - name: Independently validate model package
+        run: |
+          test -s outputs/asset_manifest.json
+          python3 scripts/blender5/validate_glb.py outputs
+          python3 -m json.tool outputs/report.json
+          ls -lah outputs/
+      - name: Verify genuine four-view and material beauty renders
+        run: |
+          for view in front side back three_quarter; do test -s "outputs/preview_${view}.png"; done
+          test -s outputs/preview_pbr_hero.png
+          test -s outputs/fullframe_gait_qa.json
+          python3 scripts/blender5/validate_v50_gait.py outputs
+          test -s outputs/bake_qa.json
+          python3 scripts/blender5/validate_v50_bakes.py outputs
+      - name: Upload downloadable model, BLEND, and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blender5-v50-${{ github.run_number }}
+          path: outputs/
+          retention-days: 14
+          if-no-files-found: warn
