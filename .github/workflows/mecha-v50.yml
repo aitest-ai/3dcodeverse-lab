@@ -11,6 +11,8 @@ on:
     paths:
       - '.github/workflows/mecha-v50.yml'
       - 'scripts/blender5/mecha_v50.py'
+      - 'scripts/blender5/validate_v50_gait.py'
+      - 'scripts/blender5/validate_v50_bakes.py'
 permissions:
   contents: read
 jobs:
