@@ -1,0 +1,152 @@
+"""MPFB 2.0.18 + Blender 5.2 headless integration smoke test.
+
+Uses upstream HumanService, not a fake human constructed from boxes.
+Model is a neutral topology/rig test body. It is NOT a finished photorealistic
+avatar: realistic hair, clothing and face textures need licensed asset packs.
+Outputs: rigged human GLB + editable BLEND + 4 orthographic studio renders.
+"""
+import bpy
+import sys
+import math
+import json
+import importlib
+import os
+from pathlib import Path
+from mathutils import Vector
+
+OUT = Path(os.environ.get("ASSET_OUT", "outputs/human_mpfb")).resolve()
+OUT.mkdir(parents=True, exist_ok=True)
+bpy.ops.object.select_all(action="SELECT")
+bpy.ops.object.delete(use_global=False)
+
+# Blender's packaged extensions use unknown module paths. Find the MPFB service
+# by its declared suffix, exactly as MPFB's official script samples document.
+def service(module_suffix, symbol):
+    matching = [m for m in tuple(sys.modules) if m.endswith(module_suffix)]
+    if len(matching) != 1:
+        raise RuntimeError(f"Expected active MPFB module ending {module_suffix}; found {matching}. Check extension installation.")
+    module = importlib.import_module(matching[0])
+    return getattr(module, symbol)
+
+try:
+    bpy.ops.preferences.addon_enable(module="bl_ext.local_mpfb.mpfb")
+except Exception as e:
+    print("Enable addon attempt:", str(e))
+try:
+    import bl_ext.local_mpfb.mpfb   # The registered Blender extension module
+except ImportError as e:
+    raise RuntimeError("MPFB must be installed/enabled as 'bl_ext.local_mpfb.mpfb'") from e
+
+HumanService = service("mpfb.services.humanservice", "HumanService")
+
+print("MPFB creating real MakeHuman basemesh")
+body = HumanService.create_human(mask_helpers=True, extra_vertex_groups=True, feet_on_ground=True, scale=0.01)
+assert body and body.type == "MESH", "MPFB did not return a human mesh"
+body.name = "Human_Body_MakeHumanTopology"
+print("MPFB adding game-engine rig")
+rig = HumanService.add_builtin_rig(body, "game_engine")
+assert rig and rig.type == "ARMATURE", "MPFB built-in rig creation failed"
+rig.name = "Human_GameRig"
+
+# Material exists in the glTF 2.0 payload. It is an editable neutral skin test,
+# deliberately not falsely marketed as scanned skin.
+skin = bpy.data.materials.new("NeutralSkin_PBR_TestOnly")
+skin.use_nodes = True
+skin.diffuse_color = (0.47, 0.27, 0.21, 1)
+bsdf = skin.node_tree.nodes.get("Principled BSDF")
+bsdf.inputs["Base Color"].default_value = (0.47, 0.27, 0.21, 1)
+bsdf.inputs["Roughness"].default_value = 0.62
+bsdf.inputs["Metallic"].default_value = 0
+body.data.materials.clear()
+body.data.materials.append(skin)
+
+# MakeHuman can contain large helper groups. Verify final geometry while
+# preserving original topological detail rather than simplifying it away.
+for polygon in body.data.polygons:
+    polygon.use_smooth = True
+
+bpy.context.view_layer.update()
+minz = min((body.matrix_world @ v.co).z for v in body.data.vertices)
+maxz = max((body.matrix_world @ v.co).z for v in body.data.vertices)
+height = maxz - minz
+print("HUMAN_BASE_HEIGHT", height, "verteces", len(body.data.vertices))
+if not 1.0 < height < 2.4:
+    raise RuntimeError(f"Unexpected human height {height:.3f}m. Inspect MPFB scaling; do not auto export in wrong units.")
+bone_count = len(rig.data.bones)
+if bone_count < 30:
+    raise RuntimeError(f"Human rig has only {bone_count} bones; expected hand/leg spine skeleton.")
+if not any(m.type == "ARMATURE" for m in body.modifiers):
+    raise RuntimeError("MPFB body has no armature modifier.")
+if len(body.vertex_groups) < 20:
+    raise RuntimeError("MPFB body missing deforming weights.")
+
+# Save pure source scene, before adding non-export studio camera/background.
+blend = OUT / "human_mpfb_blender5.blend"
+bpy.ops.wm.save_as_mainfile(filepath=str(blend))
+bpy.ops.object.select_all(action="DESELECT")
+rig.select_set(True)
+body.select_set(True)
+bpy.context.view_layer.objects.active=rig
+glb = OUT / "human_mpfb_blender5.glb"
+bpy.ops.export_scene.gltf(
+    filepath=str(glb),
+    export_format="GLB",
+    use_selection=True,
+    export_animations=False,
+    export_skins=True,
+    export_apply=False,
+)
+if not glb.exists() or glb.stat().st_size < 10000:
+    raise RuntimeError("Human GLB missing or unusually tiny")
+
+manifest = {
+  "schema_version":1, "asset_id":"human_mpfb_blender5",
+  "format":"glTF 2.0 GLB", "unit":"meter",
+  "coordinate_system":"Blender Z-up; GLB Y-up on import",
+  "model_file":glb.name, "source_file":blend.name,
+  "clips":[], "min_animation_count":0,
+  "requirements":{"skins":True,"animated":False,"visual_review":True},
+  "source":"MakeHuman Community MPFB 2.0.18; Blender 5.2.3",
+  "license_note":"MPFB plugin GPLv3+; MPFB bundled core geometry/data CC0. This model uses original authored neutral test material. Verify upstream files/licensing before commercial asset publication.",
+  "quality_status":"BASEMESH_AND_RIG_TEST_NOT_PHOTOREAL_READY",
+  "features":["human topology","deform skeleton","PBR neutral test skin"],
+  "missing_before_high_quality":["photorealistic skin details","eyes/eyelashes","hair","clothing","facial expressions"]
+}
+(OUT/"asset_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding="utf-8")
+report={
+    "blender":bpy.app.version_string,"source_extension":"MPFB 2.0.18",
+    "body_vertices":len(body.data.vertices),"body_faces":len(body.data.polygons),
+    "height_m":round(height,4),"rig_bones":bone_count,
+    "weight_groups":len(body.vertex_groups),
+    "glb_bytes":glb.stat().st_size,"status":"PENDING_RENDER_AND_GLTF_INSPECTION",
+}
+(OUT/"report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
+
+# Orthographic turntable studio views: direct evidence instead of AI illustration.
+cam_data=bpy.data.cameras.new("QA_Camera")
+cam=bpy.data.objects.new("QA_Camera",cam_data)
+bpy.context.collection.objects.link(cam)
+bpy.context.scene.camera=cam
+cam_data.type="ORTHO"
+cam_data.ortho_scale=2.45
+scene=bpy.context.scene
+scene.render.engine="BLENDER_WORKBENCH"
+scene.display.shading.light="STUDIO"
+scene.display.shading.color_type="MATERIAL"
+scene.display.shading.show_shadows=True
+scene.render.resolution_x=640
+scene.render.resolution_y=640
+scene.render.resolution_percentage=100
+scene.render.image_settings.file_format="PNG"
+views={"front":(0,-5.5,1.2),"side":(5.5,0,1.2),
+       "back":(0,5.5,1.2),"isometric":(4.6,-4.6,2.45)}
+for name,loc in views.items():
+    cam.location=loc
+    target=Vector((0,0,0.95))
+    cam.rotation_euler=(target-cam.location).to_track_quat("-Z","Y").to_euler()
+    path=OUT/("preview_"+name+".png")
+    scene.render.filepath=str(path)
+    bpy.ops.render.render(write_still=True)
+    if not path.exists() or path.stat().st_size < 5000:
+        raise RuntimeError("Cannot render real Blender preview: "+str(path))
+print("MPFB_HUMAN_SMOKE_SUCCEEDED",report)
