@@ -1,0 +1,81 @@
+name: Taiwan V16 - Fast GLB Sweater Before/After QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v16-fast-glb-qa.yml'
+      - 'scripts/taiwan_characters/v16_glb_incremental_qa.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  boss-sweater-from-v15:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile diagnostic scripts
+        run: python3 -m compileall -q scripts/taiwan_characters
+      - name: Download verified V15 four-role test artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v15-real-waist-boundary-and-chest-diagnostics-PILOT
+          run-id: 41088064071
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input
+      - name: Install CPU rendering runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install verified Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          BASE=https://download.blender.org/release/Blender5.2
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          want=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f:
+              assert hashlib.file_digest(f,'sha256').hexdigest()==want
+          print('VERIFIED_BLENDER_ARCHIVE',want)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Render actual V15 and improved boss sweater in one Blender session
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V15_BOSS_GLB: input/outputs/face_v15/boss_v15_ponytail01.glb
+          V16_FAST_OUT: outputs/fast_v16
+        run: |
+          set -euo pipefail
+          test -s "$V15_BOSS_GLB"
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/v16_glb_incremental_qa.py
+          python3 - <<'PY'
+          import json,pathlib,struct
+          p=pathlib.Path('outputs/fast_v16')
+          d=json.loads((p/'boss_v16_fast_report.json').read_text())
+          assert d['corrected_source_vertices']>=100,d
+          assert d['body_mesh_vertices_gltf_import']>13000
+          assert d['chest_before']['body_hitting_rays']>500
+          assert d['chest_after']['body_hitting_rays']>500
+          assert d['glb_bytes']>1000000
+          for key in ['before_render','after_render','glb']:
+              assert (p/d[key]).is_file(), key
+          print('V16_FAST_COMPARE_QA',d['corrected_source_vertices'],
+                d['chest_before']['front_exposed_body_samples'],
+                d['chest_after']['front_exposed_body_samples'])
+          PY
+      - name: Upload reproducible boss V15 vs V16 comparison and GLB
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v16-fast-boss-glb-before-after-DEBUG-NOT-RELEASE
+          path: outputs/fast_v16/*
+          retention-days: 14
+          if-no-files-found: warn
