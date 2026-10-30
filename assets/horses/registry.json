@@ -16,11 +16,14 @@
   "distribution": {
     "preferred": "github_release",
     "release_tag": "horses-v2.3.0",
-    "release_status": "SEED_IN_PROGRESS_VERIFY_BEFORE_CLAIM",
+    "release_status": "PUBLISHED_AND_PULLED_VERIFIED",
     "fallback": "actions_artifact",
     "fallback_run_id": 41017062152,
     "fallback_artifact_name": "racing-horse-v23-2",
-    "fallback_retention_days": 14
+    "fallback_retention_days": 14,
+    "release_url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0",
+    "release_verification_workflow_run": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41021728481",
+    "release_notes": "Immutable versioned release with two GLB models, two editable Blender ZIPs and SHA256SUMS. Both models independently re-downloaded using gh CLI in Actions and verified against this catalog."
   },
   "horses": [
     {
@@ -154,6 +157,10 @@
       "side.png",
       "back.png"
     ],
-    "publish_gate": "owner reviewed PR and tests; release created manually or via trusted workflow only"
+    "publish_gate": "owner reviewed PR and tests; release created manually or via trusted workflow only",
+    "submission_directory": "assets/horses/submissions",
+    "submission_validator": "scripts/horses/validate_horse_submission.py",
+    "candidate_ci": ".github/workflows/horse-library-submit.yml",
+    "owner_publish_workflow": ".github/workflows/horse-library-publish.yml"
   }
 }
