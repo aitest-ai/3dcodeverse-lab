@@ -56,7 +56,7 @@ try:
     report["page_mentions_filename"]="horse-original.glb" in html
     report["filename_contexts"]=[html[max(0,m.start()-550):min(len(html),m.end()+550)] for m in list(re.finditer("horse-original\\.glb",html,re.I))[:4]]
     report["keyword_contexts"]=[html[max(0,m.start()-130):min(len(html),m.end()+200)] for m in list(re.finditer(r'(?:downloadUrl|modelUrl|modelPath|assetUrl|\\.glb)',html,re.I))[:12]]
-    report["script_paths"]=re.findall(r'<script[^>]*src=["\\']([^"\\']+)',html,re.I)[:16]
+    report["script_paths"]=re.findall('src="([^"]+)"',html,re.I)[:16]
     # Only try explicitly present links, no speculative path traversal.
     for url in candidates[:6]:
         try:
