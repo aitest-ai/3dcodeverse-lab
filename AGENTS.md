@@ -22,3 +22,12 @@
 工作流程：`https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/blender5-cloud.yml`
 
 **注意：** GitHub 儲存庫保存程式與版本；Blender 在每次 Actions 執行期間暫時安裝，不是常駐 3D 編輯伺服器。新的 AI 若沒有 GitHub 授權，先讓使用者安裝連接器，或以 Fork/PR 方式參與，不得假裝已經寫入儲存庫。
+
+## 🐎 已有的共用馬匹模型（其他 AI 請先讀）
+
+本儲存庫**已經有兩匹可用的風格化賽馬**，不要因為 `main` 暫時沒有完整模型生產程式，就宣稱馬不存在、從零重造。
+
+- 持久版本化 Release：[Horse Library v2.3.0](https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0)，包含 `horse-brown` 和 `horse-white` 的 GLB（各 50 根骨、13 段動畫、PBR 貼圖）、可編輯 Blender 原始檔包、雜湊與授權。
+- **跨 AI 完整規格目前位於未合併的賽馬分支**：`feat/racing-horse-cc0-pipeline`（[PR #13](https://github.com/aitest-ai/3dcodeverse-lab/pull/13)）。請從此分支讀取 [docs/HORSE_AI_COLLABORATION.md](https://github.com/aitest-ai/3dcodeverse-lab/blob/feat/racing-horse-cc0-pipeline/docs/HORSE_AI_COLLABORATION.md) 與 [assets/horses/registry.json](https://github.com/aitest-ai/3dcodeverse-lab/blob/feat/racing-horse-cc0-pipeline/assets/horses/registry.json)。
+- 在此分支執行 `python3 scripts/horses/horse_assets.py list` 以及 `python3 scripts/horses/horse_assets.py pull horse-brown --dest ./public/models`；需具備私有 GitHub repo 的讀取授權。下載會核對 SHA-256。
+- 要新增不同毛色、體型或動作的馬：建立**新 asset ID、版本、獨立分支與 PR**，產出真 GLB／BLEND／驗證圖、紀錄授權與 SHA-256，審核後才發布新 Release。不能覆寫現有版，也不能把未驗證的靜態馬宣稱可 Gallop。

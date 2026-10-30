@@ -58,3 +58,8 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 
 **真實進度：** 腳踝 V3 程式與流程已提交，雲端 Blender 與視覺品質仍需該次 Actions 真的成功執行後再驗收。腳底修正是關鍵影格計算，不等於完整 IK、碰撞或物理模擬。
 
+## 🐎 已可讓其他 AI 共用的馬匹模型庫
+
+正式雙馬版本 [Horse Library v2.3.0 GitHub Release](https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0) 已提供深棕馬、白馬的 GLB、BLEND、PBR 貼圖、SHA256 及授權說明。兩匹模型各 50 bones／13 動畫，已在 Blender 5／Chromium WebGL 實測通過，屬風格化遊戲原型。
+
+**跨 AI push／pull 規範目前在獨立賽馬分支** [`feat/racing-horse-cc0-pipeline`](https://github.com/aitest-ai/3dcodeverse-lab/tree/feat/racing-horse-cc0-pipeline) 的 [HORSE_AI_COLLABORATION.md](https://github.com/aitest-ai/3dcodeverse-lab/blob/feat/racing-horse-cc0-pipeline/docs/HORSE_AI_COLLABORATION.md) 和 [registry.json](https://github.com/aitest-ai/3dcodeverse-lab/blob/feat/racing-horse-cc0-pipeline/assets/horses/registry.json)。其他 AI 應先閱讀再造新馬，依新 ID／PR／Release 版本管理，不覆蓋既有資產。
