@@ -3,8 +3,9 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - '.github/workflows/taiwan-characters.yml'
-      - 'scripts/taiwan_characters/**'
+      - '.github/workflows/taiwan-v17-full-mpfb-qa.yml'
+      - 'scripts/taiwan_characters/face_v17_knit_layer_qa.py'
+      - 'scripts/taiwan_characters/garment_layer_v17.py'
   push:
     paths:
       - '.github/workflows/taiwan-characters.yml'
