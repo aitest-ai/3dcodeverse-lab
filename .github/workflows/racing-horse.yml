@@ -1,4 +1,4 @@
-name: Racing Horse — CC0 Source to Blender 5 GLB
+name: Racing Horse — CC0 3-Clip to Blender 5 GLB
 on:
   workflow_dispatch:
   push:
@@ -27,8 +27,13 @@ jobs:
           python3 -m pip install --break-system-packages 'gdown==5.2.0'
           sudo apt-get update -qq
           sudo apt-get install -y -qq --no-install-recommends python3-pil xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
-      - name: Fetch ONLY Horse and Horse White directly from Quaternius shared Drive
+      - name: Download independently published and SHA256-pinned Quaternius CC0 horse
         run: python3 -u scripts/horses/fetch_horses.py
+      - name: Decode Meshopt to standard GLB preserving Idle Walk and Gallop
+        run: |
+          npm install --global @gltf-transform/cli@4.5.1
+          gltf-transform copy inputs/horses/source_cc0_horse_compressed.glb inputs/horses/Horse.glb
+          cp inputs/horses/Horse.glb inputs/horses/Horse_White.glb
       - name: Install official Blender 5.2.3 LTS (SHA256 verified)
         run: |
           set -euo pipefail
@@ -60,7 +65,7 @@ jobs:
             mkdir -p "outputs/horse/$horse"
             xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
               --python scripts/horses/build_horse_blender.py -- \
-              "inputs/horses/$horse.gltf" "outputs/horse/$horse"
+              "inputs/horses/$horse.glb" "outputs/horse/$horse"
             echo "::endgroup::"
           done
       - name: Verify both game-engine GLBs retain all rigged animation clips
