@@ -1,0 +1,21 @@
+name: Mecha v5.3 Slope / Footfall Reference QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-contact-v53.js'
+      - 'tests/mecha/v53-contact.mjs'
+      - '.github/workflows/mecha-v53-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          node --check examples/threejs/mech-contact-v53.js
+          node tests/mecha/v53-contact.mjs
