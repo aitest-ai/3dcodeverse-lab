@@ -1,0 +1,32 @@
+name: Horse Source Discovery (Quaternius CC0)
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/horse-discovery.yml'
+      - 'scripts/horses/probe_source.py'
+  pull_request:
+    paths:
+      - '.github/workflows/horse-discovery.yml'
+      - 'scripts/horses/probe_source.py'
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m py_compile scripts/horses/probe_source.py
+      - name: Install pinned open-source folder metadata reader
+        run: python3 -m pip install --break-system-packages 'gdown==5.2.0'
+      - name: Inspect only the creator's public Google Drive pack listing
+        run: python3 -u scripts/horses/probe_source.py
+      - name: Upload source inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-discovery-${{ github.run_number }}
+          path: outputs/horse_source_discovery/
+          retention-days: 14
+          if-no-files-found: warn
