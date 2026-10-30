@@ -25,6 +25,8 @@ input{accent-color:#487b56}
   <label>動畫 <select id="clip"><option value="Gallop">奔馳 Gallop</option><option value="Walk">走路 Walk</option><option value="Idle">待機 Idle</option></select></label>
   <label>速度 <input type="range" min="0.2" max="2.3" step="0.1" value="1" id="speed"/><span id="speedOut">1.0×</span></label>
   <label><input id="orbit" type="checkbox"/>沿跑道前進（Gallop 接觸速度校正）</label>
+  <button id="focus">近看馬匹</button>
+  <button id="trackView">觀看跑道</button>
   <button id="pause">暫停動畫</button>
 </div>
 <script type="module">
@@ -36,7 +38,7 @@ const host=document.getElementById("viewport");
 const status=document.getElementById("status");
 const scene=new THREE.Scene();scene.background=new THREE.Color("#d9e5db");
 const camera=new THREE.PerspectiveCamera(50,host.clientWidth/host.clientHeight,.1,300);
-camera.position.set(12,9,17);
+camera.position.set(6.4,3.9,8.5);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"});
 renderer.setSize(host.clientWidth,host.clientHeight);
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -98,6 +100,12 @@ const [h1,h2]=await Promise.all([
 ]);
 status.textContent="載入成功：兩匹馬，13 段動畫；"+(gaitCalibration?"奔馳移動採用實際馬蹄幾何校正（仍非碰撞模擬）":"未讀到移動校正檔，採保守預設速度")+"；可拖曳旋轉視角";
 }catch(e){status.textContent="載入失敗："+e.message+"。請在含 models 資料夾的目錄啟動 HTTP 伺服器。";console.error(e)}
+document.getElementById("focus").addEventListener("click",()=>{
+  camera.position.set(6.4,3.9,8.5);controls.target.set(0,1,0);controls.update();
+});
+document.getElementById("trackView").addEventListener("click",()=>{
+  camera.position.set(12,9,17);controls.target.set(0,1,0);controls.update();
+});
 document.getElementById("clip").addEventListener("change",e=>horses.forEach(h=>setHorseClip(h,e.target.value)));
 document.getElementById("pause").addEventListener("click",e=>{paused=!paused;e.target.textContent=paused?"繼續動畫":"暫停動畫";});
 document.getElementById("speed").addEventListener("input",e=>{document.getElementById("speedOut").textContent=(+e.target.value).toFixed(1)+"×"});
