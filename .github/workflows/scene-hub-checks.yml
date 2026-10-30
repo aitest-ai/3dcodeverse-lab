@@ -1,0 +1,28 @@
+name: Scene Hub asset registry validation
+on:
+  push:
+    paths:
+      - 'scripts/scene_hub.py'
+      - 'scenes/**'
+      - 'tests/test_scene_hub.py'
+      - '.github/workflows/scene-hub-checks.yml'
+  pull_request:
+    paths:
+      - 'scripts/scene_hub.py'
+      - 'scenes/**'
+      - 'tests/test_scene_hub.py'
+      - '.github/workflows/scene-hub-checks.yml'
+permissions:
+  contents: read
+jobs:
+  scene-hub-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax check
+        run: python3 -m py_compile scripts/scene_hub.py
+      - name: CPU-only tests
+        run: python3 -m unittest discover -s tests -p 'test_scene_hub.py' -v
+      - name: Catalog integrity
+        run: python3 scripts/scene_hub.py verify --all
