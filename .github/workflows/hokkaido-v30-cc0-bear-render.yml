@@ -1,0 +1,110 @@
+name: Hokkaido v30 CC0 Real Bear Base Mesh QA + Cycles
+on:
+  push:
+    branches: [main]
+    paths:
+      - experiments/hokkaido-v30/**
+      - .github/workflows/hokkaido-v30-cc0-bear-render.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  licensed-bear-visual-audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original CC0 source and reproducibly download real GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          pip install -q requests beautifulsoup4 Pillow 'trimesh>=4,<5' 'networkx>=3,<5'
+          mkdir -p candidate
+          python experiments/hokkaido-v30/source_probe.py
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          root=Path('candidate')
+          p=root/'brown_bear_source_CC0_candidate.glb'
+          info=json.loads((root/'source_probe.json').read_text())
+          assert info.get('verified_glb') and info.get('can_redistribute'),info
+          assert p.exists() and 6_000_000<p.stat().st_size<12_000_000
+          assert p.read_bytes()[:4]==b'glTF'
+          sha=hashlib.sha256(p.read_bytes()).hexdigest()
+          # Safety: pin to original contents inspected from official source.
+          assert sha=="c5a81d24099895be76427defc569040b5cdea990753707d2beedabf9eb1169be",sha
+          print("V30_PROVENANCE_PINNED",sha)
+          PY
+      - name: Inspect original 3D asset topology and dimensions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,hashlib,numpy as np
+          from pathlib import Path
+          import trimesh
+          root=Path('candidate')
+          src=root/'brown_bear_source_CC0_candidate.glb'
+          scene=trimesh.load(src,force='scene')
+          m=list(scene.geometry.values())
+          tri=sum(len(x.faces) for x in m if hasattr(x,'faces'))
+          vert=sum(len(x.vertices) for x in m if hasattr(x,'vertices'))
+          bounds=scene.bounds
+          dims=(bounds[1]-bounds[0]).tolist()
+          qa={'source_kind':'actual CC0 bear GLB, downloaded unchanged',
+              'source_url':'https://www.innerscene.com/tools/library/3d-parts/brown-bear-7da82cb5',
+              'license':'CC0 as declared by original publisher',
+              'file_sha256':hashlib.sha256(src.read_bytes()).hexdigest(),
+              'scene_mesh_count':len(m),
+              'total_triangles':tri,'total_vertices':vert,
+              'axis_aligned_dimensions_in_asset_units':dims,
+              'mesh_stats':[{'vertices':len(g.vertices),'triangles':len(g.faces),
+                'watertight':bool(g.is_watertight)}
+                for g in m if hasattr(g,'faces')],
+              'art_approved':False,
+              'woodcarving_adaptation_complete':False}
+          assert tri>100 and vert>50,qa
+          (root/'base_mesh_qa.json').write_text(json.dumps(qa,indent=2))
+          print("V30_REAL_BEAR_GEOMETRY",json.dumps(qa))
+          PY
+      - name: Install official Blender 5.2.2 LTS
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --retry-delay 3 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.2-linux-x64.tar.xz
+          mkdir -p "$RUNNER_TEMP/blender"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender" --strip-components=1
+          echo "$RUNNER_TEMP/blender" >> "$GITHUB_PATH"
+      - name: True Cycles four-view original source render (no image generation)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p candidate/base_views
+          blender --background --factory-startup --threads 4 --python-exit-code 1 \
+            --python scripts/render_official_glb_bpy.py -- \
+            candidate/brown_bear_source_CC0_candidate.glb candidate/base_views 2>&1 | tee candidate/render.log
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          root=Path('candidate')
+          items=['view_front_right_high.png','view_front.png','view_back_left_high.png','view_top.png']
+          canvas=Image.new('RGB',(1920,1440),'#ececf0')
+          for i,file in enumerate(items):
+            p=root/'base_views'/file
+            assert p.stat().st_size>12000,file
+            im=Image.open(p).convert('RGB')
+            canvas.paste(im,((i%2)*960,(i//2)*720))
+          canvas.save(root/'v30_real_cc0_brown_bear_four_views.png')
+          m=canvas.copy();m.thumbnail((960,720));m.save(root/'v30_real_cc0_brown_bear_mobile.jpg',quality=84,optimize=True)
+          PY
+      - name: Upload source, attribution metadata, real views and QA; NO promotion
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hokkaido-v30-CC0-brown-bear-raw-reference-NOT-APPROVED
+          path: candidate/
+          if-no-files-found: warn
+          retention-days: 30
