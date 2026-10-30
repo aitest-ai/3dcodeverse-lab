@@ -1,0 +1,113 @@
+name: MPFB Human Style Polish — Reuse Verified GLB
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/human-style-polish.yml'
+      - 'scripts/characters/polish_from_glb.py'
+      - 'scripts/characters/contact_sheet.py'
+  pull_request:
+    paths:
+      - '.github/workflows/human-style-polish.yml'
+      - 'scripts/characters/polish_from_glb.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  polish-human:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile procedural character script
+        run: python3 -m py_compile scripts/characters/polish_from_glb.py
+      - name: Restore VERIFIED source character GLB with packed CC0 textures
+        uses: actions/download-artifact@v4
+        with:
+          name: mpfb-real-human-15
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '40991317263'
+          github-token: ${{ github.token }}
+          path: inputs/baseline
+      - name: Ensure skinned 27MB MPFB source is present
+        run: |
+          test -s inputs/baseline/human_mpfb_blender5.glb
+          test "$(stat -c%s inputs/baseline/human_mpfb_blender5.glb)" -gt 20000000
+          sha256sum inputs/baseline/human_mpfb_blender5.glb
+      - name: Install headless Blender requirements
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Install Blender 5.2.3 from official upstream with verified SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl --fail --location --retry 4 -o ".tools/$FILE" "$BASE/$FILE"
+          curl --fail --location --retry 4 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          name="blender-5.2.3-linux-x64.tar.xz"
+          match=next(line for line in Path(".tools/SHA256").read_text().splitlines() if name in line)
+          checksum=re.search(r"[0-9a-fA-F]{64}",match).group().lower()
+          with open(".tools/"+name,"rb") as stream:
+              assert hashlib.file_digest(stream,"sha256").hexdigest()==checksum
+          print("Official SHA256 OK")
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Make THREE independent character styles without asset-pack downloads
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          BASE_GLB: inputs/baseline/human_mpfb_blender5.glb
+        run: |
+          set -euo pipefail
+          for style in studio street sport; do
+            echo "::group::Style $style"
+            HUMAN_STYLE="$style" ASSET_OUT="$PWD/outputs/human_$style" \
+              xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/polish_from_glb.py
+            /usr/bin/python3 scripts/characters/contact_sheet.py "outputs/human_$style"
+            echo "::endgroup::"
+          done
+      - name: Independently inspect GLB output geometry, skinning and materials
+        run: |
+          python3 - <<'PY'
+          import json,struct
+          from pathlib import Path
+          for style in ("studio","street","sport"):
+              folder=Path("outputs")/("human_"+style)
+              manifest=json.loads((folder/"asset_manifest.json").read_text())
+              report=json.loads((folder/"report.json").read_text())
+              p=folder/manifest["model_file"]
+              assert p.stat().st_size>10000000
+              with p.open("rb") as stream:
+                  magic,ver,length=struct.unpack("<4sII",stream.read(12))
+                  assert magic==b"glTF" and ver==2 and length==p.stat().st_size
+                  size,kind=struct.unpack("<I4s",stream.read(8))
+                  assert kind==b"JSON"
+                  gltf=json.loads(stream.read(size))
+              assert len(gltf.get("skins",[]))==1
+              assert len(gltf.get("images",[]))>=9
+              assert len(gltf.get("materials",[]))>=9
+              names=[m.get("name","") for m in gltf["meshes"]]
+              assert any("hairstrands" in x.lower() for x in names),names
+              assert report["bone_count"]>=50 and report["hair_remaining_vertices"]>300
+              assert report["height_m"]>1.0
+              assert (folder/"preview_contact_sheet.png").stat().st_size>10000
+              assert all((folder/("preview_"+x+".png")).stat().st_size>10000
+                        for x in ("front","side","back","isometric","face","outfit"))
+              counts={"skin_count":len(gltf["skins"]), "materials":len(gltf["materials"]),
+                      "textures":len(gltf["images"]), "meshes":len(gltf["meshes"])}
+              (folder/"validation.json").write_text(json.dumps(counts,indent=2))
+              print("CHARACTER_STYLE_VALIDATED",style,counts)
+          PY
+      - name: Deliver 3 GLBs, 3 BLEND files, 18 image views and 3 contact sheets
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: human-polish-${{ github.run_number }}
+          path: outputs/
+          retention-days: 14
+          if-no-files-found: warn
