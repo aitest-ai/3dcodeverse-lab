@@ -81,24 +81,28 @@ try:
                  "redirect_host":urllib.parse.urlsplit(resolved).hostname,
                  "first_bytes_hex":glb[:24].hex(),
                  "prefix_text":glb[:160].decode("utf-8","replace") if glb[:4]!=b"glTF" else "GLB_BINARY"}
-            if len(glb)!=int(public_part.get("size",0)):
-                raise RuntimeError("Download byte length different from the creator's public published size")
+            actual_size=len(glb)
             sha=hashlib.sha256(glb).hexdigest()
-            if sha!=public_part["fileHash"]:
-                raise RuntimeError("SHA256 did not match the official published asset hash: "+sha)
+            size_matches=actual_size==int(public_part.get("size",0))
+            hash_matches=sha==public_part["fileHash"]
+            report["published_vs_downloaded"]={
+                 "published_size":public_part["size"],"actual_size":actual_size,
+                 "size_matches":size_matches,"sha256_actual":sha,
+                 "sha256_published":public_part["fileHash"],"sha256_matches":hash_matches
+            }
             magic,version,length=struct.unpack_from("<4sII",glb,0)
             if magic!=b"glTF" or version!=2 or length!=len(glb):raise RuntimeError("Not valid GLB")
             n,kind=struct.unpack_from("<I4s",glb,12)
             if kind!=b"JSON":raise RuntimeError("No GLB JSON chunk")
             d=json.loads(glb[20:20+n])
-            report["download_status"]="VERIFIED_PUBLIC_CC0_SOURCE_BYTES"
+            report["download_status"]="VERIFIED_PUBLIC_CC0_SOURCE_BYTES" if size_matches and hash_matches else "PUBLIC_DOWNLOAD_METADATA_MISMATCH_QUARANTINED"
             report["model"]={"url":download_url,"resolved_url":resolved,"sha256":sha,
                      "bytes":len(glb),"meshes":len(d.get("meshes",[])),
                      "skins":len(d.get("skins",[])),"animations":len(d.get("animations",[])),
                      "materials":len(d.get("materials",[])),"nodes":len(d.get("nodes",[])),
                      "triangles":sum(d["accessors"][p["indices"]]["count"]//3
                        for m in d.get("meshes",[]) for p in m.get("primitives",[]) if "indices" in p)}
-            (OUT/"standing_horse_source.glb").write_bytes(glb)
+            (OUT/"standing_horse_quarantine.glb").write_bytes(glb)
         except Exception as err:
             report["official_public_download_error"]=type(err).__name__+": "+str(err)
 
