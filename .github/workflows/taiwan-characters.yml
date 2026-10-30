@@ -79,7 +79,7 @@ jobs:
           mkdir -p outputs/taiwan_characters
           for id in you boss uncle jie oldman cop shui bro; do
             echo "::group::Build $id"
-            CHARACTER_ID="$id" xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python scripts/taiwan_characters/build_one.py
+            CHARACTER_ID="$id" xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/build_one.py
             echo "::endgroup::"
           done
       - name: Independently validate GLBs and pack exact deliverables
