@@ -47,3 +47,13 @@
 這次的 4 人 GLB 尚未驗證 8 個 ARKit morphs，未完成動態骨架與衣物測試，禁止當成正式 8 人包。
 
 開發分支 feat/taiwan-4-role-cc0-wardrobe-qa，PR #26，暫時 Draft。
+## 2026-10-30：V10 → V12 真實 Blender 美術監工結果
+
+- **V9 原型**：4 人 GLB 及四視角真實 Cycles 圖均完成，但主角與外送員外觀相似；外送員衣襬黑色破口，老闆娘年齡感弱。
+- **V10 監工**：改外送員髮型 short03，結果厚瀏海遮一眼；雖換 toigo_basic_tucked_t-shirt，但在腰部露出明顯皮膚。因此 V10 外送員美術拒收。
+- **V11 監工**：改 short02 不遮眼，嘗試向下延長實際 T-shirt 網格 7.8 cm，出現鋸齒狀衣緣，拒收此衣襬變形演算法。原生 UV、骨架權重保留並不能彌補幾何缺陷。
+- **V12 監工**：還原完整原始 T-shirt 幾何；改沿身體法線重新擬合貨物長褲腰部，確實修改 74 個頂點，將原貨物褲腰高度從 1.00417m 提到 1.07376m（增加 6.96cm），遮掩腰部露出的皮膚。實際 Cycles 全身圖已經改善，但仍留有深色接縫。**V12 只列測試候選，不得標示最終美術核准。**
+- **V12 Actions 成功**：https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41060425286。四 GLB（boss 3,731,996 B；jie 3,610,768 B；uncle 3,377,824 B；you 3,830,988 B）加 16 Blender PNG 和 4 報告，均有 53 bones、單人物確實有 13,380 原始身體頂點、2 件原生 CC0 上下身服裝、內嵌貼圖 <=512px、GLB <6MB。
+- **獨立臉幾何驗證**：同一頂點拓樸，消除每人頭頂高度平移後比較 head-front face，pairwise RMS 1.035cm–2.248cm；不等於人類一定能辨識角色。you vs jie 只有 1.035cm，外貌仍相近。
+- **發布阻擋**：四 GLB 都沒有 8 個原本要求的 ARKit facial blendshapes（glTF morph target count = 0）。尚未驗證走路/說話動畫、動態衣服碰撞，另外 4 位人物也未生成。 
+- **可後續嘗試但尚未整合**：MakeHuman 2026-10-24 更新的 Hair editor asset pack、Faceunits 01 ARKit CC0 pack、官方 High-detail hair 並逐件查授權；原生 512px 低負擔 NPC 版應與高精緻近景 LOD0 分開驗收。
