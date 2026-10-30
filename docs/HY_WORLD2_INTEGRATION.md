@@ -93,12 +93,28 @@ const world = await loadHYWorld("/worlds/scene/world_manifest.json", scene);
 
 既有 `scripts/blender5/validate_glb.py` 只驗證 GLB，**不適用直接驗證 Gaussian PLY**。日後如從有面的 PLY 轉成 GLB，才使用該驗證器與視覺驗收。
 
+
+## Blender 5.2 轉為 GLB（只支援真正有面的 PLY）
+
+確認來源 PLY 含 face，並先量測來源軸向與比例，再在**已安裝 Blender 5.2 的電腦**執行：
+
+```bash
+blender -b --factory-startup --python scripts/blender5/hyworld_mesh_to_glb.py -- \\
+  --input /path/to/scene/render_results/global_mesh.ply \\
+  --out outputs/hyworld-test \\
+  --asset-id hyworld-test --up-axis Z --meters-per-unit 1.0
+
+python3 scripts/blender5/validate_glb.py outputs/hyworld-test
+```
+
+`--up-axis Z`、`--meters-per-unit 1.0` **只是命令格式範例，並非表示 HY-World 的輸出必定是 Z 軸朝上且單位為公尺**。未確認前不要當作實景場景使用。輸出的 GLB 經結構驗證後，仍須進行材質、尺度、碰撞和視覺檢核。這個腳本不接收 3DGS 或只有點的 PLY。
+
 ## 尚未完成的事情
 
 - 未下載 HY-World 模型權重、未使用 CUDA GPU 跑 WorldMirror 或 WorldStereo。
 - 未用實際 HY-World 匯出檔完成瀏覽器渲染驗收。
 - 未校正相機 OpenCV → Three.js 的完整座標矩陣、比例與參考原點。
-- 尚未建立 NavMesh、物理碰撞、第一人稱走路或完整 GLB 轉檔作業。
+- 尚未建立 NavMesh、物理碰撞、第一人稱走路；Blender PLY → GLB 腳本已撰寫但尚未用真實輸出運行驗收。
 - 本輪 CI 只進行 Python 單元測試與 JavaScript 語法檢查；**不是畫質測試**。
 
 ## 授權與資料治理
@@ -118,7 +134,7 @@ HY-World 2.0 採 Tencent HY-World 2.0 Community License，不是 MIT/Apache 授�
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_hyworld2_bridge.py' -v
-python3 -m py_compile scripts/hyworld2/pack_world.py
+python3 -m py_compile scripts/hyworld2/pack_world.py scripts/blender5/hyworld_mesh_to_glb.py
 node --input-type=module --check < examples/threejs/load-hy-world.js
 ```
 
