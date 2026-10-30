@@ -281,6 +281,37 @@ for view,(pos,target,scale) in views.items():
     camera_data.ortho_scale=scale
     scene.render.filepath=str(OUT/(TAG+"_"+view+".png"))
     bpy.ops.render.render(write_still=True)
+# Export a real 3D test asset with original MPFB game-engine skeleton,
+# ORIGINAL fitted eye/teeth/hair/clothes objects, and skinning.
+# Only the manually selected hero/boss candidates are enabled by CI.
+glb_path=None
+if os.environ.get("FACE_EXPORT_GLB")=="1":
+    import struct
+    rig["character_id"]=ID
+    rig["author"]="aitest-ai MPFB face QA pilot"
+    rig["provenance"]="MPFB 2.0 + original MakeHuman CC0 system asset pack"
+    rig["review"]="STRUCTURE_ONLY_ART_AND_EXPRESSIONS_PENDING"
+    bpy.ops.object.select_all(action="DESELECT")
+    for meshobj in [body,rig,*attached]:
+        meshobj.select_set(True)
+    bpy.context.view_layer.objects.active=rig
+    glb_path=OUT/(TAG+".glb")
+    bpy.ops.export_scene.gltf(filepath=str(glb_path),export_format="GLB",
+                use_selection=True,export_skins=True,
+                export_animations=False,export_morph=True,
+                export_morph_normal=False,export_cameras=False,
+                export_lights=False,export_extras=True)
+    if glb_path.stat().st_size<200000:
+        raise RuntimeError("3D pilot unexpectedly small")
+    with glb_path.open("rb") as fh:
+        magic,ver,size=struct.unpack("<4sII",fh.read(12))
+        jsonlen,chunk=struct.unpack("<I4s",fh.read(8))
+        assert magic==b"glTF" and ver==2 and size==glb_path.stat().st_size and chunk==b"JSON"
+        gltf=json.loads(fh.read(jsonlen))
+    assert len(gltf.get("skins",[]))>=1,"Missing animated skeleton"
+    print("FACE_V5_GLB_PILOT",ID,glb_path.stat().st_size,
+          "skins",len(gltf["skins"]),"meshes",len(gltf.get("meshes",[])))
+
 # This pilot isn't claiming the export-ready expressions are complete;
 # actual faces must pass visual review BEFORE the full GLB pipeline is enabled.
 report={"character":ID,"status":"FACE_ONLY_PILOT_REQUIRES_VISUAL_APPROVAL",
@@ -294,6 +325,8 @@ report={"character":ID,"status":"FACE_ONLY_PILOT_REQUIRES_VISUAL_APPROVAL",
         "views":[TAG+"_"+x+".png" for x in views],
         "skin_asset":skin_name,"skin_materials":skin_materials,
         "shoe_asset":shoes_path.name,"output_tag":TAG,
+        "pilot_glb":glb_path.name if glb_path else None,
+        "pilot_glb_bytes":glb_path.stat().st_size if glb_path else None,
         "cloth_skin_fitting":{"reprojected":fit_count,"under_skin_before":initial_negative,
         "maximum_correction_m":greatest_offset,"clearance_m":clearance},
         "note":"Face-only QA; no proof yet of acceptable art, expressions, garments or final license metadata."}
