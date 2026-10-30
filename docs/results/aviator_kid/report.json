@@ -4,16 +4,105 @@
   "method": "procedural Blender Python (original geometry)",
   "bones": 17,
   "mesh_objects": 47,
-  "polygon_count": 5688,
+  "polygon_count": 5108,
   "height_m_rest_pose_with_cap": 1.476,
-  "glb_bytes": 414708,
-  "clips": ["Cheer", "Idle", "Run", "Salute", "Sit", "Walk", "Wave"],
-  "measurements": {
-    "Walk": {"knee_flex_max_deg": 70.93, "min_sole_z_m": -4.9e-08, "hand_torso_clearance_min": 1.2885, "max_stance_slip_m": 0.0071, "loop_closure_error_m": 0.0},
-    "Run": {"knee_flex_max_deg": 90.16, "min_sole_z_m": -4.2e-08, "hand_torso_clearance_min": 1.0162, "max_stance_slip_m": 0.0066, "loop_closure_error_m": 0.0},
-    "Idle": {"min_sole_z_m": -2.4e-08, "loop_closure_error_m": 0.0},
-    "Cheer": {"knee_flex_max_deg": 55.15, "min_sole_z_m": -4.8e-09, "loop_closure_error_m": 0.0},
-    "Sit": {"knee_flex_max_deg": 45.86, "min_sole_z_m": 0.012}
+  "glb_bytes": 376652,
+  "clips": [
+    "Cheer",
+    "Idle",
+    "Run",
+    "Salute",
+    "Sit",
+    "Walk",
+    "Wave"
+  ],
+  "joint_limits_deg": {
+    "knee_flex": [
+      0,
+      140
+    ],
+    "elbow_flex": [
+      0,
+      150
+    ],
+    "thigh_swing": [
+      -35,
+      100
+    ],
+    "shoulder_swing": [
+      -60,
+      180
+    ],
+    "spine_lean": [
+      -20,
+      35
+    ],
+    "head_nod": [
+      -40,
+      40
+    ]
   },
-  "note": "Condensed copy of the local run (Blender 5.2.3, SHA256-verified). Not produced by GitHub Actions."
+  "measurements": {
+    "Walk": {
+      "knee_flex_max_deg": 70.93402553364633,
+      "thigh_swing_max_deg": 44.41878721264032,
+      "thigh_swing_min_deg": -24.625601205849982,
+      "elbow_flex_max_deg": 25.023746099143278,
+      "shoulder_swing_max_deg": 31.340048980874325,
+      "min_sole_z_m": 0.0029999534599483013,
+      "hand_torso_clearance_min": 1.2885163303261988,
+      "max_stance_slip_m": 0.0071,
+      "loop_closure_error_m": 0.0
+    },
+    "Run": {
+      "knee_flex_max_deg": 90.1618417547782,
+      "thigh_swing_max_deg": 66.18438905976036,
+      "thigh_swing_min_deg": -27.47695372340804,
+      "elbow_flex_max_deg": 79.15671943070554,
+      "shoulder_swing_max_deg": 53.06629196264348,
+      "min_sole_z_m": 0.0029999609105288982,
+      "hand_torso_clearance_min": 1.0162070411415947,
+      "max_stance_slip_m": 0.0066,
+      "loop_closure_error_m": 0.0
+    },
+    "Idle": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.1798182983671337,
+      "loop_closure_error_m": 0.0
+    },
+    "Wave": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.0900061031572617
+    },
+    "Salute": {
+      "min_sole_z_m": 0.0029999788384884596,
+      "hand_torso_clearance_min": 1.0900061031572617
+    },
+    "Cheer": {
+      "knee_flex_max_deg": 55.150095420953484,
+      "min_sole_z_m": 0.0029999983962625265,
+      "hand_torso_clearance_min": 1.7140842596544128,
+      "loop_closure_error_m": 0.0
+    },
+    "Sit": {
+      "knee_flex_max_deg": 45.858834518116424,
+      "min_sole_z_m": 0.012928809970617294,
+      "hand_torso_clearance_min": 2.3881865246951297
+    }
+  },
+  "automated_checks_passed": [
+    "GLB has one skin and all required clips",
+    "walk/run stance foot slip within threshold (evaluated on deformed rig)",
+    "sole never below ground on Idle/Walk/Run/Cheer",
+    "knee flexion within limit",
+    "hands clear of torso in Walk/Run"
+  ],
+  "not_checked_automatically": [
+    "visual quality / likeness",
+    "cloth-like secondary motion (none exists)",
+    "armor-style mesh interpenetration beyond hand vs torso",
+    "in-engine retargeting",
+    "performance on real GPUs"
+  ],
+  "foot_ground_method": "2-bone sagittal IK per frame with constant-velocity stance foot (no runtime IK); toe/heel pitch is keyed"
 }

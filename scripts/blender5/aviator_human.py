@@ -48,7 +48,7 @@ def use_action(name):
     return a
 
 # ---------------------------------------------------------------- hair (rigged-to-head glTF reuses the same bone names)
-hair_name = os.environ.get("HAIR", "Hair_SimpleParted" if CHAR == "male" else "Hair_Buns")
+hair_name = os.environ.get("HAIR", "Hair_SimpleParted" if CHAR == "male" else "Hair_BuzzedFemale")
 before = set(bpy.data.objects)
 bpy.ops.import_scene.gltf(filepath=str(SRC / "ubc/Hairstyles/Rigged to Head Bone/glTF (Godot -Unreal)" / (hair_name + ".gltf")))
 new = [o for o in bpy.data.objects if o not in before]
@@ -96,19 +96,22 @@ mat("cap", 0x1D3A5F, .7, 0)
 # ---- ready-made outfits: Quaternius "Modular Character Outfits - Fantasy" [Standard] (CC0), same UE skeleton -> re-bound to our rig
 OUTFIT_ROOT = SRC / "outfits/Modular Character Outfits - Fantasy[Standard]"
 PRE = "Male" if CHAR == "male" else "Female"
-OUTFITS = {1: "農夫襯衫（米色）", 2: "農夫襯衫（藍灰）", 3: "遊俠裝（綠）", 4: "遊俠裝（褐紅）"}
-OUTFIT_SRC = {1: ("Peasant", None), 2: ("Peasant", "Peasant/T_Peasant_2_BaseColor.png"), 3: ("Ranger", None), 4: ("Ranger", "Ranger/T_Ranger_3_BaseColor.png")}
+OUTFITS = {1: "卡其飛行服", 2: "機師制服", 3: "皮夾克飛行員", 4: "農夫襯衫"}
+# pilot looks = the CC0 outfit meshes with re-coloured atlases (outfits/make_recolor.py: UV-island based colourize, keeps painted shading)
+RC = SRC / "outfits/recolor"
+OUTFIT_SRC = {1: ("Peasant", RC / ("%s_Peasant_khaki.png" % PRE), ()), 2: ("Peasant", RC / ("%s_Peasant_navy.png" % PRE), ()),
+              3: ("Ranger", RC / ("%s_Ranger_leather.png" % PRE), ("Pauldron", "Bracer", "Belt")), 4: ("Peasant", None, ())}
 SHARED_IMG = {}
 def base_name(n): return re.sub(r"\.\d+$", "", n)
 boots = None
-for oi, (kind, variant) in OUTFIT_SRC.items():
+for oi, (kind, variant, skip) in OUTFIT_SRC.items():
     before = set(bpy.data.objects)
     bpy.ops.import_scene.gltf(filepath=str(OUTFIT_ROOT / "Exports/glTF (Godot-Unreal)/Outfits" / ("%s_%s.gltf" % (PRE, kind))))
     new_names = [o.name for o in bpy.data.objects if o not in before]
     for nm in [n for n in new_names if n.startswith("Icosphere")]: bpy.data.objects.remove(bpy.data.objects[nm], do_unlink=True)
     new_names = [n for n in new_names if n in bpy.data.objects]
     for o in [bpy.data.objects[n] for n in new_names if bpy.data.objects[n].type == 'MESH']:
-        if "Hood" in o.name: bpy.data.objects.remove(o, do_unlink=True); continue
+        if "Hood" in o.name or any(k in o.name for k in skip): bpy.data.objects.remove(o, do_unlink=True); continue
         part = o.name.split("_", 2)[2] if o.name.count("_") >= 2 else o.name
         o.name = "o%d_%s" % (oi, re.sub(r"[^A-Za-z0-9]+", "", part)); o.parent = rig; o.matrix_parent_inverse = Matrix.Identity(4)
         for m in o.modifiers:
@@ -118,7 +121,7 @@ for oi, (kind, variant) in OUTFIT_SRC.items():
                 if n.type != 'TEX_IMAGE' or n.image is None: continue
                 key = base_name(n.image.name)
                 if variant and key == "T_%s_BaseColor" % kind:
-                    vim = bpy.data.images.get(os.path.basename(variant)) or bpy.data.images.load(str(OUTFIT_ROOT / "Textures" / variant))
+                    vim = bpy.data.images.get(variant.name) or bpy.data.images.load(str(variant))
                     n.image = vim; key = base_name(vim.name)
                     vim.colorspace_settings.name = 'sRGB'
                 if key in SHARED_IMG and SHARED_IMG[key] is not n.image: n.image = SHARED_IMG[key]
@@ -190,20 +193,23 @@ if hv:
 else:
     hy = 0.11; hcz = head.z + 0.1; hcy = head.y; htop = head.z + 0.2
 FRONT = -1.0  # character faces -Y in Blender
-gz = htop - 0.032   # goggle band height (on the forehead, above the brows)
-rigid_part("goggle_strap", "Head", torus((0, hcy, gz), 1.0, 0.009, sx=hx * 1.10, sy=hy * 1.10), "goggle_strap")
+CZ = htop - 0.045                    # cap sphere centre; rim at CZ-0.03
+CRX, CRY, CRZ = hx * 1.28, hy * 1.22, 0.11
+gz = CZ - 0.005                       # goggle band sits on the cap (pilot style)
+rigid_part("goggle_strap", "Head", torus((0, hcy + 0.004, gz), 1.0, 0.009, sx=CRX * 1.03, sy=CRY * 1.03), "goggle_strap")
 for sg in (1, -1):
-    rigid_part("goggle_rim_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.42, hcy + FRONT * hy * 1.04, gz + 0.004), (0.034, 0.014, 0.034), 16, 10), "buckle")
-    rigid_part("goggle_lens_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.42, hcy + FRONT * hy * 1.10, gz + 0.004), (0.028, 0.010, 0.028), 16, 10), "goggle_lens")
-# pilot cap (optional): hemisphere over the hair
-capbm = ell((0, hcy + 0.004, htop - 0.07), (hx * 1.16, hy * 1.14, 0.105), 24, 12)
-bmesh.ops.delete(capbm, geom=[v for v in capbm.verts if v.co.z < htop - 0.07 - 0.02], context='VERTS')
+    rigid_part("goggle_rim_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.46, hcy + 0.004 + FRONT * CRY * 1.00, gz + 0.004), (0.036, 0.016, 0.036), 16, 10), "buckle")
+    rigid_part("goggle_lens_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.46, hcy + 0.004 + FRONT * CRY * 1.06, gz + 0.004), (0.030, 0.011, 0.030), 16, 10), "goggle_lens")
+# pilot cap (optional): hemisphere that fully covers the hair
+capbm = ell((0, hcy + 0.004, CZ), (CRX, CRY, CRZ), 24, 12)
+bmesh.ops.delete(capbm, geom=[v for v in capbm.verts if v.co.z < CZ - 0.03], context='VERTS')
 rigid_part("cap", "Head", capbm, "cap")
-rigid_part("cap_brim", "Head", ell((0, hcy + FRONT * hy * 1.05, htop - 0.085), (hx * 0.8, 0.07, 0.012), 16, 8), "cap")
-rigid_part("scarf", "neck_01", torus((0, neck.y, neck.z + 0.045), 1.0, 0.026, sx=0.082, sy=0.085), "scarf")
-rigid_part("scarf_tail", "spine_03", ell((0.0, sp3.y + 0.085, sp3.z + 0.02), (0.035, 0.012, 0.15), 10, 8), "scarf")
+rigid_part("cap_brim", "Head", ell((0, hcy + 0.004 + FRONT * CRY * 1.02, CZ - 0.034), (hx * 0.85, 0.075, 0.012), 16, 8), "cap")
+# scarf: a thick ring resting on the collar + a tail hanging down the chest
+rigid_part("scarf", "neck_01", torus((0, neck.y, neck.z - 0.004), 1.0, 0.032, sx=0.098, sy=0.104), "scarf")
+rigid_part("scarf_tail", "spine_03", ell((0.055, sp3.y + FRONT * 0.10, sp3.z + 0.115), (0.022, 0.010, 0.085), 10, 8), "scarf")
 
-trim_body(NECKZ - 0.05)   # clothes provide everything below the neck; keep only head + neck of the base body
+trim_body(NECKZ - 0.03)   # clothes provide everything below the neck; keep only head + neck of the base body
 
 # ---------------------------------------------------------------- textures: downscale for the web (JPEG for opaque maps, PNG where alpha matters)
 for im in bpy.data.images:

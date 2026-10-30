@@ -1,7 +1,7 @@
 {
   "asset_id": "aviator_human_f",
   "blender_version": "5.2.3 LTS",
-  "glb_bytes": 7416460,
+  "glb_bytes": 5460612,
   "clips": [
     "Cheer",
     "Drive",
@@ -108,7 +108,7 @@
       "min_sole_z_after_m": 0.0
     }
   },
-  "height_m": 1.8,
+  "height_m": 1.83,
   "meshes": [
     "acc_cap",
     "acc_cap_brim",
@@ -133,27 +133,19 @@
     "o2_Body",
     "o2_Feet",
     "o2_Legs",
-    "o3_AccPauldrons",
     "o3_Arms",
-    "o3_ArmsBracer",
     "o3_Body",
-    "o3_BodyBelt1",
-    "o3_BodyBelt2",
     "o3_Feet",
     "o3_Legs",
-    "o4_AccPauldrons",
     "o4_Arms",
-    "o4_ArmsBracer",
     "o4_Body",
-    "o4_BodyBelt1",
-    "o4_BodyBelt2",
     "o4_Feet",
     "o4_Legs"
   ],
   "not_checked_automatically": [
     "visual quality / likeness",
-    "cloth interpenetration beyond the 1 cm offset shell",
+    "cloth interpenetration (outfits were authored for a slightly different body; only visually reviewed)",
     "real-GPU performance"
   ],
-  "method": "CC0 body + CC0 mocap-style clips (Quaternius) retargeted by shared bone names; outfit generated from the body mesh"
+  "method": "CC0 body + CC0 mocap-style clips (Quaternius) retargeted by shared bone names; ready-made CC0 outfits re-bound to the same skeleton"
 }

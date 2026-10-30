@@ -2,7 +2,7 @@
 
 Run (from repository root):  blender -b --factory-startup --python scripts/blender5/aviator_kid.py
 Outputs (in ./outputs or $ASSET_OUT_DIR):
-    aviator_kid.blend  aviator_kid.glb  asset_manifest.json  report.json
+    aviator_kid.blend  aviator_kid.glb  asset_manifest.json  report.json  (+ preview PNGs if rendering works)
 
 Design rules (see docs/CHARACTER_PIPELINE.md):
   * original procedural geometry only; units = meters; character faces -Y in Blender (=> +Z in glTF), Z up.
@@ -127,6 +127,27 @@ def torus(name, bone, center, R, r, mat, acc=False):
     md = ob.modifiers.new("Armature", 'ARMATURE'); md.object = rig; ob.parent = rig
     PARTS.append((ob.name, ob)); return ob
 
+def lathe(name, bone, center, profile, mat, sx=1.0, sy=1.0, seg=20, rot=None, acc=False):
+    """soft-edged tapered tube (cloth-like, not a balloon): profile = [(dz, radius), ...] from bottom to top, rings joined, ends capped."""
+    bm = bmesh.new(); rings = []
+    for dz, r in profile:
+        rings.append([bm.verts.new((r * sx * math.cos(2 * math.pi * i / seg), r * sy * math.sin(2 * math.pi * i / seg), dz)) for i in range(seg)])
+    for a, b in zip(rings[:-1], rings[1:]):
+        for i in range(seg): bm.faces.new((a[i], a[(i + 1) % seg], b[(i + 1) % seg], b[i]))
+    for ring, up in ((rings[0], False), (rings[-1], True)):
+        c = bm.verts.new((0, 0, profile[0 if not up else -1][0]))
+        for i in range(seg): bm.faces.new((ring[(i + 1) % seg], ring[i], c) if not up else (ring[i], ring[(i + 1) % seg], c))
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    if rot is not None: bmesh.ops.rotate(bm, verts=bm.verts, cent=(0, 0, 0), matrix=rot)
+    bmesh.ops.translate(bm, verts=bm.verts, vec=center)
+    for f in bm.faces: f.smooth = True
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    ob = bpy.data.objects.new(("acc_" if acc else "") + name, me); bpy.context.collection.objects.link(ob)
+    ob.data.materials.append(MATS[mat])
+    vg = ob.vertex_groups.new(name=bone); vg.add(list(range(len(me.vertices))), 1.0, 'REPLACE')
+    md = ob.modifiers.new("Armature", 'ARMATURE'); md.object = rig; ob.parent = rig
+    PARTS.append((ob.name, ob)); return ob
+
 E = ellipsoid
 # --- head
 E("head", "head", (0, 0, 1.19), (.205, .2, .205), "skin", 24, 14)
@@ -145,9 +166,9 @@ for sg in (1, -1):
     E("goggle_lens_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.19, 1.305), (.052, .03, .052), "goggle_lens", 14, 8, acc=True)
     E("goggle_rim_" + ("L" if sg > 0 else "R"), "head", (sg * .07, -.178, 1.305), (.062, .02, .062), "accent", 14, 8, acc=True)
 # --- torso, scarf, pack, emblem
-E("torso", "spine", (0, 0, .77), (.172, .13, .2), "jacket", 20, 12)
-E("waist_trim", "hips", (0, 0, .665), (.178, .136, .035), "jacket_trim", 20, 8)
-E("pelvis", "hips", (0, 0, .62), (.165, .125, .09), "pants", 18, 10)
+lathe("torso", "spine", (0, 0, .77), [(-.215, .150), (-.205, .172), (-.12, .176), (.05, .172), (.14, .162), (.19, .132), (.215, .075)], "jacket", sx=1.0, sy=.78, seg=24)   # flared jacket hem, squared shoulders
+lathe("waist_trim", "hips", (0, 0, .575), [(-.02, .171), (-.012, .180), (.012, .180), (.02, .171)], "jacket_trim", sx=1.0, sy=.80, seg=24)   # jacket hem band
+E("pelvis", "hips", (0, 0, .60), (.150, .115, .08), "pants", 18, 10)
 E("neck", "neck", (0, 0, .93), (.06, .06, .05), "skin", 10, 6)
 torus("scarf", "spine", (0, 0, .915), .115, .042, "scarf", acc=True)
 E("scarf_tail", "spine", (-.07, .105, .85), (.04, .02, .11), "scarf", 10, 8, rot=Ry(0.15), acc=True)
@@ -156,19 +177,19 @@ E("emblem_wingL", "spine", (.125, -.124, .835), (.04, .008, .012), "accent", 10,
 E("pack", "spine", (0, .155, .78), (.13, .075, .155), "pack", 16, 10, acc=True)
 for sg in (1, -1):
     E("pack_strap_" + ("L" if sg > 0 else "R"), "spine", (sg * .1, -.015, .835), (.025, .125, .12), "jacket_trim", 8, 6, acc=True)
-# --- legs
+# --- legs: straight trouser legs over knee-high boots
 for sd, sg in (("L", 1), ("R", -1)):
-    E("thigh_" + sd, "thigh." + sd, (sg * S, 0, .47), (.082, .082, .17), "pants", 14, 10)
-    E("shin_" + sd, "shin." + sd, (sg * S, 0, .22), (.067, .067, .15), "pants", 14, 10)
-    E("boot_cuff_" + sd, "shin." + sd, (sg * S, 0, .135), (.077, .077, .06), "boot", 14, 8)
-    E("boot_" + sd, "foot." + sd, (sg * S, -.045, .05), (.08, .13, .05), "boot", 16, 10)
-# --- arms
+    lathe("thigh_" + sd, "thigh." + sd, (sg * S, 0, .48), [(-.17, .066), (-.16, .072), (.14, .082), (.17, .074)], "pants", seg=18)
+    lathe("shin_" + sd, "shin." + sd, (sg * S, 0, .25), [(-.12, .064), (-.11, .068), (.12, .066), (.15, .062)], "pants", seg=18)
+    lathe("boot_cuff_" + sd, "shin." + sd, (sg * S, 0, .12), [(-.04, .070), (-.035, .078), (.035, .078), (.045, .071)], "boot", seg=18)
+    E("boot_" + sd, "foot." + sd, (sg * S, -.05, .045), (.074, .125, .042), "boot", 16, 10)
+# --- arms: tapered sleeves, no ball shoulders
 for sd, sg in (("L", 1), ("R", -1)):
-    E("upper_arm_" + sd, "upper_arm." + sd, (sg * .2, 0, .77), (.06, .06, .115), "jacket", 14, 10, rot=Ry(sg * -0.22))
-    E("shoulder_" + sd, "upper_arm." + sd, (sg * .17, 0, .86), (.068, .068, .068), "jacket", 12, 8)
-    E("forearm_" + sd, "forearm." + sd, (sg * .215, 0, .565), (.053, .053, .105), "jacket", 14, 10)
-    E("cuff_" + sd, "forearm." + sd, (sg * .215, 0, .475), (.057, .057, .02), "jacket_trim", 14, 6)
-    E("glove_" + sd, "hand." + sd, (sg * .215, 0, .43), (.06, .058, .066), "glove", 14, 10)
+    lathe("upper_arm_" + sd, "upper_arm." + sd, (sg * .2, 0, .765), [(-.115, .052), (-.105, .058), (.10, .064), (.125, .06)], "jacket", seg=16, rot=Ry(sg * -0.22))
+    E("shoulder_" + sd, "upper_arm." + sd, (sg * .172, 0, .855), (.058, .058, .056), "jacket", 12, 8)
+    lathe("forearm_" + sd, "forearm." + sd, (sg * .215, 0, .56), [(-.10, .046), (-.09, .052), (.09, .056), (.11, .054)], "jacket", seg=16)
+    lathe("cuff_" + sd, "forearm." + sd, (sg * .215, 0, .465), [(-.016, .050), (-.012, .058), (.012, .058), (.016, .050)], "jacket_trim", seg=16)
+    E("glove_" + sd, "hand." + sd, (sg * .215, 0, .43), (.054, .05, .058), "glove", 14, 10)
 
 HEAD_SCALE = 1.14   # Q proportions: scale every head-bone mesh uniformly about the neck top
 for _n, _ob in PARTS:
