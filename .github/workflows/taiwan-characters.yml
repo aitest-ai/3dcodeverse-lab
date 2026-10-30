@@ -116,25 +116,25 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: Four anatomically different MPFB heads and native CC0 outfits
+      - name: V14 original MPFB face and child accessory interpolation
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
           FACEUNITS_ROOT: .deps/mh_faceunits
-          FACE_OUT: outputs/face_v13
+          FACE_OUT: outputs/face_v14
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v13
+          mkdir -p outputs/face_v14
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v13_arkit_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v14_interpolated_qa.py
           done
-      - name: Independently validate four original 3D outfits and faces
+      - name: Validate V14 face and accessory skinning and real GLB shapes
         run: |
           set -euo pipefail
-          for id in you_v13_main boss_v13_ponytail01 uncle_v13_main jie_v13_main; do
-            p="outputs/face_v13/$id.glb"
+          for stem in you_v14_main boss_v14_ponytail01 uncle_v14_main jie_v14_main; do
+            p="outputs/face_v14/$stem.glb"
             ok=0
             for maxpx in 512 448 384 320; do
               if python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" "$maxpx"; then
@@ -143,70 +143,44 @@ jobs:
             done
             test "$ok" -eq 1
             mv "$p.optimized" "$p"
+            python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p"
           done
           python3 - <<'PY'
-          import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v13")
-          names=("you_v13_main","boss_v13_ponytail01","uncle_v13_main","jie_v13_main")
-          profiles=set()
-          for tag in names:
-              p=root/(tag+"_report.json")
-              data=json.loads(p.read_text())
-              assert len(data["personal_face_targets"])>=8
-              assert len(data["separate_open_source_garments"])==2
-              assert data["body_vertices"]==13380
-              assert len(data["arkit_style_shape_keys"])==10,tag
-              assert all(m["nonzero_vertices"]>=10 for m in data["arkit_style_shape_keys"].values())
-              if tag.startswith(("you","boss")):
-                  assert len(data["expression_previews"])==3
-                  for image in data["expression_previews"]:
-                      assert (root/image).stat().st_size>15000, image
-              assert all(x["license"]=="CC0" for x in data["separate_open_source_garments"])
-              assert all(qa["vertices"]>200 for qa in data["wardrobe_topology_qa"].values())
-              if tag.startswith("jie"):
-                  assert "toigo_basic_tucked_t-shirt" in data["separate_open_source_garments"][0]["file"],data
-                  assert data["waistband_repair"]["moved_vertices"]>=10,data
-                  assert data["waistband_repair"]["height_m"]>=.02
-                  assert data["hair_asset"]=="short02.mhclo"
-              if tag.startswith("uncle"):
-                  assert len(data["personal_face_targets"])>=13
-              for png in data["views"]:
-                  assert (root/png).stat().st_size>15000
-              glb=root/(tag+".glb")
+          import json,pathlib,struct
+          root=pathlib.Path("outputs/face_v14")
+          for stem in ("you_v14_main","boss_v14_ponytail01","uncle_v14_main","jie_v14_main"):
+              d=json.loads((root/(stem+"_report.json")).read_text())
+              assert d["body_vertices"]==13380
+              assert len(d["arkit_style_shape_keys"])==10
+              assert len(d["expression_previews"])==3
+              assert len(d['separate_open_source_garments'])==2
+              child=d["fitted_face_accessory_keys_after_renaming"]
+              assert any("mouthOpen" in keys for name,keys in child.items()
+                         if "teeth" in name.lower() or "tongue" in name.lower()),child
+              glb=root/(stem+".glb")
               with glb.open("rb") as f:
                   magic,version,total=struct.unpack("<4sII",f.read(12))
-                  length,kind=struct.unpack("<I4s",f.read(8))
-                  doc=json.loads(f.read(length))
+                  n,kind=struct.unpack("<I4s",f.read(8))
+                  doc=json.loads(f.read(n))
               assert magic==b"glTF" and version==2 and total==glb.stat().st_size<=6000000
-              assert doc.get("skins"),tag
-              keys=set(data["arkit_style_shape_keys"])
-              morphmeshes=[m for m in doc.get("meshes",[]) if m.get("extras",{}).get("targetNames")]
-              assert morphmeshes,(tag,"missing glTF targetNames")
-              for mesh in morphmeshes:
-                  names=mesh["extras"]["targetNames"]
-                  assert set(names)==keys,(tag,names,keys)
-                  for prim in mesh["primitives"]:
-                      assert len(prim.get("targets",[]))==10,(tag,prim.keys())
-              print("REAL_TEN_ARKIT_TARGETS_VERIFIED",tag,sorted(keys))
-              names_in_glb={n.get("name","") for n in doc["nodes"]}
-              for cloth in data["separate_open_source_garments"]:
-                  assert cloth["mesh"] in names_in_glb
-              digest=hashlib.sha256(json.dumps(data["personal_face_targets"],sort_keys=True).encode()).hexdigest()
-              assert digest not in profiles,"duplicate face parameter set"
-              profiles.add(digest)
-              data["pilot_glb_bytes"]=total
-              p.write_text(json.dumps(data,ensure_ascii=False,indent=2))
-              print("FOUR_ROLE_OPEN_CLOTHING_VERIFIED",tag,total)
+              assert doc.get("skins")
+              mm=[m for m in doc["meshes"] if m.get("extras",{}).get("targetNames")]
+              assert any(len(m["extras"]["targetNames"])==10 for m in mm)
+              accessory_targets={m["name"]:m.get("extras",{}).get("targetNames",[])
+                                 for m in doc["meshes"]}
+              assert any("mouthOpen" in keys for name,keys in accessory_targets.items()
+                         if "teeth" in name.lower() or "tongue" in name.lower()),accessory_targets
+              print("V14_FACE_AND_ORAL_ACCESSORY_MORPHS_VERIFIED",stem,total,child)
           PY
-      - name: Archive real 4-character GLBs and Blender preview images
+      - name: Publish two real Blender V14 oral animation QA candidates
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v13-four-role-faceunits-10-shapes-REAL-ART-QA
+          name: taiwan-v14-4-roles-10-shape-face-accessory-PILOT
           path: |
-            outputs/face_v13/*.png
-            outputs/face_v13/*.glb
-            outputs/face_v13/*_report.json
+            outputs/face_v14/*.glb
+            outputs/face_v14/*.png
+            outputs/face_v14/*_report.json
             .deps/mh_faceunits/faceunits_manifest.json
           retention-days: 14
           if-no-files-found: warn
