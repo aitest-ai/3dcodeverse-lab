@@ -99,7 +99,8 @@ jobs:
               done
             fi
             test "$(stat -c%s "$file")" -gt 1000000
-            unzip -tq "$file" >/dev/null
+            test "$(stat -c%s "$file")" -gt 200000
+          unzip -tq "$file" >/dev/null
             unzip -oq "$file" -d .deps/mh_assets
           done
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
@@ -112,7 +113,7 @@ jobs:
           file=.deps/faceunits01_cc0.zip
           for host in files2.makehumancommunity.org files.makehumancommunity.org; do
             if curl -fL --retry 2 --connect-timeout 20 --max-time 120 \
-                -o "$file" "https://$host/asset_packs/faceunits01/faceunits01_cc0.zip"; then break; fi
+                -o "$file" "https://$host/functional/faceunits01.zip"; then break; fi
             rm -f "$file"
           done
           unzip -tq "$file"
