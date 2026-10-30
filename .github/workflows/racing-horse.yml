@@ -63,6 +63,15 @@ jobs:
               "inputs/horses/$horse.gltf" "outputs/horse/$horse"
             echo "::endgroup::"
           done
+      - name: Verify original Gallop animation really changes bone poses
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          for horse in Horse Horse_White; do
+            xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+              --python scripts/horses/qa_gallop.py -- "outputs/horse/$horse"
+          done
       - name: Verify both game-engine GLBs retain all rigged animation clips
         run: |
           set -euo pipefail
@@ -70,6 +79,23 @@ jobs:
             python3 scripts/horses/validate_horse_glb.py "outputs/horse/$horse"
             /usr/bin/python3 scripts/horses/make_horse_sheet.py "outputs/horse/$horse"
           done
+      - name: Package ready-to-open Three.js horse demo with both GLBs
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/horse/demo/models
+          cp examples/racing-horse/index.html outputs/horse/demo/index.html
+          cp outputs/horse/Horse/Horse_game.glb outputs/horse/demo/models/
+          cp outputs/horse/Horse_White/Horse_White_game.glb outputs/horse/demo/models/
+          cat > outputs/horse/demo/README.txt <<'EOF'
+          3DCodeVerse horse preview
+          Start a local static server in this directory:
+              python3 -m http.server 8000
+          Open http://localhost:8000 in your web browser.
+          The viewer uses publicly hosted Three.js modules; an internet connection is needed.
+          Horses: original Quaternius CC0 Ultimate Animated Animals.
+          Model animation clips: 13, including Gallop, Walk, Idle.
+          This is a stylized prototype, not a high-realism racing horse.
+          EOF
       - name: Deliver source-proof, GLB, BLEND, previews, validation reports
         if: always()
         uses: actions/upload-artifact@v4
