@@ -20,12 +20,19 @@ OUT.mkdir(parents=True,exist_ok=True)
 UA="3dcodeverse-lab-CC0-asset-auditor/1.0"
 def request(url,max_size=9_000_000, method="GET"):
     req=urllib.request.Request(url,headers={"User-Agent":UA,"Accept":"text/html,application/json,model/gltf-binary,*/*"},method=method)
-    with urllib.request.urlopen(req,timeout=30) as r:
-        final=r.geturl()
-        if urllib.parse.urlsplit(final).scheme!="https":raise ValueError("Non-HTTPS redirect")
-        blob=b"" if method=="HEAD" else r.read(max_size+1)
-        if len(blob)>max_size:raise ValueError("Asset exceeds read limit")
-        return final,dict(r.headers),blob
+    import time
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req,timeout=45) as r:
+                final=r.geturl()
+                if urllib.parse.urlsplit(final).scheme!="https":raise ValueError("Non-HTTPS redirect")
+                blob=b"" if method=="HEAD" else r.read(max_size+1)
+                if len(blob)>max_size:raise ValueError("Asset exceeds read limit")
+                return final,dict(r.headers),blob
+        except (TimeoutError,ConnectionError) as exc:
+            if attempt==2:raise
+            print("RETRY_PUBLIC_PAGE",attempt+1,type(exc).__name__,flush=True)
+            time.sleep(2+attempt)
 class Links(HTMLParser):
     def __init__(self):super().__init__();self.links=[]
     def handle_starttag(self,tag,attrs):
