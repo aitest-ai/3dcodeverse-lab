@@ -1,0 +1,23 @@
+name: Mecha v5.4 Combat Recoil Runtime QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-combat-v54.js'
+      - 'tests/mecha/v54-combat-motion.mjs'
+      - '.github/workflows/mecha-v54-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  combat-motion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check real impulse source and regression
+        run: |
+          node --check examples/threejs/mech-combat-v54.js
+          node --check tests/mecha/v54-combat-motion.mjs
+          node tests/mecha/v54-combat-motion.mjs
