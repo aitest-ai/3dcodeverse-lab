@@ -79,7 +79,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           mkdir -p outputs
-          xvfb-run -a blender -b --factory-startup --python "$BLENDER_SCENE"
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python "$BLENDER_SCENE"
       - name: Independently validate model package
         run: |
           test -s outputs/asset_manifest.json
@@ -91,7 +91,7 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
-          xvfb-run -a blender -b --factory-startup --python scripts/blender5/render_and_qa.py -- outputs
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python scripts/blender5/render_and_qa.py -- outputs
           test -s outputs/motion_qa.json
           test -s outputs/preview_index.json
           test "$(find outputs/previews -name '*.png' -type f | wc -l)" -eq 12
