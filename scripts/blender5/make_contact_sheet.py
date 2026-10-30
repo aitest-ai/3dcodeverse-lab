@@ -13,7 +13,7 @@ tile = 384
 header = 34
 sheet = Image.new("RGB", (tile * len(views), (tile + header) * len(clips)), "#19232c")
 draw = ImageDraw.Draw(sheet)
-font = ImageFont.load_default(size=18)
+font = ImageFont.load_default()
 for r, clip in enumerate(clips):
     for c, view in enumerate(views):
         record = next(x for x in records if x["clip"] == clip and x["view"] == view)
