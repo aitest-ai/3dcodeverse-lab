@@ -42,3 +42,19 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 ## 授權與來源
 
 官方 3DCodeVerse 原始碼遵守其 [LICENSE](https://github.com/gaoypeng/3dcodeverse/blob/main/LICENSE)。研究資料集可能有不同授權，本庫不鏡像資料集。
+
+## Blender 5.2.3 雲端建模／跨 AI 協作（新增）
+
+這個儲存庫現在也提供 **可重用的 Blender 5 雲端骨架動畫工作流程**，與原本 3DCodeVerse Harness 安裝完全分開。
+
+- [給其他 AI 的合作規範：AGENTS.md](AGENTS.md)
+- [完整工作流程：AI × Blender 5 → GLB → 遊戲系統](docs/AI_ASSET_PIPELINE.md)
+- [範例：機甲膝蓋、腳踝、腳掌和 4 段動畫](scripts/blender5/mecha_smoke.py)
+- [自動驗證器（GLB + asset_manifest）](scripts/blender5/validate_glb.py)
+- [Three.js 匯入／動畫播放範例](examples/threejs/load-animated-glb.js)
+- [Blender 5 GitHub Actions](../../actions/workflows/blender5-cloud.yml)
+
+**如何讓別的 AI 使用：** 叫它先閱讀 `AGENTS.md` 與 `docs/AI_ASSET_PIPELINE.md`，建立新的 `scripts/blender5/<asset_id>.py`，再由 GitHub Actions 生成 `.blend`、`.glb`、`asset_manifest.json` 和報告；完成後把 GLB 放到它自己的 Three.js、Unity、Godot 等專案。需要具備 GitHub 寫入權限才可直接提交，否則只能提出 Fork/PR 或交付差異檔。
+
+**真實進度：** 腳踝 V3 程式與流程已提交，雲端 Blender 與視覺品質仍需該次 Actions 真的成功執行後再驗收。腳底修正是關鍵影格計算，不等於完整 IK、碰撞或物理模擬。
+
