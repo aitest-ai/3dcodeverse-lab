@@ -75,14 +75,15 @@ def raster(name,view):
     return name
 
 def pose_frame(frame,angles):
-    # Do not change pelvis object/world displacement; only genuine rig bone poses.
+    # Select animation time BEFORE applying transforms; selecting a frame can
+    # otherwise overwrite a freshly applied pose with old FCurve evaluation.
+    scene.frame_set(frame)
     for bone in rig.pose.bones:
         bone.rotation_mode="XYZ"
         bone.rotation_euler=(0.0,0.0,0.0)
     for name,rotation in angles.items():
         rig.pose.bones[name].rotation_euler=rotation
     bpy.context.view_layer.update()
-    scene.frame_set(frame)
     for name in required:
         b=rig.pose.bones[name]
         b.keyframe_insert(data_path="rotation_euler",frame=frame,group=name)
