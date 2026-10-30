@@ -126,14 +126,14 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p outputs/face_v14
-          for id in you boss; do
+          for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
               --python-exit-code 1 --python scripts/taiwan_characters/face_v14_interpolated_qa.py
           done
       - name: Validate V14 face and accessory skinning and real GLB shapes
         run: |
           set -euo pipefail
-          for stem in you_v14_main boss_v14_ponytail01; do
+          for stem in you_v14_main boss_v14_ponytail01 uncle_v14_main jie_v14_main; do
             p="outputs/face_v14/$stem.glb"
             ok=0
             for maxpx in 512 448 384 320; do
@@ -148,11 +148,12 @@ jobs:
           python3 - <<'PY'
           import json,pathlib,struct
           root=pathlib.Path("outputs/face_v14")
-          for stem in ("you_v14_main","boss_v14_ponytail01"):
+          for stem in ("you_v14_main","boss_v14_ponytail01","uncle_v14_main","jie_v14_main"):
               d=json.loads((root/(stem+"_report.json")).read_text())
               assert d["body_vertices"]==13380
               assert len(d["arkit_style_shape_keys"])==10
               assert len(d["expression_previews"])==3
+              assert len(d['separate_open_source_garments'])==2
               child=d["fitted_face_accessory_keys_after_renaming"]
               assert any("mouthOpen" in keys for name,keys in child.items()
                          if "teeth" in name.lower() or "tongue" in name.lower()),child
@@ -175,7 +176,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v14-interpolated-mouth-eye-teeth-REAL-QA-NOT-FINAL
+          name: taiwan-v14-4-roles-10-shape-face-accessory-PILOT
           path: |
             outputs/face_v14/*.glb
             outputs/face_v14/*.png
