@@ -59,6 +59,16 @@ jobs:
           PY
           tar -xf ".tools/$FILE" -C .tools
           echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Install the official MPFB 2.0.18 extension for real phenotype morphing
+        run: |
+          set -euo pipefail
+          mkdir -p .deps
+          git clone --depth 1 -q https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          blender --command extension list
       - name: Build eight independent MPFB characters
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
