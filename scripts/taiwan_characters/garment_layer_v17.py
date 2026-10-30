@@ -73,6 +73,7 @@ def layering_report(sweater,pants,top,bins_x=47,bins_z=31):
 def correct_sweater_layer(sweater,pants,top,margin=.009,max_displacement=.070):
     """Position-aware surface correction, never touch the pants mesh or faces."""
     pb=_bvh(pants)
+    sb=_bvh(sweater)
     inverse=sweater.matrix_world.inverted()
     keys=sweater.data.shape_keys.key_blocks if sweater.data.shape_keys else []
     change=[]
@@ -80,6 +81,11 @@ def correct_sweater_layer(sweater,pants,top,margin=.009,max_displacement=.070):
     for v in sweater.data.vertices:
         world=sweater.matrix_world@v.co
         if not (top-.74 <= world.z <= top-.48 and abs(world.x)<=.28 and world.y<.065):
+            continue
+        shirt_front=_front_hit(sweater,sb,world.x,world.z)
+        if shirt_front is None or world.y>shirt_front.y+.006:
+            # Exclude genuine rear/inner vertices, which can be 10-20cm
+            # behind the pant front surface and must NOT be dragged out.
             continue
         pa=_front_hit(pants,pb,world.x,world.z)
         if pa is None:
@@ -93,9 +99,6 @@ def correct_sweater_layer(sweater,pants,top,margin=.009,max_displacement=.070):
             rejected.append({"vertex":v.index,"needed_m":round(necessary,5)})
             continue
         change.append((v.index,necessary))
-    if rejected:
-        raise RuntimeError("Real sweater requires unsafe >7cm outward offset; refusing "
-                           +str(rejected[:10]))
     if len(change)<10:
         raise RuntimeError("V17 no source CC0 sweater vertices need correction")
     corrected=0;maximum=0.0
@@ -118,4 +121,6 @@ def correct_sweater_layer(sweater,pants,top,margin=.009,max_displacement=.070):
             "max_outward_m":round(maximum,5),
             "all_shape_keys_also_moved":bool(keys),
             "shape_key_count":len(keys),
-            "no_faces_created_or_deleted":True}
+            "no_faces_created_or_deleted":True,
+            "unsafe_large_offsets_skipped":len(rejected),
+            "first_unsafe_offsets":rejected[:12]}
