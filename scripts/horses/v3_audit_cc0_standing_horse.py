@@ -9,6 +9,7 @@ This model is STATIC. Do NOT falsely label it rigged or animated, or copy its
 geometry directly over the proven Quaternius 13-clip horse.
 """
 from pathlib import Path
+import os
 import urllib.request,urllib.parse
 from html.parser import HTMLParser
 import json,re,hashlib,struct
@@ -109,7 +110,7 @@ try:
 
     # Inspect the public application's own asset download link code rather than
     # inventing a URL or bypassing authentication.
-    for path in report["script_paths"][:9]:
+    for path in ([] if os.environ.get("HORSE_V3_FAST_AUDIT") else report["script_paths"][:9]):
         if not path.startswith("/_next/static/chunks/"):continue
         try:
             script_url=urllib.parse.urljoin(URL,path)
