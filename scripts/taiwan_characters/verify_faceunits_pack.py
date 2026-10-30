@@ -30,6 +30,10 @@ if not archive.exists():
             archive.unlink(missing_ok=True)
 if not archive.exists():raise RuntimeError("No CC0 Faceunits archive: "+str(errors))
 if not zipfile.is_zipfile(archive):raise RuntimeError("Faceunits not a valid zip")
+EXPECTED_ARCHIVE_SHA256="d113107bd7eb59f3af4df6fc0ec29bfcc593f496d0b336aec14f086a80ce7146"
+actual_archive_sha=hashlib.sha256(archive.read_bytes()).hexdigest()
+if actual_archive_sha!=EXPECTED_ARCHIVE_SHA256:
+    raise RuntimeError("Faceunits01 checksum drift: verify source and license before using: "+actual_archive_sha)
 records=[]
 with zipfile.ZipFile(archive) as z:
     assert z.testzip() is None
