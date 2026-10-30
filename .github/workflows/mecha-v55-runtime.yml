@@ -1,0 +1,22 @@
+name: Mecha v5.5 Physical Dodge Runtime QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-dodge-v55.js'
+      - 'tests/mecha/v55-physical-dodge.mjs'
+      - '.github/workflows/mecha-v55-runtime.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-dodge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate physical sidestep simulation and collisions
+        run: |
+          node --check examples/threejs/mech-dodge-v55.js
+          node tests/mecha/v55-physical-dodge.mjs
