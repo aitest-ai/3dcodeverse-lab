@@ -1,0 +1,174 @@
+name: Taiwan Street Game - 8 MPFB Characters ZIP
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/taiwan-characters.yml'
+      - 'scripts/taiwan_characters/**'
+  push:
+    paths:
+      - '.github/workflows/taiwan-characters.yml'
+      - 'scripts/taiwan_characters/**'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  build-taiwan-characters:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntax check
+        run: python3 -m compileall -q scripts/taiwan_characters
+      - name: Download tested MPFB original Blender scene
+        uses: actions/download-artifact@v4
+        with:
+          name: mpfb-real-human-15
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '40991317263'
+          github-token: ${{ github.token }}
+          path: inputs/baseline
+      - name: Check verified source
+        run: |
+          set -euo pipefail
+          test -s inputs/baseline/human_mpfb_blender5.blend
+          test -s inputs/baseline/human_mpfb_blender5.glb
+          test "$(stat -c%s inputs/baseline/human_mpfb_blender5.glb)" -gt 20000000
+          sha256sum inputs/baseline/human_mpfb_blender5.glb
+      - name: Install CPU rendering and image checking requirements
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Install Blender 5.2.3 with upstream SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 4 --retry-all-errors -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 4 --retry-all-errors -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          name="blender-5.2.3-linux-x64.tar.xz"
+          line=next(line for line in Path(".tools/SHA256").read_text().splitlines() if name in line)
+          checksum=re.search(r"[0-9a-fA-F]{64}",line).group().lower()
+          with open(".tools/"+name,"rb") as f:
+              assert hashlib.file_digest(f,"sha256").hexdigest()==checksum
+          print("BLENDER_VERIFIED_SHA256",checksum)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Install the official MPFB 2.0.18 extension for real phenotype morphing
+        run: |
+          set -euo pipefail
+          mkdir -p .deps
+          git clone --depth 1 -q https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          blender --command extension list
+# ART-REJECTED: production 34-file zip disabled until true MPFB face pilot passes human review.
+      - name: Restore cached official CC0 asset pack
+        uses: actions/cache@v4
+        with:
+          path: .tools/makehuman_system_assets_cc0.zip
+          key: makehuman-asset-packs-2026-10-30-v1
+      - name: Retrieve and unpack official MakeHuman CC0 face assets
+        run: |
+          set -euo pipefail
+          FILE=.tools/makehuman_system_assets_cc0.zip
+          if [ ! -s "$FILE" ]; then
+            for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+              if curl -fL --retry 2 --connect-timeout 25 --max-time 420 \
+                  -o "$FILE" "https://$host/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip"; then break; fi
+              rm -f "$FILE"
+            done
+          fi
+          test "$(stat -c%s "$FILE")" -gt 200000000
+          unzip -tq "$FILE" >/dev/null
+          mkdir -p .deps/mh_assets
+          unzip -oq "$FILE" -d .deps/mh_assets
+          test -n "$(find .deps/mh_assets -name 'high-poly.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
+      - name: Restore official CC0 clothing pack cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: official-mh-shirts01-pants01-cc0-v1
+      - name: Download official CC0 MakeHuman shirts01 and pants01
+        run: |
+          set -euo pipefail
+          for pack in shirts01 pants01; do
+            file=".deps/$pack""_cc0.zip"
+            if [ ! -s "$file" ]; then
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 3 --connect-timeout 20 --max-time 180 \
+                  -o "$file" "https://$host/asset_packs/$pack/$pack""_cc0.zip"; then break; fi
+                rm -f "$file"
+              done
+            fi
+            test "$(stat -c%s "$file")" -gt 1000000
+            unzip -tq "$file" >/dev/null
+            unzip -oq "$file" -d .deps/mh_assets
+          done
+          for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
+            test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
+          done
+      - name: V8 real identity-specific MPFB faces and open wardrobe
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
+          FACE_OUT: outputs/face_v8
+          FACE_EXPORT_GLB: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/face_v8
+          FACE_ID=you xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
+          FACE_ID=boss FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_characters/face_v8_mature_face.py
+      - name: Optimize and validate two GLBs and independent mesh garments
+        run: |
+          set -euo pipefail
+          for id in you_v8_main boss_v8_ponytail01; do
+            p="outputs/face_v8/$id.glb"
+            python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
+            mv "$p.optimized" "$p"
+          done
+          python3 - <<'PY'
+          import json,pathlib,struct
+          root=pathlib.Path("outputs/face_v8")
+          for tag in ("you_v8_main","boss_v8_ponytail01"):
+              p=root/(tag+"_report.json")
+              data=json.loads(p.read_text())
+              assert len(data["personal_face_targets"])>=8
+              assert len(data["separate_open_source_garments"])==2
+              assert all(c["license"]=="CC0" for c in data["separate_open_source_garments"])
+              assert data["body_vertices"]==13380
+              for view in data["views"]:
+                  v=root/view
+                  assert v.exists() and v.stat().st_size>15000
+              glb=root/(tag+".glb")
+              with glb.open("rb") as f:
+                  magic,version,total=struct.unpack("<4sII",f.read(12))
+                  size,kind=struct.unpack("<I4s",f.read(8))
+                  doc=json.loads(f.read(size))
+              assert magic==b"glTF" and version==2 and total==glb.stat().st_size
+              assert len(doc.get("skins",[]))>=1 and total<=6000000
+              nodes={n.get("name","") for n in doc["nodes"]}
+              for outfit in data["separate_open_source_garments"]:
+                  assert outfit["mesh"] in nodes,(outfit["mesh"],list(nodes)[:20])
+              data["pilot_glb_bytes"]=total
+              p.write_text(json.dumps(data,indent=2,ensure_ascii=False))
+              print("V8_GENUINE_FACE_DIFFERENCES_AND_CC0_WARDROBE",tag,total)
+          PY
+      - name: Upload CC0 open-wardrobe pilot GLBs and renders
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v8-mature-face-openwardrobe-PILOT
+          path: outputs/face_v8/
+          retention-days: 14
+          if-no-files-found: warn

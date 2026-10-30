@@ -1,0 +1,42 @@
+name: Taiwan NPC - Official wardrobe preflight
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/taiwan_characters/download_cc0_wardrobe.py'
+      - '.github/workflows/taiwan-wardrobe-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  verify-original-open-assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Syntax and provenance check
+        run: python3 -m py_compile scripts/taiwan_characters/download_cc0_wardrobe.py
+      - name: Retrieve actual CC0 garment and facial target meshes
+        run: python3 scripts/taiwan_characters/download_cc0_wardrobe.py
+      - name: List archive structure and license metadata for inspection
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('.deps/mh_extra')
+          data=json.loads((p/'pack_manifest.json').read_text())
+          for item in data['packs']:
+              print(item['pack'],item['download_url'],item['bytes'],
+                    item['sha256'],len(item['members']))
+              for name in item['members'][:30]:
+                  print(" ",name)
+          for f in sorted((p/'original').rglob("*.meta"))[:20]:
+              print('LICENSE_META',f, f.read_text(errors='replace')[:1000])
+          PY
+      - name: Publish reproducible, source-audited asset manifest only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-cc0-wardrobe-inventory
+          path: .deps/mh_extra/pack_manifest.json
+          if-no-files-found: warn
+          retention-days: 14

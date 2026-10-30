@@ -1,0 +1,157 @@
+name: Blender 5 MPFB Human — Real Basemesh and Rig
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/mpfb5-human.yml'
+      - 'scripts/characters/**'
+  pull_request:
+    paths:
+      - '.github/workflows/mpfb5-human.yml'
+      - 'scripts/characters/**'
+permissions:
+  contents: read
+jobs:
+  build-human:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python syntax
+        run: python3 -m compileall -q scripts/characters
+      - name: Install Linux headless dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Download Blender 5.2.3 LTS and check upstream SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl --fail --location --retry 4 -o ".tools/$FILE" "$BASE/$FILE"
+          curl --fail --location --retry 4 -o ".tools/SHA256" "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib, re
+          from pathlib import Path
+          name="blender-5.2.3-linux-x64.tar.xz"
+          line=next(s for s in Path(".tools/SHA256").read_text().splitlines() if name in s)
+          expected=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line).group().lower()
+          assert hashlib.file_digest(open(".tools/"+name,"rb"),"sha256").hexdigest()==expected
+          print("Verified official Blender archive SHA256")
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Fetch official MPFB 2.0.18 source (no asset pack redistribution)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .deps
+          git clone --quiet --depth 1 https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          echo "MPFB_SOURCE_SHA=$(git -C .deps/mpfb2 rev-parse HEAD)" >> "$GITHUB_ENV"
+          test -f .deps/mpfb2/LICENSE.CODE.md
+          test -f .deps/mpfb2/LICENSE.ASSETS.md
+      - name: Build official MPFB extension with Blender CLI
+        run: |
+          set -euo pipefail
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          test -s .tools/mpfb.zip
+      - name: Install into isolated Blender user extension repository
+        run: |
+          set -euo pipefail
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          blender --command extension list
+      - name: Restore vetted MakeHuman asset archive cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .tools/hair02_ccby.zip
+            .tools/shirts01_cc0.zip
+            .tools/pants01_cc0.zip
+          key: makehuman-asset-packs-2026-10-30-v1
+      - name: Download 267 MB official MakeHuman CC0 system asset pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          ARCHIVE=.tools/makehuman_system_assets_cc0.zip
+          if [ ! -s "$ARCHIVE" ]; then
+            for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+              if curl --fail --location --retry 2 --connect-timeout 25 --max-time 420 --output "$ARCHIVE" \
+                "https://$host/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip"; then break; fi
+              rm -f "$ARCHIVE"
+            done
+          fi
+          test "$(stat -c%s "$ARCHIVE")" -gt 200000000
+          sha256sum "$ARCHIVE" | tee -a .tools/asset_archive_checksums.txt
+          unzip -tq .tools/makehuman_system_assets_cc0.zip | tail -n 3
+          mkdir -p .deps/mh_assets
+          unzip -oq .tools/makehuman_system_assets_cc0.zip -d .deps/mh_assets
+          find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print | head -n 3
+          find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print | head -n 3
+          test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print -quit)"
+      - name: Fetch extra verified hair/clothing asset packs (CC0 + CC-BY)
+        shell: bash
+        run: |
+          set -euo pipefail
+          for spec in hair02:ccby shirts01:cc0 pants01:cc0; do
+            name="${spec%%:*}"
+            license="${spec##*:}"
+            base="https://files2.makehumancommunity.org/asset_packs/$name"
+            archive=".tools/${name}_${license}.zip"
+            if [ ! -s "$archive" ]; then
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 2 --retry-all-errors --connect-timeout 25 --max-time 420 \
+                   -o "$archive" "https://$host/asset_packs/$name/${name}_${license}.zip"; then break; fi
+                rm -f "$archive"
+              done
+            fi
+            test "$(stat -c%s "$archive")" -gt 500000
+            unzip -tq "$archive" >/dev/null
+            sha256sum "$archive" | tee -a .tools/asset_archive_checksums.txt
+            unzip -oq "$archive" -d .deps/mh_assets
+          done
+          test -n "$(find .deps/mh_assets -name 'elvs_wavy_bob.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'toigo_fisherman_sweater.mhclo' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'cortu_cargo_pants.mhclo' -print -quit)"
+      - name: Build 3 independently dressed human character styles
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
+        run: |
+          set -euo pipefail
+          for style in studio street sport; do
+            echo "::group::Blender model: $style"
+            HUMAN_STYLE="$style" ASSET_OUT="$PWD/outputs/human_$style" \
+              xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/create_mpfb_human.py
+            python3 scripts/characters/verify_mpfb_human.py "outputs/human_$style"
+            python3 scripts/characters/contact_sheet.py "outputs/human_$style"
+            echo "::endgroup::"
+          done
+      - name: Verify each build has six real image views and traceable license
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for style in ("studio","street","sport"):
+              folder=Path("outputs")/("human_"+style)
+              data=json.loads((folder/"asset_manifest.json").read_text())
+              assert data["style"]==style
+              assert (folder/"preview_contact_sheet.png").stat().st_size>10000
+              assert len(list(folder.glob("preview_*.png")))==7
+              if style=="studio":
+                  assert "Elvaerwyn" in data["attribution"]
+                  assert any(a["license"].startswith("CC-BY") for a in data["asset_sources"])
+              print("VERIFIED",style,"assets",len(data["asset_sources"]))
+          PY
+      - name: Upload BLEND, GLB, previews and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpfb-multi-style-human-${{ github.run_number }}
+          path: outputs/human_*/
+          retention-days: 14
+          if-no-files-found: warn
