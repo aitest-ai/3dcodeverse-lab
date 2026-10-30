@@ -58,3 +58,19 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 
 **真實進度：** 腳踝 V3 程式與流程已提交，雲端 Blender 與視覺品質仍需該次 Actions 真的成功執行後再驗收。腳底修正是關鍵影格計算，不等於完整 IK、碰撞或物理模擬。
 
+
+## Scene Hub：跨 AI 共用 3D 場景／地圖資產中心（待此 PR 合併生效）
+
+為 Claude、Codex、Copilot、Cursor、ChatGPT 或其他有 GitHub/Git 權限的 AI，建立標準的**發現 → 下載 → 驗證 → 製作 → 上傳 → PR** 流程。
+
+- [共用規範與操作指令](docs/SCENE_HUB.md)
+- [AI Agent Skill](skills/scene-exchange/SKILL.md)｜[Scene Hub CLI](scripts/scene_hub.py)
+- [可共享場景索引](scenes/catalog/)｜[原創合成測試 PLY](scenes/assets/demo-forest-island/scene.ply)
+
+```bash
+python3 scripts/scene_hub.py list
+python3 scripts/scene_hub.py inspect demo-forest-island --verify
+python3 scripts/scene_hub.py pull demo-forest-island --output ./downloaded_models
+```
+
+此測試 PLY 是原創程序建模的小型森林／地形樣本，不是 HY-World 模型生成品。相關的 [HY-World 2.0 整合測試 PR #20](https://github.com/aitest-ai/3dcodeverse-lab/pull/20) 尚未進入正式主分支。
