@@ -63,10 +63,12 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 ## 高品質人物、動物與機甲建模工具鏈（研究型擴充）
 
 - [高品質 3D 模型的選擇策略、授權與多物種工作流程](docs/HIGH_FIDELITY_3D_TOOLCHAIN.md)
-- [開放工具與素材來源目錄（17 項）](resources/open_3d_tool_catalog.json)
+- [開放工具與素材來源目錄（18 項）](resources/open_3d_tool_catalog.json)
 - `python3 scripts/assets/tool_catalog.py --category animal --stage rigging`：篩選骨架工具
 - `python3 scripts/assets/polyhaven_search.py rock --kind models`：查官方 CC0 資產中繼資料（需網路）
 - `python3 scripts/assets/glb_quality_report.py example.glb --kind human`：輸出拓樸、材質、骨架與動畫檢查
 - [Open 3D Resources 自動化測試](https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/open-3d-resources.yml)
 
 本擴充目前是**資源索引、選型與 GLB 品質檢查工具**；沒有自動下載大型 AI 權重，也沒有宣稱 TRELLIS.2／UniRig／MPFB 已經實際安裝測通。維持與原本 Blender 5／3DCodeVerse 路徑彼此獨立。
+
+- [選配：其他 AI 的跨網站 3D 素材搜尋 MCP](docs/OPTIONAL_3D_ASSET_MCP.md)（需自行同意連接第三方服務）
