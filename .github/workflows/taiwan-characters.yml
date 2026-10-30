@@ -20,21 +20,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Syntax check
         run: python3 -m compileall -q scripts/taiwan_characters
-      - name: Download tested MPFB original Blender scene
-        uses: actions/download-artifact@v4
-        with:
-          name: mpfb-real-human-15
-          repository: aitest-ai/3dcodeverse-lab
-          run-id: '40991317263'
-          github-token: ${{ github.token }}
-          path: inputs/baseline
-      - name: Check verified source
-        run: |
-          set -euo pipefail
-          test -s inputs/baseline/human_mpfb_blender5.blend
-          test -s inputs/baseline/human_mpfb_blender5.glb
-          test "$(stat -c%s inputs/baseline/human_mpfb_blender5.glb)" -gt 20000000
-          sha256sum inputs/baseline/human_mpfb_blender5.glb
+      # All v11 humans are generated independently from genuine MPFB2 source.
+      # The obsolete original female BLEND download is intentionally removed.
       - name: Install CPU rendering and image checking requirements
         run: |
           sudo apt-get update -qq
