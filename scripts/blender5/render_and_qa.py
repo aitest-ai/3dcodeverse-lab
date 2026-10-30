@@ -40,7 +40,11 @@ def choose_action(clip):
         candidates = [slot for slot in slots
                       if getattr(slot, "target_id_type", "OBJECT") == "OBJECT"]
         data.action_slot = candidates[0] if candidates else slots[0]
-    scene.frame_set(1)
+    # Force a real frame transition after changing the Action/slot.
+    # Reusing frame=1 can otherwise read the previous clip's cached pose.
+    scene.frame_set(scene.frame_end)
+    scene.frame_set(scene.frame_start)
+    bpy.context.view_layer.update()
 
 def point_in_world(bone_name, rest_point):
     pose = rig.pose.bones[bone_name]
