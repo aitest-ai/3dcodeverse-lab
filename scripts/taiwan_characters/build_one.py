@@ -291,11 +291,14 @@ if bs:
 body.data.materials.clear();body.data.materials.append(skinmat)
 
 def rigid(obj,bone):
+    # Bone-parent rigid accessories using KEEP TRANSFORM; armature skinning
+    # without inverse bind caused hats to hover and masks to shift over eyes.
     if bone not in bone_names:raise RuntimeError("No rigid attach bone "+bone)
-    group=obj.vertex_groups.new(name=bone)
-    group.add(list(range(len(obj.data.vertices))),1.0,"REPLACE")
-    mod=obj.modifiers.new("Deform_"+bone,"ARMATURE")
-    mod.object=rig
+    world=obj.matrix_world.copy()
+    obj.parent=rig
+    obj.parent_type="BONE"
+    obj.parent_bone=bone
+    obj.matrix_world=world
     return obj
 def cube(name,center,scale,mat,bone=None):
     bpy.ops.mesh.primitive_cube_add(size=1,location=center)
@@ -320,8 +323,8 @@ def ring(name,center,major,minor,mat,rotation=(math.pi/2,0,0),bone="head"):
     return o
 def cap(name,col,helmet=False):
     m=material(name+"_mat",col,.85)
-    sphere(name,(0,-.001,1.696),(.124,.117,.065 if helmet else .048),m)
-    cube(name+"_brim",(0,-.090,1.662),(.19,.12,.013),m,"head")
+    sphere(name,(0,-.006,1.655),(.105,.092,.074 if helmet else .060),m)
+    cube(name+"_brim",(0,-.087,1.619),(.18,.11,.010),m,"head")
     return name
 black=material("HairBlack_"+cid,(.012,.012,.011),.90)
 gray=material("HairGray_"+cid,(.38,.38,.34),.9)
@@ -339,17 +342,34 @@ if cfg["hair"]!="bald":
                   (.015,.014,.020 if cfg["hair"]=="short" else .027),hc)
         ob.rotation_euler[1]=.25*math.cos(ang)
 if cid=="boss":
+    # A contoured bib apron following the rounded torso (not a floating box).
     cap("Headscarf_boss",(.61,.27,.13))
-    cube("Apron_boss",(0,-.170,1.115),(.33,.013,.53),
-         material("ApronOrange_boss",(.88,.57,.15)),"spine_02")
+    apron_material=material("ApronOrange_boss",(.88,.57,.15),.87)
+    verts=[];faces=[]
+    for row in range(7):
+        z=1.42-row*.087
+        half=.12+.020*row
+        for col in range(9):
+            u=col/8
+            x=(2*u-1)*half
+            y=-.168+.035*(abs(2*u-1)**2)
+            verts.append((x,y,z))
+    for row in range(6):
+        for col in range(8):
+            a=row*9+col
+            faces.append((a,a+1,a+10,a+9))
+    am=bpy.data.meshes.new("Apron_Boss_DrapedMesh")
+    am.from_pydata(verts,[],faces);am.update()
+    ao=bpy.data.objects.new("Apron_boss",am);sc.collection.objects.link(ao)
+    am.materials.append(apron_material);rigid(ao,"spine_02")
 elif cid=="uncle":
     # Shirt colour / no sleeves are an approximation from the source garment.
     for x in (-.046,.046):
-        ring("Glasses_%s_%.2f"%(cid,x),(x,-.117,1.590),.044,.0028,
+        ring("Glasses_%s_%.2f"%(cid,x),(x,-.156,1.572),.044,.0028,
              material("Frame_uncle",(.12,.12,.12)))
 elif cid=="jie":
     cap("Helmet_jie",(.08,.51,.50),helmet=True)
-    cube("Mask_jie",(0,-.139,1.515),(.15,.012,.074),white,"head")
+    cube("Mask_jie",(0,-.134,1.502),(.15,.010,.070),white,"head")
     cube("DeliveryBackpack_jie",(0,.231,1.265),(.42,.26,.51),
          material("BagGreen_jie",(.12,.52,.38)),"spine_02")
 elif cid=="oldman":
@@ -362,12 +382,12 @@ elif cid=="cop":
 elif cid=="shui":
     cap("StrawHat_shui",(.62,.48,.24))
     for x in (-.046,.046):
-        ring("Glasses_%s_%.2f"%(cid,x),(x,-.120,1.588),.044,.0027,black)
+        ring("Glasses_%s_%.2f"%(cid,x),(x,-.156,1.570),.044,.0027,black)
     cube("ShoulderTowel_shui",(.22,-.06,1.37),(.09,.17,.34),white,"upperarm_r")
 elif cid=="bro":
-    cube("HeadBand_bro",(0,-.089,1.667),(.23,.018,.037),
+    cube("HeadBand_bro",(0,-.089,1.626),(.16,.014,.024),
          material("HeadbandRed_bro",(.55,.08,.08)),"head")
-    ring("GoldNecklace_bro",(0,-.045,1.440),.125,.006,gold,(0,0,0),"neck_01")
+    ring("GoldNecklace_bro",(0,-.092,1.420),.109,.006,gold,(math.pi/2,0,0),"neck_01")
 elif cid=="you":
     # ID card and lanyard visibly separate from clothing.
     cube("IDCard_you",(0,-.134,1.284),(.075,.006,.090),
@@ -383,10 +403,10 @@ elif cid=="you":
 shoe_mat=material("Sneakers_"+cid,(.21,.23,.25),.8)
 sole_mat=material("Sole_"+cid,(.75,.73,.68),.85)
 for side,bone in ((-1,"foot_l"),(1,"foot_r")):
-    cube("Sneaker_%s_%s"%(cid,bone),(side*.099,-.053,.065),
-         (.145,.235,.102),shoe_mat,bone)
-    cube("Sole_%s_%s"%(cid,bone),(side*.099,-.061,.027),
-         (.151,.242,.018),sole_mat,bone)
+    cube("Sneaker_%s_%s"%(cid,bone),(side*.099,-.068,.064),
+         (.132,.230,.088),shoe_mat,bone)
+    cube("Sole_%s_%s"%(cid,bone),(side*.099,-.075,.025),
+         (.136,.235,.015),sole_mat,bone)
 
 # Uniform height scaling; preserve original bone names and whole rig alignment.
 original_height=max((body.matrix_world@v.co).z for v in body.data.vertices)-min((body.matrix_world@v.co).z for v in body.data.vertices)
