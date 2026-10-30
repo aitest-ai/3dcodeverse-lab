@@ -1,0 +1,96 @@
+name: NVIDIA Body Pose - isolated retarget POC
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/nvidia-body-pose-retarget-poc']
+    paths:
+      - '.github/workflows/nvidia-body-pose-poc.yml'
+      - 'scripts/body_pose/run_smoke.py'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: nvidia-body-pose-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: NVIDIA-Maxine/nim-clients
+          ref: d02b7d57541b8598ac4c057947b10b2e42ccb1ee
+          path: .deps/nvidia-clients
+          persist-credentials: false
+      - name: Download existing V17 four-character assets without modifying them
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v17-four-real-MPFB-knitted-layer-PILOT
+          run-id: 41138623403
+          repository: aitest-ai/3dcodeverse-lab
+          github-token: ${{ github.token }}
+          path: input
+      - name: Audit real GLB skeletons and preserve upstream schema evidence
+        run: |
+          python3 - <<'PY'
+          import json,struct,hashlib,pathlib,shutil
+          out=pathlib.Path('outputs/body_pose');out.mkdir(parents=True,exist_ok=True)
+          records=[]
+          for p in sorted(pathlib.Path('input').rglob('*.glb')):
+              data=p.read_bytes();n,kind=struct.unpack_from('<I4s',data,12)
+              d=json.loads(data[20:20+n]);nodes=d['nodes']
+              records.append({'file':p.name,'sha256':hashlib.sha256(data).hexdigest(),
+                'bones':[[nodes[i].get('name') for i in s['joints']] for s in d.get('skins',[])],
+                'animations':[a.get('name') for a in d.get('animations',[])],
+                'morph_targets':{m.get('name',''):m.get('extras',{}).get('targetNames',[]) for m in d.get('meshes',[])}})
+          assert len(records)==4, records
+          (out/'source_rig_audit.json').write_text(json.dumps(records,ensure_ascii=False,indent=2))
+          for name in ['nova77_skeleton.png']:
+              shutil.copy2(pathlib.Path('.deps/nvidia-clients/body-pose/assets')/name,out/name)
+          shutil.copy2('.deps/nvidia-clients/body-pose/scripts/constants.py',out/'upstream_constants.py')
+          shutil.copy2('.deps/nvidia-clients/body-pose/LICENSE.md',out/'NVIDIA_CLIENT_LICENSE.md')
+          print(json.dumps({'characters':len(records),'bone_counts':[len(r['bones'][0]) for r in records], 'live_nvidia_inference':False}))
+          PY
+      - name: Pure Python tests
+        if: hashFiles('scripts/body_pose/run_smoke.py') != ''
+        run: python3 -m unittest discover -s scripts/body_pose -p 'test_*.py' -v
+      - name: Install official checksum-verified Blender
+        if: hashFiles('scripts/body_pose/run_smoke.py') != ''
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 ffmpeg
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,hashlib,re
+          name='blender-5.2.3-linux-x64.tar.xz'
+          lines=pathlib.Path('.tools/SHA256').read_text().splitlines()
+          line=next(x for x in lines if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f:
+              assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          print('OFFICIAL_BLENDER_SHA256',expected)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Run synthetic-motion-to-real-rig Blender and GLB round-trip tests
+        if: hashFiles('scripts/body_pose/run_smoke.py') != ''
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: python3 scripts/body_pose/run_smoke.py --input input --output outputs/body_pose
+      - name: Publish evidence, not an approved production character
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nvidia-body-pose-retarget-POC-${{ github.run_number }}
+          path: outputs/body_pose
+          retention-days: 14
+          if-no-files-found: error
