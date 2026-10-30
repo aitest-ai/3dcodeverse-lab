@@ -1,0 +1,76 @@
+name: Horse Library — Verify Published Models and AI Download
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/horse-library-verify.yml'
+      - 'assets/horses/**'
+      - 'scripts/horses/horse_assets.py'
+      - 'scripts/horses/validate_horse_submission.py'
+      - 'AGENTS.md'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile source validators and verify registry shape
+        run: |
+          python3 -m py_compile scripts/horses/horse_assets.py scripts/horses/validate_horse_submission.py
+          python3 scripts/horses/horse_assets.py list
+      - name: Confirm permanent GitHub Release contains both promised assets
+        run: |
+          set -euo pipefail
+          gh release view horses-v2.3.0 -R "$GITHUB_REPOSITORY" \
+            --json assets --jq '.assets[].name' | tee /tmp/horse-assets.txt
+          grep -qx horse-brown-v2.3.glb /tmp/horse-assets.txt
+          grep -qx horse-white-v2.3.glb /tmp/horse-assets.txt
+          grep -qx horse-brown-v2.3.zip /tmp/horse-assets.txt
+          grep -qx horse-white-v2.3.zip /tmp/horse-assets.txt
+          echo "GITHUB_RELEASE_ASSETS_PRESENT"
+      - name: Exercise exact steps another AI will use to pull models
+        run: |
+          set -euo pipefail
+          python3 scripts/horses/horse_assets.py pull horse-brown --source release --dest outputs/pull-smoke
+          python3 scripts/horses/horse_assets.py pull horse-white --source release --dest outputs/pull-smoke
+          python3 scripts/horses/horse_assets.py verify horse-brown outputs/pull-smoke/horse-brown-v2.3.0.glb
+          python3 scripts/horses/horse_assets.py verify horse-white outputs/pull-smoke/horse-white-v2.3.0.glb
+      - name: Simulate new AI candidate metadata and real GLB validation
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          base=json.loads(Path("assets/horses/examples/submission.example.json").read_text())
+          base["asset_id"]="horse-agent-test"
+          base["creator"]="Quaternius original, aitest-ai UV and PBR"
+          base["source_url"]="https://quaternius.com/packs/ultimateanimatedanimals.html"
+          base["license"]="CC0-1.0"
+          base["model_file"]="horse-brown-v2.3.0.glb"
+          base["model_sha256"]=json.loads(Path("assets/horses/registry.json").read_text())["horses"][0]["model"]["sha256"]
+          base["build"]["run_id"]=41017062152
+          base["required_clips"]=["Idle","Walk","Gallop"]
+          Path("/tmp/horse-agent-test.json").write_text(json.dumps(base))
+          PY
+          python3 scripts/horses/validate_horse_submission.py /tmp/horse-agent-test.json \
+            --glb outputs/pull-smoke/horse-brown-v2.3.0.glb \
+            --output outputs/pull-smoke/candidate_validation.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open("outputs/pull-smoke/candidate_validation.json"))
+          assert p["status"]=="STRUCTURE_PASS_HUMAN_REVIEW_REQUIRED"
+          print("OTHER_AI_PUSH_CANDIDATE_VALIDATOR_WORKS")
+          PY
+      - name: Keep temporary QA evidence (not a replacement for permanent Release)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-library-pull-verified-${{ github.run_number }}
+          path: outputs/pull-smoke/candidate_validation.json
+          retention-days: 7
+          if-no-files-found: warn
