@@ -1,10 +1,11 @@
-name: Taiwan Street Game - V16 Four-Role Sweater Source-Mesh Occlusion Pilot
+name: Taiwan Street Game - V17 Original MPFB Knit Layer QA
 on:
   workflow_dispatch:
   pull_request:
     paths:
       - '.github/workflows/taiwan-characters.yml'
-      - 'scripts/taiwan_characters/**'
+      - 'scripts/taiwan_characters/face_v17_knit_layer_qa.py'
+      - 'scripts/taiwan_characters/garment_layer_v17.py'
   push:
     paths:
       - '.github/workflows/taiwan-characters.yml'
@@ -116,25 +117,25 @@ jobs:
           for basename in namuhekam_male_polo_shirt cortu_cargo_pants toigo_fisherman_sweater toigo_wool_pants; do
             test -n "$(find .deps/mh_assets -name "$basename.mhclo" -print -quit)"
           done
-      - name: V16 sweater skin coverage and all garment shape-key corrections
+      - name: V17 real original MPFB knit trousers layering
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
           FACEUNITS_ROOT: .deps/mh_faceunits
-          FACE_OUT: outputs/face_v16
+          FACE_OUT: outputs/face_v17
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v16
+          mkdir -p outputs/face_v17
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v16_sweater_qa.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v17_knit_layer_qa.py
           done
-      - name: Validate V16 sweater chest visibility, waist, face keys and four GLBs
+      - name: Validate V17 source mesh layer, genuine 13380 vertices and all 4 GLBs
         run: |
           set -euo pipefail
-          for stem in you_v16_main boss_v16_ponytail01 uncle_v16_main jie_v16_main; do
-            p="outputs/face_v16/$stem.glb"
+          for stem in you_v17_main boss_v17_ponytail01 uncle_v17_main jie_v17_main; do
+            p="outputs/face_v17/$stem.glb"
             ok=0
             for maxpx in 512 448 384 320; do
               if python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" "$maxpx"; then
@@ -147,8 +148,8 @@ jobs:
           done
           python3 - <<'PY'
           import json,pathlib,struct
-          root=pathlib.Path("outputs/face_v16")
-          for stem in ("you_v16_main","boss_v16_ponytail01","uncle_v16_main","jie_v16_main"):
+          root=pathlib.Path("outputs/face_v17")
+          for stem in ("you_v17_main","boss_v17_ponytail01","uncle_v17_main","jie_v17_main"):
               d=json.loads((root/(stem+"_report.json")).read_text())
               assert d["body_vertices"]==13380
               assert len(d["arkit_style_shape_keys"])==10
@@ -167,6 +168,14 @@ jobs:
                   vis=d["boss_sweater_front_visibility"]
                   assert vis is not None and vis["body_hitting_rays"]>600, vis
                   assert vis["front_exposed_body_samples"]==0, vis
+                  before=d["boss_knit_layer_before"]
+                  after=d["boss_knit_layer_after"]
+                  fix=d["boss_knit_layer_adjustment"]
+                  assert before and after and fix
+                  assert fix["no_faces_created_or_deleted"] and fix["all_shape_keys_also_moved"]
+                  assert after["pants_in_front"]<before["pants_in_front"]
+                  print("V17_REAL_MPF_BOSS_SWEATER_LAYER",before["pants_in_front"],
+                        after["pants_in_front"],fix["moved_original_vertices"])
                   assert d["overlap_hidden_trouser_faces_removed"]==0
                   print("V16_BOSS_GARMENT_OCCLUSION_VERIFIED",vis)
               assert len(d['separate_open_source_garments'])==2
@@ -188,15 +197,15 @@ jobs:
                          if "teeth" in name.lower() or "tongue" in name.lower()),accessory_targets
               print("V16_FOUR_FACE_AND_GARMENT_GEOMETRY_VERIFIED",stem,total,child)
           PY
-      - name: Publish V16 Blender QA four characters with sweater chest closeups
+      - name: Publish V17 4 actual Blender source-model characters and knit QA
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-v16-real-sweater-occlusion-and-shapekey-fit-PILOT
+          name: taiwan-v17-four-real-MPFB-knitted-layer-PILOT
           path: |
-            outputs/face_v16/*.glb
-            outputs/face_v16/*.png
-            outputs/face_v16/*_report.json
+            outputs/face_v17/*.glb
+            outputs/face_v17/*.png
+            outputs/face_v17/*_report.json
             .deps/mh_faceunits/faceunits_manifest.json
           retention-days: 14
           if-no-files-found: warn
