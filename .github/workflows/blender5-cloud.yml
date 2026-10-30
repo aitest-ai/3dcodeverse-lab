@@ -11,6 +11,10 @@ on:
     paths:
       - '.github/workflows/blender5-cloud.yml'
       - 'scripts/blender5/**'
+  pull_request:
+    paths:
+      - '.github/workflows/blender5-cloud.yml'
+      - 'scripts/blender5/**'
 permissions:
   contents: read
 jobs:
