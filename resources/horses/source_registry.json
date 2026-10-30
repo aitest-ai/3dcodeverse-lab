@@ -111,6 +111,48 @@
       "source": "https://github.com/crisleyhguimaraes/space-ship/blob/main/docs/ASSETS.md",
       "readiness": "REJECTED_malformed_mesh_and_long_spikes_in_Blender5",
       "notes": "Earlier source downloaded correctly but Blender mesh had severe spike deformation even after meshopt dequantization. Do NOT promote as the primary racing horse."
+    },
+    {
+      "id": "blendswap-fdoss-all-gaits",
+      "name": "Horse Rigged All Gaits",
+      "creator": "fdoss001",
+      "source": "https://blendswap.com/blend/28627",
+      "license": "listing says CC0, but third-party base mesh attribution needs CC BY verification",
+      "role": "high_detail_animated_candidate",
+      "size_approx_mb": 584,
+      "status": "BLOCKED_PROVENANCE_REVIEW_LOGIN_REQUIRED",
+      "dependencies": [
+        {
+          "creator": "Tarnyloo",
+          "source": "https://blendswap.com/blend/17172",
+          "license": "CC-BY",
+          "claim": "Model creator discussion says horse mesh reused from this CC-BY original"
+        }
+      ],
+      "allowed_next_action": "Only import after authenticating download and preserving original horse mesh creator's CC BY attribution. Do not relabel entire package CC0."
+    },
+    {
+      "id": "innerscene-standing-horse",
+      "name": "Standing horse",
+      "source": "https://www.innerscene.com/tools/library/3d-parts/standing-horse-01d8563f",
+      "license": "CC0 (source page claims original model)",
+      "creator": "Innerscene",
+      "role": "anatomically_improved_static_candidate",
+      "format": "GLB",
+      "size_approx_mb": 4.8,
+      "status": "PUBLIC_PAGE_VERIFIED_MODEL_BYTES_NOT_YET_DOWNLOADED",
+      "caveat": "Static mesh with no rig/animations, do not overwrite Quaternius animated V2.2. Must validate actual topology and provenance."
+    },
+    {
+      "id": "creative-machine-horse-rig",
+      "name": "Horse Rig",
+      "source": "https://sketchfab.com/3d-models/horse-rig-bd71883bad9845389ef4ec2801004801",
+      "license": "CC-BY",
+      "creator": "CreativeMachine",
+      "role": "higher_detail_rigged_candidate",
+      "triangles": 42000,
+      "status": "DOWNLOAD_REQUIRES_SITE_PERMISSION_NOT_IMPORTED",
+      "caveat": "Rigged, but Gallop animation not confirmed. Attribution required."
     }
   ],
   "validation": {
