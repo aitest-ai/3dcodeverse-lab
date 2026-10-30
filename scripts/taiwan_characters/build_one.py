@@ -346,7 +346,9 @@ elif cid=="you":
 original_height=max((body.matrix_world@v.co).z for v in body.data.vertices)-min((body.matrix_world@v.co).z for v in body.data.vertices)
 ratio=cfg["height"]/original_height
 for ob in sc.objects:
-    if ob.type in ("MESH","ARMATURE"):
+    # A mesh parented to the rig already inherits its parent scale.
+    # Scaling both would double-scale the MPFB basemesh and rigging.
+    if ob.type in ("MESH","ARMATURE") and (ob.parent is None or ob.parent.type not in ("MESH","ARMATURE")):
         ob.location*=ratio
         ob.scale*=ratio
 bpy.context.view_layer.update()
