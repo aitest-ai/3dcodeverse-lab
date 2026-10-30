@@ -59,6 +59,34 @@ try:
         if sp.scheme!="https" or sp.hostname not in ("www.innerscene.com","innerscene.com"):
             continue
         if u not in candidates and ".glb" in sp.path.lower():candidates.append(u)
+    # Public downloaded-asset link comes from the *site's own Next.js*
+    # page bundle, not a guessed private path: /api/library/{id}/download.
+    public_part=report.get("part_meta",{})
+    if public_part.get("license")=="CC0-1.0" and public_part.get("id")=="standing-horse-01d8563f":
+        download_url=BASE+"/api/library/"+public_part["id"]+"/download"
+        try:
+            resolved,download_headers,glb=request(download_url,max_size=12_000_000)
+            if len(glb)!=int(public_part.get("size",0)):
+                raise RuntimeError("Download byte length different from the creator's public published size")
+            sha=hashlib.sha256(glb).hexdigest()
+            if sha!=public_part["fileHash"]:
+                raise RuntimeError("SHA256 did not match the official published asset hash: "+sha)
+            magic,version,length=struct.unpack_from("<4sII",glb,0)
+            if magic!=b"glTF" or version!=2 or length!=len(glb):raise RuntimeError("Not valid GLB")
+            n,kind=struct.unpack_from("<I4s",glb,12)
+            if kind!=b"JSON":raise RuntimeError("No GLB JSON chunk")
+            d=json.loads(glb[20:20+n])
+            report["download_status"]="VERIFIED_PUBLIC_CC0_SOURCE_BYTES"
+            report["model"]={"url":download_url,"resolved_url":resolved,"sha256":sha,
+                     "bytes":len(glb),"meshes":len(d.get("meshes",[])),
+                     "skins":len(d.get("skins",[])),"animations":len(d.get("animations",[])),
+                     "materials":len(d.get("materials",[])),"nodes":len(d.get("nodes",[])),
+                     "triangles":sum(d["accessors"][p["indices"]]["count"]//3
+                       for m in d.get("meshes",[]) for p in m.get("primitives",[]) if "indices" in p)}
+            (OUT/"standing_horse_source.glb").write_bytes(glb)
+        except Exception as err:
+            report["official_public_download_error"]=type(err).__name__+": "+str(err)
+
     report["asset_links_found"]=candidates[:25]
     report["page_mentions_filename"]="horse-original.glb" in html
     report["filename_contexts"]=[html[max(0,m.start()-550):min(len(html),m.end()+550)] for m in list(re.finditer("horse-original\\.glb",html,re.I))[:4]]
