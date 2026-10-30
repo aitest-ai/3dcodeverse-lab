@@ -73,7 +73,7 @@ jobs:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           mkdir -p outputs
-          xvfb-run -a blender -b --factory-startup --python "$BLENDER_SCENE"
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python "$BLENDER_SCENE"
       - name: Independently validate model package
         run: |
           test -s outputs/asset_manifest.json

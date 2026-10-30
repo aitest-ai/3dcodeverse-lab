@@ -151,7 +151,7 @@ for clip in clips:
   for b in poses:b.rotation_mode="XYZ";b.rotation_euler=(0,0,0);b.location=(0,0,0)
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
-   poses["root"].location.z=.04*abs(z)
+   poses["root"].location.y=.04*abs(z)
    for side,sign in (("L",1),("R",-1)):
     poses["thigh."+side].rotation_euler[0]=sign*.58*z
     poses["shin."+side].rotation_euler[0]=max(0,-sign*z)*.55
@@ -174,12 +174,14 @@ for clip in clips:
     poses["thigh."+side].rotation_euler[0]=sign*.11*amt
     poses["shin."+side].rotation_euler[0]=-.18*amt
     poses["foot."+side].rotation_euler[0]=.09*amt
+  # Bone local +Y follows this vertical root bone toward world +Z;
+  # local +Z is *not* world height. Correct sole penetration on local Y.
   # Reconcile the two feet with the ground at the sampled key poses.
   # This is a deterministic pose correction, not runtime IK/physics.
   ground_before=lowest_sole_z()
   target_clearance=.012
   correction=max(-.30,min(.35,target_clearance-ground_before))
-  poses["root"].location.z+=correction
+  poses["root"].location.y+=correction
   floor_after=lowest_sole_z()
   floor_clearance_samples.append({"clip":clip,"frame":frame,"min_sole_z":round(floor_after,5)})
   for b in poses:
@@ -208,7 +210,7 @@ names=[x.get("name") for x in document.get("animations",[])]
 assert len(names)>=4, f"Expected 4 animation clips; got {names}"
 assert len(document.get("skins",[]))>=1, "No rig skin exported"
 assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
-assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
+assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower() or "heel" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
 assert len(arm.bones)==14, f"Expected 14 bones including both foot bones, got {len(arm.bones)}"
 assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
 report={"blender_version":bpy.app.version_string,"bones":len(arm.bones),
