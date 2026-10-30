@@ -1,6 +1,12 @@
 name: Blender 5.2 Cloud Mecha Test
 on:
   workflow_dispatch:
+    inputs:
+      scene_script:
+        description: 'Python script, e.g. scripts/blender5/mecha_smoke.py'
+        required: false
+        type: string
+        default: 'scripts/blender5/mecha_smoke.py'
   push:
     paths:
       - '.github/workflows/blender5-cloud.yml'
@@ -44,17 +50,32 @@ jobs:
           echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
       - name: Verify Blender is available
         run: blender -b --factory-startup --version
+      - name: Select a reviewed Blender scene script
+        shell: bash
+        env:
+          REQUESTED_SCENE: ${{ inputs.scene_script || 'scripts/blender5/mecha_smoke.py' }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, re
+          candidate = os.environ['REQUESTED_SCENE']
+          assert re.fullmatch(r'scripts/blender5/[A-Za-z0-9_-]+[.]py', candidate), "Invalid script path"
+          base = pathlib.Path("scripts/blender5").resolve()
+          script = pathlib.Path(candidate).resolve()
+          assert script.parent == base and script.is_file() and not script.is_symlink(), "Unreviewed or missing script"
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write('BLENDER_SCENE=' + candidate + '\\n')
+          print("Using:", candidate)
+          PY
       - name: Build model, animations and GLB with Blender
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           mkdir -p outputs
-          xvfb-run -a blender -b --factory-startup --python scripts/blender5/mecha_smoke.py
-      - name: Inspect output
+          xvfb-run -a blender -b --factory-startup --python "$BLENDER_SCENE"
+      - name: Independently validate model package
         run: |
-          test -s outputs/mecha_blender5.blend
-          test -s outputs/mecha_blender5.glb
-          test -s outputs/report.json
+          test -s outputs/asset_manifest.json
+          python3 scripts/blender5/validate_glb.py outputs
           python3 -m json.tool outputs/report.json
           ls -lah outputs/
       - name: Upload downloadable model, BLEND, and report
