@@ -42,6 +42,7 @@ jobs:
           cp inputs/v23/Horse_White/Horse_White_V23.glb outputs/v23demo/models/Horse_White_game.glb
           cp examples/racing-horse/race_motion_calibration.json outputs/v23demo/
           cp .tools/webgl/node_modules/three/build/three.module.js outputs/v23demo/vendor/
+          cp .tools/webgl/node_modules/three/build/three.core.js outputs/v23demo/vendor/
           cp .tools/webgl/node_modules/three/examples/jsm/controls/OrbitControls.js outputs/v23demo/vendor/jsm/controls/
           cp .tools/webgl/node_modules/three/examples/jsm/loaders/GLTFLoader.js outputs/v23demo/vendor/jsm/loaders/
           cp .tools/webgl/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js outputs/v23demo/vendor/jsm/utils/
