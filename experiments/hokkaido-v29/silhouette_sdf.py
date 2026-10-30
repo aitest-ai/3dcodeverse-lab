@@ -116,19 +116,25 @@ tail_profile=[
  (1.23,.951),(1.34,.887),(1.48,.720),(1.27,.790)]
 tail_mask=sdf_polygon(Y,Z,tail_profile)[None,:,:]
 twidth=.039-np.abs(xx+2.59)
-fish=smoothmax(fish,smoothmin(tail_mask,twidth,.018),.012)
+fish=smoothmax(fish,smoothmin(tail_mask,twidth,.018),.038)
+# A broad physical caudal-peduncle bridge ensures a fin cannot float.
+# Unlike a glued visual decal, this bridge is part of the same SDF volume.
+caudal_bridge=sdf_polygon(Y,Z,[(.935,.904),(1.230,.917),
+                              (1.255,.966),(.935,1.002)])[None,:,:]
+caudal_width=.053-np.abs(xx+2.590)
+fish=smoothmax(fish,smoothmin(caudal_bridge,caudal_width,.015),.031)
 # Dorsal and pectoral fins are curved volumes penetrating the fish.
 dorsal=[(.15,1.08),(.26,1.218),(.39,1.244),(.52,1.082)]
 anal=[(.39,.776),(.49,.636),(.64,.804)]
 for profile,width in [(dorsal,.038),(anal,.031)]:
     surface=sdf_polygon(Y,Z,profile)[None,:,:]
     sheet=width-np.abs(xx+2.6)
-    fish=smoothmax(fish,smoothmin(surface,sheet,.013),.016)
+    fish=smoothmax(fish,smoothmin(surface,sheet,.013),.030)
 for sign in [-1,1]:
     pectoral=[(-.93,.893),(-.70,.684),(-.52,.818),(-.71,.935)]
     mask=sdf_polygon(Y,Z,pectoral)[None,:,:]
     sheet=.050-np.abs(xx-(-2.61+sign*.145))
-    fish=smoothmax(fish,smoothmin(mask,sheet,.016),.015)
+    fish=smoothmax(fish,smoothmin(mask,sheet,.016),.035)
 # Carve salmon ocular depressions and two unmistakable oblique operculum
 # grooves into highpoly mesh; do not paint fake floating pupils.
 for sign in [-1,1]:
@@ -155,7 +161,8 @@ def extract(name,field):
     if len(parts)>1:
         sizes=sorted([len(p.vertices) for p in parts],reverse=True)
         if sum(sizes[1:])>20:
-            raise RuntimeError("%s detached geometry: %s"%(name,sizes))
+            raise RuntimeError("%s detached geometry: %s; bounds: %s"%(name,sizes,
+                [np.round(p.bounds,3).tolist() for p in parts]))
         m=max(parts,key=lambda p:len(p.vertices))
     assert m.is_watertight, (name,"open edges")
     assert len(m.faces)>1500,name
