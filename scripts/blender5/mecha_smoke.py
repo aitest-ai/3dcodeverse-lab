@@ -54,11 +54,31 @@ parts=[
 ("armR","upper_arm.R",(-.58,0,1.42),(.27,.27,.43),"armor"),
 ("wristL","forearm.L",(.83,0,1.10),(.29,.29,.38),"accent"),
 ("wristR","forearm.R",(-.83,0,1.10),(.29,.29,.38),"accent"),
-("legL","thigh.L",(.26,0,.60),(.33,.35,.43),"armor"),
-("legR","thigh.R",(-.26,0,.60),(.33,.35,.43),"armor"),
-("shinL","shin.L",(.27,0,.25),(.32,.38,.38),"armor"),
-("shinR","shin.R",(-.27,0,.25),(.32,.38,.38),"armor"),
+("legL","thigh.L",(.26,0,.625),(.33,.35,.27),"armor"),
+("legR","thigh.R",(-.26,0,.625),(.33,.35,.27),"armor"),
+("shinL","shin.L",(.27,0,.23),(.32,.38,.27),"armor"),
+("shinR","shin.R",(-.27,0,.23),(.32,.38,.27),"armor"),
+# Visible pivot components. A gap is left between thigh and shin armor.
+("kneeHubL","thigh.L",(.27,0,.43),(.28,.28,.28),"joint"),
+("kneeHubR","thigh.R",(-.27,0,.43),(.28,.28,.28),"joint"),
+("kneeCapL","thigh.L",(.27,-.21,.43),(.25,.09,.13),"accent"),
+("kneeCapR","thigh.R",(-.27,-.21,.43),(.25,.09,.13),"accent"),
+("kneeLinkL","shin.L",(.27,0,.345),(.14,.15,.16),"joint"),
+("kneeLinkR","shin.R",(-.27,0,.345),(.14,.15,.16),"joint"),
 ]
+# Side axle pins rotate with the thigh and are visible from either side.
+# Cylinder local Z is turned toward world X, which is the knee hinge axis.
+for side,x in (("L",.27),("R",-.27)):
+ for suffix,offset in (("Outer",.19),("Inner",-.19)):
+  n="kneeAxle"+side+suffix
+  bpy.ops.mesh.primitive_cylinder_add(vertices=20,radius=.103,depth=.07,location=(x+offset,0,.43),rotation=(0,math.pi/2,0))
+  ob=bpy.context.object;ob.name=n
+  ob.data.materials.append(mats["accent"])
+  vg=ob.vertex_groups.new(name="thigh."+side)
+  vg.add(list(range(len(ob.data.vertices))),1,"REPLACE")
+  mod=ob.modifiers.new("Rigid skin","ARMATURE");mod.object=rig
+  mod.use_deform_preserve_volume=False
+
 for n,bone,loc,size,mat in parts:
  bpy.ops.mesh.primitive_cube_add(size=1)
  ob=bpy.context.object;ob.name=n;ob.dimensions=size
@@ -121,8 +141,9 @@ with (out/"mecha_blender5.glb").open("rb") as f:
 names=[x.get("name") for x in document.get("animations",[])]
 assert len(names)>=4, f"Expected 4 animation clips; got {names}"
 assert len(document.get("skins",[]))>=1, "No rig skin exported"
+assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
 report={"blender_version":bpy.app.version_string,"bones":len(arm.bones),
-        "mesh_parts":len(parts),"animations":names,
+        "mesh_parts":len(parts)+4,"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins","animations":names,
         "skins":len(document["skins"]),"glb_bytes":total,
         "method":"procedural Blender Python (not Choreographer AI)"}
 (out/"report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf-8")
