@@ -79,6 +79,7 @@ parts=[
 ("heelL","foot.L",(.27,.12,.068),(.38,.14,.11),"joint"),
 ("heelR","foot.R",(-.27,.12,.068),(.38,.14,.11),"joint"),
 
+]
 # Additional readable combat-mech silhouette. All parts are named & skin-weighted.
 parts.extend([
 ("HelmetBrow","head",(0,-.278,2.18),(.64,.115,.105),"trim"),
