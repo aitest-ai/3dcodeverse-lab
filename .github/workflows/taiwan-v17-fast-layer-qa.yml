@@ -62,7 +62,7 @@ jobs:
           p=pathlib.Path('outputs/fast_v17')
           d=json.loads((p/'boss_v17_layer_report.json').read_text())
           assert d['adjustment']['moved_original_vertices']>=10,d
-          assert d['body_mesh_vertices_gltf_import']>13000
+          assert d['blender_imported_body_vertices']>13000
           assert d['layer_before']['overlap_rays']>=25
           assert d['layer_after']['overlap_rays']>=25
           assert d['glb_bytes']>1000000
