@@ -1,0 +1,86 @@
+name: Racing Horse V2.3 — Actual WebGL Browser Smoke
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v23-browser.yml'
+      - 'scripts/horses/v23_browser_smoke.mjs'
+      - 'examples/racing-horse/index.html'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v23-browser.yml'
+      - 'scripts/horses/v23_browser_smoke.mjs'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  webgl:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore real V2.3 dual horse UV/PBR GLBs
+        uses: actions/download-artifact@v4
+        with:
+          repository: aitest-ai/3dcodeverse-lab
+          run-id: '41017062152'
+          name: racing-horse-v23-2
+          github-token: ${{ github.token }}
+          path: inputs/v23
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned official Three.js and Playwright renderer
+        run: |
+          npm install --prefix .tools/webgl --no-save --no-audit --no-fund three@0.181.0 playwright@1.56.1
+          .tools/webgl/node_modules/.bin/playwright install --with-deps chromium
+      - name: Package LOCAL offline-compatible Three.js imports with actual models
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/v23demo/models outputs/v23demo/vendor/jsm/{controls,loaders,utils}
+          cp inputs/v23/Horse/Horse_V23.glb outputs/v23demo/models/Horse_game.glb
+          cp inputs/v23/Horse_White/Horse_White_V23.glb outputs/v23demo/models/Horse_White_game.glb
+          cp examples/racing-horse/race_motion_calibration.json outputs/v23demo/
+          cp .tools/webgl/node_modules/three/build/three.module.js outputs/v23demo/vendor/
+          cp .tools/webgl/node_modules/three/examples/jsm/controls/OrbitControls.js outputs/v23demo/vendor/jsm/controls/
+          cp .tools/webgl/node_modules/three/examples/jsm/loaders/GLTFLoader.js outputs/v23demo/vendor/jsm/loaders/
+          cp .tools/webgl/node_modules/three/examples/jsm/utils/BufferGeometryUtils.js outputs/v23demo/vendor/jsm/utils/
+          python3 - <<'PY'
+          from pathlib import Path
+          src=Path("examples/racing-horse/index.html").read_text()
+          src=src.replace("https://cdn.jsdelivr.net/npm/three@0.181.0/build/three.module.js","./vendor/three.module.js")
+          src=src.replace("https://cdn.jsdelivr.net/npm/three@0.181.0/examples/jsm/","./vendor/jsm/")
+          Path("outputs/v23demo/index.html").write_text(src)
+          assert "./vendor/three.module.js" in src
+          assert "cdn.jsdelivr" not in src
+          PY
+          cat > outputs/v23demo/README.txt <<'EOF'
+          Racing Horse V2.3 — actual UV + tangent PBR model pair and controls
+          Open a terminal in this folder:
+            python3 -m http.server 8000
+          Visit http://localhost:8000
+          This package vendors Three.js locally. It needs no internet after download.
+          Gallop world translation comes from an empirical hoof-contact fit;
+          it is not a physical hoof collision or verified race speed.
+          Quaternius CC0 original horse models + our original PBR maps.
+          EOF
+      - name: Start static server and test real WebGL render & controls
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8000 --directory outputs/v23demo > /tmp/horse-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for attempt in 1 2 3 4 5 6 7 8; do
+            if curl -fsS http://127.0.0.1:8000/ > /dev/null; then break; fi
+            sleep 1
+          done
+          cp scripts/horses/v23_browser_smoke.mjs .tools/webgl/smoke.mjs
+          node .tools/webgl/smoke.mjs
+      - name: Upload playable self-contained browser demo and real screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: racing-horse-v23-webgl-${{ github.run_number }}
+          path: outputs/v23demo/
+          retention-days: 14
+          if-no-files-found: warn
