@@ -174,11 +174,11 @@ def place_planted_leg(side,phase):
   raised=math.sin(math.pi*u)**2
   swing_up=.205*raised
   offset_y=-.135*raised
- hip=Vector((.25 if side=="L" else -.25,0.0,.8))
- # Root has no world rotation; use the computed translation from bone local space.
+ # Explicit, slightly crouched hip goal stays inside the pelvis armor.
+ # Pose-matrix assignment keys the small hip offset, keeping the IK target reachable.
+ hip=Vector((.25 if side=="L" else -.25,0.0,.755))
  world_root_motion=rig.data.bones["root"].matrix_local.to_3x3() @ poses["root"].location
  hip.y+=world_root_motion.y
- hip.z+=world_root_motion.z
  ankle=Vector((x,anchor_y+offset_y,.105+swing_up))
  dy=ankle.y-hip.y
  dz=ankle.z-hip.z
