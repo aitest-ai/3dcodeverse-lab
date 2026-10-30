@@ -63,9 +63,24 @@ jobs:
           blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
           blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
           blender --command extension list
+      - name: Download 267 MB official MakeHuman CC0 system asset pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL=https://files2.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip
+          curl --fail --location --retry 3 --connect-timeout 25 --max-time 480 --output .tools/makehuman_system_assets_cc0.zip "$URL"
+          test "$(stat -c%s .tools/makehuman_system_assets_cc0.zip)" -gt 200000000
+          unzip -tq .tools/makehuman_system_assets_cc0.zip | tail -n 3
+          mkdir -p .deps/mh_assets
+          unzip -oq .tools/makehuman_system_assets_cc0.zip -d .deps/mh_assets
+          find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print | head -n 3
+          find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print | head -n 3
+          test -n "$(find .deps/mh_assets -name 'young_caucasian_female.mhmat' -print -quit)"
+          test -n "$(find .deps/mh_assets -name 'female_casualsuit01.mhclo' -print -quit)"
       - name: Generate actual MPFB human basemesh, skeleton and GLB
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
         run: |
           mkdir -p outputs/human_mpfb
           xvfb-run -a blender -b --python-exit-code 1 --python scripts/characters/create_mpfb_human.py
