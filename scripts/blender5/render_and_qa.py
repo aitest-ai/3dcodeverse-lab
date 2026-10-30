@@ -28,7 +28,8 @@ preview_dir = folder / "previews"
 preview_dir.mkdir(exist_ok=True)
 
 def choose_action(clip):
-    name = "Mecha_" + clip
+    # Asset manifest uses the exact exported glTF clip name. Avoid double prefix.
+    name = clip if clip.startswith("Mecha_") else "Mecha_" + clip
     action = bpy.data.actions.get(name)
     if action is None:
         raise RuntimeError("Missing Blender action: " + name)
@@ -146,7 +147,7 @@ frames = {"Idle": 1, "Run": 13, "Punch": 25, "Dodge": 25}
 image_records = []
 for clip in manifest["clips"]:
     choose_action(clip)
-    scene.frame_set(frames.get(clip, 25))
+    scene.frame_set(frames.get(clip.removeprefix("Mecha_"), 25))
     for name, xyz in angles.items():
         cam.location = xyz
         target = Vector((0, 0, 1.17))
