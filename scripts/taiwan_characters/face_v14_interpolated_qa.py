@@ -234,7 +234,36 @@ ExportService=service("mpfb.services.exportservice","ExportService")
 assert len(body.data.vertices)==19158
 faceunit_metrics=attach_faceunits(body,os.environ["FACEUNITS_ROOT"],TargetService)
 assert set(body.data.shape_keys.key_blocks.keys())==set(["Basis",*FACE_MORPHS.values()])
-FaceService.interpolate_targets(body)
+# FaceService correctly interpolates original MHCLO geometry, but its built-in
+# resolver searches only MPFB registered asset roots. These CC0 files have been
+# unpacked to MAKEHUMAN_ASSET_ROOT without registering them as an MPFB library.
+# Adapt *only file lookup*, never the official shape interpolation algorithm.
+ClothesService=service("mpfb.services.clothesservice","ClothesService")
+GeneralObjectProperties=service("mpfb.entities.objectproperties","GeneralObjectProperties")
+_original_mhclo_resolver=ClothesService.find_clothes_absolute_path
+externally_resolved={}
+def _qa_mhclo_resolver(clothes_obj):
+    original=_original_mhclo_resolver(clothes_obj)
+    if original is not None:
+        externally_resolved[clothes_obj.name]=original
+        return original
+    source=GeneralObjectProperties.get_value("asset_source", entity_reference=clothes_obj)
+    if not source:
+        raise RuntimeError("Cannot prove source MHCLO for "+clothes_obj.name)
+    filename=Path(str(source)).name
+    if not filename.lower().endswith(".mhclo"):
+        raise RuntimeError("Unrecognized MHCLO source "+str(source))
+    matches=sorted({str(p.resolve()) for p in ASSETS.rglob(filename) if p.is_file()})
+    if len(matches)!=1:
+        raise RuntimeError("Ambiguous or absent original MHCLO "+filename+" "+repr(matches))
+    externally_resolved[clothes_obj.name]=matches[0]
+    return matches[0]
+ClothesService.find_clothes_absolute_path=staticmethod(_qa_mhclo_resolver)
+try:
+    FaceService.interpolate_targets(body)
+finally:
+    ClothesService.find_clothes_absolute_path=staticmethod(_original_mhclo_resolver)
+print("V14_ORIGINAL_CC0_ASSET_RESOLVER_AUDIT",json.dumps(externally_resolved))
 asset_expression_keys_before={}
 for ob in attached:
     names=[] if ob.data.shape_keys is None else list(ob.data.shape_keys.key_blocks.keys())[1:]
@@ -508,6 +537,7 @@ report={"character":ID,"status":"FACE_ONLY_PILOT_REQUIRES_VISUAL_APPROVAL",
         "faceunit_assets":"Official Faceunits 01 Mika Suominen CC0",
         "arkit_style_shape_keys":faceunit_metrics,
         "fitted_face_accessory_keys_before_renaming":asset_expression_keys_before,
+        "original_mhclo_resolved_paths":externally_resolved,
         "fitted_face_accessory_keys_after_renaming":asset_expression_keys_after,
         "expression_previews":expression_previews,
         "overlap_hidden_trouser_faces_removed":waist_cleaned,
