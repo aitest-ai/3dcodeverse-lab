@@ -8,7 +8,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { PLYLoader } from "three/addons/loaders/PLYLoader.js";
-import { SplatLoader, SplatMesh } from "@sparkjsdev/spark";
+import { SplatMesh } from "@sparkjsdev/spark";
 
 const SUPPORTED = new Set(["gaussian_splats", "point_cloud", "triangle_mesh", "mesh_scene"]);
 
@@ -51,9 +51,9 @@ export async function loadHYWorld(manifestURL, parent) {
   let object = null;
   if (manifest.asset_type === "gaussian_splats") {
     if (!/\.(ply|spz)$/i.test(filename)) throw new Error("Splats need .ply/.spz");
-    // Wait for the data to load before publishing the object to the scene.
-    const packedSplats = await new SplatLoader().loadAsync(assetURL);
-    object = new SplatMesh({ packedSplats });
+    // Spark public API: the SplatMesh starts loading its URL asynchronously.
+    // This adapter does NOT claim the GPU splat render has completed on return.
+    object = new SplatMesh({ url: assetURL });
   } else if (manifest.asset_type === "mesh_scene") {
     if (!/\.glb$/i.test(filename)) throw new Error("GLB required");
     object = (await new GLTFLoader().loadAsync(assetURL)).scene;
