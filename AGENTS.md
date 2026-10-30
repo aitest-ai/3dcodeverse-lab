@@ -22,3 +22,14 @@
 工作流程：`https://github.com/aitest-ai/3dcodeverse-lab/actions/workflows/blender5-cloud.yml`
 
 **注意：** GitHub 儲存庫保存程式與版本；Blender 在每次 Actions 執行期間暫時安裝，不是常駐 3D 編輯伺服器。新的 AI 若沒有 GitHub 授權，先讓使用者安裝連接器，或以 Fork/PR 方式參與，不得假裝已經寫入儲存庫。
+
+
+## 高品質多物種 3D 建模（2026-10 新增）
+若任務包含人物、動物、機甲、建築、掃描素材、AI 圖像轉 3D、PBR 或重拓樸，還必須先閱讀 `docs/HIGH_FIDELITY_3D_TOOLCHAIN.md`，以及 `resources/open_3d_tool_catalog.json`。
+- 用 `python3 scripts/assets/tool_catalog.py --category animal` 查找工具；先判斷授權、硬體和實際是否已安裝。
+- 任何大型 AI 權重不得直接 commit。GPU 工具先在獨立可授權環境測試，輸出 GLB 再進入本庫 Blender 5 的 CPU 驗收。
+- 可用 `scripts/assets/glb_quality_report.py` 收集拓樸／PBR／骨架／動畫指標；不可以統計數字冒充藝術或解剖品質合格。
+- Poly Haven API 只能依 `scripts/assets/polyhaven_search.py` 目前已實作的中繼資料查詢來描述；不能宣稱該外部資產已下載／導入。
+- 來源授權需依序追蹤程式、模型權重、生成作品／素材、服務條款；Hunyuan3D 2.1 屬自訂授權，不能誤稱 MIT／Apache。
+
+外部 AI 若需要多來源素材搜尋，先閱讀 `docs/OPTIONAL_3D_ASSET_MCP.md`；遠端 MCP 必須經使用者自行啟用，不能以本 repo 的設定默默連到第三方端點。

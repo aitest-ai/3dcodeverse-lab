@@ -1,0 +1,396 @@
+{
+  "schema_version": 1,
+  "reviewed_date": "2026-10-30",
+  "objective": "Reusable high-fidelity 3D tool catalog for humans, animals, mecha, props and environments. Research-verified metadata only; no models redistributed.",
+  "items": [
+    {
+      "id": "trellis2",
+      "name": "Microsoft TRELLIS.2",
+      "role": "image_to_3d",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "generation",
+        "pbr"
+      ],
+      "url": "https://github.com/microsoft/TRELLIS.2",
+      "license": "MIT",
+      "license_scope": "model_and_code; third-party dependencies differ",
+      "hardware": "NVIDIA CUDA GPU >=24 GB VRAM, Linux per upstream tests",
+      "automation": "gpu_external",
+      "status": "research_verified",
+      "notes": "High-detail textured meshes and PBR maps; generated mesh is not guaranteed animation-ready or anatomically correct."
+    },
+    {
+      "id": "hunyuan3d21",
+      "name": "Tencent Hunyuan3D 2.1",
+      "role": "image_to_3d_and_pbr",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "generation",
+        "pbr"
+      ],
+      "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2.1",
+      "license": "Tencent Hunyuan 3D 2.1 Community License",
+      "license_scope": "custom territory and redistribution terms; not Apache/MIT",
+      "hardware": "CUDA GPU; upstream reports 10 GB shape, 21 GB paint, 29 GB combined",
+      "automation": "gpu_external_license_review",
+      "status": "research_verified",
+      "notes": "Strong shape and PBR option; do not auto-pull weights or redistribute without license review."
+    },
+    {
+      "id": "mpfb",
+      "name": "MakeHuman MPFB 2",
+      "role": "parametric_human",
+      "targets": [
+        "human"
+      ],
+      "stages": [
+        "base_mesh",
+        "rigging",
+        "pbr"
+      ],
+      "url": "https://extensions.blender.org/add-ons/mpfb/",
+      "license": "GPL-3.0-or-later (addon); CC0 (core assets)",
+      "license_scope": "independently sourced clothing/third-party assets may differ",
+      "hardware": "CPU Blender 4.2+; test in Blender 5.2 pipeline",
+      "automation": "blender_extension_manual_until_tested",
+      "status": "research_verified",
+      "notes": "Parametric human with built-in eyes, skin, clothing and rigs; realism requires custom textures and artistic refinement."
+    },
+    {
+      "id": "unirig",
+      "name": "UniRig",
+      "role": "auto_rig",
+      "targets": [
+        "human",
+        "animal",
+        "mecha"
+      ],
+      "stages": [
+        "rigging",
+        "skinning"
+      ],
+      "url": "https://github.com/VAST-AI-Research/UniRig",
+      "license": "MIT (code)",
+      "license_scope": "model weights and datasets separately verified before distribution",
+      "hardware": "CUDA GPU >=8 GB VRAM",
+      "automation": "gpu_external",
+      "status": "research_verified",
+      "notes": "Predict skeleton and skin weights for diverse shapes; review knees, tails, wings and mesh deformation."
+    },
+    {
+      "id": "cloudrig",
+      "name": "Blender Studio CloudRig",
+      "role": "rig_control",
+      "targets": [
+        "human",
+        "animal",
+        "mecha"
+      ],
+      "stages": [
+        "rigging"
+      ],
+      "url": "https://extensions.blender.org/add-ons/cloudrig/",
+      "license": "GPL-3.0-or-later (addon)",
+      "license_scope": "source addon; generated assets retain their own licenses",
+      "hardware": "Blender 5.0 listed; verify 5.2 behavior before unattended install",
+      "automation": "blender_extension_manual_until_tested",
+      "status": "research_verified",
+      "notes": "Advanced controller rig built from a metarig; not a 3D geometry generator."
+    },
+    {
+      "id": "rain_rig",
+      "name": "Blender Studio Rain Character Rig",
+      "role": "reference_character",
+      "targets": [
+        "human"
+      ],
+      "stages": [
+        "reference",
+        "rigging"
+      ],
+      "url": "https://studio.blender.org/characters/rain/v3/",
+      "license": "CC-BY",
+      "license_scope": "attribution required; custom scripts embedded in .blend need cautious execution",
+      "hardware": "Blender 4.1+ per studio page; test 5.2",
+      "automation": "manual_review",
+      "status": "research_verified",
+      "notes": "Professional example of skinning, face controls and IK; not a generic commercial character generator."
+    },
+    {
+      "id": "instant_meshes",
+      "name": "Instant Meshes",
+      "role": "retopology",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "retopology"
+      ],
+      "url": "https://github.com/wjakob/instant-meshes",
+      "license": "BSD-3-Clause",
+      "license_scope": "source software; input model copyright remains unchanged",
+      "hardware": "Native GUI, manual guided topology; binaries vary by OS",
+      "automation": "manual_review",
+      "status": "research_verified",
+      "notes": "Turn dense scans/sculpts into quad-oriented mesh; additional manual loops needed around joints."
+    },
+    {
+      "id": "material_maker",
+      "name": "Material Maker",
+      "role": "procedural_pbr",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "pbr"
+      ],
+      "url": "https://github.com/RodZill4/material-maker",
+      "license": "MIT (code)",
+      "license_scope": "check individual downloaded community libraries",
+      "hardware": "Desktop editor based on Godot",
+      "automation": "external_authoring",
+      "status": "research_verified",
+      "notes": "Create metallic/roughness/normal textures and procedural surface detail."
+    },
+    {
+      "id": "polyhaven",
+      "name": "Poly Haven",
+      "role": "cc0_asset_library",
+      "targets": [
+        "animal",
+        "mecha",
+        "prop",
+        "environment",
+        "human"
+      ],
+      "stages": [
+        "assets",
+        "pbr",
+        "lighting"
+      ],
+      "url": "https://polyhaven.com/",
+      "license": "CC0 (assets); live API has separate ToS",
+      "license_scope": "live API use asks source acknowledgement and User-Agent; do not mirror whole catalog",
+      "hardware": "No GPU to query or download; Blender import as needed",
+      "automation": "api_metadata_ready",
+      "status": "research_verified",
+      "notes": "Photoscanned props, HDRIs and PBR materials improve realism. Blender Online library currently targets Blender 5.3+, use API in 5.2."
+    },
+    {
+      "id": "ambientcg",
+      "name": "ambientCG",
+      "role": "cc0_material_library",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "pbr",
+        "lighting"
+      ],
+      "url": "https://ambientcg.com/",
+      "license": "CC0 (assets)",
+      "license_scope": "confirm per-asset licensing before public redistribution",
+      "hardware": "No GPU to download",
+      "automation": "reference_only",
+      "status": "research_verified",
+      "notes": "PBR surface textures and decals for metal, skin-adjacent materials, stone and wood."
+    },
+    {
+      "id": "smithsonian3d",
+      "name": "Smithsonian Open Access 3D",
+      "role": "photogrammetry_scans",
+      "targets": [
+        "animal",
+        "human",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "reference",
+        "assets"
+      ],
+      "url": "https://3d.si.edu/",
+      "license": "CC0 per eligible item only",
+      "license_scope": "CC0 icon/metadata required for each download, others excluded",
+      "hardware": "No GPU to download; high-resolution scans need remesh for game",
+      "automation": "license_check_per_asset",
+      "status": "research_verified",
+      "notes": "Accurate natural-history scans, fossils and museum objects; scans are mostly static and not animation-ready."
+    },
+    {
+      "id": "gltf_transform",
+      "name": "glTF-Transform",
+      "role": "web_asset_optimizer",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "optimization"
+      ],
+      "url": "https://github.com/donmccurdy/glTF-Transform",
+      "license": "MIT",
+      "license_scope": "program license only; imported asset license remains",
+      "hardware": "Node.js CPU",
+      "automation": "cpu_optional",
+      "status": "research_verified",
+      "notes": "Inspect, resize textures and compress GLB for web. Always check appearance and animation after lossy changes."
+    },
+    {
+      "id": "gltf_validator",
+      "name": "Khronos glTF Validator",
+      "role": "standards_validator",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "validation"
+      ],
+      "url": "https://github.com/KhronosGroup/glTF-Validator",
+      "license": "check upstream software license",
+      "license_scope": "official glTF 2.0 syntax/specification validator; no license transfer to assets",
+      "hardware": "Node.js/Dart or web, CPU",
+      "automation": "cpu_optional",
+      "status": "research_verified",
+      "notes": "Detect invalid accessors, animations, PBR usage and GLB structural problems."
+    },
+    {
+      "id": "simready",
+      "name": "NVIDIA SimReady Central",
+      "role": "simulation_asset_portal",
+      "targets": [
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "assets",
+        "physics_reference"
+      ],
+      "url": "https://huggingface.co/spaces/nvidia/simready-central",
+      "license": "per-asset license",
+      "license_scope": "OpenUSD portal is not a blanket CC0 library; review each file license",
+      "hardware": "Varies; USD tooling may be needed",
+      "automation": "reference_only",
+      "status": "research_verified",
+      "notes": "Potential joints, collision and physical material reference for mech/city simulations."
+    },
+    {
+      "id": "pixal3d",
+      "name": "Tencent ARC Pixal3D",
+      "role": "image_to_3d",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "generation",
+        "pbr"
+      ],
+      "url": "https://github.com/TencentARC/Pixal3D",
+      "license": "MIT (project code and checkpoints) plus third-party terms",
+      "license_scope": "Third-party dependencies and image-rights/consent need independent review (NOTICE).",
+      "hardware": "CUDA GPU; follows TRELLIS.2 setup, low_vram option exists but no confirmed universal minimum",
+      "automation": "gpu_external",
+      "status": "research_verified",
+      "notes": "SIGGRAPH 2026 pixel-aligned image-to-3D with PBR and multiview inference; candidate for side-by-side quality tests."
+    },
+    {
+      "id": "sam3d_body",
+      "name": "Meta SAM 3D Body",
+      "role": "human_pose_reconstruction",
+      "targets": [
+        "human"
+      ],
+      "stages": [
+        "generation",
+        "reference",
+        "rigging"
+      ],
+      "url": "https://github.com/facebookresearch/sam-3d-body",
+      "license": "Meta SAM License (custom)",
+      "license_scope": "Code and weights are not MIT/CC0; check distribution/use rules and checkpoint access.",
+      "hardware": "GPU inference, see official INSTALL.md; not tested on GitHub CPU",
+      "automation": "gpu_external_license_review",
+      "status": "research_verified",
+      "notes": "Single-image human body/hand/foot shape and pose recovery; research reference, not a ready-made photorealistic character generator."
+    },
+    {
+      "id": "sam3d_objects",
+      "name": "Meta SAM 3D Objects",
+      "role": "real_image_reconstruction",
+      "targets": [
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "generation",
+        "reference"
+      ],
+      "url": "https://github.com/facebookresearch/sam-3d-objects",
+      "license": "Meta SAM License (custom)",
+      "license_scope": "Check checkpoints, source and derivative distribution conditions; 3DAO evaluation set is CC-BY-NC, not CC0.",
+      "hardware": "GPU inference; not installed here; some outputs are Gaussian splats requiring conversion",
+      "automation": "gpu_external_license_review",
+      "status": "research_verified",
+      "notes": "Reconstruct 3D objects/layout from real cluttered photos; not inherently a clean retopologized GLB."
+    },
+    {
+      "id": "3d_asset_server",
+      "name": "3D Asset Server (MCP / REST)",
+      "role": "multi_provider_search",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "assets",
+        "pbr",
+        "lighting",
+        "reference"
+      ],
+      "url": "https://github.com/arielshad/3d-asset-server",
+      "license": "Apache-2.0 (service code); per-asset source license",
+      "license_scope": "Third-party service; verify every returned asset/license/attribution. Never auto-share private repository data, auto-execute code, or download unknown source artifacts.",
+      "hardware": "No local GPU to search; HTTP MCP/REST, no API key on public server",
+      "automation": "reference_only",
+      "status": "research_verified",
+      "notes": "Search many asset libraries from Claude/Codex/Copilot with license metadata. Explicit user opt-in for external MCP connection; no installation performed."
+    }
+  ]
+}

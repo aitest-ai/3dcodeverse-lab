@@ -1,0 +1,34 @@
+name: Open 3D Resources & Quality Tooling
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'resources/open_3d_tool_catalog.json'
+      - 'scripts/assets/**'
+      - '.github/workflows/open-3d-resources.yml'
+  pull_request:
+    paths:
+      - 'resources/open_3d_tool_catalog.json'
+      - 'scripts/assets/**'
+      - '.github/workflows/open-3d-resources.yml'
+permissions:
+  contents: read
+jobs:
+  resource-metadata:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax
+        run: python3 -m compileall -q scripts/assets
+      - name: Validate curated catalog licenses and URLs
+        run: python3 scripts/assets/tool_catalog.py --validate
+      - name: Run offline unit tests without downloading models
+        run: python3 -m unittest discover -s scripts/assets -p 'test_*.py' -v
+      - name: Verify official Poly Haven API metadata endpoint (no asset downloads)
+        run: python3 scripts/assets/polyhaven_search.py rock --kind models --limit 3
+      - name: Demonstrate non-GPU human and animal discovery
+        run: |
+          python3 scripts/assets/tool_catalog.py --category human --stage base_mesh
+          python3 scripts/assets/tool_catalog.py --category animal --stage rigging --gpu cpu
+          echo 'No GPU weights downloaded and no external Python scripts executed.'
