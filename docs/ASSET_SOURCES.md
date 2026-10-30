@@ -23,3 +23,9 @@ CHAR=female ...   # other body
 
 GitHub Actions: the packs are not fetched automatically (itch.io downloads need a scripted session); add them as a
 release asset or an Actions cache/secret-free artifact before running the workflow. Not yet automated.
+
+## Modular Character Outfits - Fantasy [Standard] (added 2026-10-30)
+- Source: https://quaternius.itch.io/modular-character-outfits-fantasy (Standard/free zip)
+- License: CC0 1.0 (Quaternius). Used: Peasant and Ranger outfits (male + female) with the alternate colour textures T_Peasant_2 and T_Ranger_3. Ranger hood not used.
+- Same 65-bone UE skeleton as Universal Base Characters; meshes are re-bound to our rig in `scripts/blender5/aviator_human.py`. Only the head/neck of the base body is kept.
+- Replaces the earlier procedural "offset shell" clothing, which looked puffy/inflated in review.

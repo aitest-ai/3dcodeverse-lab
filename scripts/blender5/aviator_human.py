@@ -1,12 +1,13 @@
 """aviator_human -- realistic-proportion pilot built from CC0 assets + procedural flight gear (Blender 5.2, headless).
 
 Inputs (CC0, Quaternius): Universal Base Characters [Standard] (Superhero body, same UE-mannequin skeleton) and
-Universal Animation Library [Standard] (mocap-style clips).  Everything else (flight suit, boots, gloves, belt,
-scarf, goggles) is generated here from the body mesh / simple shapes, so the outfit is original and recolourable.
-Run:  ASSET_SRC=<dir with ubc/ and ual1.glb> ASSET_OUT_DIR=outputs blender -b --factory-startup --python scripts/blender5/aviator_human.py
+Universal Animation Library [Standard] (mocap-style clips) and Modular Character Outfits - Fantasy [Standard]
+(Peasant + Ranger outfits, 4 colour variants; also CC0).  Goggles, cap and scarf are generated here (acc_* nodes).
+Only the head/neck of the base body is kept; the outfit meshes are re-bound to the same skeleton.
+Run:  ASSET_SRC=<dir with ubc/, outfits/ and ual1.glb> ASSET_OUT_DIR=outputs blender -b --factory-startup --python scripts/blender5/aviator_human.py
 Env:  CHAR=male|female (default male)
 """
-import bpy, bmesh, math, json, os, struct
+import re, bpy, bmesh, math, json, os, struct
 from pathlib import Path
 from mathutils import Vector, Matrix
 
@@ -86,24 +87,55 @@ PAL = {"suit": (0x5B6B4B, .85, 0), "boot": (0x3B2A20, .6, 0), "glove": (0xA9794A
        "scarf": (0xE3AA1E, .85, 0), "goggle_lens": (0x9EC8E0, .15, .2), "goggle_strap": (0x6A4A30, .8, 0), "patch": (0xE8E2D0, .8, 0)}
 for k, (h, r, mt) in PAL.items(): mat(k, h, r, mt)
 
-OFFS = {"suit": 0.011, "boot": 0.014, "glove": 0.007}
-# a vertex-group-preserving approach: duplicate the body (keeps groups + armature modifier), then delete foreign faces
-def layer_from_body(kind):
-    ob = body.copy(); ob.data = body.data.copy(); ob.name = kind; bpy.context.collection.objects.link(ob)
-    ob.parent = rig; ob.matrix_parent_inverse = body.matrix_parent_inverse.copy()
-    ob.data.materials.clear(); ob.data.materials.append(MATS[kind])
-    bm = bmesh.new(); bm.from_mesh(ob.data); bm.verts.ensure_lookup_table()
-    for v in bm.verts:
-        z0 = v.co.z; v.co += normals[v.index] * OFFS[kind]
-        if kind == "boot" and normals[v.index].z < 0: v.co.z = z0   # keep the sole flat, do not push it under the floor
-    kill = [f for f in bm.faces if sum(1 for v in f.verts if cat[v.index] == kind) * 2 < len(f.verts)]
-    bmesh.ops.delete(bm, geom=kill, context='FACES')
-    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS')
-    bm.to_mesh(ob.data); bm.free()
-    for p in ob.data.polygons: p.use_smooth = True
-    return ob
-suit = layer_from_body("suit"); boots = layer_from_body("boot"); gloves = layer_from_body("glove")
-# the original body keeps skin; hide nothing (clothing sits 1 cm above it)
+bones = rig.data.bones
+PELZ = rig.data.bones["pelvis"].head_local.z
+# helpers
+def B(n): return bones[n].head_local.copy()
+def BT(n): return bones[n].tail_local.copy()
+mat("cap", 0x1D3A5F, .7, 0)
+# ---- ready-made outfits: Quaternius "Modular Character Outfits - Fantasy" [Standard] (CC0), same UE skeleton -> re-bound to our rig
+OUTFIT_ROOT = SRC / "outfits/Modular Character Outfits - Fantasy[Standard]"
+PRE = "Male" if CHAR == "male" else "Female"
+OUTFITS = {1: "農夫襯衫（米色）", 2: "農夫襯衫（藍灰）", 3: "遊俠裝（綠）", 4: "遊俠裝（褐紅）"}
+OUTFIT_SRC = {1: ("Peasant", None), 2: ("Peasant", "Peasant/T_Peasant_2_BaseColor.png"), 3: ("Ranger", None), 4: ("Ranger", "Ranger/T_Ranger_3_BaseColor.png")}
+SHARED_IMG = {}
+def base_name(n): return re.sub(r"\.\d+$", "", n)
+boots = None
+for oi, (kind, variant) in OUTFIT_SRC.items():
+    before = set(bpy.data.objects)
+    bpy.ops.import_scene.gltf(filepath=str(OUTFIT_ROOT / "Exports/glTF (Godot-Unreal)/Outfits" / ("%s_%s.gltf" % (PRE, kind))))
+    new_names = [o.name for o in bpy.data.objects if o not in before]
+    for nm in [n for n in new_names if n.startswith("Icosphere")]: bpy.data.objects.remove(bpy.data.objects[nm], do_unlink=True)
+    new_names = [n for n in new_names if n in bpy.data.objects]
+    for o in [bpy.data.objects[n] for n in new_names if bpy.data.objects[n].type == 'MESH']:
+        if "Hood" in o.name: bpy.data.objects.remove(o, do_unlink=True); continue
+        part = o.name.split("_", 2)[2] if o.name.count("_") >= 2 else o.name
+        o.name = "o%d_%s" % (oi, re.sub(r"[^A-Za-z0-9]+", "", part)); o.parent = rig; o.matrix_parent_inverse = Matrix.Identity(4)
+        for m in o.modifiers:
+            if m.type == 'ARMATURE': m.object = rig
+        for m in o.data.materials:
+            for n in m.node_tree.nodes:
+                if n.type != 'TEX_IMAGE' or n.image is None: continue
+                key = base_name(n.image.name)
+                if variant and key == "T_%s_BaseColor" % kind:
+                    vim = bpy.data.images.get(os.path.basename(variant)) or bpy.data.images.load(str(OUTFIT_ROOT / "Textures" / variant))
+                    n.image = vim; key = base_name(vim.name)
+                    vim.colorspace_settings.name = 'sRGB'
+                if key in SHARED_IMG and SHARED_IMG[key] is not n.image: n.image = SHARED_IMG[key]
+                else: SHARED_IMG[key] = n.image
+        if oi == 1 and o.name.endswith("Feet"): boots = o
+    for nm in new_names:
+        if nm in bpy.data.objects and bpy.data.objects[nm].type != 'MESH': bpy.data.objects.remove(bpy.data.objects[nm], do_unlink=True)
+assert boots is not None, "outfit 1 feet mesh not found"
+for ob in bpy.data.objects:
+    if ob.name.startswith("o") and ob.type == 'MESH':
+        for p_ in ob.data.polygons: p_.use_smooth = True
+NECKZ = B("neck_01").z
+def trim_body(zcut):
+    bm = bmesh.new(); bm.from_mesh(body.data); bm.faces.ensure_lookup_table()
+    hz = B("neck_01").z + 0.07   # above this everything is head
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if not (max(v.co.z for v in f.verts) >= hz or (max(v.co.z for v in f.verts) >= zcut and max(abs(v.co.x) for v in f.verts) < 0.095))], context='FACES')
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context='VERTS'); bm.to_mesh(body.data); bm.free()
 
 # ---------------------------------------------------------------- rigid accessories (acc_ prefix = optional in engine)
 def rigid_part(name, bone, bm, matname):
@@ -163,29 +195,21 @@ rigid_part("goggle_strap", "Head", torus((0, hcy, gz), 1.0, 0.009, sx=hx * 1.10,
 for sg in (1, -1):
     rigid_part("goggle_rim_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.42, hcy + FRONT * hy * 1.04, gz + 0.004), (0.034, 0.014, 0.034), 16, 10), "buckle")
     rigid_part("goggle_lens_" + ("L" if sg > 0 else "R"), "Head", ell((sg * hx * 0.42, hcy + FRONT * hy * 1.10, gz + 0.004), (0.028, 0.010, 0.028), 16, 10), "goggle_lens")
-for sg, sd in ((1, "l"), (-1, "r")):
-    ring_part("boot_cuff_" + sd, "calf_" + sd, Vector((sg * 0.09, 0.0, 0.30)), Vector((0, 0, 1)), ("suit", "boot"), 0.017, "boot", extra=0.016)
-    wr = hp("hand_" + sd); fa = (hp("hand_" + sd) - hp("lowerarm_" + sd)).normalized()
-    ring_part("sleeve_cuff_" + sd, "lowerarm_" + sd, wr - fa * 0.015, fa, ("suit",), 0.012, "belt", extra=0.014)
+# pilot cap (optional): hemisphere over the hair
+capbm = ell((0, hcy + 0.004, htop - 0.07), (hx * 1.16, hy * 1.14, 0.105), 24, 12)
+bmesh.ops.delete(capbm, geom=[v for v in capbm.verts if v.co.z < htop - 0.07 - 0.02], context='VERTS')
+rigid_part("cap", "Head", capbm, "cap")
+rigid_part("cap_brim", "Head", ell((0, hcy + FRONT * hy * 1.05, htop - 0.085), (hx * 0.8, 0.07, 0.012), 16, 8), "cap")
 rigid_part("scarf", "neck_01", torus((0, neck.y, neck.z + 0.045), 1.0, 0.026, sx=0.082, sy=0.085), "scarf")
 rigid_part("scarf_tail", "spine_03", ell((0.0, sp3.y + 0.085, sp3.z + 0.02), (0.035, 0.012, 0.15), 10, 8), "scarf")
-rigid_part("chest_patch", "spine_03", ell((0.085, sp3.y - 0.11, sp3.z - 0.02), (0.035, 0.006, 0.028), 12, 8), "patch")
 
-# hair colour: the source hair texture is neutral grey, tint it (HAIR_TINT=R,G,B 0..1 multipliers)
-tint = [float(x) for x in os.environ.get("HAIR_TINT", "0.62,0.36,0.20").split(",")]
-for im in bpy.data.images:
-    if "Hair" in im.name and "BaseColor" in im.name and "Normal" not in im.name:
-        px = list(im.pixels)
-        for i in range(0, len(px), 4):
-            l = (px[i] + px[i + 1] + px[i + 2]) / 3.0
-            px[i] = min(1, l * tint[0] * 1.25); px[i + 1] = min(1, l * tint[1] * 1.25); px[i + 2] = min(1, l * tint[2] * 1.25)
-        im.pixels = px; im.update()
+trim_body(NECKZ - 0.05)   # clothes provide everything below the neck; keep only head + neck of the base body
 
 # ---------------------------------------------------------------- textures: downscale for the web (JPEG for opaque maps, PNG where alpha matters)
 for im in bpy.data.images:
     if im.name == "Render Result" or im.name == "Viewer Node": continue
     try:
-        t = TEX if "Superhero" in im.name else TEX // 2
+        t = 512 if ("Normal" in im.name or "ORM" in im.name or "Roughness" in im.name) else TEX
         if im.size[0] > t: im.scale(t, t)
         im.file_format = 'PNG' if ("Hair" in im.name and "BaseColor" in im.name) else 'JPEG'
         im.pack()
@@ -279,15 +303,15 @@ for c in ("Idle", "Walk", "Run", "Sprint", "Sit"):
 h = round(max((o.matrix_world @ Vector(c)).z for o in bpy.data.objects if o.type == 'MESH' for c in o.bound_box), 2)
 report = {"asset_id": ASSET_ID, "blender_version": bpy.app.version_string, "glb_bytes": total, "clips": anim, "measurements": STATS, "height_m": h,
           "meshes": [o.name for o in bpy.data.objects if o.type == 'MESH'],
-          "not_checked_automatically": ["visual quality / likeness", "cloth interpenetration beyond the 1 cm offset shell", "real-GPU performance"],
-          "method": "CC0 body + CC0 mocap-style clips (Quaternius) retargeted by shared bone names; outfit generated from the body mesh"}
+          "not_checked_automatically": ["visual quality / likeness", "cloth interpenetration (outfits were authored for a slightly different body; only visually reviewed)", "real-GPU performance"],
+          "method": "CC0 body + CC0 mocap-style clips (Quaternius) retargeted by shared bone names; ready-made CC0 outfits re-bound to the same skeleton"}
 (OUT / (ASSET_ID + "_report.json")).write_text(json.dumps(report, indent=2), encoding="utf-8")
 manifest = {"schema_version": 1, "asset_id": ASSET_ID, "format": "glTF 2.0 GLB", "model_file": ASSET_ID + ".glb", "source_file": ASSET_ID + ".blend",
             "blender_version": bpy.app.version_string, "unit": "meter", "clips": anim, "min_animation_count": len(anim),
             "requirements": {"skins": True, "animated": True, "visual_review": True},
             "character": {"height_m": h, "style": "realistic adult proportions", "forward_axis_glb": "+Z", "root_bone": "root", "ground_y": 0.0, "skeleton": "UE mannequin (65 bones)"},
             "clip_info": CLIPINFO,
-            "customization": {"recolor_by_material_name": ["suit", "boot", "glove", "scarf", "buckle", "goggle_strap", "patch"], "optional_nodes": [o.name for o in bpy.data.objects if o.name.startswith("acc_")]},
-            "license_note": "Body mesh and clips: CC0 1.0 (Quaternius, Universal Base Characters [Standard] and Universal Animation Library [Standard]). Outfit/accessories: original, generated by this script."}
+            "customization": {"recolor_by_material_name": ["cap", "scarf", "buckle", "goggle_strap", "MI_Hair_1", "MI_Hair_2", "MI_Superhero_Male", "MI_Superhero_Female", "MI_Regular_Male", "MI_Regular_Female"], "outfits": {str(k): v for k, v in OUTFITS.items()}, "outfit_node_prefixes": ["o1_", "o2_", "o3_", "o4_"], "optional_nodes": [o.name for o in bpy.data.objects if o.name.startswith("acc_")]},
+            "license_note": "Body, clips and outfits: CC0 1.0 (Quaternius: Universal Base Characters [Standard], Universal Animation Library [Standard], Modular Character Outfits - Fantasy [Standard]). Goggles/cap/scarf: original, generated by this script."}
 (OUT / (ASSET_ID + "_manifest.json")).write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 print("ASSET_BUILD_OK", json.dumps({c: STATS[c] for c in ("Idle", "Walk", "Run", "Sprint", "Sit")}))

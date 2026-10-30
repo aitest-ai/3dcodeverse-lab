@@ -1,0 +1,160 @@
+{
+  "asset_id": "aviator_human_m",
+  "blender_version": "5.2.3 LTS",
+  "glb_bytes": 6810688,
+  "clips": [
+    "Cheer",
+    "Drive",
+    "Idle",
+    "Interact",
+    "JumpLand",
+    "JumpLoop",
+    "JumpStart",
+    "Run",
+    "Sit",
+    "Sprint",
+    "Talk",
+    "Walk"
+  ],
+  "measurements": {
+    "Idle": {
+      "frames": 60,
+      "min_sole_z_m": -0.0077,
+      "max_sole_min_z_m": -0.0048,
+      "ground_correction_m": 0.0077,
+      "min_sole_z_after_m": -0.0
+    },
+    "Walk": {
+      "frames": 32,
+      "min_sole_z_m": -0.0143,
+      "max_sole_min_z_m": 0.006,
+      "speed_mps": 0.985,
+      "max_stance_slip_m": 0.0538,
+      "stance_runs": 2,
+      "ground_correction_m": 0.0143,
+      "min_sole_z_after_m": 0.0
+    },
+    "Run": {
+      "frames": 22,
+      "min_sole_z_m": 0.0105,
+      "max_sole_min_z_m": 0.2334,
+      "speed_mps": 6.077,
+      "max_stance_slip_m": 0.0062,
+      "stance_runs": 2,
+      "min_sole_z_after_m": 0.0105
+    },
+    "Sprint": {
+      "frames": 16,
+      "min_sole_z_m": -0.002,
+      "max_sole_min_z_m": 0.2222,
+      "speed_mps": 9.338,
+      "max_stance_slip_m": 0.0079,
+      "stance_runs": 1,
+      "min_sole_z_after_m": -0.002
+    },
+    "Sit": {
+      "frames": 40,
+      "min_sole_z_m": 0.0324,
+      "max_sole_min_z_m": 0.0324,
+      "ground_correction_m": -0.0324,
+      "min_sole_z_after_m": -0.0
+    },
+    "Drive": {
+      "frames": 40,
+      "min_sole_z_m": 0.017,
+      "max_sole_min_z_m": 0.017,
+      "ground_correction_m": -0.017,
+      "min_sole_z_after_m": 0.0
+    },
+    "Interact": {
+      "frames": 48,
+      "min_sole_z_m": -0.0079,
+      "max_sole_min_z_m": -0.0048,
+      "ground_correction_m": 0.0079,
+      "min_sole_z_after_m": 0.0
+    },
+    "Cheer": {
+      "frames": 24,
+      "min_sole_z_m": -0.0063,
+      "max_sole_min_z_m": 0.0128,
+      "ground_correction_m": 0.0063,
+      "min_sole_z_after_m": -0.0
+    },
+    "Talk": {
+      "frames": 70,
+      "min_sole_z_m": -0.007,
+      "max_sole_min_z_m": -0.0052,
+      "ground_correction_m": 0.007,
+      "min_sole_z_after_m": -0.0
+    },
+    "JumpStart": {
+      "frames": 32,
+      "min_sole_z_m": -0.1774,
+      "max_sole_min_z_m": 0.3672,
+      "ground_correction_m": 0.1774,
+      "min_sole_z_after_m": -0.0
+    },
+    "JumpLoop": {
+      "frames": 60,
+      "min_sole_z_m": -0.1603,
+      "max_sole_min_z_m": -0.1026,
+      "ground_correction_m": 0.1603,
+      "min_sole_z_after_m": 0.0
+    },
+    "JumpLand": {
+      "frames": 30,
+      "min_sole_z_m": -0.0136,
+      "max_sole_min_z_m": 0.0508,
+      "ground_correction_m": 0.0136,
+      "min_sole_z_after_m": -0.0
+    }
+  },
+  "height_m": 1.85,
+  "meshes": [
+    "acc_cap",
+    "acc_cap_brim",
+    "acc_goggle_lens_L",
+    "acc_goggle_lens_R",
+    "acc_goggle_rim_L",
+    "acc_goggle_rim_R",
+    "acc_goggle_strap",
+    "acc_scarf",
+    "acc_scarf_tail",
+    "body",
+    "Eyebrows",
+    "Eyes",
+    "hair",
+    "hair.001",
+    "Icosphere",
+    "o1_Arms",
+    "o1_Body",
+    "o1_Feet",
+    "o1_Legs",
+    "o2_Arms",
+    "o2_Body",
+    "o2_Feet",
+    "o2_Legs",
+    "o3_AccPauldron",
+    "o3_Arms",
+    "o3_ArmsBracer",
+    "o3_Body",
+    "o3_BodyBelt1",
+    "o3_BodyBelt2",
+    "o3_FeetBoots",
+    "o3_Legs",
+    "o4_AccPauldron",
+    "o4_Arms",
+    "o4_ArmsBracer",
+    "o4_Body",
+    "o4_BodyBelt1",
+    "o4_BodyBelt2",
+    "o4_FeetBoots",
+    "o4_Legs"
+  ],
+  "not_checked_automatically": [
+    "visual quality / likeness",
+    "cloth interpenetration beyond the 1 cm offset shell",
+    "real-GPU performance"
+  ],
+  "method": "CC0 body + CC0 mocap-style clips (Quaternius) retargeted by shared bone names; outfit generated from the body mesh"
+}

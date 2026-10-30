@@ -63,3 +63,9 @@ returns to 0 at stance contact. No runtime IK is needed in the engine.
 ## 8. Known limits of this pipeline
 * GitHub MCP/text tools cannot commit binaries; the GLB/BLEND travel as Actions artifacts or a Release.
 * No facial animation, cloth or secondary motion; Salute hand-to-brim error is about 0.11 m (see manifest).
+
+## aviator_human: outfit and customization conventions (2026-10-30)
+- Nodes `o1_*`..`o4_*` = four outfits (show exactly one set); nodes `acc_goggle*`, `acc_cap*`, `acc_scarf*` = optional accessories.
+- Engine recolours by material name (suffix `.001` stripped): `cap`, `scarf`, `MI_Hair_*` (hair texture is neutral grey, multiply colour), `MI_Superhero_*` / `MI_Regular_*` (skin tint). Clothes are texture-atlas based and are switched, not recoloured.
+- Two bodies: `aviator_human_m.glb` and `aviator_human_f.glb` (`CHAR=female`); each ~7 MB, loaded lazily on demand.
+- Known limits: outfits are authored for a "Regular" body while the retained head is Superhero; walk heel-roll slip up to ~5 cm; only visual review by the author (AI), no real-GPU test; GitHub Actions never run (no permission).
