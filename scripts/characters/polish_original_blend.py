@@ -16,7 +16,7 @@ with (base/"human_mpfb_blender5.glb").open("rb") as f:
     assert magic==b"glTF" and ver==2
     n,k=struct.unpack("<I4s",f.read(8)); assert k==b"JSON"
     gltf=json.loads(f.read(n))
-    n,k=struct.unpack("<I4s",f.read(8)); assert k==b"BIN\\x00"
+    n,k=struct.unpack("<I4s",f.read(8)); assert k==b"BIN\x00"
     binary=f.read(n)
 imgdir=out/"recovered_images"
 imgdir.mkdir(exist_ok=True)
