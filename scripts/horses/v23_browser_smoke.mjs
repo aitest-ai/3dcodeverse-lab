@@ -30,7 +30,12 @@ try{
   result.description=text;
   if(await page.locator('canvas').count()!==1)throw new Error('No WebGL canvas');
   result.checks.push('WebGL canvas present');
+  await page.locator('#focus').click();
+  await page.waitForTimeout(300);
   await page.screenshot({path:'outputs/v23demo/browser_front.png',fullPage:true});
+  result.checks.push('close-up camera preset works');
+  await page.locator('#trackView').click();
+  await page.waitForTimeout(300);
   await page.locator('#clip').selectOption('Walk');
   await page.waitForTimeout(400);
   await page.locator('#clip').selectOption('Gallop');
