@@ -53,7 +53,7 @@
 
 | 檔案 | 已實作能力 | 限制 |
 | --- | --- | --- |
-| `resources/open_3d_tool_catalog.json` | 17 個資源、用途、硬體／授權、部署條件等機器可讀資訊 | 屬研究索引，不是套件安裝清單 |
+| `resources/open_3d_tool_catalog.json` | 18 個資源、用途、硬體／授權、部署條件等機器可讀資訊 | 屬研究索引，不是套件安裝清單 |
 | `scripts/assets/tool_catalog.py` | 可依類別、製作階段、GPU 條件篩選 | 不擅自下載外部程式 |
 | `scripts/assets/polyhaven_search.py` | 透過官方 Poly Haven API 查找 CC0 物件／HDRI／材質的**中繼資料** | 不自動下載；請遵守 API ToS |
 | `scripts/assets/glb_quality_report.py` | 統計三角面、UV、PBR、蒙皮、動畫、貼圖與效能警告 | 數字不是解剖學正確或美術品質證明 |
@@ -114,3 +114,7 @@ Three.js／Unity／Godot 等目標系統匯入實測
 3. **機甲**：金屬／鉸鏈／倒角／PBR 磨損／分件輪廓，高模與遊戲低模分開交付。
 
 每個測試物至少存正面、側面、背面、45 度四視圖，近拍關鍵部位，驗收文件記錄「觀察結果、錯誤、是否真的修復」，並針對手機 WebGL 檔案大小另測。這些測試尚未在本 PR 中執行，不可把資源索引建立視為高品質模型已完成。
+
+## 7. 選配跨站搜尋 MCP
+
+可閱讀 [3D Asset Server MCP 安全選用說明](OPTIONAL_3D_ASSET_MCP.md)。此第三方開源工具能讓不同 AI 搜尋多網站素材；**本庫沒有自動啟用遠端連接、下載素材或取得模型權重**。搜尋結果的來源、作者、授權必須逐項驗證。
