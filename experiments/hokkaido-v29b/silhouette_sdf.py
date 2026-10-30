@@ -40,10 +40,12 @@ def rounded_head_from_two_profiles(sxz,syz):
     xmid=np.empty(len(Z),dtype=np.float32)
     xrad=np.empty(len(Z),dtype=np.float32)
     yrad=np.empty(len(Z),dtype=np.float32)
+    validz=np.zeros(len(Z),dtype=bool)
     for k in range(len(Z)):
         a=np.flatnonzero(sxz[:,k]>0)
         b=np.flatnonzero(syz[:,k]>0)
         if len(a)>1 and len(b)>1:
+            validz[k]=True
             xmid[k]=(X[a[0]]+X[a[-1]])*.5
             xrad[k]=max((X[a[-1]]-X[a[0]])*.5,.001)
             yrad[k]=max((Y[b[-1]]-Y[b[0]])*.5,.001)
@@ -53,16 +55,19 @@ def rounded_head_from_two_profiles(sxz,syz):
             yrad[k]=.001
     cx=xmid[None,None,:];rx=xrad[None,None,:];ry=yrad[None,None,:]
     ellipse=np.sqrt(((xx-cx)/rx)**2+(yy/ry)**2)
-    return (1-ellipse)*np.minimum(rx,ry)
+    return np.where(validz[None,None,:],
+                    (1-ellipse)*np.minimum(rx,ry),-2.)
 # Turn a jaw side PROFILE into a rounded, not extruded, asymmetric 3D
 # surface. The cheek hinge overlaps skull and stays physically fused.
 def jaw_from_side_profile(polygon,width_stations):
     sd=sdf_polygon(X,Z,polygon)
     zmid=np.empty(len(X),dtype=np.float32)
     zrad=np.empty(len(X),dtype=np.float32)
+    validx=np.zeros(len(X),dtype=bool)
     for i in range(len(X)):
         vals=np.flatnonzero(sd[i,:]>0)
         if len(vals)>1:
+            validx[i]=True
             zmid[i]=(Z[vals[0]]+Z[vals[-1]])*.5
             zrad[i]=max((Z[vals[-1]]-Z[vals[0]])*.5,.001)
         else:
@@ -72,7 +77,8 @@ def jaw_from_side_profile(polygon,width_stations):
     zc=zmid[:,None,None];zr=zrad[:,None,None]
     wy=width[:,None,None]
     r=np.sqrt((yy/wy)**2+((zz-zc)/zr)**2)
-    return (1-r)*np.minimum(wy,zr)
+    return np.where(validx[:,None,None],
+                    (1-r)*np.minimum(wy,zr),-2.)
 
 # Author-constructed natural bear profile: forward = smaller X;
 # shoulder slope, brow, descending muzzle & continuous thick rear chin.
