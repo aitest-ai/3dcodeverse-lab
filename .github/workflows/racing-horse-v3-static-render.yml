@@ -1,0 +1,91 @@
+name: Horse V3 — Actual Static Anatomy Render and Integrity Gate
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/racing-horse-v3-static-render.yml'
+      - 'scripts/horses/v3_inspect_static_candidate.py'
+  pull_request:
+    paths:
+      - '.github/workflows/racing-horse-v3-static-render.yml'
+      - 'scripts/horses/v3_inspect_static_candidate.py'
+permissions:
+  contents: read
+jobs:
+  render-candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile static asset auditor and renderer
+        run: python3 -m py_compile scripts/horses/v3_audit_cc0_standing_horse.py scripts/horses/v3_inspect_static_candidate.py
+      - name: Download official site public candidate GLB into separate review area
+        env:
+          HORSE_V3_FAST_AUDIT: '1'
+        run: |
+          python3 -u scripts/horses/v3_audit_cc0_standing_horse.py
+          test -s outputs/horse_v3_candidate/standing_horse_quarantine.glb
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path("outputs/horse_v3_candidate/source_audit.json").read_text())
+          assert data["download_status"] in ("VERIFIED_PUBLIC_CC0_SOURCE_BYTES","PUBLIC_DOWNLOAD_METADATA_MISMATCH_QUARANTINED")
+          assert data["model"]["meshes"]>=1
+          print("STATIC_ASSET_DOWNLOAD_REVIEW",data["download_status"],data.get("published_vs_downloaded"))
+          PY
+      - name: Install Blender 5 dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Official Blender 5.2.3 binary with upstream SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 3 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 3 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re
+          from pathlib import Path
+          archive=Path(".tools/blender-5.2.3-linux-x64.tar.xz")
+          row=next(s for s in Path(".tools/SHA256").read_text().splitlines() if archive.name in s)
+          digest=re.search(r"[0-9a-fA-F]{64}",row).group().lower()
+          with archive.open("rb") as f:
+            assert hashlib.file_digest(f,"sha256").hexdigest()==digest
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Import actual static horse into Blender 5 and render four views
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+            --python scripts/horses/v3_inspect_static_candidate.py -- \
+            outputs/horse_v3_candidate/standing_horse_quarantine.glb \
+            outputs/horse_v3_candidate/blender_preview
+      - name: Produce actual Blender 4-angle proof sheet
+        run: |
+          /usr/bin/python3 - <<'PY'
+          from PIL import Image,ImageDraw
+          from pathlib import Path
+          folder=Path("outputs/horse_v3_candidate/blender_preview")
+          names=["side","front","back","isometric"]
+          sheet=Image.new("RGB",(1280,1200),(29,35,42));draw=ImageDraw.Draw(sheet)
+          for i,name in enumerate(names):
+            im=Image.open(folder/("V3_static_"+name+".png")).convert("RGB")
+            im.thumbnail((616,555))
+            row,col=divmod(i,2)
+            x=20+col*635+(615-im.width)//2
+            y=35+row*588+(548-im.height)//2
+            sheet.paste(im,(x,y));draw.text((30+col*635,8+row*588),name.upper(),fill="white")
+          sheet.save(folder/"V3_static_contact_sheet.png")
+          PY
+      - name: Upload original downloaded GLB, Blender file, actual renders and provenance warning
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: horse-v3-anatomy-review-${{ github.run_number }}
+          path: outputs/horse_v3_candidate/
+          retention-days: 14
+          if-no-files-found: warn
