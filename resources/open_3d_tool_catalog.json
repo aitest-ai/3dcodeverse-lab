@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "reviewed_date": "2026-10-30",
-  "objective": "Reusable high-fidelity 3D tool catalog for humans, animals, mecha, props and environments. Metadata only; no models redistributed.",
+  "objective": "Reusable high-fidelity 3D tool catalog for humans, animals, mecha, props and environments. Research-verified metadata only; no models redistributed.",
   "items": [
     {
       "id": "trellis2",
@@ -302,6 +302,70 @@
       "automation": "reference_only",
       "status": "research_verified",
       "notes": "Potential joints, collision and physical material reference for mech/city simulations."
+    },
+    {
+      "id": "pixal3d",
+      "name": "Tencent ARC Pixal3D",
+      "role": "image_to_3d",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop"
+      ],
+      "stages": [
+        "generation",
+        "pbr"
+      ],
+      "url": "https://github.com/TencentARC/Pixal3D",
+      "license": "MIT (project code and checkpoints) plus third-party terms",
+      "license_scope": "Third-party dependencies and image-rights/consent need independent review (NOTICE).",
+      "hardware": "CUDA GPU; follows TRELLIS.2 setup, low_vram option exists but no confirmed universal minimum",
+      "automation": "gpu_external",
+      "status": "research_verified",
+      "notes": "SIGGRAPH 2026 pixel-aligned image-to-3D with PBR and multiview inference; candidate for side-by-side quality tests."
+    },
+    {
+      "id": "sam3d_body",
+      "name": "Meta SAM 3D Body",
+      "role": "human_pose_reconstruction",
+      "targets": [
+        "human"
+      ],
+      "stages": [
+        "generation",
+        "reference",
+        "rigging"
+      ],
+      "url": "https://github.com/facebookresearch/sam-3d-body",
+      "license": "Meta SAM License (custom)",
+      "license_scope": "Code and weights are not MIT/CC0; check distribution/use rules and checkpoint access.",
+      "hardware": "GPU inference, see official INSTALL.md; not tested on GitHub CPU",
+      "automation": "gpu_external_license_review",
+      "status": "research_verified",
+      "notes": "Single-image human body/hand/foot shape and pose recovery; research reference, not a ready-made photorealistic character generator."
+    },
+    {
+      "id": "sam3d_objects",
+      "name": "Meta SAM 3D Objects",
+      "role": "real_image_reconstruction",
+      "targets": [
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "generation",
+        "reference"
+      ],
+      "url": "https://github.com/facebookresearch/sam-3d-objects",
+      "license": "Meta SAM License (custom)",
+      "license_scope": "Check checkpoints, source and derivative distribution conditions; 3DAO evaluation set is CC-BY-NC, not CC0.",
+      "hardware": "GPU inference; not installed here; some outputs are Gaussian splats requiring conversion",
+      "automation": "gpu_external_license_review",
+      "status": "research_verified",
+      "notes": "Reconstruct 3D objects/layout from real cluttered photos; not inherently a clean retopologized GLB."
     }
   ]
 }
