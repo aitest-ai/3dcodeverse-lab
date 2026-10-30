@@ -32,7 +32,8 @@ jobs:
       - name: Decode Meshopt to standard GLB preserving Idle Walk and Gallop
         run: |
           npm install --global @gltf-transform/cli@4.5.1
-          gltf-transform copy inputs/horses/source_cc0_horse_compressed.glb inputs/horses/Horse.glb
+          gltf-transform copy inputs/horses/source_cc0_horse_compressed.glb inputs/horses/horse_decoded.glb
+          gltf-transform dequantize inputs/horses/horse_decoded.glb inputs/horses/Horse.glb
           cp inputs/horses/Horse.glb inputs/horses/Horse_White.glb
       - name: Install official Blender 5.2.3 LTS (SHA256 verified)
         run: |
