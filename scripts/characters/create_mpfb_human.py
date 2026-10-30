@@ -176,12 +176,38 @@ bpy.context.scene.camera=cam
 cam_data.type="ORTHO"
 cam_data.ortho_scale=2.45
 scene=bpy.context.scene
-scene.render.engine="BLENDER_WORKBENCH"
-scene.display.shading.light="STUDIO"
-scene.display.shading.color_type="MATERIAL"
-scene.display.shading.show_shadows=True
-scene.render.resolution_x=640
-scene.render.resolution_y=640
+if asset_records:
+    # Workbench ignores most diffuse textures. Use Cycles CPU to demonstrate
+    # the actual PBR skin, clothes and hair maps from glTF, not grey clay.
+    scene.render.engine="CYCLES"
+    scene.cycles.device="CPU"
+    scene.cycles.samples=20
+    scene.render.resolution_x=512
+    scene.render.resolution_y=512
+    scene.world.use_nodes=True
+    bg=scene.world.node_tree.nodes.get("Background")
+    bg.inputs["Color"].default_value=(0.24,0.27,0.32,1)
+    bg.inputs["Strength"].default_value=0.8
+    for name,location,power,size in (
+        ("Key_Area",(3.0,-4.0,5.5),650.0,3.5),
+        ("Fill_Area",(-4.0,-2.5,3.5),380.0,4.0),
+        ("Rim_Area",(1.5,3.8,4.0),500.0,3.0),
+    ):
+        lamp=bpy.data.lights.new(name,"AREA")
+        obj=bpy.data.objects.new(name,lamp)
+        scene.collection.objects.link(obj)
+        obj.location=location
+        obj.rotation_euler=(Vector((0,0,1.1))-obj.location).to_track_quat("-Z","Y").to_euler()
+        lamp.energy=power
+        lamp.shape="DISK"
+        lamp.size=size
+else:
+    scene.render.engine="BLENDER_WORKBENCH"
+    scene.display.shading.light="STUDIO"
+    scene.display.shading.color_type="MATERIAL"
+    scene.display.shading.show_shadows=True
+    scene.render.resolution_x=640
+    scene.render.resolution_y=640
 scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="PNG"
 views={"front":(0,-5.5,1.2),"side":(5.5,0,1.2),
