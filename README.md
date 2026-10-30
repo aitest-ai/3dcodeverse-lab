@@ -63,7 +63,7 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 
 為 Claude、Codex、Copilot、Cursor、ChatGPT 或其他有 GitHub/Git 權限的 AI，建立標準的**發現 → 下載 → 驗證 → 製作 → 上傳 → PR** 流程。
 
-- [共用規範與操作指令](docs/SCENE_HUB.md)
+- [共用規範與操作指令](docs/SCENE_HUB.md)｜[給其他 AI 的完整交接指令](docs/AI_SCENE_HANDOFF_PROMPT.md)
 - [AI Agent Skill](skills/scene-exchange/SKILL.md)｜[Scene Hub CLI](scripts/scene_hub.py)
 - [可共享場景索引](scenes/catalog/)｜[原創合成測試 PLY](scenes/assets/demo-forest-island/scene.ply)
 
