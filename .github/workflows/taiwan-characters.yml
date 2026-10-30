@@ -143,6 +143,7 @@ jobs:
             done
             test "$ok" -eq 1
             mv "$p.optimized" "$p"
+            python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p"
           done
           python3 - <<'PY'
           import json,pathlib,struct
