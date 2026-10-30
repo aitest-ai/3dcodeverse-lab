@@ -9,14 +9,22 @@ const browser=await chromium.launch({headless:true,args:[
 try{
   const page=await browser.newPage({viewport:{width:1400,height:900},deviceScaleFactor:1});
   page.on('pageerror',error=>result.errors.push(error.message));
+  page.on('response',r=>{if(r.status()>=400)result.errors.push("HTTP "+r.status()+" "+r.url());});
+  page.on('requestfailed',r=>result.errors.push("NETWORK "+r.url()+" "+r.failure()));
   page.on('console',msg=>{
     if(msg.type()==='error')result.errors.push(msg.text());
   });
   const response=await page.goto(result.url,{waitUntil:'domcontentloaded',timeout:30000});
   if(response.status()!==200)throw new Error('HTTP status '+response.status());
   await page.waitForFunction(
-    ()=>document.querySelector('#status')?.textContent?.includes('載入成功'),
+    ()=>{
+      const t=document.querySelector('#status')?.textContent||'';
+      return t.includes('載入成功')||t.includes('載入失敗');
+    },
     null,{timeout:45000});
+  const firstStatus=await page.locator('#status').textContent();
+  result.initial_status=firstStatus;
+  if(firstStatus.includes('載入失敗'))throw new Error(firstStatus);
   result.checks.push('2 GLB horses loaded');
   const text=await page.locator('#status').textContent();
   result.description=text;
