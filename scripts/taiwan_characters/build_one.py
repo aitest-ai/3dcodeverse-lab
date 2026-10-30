@@ -81,6 +81,67 @@ if missing:
 original_body_vertex_count=len(body.data.vertices)
 assert original_body_vertex_count>13380
 
+# Stage 0 (face QA): independently synthesize a genuine MPFB phenotype for
+# EACH character. The old pipeline reused the unmodified female-neutral head
+# for 8 people and only changed x-width. That caused uncanny clone faces.
+import importlib
+try:
+    bpy.ops.preferences.addon_enable(module="bl_ext.local_mpfb.mpfb")
+    import bl_ext.local_mpfb.mpfb
+except Exception as err:
+    raise RuntimeError("Real MPFB phenotype generator is required, not optional: "+str(err))
+def service(suffix,symbol):
+    names=[n for n in sys.modules if n.endswith(suffix)]
+    if len(names)!=1:raise RuntimeError("MPFB service missing "+suffix+" "+str(names))
+    return getattr(importlib.import_module(names[0]),symbol)
+HumanService=service("mpfb.services.humanservice","HumanService")
+TargetService=service("mpfb.services.targetservice","TargetService")
+phenotypes={
+ "you": dict(gender=.94,age=.45,weight=.38,muscle=.51,proportions=.51),
+ "boss":dict(gender=.04,age=.77,weight=.78,muscle=.29,proportions=.44),
+ "uncle":dict(gender=.99,age=.89,weight=.84,muscle=.27,proportions=.47),
+ "jie":dict(gender=.92,age=.44,weight=.35,muscle=.50,proportions=.55),
+ "oldman":dict(gender=.97,age=.97,weight=.48,muscle=.20,proportions=.49),
+ "cop":dict(gender=.97,age=.59,weight=.55,muscle=.74,proportions=.52),
+ "shui":dict(gender=.99,age=.82,weight=.62,muscle=.34,proportions=.47),
+ "bro":dict(gender=.99,age=.67,weight=.77,muscle=.83,proportions=.52)}
+phen=phenotypes[cid]
+macro=TargetService.get_default_macro_info_dict()
+macro.update(phen)
+# This affects the MakeHuman model's reference geometry, not a claim that
+# any particular face structure defines Taiwanese identity.
+macro["race"]={"asian":.83,"caucasian":.12,"african":.05}
+fresh=HumanService.create_human(mask_helpers=False,extra_vertex_groups=False,
+                                feet_on_ground=True,scale=.1,macro_detail_dict=macro)
+bpy.context.view_layer.update()
+deps=bpy.context.evaluated_depsgraph_get()
+fresh_eval=fresh.evaluated_get(deps)
+morph_mesh=fresh_eval.to_mesh()
+if len(morph_mesh.vertices)!=len(body.data.vertices):
+    raise RuntimeError("Real MPFB macro changed vertex count; cannot preserve vertex weights")
+old_coords=[v.co.copy() for v in body.data.vertices]
+oldworld=body.matrix_world.copy()
+nworld=fresh.matrix_world.copy()
+# Existing source has baked deformation for default baseline; we replace with
+# actual MPFB target interpolation while retaining original topology and weights.
+while body.data.shape_keys and len(body.data.shape_keys.key_blocks):
+    body.shape_key_remove(body.data.shape_keys.key_blocks[-1])
+inv=body.matrix_world.inverted()
+for i,vert in enumerate(body.data.vertices):
+    vert.co=inv@(nworld@morph_mesh.vertices[i].co)
+fresh_eval.to_mesh_clear()
+bpy.data.objects.remove(fresh,do_unlink=True)
+body.data.update()
+bpy.context.view_layer.update()
+# Ask official MPFB to refit eyeballs, garments, the skin weights and skeleton
+# against the changed anatomy rather than leaving the neutral female rig.
+HumanService.refit(body)
+bpy.context.view_layer.update()
+newcoords=[v.co.copy() for v in body.data.vertices]
+shifted=sum((a-b).length>.002 for a,b in zip(old_coords,newcoords))
+if shifted<2000:raise RuntimeError("MPFB phenotype was not truly applied")
+print("GENUINE_MPFB_MACRO_PROFILE",cid,phen,"adjusted",shifted)
+
 # Remove actual extra vertices, and all helper MASK modifiers. Only the first
 # 13380 MakeHuman hm08 body vertices are anatomical geometry (upstream index convention).
 for mod in list(body.modifiers):
@@ -499,6 +560,8 @@ report={
  "source_texture_max_px":256,"top_texture":[128,128],"pants_texture":[128,128],
  "textures":[{"name":im.name,"width":im.size[0],"height":im.size[1]} for im in bpy.data.images if im.has_data],
  "height_m":round(height,4),"glb_bytes":glbpath.stat().st_size,
+ "mpfb_genuine_phenotype":phen,
+ "mpfb_macro_adjusted_vertices":shifted,
  "garment_fitting":fit_stats,
  "mesh_count":len(doc.get("meshes",[])),"material_count":len(doc.get("materials",[])),
  "skin_count":len(doc.get("skins",[])),
