@@ -246,27 +246,6 @@ Z=[(body.matrix_world@v.co).z for v in body.data.vertices]
 top=max(Z);height=max(Z)-min(Z)
 headcenter=top-.14
 # Limit all source texture images to 512px and pack in the BLEND.
-# A Blender image.scale() alone does not force the glTF exporter to use
-# scaled pixels: it may COPY the original image file from its disk path.
-# Re-encode each real texture in a safe staging folder and relink materials
-# before exporting. This is necessary to get valid <6MB GLBs.
-import re
-staging=OUT/"_optimized_source_textures"
-staging.mkdir(parents=True,exist_ok=True)
-texture_dimensions=[]
-for number,im in enumerate(tuple(bpy.data.images)):
-    if not im.has_data or im.source!="FILE":continue
-    if im.size[0]>512 or im.size[1]>512:
-        factor=min(512/im.size[0],512/im.size[1])
-        im.scale(max(1,int(im.size[0]*factor)),max(1,int(im.size[1]*factor)))
-    safe=re.sub(r"[^A-Za-z0-9_.-]+","_",im.name)[:65]
-    local=staging/("%02d_%s.png"%(number,safe))
-    im.filepath_raw=str(local)
-    im.file_format="PNG"
-    im.save()
-    im.reload()
-    texture_dimensions.append([im.name,im.size[0],im.size[1],local.stat().st_size])
-print("V6_EMBEDDED_TEXTURES_RELINKED",ID,json.dumps(texture_dimensions))
 scene=bpy.context.scene
 scene.render.engine="CYCLES";scene.cycles.samples=28
 scene.cycles.device="CPU"
@@ -296,6 +275,39 @@ for view,(pos,target,scale) in views.items():
     camera_data.ortho_scale=scale
     scene.render.filepath=str(OUT/(TAG+"_"+view+".png"))
     bpy.ops.render.render(write_still=True)
+# A Blender image.scale() alone does not force the glTF exporter to use
+# scaled pixels: it may COPY the original image file from its disk path.
+# Re-encode each real texture in a safe staging folder and relink materials
+# before exporting. This is necessary to get valid <6MB GLBs.
+import re
+staging=OUT/"_optimized_source_textures"
+staging.mkdir(parents=True,exist_ok=True)
+texture_dimensions=[]
+for number,im in enumerate(tuple(bpy.data.images)):
+    if im.source!="FILE":continue
+    if not im.has_data:
+        try: im.reload()
+        except Exception as err:print("V6_IMAGE_RELOAD_WARN",im.name,str(err))
+    if not im.has_data:
+        try: _=im.pixels[0]
+        except Exception as err:print("V6_IMAGE_PIXEL_WARN",im.name,str(err))
+    if not im.has_data:continue
+    if im.packed_file:
+        im.unpack(method="REMOVE")
+    if im.size[0]>512 or im.size[1]>512:
+        factor=min(512/im.size[0],512/im.size[1])
+        im.scale(max(1,int(im.size[0]*factor)),max(1,int(im.size[1]*factor)))
+    safe=re.sub(r"[^A-Za-z0-9_.-]+","_",im.name)[:65]
+    local=staging/("%02d_%s.png"%(number,safe))
+    im.filepath_raw=str(local)
+    im.file_format="PNG"
+    im.save()
+    im.pack()
+    im.reload()
+    texture_dimensions.append([im.name,im.size[0],im.size[1],local.stat().st_size])
+print("V6_EMBEDDED_TEXTURES_RELINKED",ID,json.dumps(texture_dimensions))
+if len(texture_dimensions)<7:raise RuntimeError("Image resizing was skipped; refuse oversized glTF")
+
 # Export a real 3D test asset with original MPFB game-engine skeleton,
 # ORIGINAL fitted eye/teeth/hair/clothes objects, and skinning.
 # Only the manually selected hero/boss candidates are enabled by CI.
