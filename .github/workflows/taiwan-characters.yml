@@ -1,6 +1,10 @@
 name: Taiwan Street Game - 8 MPFB Characters ZIP
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/taiwan-characters.yml'
+      - 'scripts/taiwan_characters/**'
   push:
     paths:
       - '.github/workflows/taiwan-characters.yml'
