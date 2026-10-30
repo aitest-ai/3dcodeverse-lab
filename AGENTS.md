@@ -31,3 +31,5 @@
 - 可用 `scripts/assets/glb_quality_report.py` 收集拓樸／PBR／骨架／動畫指標；不可以統計數字冒充藝術或解剖品質合格。
 - Poly Haven API 只能依 `scripts/assets/polyhaven_search.py` 目前已實作的中繼資料查詢來描述；不能宣稱該外部資產已下載／導入。
 - 來源授權需依序追蹤程式、模型權重、生成作品／素材、服務條款；Hunyuan3D 2.1 屬自訂授權，不能誤稱 MIT／Apache。
+
+外部 AI 若需要多來源素材搜尋，先閱讀 `docs/OPTIONAL_3D_ASSET_MCP.md`；遠端 MCP 必須經使用者自行啟用，不能以本 repo 的設定默默連到第三方端點。
