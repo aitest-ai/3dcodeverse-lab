@@ -47,9 +47,9 @@ jobs:
           if not isinstance(run,int) or run<1 or not re.fullmatch("[A-Za-z0-9_-]{3,128}",str(artifact)):
               raise RuntimeError("Missing auditable CI source run or unsafe artifact")
           part_path=Path(part)
-          if part_path.is_absolute() or ".." in part_path.parts or not part_path.parts:
+          if part_path.is_absolute() or ".." in part_path.parts or not part_path.parts or not re.fullmatch(r"[A-Za-z0-9_./-]+",str(part_path)):
               raise RuntimeError("Unsafe artifact path")
-          tag="horse-"+data["asset_id"]+"-v"+data["version"]
+          tag=data["asset_id"]+"-v"+data["version"]
           for name,value in [
                ("release_tag",tag),
                ("asset_id",data["asset_id"]),
