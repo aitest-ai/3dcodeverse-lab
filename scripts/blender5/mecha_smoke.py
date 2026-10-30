@@ -3,7 +3,7 @@ Does not use Animatica AI. Runs on CPU-based GitHub Actions.
 """
 import bpy, math, json, struct, sys
 from pathlib import Path
-from mathutils import Vector, Matrix
+from mathutils import Vector, Matrix, Euler
 
 out=Path("outputs")
 out.mkdir(parents=True,exist_ok=True)
@@ -210,7 +210,16 @@ for clip in clips:
  for frame in range(1,49):
   phase=(frame-1)/47.0
   z=math.sin(2*math.pi*phase)
-  for b in poses:b.rotation_mode="XYZ";b.rotation_euler=(0,0,0);b.location=(0,0,0)
+  for b in poses:
+   b.location=(0,0,0)
+   if b.name.startswith(("thigh.","shin.","foot.")):
+    # One persistent rotation mode across ALL Actions; Blender does not
+    # animate PoseBone.rotation_mode itself.
+    b.rotation_mode="QUATERNION"
+    b.rotation_quaternion=(1,0,0,0)
+   else:
+    b.rotation_mode="XYZ"
+    b.rotation_euler=(0,0,0)
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
    # Locomotion-in-place with world-planted stance feet and moving swing feet.
@@ -230,9 +239,9 @@ for clip in clips:
    poses["spine"].rotation_euler[1]=.3*amt
    shift_root_in_world(x=.14*amt)
    for side,sign in (("L",1),("R",-1)):
-    poses["thigh."+side].rotation_euler[0]=sign*.11*amt
-    poses["shin."+side].rotation_euler[0]=-.18*amt
-    poses["foot."+side].rotation_euler[0]=.09*amt
+    poses["thigh."+side].rotation_quaternion=Euler((sign*.11*amt,0,0)).to_quaternion()
+    poses["shin."+side].rotation_quaternion=Euler((-.18*amt,0,0)).to_quaternion()
+    poses["foot."+side].rotation_quaternion=Euler((.09*amt,0,0)).to_quaternion()
   # Reconcile the two feet with the ground at the sampled key poses.
   # This is a deterministic pose correction, not runtime IK/physics.
   ground_before=lowest_sole_z()
@@ -247,9 +256,9 @@ for clip in clips:
   for b in poses:
    channel="rotation_quaternion" if b.rotation_mode=="QUATERNION" else "rotation_euler"
    b.keyframe_insert(data_path=channel,frame=frame)
-   # IK poses may contain local translations relative to bone parents.
-   if b.name=="root" or (clip=="Run" and b.name.startswith(("thigh.","shin.","foot."))):
-    b.keyframe_insert(data_path="location",frame=frame)
+   # Key ALL locations, including zero in Idle/Punch/Dodge, so the
+   # IK offsets from Run cannot leak into another animation.
+   b.keyframe_insert(data_path="location",frame=frame)
  rig.animation_data.action=None
  track=rig.animation_data.nla_tracks.new()
  track.name=clip
