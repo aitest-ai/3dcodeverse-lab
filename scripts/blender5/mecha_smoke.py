@@ -146,12 +146,15 @@ clips=("Idle","Run","Punch","Dodge")
 for clip in clips:
  a=bpy.data.actions.new("Mecha_"+clip)
  rig.animation_data.action=a
- for frame in (1,13,25,37,48):
-  z=math.sin(2*math.pi*(frame-1)/47)
+ for frame in range(1,49):
+  phase=(frame-1)/47.0
+  z=math.sin(2*math.pi*phase)
   for b in poses:b.rotation_mode="XYZ";b.rotation_euler=(0,0,0);b.location=(0,0,0)
   if clip=="Idle":poses["spine"].rotation_euler[0]=.025*z
   if clip=="Run":
-   poses["root"].location.z=.04*abs(z)
+   # Two stance pulses per running cycle; endpoints match exactly.
+   poses["root"].location.z=.025*(1-math.cos(4*math.pi*phase))
+   poses["root"].location.y=.035*math.sin(2*math.pi*phase)
    for side,sign in (("L",1),("R",-1)):
     poses["thigh."+side].rotation_euler[0]=sign*.58*z
     poses["shin."+side].rotation_euler[0]=max(0,-sign*z)*.55
@@ -177,11 +180,13 @@ for clip in clips:
   # Reconcile the two feet with the ground at the sampled key poses.
   # This is a deterministic pose correction, not runtime IK/physics.
   ground_before=lowest_sole_z()
-  target_clearance=.012
+  target_clearance=.014
   correction=max(-.30,min(.35,target_clearance-ground_before))
   poses["root"].location.z+=correction
   floor_after=lowest_sole_z()
-  floor_clearance_samples.append({"clip":clip,"frame":frame,"min_sole_z":round(floor_after,5)})
+  floor_clearance_samples.append({"clip":clip,"frame":frame,
+                                  "min_sole_z":round(floor_after,5),
+                                  "root_ground_correction":round(correction,5)})
   for b in poses:
    b.keyframe_insert(data_path="rotation_euler",frame=frame)
    if b.name=="root":b.keyframe_insert(data_path="location",frame=frame)
@@ -210,11 +215,12 @@ assert len(document.get("skins",[]))>=1, "No rig skin exported"
 assert sum("knee" in m.get("name","").lower() for m in document.get("meshes",[]))>=10, "Knee hinge geometry missing"
 assert sum(("ankle" in m.get("name","").lower() or "foot" in m.get("name","").lower() or "toe" in m.get("name","").lower()) for m in document.get("meshes",[]))>=12, "Foot or ankle geometry missing"
 assert len(arm.bones)==14, f"Expected 14 bones including both foot bones, got {len(arm.bones)}"
+assert len(floor_clearance_samples)==48*len(clips), "All-frame ground checks missing"
 assert all(x["min_sole_z"] >= -.009 for x in floor_clearance_samples), "Foot sinks below the test floor at a keyed pose"
 report={"blender_version":bpy.app.version_string,"bones":len(arm.bones),
         "mesh_parts":len(parts)+8,"knee_design":"separate thigh/shin armor, knee pivots, frontal caps and side axle pins",
         "ankle_design":"2 new ankle bones, feet, toe caps, heels and axle pins",
-        "ground_contact":"keyframe-level sole height correction, not full IK or physics",
+        "ground_contact":"48 sampled frames per clip, approximate sole clearance; not full IK or physics",
         "sole_samples":floor_clearance_samples,"animations":names,
         "skins":len(document["skins"]),"glb_bytes":total,
         "method":"procedural Blender Python (not Choreographer AI)"}
