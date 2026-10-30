@@ -366,6 +366,31 @@
       "automation": "gpu_external_license_review",
       "status": "research_verified",
       "notes": "Reconstruct 3D objects/layout from real cluttered photos; not inherently a clean retopologized GLB."
+    },
+    {
+      "id": "3d_asset_server",
+      "name": "3D Asset Server (MCP / REST)",
+      "role": "multi_provider_search",
+      "targets": [
+        "human",
+        "animal",
+        "mecha",
+        "prop",
+        "environment"
+      ],
+      "stages": [
+        "assets",
+        "pbr",
+        "lighting",
+        "reference"
+      ],
+      "url": "https://github.com/arielshad/3d-asset-server",
+      "license": "Apache-2.0 (service code); per-asset source license",
+      "license_scope": "Third-party service; verify every returned asset/license/attribution. Never auto-share private repository data, auto-execute code, or download unknown source artifacts.",
+      "hardware": "No local GPU to search; HTTP MCP/REST, no API key on public server",
+      "automation": "reference_only",
+      "status": "research_verified",
+      "notes": "Search many asset libraries from Claude/Codex/Copilot with license metadata. Explicit user opt-in for external MCP connection; no installation performed."
     }
   ]
 }
