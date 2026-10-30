@@ -57,6 +57,24 @@ try:
     report["filename_contexts"]=[html[max(0,m.start()-550):min(len(html),m.end()+550)] for m in list(re.finditer("horse-original\\.glb",html,re.I))[:4]]
     report["keyword_contexts"]=[html[max(0,m.start()-130):min(len(html),m.end()+200)] for m in list(re.finditer(r'(?:downloadUrl|modelUrl|modelPath|assetUrl|\\.glb)',html,re.I))[:12]]
     report["script_paths"]=re.findall('src="([^"]+)"',html,re.I)[:16]
+    next_meta=re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>',html,re.S)
+    if next_meta:
+        app=json.loads(next_meta.group(1))
+        part=app.get("props",{}).get("pageProps",{}).get("part",{})
+        report["part_meta"]={k:part.get(k) for k in ("id","shareId","fileHash","fileName","ext","size","kind","title","license","downloadUrl") if k in part}
+    # Inspect the public application's own asset download link code rather than
+    # inventing a URL or bypassing authentication.
+    for path in report["script_paths"]:
+        if "/_next/static/chunks/pages/tools/library/3d-parts/" not in path:continue
+        try:
+            script_url=urllib.parse.urljoin(URL,path)
+            _,_,raw_js=request(script_url,max_size=2_000_000)
+            js=raw_js.decode("utf-8","replace")
+            hits=list(re.finditer(r'(?:download|/api/|fileHash)',js,re.I))[:30]
+            report["public_js_download_contexts"]=[js[max(0,m.start()-250):min(len(js),m.end()+300)] for m in hits]
+        except Exception as exc:
+            report["public_js_error"]=str(exc)[:300]
+
     # Only try explicitly present links, no speculative path traversal.
     for url in candidates[:6]:
         try:
