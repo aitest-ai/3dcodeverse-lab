@@ -122,27 +122,27 @@ jobs:
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
-          FACE_OUT: outputs/face_v8
+          FACE_OUT: outputs/face_v9
           FACE_EXPORT_GLB: '1'
         run: |
           set -euo pipefail
-          mkdir -p outputs/face_v8
+          mkdir -p outputs/face_v9
           for id in you boss uncle jie; do
             FACE_ID="$id" FACE_HAIR_CHOICE=ponytail01 xvfb-run -a blender -b \
-              --python-exit-code 1 --python scripts/taiwan_characters/face_v8_four_role_pilot.py
+              --python-exit-code 1 --python scripts/taiwan_characters/face_v9_art_qa.py
           done
       - name: Independently validate four original 3D outfits and faces
         run: |
           set -euo pipefail
-          for id in you_v8_main boss_v8_ponytail01 uncle_v8_main jie_v8_main; do
-            p="outputs/face_v8/$id.glb"
+          for id in you_v9_main boss_v9_ponytail01 uncle_v9_main jie_v9_main; do
+            p="outputs/face_v9/$id.glb"
             python3 scripts/taiwan_characters/optimize_embedded_glb.py "$p" "$p.optimized" 512
             mv "$p.optimized" "$p"
           done
           python3 - <<'PY'
           import pathlib,json,struct,hashlib
-          root=pathlib.Path("outputs/face_v8")
-          names=("you_v8_main","boss_v8_ponytail01","uncle_v8_main","jie_v8_main")
+          root=pathlib.Path("outputs/face_v9")
+          names=("you_v9_main","boss_v9_ponytail01","uncle_v9_main","jie_v9_main")
           profiles=set()
           for tag in names:
               p=root/(tag+"_report.json")
@@ -174,7 +174,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: taiwan-four-faces-cc0-wardrobe-NOT-ART-APPROVED
-          path: outputs/face_v8/
+          name: taiwan-v9-four-role-revised-faces-wardrobe-ART-QA
+          path: outputs/face_v9/
           retention-days: 14
           if-no-files-found: warn
