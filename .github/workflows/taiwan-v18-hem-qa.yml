@@ -1,0 +1,79 @@
+name: Taiwan V18 - Source Knit Hem Before After QA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v18-hem-qa.yml'
+      - 'scripts/taiwan_hems/v18_hem_smooth_pilot.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  hem-neutral-experiment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile source-only repair pilot
+        run: python3 -m compileall -q scripts/taiwan_hems
+      - name: Retrieve genuine V17 source-MPFB four GLBs
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v17-four-real-MPFB-knitted-layer-PILOT
+          run-id: 41138623403
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input
+      - name: Install Blender runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install Blender 5.2.3 after official SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          BASE=https://download.blender.org/release/Blender5.2
+          curl -fL --retry 4 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 4 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          file="blender-5.2.3-linux-x64.tar.xz"
+          line=next(x for x in pathlib.Path(".tools/SHA256").read_text().splitlines() if file in x)
+          expected=re.search(r"[0-9a-fA-F]{64}",line).group().lower()
+          with open(".tools/"+file,"rb") as f:
+              assert hashlib.file_digest(f,"sha256").hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Compare true source sweater hem in Blender
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          HEM_SOURCE: input/outputs/face_v17/boss_v17_ponytail01.glb
+          HEM_OUT: outputs/v18_hem
+        run: |
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_hems/v18_hem_smooth_pilot.py
+          python3 - <<'PY'
+          import json,pathlib
+          root=pathlib.Path("outputs/v18_hem")
+          d=json.loads((root/"v18_hem_report.json").read_text())
+          assert d["topology_preserved"]
+          assert d["all_shape_keys_preserved"]
+          assert d["moved_hem_vertices"]>=10
+          assert d["max_vertex_shift_m"]<=.00701
+          assert d["local_z_curvature_after"][0]<=d["local_z_curvature_before"][0]
+          assert d["pilot_glb_bytes"]>1000000
+          for prefix in ("before","after"):
+              for view in ("front","threequarter"):
+                  assert (root/("boss_v18_"+prefix+"_hem_"+view+".png")).is_file()
+          print("V18_REAL_HEM_QA",d["hem_vertices"],d["moved_hem_vertices"],
+                d["local_z_curvature_before"],d["local_z_curvature_after"])
+          PY
+      - name: Publish original garment hem comparison with debug GLB
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v18-boss-real-knit-hem-comparison-DEBUG-NOT-RELEASE
+          path: outputs/v18_hem/*
+          retention-days: 14
+          if-no-files-found: warn
