@@ -63,7 +63,7 @@ GitHub 是版本庫，不是長駐的生成伺服器。從 GitHub 讀取檔案�
 ## 高品質人物、動物與機甲建模工具鏈（研究型擴充）
 
 - [高品質 3D 模型的選擇策略、授權與多物種工作流程](docs/HIGH_FIDELITY_3D_TOOLCHAIN.md)
-- [開放工具與素材來源目錄（14 項）](resources/open_3d_tool_catalog.json)
+- [開放工具與素材來源目錄（17 項）](resources/open_3d_tool_catalog.json)
 - `python3 scripts/assets/tool_catalog.py --category animal --stage rigging`：篩選骨架工具
 - `python3 scripts/assets/polyhaven_search.py rock --kind models`：查官方 CC0 資產中繼資料（需網路）
 - `python3 scripts/assets/glb_quality_report.py example.glb --kind human`：輸出拓樸、材質、骨架與動畫檢查
