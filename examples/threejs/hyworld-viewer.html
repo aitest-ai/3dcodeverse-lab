@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HY-World 2.0 檔案橋接測試</title>
+  <style>
+    body { margin: 0; font: 15px system-ui, sans-serif; background: #edf2ed; color: #273d39; }
+    header { padding: 12px 16px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    input { flex: 1; min-width: 260px; padding: 9px; }
+    button { padding: 9px 16px; }
+    #status { width: 100%; font-size: 13px; }
+    #viewport { height: calc(100dvh - 106px); min-height: 320px; }
+    #viewport canvas { display: block; }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+        "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/2.4.0/spark.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <strong>HY-World 2.0｜匯入檢視器</strong>
+    <input id="manifest" aria-label="世界描述檔位置" value="/examples/threejs/worlds/smoke_cube/world_manifest.json" placeholder="/worlds/scene/world_manifest.json" />
+    <button id="load">載入</button>
+    <div id="status" role="status">已預填合成測試方塊（非 HY-World 生成物）。按載入，再拖曳旋轉或縮放。</div>
+  </header>
+  <div id="viewport"></div>
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { SparkRenderer } from "@sparkjsdev/spark";
+    import { loadHYWorld } from "./load-hy-world.js";
+
+    const container = document.querySelector("#viewport");
+    const status = document.querySelector("#status");
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#e2e9e5");
+    const camera = new THREE.PerspectiveCamera(60, 1, 0.05, 5000);
+    camera.position.set(2.5, 2.0, 4);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+    scene.add(new SparkRenderer({ renderer }));
+    scene.add(new THREE.HemisphereLight(0xffffff, 0x8d9d98, 2));
+    const sun = new THREE.DirectionalLight(0xffffff, 2);
+    sun.position.set(3, 8, 5);
+    scene.add(sun);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    const resize = () => {
+      const width = container.clientWidth, height = container.clientHeight;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    };
+    addEventListener("resize", resize);
+    resize();
+    let loaded = null;
+    document.querySelector("#load").onclick = async () => {
+      const url = document.querySelector("#manifest").value.trim();
+      if (!url) return;
+      const button = document.querySelector("#load");
+      button.disabled = true;
+      status.textContent = "載入中…";
+      try {
+        const result = await loadHYWorld(url, scene);
+        if (loaded) loaded.dispose();
+        loaded = result;
+        const box = new THREE.Box3().setFromObject(result.object);
+        if (!box.isEmpty()) {
+          const center = box.getCenter(new THREE.Vector3());
+          const size = box.getSize(new THREE.Vector3()).length();
+          controls.target.copy(center);
+          camera.position.copy(center).add(new THREE.Vector3(size * 0.8, size * 0.5, size * 0.8));
+          camera.updateProjectionMatrix();
+        }
+        status.textContent = result.manifest.asset_type +
+          "｜預覽成功載入；未通過尺度、碰撞或實景精度驗證。";
+      } catch (e) {
+        status.textContent = "載入失敗：" + e.message;
+      } finally {
+        button.disabled = false;
+      }
+    };
+    renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+  </script>
+</body>
+</html>
