@@ -94,15 +94,28 @@ def build(body,shirt,rig,out):
                 if not hit_y:fit_misses+=1
                 else:q[1]=min(hit_y)-.010-fold-edge
             else:
-                center=Vector((0,-.005,q[2]));rad=Vector((q[0],q[1]+.005,0)).normalized()
-                origin=center+rad*.38;hit_r=[]
-                for tree in trees:
-                    hit,_,_,_=tree.ray_cast(origin,-rad,.38)
-                    if hit is not None:hit_r.append((hit-center).length)
-                if hit_r:
-                    radius=max(hit_r)+.009+fold+edge
-                    q[0]=rad.x*radius;q[1]=-.005+rad.y*radius
-                else:fit_misses+=1
+                # Keep authored X/Z width. Prior radial projection expanded
+                # the band over the whole shoulder and was visually rejected.
+                if q[1]>.020 or q[1]<-.035:
+                    back=q[1]>.020
+                    origin=Vector((q[0],1. if back else -1.,q[2]))
+                    direction=Vector((0,-1. if back else 1.,0));hits=[]
+                    for tree in trees:
+                        hit,_,_,_=tree.ray_cast(origin,direction,2.)
+                        if hit is not None:hits.append(hit.y)
+                    if hits:q[1]=(max(hits)+.012+fold+edge) if back else (min(hits)-.012-fold-edge)
+                    else:fit_misses+=1
+                # Minimal closest-surface correction on side shoulder/neck;
+                # never stretch a ray to the lateral arm silhouette.
+                for iteration in range(4):
+                    moved=False
+                    for tree in trees:
+                        hit,normal,_,distance=tree.find_nearest(Vector(q))
+                        if hit is None or distance>.045:continue
+                        offset=float((Vector(q)-hit).dot(normal))
+                        if offset<.008:
+                            q+=np.array(normal)*(.008-offset);moved=True
+                    if not moved:break
             front.append(tuple(q));normals.append(tuple(outward));uvs.append((i/(cols-1),s))
     if fit_misses>8:raise RuntimeError('Towel did not fit real torso: '+str(fit_misses))
     front=np.array(front);normals=np.array(normals)
@@ -140,4 +153,5 @@ def build(body,shirt,rig,out):
         'front_tail_lower_z':[float(front[0:cols,2].mean()),float(front[-cols:,2].mean())],
         'fitting_misses':fit_misses,'textures':texture_info,'skinning':'Barycentric nearest original shirt triangles, normalized top4 weights',
         'original_shirt_geometry_unchanged':True,'shirt_color_texture_unchanged':True,
+        'neck_fit_revision':'Fixed-XZ front/back and bounded nearest-surface correction, radial expansion rejected',
         'not_physics_simulation':True,'original_accessory_license':'CC0-1.0'}
