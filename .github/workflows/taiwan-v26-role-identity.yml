@@ -53,7 +53,7 @@ jobs:
           PY
           tar -xf ".tools/$FILE" -C .tools
           echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
-      - name: Build real wardrobe, render comparisons, reimport delivered GLB
+      - name: Build refined wardrobe, render comparisons, reimport delivered GLB
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           V26_ROLE: ${{ matrix.role }}
@@ -61,7 +61,7 @@ jobs:
           V26_OUT: outputs/v26
         run: |
           set -o pipefail
-          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v26/build_review.py 2>&1 | tee /tmp/v26-blender.log
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v26/refined_review.py 2>&1 | tee /tmp/v26-blender.log
       - name: Verify skeleton, genuine face morphs and explicit scope
         env:
           ROLE: ${{ matrix.role }}
