@@ -49,15 +49,15 @@ jobs:
           PY
           tar -xf ".tools/$FILE" -C .tools
           echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
-      - name: Solve actual cloth gravity, repair source hem and render delivered GLB
+      - name: Solve supported gravity cloth and reconstruct malformed lower shirt band
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           V31_INPUT: input/v30
           V31_OUT: outputs/v31
         run: |
           set -o pipefail
-          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v31/build.py 2>&1 | tee /tmp/v31-blender.log
-      - name: Validate source structures and measured hem improvement
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v31/revised_build.py 2>&1 | tee /tmp/v31-blender.log
+      - name: Validate source structures and measured visible-surface hem improvement
         run: |
           set -euo pipefail
           python3 scripts/blender5/validate_glb.py outputs/v31
@@ -69,8 +69,9 @@ jobs:
           assert r['native_body_vertices']==13380 and r['bones']==53 and r['body_morphs']==14
           assert r['delivered_glb_rendered'] and r['source_reopened']
           assert r['hem']['maximum_shift_m']<=.03501
+          assert r['hem']['lower_band_rebuild']['topology_changed_below_cut']
           assert r['cloth_solver']['max_settle_displacement_m']>.005
-          assert r['cloth_solver']['frames']==120
+          assert r['cloth_solver']['frames']==180
           assert len(r['renders'])==26 and all((p/'renders'/n).exists() for n in r['renders'])
           assert r['stress_glb']['animation_channels']==159
           assert r['hem_after_keyframes']['0']['either_in_front']<r['hem_before_keyframes']['0']['either_in_front']
@@ -93,7 +94,7 @@ jobs:
               src=pathlib.Path('input/v30')/file
               if src.exists():
                   target=p/'reference_v30'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
-          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41197768336,'scope':'Only shui towel and original floral hem; real neutral cloth solve baked to source rig, no realtime physics','art_approved':False},indent=2))
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41197768336,'scope':'Only shui; supported neutral cloth solve baked to rig, malformed original lower band deliberately rebuilt; no realtime physics','art_approved':False},indent=2))
           (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
           PY
       - name: Publish candidate or actual failure evidence
