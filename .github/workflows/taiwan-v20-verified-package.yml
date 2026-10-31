@@ -1,0 +1,89 @@
+name: Taiwan V20 - Assemble Independently Verified Source Package
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v20-verified-package.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  verified-assembly:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download actual native source builds
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v20-four-native-sources-waist-integration-PILOT
+          run-id: 41147532585
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: outputs/v20
+      - name: Download independent passing reopen evidence
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v20-independent-source-revalidation-reports
+          run-id: 41149090796
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: outputs/v20/qa
+      - name: Verify hash-bound models and sources; collect exact scripts and manifests
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_faceunits_pack.py
+          python3 - <<'PY'
+          import pathlib,hashlib,json,shutil,os,struct
+          p=pathlib.Path('outputs/v20')
+          reopened=json.loads((p/'qa/v20_reopened_deliverables.json').read_text())
+          proof=json.loads((p/'qa/v20_independent_revalidation_provenance.json').read_text())
+          assert proof['native_build_run']==41147532585
+          assert str(proof['verification_run'])=='41149090796'
+          assert reopened['visible_waist_skin']==0 and reopened['frame_count']==49
+          reports={}
+          for role in ('you','boss','uncle','jie'):
+              d=json.loads((p/'qa'/f'{role}_v20_build.json').read_text())
+              glb=p/'models'/d['neutral_glb']['file']
+              blend=p/'blend'/d['editable_blend']['file']
+              assert hashlib.sha256(glb.read_bytes()).hexdigest()==d['neutral_glb']['sha256']
+              assert hashlib.sha256(blend.read_bytes()).hexdigest()==reopened['source_blends_reopened'][role]['sha256']
+              assert d['native_body_vertices']==13380 and d['bones']==53 and len(d['body_shape_keys'])==10
+              assert d['non_target_mesh_data_unchanged'] and not d['art_approved']
+              for im in reopened['source_blends_reopened'][role]['decoded_packed_images']:
+                  assert im['pixels_decoded'] and max(im['dimensions'])<=512
+              if role=='jie':
+                  assert d['native_motion_frames']==49 and d['native_motion_visible_waist_hits']==0
+              else: assert d['changed_meshes']==[]
+              assert all((p/'renders'/name).is_file() for name in d['renders'])
+              reports[role]=d['neutral_glb']
+          animated=p/'motion'/'jie_v20_source_stress.glb'
+          assert hashlib.sha256(animated.read_bytes()).hexdigest()==reopened['exported_animation_sha256']
+          assert len(list((p/'renders').glob('*.png')))==48
+          for image in (p/'renders').glob('*.png'):
+              data=image.read_bytes()
+              assert data[:8]==b'\x89PNG\r\n\x1a\n' and struct.unpack('>II',data[16:24])==(640,640)
+          (p/'source').mkdir(exist_ok=True)
+          for folder in ('taiwan_v20','taiwan_characters','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          for name in ('taiwan-v20-source.yml','taiwan-v20-revalidate.yml','taiwan-v20-verified-package.yml'):
+              shutil.copy('.github/workflows/'+name,p/'source'/name)
+          shutil.copy('AGENTS.md',p/'source'/'AGENTS.md')
+          shutil.copy('docs/AI_ASSET_PIPELINE.md',p/'source'/'AI_ASSET_PIPELINE.md')
+          shutil.copy('.deps/mh_faceunits/faceunits_manifest.json',p/'qa'/'faceunits_manifest.json')
+          manifest={'status':'NATIVE_SOURCE_BUILD_AND_INDEPENDENT_REOPEN_VERIFIED_PILOT',
+                    'native_build_run':41147532585,'verification_run':41149090796,
+                    'assembly_run':os.environ['GITHUB_RUN_ID'],'assembly_commit':os.environ['GITHUB_SHA'],
+                    'scope':'Assembly only: no model bytes changed; native build and independent validation have separate recorded runs',
+                    'roles':reports,'roles_present':4,'roles_requested':8,'art_approved':False}
+          (p/'qa'/'v20_manifest.json').write_text(json.dumps(manifest,indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          print('V20_VERIFIED_NATIVE_ASSEMBLY',manifest)
+          PY
+      - name: Publish only hash-bound verified native source package
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v20-native-sources-independently-verified-PILOT
+          path: outputs/v20/**
+          retention-days: 30
+          if-no-files-found: error
