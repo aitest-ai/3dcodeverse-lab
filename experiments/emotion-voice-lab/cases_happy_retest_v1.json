@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "character": {
+    "id": "taiwan_nightmarket_auntie_happy_retest_v1",
+    "name": "同聲線開心重測",
+    "voice_reference": "official bundled example 0; same file SHA-256 must be captured before generation",
+    "consent": "官方範例僅供技術評估，正式角色及商用權利未確認"
+  },
+  "evaluation": {
+    "status": "planned_not_generated",
+    "baseline_happy": "rejected_by_listener_happy_sounds_angry",
+    "baseline_happy_sha256": "3eab656572798ce1280be8d6ac6d2e0cbca78b1eca0aca52caf35b646cfc03c7",
+    "target": "像見到熟客時帶笑意的親切歡迎，不是喊叫或責備",
+    "hypotheses_not_proven": [
+      "原句帶責備意味，可能讓聽者傾向解讀為不滿",
+      "參考聲線與單一開心向量可能未產生合適的表演"
+    ],
+    "controls": [
+      "同一模型、參考聲音、語速、音量播放設定",
+      "原句組只改 requested strength，不同情緒組保持相同台詞與 strength",
+      "emo_random=false 不等於完全固定隨機種子；無 seed 支援時需記錄生成變動",
+      "先盲聽不顯示情緒名稱，再評分；不能用換成正面台詞替代原句驗收"
+    ],
+    "run_policy": "目前僅建立重測計畫；沒有新合成請求、沒有扣點或啟動付費 GPU。遇額度限制即停止。"
+  },
+  "lines": [
+    {
+      "id": "original_happy_035",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "happy",
+      "strength": 0.35,
+      "speed": 1.0,
+      "language": "zh"
+    },
+    {
+      "id": "original_happy_050",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "happy",
+      "strength": 0.5,
+      "speed": 1.0,
+      "language": "zh"
+    },
+    {
+      "id": "original_happy_065_repeat",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "happy",
+      "strength": 0.65,
+      "speed": 1.0,
+      "language": "zh"
+    },
+    {
+      "id": "neutraltext_natural",
+      "text": "你來了，我剛好在這裡。",
+      "emotion": "natural",
+      "strength": 0.5,
+      "speed": 1.0,
+      "language": "zh"
+    },
+    {
+      "id": "neutraltext_happy",
+      "text": "你來了，我剛好在這裡。",
+      "emotion": "happy",
+      "strength": 0.5,
+      "speed": 1.0,
+      "language": "zh"
+    },
+    {
+      "id": "neutraltext_angry",
+      "text": "你來了，我剛好在這裡。",
+      "emotion": "angry",
+      "strength": 0.5,
+      "speed": 1.0,
+      "language": "zh"
+    }
+  ]
+}
