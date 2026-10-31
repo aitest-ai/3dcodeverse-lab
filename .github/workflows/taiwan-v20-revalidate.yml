@@ -1,0 +1,90 @@
+name: Taiwan V20 - Independent Delivered Source Revalidation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/taiwan-v20-revalidate.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  revalidate-existing-native-build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve actual four-native-source build, not GLB replacements
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v20-four-native-sources-waist-integration-PILOT
+          run-id: 41147532585
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: outputs/v20
+      - name: Verify retrieved models against source-build hashes
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          root=pathlib.Path('outputs/v20')
+          for role in ('you','boss','uncle','jie'):
+              d=json.loads((root/'qa'/f'{role}_v20_build.json').read_text())
+              p=root/'models'/d['neutral_glb']['file']
+              assert hashlib.sha256(p.read_bytes()).hexdigest()==d['neutral_glb']['sha256']
+              assert (root/'blend'/d['editable_blend']['file']).stat().st_size==d['editable_blend']['bytes']
+              assert d['native_body_vertices']==13380 and d['bones']==53 and len(d['body_shape_keys'])==10
+          PY
+      - name: Install headless render runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install checksum-verified Blender 5.2.3
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          want=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==want
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Reopen all source files and audit all exported stress frames
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V20_OUT: outputs/v20
+        run: xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v20/roundtrip.py
+      - name: Validate delivered facial morphs and record independent provenance
+        run: |
+          set -euo pipefail
+          for id in you boss uncle jie; do
+            python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "outputs/v20/models/${id}_v20_source.glb"
+          done
+          python3 - <<'PY'
+          import json,pathlib,os
+          r=pathlib.Path('outputs/v20/qa')
+          d=json.loads((r/'v20_reopened_deliverables.json').read_text())
+          assert d['visible_waist_skin']==0 and d['frame_count']==49
+          assert len(d['source_blends_reopened'])==4
+          assert all(all(i['pixels_decoded'] for i in v['decoded_packed_images']) for v in d['source_blends_reopened'].values())
+          (r/'v20_independent_revalidation_provenance.json').write_text(json.dumps({
+              'native_build_run':41147532585,'native_build_artifact':13021683273,
+              'verification_run':os.environ['GITHUB_RUN_ID'],'verification_commit':os.environ['GITHUB_SHA'],
+              'scope':'Revalidate unchanged actual native-source outputs; this job does not rebuild characters',
+              'source_blends_opened':4,'exported_frames':49,'waist_hits':0,'art_approved':False},indent=2))
+          PY
+      - name: Publish independent source and export revalidation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v20-independent-source-revalidation-reports
+          path: |
+            outputs/v20/qa/v20_reopened_deliverables.json
+            outputs/v20/qa/v20_independent_revalidation_provenance.json
+          retention-days: 30
+          if-no-files-found: warn
