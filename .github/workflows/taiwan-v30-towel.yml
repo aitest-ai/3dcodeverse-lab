@@ -1,0 +1,104 @@
+name: Taiwan V30 - Cotton Towel Drape and Surface
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v30-shui-towel-drape']
+    paths:
+      - '.github/workflows/taiwan-v30-towel.yml'
+      - 'scripts/taiwan_v30/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v30-towel-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  towel-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated towel study
+        run: python3 -m compileall -q scripts/taiwan_v30
+      - name: Retrieve exact V29 native shui source
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v29-shui-face-hair-PILOT
+          run-id: 41191249693
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v29
+      - name: Install CPU render runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender and verify official archive
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          row=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          wanted=re.search(r'[0-9a-fA-F]{64}',row).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==wanted
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Build real draped towel and re-render actual exported model
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V30_INPUT: input/v29
+          V30_OUT: outputs/v30
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v30/build_review.py 2>&1 | tee /tmp/v30-blender.log
+      - name: Verify retained structure, expressions and accessory skinning
+        run: |
+          set -euo pipefail
+          python3 scripts/blender5/validate_glb.py outputs/v30
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v30/shui.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v30/shui_stress.glb
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('outputs/v30');d=json.loads((p/'report.json').read_text())
+          assert d['native_body_vertices']==13380 and d['bones']==53 and d['body_morphs']==14
+          assert d['untouched_face_hair'] and len(d['unchanged_original_meshes'])==23
+          assert len(d['removed_original_towel_objects'])==2
+          assert d['delivered_glb_rendered'] and d['fresh_delivered_towel_motion_m']>.002
+          assert len(d['renders'])==24 and all((p/'renders'/f).is_file() for f in d['renders'])
+          assert d['stress_glb']['animations']==1 and d['stress_glb']['animation_channels']==159
+          assert len(d['source_11_time_samples'])==11
+          assert d['art_approved'] is False
+          print('V30_VERIFIED_STRUCTURES_NOT_ART_APPROVAL',d['replacement_towel'],d['source_11_time_samples'])
+          PY
+      - name: Preserve source, baseline, license and traceable evidence
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib,json,shutil,os
+          p=pathlib.Path('outputs/v30');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v30-blender.log').exists():shutil.copy('/tmp/v30-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v30','taiwan_v24','taiwan_v28','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          shutil.copy('.github/workflows/taiwan-v30-towel.yml',p/'source/workflow.yml')
+          for name in ('shui.blend','shui.glb','shui_stress.glb','report.json','provenance.json'):
+              src=pathlib.Path('input/v29')/name
+              if src.exists():
+                  target=p/'reference_v29'/name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41191249693,'scope':'Only replace two V27 rigid towel strips on V29 shui and adjust shirt cotton normal/roughness; face and hair unchanged','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish candidate or actual failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v30-shui-draped-towel-PILOT
+          path: outputs/v30/**
+          retention-days: 30
+          if-no-files-found: warn
