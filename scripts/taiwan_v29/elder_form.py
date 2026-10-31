@@ -99,18 +99,10 @@ def hair_form(hair,body,eyes,cid):
     return r
 
 
-def strand_field(p,cid,origin):
-    x,y,z=np.moveaxis(p,-1,0);z=z-origin[2];y=y-origin[1]
-    if cid=='oldman':s=x+.16*y+.0025*np.sin(y*19+z*9)
-    else:s=z+.50*x+.18*y+.003*np.sin(x*23-y*12)
-    phase=2*np.pi*(s/.00165+.09*np.sin(s*91))
-    broad=2*np.pi*s/.0105
-    h=.000060*np.sin(phase)+.000035*np.sin(2.13*phase+.7)+.000065*np.sin(broad)
-    tone=.105*np.sin(phase+.3)+.055*np.sin(broad)+.025*np.sin(phase*2.13)
-    return h,tone
-
-
 def hair_maps(hair,eyes,cid,out):
+    """Use irregular strand flow already present in the licensed source image.
+    The first-pass periodic pattern was visually rejected, not silently passed.
+    """
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     original=hair.data.materials[0]
     bs=next(n for n in original.node_tree.nodes if n.type=='BSDF_PRINCIPLED')
@@ -118,55 +110,64 @@ def hair_maps(hair,eyes,cid,out):
     node=bs.inputs['Base Color'].links[0].from_node
     if node.type!='TEX_IMAGE':raise RuntimeError('Expected source texture link')
     src=node.image;old,w,h=decoded_source(src,out,cid+'_hair')
-    pts=coordinates(hair);ep=coordinates(eyes);origin=np.array([0.,0.,np.median(ep[:,2])])
-    pos=np.zeros((h,w,3));tan=np.zeros_like(pos);bitan=np.zeros_like(pos);valid=np.zeros((h,w),bool)
+    pts=coordinates(hair);ep=coordinates(eyes);ez=float(np.median(ep[:,2]))
+    pos=np.zeros((h,w,3));tu=np.ones((h,w));tv=np.ones((h,w));valid=np.zeros((h,w),bool)
     uv=hair.data.uv_layers.active
     if uv is None:raise RuntimeError('Original hair UV missing')
     hair.data.calc_loop_triangles()
     for tri in hair.data.loop_triangles:
         p=pts[list(tri.vertices)];q=np.array([tuple(uv.data[i].uv) for i in tri.loops])
         e1=q[1]-q[0];e2=q[2]-q[0];det=e1[0]*e2[1]-e2[0]*e1[1]
-        n=np.cross(p[1]-p[0],p[2]-p[0]);ln=np.linalg.norm(n)
-        if abs(det)<1e-12 or ln<1e-12:continue
-        n/=ln;t=((p[1]-p[0])*e2[1]-(p[2]-p[0])*e1[1])/det
-        b=(-(p[1]-p[0])*e2[0]+(p[2]-p[0])*e1[0])/det
-        t-=n*np.dot(t,n);t/=max(np.linalg.norm(t),1e-9)
-        b-=n*np.dot(b,n)+t*np.dot(b,t);b/=max(np.linalg.norm(b),1e-9)
+        if abs(det)<1e-12:continue
+        u=((p[1]-p[0])*e2[1]-(p[2]-p[0])*e1[1])/det
+        v=(-(p[1]-p[0])*e2[0]+(p[2]-p[0])*e1[0])/det
         x0=max(0,int(np.floor(q[:,0].min()*w)));x1=min(w-1,int(np.ceil(q[:,0].max()*w)))
         y0=max(0,int(np.floor(q[:,1].min()*h)));y1=min(h-1,int(np.ceil(q[:,1].max()*h)))
         if x1<x0 or y1<y0:continue
-        yy,xx=np.mgrid[y0:y1+1,x0:x1+1];a=(xx+.5)/w-q[0,0];c=(yy+.5)/h-q[0,1]
-        u=(a*e2[1]-c*e2[0])/det;v=(e1[0]*c-e1[1]*a)/det
-        inside=(u>=-1e-6)&(v>=-1e-6)&(u+v<=1.000001)
+        yy,xx=np.mgrid[y0:y1+1,x0:x1+1];a=(xx+.5)/w-q[0,0];b=(yy+.5)/h-q[0,1]
+        b1=(a*e2[1]-b*e2[0])/det;b2=(e1[0]*b-e1[1]*a)/det
+        inside=(b1>=-1e-6)&(b2>=-1e-6)&(b1+b2<=1.000001)
         rr=yy[inside];cc=xx[inside]
-        pos[rr,cc]=p[0]+u[inside,None]*(p[1]-p[0])+v[inside,None]*(p[2]-p[0])
-        tan[rr,cc]=t;bitan[rr,cc]=b;valid[rr,cc]=True
-    if valid.sum()<1000:raise RuntimeError('Hair UV raster coverage too small')
-    e=.000075
-    dx=(strand_field(pos+e*tan,cid,origin)[0]-strand_field(pos-e*tan,cid,origin)[0])/(2*e)
-    dy=(strand_field(pos+e*bitan,cid,origin)[0]-strand_field(pos-e*bitan,cid,origin)[0])/(2*e)
-    n=np.stack((-dx,-dy,np.ones_like(dx)),axis=-1);n/=np.linalg.norm(n,axis=-1,keepdims=True)
-    rgba=np.ones((h,w,4),dtype='f4');rgba[:,:,:3]=n*.5+.5;rgba[~valid,:3]=(.5,.5,1.)
-    tone=strand_field(pos,cid,origin)[1]
-    temple=smooth((np.abs(pos[:,:,0])-.037)/.025)*smooth((origin[2]+.072-pos[:,:,2])/.045)
-    multiplier=(.84 if cid=='oldman' else .73)+tone+temple*.13
+        pos[rr,cc]=p[0]+b1[inside,None]*(p[1]-p[0])+b2[inside,None]*(p[2]-p[0])
+        tu[rr,cc]=max(float(np.linalg.norm(u)),.04);tv[rr,cc]=max(float(np.linalg.norm(v)),.04);valid[rr,cc]=True
+    opaque=(old[:,:,3]>.90)&valid
+    if opaque.sum()<1000:raise RuntimeError('Hair texture/raster coverage insufficient')
+    lum=old[:,:,:3]@np.asarray([.2126,.7152,.0722])
+    blur=np.zeros_like(lum)
+    for iy in range(-2,3):
+        for ix in range(-2,3):blur+=np.roll(np.roll(lum,iy,axis=0),ix,axis=1)/25.
+    fine=lum-blur;fine_sd=max(float(fine[opaque].std()),1e-5)
+    broad_sd=max(float(blur[opaque].std()),1e-5);broad_mean=float(blur[opaque].mean())
+    detail=np.tanh(fine/(fine_sd*2.2));broad=np.tanh((blur-broad_mean)/(broad_sd*1.6))
+    height=.000085*detail
+    gy,gx=np.gradient(height)
+    nx=np.clip(-gx*w/tu,-.38,.38);ny=np.clip(-gy*h/tv,-.38,.38)
+    safe=opaque.copy()
+    for iy,ix in ((-2,0),(2,0),(0,-2),(0,2)):
+        safe &=np.roll(np.roll(opaque,iy,axis=0),ix,axis=1)
+    nx[~safe]=0.;ny[~safe]=0.
+    n=np.stack((nx,ny,np.ones_like(nx)),axis=-1);n/=np.linalg.norm(n,axis=-1,keepdims=True)
+    rgba=np.ones((h,w,4),dtype='f4');rgba[:,:,:3]=n*.5+.5
+    temple=smooth((np.abs(pos[:,:,0])-.037)/.025)*smooth((ez+.072-pos[:,:,2])/.045)
+    multiplier=(.94 if cid=='oldman' else .88)+.15*detail+.11*broad+.045*temple
     color=old.copy();color[:,:,:3]*=np.where(valid,multiplier,1.)[:,:,None]
-    color[:,:,:3]*=np.asarray([1.025,1.,.965])[None,None,:]
+    color[:,:,:3]*=np.asarray([1.015,1.,.98])[None,None,:]
     color[:,:,:3]=np.clip(color[:,:,:3],0,1)
     ci,cinfo=save_image(cid+'_v29_cc0_hair_tone',color,out)
     ni,ninfo=save_image(cid+'_v29_strand_normal',rgba,out,True)
-    m=original.copy();m.name=cid+'_V29_GrayHair_Clumps';hair.data.materials[0]=m
+    m=original.copy();m.name=cid+'_V29_GrayHair_SourceFlow';hair.data.materials[0]=m
     tree=m.node_tree;p=next(n for n in tree.nodes if n.type=='BSDF_PRINCIPLED')
     for socket in ('Base Color','Normal'):
         for l in list(p.inputs[socket].links):tree.links.remove(l)
     c=tree.nodes.new('ShaderNodeTexImage');c.image=ci;tree.links.new(c.outputs['Color'],p.inputs['Base Color'])
     tex=tree.nodes.new('ShaderNodeTexImage');tex.image=ni
-    normal=tree.nodes.new('ShaderNodeNormalMap');normal.space='TANGENT';normal.inputs['Strength'].default_value=.72
+    normal=tree.nodes.new('ShaderNodeNormalMap');normal.space='TANGENT';normal.inputs['Strength'].default_value=.48
     tree.links.new(tex.outputs['Color'],normal.inputs['Color']);tree.links.new(normal.outputs['Normal'],p.inputs['Normal'])
-    p.inputs['Roughness'].default_value=.68
-    if p.inputs.get('Specular IOR Level'):p.inputs['Specular IOR Level'].default_value=.26
+    p.inputs['Roughness'].default_value=.73
+    if p.inputs.get('Specular IOR Level'):p.inputs['Specular IOR Level'].default_value=.24
     return {'source_cc0_image':src.name,'source_decoded_sha256':hashlib.sha256(old.tobytes()).hexdigest(),
-        'derived_hair_albedo':cinfo,'original_strand_normal':ninfo,'valid_hair_texels':int(valid.sum()),
-        'normal_strength':.72,'method':'original world-directed clump field rasterized into existing UV tangent frame',
-        'not_individual_hair_strands':True,'no_hair_card_simulation':True,
-        'license':'CC0 source color derivative and original CC0-1.0 normal field'}
+        'derived_hair_albedo':cinfo,'source_flow_normal':ninfo,'valid_hair_texels':int(valid.sum()),
+        'normal_strength':.48,'source_detail_std':fine_sd,'source_broad_std':broad_sd,
+        'method':'source-UV native irregular hair flow, local contrast and restrained standard tangent normal',
+        'periodic_procedural_pattern_removed':True,'not_individual_hair_strands':True,'no_hair_card_simulation':True,
+        'license':'CC0 hair color and normal derivatives of original licensed source'}
