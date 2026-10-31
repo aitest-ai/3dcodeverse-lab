@@ -1,0 +1,115 @@
+name: Taiwan V29 - Elder Face Form and Hair Clumps
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v29-elder-face-hair']
+    paths:
+      - '.github/workflows/taiwan-v29-elder-face-hair.yml'
+      - 'scripts/taiwan_v29/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v29-elder-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  elder-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        character: [oldman, shui]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated source edit
+        run: python3 -m compileall -q scripts/taiwan_v29
+      - name: Retrieve exact verified V28 original source
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v28-${{ matrix.character }}-quality-candidate-PILOT
+          run-id: 41188826224
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v28
+      - name: Install CPU rendering runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender and verify official archive
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,hashlib,re
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          wanted=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==wanted
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Edit original face and hair, render actual expressions and reimport GLB
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V29_ID: ${{ matrix.character }}
+          V29_INPUT: input/v28
+          V29_OUT: outputs/v29/${{ matrix.character }}
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v29/build_review.py 2>&1 | tee /tmp/v29-blender.log
+      - name: Verify structure and real retained mouth morphs
+        env:
+          CID: ${{ matrix.character }}
+        run: |
+          set -euo pipefail
+          python3 scripts/blender5/validate_glb.py "outputs/v29/$CID"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "outputs/v29/$CID/$CID.glb"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "outputs/v29/$CID/$CID"_stress.glb
+          python3 - <<'PY'
+          import pathlib,json,os
+          cid=os.environ['CID'];p=pathlib.Path('outputs/v29')/cid
+          d=json.loads((p/'report.json').read_text())
+          assert d['native_body_vertices']==13380 and d['bones']==53 and d['body_morph_count']==14
+          assert d['topology_uv_weights_unchanged'] and d['delivered_glb_rendered']
+          assert d['body_form']['changed_source_vertices']>20
+          assert d['body_form']['maximum_world_displacement_m']<.006
+          assert d['body_form']['relative_morph_max_error_m']<4e-7
+          assert d['hair_form']['maximum_world_displacement_m']<.0031
+          assert len(d['renders'])==24 and all((p/'renders'/f).is_file() for f in d['renders'])
+          assert d['stress_glb']['animations']==1 and d['stress_glb']['animation_channels']==159
+          assert d['art_approved'] is False
+          print('V29_STRUCTURE_AND_DELIVERED_CHECKS_NOT_ART_APPROVAL',cid,d['body_form'],d['hair_form'])
+          PY
+      - name: Package source, real baseline and reproducibility evidence
+        if: always()
+        env:
+          CID: ${{ matrix.character }}
+        run: |
+          python3 - <<'PY'
+          import pathlib,hashlib,shutil,json,os
+          cid=os.environ['CID'];p=pathlib.Path('outputs/v29')/cid;(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v29-blender.log').exists():shutil.copy('/tmp/v29-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v29','taiwan_v28','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          shutil.copy('.github/workflows/taiwan-v29-elder-face-hair.yml',p/'source/workflow.yml')
+          for file in (cid+'.blend',cid+'.glb',cid+'_stress.glb','report.json','provenance.json'):
+              src=pathlib.Path('input/v28')/file
+              if src.exists():
+                  target=p/'reference_v28'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41188826224,'character':cid,'scope':'Only two elder native face/hair candidates; other six characters unchanged, no full rebuild','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish real candidate or failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v29-${{ matrix.character }}-face-hair-PILOT
+          path: outputs/v29/${{ matrix.character }}/**
+          retention-days: 30
+          if-no-files-found: warn
