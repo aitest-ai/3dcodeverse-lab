@@ -9,7 +9,7 @@ import bpy
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 HERE=Path(__file__).resolve().parent
-for d in (HERE,HERE.parent/'taiwan_v20',HERE.parent/'taiwan_v24',HERE.parent/'taiwan_v28'):sys.path.insert(0,str(d))
+for d in (HERE,HERE.parent/'taiwan_v20',HERE.parent/'taiwan_v21',HERE.parent/'taiwan_v24',HERE.parent/'taiwan_v28'):sys.path.insert(0,str(d))
 from source_waist import coordinates,digest_mesh
 from draped_towel import build
 INPUT=Path(os.getenv('V30_INPUT','input/v29')).resolve();OUT=Path(os.getenv('V30_OUT','outputs/v30')).resolve()
