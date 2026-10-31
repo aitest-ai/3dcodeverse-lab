@@ -1,0 +1,115 @@
+name: Taiwan V28 - Uniform and Elder Surface Quality
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v28-uniform-age-polish']
+    paths:
+      - '.github/workflows/taiwan-v28-quality.yml'
+      - 'scripts/taiwan_v28/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v28-quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality-candidate:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        role: [cop, oldman, shui]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile only isolated quality scripts
+        run: python3 -m compileall -q scripts/taiwan_v28
+      - name: Retrieve exact verified V27 native source
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v27-${{ matrix.role }}-native-source-PILOT
+          run-id: 41185558333
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v27
+      - name: Install headless CPU runtime
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender after official SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          row=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          wanted=re.search(r'[0-9a-fA-F]{64}',row).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==wanted
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Render actual source comparisons and reimport delivered GLB
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V28_ID: ${{ matrix.role }}
+          V28_INPUT: input/v27
+          V28_OUT: outputs/v28/${{ matrix.role }}
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v28/build_review.py 2>&1 | tee /tmp/v28-blender.log
+      - name: Verify exported structure and nonzero original face morphs
+        run: |
+          set -euo pipefail
+          p=outputs/v28/${{ matrix.role }}
+          python3 scripts/blender5/validate_glb.py "$p"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p/${{ matrix.role }}.glb"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p/${{ matrix.role }}_stress.glb"
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('outputs/v28/${{ matrix.role }}');d=json.loads((p/'report.json').read_text())
+          assert d['native_body_vertices']==13380 and d['bones']==53 and d['body_morph_count']==14
+          assert d['body_geometry_and_morphs_unchanged'] and d['delivered_glb_rendered']
+          assert d['neutral_glb']['bytes']<6000000 and d['stress_glb']['bytes']<6000000
+          assert d['stress_glb']['animations']==1
+          assert all((p/'renders'/f).is_file() for f in d['renders'])
+          assert d['art_approved'] is False
+          if d['character']=='cop':
+              assert len(d['delivered_shoe_motion_m'])==2
+              assert all(v>.001 for v in d['delivered_shoe_motion_m'].values())
+          else:
+              assert d['changes']['face_texels']>300
+              assert d['changes']['body_geometry_and_morphs_changed'] is False
+          print('V28_STRUCTURAL_PASS_REQUIRES_VISUAL_REVIEW',d['character'],len(d['renders']))
+          PY
+      - name: Preserve exact code, source references and failure evidence
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v28/${{ matrix.role }}');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v28-blender.log').exists():shutil.copy('/tmp/v28-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v28','taiwan_v24','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('.github/workflows/taiwan-v28-quality.yml',p/'source/workflow.yml')
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          for f in ('${{ matrix.role }}.glb','${{ matrix.role }}_stress.glb','report.json','provenance.json'):
+              q=pathlib.Path('input/v27')/f
+              if q.exists():
+                  dest=p/'reference_v27'/f;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy(q,dest)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41185558333,'role':'${{ matrix.role }}','scope':'Bounded source quality trial; unchanged other five roles; not final art approval','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish real candidate or truthful failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v28-${{ matrix.role }}-quality-candidate-PILOT
+          path: outputs/v28/${{ matrix.role }}/**
+          retention-days: 30
+          if-no-files-found: warn
