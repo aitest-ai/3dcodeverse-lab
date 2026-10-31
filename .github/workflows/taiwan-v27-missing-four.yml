@@ -1,0 +1,150 @@
+name: Taiwan V27 - Four Missing Native Characters
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v27-remaining-four-source']
+    paths:
+      - '.github/workflows/taiwan-v27-missing-four.yml'
+      - 'scripts/taiwan_v27/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v27-source-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  new-native-role:
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        role: [oldman, cop, shui, bro]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated source and wardrobe scripts
+        run: python3 -m compileall -q scripts/taiwan_v27
+      - name: Install CPU Blender runtime dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1 python3-pil
+      - name: Install pinned official Blender with SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools .deps outputs/v27/${{ matrix.role }}/qa
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,pathlib,re
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Install exact official MPFB source and verified original faceunits
+        run: |
+          set -euo pipefail
+          git clone -q https://github.com/makehumancommunity/mpfb2.git .deps/mpfb2
+          git -C .deps/mpfb2 checkout --detach 6ff1eb358f6c1959ced77e79e6dd2406d9a71f49
+          grep -q 'version = "2.0.18"' .deps/mpfb2/src/mpfb/blender_manifest.toml
+          git -C .deps/mpfb2 rev-parse HEAD > outputs/v27/${{ matrix.role }}/qa/mpfb_revision.txt
+          blender --command extension build --source-dir .deps/mpfb2/src/mpfb --output-filepath "$PWD/.tools/mpfb.zip"
+          blender --command extension repo-add local_mpfb --directory "$PWD/.tools/mpfb-extensions"
+          blender --command extension install-file --repo local_mpfb --enable "$PWD/.tools/mpfb.zip"
+          python3 scripts/taiwan_characters/verify_faceunits_pack.py
+      - name: Restore verified source asset archives where available
+        id: packs
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: taiwan-v20-cc0-source-packs-v1
+      - name: Retrieve official CC0 source geometry and record actual archive hashes
+        run: |
+          set -euo pipefail
+          mkdir -p .deps/mh_assets
+          for pack in makehuman_system_assets shirts01 pants01; do
+            if [ "$pack" = makehuman_system_assets ]; then file=.tools/makehuman_system_assets_cc0.zip; else file=".deps/${pack}_cc0.zip"; fi
+            if ! unzip -tq "$file" >/dev/null 2>&1; then
+              rm -f "$file"
+              for host in files2.makehumancommunity.org files.makehumancommunity.org; do
+                if curl -fL --retry 1 --connect-timeout 20 --max-time 240 -o "$file" "https://$host/asset_packs/$pack/${pack}_cc0.zip"; then break; fi
+                rm -f "$file"
+              done
+            fi
+            test -s "$file"
+            unzip -tq "$file" >/dev/null
+            unzip -oq "$file" -d .deps/mh_assets
+            sha256sum "$file" >> outputs/v27/${{ matrix.role }}/qa/original_pack_sha256.txt
+          done
+      - name: Cache successfully verified packs even when later art fails
+        if: steps.packs.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .tools/makehuman_system_assets_cc0.zip
+            .deps/shirts01_cc0.zip
+            .deps/pants01_cc0.zip
+          key: taiwan-v20-cc0-source-packs-v1
+      - name: Create genuinely new native character, render and reload actual GLB
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          MAKEHUMAN_ASSET_ROOT: .deps/mh_assets
+          FACEUNITS_ROOT: .deps/mh_faceunits
+          V27_ID: ${{ matrix.role }}
+          V27_OUT: outputs/v27/${{ matrix.role }}
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v27/build_review.py 2>&1 | tee /tmp/v27-blender.log
+      - name: Independently check actual GLB container, source structure and real facial movement
+        run: |
+          set -euo pipefail
+          p=outputs/v27/${{ matrix.role }}
+          python3 scripts/blender5/validate_glb.py "$p"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p/${{ matrix.role }}.glb"
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py "$p/${{ matrix.role }}_stress.glb"
+          python3 - <<'PY'
+          import pathlib,json,os
+          p=pathlib.Path('outputs/v27/${{ matrix.role }}');d=json.loads((p/'report.json').read_text())
+          assert d['native_body_vertices']==13380 and d['helpers_physically_deleted']==5778 and d['bones']==53
+          assert len(d['body_keys'])==14
+          assert {'mouthOpen','mouthSmile','mouthFrown','eyeBlinkLeft','eyeBlinkRight','browDownLeft','browDownRight','browInnerUp'}<=set(d['body_keys'])
+          assert d['original_four_untouched'] and d['art_approved'] is False
+          assert len(d['renders'])==17 and all((p/'renders'/f).is_file() for f in d['renders'])
+          assert d['stress_glb']['animations']==1
+          assert d['neutral_glb']['bytes']<6000000 and d['stress_glb']['bytes']<6000000
+          assert all(v>.001 for v in d['delivered_reimport']['accessory_motion_max_m'].values())
+          assert d['wrist_raise']['left_m']>.15 and d['wrist_raise']['right_m']>.15
+          print('V27_GENUINE_NEW_ROLE_STRUCTURAL_PASS_NOT_ART_APPROVAL',d['character'],d['neutral_glb']['bytes'],len(d['renders']))
+          PY
+      - name: Preserve exact source and licensing evidence
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v27/${{ matrix.role }}');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v27-blender.log').exists():shutil.copy('/tmp/v27-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v27','taiwan_v25','taiwan_v24','taiwan_v21','taiwan_v20','taiwan_characters','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          shutil.copy('.github/workflows/taiwan-v27-missing-four.yml',p/'source/workflow.yml')
+          f=pathlib.Path('.deps/mh_faceunits/faceunits_manifest.json')
+          if f.exists():shutil.copy(f,p/'qa/faceunits_manifest.json')
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'role':'${{ matrix.role }}','scope':'New original MPFB phenotype, not a copied existing GLB; first source pilot','mpfb_commit':'6ff1eb358f6c1959ced77e79e6dd2406d9a71f49','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish actual candidate or truthful failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v27-${{ matrix.role }}-native-source-PILOT
+          path: outputs/v27/${{ matrix.role }}/**
+          retention-days: 30
+          if-no-files-found: warn
