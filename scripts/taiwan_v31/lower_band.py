@@ -76,7 +76,7 @@ def rebuild(shirt,body,pants,rig):
     # A 1.6mm turned edge, not the old ~4cm folded/intersecting band.
     inner=[]
     for v in top:
-        q=np.asarray(mat@v.co);d=q[:2]-center;d/=np.linalg.norm(d);q[:2]-=d*.0016;q[2]+=.0015
+        q=np.array(tuple(mat@v.co),dtype=float);d=q[:2]-center;d/=np.linalg.norm(d);q[:2]-=d*.0016;q[2]+=.0015
         inner.append(add_vert(q))
     for i in range(len(ring)):
         j=(i+1)%len(ring);f=bm.faces.new((top[i],top[j],inner[j],inner[i]));f.smooth=True;new_faces.append(f)
