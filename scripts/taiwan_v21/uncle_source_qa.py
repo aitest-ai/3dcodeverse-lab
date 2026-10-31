@@ -148,19 +148,30 @@ pose({});images.append(render('before_full',full=True))
 # This is real source vertex displacement, not a mesh cover or painted patch.
 body_tree=evaluated_bvh(body);shirt_tree=evaluated_bvh(shirt)
 candidates=original+delta
+skipped_limb_surfaces=0
 for i,point in enumerate(candidates):
     if fade[i]<.05:continue
     radial=point[:2]-center;radius=np.linalg.norm(radial)
     if radius<.01:continue
     direction=radial/radius;origin=Vector((*(center+direction),point[2]));ray=Vector((-direction[0],-direction[1],0))
     for tree in (body_tree,shirt_tree):
-        hit,_,_,_=tree.ray_cast(origin,ray,1.)
+        start=origin.copy();hit=None
+        for attempt in range(12):
+            hit,_,face,distance=tree.ray_cast(start,ray,1.)
+            if hit is None:break
+            if tree is body_tree and limbs[face]:
+                skipped_limb_surfaces+=1;start=hit+ray*.0001
+                if (start-origin).length>=1.:hit=None;break
+                continue
+            break
+        else:hit=None
         if hit is None:continue
         needed=np.linalg.norm(np.array(hit[:2])-center)+.007
         if needed>radius:
             point[:2]+=direction*(needed-radius)*fade[i];radius=np.linalg.norm(point[:2]-center)
 delta=candidates-original
-if np.linalg.norm(delta,axis=1).max()>.055:raise RuntimeError('Source correction exceeds 55mm')
+fitmeta['limb_surfaces_excluded_from_fit']=skipped_limb_surfaces
+if np.linalg.norm(delta,axis=1).max()>.055:raise RuntimeError('Source correction exceeds 55mm: '+str(np.linalg.norm(delta,axis=1).max()))
 keys=list(pants.data.shape_keys.key_blocks) if pants.data.shape_keys else []
 snapshots=[np.array([tuple(v.co) for v in k.data]) for k in keys]
 local=np.array([tuple(v.co) for v in pants.data.vertices]);local_delta=delta@np.array(pants.matrix_world.inverted().to_3x3()).T
