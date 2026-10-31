@@ -60,10 +60,27 @@ def source_boundaries(obj):
     return loops
 
 
+def normalize_copied_deform_groups(obj,rig):
+    names={g.index:g.name for g in obj.vertex_groups}
+    rows=[]
+    for vertex in obj.data.vertices:
+        pairs=[(names[g.group],g.weight) for g in vertex.groups if names[g.group] in rig.data.bones and g.weight>0]
+        pairs=sorted(pairs,key=lambda p:p[1],reverse=True)[:4]
+        total=sum(v for n,v in pairs)
+        if total<=1e-9:raise RuntimeError('Copied garment lacks real deform weights')
+        rows.append([(n,w/total) for n,w in pairs])
+    # Operate ONLY on the new independent garment, not the original shirt.
+    obj.vertex_groups.clear()
+    for i,row in enumerate(rows):
+        for name,value in row:
+            group=obj.vertex_groups.get(name) or obj.vertex_groups.new(name=name)
+            group.add([i],value,'REPLACE')
+
+
 def build(role,body,shirt,pants,hair,rig):
     h=float(coordinates(body)[:,2].max())
     added=[];groups={};prefix='V26_'+role+'_'
-    torso=tree(shirt,rig,True);skin=tree(body,rig,True)
+    torso=tree(shirt,rig,True);skin=tree(body,rig,True);full_skin=tree(body)
     shirt_weights=WeightSource(shirt,rig);body_weights=WeightSource(body,rig)
     def add(ob,group):
         ob['asset_role']=role+' V26 wardrobe';ob['geometry_license']='CC0-1.0'
@@ -86,24 +103,22 @@ def build(role,body,shirt,pants,hair,rig):
     cream=material(prefix+'Reflective_LightGrey',(.58,.62,.60),.55)
     white=material(prefix+'WarmWhite',(.74,.75,.71),.65)
 
-    # Independent copy of the existing lawful garment. Source object, data and
-    # material are never altered. Preserve its actual skin weights and UVs.
     outer=shirt.copy();outer.data=shirt.data.copy();outer.name=prefix+'HoodedLayer_Base'
     bpy.context.scene.collection.objects.link(outer)
     outer.data.materials.clear();outer.data.materials.append(fabric)
     for f in outer.data.polygons:f.material_index=0;f.use_smooth=True
-    # Uniform source-normal offset, synchronized to all copied keys.
     old=np.array([tuple(v.co) for v in outer.data.vertices]);norm=np.array([tuple(v.normal) for v in outer.data.vertices])
-    delta=norm*.006
+    # Use world metres even when a native MHCLO retains a non-identity scale.
+    normal_matrix=np.array(outer.matrix_world.to_3x3().inverted().transposed())
+    world_norm=norm@normal_matrix.T;world_norm/=np.maximum(np.linalg.norm(world_norm,axis=1)[:,None],1e-9)
+    delta=(world_norm*.006)@np.array(outer.matrix_world.inverted().to_3x3()).T
     keys=list(outer.data.shape_keys.key_blocks) if outer.data.shape_keys else []
     snapshots=[np.array([tuple(v.co) for v in k.data]) for k in keys]
     outer.data.vertices.foreach_set('co',np.asarray(old+delta,dtype='f4').ravel())
     for k,p in zip(keys,snapshots):k.data.foreach_set('co',np.asarray(p+delta,dtype='f4').ravel())
-    outer.data.update();add(outer,'hooded_layer')
+    outer.data.update();normalize_copied_deform_groups(outer,rig);add(outer,'hooded_layer')
     outer['source']='Independent fitted derivative of original CC0 '+shirt.name
 
-    # Extend genuine short-sleeve opening to wrists, using original seam ring
-    # positions and original body weights rather than a static cylinder.
     loops=source_boundaries(outer);points=coordinates(outer);sleeve_notes=[]
     for sign,side in ((1,'l'),(-1,'r')):
         options=[loop for loop in loops if sign*points[loop,0].mean()>.17]
@@ -111,7 +126,6 @@ def build(role,body,shirt,pants,hair,rig):
             sleeve_notes.append({'side':side,'status':'no_native_closed_opening_kept_short'});continue
         loop=max(options,key=lambda q:sign*points[q,0].mean());ring=points[loop]
         start=ring.mean(0);wrist=np.array(rig.matrix_world@rig.pose.bones['hand_'+side].head)
-        elbow=np.array(rig.matrix_world@rig.pose.bones['lowerarm_'+side].head)
         axis=Vector(wrist-start).normalized();basis=Vector((0,1,0));basis=(basis-axis*basis.dot(axis)).normalized();second=axis.cross(basis)
         vec=ring-start;angles=np.arctan2(vec@np.array(second),vec@np.array(basis))
         angles=np.unwrap(angles);radii=np.linalg.norm(vec-(vec@np.array(axis))[:,None]*np.array(axis),axis=1)
@@ -127,7 +141,6 @@ def build(role,body,shirt,pants,hair,rig):
         for j in range(rows-1):
             for i in range(count):faces.append((j*count+i,j*count+(i+1)%count,(j+1)*count+(i+1)%count,(j+1)*count+i))
         sleeve=finalize(mesh(prefix+'Sleeve_'+side,verts,faces,fabric,uv),rig,body_weights.at);add(sleeve,'hooded_layer')
-        # Visible knit cuff is a separate source-bound soft band, not a glove.
         vs=[]
         for t in (.94,1.025):
             c=start+(wrist-start)*t
@@ -136,8 +149,6 @@ def build(role,body,shirt,pants,hair,rig):
         add(finalize(mesh(prefix+'Cuff_'+side,vs,fs,knit),rig,body_weights.at),'hooded_layer')
         sleeve_notes.append({'side':side,'native_seam_vertices':count,'status':'long_sleeve_added'})
 
-    # Folded hood: a genuine recessed cloth bowl behind the neck, not a head cap.
-    # Its narrow front ends stay at the collar, and the rear hangs down the back.
     verts=[];uv=[];rows=12;cols=41
     for j,v in enumerate(np.linspace(0,1,rows)):
         for i,a in enumerate(np.linspace(-math.pi/2,3*math.pi/2,cols)):
@@ -149,7 +160,6 @@ def build(role,body,shirt,pants,hair,rig):
     add(hood,'hooded_layer')
     rim=[verts[(rows-1)*cols+i] for i in range(cols)]
     add(cord(prefix+'Hood_Rim',rim,knit,rig,shirt_weights.at,.0025),'hooded_layer')
-    # Central zipper and two understated pocket seams on the fitted front.
     zs=np.linspace(h-.71,h-.31,25);zip_path=[]
     for z in zs:
         try:zip_path.append((0,surface(0,float(z),extra=.014),float(z)))
@@ -165,7 +175,6 @@ def build(role,body,shirt,pants,hair,rig):
         add(cord(prefix+'PocketSeam_'+str(side),path,knit,rig,shirt_weights.at,.0015),'hooded_layer')
 
     if role=='you':
-        # Blank illustrated badge: no real employer, personal information or logo.
         badge_z=h-.49;badge_y=surface(0,badge_z,extra=.030);badge_weights={'spine_02':1.}
         for side in (-1,1):
             path=[strap_surface(side*.049,h-.275),strap_surface(side*.058,h-.34),
@@ -174,7 +183,6 @@ def build(role,body,shirt,pants,hair,rig):
         add(box(prefix+'Badge_Holder',(0,badge_y,badge_z),(.061,.005,.087),webbing,rig,badge_weights,.004),'identity_badge')
         add(box(prefix+'Badge_Card',(0,badge_y-.0036,badge_z),(.054,.0015,.077),white,rig,badge_weights,.002),'identity_badge')
         add(box(prefix+'Badge_ColorBand',(0,badge_y-.0046,badge_z+.025),(.049,.001,.012),fabric,rig,badge_weights,.001),'identity_badge')
-        # Generic photo silhouette and three information bars, not text or identity.
         add(box(prefix+'Badge_Photo',(-.013,badge_y-.0046,badge_z+.002),(.017,.001,.022),cream,rig,badge_weights,.002),'identity_badge')
         for j,w in enumerate((.021,.017,.036)):
             add(box(prefix+'Badge_Line_'+str(j),(.006 if j<2 else 0,badge_y-.0046,badge_z-.005-j*.009),(w,.001,.0023),seam,rig,badge_weights,.0005),'identity_badge')
@@ -204,12 +212,10 @@ def build(role,body,shirt,pants,hair,rig):
         for j in (0,R-1):
             for i in range(N):
                 a=j*N+i;b=j*N+(i+1)%N;faces.append((a,a+count,b+count,b))
-        # Close the tiny crown openings rather than leave a polar puncture.
         faces.extend([tuple(range(N-1,-1,-1)),tuple(range(count,count+N))])
         add(finalize(mesh(prefix+'Helmet_Shell',verts,faces,shellmat,uv),rig,helmet_weights),'helmet')
         border=[verts[(R-1)*N+i] for i in range(N)]+[verts[(R-1)*N]]
         add(cord(prefix+'Helmet_Rim',border,padding,rig,helmet_weights,.005),'helmet')
-        # Low front peak, short enough to keep face readable from normal view.
         points=[];nr=3;nc=31
         for j,t in enumerate(np.linspace(0,1,nr)):
             for a in np.linspace(-2.40,-.74,nc):
@@ -217,7 +223,6 @@ def build(role,body,shirt,pants,hair,rig):
                 y=cy+ry*math.sin(pmax)*math.sin(a)-.030*t;z=cz+rz*math.cos(pmax)-.006*t
                 points.append((x,y,z))
         add(grid_sheet(prefix+'Helmet_Peak',points,nr,nc,fabric,rig,helmet_weights,thickness=.003),'helmet')
-        # Jaw straps fit close to the head; mask sits below the mouth.
         for sign in (-1,1):
             path=[(sign*rx*.94,cy,cz+.002),(sign*.076,cy-.025,h-.185),(sign*.035,cy-.060,h-.257)]
             add(ribbon(prefix+'Helmet_Strap_'+str(sign),smooth_path(path),.009,padding,rig,helmet_weights),'helmet')
@@ -233,8 +238,6 @@ def build(role,body,shirt,pants,hair,rig):
         for sign in (-1,1):
             path=[(sign*.063,cy-.080,h-.218),(sign*.083,cy-.025,h-.16),(sign*.079,cy+.003,h-.182),(sign*.064,cy-.078,h-.245)]
             add(cord(prefix+'Mask_Earloop_'+str(sign),smooth_path(path),white,rig,helmet_weights,.0011),'chin_mask')
-        # Structured insulated backpack: real beveled shell, padded back, top
-        # lid, reflective stripes, seam piping and fitted shoulder straps.
         packmat=material(prefix+'Pack_TealCanvas',(.035,.19,.16),.85)
         packedge=material(prefix+'Pack_DarkBinding',(.015,.042,.037),.90)
         packw={'spine_02':1.};pz=h-.54
@@ -244,30 +247,33 @@ def build(role,body,shirt,pants,hair,rig):
         add(box(prefix+'Pack_Lid',(0,py,pz+.195),(.349,.257,.033),packmat,rig,packw,.013),'delivery_pack')
         add(box(prefix+'Pack_ZipperBand',(0,py+.126,pz+.167),(.317,.004,.012),packedge,rig,packw,.002),'delivery_pack')
         add(box(prefix+'Pack_Reflector',(0,py+.128,pz-.08),(.282,.003,.029),cream,rig,packw,.004),'delivery_pack')
-        # Rounded seam path on outward-facing back panel.
         path=[]
-        for x,z in ((-.15,pz-.168),(.15,pz-.168),(.15,pz+.145),(-.15,pz+.145),(-.15,pz-.168)):
-            path.append((x,py+.127,z))
+        for x,z in ((-.15,pz-.168),(.15,pz-.168),(.15,pz+.145),(-.15,pz+.145),(-.15,pz-.168)):path.append((x,py+.127,z))
         add(cord(prefix+'Pack_Piping',path,packedge,rig,packw,.0025),'delivery_pack')
         handle=smooth_path([(-.065,py,pz+.209),(-.058,py,pz+.235),(.058,py,pz+.235),(.065,py,pz+.209)])
         add(ribbon(prefix+'Pack_TopHandle',handle,.018,webbing,rig,packw),'delivery_pack')
         for sign in (-1,1):
-            # True shoulder height from downward torso ray; exclude sleeves.
-            hit,_,_,_=torso.ray_cast(Vector((sign*.113,0,h+.1)),Vector((0,0,-1)),.6)
-            if hit is None:raise RuntimeError('Shoulder fit missing')
+            # Strict arm exclusion can remove true shoulder triangles. Search
+            # a small actual shoulder patch, rejecting head and lower sleeve hits.
+            candidates=[]
+            for sx in (.113,.103,.093):
+                for sy in (-.035,-.015,.005,.025):
+                    for t in (torso,skin,full_skin):
+                        hit,_,_,_=t.ray_cast(Vector((sign*sx,sy,h+.1)),Vector((0,0,-1)),.65)
+                        if hit is not None and h-.42<hit.z<h-.19:candidates.append(hit)
+            if not candidates:raise RuntimeError('No verified shoulder surface in bounded patch')
+            hit=max(candidates,key=lambda p:p.z)
             path=[(sign*.112,back+.010,pz+.163),(sign*.112,surface(sign*.112,h-.32,True,.025),h-.32),
-                  (sign*.113,.0,hit.z+.016),strap_surface(sign*.113,h-.34),strap_surface(sign*.120,h-.48),
+                  (hit.x,hit.y,hit.z+.016),strap_surface(sign*.113,h-.34),strap_surface(sign*.120,h-.48),
                   strap_surface(sign*.147,h-.64),(sign*.14,back+.015,pz-.15)]
             add(ribbon(prefix+'Pack_ShoulderStrap_'+str(sign),smooth_path(path),.034,webbing,rig,shirt_weights.at),'delivery_pack')
             add(box(prefix+'Pack_SideReflector_'+str(sign),(sign*.172,py,pz-.078),(.003,.155,.026),cream,rig,packw,.002),'delivery_pack')
-        # Small center clasp across straps, follows chest without stretching box.
         zz=h-.44;yy=surface(0,zz,extra=.038)
         add(box(prefix+'Pack_ChestClasp',(0,yy,zz),(.024,.007,.016),webbing,rig,packw,.003),'delivery_pack')
 
-    for ob in added:
-        ob['accessory_visibility_note']='Hide this named group with its related objects, original character remains'
+    for ob in added:ob['accessory_visibility_note']='Hide this named group with its related objects, original character remains'
     return added,{'role':role,'groups':groups,'new_geometry_license':'CC0-1.0',
-       'outer_garment_source':'Independent copy of original licensed CC0 shirt; fitted normal-offset shell and original long-sleeve extensions',
+       'outer_garment_source':'Independent copy of original licensed CC0 shirt; world-normal-offset shell, normalized copied deform weights and original sleeve extensions',
        'sleeve_construction':sleeve_notes,'body_face_hair_unchanged':True,
        'original_pants_unchanged':True,'no_real_brand_or_personal_data':True,
        'objects':[{'name':o.name,'vertices':len(o.data.vertices),'faces':len(o.data.polygons),'group':o['accessory_group']} for o in added],
