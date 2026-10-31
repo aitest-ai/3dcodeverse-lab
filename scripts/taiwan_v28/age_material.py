@@ -1,7 +1,6 @@
 """V28 restrained age-surface study on existing fictional elder characters.
-Derived CC0 skin albedo + original procedural crease height, rasterized through
-actual source UV triangles. Standard packed tangent normal PNG, not a Blender-
-only Noise node. No new body topology, facial geometry or changed morph deltas.
+Derived CC0 skin albedo + original crease height rasterized in original UVs.
+Packed tangent-normal PNG, no body topology or morph edits.
 """
 import math,hashlib
 from pathlib import Path
@@ -22,6 +21,27 @@ def save_image(name,pixels,out,noncolor=False):
     return im,{'file':path.name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'width':w,'height':h}
 
 
+def decoded_source(source,out,cid):
+    if source is None:raise RuntimeError('Missing source skin image')
+    # has_data can be false for an intact lazy packed image after a Cycles render.
+    # Reading pixels requests decoding; never equate has_data with file existence.
+    data=np.asarray(source.pixels[:],dtype='f4');w,h=source.size
+    temporary=None
+    if data.size==0:
+        if not source.packed_file:raise RuntimeError('Source skin has neither pixels nor packed bytes')
+        packed=bytes(source.packed_file.data)
+        if len(packed)<64:raise RuntimeError('Empty packed skin image')
+        folder=out/'source_decode';folder.mkdir(exist_ok=True)
+        path=folder/(cid+'_original_packed_skin.png');path.write_bytes(packed)
+        temporary=bpy.data.images.load(str(path),check_existing=False)
+        data=np.asarray(temporary.pixels[:],dtype='f4');w,h=temporary.size
+    if not(w==h and 0<w<=512 and data.size==w*h*4):
+        raise RuntimeError('Original skin cannot decode to square RGBA <=512: '+str((w,h,data.size)))
+    result=data.reshape(h,w,4).copy()
+    if temporary is not None:bpy.data.images.remove(temporary)
+    return result,w,h
+
+
 def apply(body,eyes,cid,out):
     out=Path(out);out.mkdir(parents=True,exist_ok=True)
     original=body.data.materials[0]
@@ -30,16 +50,12 @@ def apply(body,eyes,cid,out):
     link=bs.inputs['Base Color'].links[0] if bs.inputs['Base Color'].is_linked else None
     if link is None or link.from_node.type!='TEX_IMAGE':raise RuntimeError('Skin source must be a real image')
     source=link.from_node.image
-    if source is None or not source.has_data:raise RuntimeError('No decoded CC0 skin pixels')
-    w,h=source.size
-    if w!=h or w>512:raise RuntimeError('Expected original square skin <=512')
-    old=np.array(source.pixels[:],dtype='f4').reshape(h,w,4)
+    old,w,h=decoded_source(source,out,cid)
     source_hash=hashlib.sha256(old.tobytes()).hexdigest()
     points=np.array([tuple(body.matrix_world@v.co) for v in body.data.vertices])
     ep=np.array([tuple(eyes.matrix_world@v.co) for v in eyes.data.vertices])
     eye_z=float(np.median(ep[:,2]));eye_y=float(np.median(ep[:,1]));eye_x=float(np.mean(np.abs(ep[:,0])))
     top=float(points[:,2].max())
-    # Rasterize source positions and metric lengths in the existing UV layout.
     pos=np.zeros((h,w,3));tu=np.ones((h,w));tv=np.ones((h,w));valid=np.zeros((h,w),bool)
     body.data.calc_loop_triangles();uv=body.data.uv_layers.active
     if uv is None:raise RuntimeError('Original body UV absent')
@@ -72,12 +88,10 @@ def apply(body,eyes,cid,out):
         g=np.exp(-.5*(distance/width)**2)*mask*face
         height-=g*depth*strength
         crease+=g
-    # Broken forehead creases, not perfectly parallel drawn black lines.
     forehead_window=np.exp(-((x/.056)**6))
     for k in range(3):
         zz=eye_z+.028+k*.012+.0035*(x/.06)**2+.0014*np.sin(x*85+k*.9)
         line(z-zz,forehead_window,.00018 if k!=1 else .00024)
-    # Crow's feet and lower eyelid folds follow actual fitted eye centres.
     for sign in (-1,1):
         outer=sign*(eye_x+.013);outward=sign*(x-outer)
         for slope,offset in ((.22,0.),(-.24,-.002),(-.60,-.004)):
@@ -87,15 +101,12 @@ def apply(body,eyes,cid,out):
         dx=x-sign*eye_x
         arc=eye_z-.015+.006*(dx/.018)**2
         line(z-arc,np.exp(-((dx/.020)**6)),.00020,.0015)
-        # Short smile folds terminate before the chin rather than becoming scars.
         t=np.clip((eye_z-.025-z)/.055,0,1)
         xx=sign*(.018+.018*t+.003*np.sin(t*math.pi))
         window=smooth((eye_z-.022-z)/.012)*smooth((z-(eye_z-.086))/.016)
         line(x-xx,window,.00016,.0016)
-    # Low-amplitude pores and scattered warm/cool variation, skin-only.
     pore=.000012*np.sin(x*2650+np.sin(z*210))*np.sin(z*2300+x*73)*face
     height+=pore
-    # 512px cap: subtle optical detail only, not an anatomical face sculpt.
     gy,gx=np.gradient(height)
     nx=-gx*w/tu;ny=-gy*h/tv
     normal=np.stack((nx,ny,np.ones_like(nx)),axis=-1)
@@ -104,7 +115,6 @@ def apply(body,eyes,cid,out):
     albedo=old.copy();variation=(np.sin(x*124+z*98)*np.sin(z*154-x*86))*.012*face
     factor=1.-np.minimum(crease,.9)*.075*strength+variation
     albedo[:,:,:3]*=factor[:,:,None]
-    # Very restrained cheek speckling, not large dark age spots or painted shadows.
     rng=np.random.default_rng(2801 if cid=='oldman' else 2802)
     pigment=np.zeros((h,w))
     for _ in range(28):
