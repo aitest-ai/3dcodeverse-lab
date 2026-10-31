@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "asset_family": "3dcodeverse-character-studio",
+  "version": "0.1.0-gray.3",
+  "stage": "01-gray-identity",
+  "source_commit": "747b5d995028beb01477a7ef2b09ae667f8990d5",
+  "branch": "feat/diverse-character-studio",
+  "draft_pr": "https://github.com/aitest-ai/3dcodeverse-lab/pull/50",
+  "local_build_report_commit_label": "working-tree-gray3-after-a339ee6d",
+  "published_source_byte_verification": {
+    "scripts/character_studio/build_gray.py": {
+      "sha256": "4791ad6c5b8c61885a77c17766b8f63f65bfd3754e2e77f096c7c533f4ee0f86",
+      "matches_published_commit": true
+    },
+    "assets/characters/studio/profiles.json": {
+      "sha256": "893b859fa382d74e2d39bbbfcfd2c0faeeba4ed9ccdebe4fb17967c2d1163927",
+      "matches_published_commit": true
+    },
+    "scripts/character_studio/compare_gray.py": {
+      "sha256": "754731e451c4f19bf0ab260e09d31dafec1796d8ef76a8d7173891a6814543eb",
+      "matches_published_commit": true
+    },
+    "scripts/character_studio/prepare_review.py": {
+      "sha256": "aea1a80f661c2401d25387048cbe6ff2b84af85cd1d25d0a10578f3b9208d10d",
+      "matches_published_commit": true
+    },
+    "scripts/character_studio/bootstrap.py": {
+      "sha256": "49bf0a5c8250f96802f05c7b90343d0fd1a484a8e82573d1472e4f3a9e1e771f",
+      "matches_published_commit": true
+    },
+    "scripts/character_studio/browser_review.cjs": {
+      "sha256": "b140f067052835ae4dd5ce45e070097635fe4677d56d38e1be50c075e7341f5a",
+      "matches_published_commit": true
+    }
+  },
+  "local_models": [
+    {
+      "asset_id": "studio-d03-young-slender",
+      "role": "d03",
+      "version": "0.1.0-gray.3",
+      "glb": {
+        "file": "d03.glb",
+        "size_bytes": 5063876,
+        "sha256": "66ecd26156fac135aeae35d5d9770d0757bae3e9678df413cb4cdc999cbb4c57"
+      },
+      "clean_blend": {
+        "file": "d03.blend",
+        "size_bytes": 1482939,
+        "sha256": "722b5d746c1e97db767b1844db87b62b21bab883df55caa6937129a7373c6d89"
+      },
+      "parametric_blend": {
+        "file": "d03_parametric.blend",
+        "size_bytes": 3801241,
+        "sha256": "932848d0cbe9de84e2b2c8400a1dc1d90cd39b2b27096f908b5401fbeca91ae2"
+      },
+      "measurements": {
+        "height_target_m": 1.86,
+        "height_surface_m": 1.8577351197600365,
+        "height_calibration_factor": 0.9543808937294873,
+        "calibration_scope": "absolute metres after independent anatomy",
+        "bounds_m": {
+          "min": [
+            -0.5912482738494873,
+            -0.3940403461456299,
+            0.0006958618760108948
+          ],
+          "max": [
+            0.5912482142448425,
+            0.10129676014184952,
+            1.8584309816360474
+          ]
+        },
+        "shoulder_joint_span_m": 0.36930257081985474,
+        "hip_joint_span_m": 0.21639811992645264,
+        "thigh_m": 0.5062406967470556,
+        "shin_m": 0.4415727048712437,
+        "leg_bones_to_height": 0.5101983547260108,
+        "upper_arm_m": 0.28164781644199055,
+        "forearm_m": 0.2803360473668317,
+        "forearm_to_upper_arm": 0.9953425199892184,
+        "measurement_note": "joint spans are bone-center distances, not skin/clothing shoulder or hip widths"
+      },
+      "geometry": {
+        "mesh_count": 2,
+        "primitive_count": 2,
+        "position_vertices_per_primitive_sum": 72061,
+        "triangle_count": 109064,
+        "skin_count": 1,
+        "joint_counts": [
+          53
+        ],
+        "morph_target_instances": 0,
+        "nonzero_position_target_instances": 0,
+        "animation_count": 0,
+        "animation_names": [],
+        "image_count": 0,
+        "error_count": 0,
+        "warning_count": 0
+      },
+      "art_approved": false,
+      "game_ready": false
+    },
+    {
+      "asset_id": "studio-d06-older-fuller",
+      "role": "d06",
+      "version": "0.1.0-gray.3",
+      "glb": {
+        "file": "d06.glb",
+        "size_bytes": 5064564,
+        "sha256": "4fca95db9b52e40d435dc25e26b574dbedfe63514240d156ebadf5cefa7bb746"
+      },
+      "clean_blend": {
+        "file": "d06.blend",
+        "size_bytes": 1485442,
+        "sha256": "5ab0c40a52330437b22809777f7a35f9b034236c64cbfd906d31196e06f5d952"
+      },
+      "parametric_blend": {
+        "file": "d06_parametric.blend",
+        "size_bytes": 4110479,
+        "sha256": "435049ea8e0b7fb59a6f6ca5c1ad5b5c3ac22b0cc929d4326b71c22268fdf62f"
+      },
+      "measurements": {
+        "height_target_m": 1.53,
+        "height_surface_m": 1.5277693141251802,
+        "height_calibration_factor": 1.011515531836549,
+        "calibration_scope": "absolute metres after independent anatomy",
+        "bounds_m": {
+          "min": [
+            -0.46529534459114075,
+            -0.33163151144981384,
+            0.0011440645903348923
+          ],
+          "max": [
+            0.46529531478881836,
+            0.09054584056138992,
+            1.5289133787155151
+          ]
+        },
+        "shoulder_joint_span_m": 0.2955264747142792,
+        "hip_joint_span_m": 0.20056651532649994,
+        "thigh_m": 0.3579910445988589,
+        "shin_m": 0.3639190763270329,
+        "leg_bones_to_height": 0.4725256059611765,
+        "upper_arm_m": 0.2149377665255959,
+        "forearm_m": 0.20279615403577786,
+        "forearm_to_upper_arm": 0.9435110325836006,
+        "measurement_note": "joint spans are bone-center distances, not skin/clothing shoulder or hip widths"
+      },
+      "geometry": {
+        "mesh_count": 2,
+        "primitive_count": 2,
+        "position_vertices_per_primitive_sum": 72061,
+        "triangle_count": 109064,
+        "skin_count": 1,
+        "joint_counts": [
+          53
+        ],
+        "morph_target_instances": 0,
+        "nonzero_position_target_instances": 0,
+        "animation_count": 0,
+        "animation_names": [],
+        "image_count": 0,
+        "error_count": 0,
+        "warning_count": 0
+      },
+      "art_approved": false,
+      "game_ready": false
+    }
+  ],
+  "ci": {
+    "source_commit": "747b5d995028beb01477a7ef2b09ae667f8990d5",
+    "run_id": 41199840750,
+    "run_url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41199840750",
+    "status": "completed",
+    "conclusion": "success",
+    "artifact_id": 13042541079,
+    "artifact_name": "character-studio-d03-d06-gray-PILOT-41199840750-1",
+    "artifact_url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41199840750/artifacts/13042541079",
+    "artifact_size_bytes": 30943491,
+    "artifact_api_sha256": "2781e3f39b13119864a6b62b719cdea0bdb03cfc18041acbc6a8c2548f828a29",
+    "expires_at_utc": "2026-11-30T12:13:17Z",
+    "retention_days": 30,
+    "scope": "Independent CI rebuild, actual GLB reimport, rendered views, cold-opened clean mothers, original texture decode gate, binary/manifest checks, anatomy comparison, runnable review_app. Local browser evidence is separate.",
+    "byte_identity_note": "CI archive and local delivery packages are different artifacts. Never substitute their SHA values."
+  },
+  "validation": {
+    "offline_blender_renders": true,
+    "glb_reimported": true,
+    "clean_mothers_cold_opened": true,
+    "parametric_mothers_cold_opened": true,
+    "actual_browser_test": true,
+    "browser_renderer": "SwiftShader software WebGL 2",
+    "full_game_test": false,
+    "android_device_test": false,
+    "art_approved": false,
+    "game_ready": false
+  },
+  "record_timing": "Per-build report.not_completed and structural-inspector browser_tested reflect their own earlier stage/scope. browser/browser_review.json records the later actual runtime test. Earlier records have not been rewritten.",
+  "not_completed": [
+    "art acceptance",
+    "hair",
+    "clothing and footwear",
+    "skin material",
+    "dental and tongue adaptation",
+    "facial expressions",
+    "idle",
+    "walk",
+    "turn",
+    "sit and stand",
+    "full game",
+    "Android hardware",
+    "cycling",
+    "horse riding"
+  ],
+  "known_visual_issues": [
+    "D06 does not yet reliably read as 73 years old",
+    "neutral mouth lines and corners remain stiff",
+    "eyelid/eyeball dark edges and corner gap appearance need geometry and blink review",
+    "D06 occipital-to-neck transition remains strong",
+    "hands, feet and neutral A-pose are not finish-quality motion evidence"
+  ],
+  "reproducibility": "Locked original inputs plus executable build/export/reimport commands. Exact delivered artifacts have SHA-256. Cross-machine Blender metadata, absolute paths and floating-point renders are not promised bit-identical."
+}

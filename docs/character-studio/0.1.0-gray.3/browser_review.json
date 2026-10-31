@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_WEBGL_REVIEW_COMPLETED",
+  "renderer_requested": "SwiftShader software WebGL",
+  "browser": "151.0.7922.34",
+  "real_glb_loaded": true,
+  "sha256_verified": true,
+  "both_original_scales_preserved": true,
+  "positive_view_controls": true,
+  "drag_rotation": true,
+  "hash_failure_blocks_display": true,
+  "retry_same_assets": true,
+  "mobile_layout_width": 390,
+  "mobile_layout_overflow": false,
+  "page_errors": [],
+  "offline_render": false,
+  "full_game_test": false,
+  "android_device_test": false,
+  "art_approved": false,
+  "note": "Software WebGL executes the real Three.js shaders and GLBs. Frame intervals are not a mobile capability verdict. Screenshots require visual review."
+}
