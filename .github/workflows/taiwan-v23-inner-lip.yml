@@ -1,0 +1,111 @@
+name: Taiwan V23 - Native Inner Fly Lip Candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v23-uncle-fly-inner-lip']
+    paths:
+      - '.github/workflows/taiwan-v23-inner-lip.yml'
+      - 'scripts/taiwan_v23/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v23-inner-lip-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-lip:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile candidate scripts
+        run: python3 -m compileall -q scripts/taiwan_v23
+      - name: Retrieve verified V22 original editable source
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v22-uncle-local-cloth-candidate-PILOT
+          run-id: 41159061252
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v22
+      - name: Install headless CPU render libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender and check official SHA256
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,pathlib,re
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Render real source and check the actual exported clip in a fresh scene
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V23_INPUT: input/v22
+          V23_OUT: outputs/v23
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v23/source_qa.py 2>&1 | tee /tmp/v23-blender.log
+      - name: Verify structures and measured non-regression without claiming art approval
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v23/models/uncle_v23_source.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v23/motion/uncle_v23_stress.glb
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('outputs/v23')
+          a=json.loads((p/'qa/uncle_v23_source_qa.json').read_text())
+          b=json.loads((p/'qa/uncle_v23_roundtrip.json').read_text())
+          assert a['native_body_vertices']==13380 and a['bones']==53 and a['body_morphs']==10
+          assert a['changed_meshes']==['OpenSourceCloth_uncle_toigo_wool_pants']
+          assert a['topology_uv_weights_unchanged'] and a['textures_unchanged'] and a['non_target_meshes_unchanged']
+          assert a['repair']['changed_vertices']==7 and a['repair']['maximum_shift_m']<=.00201
+          assert a['repair']['outer_lip_unchanged']
+          assert len(a['before_97_times'])==len(a['after_97_times'])==len(b['times'])==97
+          assert len(a['renders'])==24 and all((p/'renders'/f).is_file() for f in a['renders'])
+          q=b['quality'];assert q['samples_per_pass']==795400
+          assert not q['new_skin_times'] and not q['same_side_regression_times'],q
+          for key in ('visible_skin','shirt_outside_below_band'):
+              assert q['delivered'][key]<=q['baseline'][key],q
+          e=q['extended_region']
+          assert e['after']['inward_nearest_surface_rays']<e['before']['inward_nearest_surface_rays'],e
+          assert e['delivered']['inward_nearest_surface_rays']<e['before']['inward_nearest_surface_rays'],e
+          assert q['art_approved'] is False
+          print('V23_STRUCTURAL_PASS_NOT_ART_APPROVAL',q)
+          PY
+      - name: Package exact source, baseline, logs and provenance
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v23');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v23-blender.log').exists():shutil.copy('/tmp/v23-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v23','taiwan_v22','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('.github/workflows/taiwan-v23-inner-lip.yml',p/'source/workflow.yml')
+          for file in ('blend/uncle_v22_source.blend','models/uncle_v22_source.glb','motion/uncle_v22_stress.glb','qa/uncle_v22_source_qa.json'):
+              src=pathlib.Path('input/v22')/file
+              if src.exists():
+                  target=p/'reference_v22'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41159061252,'scope':'Only seven original inner fly-lip points on V22 uncle; unchanged body, outer lip, UV, weights and materials','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish pilot or real failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v23-uncle-native-inner-lip-PILOT
+          path: outputs/v23/**
+          retention-days: 30
+          if-no-files-found: warn
