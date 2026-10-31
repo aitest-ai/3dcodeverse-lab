@@ -1,7 +1,7 @@
 """Reopen delivered files: verify source topology, then audit the exported GLB
 in a new Blender scene. This catches differences between authored and exported data.
 """
-import os,sys,json,hashlib
+import os,sys,json,hashlib,math
 from pathlib import Path
 import bpy
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -17,12 +17,29 @@ for role in ('you','boss','uncle','jie'):
     assert len(rig.data.bones)==53
     assert len(body.data.shape_keys.key_blocks)==11
     assert not any(m.type=='MASK' for m in body.modifiers)
-    images=[im for im in bpy.data.images if im.source=='FILE' and im.has_data]
-    assert images and all(im.packed_file is not None for im in images)
+    # Reopening a .blend leaves image pixels lazy, even when bytes are packed.
+    # Do not filter by has_data before requesting pixels. Require packed bytes,
+    # then actually decode them without reloading external source paths.
+    images=[im for im in bpy.data.images if im.source=='FILE']
+    assert images, 'No source image datablocks in '+role
+    decoded=[]
+    for image in images:
+        assert image.packed_file is not None, 'Unpacked texture: '+image.name
+        packed=image.packed_file.data
+        assert len(packed)>16, 'Empty packed image: '+image.name
+        pixel_count=len(image.pixels)
+        sample=list(image.pixels[:4])
+        assert pixel_count>0 and len(sample)==4 and all(math.isfinite(v) for v in sample), image.name
+        assert image.has_data and min(image.size)>0 and max(image.size)<=512, (image.name,list(image.size))
+        decoded.append({'name':image.name,'dimensions':list(image.size),
+                        'packed_bytes':len(packed),'packed_sha256':hashlib.sha256(packed).hexdigest(),
+                        'pixels_decoded':True})
     source_checks[role]={'native_body_vertices':len(body.data.vertices),'bones':len(rig.data.bones),
                         'body_morphs':len(body.data.shape_keys.key_blocks)-1,
-                        'packed_image_count':len(images),'bytes':path.stat().st_size,
+                        'packed_image_count':len(images),'decoded_packed_images':decoded,
+                        'bytes':path.stat().st_size,
                         'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+    print('V20_NATIVE_SOURCE_REOPENED',role,len(images),flush=True)
 
 path=OUT/'motion'/'jie_v20_source_stress.glb'
 g=GLB(path)
