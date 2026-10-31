@@ -9,7 +9,7 @@ import bpy,bmesh
 from mathutils import Vector,Matrix
 from mathutils.bvhtree import BVHTree
 ROOT=Path(__file__).resolve().parents[1]
-for d in ('taiwan_v20','taiwan_v24'):sys.path.insert(0,str(ROOT/d))
+for d in ('taiwan_v20','taiwan_v24','taiwan_v21'):sys.path.insert(0,str(ROOT/d))
 from source_waist import coordinates
 from belt import WeightSource,mesh
 
@@ -41,7 +41,6 @@ def write_world(obj,new):
 
 
 def fix_clothes(body,shirt,pants):
-    # Lower legs: keep original human intact, push pants away from the real skin.
     bt=world_tree(body);p=coordinates(pants);q=p.copy()
     for i,v in enumerate(p):
         if v[2]>.52:continue
@@ -52,7 +51,6 @@ def fix_clothes(body,shirt,pants):
         if shift>.022:continue
         if shift:q[i]+=np.asarray(n)*shift
     legs=write_world(pants,q)
-    # This polo is untucked: throughout the lower torso it belongs OUTSIDE pants.
     pt=world_tree(pants);p=coordinates(shirt);q=p.copy()
     lo=float(p[:,2].min());center=np.array([0.,-.025])
     for i,v in enumerate(p):
@@ -97,7 +95,6 @@ def contour(points,margin=.006,n=64):
         if not radii:raise RuntimeError('Unresolved foot outline ray')
         ring.append(center+u*(min(radii)+margin))
     ring=np.asarray(ring)
-    # Slight regularisation of a very coarse foot slice, without shrinking into skin.
     smooth=.15*np.roll(ring,1,0)+.7*ring+.15*np.roll(ring,-1,0)
     delta=smooth-center;r=np.linalg.norm(delta,axis=1)
     original_r=np.linalg.norm(ring-center,axis=1)
@@ -118,7 +115,6 @@ def loft(name,rings,material,weights,caps=True):
 
 
 def cord(name,path,material,weights,radius=.0012):
-    # Real round cross-section laces; no oversized floating rectangular strips.
     curve=bpy.data.curves.new(name,'CURVE');curve.dimensions='3D';curve.resolution_u=2
     curve.bevel_depth=radius;curve.bevel_resolution=2
     spline=curve.splines.new('POLY');spline.points.add(len(path)-1)
@@ -154,14 +150,11 @@ def shoes(body,rig):
                 xy=contour(band[:,:2],.007)
             upper.append(np.column_stack((xy,np.full(len(xy),zbase+level))))
         shell=loft('V28_cop_Shoe_'+side+'_Upper',upper,leather,weights,False);added.append(shell)
-        # Small inward cuff turn, under the original trouser ankle.
         top=upper[-1].copy();ctr=top[:,:2].mean(0);inside=top.copy()
         inside[:,:2]=ctr+(inside[:,:2]-ctr)*.94;inside[:,2]-=.003
         added.append(loft('V28_cop_Shoe_'+side+'_Collar',[top,inside],leather,weights,False))
-        # Fine welt on top of the outsole, follows the actual fitted foot outline.
         welt=np.column_stack((base,np.full(len(base),zbase+.0215)))
         added.append(cord('V28_cop_Shoe_'+side+'_Welt',list(welt)+[welt[0]],stitch,weights,.0008))
-        # Shoelaces lie on the actual upper's top surface along the foot forward axis.
         ball=rig.matrix_world@rig.data.bones['ball_'+side].head_local
         forward=np.array([ball.x-ankle.x,ball.y-ankle.y]);forward/=np.linalg.norm(forward)
         lateral=np.array([-forward[1],forward[0]])
