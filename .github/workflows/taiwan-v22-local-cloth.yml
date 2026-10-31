@@ -1,0 +1,110 @@
+name: Taiwan V22 - Local Fly and Tucked Hem Candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v22-uncle-local-fly-tuck-qa']
+    paths:
+      - '.github/workflows/taiwan-v22-local-cloth.yml'
+      - 'scripts/taiwan_v22/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v22-local-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-local:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated candidate
+        run: python3 -m compileall -q scripts/taiwan_v22
+      - name: Retrieve actual V21 editable source and baseline report
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v21-uncle-native-waist-candidate-PILOT
+          run-id: 41154136628
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v21
+      - name: Install CPU render libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender with official checksum verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,pathlib,re
+          name='blender-5.2.3-linux-x64.tar.xz'
+          row=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',row).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Original-source local correction and actual delivered animation roundtrip
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V22_INPUT: input/v21
+          V22_OUT: outputs/v22
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v22/source_qa.py 2>&1 | tee /tmp/v22-blender.log
+      - name: Verify corrected same-side metric and independent fly surface improvement
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v22/models/uncle_v22_source.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v22/motion/uncle_v22_stress.glb
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('outputs/v22')
+          a=json.loads((p/'qa/uncle_v22_source_qa.json').read_text())
+          b=json.loads((p/'qa/uncle_v22_roundtrip.json').read_text())
+          assert a['native_body_vertices']==13380 and a['bones']==53 and a['body_morphs']==10
+          assert a['non_target_meshes_unchanged'] and a['topology_uv_weights_unchanged'] and a['textures_unchanged']
+          assert a['fly']['max_shift_m']<=.00301 and a['fly']['vertical_change_m']==0
+          assert a['tuck']['max_source_shift_m']<=.01201
+          assert len(a['before_49_frames'])==len(a['after_49_frames'])==len(b['frames'])==49
+          assert len(a['renders'])==20 and all((p/'renders'/f).is_file() for f in a['renders'])
+          q=b['quality']
+          assert not q['new_skin_hit_frames'],q
+          assert q['candidate']['shirt_outside_below_band']<=q['baseline']['shirt_outside_below_band'],q
+          assert q['delivered']['shirt_outside_below_band']<=q['baseline']['shirt_outside_below_band'],q
+          assert q['delivered']['visible_skin']<=q['baseline']['visible_skin'],q
+          fly=q['fly_surface']
+          assert fly['candidate']['inward_surface_in_front_over_0_1mm']<fly['baseline']['inward_surface_in_front_over_0_1mm']
+          assert fly['delivered']['inward_surface_in_front_over_0_1mm']<fly['baseline']['inward_surface_in_front_over_0_1mm']
+          print('V22_STRUCTURAL_RESULT_NOT_ART_APPROVAL',q)
+          PY
+      - name: Attach exact code and traceable input hashes
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v22');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v22-blender.log').exists():shutil.copy('/tmp/v22-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v22','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('.github/workflows/taiwan-v22-local-cloth.yml',p/'source/workflow.yml')
+          for file in ('blend/uncle_v21_source.blend','models/uncle_v21_source.glb','qa/uncle_v21_source_qa.json'):
+              src=pathlib.Path('input/v21')/file
+              if src.exists():
+                  target=p/'reference_v21'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41154136628,'scope':'Only uncle local fly from V21 .blend; same-side metric corrected, raw legacy counts retained','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish candidate or truthful failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v22-uncle-local-cloth-candidate-PILOT
+          path: outputs/v22/**
+          retention-days: 30
+          if-no-files-found: warn
