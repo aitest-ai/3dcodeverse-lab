@@ -7,12 +7,18 @@ permissions:
   contents: read
 concurrency:
   group: emotion-voice-free-only
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
+  stop_guard:
+    if: github.event.repository.private == false && contains(github.event.head_commit.message, '[voice-free-stop]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: echo 'Stop-only run. Replaced the previous concurrency group. No model/API request, no artifact, no cache.'
   retest:
     if: github.event.repository.private == false && contains(github.event.head_commit.message, '[voice-free-retest]')
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 8
     env:
       HF_HUB_DISABLE_IMPLICIT_TOKEN: '1'
       HF_TOKEN: ''
@@ -32,9 +38,9 @@ jobs:
           echo 'Standard public-repository runner only. No paid GPU, account token, artifact or cache upload.'
       - name: Install API client only; no model weights
         run: python -m pip install --no-cache-dir 'gradio_client==2.0.3'
-      - name: Request at most six free demo samples; stop on first error
-        run: python experiments/emotion-voice-lab/free_retest.py --output free-retest-report.json
-      - name: Log bounded diagnostic report without storing billable artifacts
+      - name: Bounded free demo requests; stop on first error or process timeout
+        run: timeout --signal=TERM --kill-after=10s 240s python -u experiments/emotion-voice-lab/free_retest.py --output free-retest-report.json
+      - name: Log diagnostic metadata without billable artifacts
         if: always()
         run: |
           python - <<'PY'
@@ -45,5 +51,5 @@ jobs:
               r=json.loads(p.read_text())
               print('RESULT',r['status'],'AUDIO_COUNT',r.get('successful_audio_count',0))
           else:
-              print('No inference report; setup failed. No automatic retry.')
+              print('No completed report: setup failed, request stalled, or process was stopped. No automatic retry.')
           PY
