@@ -1,0 +1,104 @@
+name: Taiwan V24 - Skinned Belt Wardrobe Design
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v24-uncle-belt-styling']
+    paths:
+      - '.github/workflows/taiwan-v24-belt.yml'
+      - 'scripts/taiwan_v24/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v24-belt-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  wardrobe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile original belt code
+        run: python3 -m compileall -q scripts/taiwan_v24
+      - name: Retrieve verified native V23 character
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v23-uncle-native-inner-lip-PILOT
+          run-id: 41173229422
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v23
+      - name: Install CPU rendering libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender after official SHA256 verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          wanted=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==wanted
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Create real skinned belt, render design and reimport final GLB
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V24_INPUT: input/v23
+          V24_OUT: outputs/v24
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v24/build_review.py 2>&1 | tee /tmp/v24-blender.log
+      - name: Validate final structure and retained face morphs
+        run: |
+          set -euo pipefail
+          python3 scripts/blender5/validate_glb.py outputs/v24
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v24/uncle_v24_belt.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v24/uncle_v24_belt_stress.glb
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('outputs/v24');d=json.loads((p/'report.json').read_text())
+          assert d['source_body_vertices']==13380 and d['bones']==53 and d['body_morphs']==10
+          assert d['new_accessory_only'] and len(d['existing_meshes_unchanged'])==10
+          assert d['stress_glb']['animations']==1
+          assert len(d['renders'])==22 and all((p/'renders'/f).is_file() for f in d['renders'])
+          assert d['max_belt_motion_m']>.001
+          assert d['delivered_reimport']['max_delivered_belt_motion_m']>.001
+          assert len(d['source_49_frame_belt_samples'])==49
+          assert d['art_approved'] is False
+          print('V24_STRUCTURE_AND_SOURCE_PRESERVATION_PASS_NOT_ART_APPROVAL')
+          PY
+      - name: Attach code, baseline, original source provenance and checksums
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v24');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v24-blender.log').exists():shutil.copy('/tmp/v24-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v24','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          shutil.copy('.github/workflows/taiwan-v24-belt.yml',p/'source/workflow.yml')
+          for f in ('models/uncle_v23_source.glb','motion/uncle_v23_stress.glb','qa/uncle_v23_source_qa.json','provenance.json'):
+              src=pathlib.Path('input/v23')/f
+              if src.exists():
+                  target=p/'reference_v23'/f;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41173229422,'scope':'Add original skinned belt, buckle and cloth loops only; all V23 original meshes and animation unchanged','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish design candidate and truthful diagnostic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v24-uncle-skinned-belt-styling-PILOT
+          path: outputs/v24/**
+          retention-days: 30
+          if-no-files-found: warn
