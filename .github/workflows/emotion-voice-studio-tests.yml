@@ -1,0 +1,42 @@
+name: Emotion Voice Studio Tests
+
+on:
+  push:
+    branches:
+      - feat/emotion-voice-studio-poc
+    paths:
+      - 'experiments/emotion-voice-lab/**'
+      - '.github/workflows/emotion-voice-studio-tests.yml'
+  pull_request:
+    paths:
+      - 'experiments/emotion-voice-lab/**'
+      - '.github/workflows/emotion-voice-studio-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Editor import/export regression tests
+        run: node --test experiments/emotion-voice-lab/tests/studio-data.test.js
+      - name: Syntax
+        run: python -m compileall -q experiments/emotion-voice-lab
+      - name: Unit tests (no GPU, no AI fees)
+        working-directory: experiments/emotion-voice-lab
+        run: python -m unittest discover -s tests -v
+      - name: Plan mode smoke test
+        working-directory: experiments/emotion-voice-lab
+        run: |
+          python voice_studio.py --provider plan --output outputs/smoke
+          python voice_studio.py --provider autoip-draft --output outputs/autoip
+          python -c "import json; d=json.load(open('outputs/smoke/manifest.json')); assert len(d['samples'])==4"

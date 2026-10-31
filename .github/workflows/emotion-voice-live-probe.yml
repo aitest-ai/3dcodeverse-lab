@@ -1,0 +1,36 @@
+name: Emotion Voice Official Demo Probe
+on:
+  push:
+    branches: [feat/emotion-voice-studio-poc]
+    paths: ['.github/workflows/emotion-voice-live-probe.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect public official demo, no synthesis or audio upload
+        shell: python
+        run: |
+          import json, urllib.request
+          def get(url):
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent':'EmotionVoiceLab-Diagnostic/0.2'}), timeout=30) as r:
+                      return json.loads(r.read(2000000))
+              except Exception as e:
+                  return {'error':str(e)}
+          info=get('https://huggingface.co/api/spaces/IndexTeam/IndexTTS-2.5-Demo')
+          print('RUNTIME',json.dumps({k:info.get(k) for k in ('id','host','runtime','sha','error')},ensure_ascii=False))
+          base='https://indexteam-indextts-2-5-demo.hf.space'
+          cfg=get(base+'/config')
+          print('CONFIG',json.dumps({k:cfg.get(k) for k in ('version','api_prefix','enable_queue','error')},ensure_ascii=False))
+          for c in cfg.get('components',[]):
+              props=c.get('props',{})
+              print('COMPONENT',json.dumps({'id':c['id'],'type':c['type'],**{k:props.get(k) for k in ('label','value','choices','samples','headers','type') if k in props}},ensure_ascii=False)[:12000])
+          for d in cfg.get('dependencies',[]):
+              print('DEPENDENCY',json.dumps({k:d.get(k) for k in ('id','api_name','inputs','outputs','backend_fn')},ensure_ascii=False))
+          api=get(base+'/gradio_api/info')
+          print('API_INFO',json.dumps(api,ensure_ascii=False)[:45000])
+          print('NO_SYNTHESIS_REQUESTED; NO_USER_AUDIO; NO_GPU_RENTAL')

@@ -1,0 +1,64 @@
+name: Emotion Voice Encrypted Evaluation Delivery
+on:
+  push:
+    branches: [feat/emotion-voice-studio-poc]
+    paths: ['.github/workflows/emotion-voice-collect-eval.yml']
+permissions:
+  contents: read
+jobs:
+  collect:
+    if: contains(github.event.head_commit.message, '[voice-collect]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Fetch existing evaluation audio, verify hashes, encrypt for recipient
+        shell: python
+        run: |
+          import hashlib, io, pathlib, subprocess, tempfile, urllib.request, zipfile
+          # Public encryption certificate only. Private key never leaves recipient.
+          cert='''-----BEGIN CERTIFICATE-----
+          MIIDLTCCAhWgAwIBAgIUA5zc4tlqDQr9U1khKXIM0AmXk8EwDQYJKoZIhvcNAQEL
+          BQAwJjEkMCIGA1UEAwwbVm9pY2VMYWIgRXBoZW1lcmFsIERlbGl2ZXJ5MB4XDTI2
+          MTAzMDIzMTgxNloXDTI2MTAzMTIzMTgxNlowJjEkMCIGA1UEAwwbVm9pY2VMYWIg
+          RXBoZW1lcmFsIERlbGl2ZXJ5MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+          AQEAtv0ic+M4SX7qeYwrxh5DzAFfn4aXEeGTmtxnm8jkN1Ya+LZZgCZPiHPILizQ
+          objl3QaTLjj5ixwzJ3rYWRnlCVTevTN9UxEqRLNMun4r5BIlnYT9OBPVUFsK6XdS
+          kuMPDBA6pzlrAU1/B3wTg/NMpWiPipqantV99yVhnQq64EfZkKQN3OY4eI+RBKxi
+          TeUNnVR/AmewIB88x/5wcxB2NH1u+p5muqe/Qkz+hT0FJmYAdIeVFeI3At8ey8Sd
+          ZS7j2IZBgWoSew4VAaZcyImhAxUUVYmM4kGKo9PQRa/pCgE97i+H6GF+43KFIVhL
+          HssRgKOyQwExOxtZddLtVp8w7QIDAQABo1MwUTAdBgNVHQ4EFgQUF5YpL5I7VnK4
+          GyegqhwSNSNo8eYwHwYDVR0jBBgwFoAUF5YpL5I7VnK4GyegqhwSNSNo8eYwDwYD
+          VR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAADeJ5AY31fGyd7cA6sgS
+          1Cv4eoavV5ocD0VmfL6eaLeFX7xcWRf54tQKaciyyPf4x40hrEhTM09H8n+NVAgg
+          DyoKsvcMzBDbxD4Ajswa+EWqtCFYuRhCLHfLZpTl4a4MDTQcEByYNqfXwIX4KhFX
+          xsRBLBNyuxPXs9IxNL2rcIPbh69re7tUA0aYpGjx3rfiiEA8m7O8xwvi8fbpphGp
+          shVbzr5z0ZT0eyZxLYoYPW0wGWAl3AK5GpJ6AOVjYDVrxDnzTKU3ouwlHPNfjU+4
+          4fQNezBcwNq3579PJqcxqlhhX2bq9ZBoKjgv5yKV1kYM+upDKoPM5VmwUKgJq5WE
+          Tg==
+          -----END CERTIFICATE-----
+          '''
+          base='https://indexteam-indextts-2-5-demo.hf.space/gradio_api/file=/tmp/gradio/'
+          entries=[
+            ('natural','a01f7ad24681372cbe50ecd2051f01a7de1dc5e539f53b24e3a7c362f0304d8d/spk_1793402179.wav','b04122a9f33bc3a5cfaab0f7b34beb7420a713912b9d709d511698ce301e3fa6'),
+            ('happy','f2b496e057abf94a53e15e8eec3d8ebd64599d22f29a5aaa9f5bfa02e0e0d3a1/spk_1793402182.wav','3eab656572798ce1280be8d6ac6d2e0cbca78b1eca0aca52caf35b646cfc03c7'),
+            ('angry','6e1e174d7f84cbbe95125c41a5090fd1085dbd6264f8686619f3672106a079ce/spk_1793402184.wav','724a7c1bbebb00da9c4c2f643754e5154116fbe39241477257322ef2e19e91e3')]
+          buf=io.BytesIO()
+          with zipfile.ZipFile(buf,'w',zipfile.ZIP_DEFLATED) as z:
+              for emotion,path,sha in entries:
+                  with urllib.request.urlopen(base+path,timeout=30) as r:
+                      data=r.read(2000001)
+                  assert len(data)<=2000000 and hashlib.sha256(data).hexdigest()==sha, 'Audio integrity check failed'
+                  z.writestr(emotion+'.wav',data)
+                  print('VERIFIED',emotion,len(data),sha)
+          with tempfile.TemporaryDirectory() as t:
+              public=pathlib.Path(t)/'public.pem'
+              public.write_text(cert)
+              encrypted=subprocess.run(['openssl','cms','-encrypt','-aes-256-cbc','-binary','-outform','DER',str(public)],input=buf.getvalue(),capture_output=True,check=True).stdout
+              pathlib.Path('voice-evaluation.cms').write_bytes(encrypted)
+          print('Only encrypted audio is exported; no new synthesis requests.')
+      - uses: actions/upload-artifact@v4
+        with:
+          name: emotion-voice-encrypted-delivery
+          path: voice-evaluation.cms
+          retention-days: 1
+          if-no-files-found: error

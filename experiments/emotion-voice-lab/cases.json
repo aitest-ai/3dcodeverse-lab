@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "character": {
+    "id": "taiwan_nightmarket_auntie",
+    "name": "臺灣夜市阿姨（測試角色）",
+    "voice_reference": "not_provided",
+    "consent": "僅使用本人或取得明確授權的聲音"
+  },
+  "lines": [
+    {
+      "id": "same_natural",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "natural",
+      "strength": 0.6,
+      "speed": 1,
+      "language": "zh"
+    },
+    {
+      "id": "same_happy",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "happy",
+      "strength": 0.65,
+      "speed": 1,
+      "language": "zh"
+    },
+    {
+      "id": "same_angry",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "angry",
+      "strength": 0.7,
+      "speed": 1,
+      "language": "zh"
+    },
+    {
+      "id": "same_sad",
+      "text": "你怎麼現在才來？我都快收攤了啦！",
+      "emotion": "sad",
+      "strength": 0.6,
+      "speed": 0.9,
+      "language": "zh"
+    }
+  ]
+}
