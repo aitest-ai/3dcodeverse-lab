@@ -1,11 +1,11 @@
-"""V30 original skinned towel, fitted over untouched V29 body and shirt.
-Sculpted cloth silhouette, not a physics simulation. No external image assets.
+"""V30 original skinned towel over untouched V29 body and shirt.
+Sculpted cloth silhouette and original procedural maps, not cloth simulation.
 """
 from pathlib import Path
 import math
 import numpy as np
 import bpy,bmesh
-from mathutils import Vector,Matrix
+from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 from source_waist import coordinates
 from belt import WeightSource
@@ -72,7 +72,7 @@ def build(body,shirt,rig,out):
     rows=121;cols=15;curve,length=sample_curve(controls,rows)
     tangent=np.gradient(curve,axis=0);tangent/=np.linalg.norm(tangent,axis=1,keepdims=True)
     mat,shirt_normal,texture_info=cloth_materials(out)
-    front=[];normals=[];uvs=[];fit_misses=0
+    front=[];normals=[];uvs=[];fit_misses=0;neck_ray_recoveries=0
     for j,(point,tan) in enumerate(zip(curve,tangent)):
         s=j/(rows-1);x,y,z=point
         weight=float(smooth((z-(h-.34))/.065))
@@ -94,8 +94,10 @@ def build(body,shirt,rig,out):
                 if not hit_y:fit_misses+=1
                 else:q[1]=min(hit_y)-.010-fold-edge
             else:
-                # Keep authored X/Z width. Prior radial projection expanded
-                # the band over the whole shoulder and was visually rejected.
+                # Fixed-X/Z fitting preserves designed band width. A horizontal
+                # ray can miss a shoulder that is below it; use a verified local
+                # closest surface, never expand to a remote torso silhouette.
+                ray_missed=False;near_surface=False
                 if q[1]>.020 or q[1]<-.035:
                     back=q[1]>.020
                     origin=Vector((q[0],1. if back else -1.,q[2]))
@@ -104,18 +106,20 @@ def build(body,shirt,rig,out):
                         hit,_,_,_=tree.ray_cast(origin,direction,2.)
                         if hit is not None:hits.append(hit.y)
                     if hits:q[1]=(max(hits)+.012+fold+edge) if back else (min(hits)-.012-fold-edge)
-                    else:fit_misses+=1
-                # Minimal closest-surface correction on side shoulder/neck;
-                # never stretch a ray to the lateral arm silhouette.
+                    else:ray_missed=True
                 for iteration in range(4):
                     moved=False
                     for tree in trees:
                         hit,normal,_,distance=tree.find_nearest(Vector(q))
                         if hit is None or distance>.045:continue
+                        near_surface=True
                         offset=float((Vector(q)-hit).dot(normal))
                         if offset<.008:
                             q+=np.array(normal)*(.008-offset);moved=True
                     if not moved:break
+                if ray_missed:
+                    if near_surface:neck_ray_recoveries+=1
+                    else:fit_misses+=1
             front.append(tuple(q));normals.append(tuple(outward));uvs.append((i/(cols-1),s))
     if fit_misses>8:raise RuntimeError('Towel did not fit real torso: '+str(fit_misses))
     front=np.array(front);normals=np.array(normals)
@@ -151,7 +155,8 @@ def build(body,shirt,rig,out):
     return obj,{'rows':rows,'columns':cols,'source_vertices':len(data.vertices),'source_polygons':len(data.polygons),
         'authored_centerline_length_m':length,'width_range_m':[.055,.078], 'thickness_m':.0022,
         'front_tail_lower_z':[float(front[0:cols,2].mean()),float(front[-cols:,2].mean())],
-        'fitting_misses':fit_misses,'textures':texture_info,'skinning':'Barycentric nearest original shirt triangles, normalized top4 weights',
+        'fitting_misses':fit_misses,'neck_y_ray_misses_recovered_by_nearest_surface':neck_ray_recoveries,
+        'textures':texture_info,'skinning':'Barycentric nearest original shirt triangles, normalized top4 weights',
         'original_shirt_geometry_unchanged':True,'shirt_color_texture_unchanged':True,
-        'neck_fit_revision':'Fixed-XZ front/back and bounded nearest-surface correction, radial expansion rejected',
+        'neck_fit_revision':'Fixed-XZ front/back plus verified nearest-surface recovery; no relaxation of unresolved-miss ceiling',
         'not_physics_simulation':True,'original_accessory_license':'CC0-1.0'}
