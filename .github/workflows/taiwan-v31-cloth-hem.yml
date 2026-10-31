@@ -1,0 +1,107 @@
+name: Taiwan V31 - Gravity Towel and Floral Hem
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v31-shui-cloth-gravity-hem']
+    paths:
+      - '.github/workflows/taiwan-v31-cloth-hem.yml'
+      - 'scripts/taiwan_v31/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v31-cloth-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cloth-and-hem:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated V31 source
+        run: python3 -m compileall -q scripts/taiwan_v31
+      - name: Retrieve fixed V30 native shui source
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v30-shui-draped-towel-PILOT
+          run-id: 41197768336
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v30
+      - name: Install CPU render libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender with upstream SHA256 check
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          row=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          wanted=re.search(r'[0-9a-fA-F]{64}',row).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==wanted
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Solve supported gravity cloth and reconstruct malformed lower shirt band
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V31_INPUT: input/v30
+          V31_OUT: outputs/v31
+        run: |
+          set -o pipefail
+          xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v31/revised_build.py 2>&1 | tee /tmp/v31-blender.log
+      - name: Validate source structures and measured visible-surface hem improvement
+        run: |
+          set -euo pipefail
+          python3 scripts/blender5/validate_glb.py outputs/v31
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v31/shui.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v31/shui_stress.glb
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('outputs/v31');r=json.loads((p/'report.json').read_text())
+          assert r['native_body_vertices']==13380 and r['bones']==53 and r['body_morphs']==14
+          assert r['delivered_glb_rendered'] and r['source_reopened']
+          assert r['hem']['maximum_shift_m']<=.03501
+          assert r['hem']['lower_band_rebuild']['topology_changed_below_cut']
+          assert r['cloth_solver']['max_settle_displacement_m']>.005
+          assert r['cloth_solver']['frames']==180
+          assert len(r['renders'])==26 and all((p/'renders'/n).exists() for n in r['renders'])
+          assert r['stress_glb']['animation_channels']==159
+          assert r['hem_after_keyframes']['0']['either_in_front']<r['hem_before_keyframes']['0']['either_in_front']
+          assert r['hem_delivered_keyframes']['0']['either_in_front']<r['hem_before_keyframes']['0']['either_in_front']
+          assert r['art_approved'] is False
+          print('V31_STRUCTURE_PASS_NOT_VISUAL_APPROVAL',r['neutral_glb'],r['cloth_solver']['last12_max_step_displacement_m'])
+          PY
+      - name: Preserve code, solver setup, baseline and truthful diagnostics
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import pathlib,shutil,hashlib,json,os
+          p=pathlib.Path('outputs/v31');(p/'qa').mkdir(parents=True,exist_ok=True)
+          if pathlib.Path('/tmp/v31-blender.log').exists():shutil.copy('/tmp/v31-blender.log',p/'qa/blender.log')
+          for folder in ('taiwan_v31','taiwan_v24','taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('scripts/blender5/validate_glb.py',p/'source/validate_glb.py')
+          shutil.copy('.github/workflows/taiwan-v31-cloth-hem.yml',p/'source/workflow.yml')
+          for file in ('shui.blend','shui.glb','shui_stress.glb','report.json','provenance.json'):
+              src=pathlib.Path('input/v30')/file
+              if src.exists():
+                  target=p/'reference_v30'/file;target.parent.mkdir(parents=True,exist_ok=True);shutil.copy(src,target)
+          (p/'provenance.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41197768336,'scope':'Only shui; supported neutral cloth solve baked to rig, malformed original lower band deliberately rebuilt; no realtime physics','art_approved':False},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          PY
+      - name: Publish candidate or actual failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v31-shui-gravity-towel-hem-PILOT
+          path: outputs/v31/**
+          retention-days: 30
+          if-no-files-found: warn
