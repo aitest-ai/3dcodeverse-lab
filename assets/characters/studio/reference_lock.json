@@ -2,6 +2,7 @@
   "schema_version": 1,
   "scope": "character_studio_reference_and_preservation_lock",
   "audit_date_utc": "2026-10-31",
+  "remote_candidate_snapshot_checked_at_utc": "2026-10-31T12:12:09Z",
   "stage": "01-gray-identity",
   "studio_version": "0.1.0-gray.3",
   "status_note_zh": "來源鎖定不等於美術驗收；新人物目前為灰模候選。未移植既有衣服、表情或動畫。",
@@ -23,11 +24,12 @@
       "art_approved": false
     },
     {
-      "id": "characters_v30_latest_candidate",
+      "id": "characters_v30_initial_failed_snapshot",
       "commit": "f5c006cfb5c7cd7b54e35d056d6a33aba8bb23e4",
       "source_url": "https://github.com/aitest-ai/3dcodeverse-lab/tree/f5c006cfb5c7cd7b54e35d056d6a33aba8bb23e4",
-      "use": "record_in_progress_candidate_only",
-      "scope_zh": "阿水伯毛巾與棉織表面候選；不是穩定美術標準，也不是基隆河 V111 胸口修正。",
+      "use": "preserve_initial_failed_snapshot_history",
+      "scope_zh": "本輪最初盤點的繞頸毛巾候選，56 條水平支撐射線未命中而停止；保留失敗紀錄，不再標為最新版本。",
+      "superseded_by_reference_id": "characters_v30_latest_candidate",
       "branch_merged_from_reference": false,
       "art_approved": false,
       "replaces_v29_preservation_reference": false,
@@ -36,6 +38,84 @@
         "conclusion": "failure",
         "url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41196562272"
       }
+    },
+    {
+      "id": "characters_v30_latest_candidate",
+      "commit": "11cae1df15367cb5a41bdb6b3dc50d61fcc8e146",
+      "commit_role": "latest_branch_head_documentation_snapshot",
+      "build_commit": "293b92376c55b5e330e2aac7497055895f035921",
+      "branch": "feat/taiwan-v30-shui-towel-drape",
+      "source_url": "https://github.com/aitest-ai/3dcodeverse-lab/blob/11cae1df15367cb5a41bdb6b3dc50d61fcc8e146/docs/TAIWAN_CHARACTERS_V30_TOWEL_DRAPE.md",
+      "build_source_url": "https://github.com/aitest-ai/3dcodeverse-lab/blob/293b92376c55b5e330e2aac7497055895f035921/scripts/taiwan_v30/draped_towel.py",
+      "use": "retain_unmerged_reference_improvement_not_transferred",
+      "scope_zh": "阿水伯改採單肩毛巾及棉織表面候選；不是穩定美術標準，也不是基隆河 V111 胸口修正。D03／D06 未移植此幾何、衣服、材質或動畫。",
+      "branch_merged_from_reference": false,
+      "art_approved": false,
+      "replaces_v29_preservation_reference": false,
+      "imported_into_d03_or_d06": false,
+      "pull_request": {
+        "number": 49,
+        "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/49",
+        "state": "open",
+        "draft": true,
+        "merged": false,
+        "base_branch": "feat/taiwan-v29-elder-face-hair",
+        "base_commit": "0cef2282394b911e61cb3cde169f31be0034af95",
+        "head_commit": "11cae1df15367cb5a41bdb6b3dc50d61fcc8e146",
+        "checked_at_utc": "2026-10-31T12:12:09Z"
+      },
+      "workflow_run": {
+        "id": 41197768336,
+        "head_sha": "293b92376c55b5e330e2aac7497055895f035921",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "created_at_utc": "2026-10-31T11:39:39Z",
+        "updated_at_utc": "2026-10-31T11:45:12Z",
+        "url": "https://github.com/aitest-ai/3dcodeverse-lab/actions/runs/41197768336"
+      },
+      "artifact": {
+        "id": 13040584065,
+        "name": "taiwan-v30-shui-draped-towel-PILOT",
+        "bytes": 40394203,
+        "sha256": "b9bc1d50c3b00add4d756cca1fd61ffc771cbf759d68c0c62efa06440eb86060",
+        "digest": "sha256:b9bc1d50c3b00add4d756cca1fd61ffc771cbf759d68c0c62efa06440eb86060",
+        "digest_evidence": "GitHub Actions artifacts API metadata; not a locally recomputed archive digest",
+        "metadata_url": "https://api.github.com/repos/aitest-ai/3dcodeverse-lab/actions/runs/41197768336/artifacts",
+        "workflow_run_head_sha": "293b92376c55b5e330e2aac7497055895f035921",
+        "expired_at_check": false,
+        "expires_at_utc": "2026-11-30T11:45:07Z",
+        "downloaded_in_this_studio_audit": false,
+        "archive_crc_verified_in_this_studio_audit": false,
+        "visual_review_performed_in_this_studio_audit": false
+      },
+      "delta_from_initial_snapshot": {
+        "base_commit": "f5c006cfb5c7cd7b54e35d056d6a33aba8bb23e4",
+        "ahead_by": 3,
+        "behind_by": 0,
+        "files": [
+          {"file": "scripts/taiwan_v30/draped_towel.py", "additions": 47, "deletions": 56},
+          {"file": "docs/TAIWAN_CHARACTERS_V30_TOWEL_DRAPE.md", "additions": 77, "deletions": 0}
+        ],
+        "intermediate_candidate": {
+          "commit": "bb4f9d72203db4fb31ecf50c6a63b752f39889ea",
+          "run_id": 41196904855,
+          "run_conclusion": "success",
+          "visual_selection": "rejected_neck_wrap",
+          "evidence": "V30 source documentation; not independently rerendered in this studio audit"
+        },
+        "changed_function": "scripts/taiwan_v30/draped_towel.py::build(body, shirt, rig, out)",
+        "behavior_zh": "由繞頸逐點貼合改為左單肩前後垂端；固定 X 向橫截面保留約 7.4–8.0 cm 寬度，每列 15 條對人體／原花衫的支撐射線計算整列位移，至少 3 條命中且調整不得超過 6 cm；保守平滑後整列貼合，保留 2.2 mm 厚度與原衫最多 4 個正規化骨架權重，記錄未命中及位移。"
+      },
+      "known_limitations_zh": [
+        "來源文件仍明列整體角色美術未通過；CI success 只對應該次工作流程成功。",
+        "毛巾兩端仍偏平直、長方形；摺痕與肩部轉折有雕塑感，未達自然寫實布料。",
+        "為來源造型加骨架蒙皮，不是物理布料，不會自動甩動或滑落。",
+        "原花衫偏硬版型、大花紋、臉髮及高齡外觀未在 V30 全面精修。",
+        "沿用原 0–2.5 秒短姿態片段；局部外側取樣不等於全面自交、任意動作零穿模或新走跑蹲驗收。",
+        "來源報告的圖片圖庫記憶體版型測試，不等於互動 3D、完整遊戲或 Android 真機驗收。"
+      ],
+      "build_identity_note_zh": "判斷建模版本使用 run.head_sha／artifact.workflow_run.head_sha；run.pull_requests[].head.sha 會隨目前 PR HEAD 改變。最新 11ca 文件提交未修改 workflow paths 所列的程式，沒有新的建模 run。"
     }
   ],
   "native_base_reference": {
@@ -64,7 +144,87 @@
     {
       "feature": "source_and_original_resolution_preservation",
       "status": "adopted_principle_and_gray_stage_source_records",
+      "code": "scripts/character_studio/build_gray.py",
       "note_zh": "保留參數母檔、來源 hash 與原尺寸；目前灰模不用皮膚材質，不宣稱已完成新人物全套 PBR。"
+    },
+    {
+      "feature": "packed_image_decode_and_byte_preservation",
+      "status": "reimplemented_without_legacy_texture_downscale",
+      "code": "scripts/character_studio/build_gray.py",
+      "note_zh": "保留原始圖像位元組與尺寸，強制解碼並在母檔冷讀後核對 packed bytes；不以 has_data 暫時為 false 判成缺圖，不承接舊 512px 上限。"
+    },
+    {
+      "feature": "explicit_deform_weight_normalization",
+      "status": "implemented_for_new_gray_bodies_and_fitted_eyes",
+      "code": "scripts/character_studio/build_gray.py::normalize_weights",
+      "note_zh": "新資產明確取最高 4 個 deform influences 並正規化，記錄截斷前捨棄權重；未承接舊人物 bind、骨長或動畫 translation。"
+    },
+    {
+      "feature": "independent_static_glb_binary_inspection",
+      "status": "reimplemented_for_gray_assets",
+      "code": "scripts/character_studio/inspect_glb.py",
+      "note_zh": "獨立解析 GLB 容器、accessor stride／sparse、有限數值與資產結構；不是完整 Khronos validator，未移植舊動態射線或完整表情驗收。"
+    },
+    {
+      "feature": "verified_complete_asset_loading_and_runtime_measurements",
+      "status": "independently_implemented_from_v110_loading_principles",
+      "code": "examples/character-studio/studio.js",
+      "note_zh": "完整 GLB 真實位元組進度、SHA-256、失敗重試與共同尺度檢視；不移植地圖、不使用舊人形佔位或自動 LOD。實際瀏覽器結果由當次測試報告保存，不能推成 Android 結論。"
+    }
+  ],
+  "retained_unmerged_improvements_not_transferred": [
+    {
+      "feature": "source_clothing_local_refinement_and_same_side_diagnostics",
+      "reference_id": "characters_v29",
+      "source_docs": ["docs/TAIWAN_CHARACTERS_V20_SOURCE_INTEGRATION_QA.md", "docs/TAIWAN_CHARACTERS_V21_UNCLE_SOURCE_QA.md", "docs/TAIWAN_CHARACTERS_V22_LOCAL_FLY_QA.md", "docs/TAIWAN_CHARACTERS_V23_INNER_LIP_QA.md"],
+      "status": "reference_only_not_ported",
+      "note_zh": "保留來源網格局部修整、同側褲頭診斷與非目標資料保全；舊錯側量測已更正，特定角色頂點 ID／位移與腰圈不能直接套到新比例。"
+    },
+    {
+      "feature": "grouped_wardrobe_real_surface_fitting_and_accessory_weights",
+      "reference_id": "characters_v29",
+      "source_docs": ["docs/TAIWAN_CHARACTERS_V24_BELT_STYLING.md", "docs/TAIWAN_CHARACTERS_V25_BOSS_APRON_QA.md", "docs/TAIWAN_CHARACTERS_V26_HERO_COURIER_QA.md", "docs/TAIWAN_CHARACTERS_V28_QUALITY_REVIEW.md"],
+      "status": "reference_only_not_ported",
+      "note_zh": "保留皮帶、圍裙、頭巾、外層、背包及鞋的獨立配件群組、真實表面貼合及重心權重轉移；各角色仍有已知自然度問題，D03／D06 尚未製作服裝與鞋。"
+    },
+    {
+      "feature": "faceunit_dependency_and_relative_morph_preservation",
+      "reference_id": "characters_v29",
+      "source_docs": ["docs/TAIWAN_CHARACTERS_V27_MISSING_FOUR_QA.md", "docs/TAIWAN_CHARACTERS_V29_ELDER_FACE_HAIR.md"],
+      "status": "reference_only_for_future_expression_stage",
+      "note_zh": "保留官方 Faceunits、牙舌睫毛插值依賴、Basis 與既有鍵同位移以保留相對表情差值的方法；新灰模未匯入表情鍵或牙舌，10／14鍵也不是全庫或 ARKit 規格。"
+    },
+    {
+      "feature": "bounded_elder_face_shape_and_irregular_hair_normals",
+      "reference_id": "characters_v29",
+      "source_docs": ["docs/TAIWAN_CHARACTERS_V28_QUALITY_REVIEW.md", "docs/TAIWAN_CHARACTERS_V29_ELDER_FACE_HAIR.md"],
+      "status": "reference_only_not_ported",
+      "note_zh": "保留有界臉部軟組織修整、眼瞼與鼻嘴保護、頭髮接觸檢查、從合法髮圖衍生不規則層次及標準 tangent-space normal 的方法；不移植舊臉髮幾何或 512px 貼圖限制。"
+    },
+    {
+      "feature": "supported_single_shoulder_towel",
+      "reference_id": "characters_v30_latest_candidate",
+      "source_docs": ["docs/TAIWAN_CHARACTERS_V30_TOWEL_DRAPE.md"],
+      "status": "reference_only_not_ported",
+      "note_zh": "保留最新單肩整截面支撐方法與拒收歷史；候選不替代 V29 八角色保護基準，也未視為美術通過。"
+    }
+  ],
+  "explicitly_not_inherited": [
+    {
+      "rule": "legacy_texture_and_zip_size_caps",
+      "note_zh": "不承接 512px 貼圖上限、每角色 6MB 上限或為縮 ZIP 犧牲母檔；保留合法原始尺寸。衍生輕量版本須有持續量測依據，來自同一母檔且維持外觀。"
+    },
+    {
+      "rule": "body_deletion_or_masks_to_hide_clothing_fit",
+      "note_zh": "不承接大面積刪人體或遮罩來掩蓋不合身；官方 helper 清理與人體刪除分開，衣鞋需對每個身形重新適配與驗證。"
+    },
+    {
+      "rule": "legacy_animation_bind_and_fixed_counts",
+      "note_zh": "不直接複製舊 animation accessor、rest／inverse-bind、translation 或假定骨長一致；53骨、10／14表情不作全庫硬規格。既有短壓力片段不是完整待機、走路、轉身、坐下、騎車或騎馬。"
+    },
+    {
+      "rule": "version_specific_fit_offsets_and_unqualified_passes",
+      "note_zh": "不直接套舊角色頂點 ID、固定腋下／腰部位移，不把局部零命中、CI success、圖庫版型或軟體 GL 幀率當成美術／全動作／Android 驗收。"
     }
   ],
   "not_implemented_or_transferred": [
