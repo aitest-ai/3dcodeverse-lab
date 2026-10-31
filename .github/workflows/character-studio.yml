@@ -1,0 +1,168 @@
+name: Character Studio - D03 D06 Gray Identity Candidates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/diverse-character-studio]
+    paths:
+      - scripts/character_studio/**
+      - assets/characters/studio/profiles.json
+      - .github/workflows/character-studio.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: character-studio-gray-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  gray-identities:
+    # Standard hosted public-repository runner; no paid large/GPU runner.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      LIBGL_ALWAYS_SOFTWARE: '1'
+    steps:
+      - name: Check out this exact isolated branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Check source syntax and binary decoder regressions
+        run: |
+          python3 -B - <<'PY'
+          import ast
+          from pathlib import Path
+          for path in Path('scripts/character_studio').glob('*.py'):
+              ast.parse(path.read_text(), filename=str(path))
+          print('PYTHON_SYNTAX_PASS_NOT_MODEL_APPROVAL')
+          PY
+          python3 -B scripts/character_studio/bootstrap.py --check-locks
+          python3 -B scripts/character_studio/inspect_glb.py --self-test
+
+      - name: Install ordinary CPU rendering libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+
+      - name: Build isolated pinned Blender and MPFB runtime
+        id: bootstrap
+        run: python3 -B scripts/character_studio/bootstrap.py --runtime runtime --github-env "$GITHUB_ENV"
+
+      - name: Build D03 from original targets and reimport its actual GLB
+        id: d03
+        run: |
+          set -o pipefail
+          mkdir -p outputs/d03
+          xvfb-run -a "$BLENDER_BIN" -b --python-exit-code 1 --python scripts/character_studio/build_gray.py -- --character d03 --assets "$CHARACTER_STUDIO_ASSETS" --out outputs/d03 2>&1 | tee outputs/d03/blender.log
+
+      - name: Build D06 independently from original targets and reimport its actual GLB
+        id: d06
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' }}
+        run: |
+          set -o pipefail
+          mkdir -p outputs/d06
+          xvfb-run -a "$BLENDER_BIN" -b --python-exit-code 1 --python scripts/character_studio/build_gray.py -- --character d06 --assets "$CHARACTER_STUDIO_ASSETS" --out outputs/d06 2>&1 | tee outputs/d06/blender.log
+
+      - name: Aggregate real binary and legacy manifest checks for both candidates
+        if: ${{ !cancelled() && steps.bootstrap.outcome == 'success' }}
+        run: |
+          python3 -B - <<'PY'
+          import json, subprocess, sys
+          from pathlib import Path
+          rows = {}
+          for cid in ('d03', 'd06'):
+              folder = Path('outputs') / cid
+              folder.mkdir(parents=True, exist_ok=True)
+              commands = {
+                  'decoded_binary': [sys.executable, '-B', 'scripts/character_studio/inspect_glb.py', str(folder/(cid+'.glb')), '--out', str(folder/'binary_inspection.json')],
+                  'legacy_manifest': [sys.executable, '-B', 'scripts/blender5/validate_glb.py', str(folder)],
+              }
+              results = {name: subprocess.run(command, check=False).returncode for name, command in commands.items()}
+              source_checks = {'report_present': False, 'blend_reopened': False, 'glb_reimported': False, 'six_real_render_files': False, 'no_art_approval_claim': False}
+              report_path = folder/'report.json'
+              if report_path.is_file():
+                  report = json.loads(report_path.read_text())
+                  renders = report.get('renders', [])
+                  source_checks = {
+                      'report_present': True,
+                      'blend_reopened': report.get('source_blend_reopened') is True,
+                      'glb_reimported': report.get('glb_reimported') is True,
+                      'six_real_render_files': len(renders) == 6 and all((folder/r['file']).is_file() and (folder/r['file']).stat().st_size > 0 for r in renders),
+                      'no_art_approval_claim': report.get('art_approved') is False and report.get('game_ready') is False,
+                  }
+              rows[cid] = {'exit_codes': results, 'source_checks': source_checks, 'passed': all(c == 0 for c in results.values()) and all(source_checks.values())}
+          passed = all(row['passed'] for row in rows.values())
+          summary = {'schema_version': 1, 'status': 'GRAY_STRUCTURAL_CHECKS_PASS' if passed else 'GRAY_CHECKS_FAILED', 'characters': rows,
+                     'art_approved': False, 'game_ready': False, 'browser_tested': False, 'android_tested': False,
+                     'scope': 'Closed-mouth gray identity candidates. No teeth/tongue, expression adaptation, clothes, required animation set, or game acceptance.'}
+          Path('outputs/aggregate_validation.json').write_text(json.dumps(summary, indent=2)+'\n')
+          print(json.dumps(summary, indent=2))
+          raise SystemExit(0 if passed else 1)
+          PY
+
+      - name: Preserve exact source, license evidence and honest failure/success provenance
+        if: always()
+        env:
+          BOOTSTRAP_OUTCOME: ${{ steps.bootstrap.outcome }}
+          D03_OUTCOME: ${{ steps.d03.outcome }}
+          D06_OUTCOME: ${{ steps.d06.outcome }}
+        run: |
+          python3 -B - <<'PY'
+          import hashlib, json, os, shutil
+          from pathlib import Path
+          out = Path('outputs'); evidence = out/'reproducibility'
+          evidence.mkdir(parents=True, exist_ok=True)
+          sources = [*Path('scripts/character_studio').glob('*.py'), Path('scripts/blender5/validate_glb.py'),
+                     Path('assets/characters/studio/profiles.json'), Path('.github/workflows/character-studio.yml')]
+          for source in sources:
+              if source.is_file():
+                  target = evidence/'source'/source
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copy2(source, target)
+          root = Path('runtime/official_minimal_assets')
+          for name in ('manifest.json', 'LICENSE.md', 'LICENSE.ASSETS.md'):
+              source = root/name
+              if source.is_file():
+                  shutil.copy2(source, evidence/('official_'+name))
+          state = Path('runtime/bootstrap_state.json')
+          if state.is_file():
+              shutil.copy2(state, evidence/state.name)
+          provenance = {'schema_version': 1, 'commit': os.environ['GITHUB_SHA'], 'run_id': os.environ['GITHUB_RUN_ID'],
+                        'run_attempt': os.environ['GITHUB_RUN_ATTEMPT'], 'branch': os.environ['GITHUB_REF_NAME'],
+                        'steps': {k: os.environ.get(k, 'unknown') for k in ('BOOTSTRAP_OUTCOME', 'D03_OUTCOME', 'D06_OUTCOME')},
+                        'art_approved': False, 'game_ready': False, 'browser_tested': False, 'android_tested': False,
+                        'artifact_retention_days': 30, 'permanent_archive': False,
+                        'stage': '01-gray-identity', 'scope': 'Original eyes only. Closed-mouth review; teeth/tongue, clothing, face expressions and animation acceptance are unfinished.'}
+          (evidence/'provenance.json').write_text(json.dumps(provenance, indent=2)+'\n')
+          (evidence/'STAGE_AND_RETENTION.txt').write_text(
+              'D03/D06 gray identity review candidates, not completed game characters.\n'
+              'These are actual Blender/GLB artifacts; a failed step may leave partial evidence.\n'
+              'Check aggregate_validation.json and provenance.json before using any output.\n'
+              'Actions artifacts expire after 30 days and are NOT permanent asset storage.\n'
+              'Blender and original MPFB source archives are deliberately not copied into this artifact.\n')
+          files = sorted(p for p in out.rglob('*') if p.is_file() and p.name != 'SHA256SUMS.txt')
+          def digest(path):
+              with path.open('rb') as handle:
+                  return hashlib.file_digest(handle, 'sha256').hexdigest()
+          (out/'SHA256SUMS.txt').write_text(''.join(digest(p)+'  '+str(p.relative_to(out))+'\n' for p in files))
+          summary = os.environ.get('GITHUB_STEP_SUMMARY')
+          if summary:
+              with open(summary, 'a') as handle:
+                  handle.write('## D03 / D06 gray identity candidates\n\n')
+                  handle.write('Read aggregate_validation.json and actual delivered-model images before review. Technical success does not approve appearance.\n\n')
+                  handle.write('Closed-mouth stage: original eyes only; teeth/tongue, clothes, facial expressions, required motion clips and game tests remain unfinished.\n\n')
+                  handle.write('Downloadable Actions evidence is retained for 30 days; it is not a permanent asset release.\n')
+          PY
+
+      - name: Upload temporary gray candidates and evidence - not a permanent release
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-d03-d06-gray-PILOT-${{ github.run_id }}-${{ github.run_attempt }}
+          path: outputs/**
+          retention-days: 30
+          if-no-files-found: warn
+          include-hidden-files: true
