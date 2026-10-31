@@ -90,6 +90,7 @@ jobs:
                       'report_present': True,
                       'blend_reopened': report.get('source_blend_reopened') is True,
                       'glb_reimported': report.get('glb_reimported') is True,
+                      'original_eye_pixels_retained': any(i.get('name') == 'brown_eye.png' and i.get('dimensions') == [1024, 1024] and i.get('decoded_pixel_count') == 1048576 for i in report.get('cold_reopened_original_images', [])),
                       'six_real_render_files': len(renders) == 6 and all((folder/r['file']).is_file() and (folder/r['file']).stat().st_size > 0 for r in renders),
                       'no_art_approval_claim': report.get('art_approved') is False and report.get('game_ready') is False,
                   }
@@ -102,6 +103,12 @@ jobs:
           print(json.dumps(summary, indent=2))
           raise SystemExit(0 if passed else 1)
           PY
+
+      - name: Compare cold-opened anatomy and package the exact runnable viewer
+        if: ${{ success() }}
+        run: |
+          "$BLENDER_BIN" -b --python-exit-code 1 --python scripts/character_studio/compare_gray.py -- --d03 outputs/d03/d03.blend --d06 outputs/d06/d06.blend --out outputs/comparison.json
+          python3 -B scripts/character_studio/prepare_review.py --outputs outputs --out outputs/review_app
 
       - name: Preserve exact source, license evidence and honest failure/success provenance
         if: always()

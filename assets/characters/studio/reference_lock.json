@@ -3,7 +3,7 @@
   "scope": "character_studio_reference_and_preservation_lock",
   "audit_date_utc": "2026-10-31",
   "stage": "01-gray-identity",
-  "studio_version": "0.1.0-gray.2",
+  "studio_version": "0.1.0-gray.3",
   "status_note_zh": "來源鎖定不等於美術驗收；新人物目前為灰模候選。未移植既有衣服、表情或動畫。",
   "repository": "https://github.com/aitest-ai/3dcodeverse-lab",
   "repository_references": [
@@ -79,7 +79,7 @@
     "horse_riding",
     "animation_retargeting",
     "full_pbr_material_refinement",
-    "game_browser_visual_validation",
+    "full_game_map_validation",
     "android_device_performance_measurements"
   ],
   "preserved_eight_character_reference": {

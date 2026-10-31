@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="D03 與 D06 人物灰模候選：共同尺度、無髮臉型與實際 GLB 審查。">
+  <title>人物工作室｜灰模比例審查</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+    {"imports":{"three":"./vendor/three-0.187.0/build/three.module.js"}}
+  </script>
+  <script type="module" src="./studio.js"></script>
+</head>
+<body>
+  <main class="studio">
+    <header class="masthead">
+      <div class="identity"><span class="mark" aria-hidden="true">人</span><div><p class="eyebrow">CHARACTER STUDIO · 01</p><h1>人物工作室</h1></div></div>
+      <span class="version" id="version">候選版本 · 載入中</span>
+    </header>
+
+    <section class="intro" aria-labelledby="review-heading">
+      <div><p class="eyebrow">身形與臉型 / 第一階段</p><h2 id="review-heading">讓差異，從比例開始。</h2></div>
+      <p>同一地面、同一鏡頭，觀察兩位不同的人。<br>灰模保留匯出材質；無髮近照用來檢查臉部輪廓。</p>
+    </section>
+
+    <section class="review" aria-label="互動人物檢視器">
+      <div class="viewport" id="viewport" aria-busy="true">
+        <div class="canvas-host" id="canvas-host" hidden></div>
+        <div class="view-caption" id="view-caption" hidden><span class="live-dot" aria-hidden="true"></span><span id="view-label">正面 · 共同尺度</span></div>
+        <div class="viewport-note" id="viewport-note" hidden>實際 GLB · 同尺度呈現</div>
+        <div class="load-panel" id="load-panel" role="status" aria-live="polite">
+          <p class="eyebrow" id="load-kicker">載入完整灰模</p>
+          <h3 id="load-title">準備兩位角色</h3>
+          <p id="load-message">讀取版本與雜湊資料後，載入並檢查完整模型。</p>
+          <div class="load-items" id="load-items">
+            <div class="load-item" data-progress="d03"><div><strong>D03 · 高瘦青年</strong><span class="progress-label">等待版本資料</span></div><progress max="1" aria-label="D03 模型載入進度"></progress></div>
+            <div class="load-item" data-progress="d06"><div><strong>D06 · 較豐滿長者</strong><span class="progress-label">等待版本資料</span></div><progress max="1" aria-label="D06 模型載入進度"></progress></div>
+          </div>
+          <button class="button primary" id="retry" type="button" hidden>重新載入此版本</button>
+        </div>
+        <noscript><div class="no-script">請啟用 JavaScript，才能載入與操作實際 3D 模型。</div></noscript>
+      </div>
+
+      <div class="toolbar">
+        <div class="view-buttons" role="group" aria-label="檢視角度">
+          <button class="button" data-view="front" aria-pressed="true" disabled>正面</button>
+          <button class="button" data-view="side" aria-pressed="false" disabled>側面</button>
+          <button class="button" data-view="back" aria-pressed="false" disabled>背面</button>
+          <span class="divider" aria-hidden="true"></span>
+          <button class="button" data-view="face-d03" aria-pressed="false" disabled>青年臉部</button>
+          <button class="button" data-view="face-d06" aria-pressed="false" disabled>長者臉部</button>
+        </div>
+        <div class="zoom-buttons" role="group" aria-label="縮放與重設">
+          <button class="button icon-button" id="zoom-out" aria-label="拉遠" title="拉遠" disabled>−</button>
+          <button class="button icon-button" id="zoom-in" aria-label="拉近" title="拉近" disabled>＋</button>
+          <button class="button" id="reset-view" disabled>重設</button>
+        </div>
+      </div>
+      <p class="interaction-hint">拖曳旋轉 · 滾輪或雙指縮放 <span>選取畫面後也可使用方向鍵與 ＋ / −</span></p>
+    </section>
+
+    <section class="character-cards" aria-label="角色資料">
+      <article class="character-card"><div class="character-number">D03</div><div><h3>高瘦青年</h3><p>24 歲 · 186 cm <span>較長四肢、纖細體型</span></p></div><span class="card-tag">青年</span></article>
+      <article class="character-card"><div class="character-number">D06</div><div><h3>較豐滿高齡女性</h3><p>73 歲 · 153 cm <span>較短身形、較豐滿體型</span></p></div><span class="card-tag">高齡</span></article>
+    </section>
+
+    <aside class="stage-note"><span class="stage-label">本次範圍</span><p>目前為身形與臉型候選，使用中性站姿、無髮灰模。服裝、表情、動作尚未完成；這一頁用來審查比例與輪廓。</p></aside>
+
+    <details class="validation" id="validation">
+      <summary><span>驗證資料</span><span class="validation-summary" id="validation-summary">等待載入</span></summary>
+      <div class="validation-body">
+        <p class="validation-intro">資料來自本頁實際載入與繪製。幀間隔包含目前瀏覽器、解析度與渲染環境的影響，不能單憑此結果推定 Android 真機效能。</p>
+        <div class="asset-table-wrap"><table><caption>本次實際載入的資產</caption><thead><tr><th scope="col">角色</th><th scope="col">版本 / SHA-256</th><th scope="col">實際高度</th><th scope="col">檔案大小</th></tr></thead><tbody id="asset-rows"><tr><td colspan="4">模型載入後顯示。</td></tr></tbody></table></div>
+        <dl class="metrics">
+          <div><dt>量測狀態</dt><dd id="metric-state">等待載入</dd></div>
+          <div><dt>幀間隔 p50 / p95</dt><dd id="metric-frames">—</dd></div>
+          <div><dt>有效樣本 / 可見累積</dt><dd id="metric-samples">—</dd></div>
+          <div><dt>像素比 / 繪圖緩衝區</dt><dd id="metric-pixels">—</dd></div>
+          <div><dt>Draw calls / triangles</dt><dd id="metric-draws">—</dd></div>
+          <div><dt>Renderer</dt><dd class="renderer-name" id="metric-renderer">—</dd></div>
+        </dl>
+        <p class="measurement-note">先暖機 3 秒，再持續記錄可見頁面的幀間隔；統計保留最近 1,800 筆。分頁在背景時暫停採樣，長幀仍保留。Draw calls / triangles 為 Three.js 回報的目前場景資料，包含工作室地面。兩位角色沒有播放動畫。</p>
+        <div class="validation-footer"><p>離線 Blender 渲染、此頁瀏覽器實測、完整遊戲與 Android 真機測試需分別記錄。本頁沒有提供 Android 真機測試結論。</p><button class="button" id="download-measurements" disabled>下載量測 JSON</button></div>
+      </div>
+    </details>
+    <footer class="footer"><span>CHARACTER STUDIO</span><span>少量精修，逐步擴充。</span></footer>
+  </main>
+</body>
+</html>

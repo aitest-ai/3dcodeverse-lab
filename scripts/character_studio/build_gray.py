@@ -46,6 +46,29 @@ def gray_material(name, color=.41):
     return mat
 def smooth(ob):
     for face in ob.data.polygons: face.use_smooth=True
+def preserve_images(out):
+    records=[]
+    for image in bpy.data.images:
+        if image.source!="FILE":continue
+        # Blender may defer image decoding. has_data=False is not a missing file;
+        # explicitly decode before checking dimensions, then keep original bytes.
+        source=Path(bpy.path.abspath(image.filepath))
+        raw=source.read_bytes() if source.is_file() else (bytes(image.packed_file.data) if image.packed_file else None)
+        if raw is None:raise RuntimeError("Original image is unavailable: "+image.name)
+        dimensions=list(image.size)
+        if len(image.pixels)==0 or min(dimensions)<=0:raise RuntimeError("Original image did not decode: "+image.name)
+        _=image.pixels[0]
+        relative=Path("textures")/source.name
+        target=out/relative;target.parent.mkdir(parents=True,exist_ok=True)
+        if target.exists() and target.read_bytes()!=raw:raise RuntimeError("Original texture name collision: "+str(relative))
+        target.write_bytes(raw)
+        image.pack(data=raw,data_len=len(raw));image.filepath="//"+relative.as_posix();image.use_fake_user=True
+        records.append({"name":image.name,"file":relative.as_posix(),"sha256":sha(target),
+                        "original_dimensions":dimensions,"stored_dimensions":list(image.size),"resized":False,
+                        "pixels_decoded":True,"used_in_gray_material":False})
+    if not any(x["file"].endswith("/brown_eye.png") for x in records):
+        raise RuntimeError("Expected original eye image missing from retained sources")
+    return records
 def clear_scene():
     bpy.ops.object.select_all(action="SELECT"); bpy.ops.object.delete(use_global=False)
 def configure_studio():
@@ -196,6 +219,7 @@ def run(args):
         smooth(ob)
     scene,cam=configure_studio()
     profile_path=out/"profile.json";dump(profile_path,{"schema_version":1,"version":package["version"],"common":common,"character":cfg})
+    texture_records=preserve_images(out)
     # Preserve every parametric target and helper in a clearly labelled authoring
     # mother, separate from the cleaned editable delivery. No helper is exported.
     bpy.ops.file.pack_all()
@@ -229,14 +253,6 @@ def run(args):
       "forearm_m":semantics["forearm_left"]["length_m"],
       "forearm_to_upper_arm":semantics["forearm_left"]["length_m"]/semantics["upper_arm_left"]["length_m"],
       "measurement_note":"joint spans are bone-center distances, not skin/clothing shoulder or hip widths"}
-    texture_records=[]
-    for image in bpy.data.images:
-        if image.source not in ("FILE","GENERATED") or image.name in ("Render Result","Viewer Node"):continue
-        if image.source=="FILE" and not image.has_data:image.reload()
-        if image.has_data:
-            _=image.pixels[0];image.pack();image.use_fake_user=True
-            texture_records.append({"name":image.name,"original_dimensions":list(image.size),"stored_dimensions":list(image.size),"resized":False,
-                                    "used_in_gray_material":False})
     clean=out/(cid+".blend")
     bpy.ops.wm.save_as_mainfile(filepath=str(clean),compress=True)
     bpy.ops.object.select_all(action="DESELECT")
@@ -273,7 +289,11 @@ def run(args):
         image=bpy.data.images.get(record["name"])
         if image is None or image.packed_file is None or list(image.size)!=record["original_dimensions"]:
             raise RuntimeError("Cold-reopened mother did not retain original image: "+record["name"])
-        cold_images.append({"name":image.name,"dimensions":list(image.size),"packed":True})
+        if hashlib.sha256(bytes(image.packed_file.data)).hexdigest()!=record["sha256"]:
+            raise RuntimeError("Packed original image bytes changed: "+image.name)
+        if len(image.pixels)==0:raise RuntimeError("Packed original image did not decode: "+image.name)
+        cold_images.append({"name":image.name,"dimensions":list(image.size),"packed":True,
+                            "sha256":record["sha256"],"decoded_pixel_count":len(image.pixels)//image.channels})
     files=[param,clean,glb,profile_path,out/"rig_semantics.json",out/"measurements.json"]
     report={"schema_version":1,"asset_id":cfg["asset_id"],"version":package["version"],"stage":package["stage"],
       "status":"GRAY_IDENTITY_REVIEW_CANDIDATE","art_approved":False,"game_ready":False,
