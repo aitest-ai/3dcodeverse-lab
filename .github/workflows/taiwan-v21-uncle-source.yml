@@ -1,0 +1,88 @@
+name: Taiwan V21 - Uncle Native Waist Candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: ['feat/taiwan-v21-uncle-native-waist-qa']
+    paths:
+      - '.github/workflows/taiwan-v21-uncle-source.yml'
+      - 'scripts/taiwan_v21/**'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: taiwan-v21-uncle-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-uncle:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile isolated V21 scripts
+        run: python3 -m compileall -q scripts/taiwan_v21
+      - name: Retrieve verified V20 original sources
+        uses: actions/download-artifact@v4
+        with:
+          name: taiwan-v20-native-sources-independently-verified-PILOT
+          run-id: 41149410362
+          github-token: ${{ github.token }}
+          repository: aitest-ai/3dcodeverse-lab
+          path: input/v20
+      - name: Install CPU render libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Install pinned Blender after upstream checksum verification
+        run: |
+          set -euo pipefail
+          mkdir -p .tools
+          BASE=https://download.blender.org/release/Blender5.2
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          curl -fL --retry 2 --max-time 300 -o ".tools/$FILE" "$BASE/$FILE"
+          curl -fL --retry 2 --max-time 60 -o .tools/SHA256 "$BASE/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import pathlib,re,hashlib
+          name='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/SHA256').read_text().splitlines() if name in x)
+          expected=re.search(r'[0-9a-fA-F]{64}',line).group().lower()
+          with open('.tools/'+name,'rb') as f: assert hashlib.file_digest(f,'sha256').hexdigest()==expected
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Edit actual V20 source and verify both native and delivered motion
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V21_INPUT: input/v20
+          V21_OUT: outputs/v21
+        run: xvfb-run -a blender -b --python-exit-code 1 --python scripts/taiwan_v21/uncle_source_qa.py
+      - name: Verify structures and package reproducibility evidence
+        run: |
+          set -euo pipefail
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v21/models/uncle_v21_source.glb
+          python3 scripts/taiwan_characters/verify_glb_mouth_morphs.py outputs/v21/motion/uncle_v21_stress.glb
+          python3 - <<'PY'
+          import pathlib,json,hashlib,shutil,os
+          p=pathlib.Path('outputs/v21')
+          a=json.loads((p/'qa/uncle_v21_source_qa.json').read_text())
+          b=json.loads((p/'qa/uncle_v21_roundtrip.json').read_text())
+          assert a['native_body_vertices']==13380 and a['bones']==53 and a['body_morphs']==10
+          assert a['changed_meshes']==['OpenSourceCloth_uncle_toigo_wool_pants']
+          assert a['non_target_meshes_unchanged'] and a['art_approved'] is False
+          assert len(a['after_49_frames'])==49 and len(b['export_frames'])==49
+          assert b['source_reopened_body_vertices']==13380
+          assert len(a['renders'])==18 and all((p/'renders'/f).is_file() for f in a['renders'])
+          for folder in ('taiwan_v21','taiwan_v20','taiwan_waist_v19'):
+              shutil.copytree('scripts/'+folder,p/'source'/folder,dirs_exist_ok=True,ignore=shutil.ignore_patterns('__pycache__'))
+          shutil.copy('.github/workflows/taiwan-v21-uncle-source.yml',p/'source/workflow.yml')
+          (p/'report.json').write_text(json.dumps({'run':os.environ['GITHUB_RUN_ID'],'commit':os.environ['GITHUB_SHA'],'source_run':41149410362,'scope':'Edited original V20 uncle source only; other three characters not changed or revalidated','art_approved':False,'native_skin_hits':b['source_skin_hits'],'export_skin_hits':b['export_skin_hits'],'native_shirt_below_band_hits':b['source_shirt_below_band_hits'],'export_shirt_below_band_hits':b['export_shirt_below_band_hits']},indent=2))
+          (p/'SHA256SUMS.txt').write_text('\n'.join(hashlib.sha256(f.read_bytes()).hexdigest()+'  '+str(f.relative_to(p)) for f in sorted(p.rglob('*')) if f.is_file() and f.name!='SHA256SUMS.txt')+'\n')
+          print('V21_VERIFIED_STRUCTURES_NOT_ART_APPROVAL',b['source_skin_hits'],b['export_skin_hits'],b['export_shirt_below_band_hits'])
+          PY
+      - name: Publish actual V21 candidate and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taiwan-v21-uncle-native-waist-candidate-PILOT
+          path: outputs/v21/**
+          retention-days: 30
+          if-no-files-found: warn
