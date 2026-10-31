@@ -181,8 +181,11 @@ pants.data.update();pants.update_tag(refresh={'DATA'});bpy.context.view_layer.up
 assert np.allclose(coordinates(pants),candidates,atol=2e-6)
 changed=[o.name for o in meshes if digest_mesh(o)!=initial[o.name]]
 assert changed==[pants.name],changed
-basis=np.array([tuple(v.co) for v in keys[0].data])
-error=max(float(np.max(np.abs((np.array([tuple(v.co) for v in k.data])-basis)-(old-snapshots[0])))) for k,old in zip(keys[1:],snapshots[1:]))
+basis=np.array([tuple(v.co) for v in keys[0].data]) if keys else local+local_delta
+errors=[float(np.max(np.abs((np.array([tuple(v.co) for v in k.data])-basis)-(old-snapshots[0])))) for k,old in zip(keys[1:],snapshots[1:])]
+error=max(errors,default=0.)
+fitmeta['pants_shape_keys_including_basis']=len(keys)
+fitmeta['relative_morph_check']='measured' if errors else 'not_applicable_no_relative_pants_keys'
 assert error<2e-6
 fitmeta.update({'moved_vertices':int((np.linalg.norm(delta,axis=1)>1e-7).sum()),'maximum_shift_m':float(np.linalg.norm(delta,axis=1).max()),'relative_morph_error':error})
 
