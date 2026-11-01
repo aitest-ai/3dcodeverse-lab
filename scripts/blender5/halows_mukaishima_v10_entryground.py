@@ -12,7 +12,7 @@ def mat(n,c,r=.75,m=0):
  x=bpy.data.materials.new(n); x.diffuse_color=c; x.use_nodes=True; b=x.node_tree.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value=c; b.inputs["Roughness"].default_value=r; b.inputs["Metallic"].default_value=m
  if c[3]<.999: b.inputs["Alpha"].default_value=c[3]; x.surface_render_method="DITHERED"
  return x
-W=mat("warm pink",(.76,.54,.48,1)); W2=mat("tower pink",(.69,.43,.39,1)); C=mat("cream",(.93,.87,.74,1)); G=mat("green",(.035,.24,.17,1),.45,.05); GD=mat("dark green",(.018,.15,.105,1),.4,.08); SG=mat("sign green",(.015,.28,.18,1),.38,.05); R=mat("red",(.46,.04,.03,1)); GL=mat("glass",(.22,.34,.38,.45),.18); M=mat("metal",(.55,.58,.56,1),.35,.35); WH=mat("white",(.88,.88,.82,1)); A=mat("asphalt",(.125,.135,.14,1),.95); P=mat("paving",(.54,.30,.20,1),.9); LN=mat("line",(.88,.88,.82,1)); RF=mat("roof",(.27,.29,.29,1),.85); SH=mat("joint",(.38,.24,.21,1))
+W=mat("warm pink",(.76,.54,.48,1)); W2=mat("tower pink",(.69,.43,.39,1)); C=mat("cream",(.93,.87,.74,1)); G=mat("green",(.035,.24,.17,1),.45,.05); GD=mat("dark green",(.018,.15,.105,1),.4,.08); SG=mat("sign green",(.015,.28,.18,1),.38,.05); R=mat("red",(.46,.04,.03,1)); GL=mat("glass",(.09,.20,.23,.44),.15); M=mat("metal",(.55,.58,.56,1),.35,.35); WH=mat("white",(.88,.88,.82,1)); A=mat("asphalt",(.125,.135,.14,1),.95); P=mat("paving",(.54,.30,.20,1),.9); LN=mat("line",(.88,.88,.82,1)); RF=mat("roof",(.27,.29,.29,1),.85); SH=mat("joint",(.38,.24,.21,1))
 def cube(n,loc,size,ma,bev=0):
  bpy.ops.mesh.primitive_cube_add(location=loc); o=bpy.context.object; o.name=n; o.scale=(size[0]/2,size[1]/2,size[2]/2); bpy.ops.object.transform_apply(location=False,rotation=False,scale=True); o.data.materials.append(ma)
  if bev: q=o.modifiers.new("bevel","BEVEL"); q.width=bev; q.segments=2
@@ -234,15 +234,15 @@ sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1
 sc.world.use_nodes=True
 bg=sc.world.node_tree.nodes.get("Background")
 bg.inputs["Color"].default_value=(.42,.55,.69,1)
-bg.inputs["Strength"].default_value=.75
-sc.view_settings.view_transform="AgX"; sc.view_settings.exposure=.45
-bpy.ops.object.light_add(type="SUN",location=(-80,-100,120)); bpy.context.object.data.energy=2.4
+bg.inputs["Strength"].default_value=.55
+sc.view_settings.view_transform="AgX"; sc.view_settings.exposure=0.0
+bpy.ops.object.light_add(type="SUN",location=(-80,-100,120)); bpy.context.object.data.energy=2.0
 # Render-only area fill. Three.js/Unity runtime must supply its own scene lighting.
 bpy.ops.object.light_add(type="AREA",location=(12,-40,50))
-bpy.context.object.data.energy=12000
+bpy.context.object.data.energy=4800
 bpy.context.object.data.shape="DISK"; bpy.context.object.data.size=44
 bpy.ops.object.light_add(type="AREA",location=(-30,20,44))
-bpy.context.object.data.energy=5400
+bpy.context.object.data.energy=2100
 bpy.context.object.data.shape="DISK"; bpy.context.object.data.size=35
 bpy.ops.object.camera_add(); cam=bpy.context.object; sc.camera=cam
 def look(pt): cam.rotation_euler=(Vector(pt)-cam.location).to_track_quat("-Z","Y").to_euler()
