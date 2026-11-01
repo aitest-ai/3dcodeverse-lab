@@ -127,11 +127,13 @@ function makeViewer(s,r){
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../..");
 const SOURCE=path.join(ROOT,"scripts/blender5/halows_site_v09_data.py");
 const raw=fs.readFileSync(SOURCE);
-const blob=createHash("sha1").update("blob "+raw.length+"\\0").update(raw).digest("hex");
+const blob=createHash("sha1").update("blob "+raw.length).update(Buffer.from([0])).update(raw).digest("hex");
 if(blob!=="a4af2bae722236664297cab363099e4b4dce498b")throw Error("Locked V09 site source changed; stop for human review: "+blob);
-const match=raw.toString("utf8").match(/SITE_DATA=r'''([\\s\\S]*?)'''/);
-if(!match)throw Error("Cannot extract V09 site snapshot");
-const site=JSON.parse(match[1]);
+const sourceText=raw.toString("utf8");
+const marker="SITE_DATA=r'''";
+const start=sourceText.indexOf(marker),end=start<0?-1:sourceText.indexOf("'''",start+marker.length);
+if(start<0||end<=start)throw Error("Cannot extract V09 site snapshot");
+const site=JSON.parse(sourceText.slice(start+marker.length,end));
 const report=auditSite(site);
 if(report.counts.unique_nodes!==39||report.counts.edges!==39||report.counts.components!==1)throw Error("Unexpected V09 graph topology");
 if(report.anchor_paths.south.distance_m!==66.5||report.anchor_paths.east.distance_m!==61.5)throw Error("Known anchor distance changed");
@@ -140,7 +142,7 @@ const html=makeViewer(site,report);
 if(!html.includes('尚未核准自行車導航')||!html.includes('data-route="south"'))throw Error("Preview disclaimer or route UI missing");
 if(process.argv.includes("--write")){
   const dir=path.join(ROOT,"outputs/halows-v12-route-audit");fs.mkdirSync(dir,{recursive:true});
-  fs.writeFileSync(path.join(dir,"report.json"),JSON.stringify(report,null,2)+"\\n");
+  fs.writeFileSync(path.join(dir,"report.json"),JSON.stringify(report,null,2)+String.fromCharCode(10));
   fs.writeFileSync(path.join(dir,"route-preview.html"),html);
 }
 console.log(JSON.stringify({status:"V12_PREFLIGHT_PASS_NOT_NAVIGATION",nodes:report.counts.unique_nodes,edges:report.counts.edges,connected_components:report.counts.components,south_m:report.anchor_paths.south.distance_m,east_m:report.anchor_paths.east.distance_m,write:process.argv.includes("--write")},null,2));
