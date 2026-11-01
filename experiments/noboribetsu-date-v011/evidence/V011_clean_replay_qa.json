@@ -1,0 +1,24 @@
+{
+  "schema": "noboribetsu-v011-clean-replay/1",
+  "status": "PASS",
+  "original_v010_files": 98,
+  "unchanged_v010_files": 94,
+  "modified_old_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "new_files": [
+    "README_V011.md",
+    "dist/v011_terrain_gap_patch.json",
+    "start_v011_local.py"
+  ],
+  "final_runtime_files": 101,
+  "regenerated_dist_files_matched": 84,
+  "regenerated_dist_mismatches": [],
+  "v010_archive_sha256": "fe3be61782ff688d67cb3f5f8d9faac13e01aa066c1e776edd3960dfa7391787",
+  "patch_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+  "source_b_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+  "old_GLBS_and_collisions_preserved": true
+}
