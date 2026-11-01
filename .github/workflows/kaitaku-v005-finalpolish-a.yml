@@ -6,7 +6,7 @@ on:
       - '.github/workflows/kaitaku-v005-finalpolish-a.yml'
       - 'scripts/blender5/kaitaku_v005_finalpolish_a.py'
       - 'scripts/kaitaku/apply_v005_finalpolish_a_runtime.py'
-      - 'scripts/kaitaku/apply_v005_a2_hedge_experiment.py scripts/kaitaku/apply_v005_a3_storefront_readability.py'
+      - 'scripts/kaitaku/apply_v005_a2_hedge_experiment.py'
       - 'experiments/kaitaku-v005-a2-hedge/**'
       - 'scripts/kaitaku/apply_v005_a3_storefront_readability.py'
       - 'experiments/kaitaku-v005-a3-storefront/**'
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Parse candidate scripts
-        run: python3 -m py_compile scripts/blender5/kaitaku_v005_finalpolish_a.py scripts/kaitaku/apply_v005_finalpolish_a_runtime.py scripts/kaitaku/apply_v005_a2_hedge_experiment.py
+        run: python3 -m py_compile scripts/blender5/kaitaku_v005_finalpolish_a.py scripts/kaitaku/apply_v005_finalpolish_a_runtime.py scripts/kaitaku/apply_v005_a2_hedge_experiment.py scripts/kaitaku/apply_v005_a3_storefront_readability.py
       - name: Verify pinned provenance constants
         run: |
           python3 - <<'PY'
@@ -50,7 +50,7 @@ jobs:
           assert '45d9beb938e876e55c37b93237b6344b88db202f832e39d5641f2d8a4ffb0265' in a2
           assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in a3
           assert '8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f' in a3
-          print('Pinned V005/A/A2 hashes present')
+          print('Pinned V005/A/A2/A3 hashes present')
           PY
 
   blender-candidate:
