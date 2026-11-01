@@ -1,0 +1,14 @@
+{
+  "schema": "date-v008-node-runtime-contract/1",
+  "status": "PASS_NODE_LOGIC_NO_GPU",
+  "new_glb_sha_verified": true,
+  "corrupt_manifest_rejected": true,
+  "hide_v007_and_v005": true,
+  "archived_v005_download_skipped": true,
+  "archived_v007_download_skipped": true,
+  "archived_model_bytes_not_downloaded_on_initial_boot": 1027648,
+  "stage_switches": 2,
+  "stage_pose_drift": 0,
+  "webgl2_verified": false,
+  "android_verified": false
+}
