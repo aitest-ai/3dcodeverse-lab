@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Apply the validated V005 FinalPolish A edits to the pinned V005 Blender master.
+"""Apply validated V005 FinalPolish A + A3 edits to the pinned V005 Blender master.
 
 Bounded scope only:
 - lighten two neutral *unmodeled* closed-window backing/reveal materials;
-- break comb-like continuity of V005 clustered roadside grass in a narrow band.
+- break comb-like continuity of V005 clustered roadside grass in a narrow band;\n- give only the 16 Watanabe ground-floor closed storefront backing/reveal local A3 materials.
 
 Hard exclusions: stone kerbs, postal passage, postbox/hedge, barber ladder, wood
 poles/braces, stairs/threshold/landing, roof/hood geometry, and the diagnosed
@@ -25,10 +25,10 @@ import bpy
 from mathutils import Vector
 
 EXPECTED_SOURCE_SHA256 = "7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc"
-ASSET_ID = "kaitaku-v005-finalpolish-a"
+ASSET_ID = "kaitaku-v005-finalpolish-a3"
 SEED = 1505006
 DARK_DEPTH = (0.055, 0.050, 0.044, 1.0)
-INNER_REVEAL = (0.070, 0.063, 0.052, 1.0)
+INNER_REVEAL = (0.070, 0.063, 0.052, 1.0)\nSTORE_DARK_DEPTH = (0.075, 0.068, 0.055, 1.0)\nSTORE_INNER_REVEAL = (0.088, 0.080, 0.066, 1.0)
 
 SHOTS = [
     ("01-mainstreet-overview", (24, -33, 17), (0, 2, 2), 40, 1700, 1000),
@@ -102,6 +102,36 @@ def set_base(mat_name: str, rgba):
     old = tuple(bsdf.inputs["Base Color"].default_value)
     bsdf.inputs["Base Color"].default_value = rgba
     return {"old": list(old), "new": list(rgba)}
+
+
+def assign_local_storefront_material(object_name: str, source_material_name: str, new_name: str, rgba):
+    ob = bpy.data.objects.get(object_name)
+    if ob is None or ob.type != "MESH":
+        raise RuntimeError(f"Missing expected storefront mesh: {object_name}")
+    if len(ob.data.materials) != 1:
+        raise RuntimeError(f"Expected exactly one material slot on {object_name}, found {len(ob.data.materials)}")
+    source = bpy.data.materials.get(source_material_name)
+    if source is None or not source.use_nodes:
+        raise RuntimeError(f"Missing expected source material: {source_material_name}")
+    if ob.data.users != 1:
+        ob.data = ob.data.copy()
+    local = source.copy()
+    local.name = new_name
+    bsdf = local.node_tree.nodes.get("Principled BSDF")
+    if bsdf is None:
+        raise RuntimeError(f"Missing Principled BSDF in local copy: {new_name}")
+    old = tuple(bsdf.inputs["Base Color"].default_value)
+    bsdf.inputs["Base Color"].default_value = rgba
+    ob.data.materials.clear()
+    ob.data.materials.append(local)
+    return {
+        "object": object_name,
+        "source_material": source_material_name,
+        "local_material": local.name,
+        "old": list(old),
+        "new": list(rgba),
+        "mesh_users_after": ob.data.users,
+    }
 
 
 def apply_grass_patch(scene):
@@ -284,7 +314,7 @@ def main(argv=None):
         "source_sha256": actual_source_sha,
         "blender": bpy.app.version_string,
         "status": "candidate; visual acceptance requires render review",
-        "scope": "V005 FinalPolish A only; no fourth building",
+        "scope": "V005 FinalPolish A3 candidate; A base + store-local A3 overlay; no fourth building",
         "glass": {},
         "grass": {},
         "protected_geometry_count": len(protected_hash),
@@ -294,6 +324,23 @@ def main(argv=None):
     report["glass"]["inner_reveal"] = set_base("V005 neutral closed window reveal", INNER_REVEAL)
     report["glass"]["glass_transmission_roughness_changed"] = False
     report["glass"]["invented_interior_content"] = False
+
+    report["storefront_a3"]["dark_depth"] = assign_local_storefront_material(
+        "16 Closed shallow storefront backing",
+        "V005 neutral unmodeled dark depth",
+        "V005 A3 store-local dark depth",
+        STORE_DARK_DEPTH,
+    )
+    report["storefront_a3"]["inner_reveal"] = assign_local_storefront_material(
+        "16 Closed shallow storefront backing V005 inner reveal",
+        "V005 neutral closed window reveal",
+        "V005 A3 store-local closed reveal",
+        STORE_INNER_REVEAL,
+    )
+    report["storefront_a3"]["glass_transmission_roughness_changed"] = False
+    report["storefront_a3"]["invented_interior_content"] = False
+    report["storefront_a3"]["upper_windows_changed"] = False
+
 
     grass_results = apply_grass_patch(scene)
     report["grass"] = {
@@ -328,7 +375,7 @@ def main(argv=None):
     manifest = {
         "schema_version": 1,
         "asset_id": ASSET_ID,
-        "version": "V005-FinalPolish-A",
+        "version": "V005-FinalPolish-A3",
         "model_file": f"{ASSET_ID}.glb",
         "source_file": outblend.name,
         "clips": [],
@@ -343,7 +390,7 @@ def main(argv=None):
         },
         "renders": report.get("renders", []),
         "android": "not tested",
-        "browser": "runtime A already validated separately; native candidate browser parity pending",
+        "browser": "runtime A3 storefront same-camera validated separately; native candidate browser parity pending",
     }
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
