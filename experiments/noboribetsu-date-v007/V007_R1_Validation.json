@@ -1,0 +1,114 @@
+{
+  "schema": "date-v007-r1-delivery/1",
+  "scope": "V006 route kept; V005 facades visual-only override",
+  "model": {
+    "path": "assets/v007_east_facades.glb",
+    "sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+    "bytes": 632080
+  },
+  "qa_integrity": {
+    "schema": "noboribetsu-date-v007-integrity/1",
+    "status": "PASS_SOURCE_AND_STATIC_TESTS_ONLY",
+    "old_runtime_files": 63,
+    "unchanged_old_files": 59,
+    "modified_old_files": [
+      "dist/app.js",
+      "dist/index.html",
+      "dist/qa.json",
+      "dist/scene_view.json"
+    ],
+    "added_model_sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+    "added_model_size_bytes": 632080,
+    "unchanged_facade_meshes": 16,
+    "total_facade_meshes": 17,
+    "triangles": 14888,
+    "noren_max_displacement_m": 0.01406719055155614,
+    "new_procedural_textured_materials": [
+      "plaster_cool",
+      "plaster_lower",
+      "plaster_warm",
+      "wood_aged",
+      "wood_edges",
+      "wood_newer",
+      "wood_structure"
+    ],
+    "route_length_m": 231.56641497226084,
+    "route_points": 472,
+    "navigation_checks": 944,
+    "browser_fallback_status": "PASS_DOM_FALLBACK_ONLY",
+    "webgl2_actual_scene": "NOT_TESTED",
+    "android": "NOT_TESTED",
+    "blender_native": "NOT_EXECUTED",
+    "private_preview": "UNCHANGED",
+    "baseline_original_GLB_and_collision": "BYTE_IDENTICAL"
+  },
+  "runtime_node": {
+    "schema": "date-v007-runtime-contract/1",
+    "status": "PASS_NODE_THREE_INTEGRATION_NO_WEBGL",
+    "original_V005_facade_hidden_in_B": true,
+    "V007_visible_only_B": true,
+    "model_SHA_verified": true,
+    "failed_on_corrupt_manifest": true,
+    "stage_switch_drift": 0,
+    "stage_switches": 3,
+    "source_V005_unchanged": true,
+    "webgl2_verified": false
+  },
+  "browser_fallback": {
+    "schema": "date-v007-no-webgl-fallback-browser/1",
+    "status": "PASS_DOM_FALLBACK_ONLY",
+    "real_3d_play_verified": false,
+    "android_verified": false,
+    "navigation_tested": false,
+    "webgl2_available": false,
+    "load_error": "此瀏覽器目前無法建立 WebGL 2。三維步行尚未啟動；可先查看交付的離線比較圖，或改用支援 WebGL 2 的瀏覽器。",
+    "review_link": "review_v007.html",
+    "manifest_ready": true,
+    "model_events": {},
+    "ready": "failed",
+    "scene_version": "登別伊達時代村 V007 近景精修候選｜商家街後段",
+    "fallback_page_title": "登別伊達時代村 V007｜GLB 診斷比較",
+    "fallback_images_loaded": 3,
+    "console_errors": [
+      "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+      "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+      "THREE.WebGLRenderer: Error creating WebGL context."
+    ]
+  },
+  "navigation": {
+    "schema": "date-v007-route-preservation/1",
+    "status": "PASS_STATIC_NAVIGATION_ONLY",
+    "route_length_m": 231.56641497226084,
+    "route_points": 472,
+    "checks": 944,
+    "failures": [],
+    "new_walkable_triangles": 162,
+    "travel": {
+      "blocked": 0,
+      "off_route": 0,
+      "return_blocked": 0,
+      "max_step_delta": 0.08794995392191418,
+      "end_distance_m": 4.263256414560601e-14,
+      "home_distance_m": 6.661338147750939e-16
+    },
+    "camera_stage_switch_drift": 0,
+    "stage_world_triangle_counts": {
+      "A": {
+        "triangles": 1427,
+        "degenerate": 0
+      },
+      "B": {
+        "triangles": 1427,
+        "degenerate": 0
+      }
+    }
+  },
+  "claims": {
+    "model_bytes_verified": true,
+    "route_preserved": true,
+    "webgl2_verified": false,
+    "android_verified": false,
+    "blender_native_done": false,
+    "private_preview_changed": false
+  }
+}
