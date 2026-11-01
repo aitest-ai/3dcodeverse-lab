@@ -148,7 +148,9 @@ def road_z(x,y,elev,follow_site_grade=False):
         return graded_rel_z(x,y,elev)+.035
     return elev-PAD+.035
 def make_road(name,points,width,material,follow_site_grade=False):
-    pts=[p for p in points if p.get("elev_m") is not None]
+    # Visual site clip only. Full OSM point sequences remain unchanged in site_lock.json.
+    xmax=xmin+(nx-1)*step; ymax=ymin+(ny-1)*step
+    pts=[p for p in points if p.get("elev_m") is not None and xmin<=p["x"]<=xmax and ymin<=p["y"]<=ymax]
     if len(pts)<2: return None
     left=[]; right=[]
     for i,p in enumerate(pts):
@@ -220,6 +222,6 @@ man={"schema_version":1,"asset_id":ID,"model_file":glb.name,"source_file":blend.
 for p in [blend,glb,*imgs,OUT/"site_lock.json"]: man["files"][p.name]={"bytes":p.stat().st_size,"sha256":sha(p)}
 (OUT/"asset_manifest.json").write_text(json.dumps(man,ensure_ascii=False,indent=2))
 (OUT/"report.json").write_text(json.dumps({"status":"PASS_BUILD_EXPORT_RENDER_GEOSITE_ONLY","origin_wgs84":SITE["origin_wgs84"],
-"building_heading_deg":SITE["building"]["long_axis_heading_deg_from_east_ccw"],"store_pad_elevation_m":PAD,"grading_feather_m":10.0,
+"building_heading_deg":SITE["building"]["long_axis_heading_deg_from_east_ccw"],"store_pad_elevation_m":PAD,"grading_feather_m":10.0,"road_render_clip":"terrain grid bounds; source roads remain full in site_lock",
 "road_way_ids":[r["osm_way_id"] for r in SITE["roads"]],
 "limitations":SITE["integration_limits"]+["No browser/Android playtest","No actor/bicycle runtime integration in this workflow","Route 317 and tertiary roads preserve locked DEM elevations; only service roads may follow estimated site grading"]},ensure_ascii=False,indent=2))
