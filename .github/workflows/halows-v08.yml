@@ -1,0 +1,73 @@
+name: Halows Mukaishima V08 Blender
+on:
+  push:
+    branches:
+      - feat/halows-mukaishima-v08
+    paths:
+      - 'scripts/blender5/halows_mukaishima_v08.py'
+      - '.github/workflows/halows-v08.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-halows-v08:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse Blender script
+        run: python3 -m py_compile scripts/blender5/halows_mukaishima_v08.py
+      - name: Install headless render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download Blender 5.2.3 LTS and verify official SHA256
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          filename="blender-5.2.3-linux-x64.tar.xz"
+          line=next(x for x in pathlib.Path(".tools/checksums.sha256").read_text().splitlines() if filename in x)
+          expected=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line).group().lower()
+          with open(".tools/"+filename,"rb") as f: actual=hashlib.file_digest(f,"sha256").hexdigest()
+          assert actual==expected,(actual,expected)
+          print("Blender SHA256 verified",actual)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+      - name: Build editable BLEND, GLB and evidence renders
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          rm -rf outputs
+          mkdir outputs
+          xvfb-run -a blender -b --factory-startup --python scripts/blender5/halows_mukaishima_v08.py
+      - name: Validate outputs
+        run: |
+          test -s outputs/halows-mukaishima-v08.blend
+          test -s outputs/halows-mukaishima-v08.glb
+          test -s outputs/asset_manifest.json
+          test -s outputs/report.json
+          test -s outputs/halows-mukaishima-v08_front_sw.png
+          test -s outputs/halows-mukaishima-v08_front.png
+          test -s outputs/halows-mukaishima-v08_entry_close.png
+          test -s outputs/halows-mukaishima-v08_aerial.png
+          python3 scripts/blender5/validate_glb.py outputs
+          python3 -m json.tool outputs/asset_manifest.json >/dev/null
+          python3 -m json.tool outputs/report.json >/dev/null
+          ls -lah outputs
+      - name: Upload Halows V08 artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: halows-mukaishima-v08-${{ github.run_number }}
+          path: outputs/
+          retention-days: 14
+          if-no-files-found: warn
