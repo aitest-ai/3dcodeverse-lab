@@ -1,0 +1,26 @@
+{
+  "Noboribetsu_Date_V007_R1_Runtime.zip": {
+    "bytes": 69005310,
+    "sha256": "8695cea6acbef27066abf1853e99f128683749a13e38a42a72a63b907752ee5e"
+  },
+  "Noboribetsu_Date_V007_R1_SourceQA.zip": {
+    "bytes": 1825752,
+    "sha256": "06298775d24756990dd01be51998cb87cec630e9d04bdb9efd7abd9962bd2d33"
+  },
+  "Noboribetsu_Date_V007_R1_Delivery_Report.md": {
+    "bytes": 4768,
+    "sha256": "d11d0a6c4a1a8389595cd74e6fb549c03d54d64c9eb9fd45bbb01609e85b7509"
+  },
+  "Noboribetsu_Date_V007_R1_Validation.json": {
+    "bytes": 4126,
+    "sha256": "c8f9c49f1847169e9ff7caab54738176911839b88fe81f907e987fe5196b9ab7"
+  },
+  "Noboribetsu_Date_V007_R1_Review.html": {
+    "bytes": 974185,
+    "sha256": "8785d27191d90adb26c491054c5da13534bfd25b4d6c6216ce60edd6aac679ef"
+  },
+  "v007_east_facades.glb": {
+    "bytes": 632080,
+    "sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e"
+  }
+}
