@@ -1,0 +1,48 @@
+{
+  "schema": "date-v009-webgl2-context/1",
+  "status": "UNAVAILABLE_IN_CURRENT_CONTAINER",
+  "chromium_probes": [
+    {
+      "flags": [],
+      "result": {
+        "webgl2": false,
+        "webgl": false
+      }
+    },
+    {
+      "flags": [
+        "--use-gl=angle",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader"
+      ],
+      "result": {
+        "webgl2": false,
+        "webgl": false
+      }
+    },
+    {
+      "flags": [
+        "--use-gl=swiftshader",
+        "--enable-unsafe-swiftshader"
+      ],
+      "result": {
+        "webgl2": false,
+        "webgl": false
+      }
+    },
+    {
+      "flags": [
+        "--use-gl=angle",
+        "--use-angle=gl",
+        "--enable-unsafe-swiftshader"
+      ],
+      "result": {
+        "webgl2": false,
+        "webgl": false
+      }
+    }
+  ],
+  "full_threejs_scene_verified": false,
+  "android_verified": false,
+  "note": "Source and DOM checks can pass without the real WebGL 2 GPU scene"
+}

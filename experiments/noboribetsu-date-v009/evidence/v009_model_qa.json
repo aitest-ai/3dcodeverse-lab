@@ -1,0 +1,93 @@
+{
+  "schema": "noboribetsu-v009-utsuroi-sidewall-candidate/1",
+  "status": "GLB_RELOADED_STRUCTURAL_REPAIR_VERIFIED",
+  "base_v008_sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea",
+  "glb_v009_sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620",
+  "bytes": 670128,
+  "known_location": "OSM way/283905580",
+  "facility_use": "costume photography and rental (official)",
+  "exterior_photo": "No verified full-façade photograph; author-estimated side-wall treatment, NOT an as-built reconstruction",
+  "external_reference": "https://edo-trip.jp/facility/utsuroi-kan/",
+  "original_meshes": 21,
+  "original_triangles": 17008,
+  "removed_triangles": 240,
+  "removed_side_grid_boxes": 20,
+  "new_geometry": {
+    "v009_utsuroi_spaced_side_posts": {
+      "triangles": 96,
+      "vertices": 64,
+      "bounds": [
+        [
+          49.7045,
+          2.2893,
+          54.1634
+        ],
+        [
+          62.3391,
+          6.3393,
+          66.0379
+        ]
+      ]
+    },
+    "v009_utsuroi_side_board_mid": {
+      "triangles": 144,
+      "vertices": 96,
+      "bounds": [
+        [
+          49.6984,
+          2.4243,
+          54.0758
+        ],
+        [
+          62.3452,
+          3.4603,
+          66.1254
+        ]
+      ]
+    },
+    "v009_utsuroi_side_board_dark": {
+      "triangles": 72,
+      "vertices": 48,
+      "bounds": [
+        [
+          49.6984,
+          2.4243,
+          54.0758
+        ],
+        [
+          62.3452,
+          3.4603,
+          66.1254
+        ]
+      ]
+    },
+    "v009_utsuroi_side_sill": {
+      "triangles": 24,
+      "vertices": 16,
+      "bounds": [
+        [
+          49.6533,
+          3.4883,
+          54.0427
+        ],
+        [
+          62.3903,
+          3.5803,
+          66.1585
+        ]
+      ]
+    }
+  },
+  "total_meshes": 25,
+  "total_triangles": 17104,
+  "all_other_20_original_meshes_unchanged": true,
+  "wood_structure_retained_box_count": 128,
+  "route_changed": false,
+  "collision_changed": false,
+  "A_stage_changed": false,
+  "waraji_original_geometry_unchanged": true,
+  "waraji_v008_detail_geometry_unchanged": true,
+  "blender_native_executed": false,
+  "webgl2_verified": false,
+  "android_verified": false
+}

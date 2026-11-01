@@ -1,0 +1,35 @@
+{
+  "schema": "date-v009-integrity-diff/1",
+  "status": "PASS_SOURCE_AND_ASSET_BYTES_ONLY",
+  "v008_files": 72,
+  "v009_files": 83,
+  "unchanged_existing_files": 68,
+  "changed_existing_files": [
+    "app.js",
+    "index.html",
+    "qa.json",
+    "scene_view.json"
+  ],
+  "added_files": [
+    "assets/v009_utsuroi_facade.glb",
+    "evidence/utsuroi_cornice_V008.png",
+    "evidence/utsuroi_cornice_V009.png",
+    "evidence/utsuroi_side_V008.png",
+    "evidence/utsuroi_side_V009.png",
+    "evidence/utsuroi_walk_V008.png",
+    "evidence/utsuroi_walk_V009.png",
+    "evidence/waraji_control_V008.png",
+    "evidence/waraji_control_V009.png",
+    "review_v009.html",
+    "v009_facade_manifest.json"
+  ],
+  "frozen_original_geometry_assets_unchanged": true,
+  "collision_and_route_unchanged": true,
+  "route_length_m": 231.56641497226084,
+  "route_points": 472,
+  "new_model_sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620",
+  "new_model_bytes": 670128,
+  "initial_skipped_archived_model_bytes": 1702296,
+  "browser_real_webgl2_verified": false,
+  "blender_native_verified": false
+}
