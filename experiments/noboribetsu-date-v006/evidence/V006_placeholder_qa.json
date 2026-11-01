@@ -1,0 +1,18 @@
+{
+  "schema": "date-v006-real-osm-primitive-runtime-mask/1",
+  "status": "PASS_NODE_THREE_GEOMETRY_NOT_WEBGL",
+  "frozen_B_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+  "removed_by_building": {
+    "way/283905599": 28,
+    "way/283905598": 28,
+    "way/283905593": 20,
+    "way/283905573": 12,
+    "way/283905580": 12
+  },
+  "triangles_before": 368,
+  "after_V004": 292,
+  "after_V005": 268,
+  "remaining": 268,
+  "fail_closed_when_reapplying": true,
+  "original_source_positions_unchanged": 660
+}

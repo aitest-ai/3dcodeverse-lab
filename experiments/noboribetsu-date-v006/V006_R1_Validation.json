@@ -1,0 +1,49 @@
+{
+  "version": "V006-tail-candidate-r1",
+  "local_date": "2026-11-01",
+  "version_status": "candidate_static_pass_external_acceptance_pending",
+  "base": "V005-east-candidate-r1",
+  "scope": "final two OSM route legs; no new building",
+  "route_m": 231.56641497226084,
+  "added_m": 33.84248088413378,
+  "QA": {
+    "V006_navigation_qa.json": {
+      "status": "PASS_STATIC_NAVIGATION_ONLY"
+    },
+    "V006_placeholder_qa.json": {
+      "status": "PASS_NODE_THREE_GEOMETRY_NOT_WEBGL"
+    },
+    "V006_surface_qa.json": {
+      "status": "PASS_STATIC_SURFACE_ONLY"
+    },
+    "V006_replay_qa.json": {
+      "status": "PASS"
+    },
+    "V006_http_qa.json": {
+      "status": "PASS_HTTP_RESOURCES_ONLY"
+    }
+  },
+  "V005_artifact_unchanged": {
+    "old_dist_files": 56,
+    "changed_files": [
+      "app.js",
+      "index.html",
+      "qa.json",
+      "scene_view.json"
+    ],
+    "unchanged_old_assets": 52
+  },
+  "original_B_osm_replacements": {
+    "way/283905599": 28,
+    "way/283905598": 28,
+    "way/283905593": 20,
+    "way/283905573": 12,
+    "way/283905580": 12
+  },
+  "browser_webgl2": "NOT_AVAILABLE_IN_THIS_ENVIRONMENT",
+  "Android_physical": "NOT_TESTED",
+  "Blender_native": "NOT_RUN",
+  "private_site": "UNCHANGED",
+  "third_person": "OFF",
+  "geometry_source": "Frozen 2026-10-31 V002 OSM + GSI DEM, not surveyed"
+}
