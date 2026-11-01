@@ -55,6 +55,18 @@ if not bpy.data.filepath or Path(bpy.data.filepath).resolve() != BASE.resolve():
     bpy.ops.wm.open_mainfile(filepath=str(BASE))
 
 report = v3.apply_all()
+
+# V002 intentionally carries nine packed, currently-unreferenced ground-source
+# textures for future authoring. Blender may drop zero-user datablocks on
+# save/reopen, so give only those already-packed zero-user images a Fake User.
+# This preserves source bytes/resolution; it does not connect them to materials.
+preserved_packed_zero_user_images = []
+for image in bpy.data.images:
+    if image.packed_file and image.users == 0:
+        image.use_fake_user = True
+        preserved_packed_zero_user_images.append(image.name)
+report["preserved_packed_zero_user_images"] = sorted(preserved_packed_zero_user_images)
+
 scene = bpy.context.scene
 scene["project"] = "Noboribetsu Date Jidaimura V003"
 scene["v003_scope"] = (
