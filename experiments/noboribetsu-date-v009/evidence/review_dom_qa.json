@@ -1,0 +1,22 @@
+{
+  "schema": "date-v009-review-dom/1",
+  "status": "PASS_DOM_FALLBACK",
+  "checks": [
+    {
+      "viewport": "1280x800",
+      "images_loaded": 8,
+      "sliders_working": 4,
+      "clip_after_value_78": "inset(0px 22% 0px 0px)",
+      "kind": "Chromium DOM set_content, not GPU test"
+    },
+    {
+      "viewport": "430x932",
+      "images_loaded": 8,
+      "sliders_working": 4,
+      "clip_after_value_78": "inset(0px 22% 0px 0px)",
+      "kind": "Chromium DOM set_content, not GPU test"
+    }
+  ],
+  "webgl2_tested": false,
+  "actual_private_URL_tested": false
+}
