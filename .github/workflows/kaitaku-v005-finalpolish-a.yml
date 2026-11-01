@@ -1,0 +1,144 @@
+name: Kaitaku V005 FinalPolish A Candidate
+
+on:
+  push:
+    paths:
+      - '.github/workflows/kaitaku-v005-finalpolish-a.yml'
+      - 'scripts/blender5/kaitaku_v005_finalpolish_a.py'
+      - 'scripts/kaitaku/apply_v005_finalpolish_a_runtime.py'
+      - 'docs/KAI_V005_FINALPOLISH_A.md'
+      - 'assets/kaitaku/v005-finalpolish-a/**'
+  workflow_dispatch:
+    inputs:
+      source_artifact_run_id:
+        description: 'Run ID of a SAME-REPO Actions artifact containing pinned V005 source files'
+        required: true
+        type: string
+      source_artifact_name:
+        description: 'Artifact name containing mainstreet-v005.blend and kaitaku-mainstreet-v005.glb'
+        required: false
+        default: 'kaitaku-v005-source'
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  static-check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse candidate scripts
+        run: |
+          python3 -m py_compile \
+            scripts/blender5/kaitaku_v005_finalpolish_a.py \
+            scripts/kaitaku/apply_v005_finalpolish_a_runtime.py
+      - name: Verify pinned provenance constants
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          b=Path('scripts/blender5/kaitaku_v005_finalpolish_a.py').read_text()
+          r=Path('scripts/kaitaku/apply_v005_finalpolish_a_runtime.py').read_text()
+          assert '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc' in b
+          assert '32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4' in r
+          assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in r
+          print('Pinned V005 source/runtime hashes present')
+          PY
+
+  blender-candidate:
+    if: github.event_name == 'workflow_dispatch'
+    needs: static-check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download pinned V005 source artifact from same repository
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.source_artifact_name }}
+          path: inputs/v005
+          run-id: ${{ inputs.source_artifact_run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Locate and verify source master + baseline runtime GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          BLEND=$(find inputs/v005 -type f -name 'mainstreet-v005.blend' -print -quit)
+          GLB=$(find inputs/v005 -type f -name 'kaitaku-mainstreet-v005.glb' -print -quit)
+          test -n "$BLEND" && test -n "$GLB"
+          test "$(sha256sum "$BLEND" | awk '{print $1}')" = '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc'
+          test "$(sha256sum "$GLB" | awk '{print $1}')" = '32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4'
+          echo "KAITAKU_BLEND=$BLEND" >> "$GITHUB_ENV"
+          echo "KAITAKU_BASELINE_GLB=$GLB" >> "$GITHUB_ENV"
+          echo "Pinned source files verified."
+
+      - name: Install Blender 5.2.3 LTS from official source and verify SHA256
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          filename='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in pathlib.Path('.tools/checksums.sha256').read_text().splitlines() if filename in x)
+          expected=re.search(r'(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])',line).group().lower()
+          with open('.tools/'+filename,'rb') as f: actual=hashlib.file_digest(f,'sha256').hexdigest()
+          assert actual==expected,(actual,expected)
+          print('Official Blender SHA256 verified:',actual)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+
+      - name: Verify Blender version
+        run: blender -b --factory-startup --version
+
+      - name: Produce deterministic runtime-equivalent GLB
+        run: |
+          mkdir -p outputs
+          python3 scripts/kaitaku/apply_v005_finalpolish_a_runtime.py \
+            --source "$KAITAKU_BASELINE_GLB" \
+            --output outputs/kaitaku-v005-finalpolish-a.glb
+
+      - name: Produce protected Blender candidate + five original-material inspection views
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b --factory-startup --disable-autoexec -noaudio \
+            --python-exit-code 1 \
+            --python scripts/blender5/kaitaku_v005_finalpolish_a.py -- \
+            --source "$KAITAKU_BLEND" \
+            --output-dir outputs
+
+      - name: Validate generic GLB package structure
+        run: |
+          python3 scripts/blender5/validate_glb.py outputs
+          python3 -m json.tool outputs/report.json >/dev/null
+          python3 -m json.tool outputs/asset_manifest.json >/dev/null
+
+      - name: Verify output identity and source immutability
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(sha256sum outputs/kaitaku-v005-finalpolish-a.glb | awk '{print $1}')" = '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55'
+          test "$(sha256sum "$KAITAKU_BLEND" | awk '{print $1}')" = '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc'
+          test "$(find outputs/renders -type f -name '*.png' | wc -l)" -eq 5
+          ls -lah outputs outputs/renders
+
+      - name: Upload candidate BLEND, validated runtime GLB, five views and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kaitaku-v005-finalpolish-a-${{ github.run_number }}
+          path: outputs/
+          retention-days: 14
+          if-no-files-found: warn
