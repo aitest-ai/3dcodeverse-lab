@@ -1,0 +1,97 @@
+{
+  "schema": "date-v008-photo-guided-structural-candidate/1",
+  "status": "REAL_GLB_EXPORTED_RELOADED_GEO_VERIFIED",
+  "source_v007_sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+  "v008_glb_sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea",
+  "bytes": 674648,
+  "original_mesh_count": 17,
+  "original_triangles": 14888,
+  "new_mesh_count": 4,
+  "new_triangles": 2120,
+  "total_triangles": 17008,
+  "new_geometry": [
+    {
+      "name": "v008_waraji_upper_paper_ochre",
+      "vertices": 40,
+      "triangles": 60,
+      "bounds": [
+        [
+          49.5325,
+          5.2571,
+          70.1844
+        ],
+        [
+          56.0176,
+          5.9571,
+          73.4684
+        ]
+      ]
+    },
+    {
+      "name": "v008_waraji_upper_paper_cool",
+      "vertices": 40,
+      "triangles": 60,
+      "bounds": [
+        [
+          50.2592,
+          5.2571,
+          70.5505
+        ],
+        [
+          56.7443,
+          5.9571,
+          73.8344
+        ]
+      ]
+    },
+    {
+      "name": "v008_waraji_eave_bracket_ends",
+      "vertices": 160,
+      "triangles": 240,
+      "bounds": [
+        [
+          49.1685,
+          6.2371,
+          69.8448
+        ],
+        [
+          57.1578,
+          6.3771,
+          74.0758
+        ]
+      ]
+    },
+    {
+      "name": "v008_waraji_stone_toe",
+      "vertices": 924,
+      "triangles": 1760,
+      "bounds": [
+        [
+          49.3092,
+          1.6135,
+          70.0152
+        ],
+        [
+          57.0405,
+          1.9206,
+          73.9315
+        ]
+      ]
+    }
+  ],
+  "building_id": "way/283905573",
+  "footprint_front_edge_m": 9.061923528115528,
+  "reference_url": "https://edo-trip.jp/wp/wp-content/uploads/2018/04/f0272006b776b4fd294606a2d4a80622-800x600.jpg",
+  "reference_age": "official image path /2018/04/; site imagery may be older than 2025 renovation",
+  "reality_limit": "window backing, bracket spacing and stone sizes are author-estimated; not photogrammetry or verified 2026 color",
+  "preservation": {
+    "v007_geometry_unchanged": true,
+    "v007_original_file_unchanged": true,
+    "all_roads_unchanged": true,
+    "collision_unchanged": true,
+    "A_stage_unchanged": true
+  },
+  "blender_native": "not_run",
+  "webgl2": "not_tested",
+  "android": "not_tested"
+}
