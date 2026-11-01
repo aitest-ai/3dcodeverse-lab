@@ -1,0 +1,16 @@
+{
+  "runtime": {
+    "path": "/mnt/data/Noboribetsu_Date_V005_R1_Runtime.zip",
+    "bytes": 67863750,
+    "sha256": "88c600388801bef5294b1d1e0bd45fd4c56d0cdee4327e8770ad07c2bb46f4df",
+    "files": 59
+  },
+  "source_qa": {
+    "path": "/mnt/data/Noboribetsu_Date_V005_R1_SourceQA.zip",
+    "bytes": 3650911,
+    "sha256": "d133cb696d51279d10f4ee820f33c01f67d162fbe61b3c11cec2a187f7beb56a",
+    "files": 33
+  },
+  "report_sha256": "14fb1ccb62d5e16b07a356beb753c8f725bdec2795874dd60963f89fa5ba1b74",
+  "review_sha256": "eb76bd2b991f94127c350ee4625dbb494c8d583285e8f88ad86b1d169b674831"
+}
