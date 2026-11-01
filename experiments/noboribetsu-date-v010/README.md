@@ -11,6 +11,8 @@
 - 手機直式 **Chromium emulation（非 Android 真機）**：雙指左搖桿 + 右拖曳環顧，測得約 0.83m 移動、放手漂移 0m，環顧約 7.02°。
 - 舊 Runtime 96 份檔案只有 `dist/app.js`、`dist/input-events.js`、`dist/index.html`、`dist/qa.json` 修改，另新增 `start_v010_local.py`；其餘 92 個檔案包含完整模型均 SHA-256 完全相同。
 
+- 從原始 V009 ZIP 全新解壓、套用 V010 補丁重新建置，與交付版 98/98 份檔案的 SHA-256 完全一致。
+
 ## 非常重要的測試界線
 
 1. 此管理環境不允許 top-level localhost 或 HTTPS 導覽，採用 `page.set_content` + 子資源攔截。此 `about:blank` 頁面不是 secure context，因此**測試程式使用限測試用 SHA adapter**：按已獨立驗證的完整 GLB 位元組長度回傳該 GLB 預先核對的 SHA。它不會在 Chromium 內對該 buffer 再算一次 SHA。因此「模型獨立 SHA 檢查」和「WebGL2 遊戲整合」均通過，但**真實網站 HTTPS/WebCrypto 端到端未驗**。
