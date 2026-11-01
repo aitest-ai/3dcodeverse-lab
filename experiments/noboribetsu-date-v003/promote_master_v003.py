@@ -24,6 +24,13 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = Path(os.environ.get("NOBORIBETSU_PROJECT_ROOT", Path.cwd())).resolve()
 
 V002_SHA = "1d7637c7dd98642ffbfa03074fa6f3af50339a5e965afc2feb47e1ed86567ee1"
+FROZEN_V002_INPUTS = {
+    "authoring/date_v002_master.blend": V002_SHA,
+    "data/scene_geometry.json": "75d672d5296ac28bef25b03423da395027c4b29cf804652239f40e9fc73d408a",
+    "data/collision.json": "52cea1f4b65e11a09f5504c48daef3f4eda7ef180312c1a39ab4db152a30e562",
+    "models/scene_A.glb": "1400aff4bccb89fbc30bb2c931a71e91f8f6faf003e01bcb0c2347a14aa95a10",
+    "models/scene_B.glb": "684b0917f3bf5c2edd87e05cfb2b6f670aab6fa574bb579f6bcaa01258d81314",
+}
 BASE = PROJECT_ROOT / "authoring/date_v002_master.blend"
 OUT = PROJECT_ROOT / "authoring/date_v003_master.blend"
 MODEL = PROJECT_ROOT / "models/scene_B_native_v003.glb"
@@ -48,13 +55,31 @@ def sha(path: Path) -> str:
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
-assert BASE.exists(), f"V002 master missing: {BASE}"
-assert sha(BASE) == V002_SHA, "Frozen V002 master hash mismatch"
+if not os.environ.get("NOBORIBETSU_PROJECT_ROOT"):
+    raise RuntimeError("NOBORIBETSU_PROJECT_ROOT must point to extracted V002; refusing implicit cwd")
+if bpy.app.version[:2] != (5, 2):
+    raise RuntimeError(f"Expected Blender 5.2.x; got {bpy.app.version_string}")
+frozen_input_hashes = {}
+for relative, expected in FROZEN_V002_INPUTS.items():
+    path = PROJECT_ROOT / relative
+    if not path.is_file():
+        raise FileNotFoundError(f"Required V002 source missing: {path}")
+    actual = sha(path)
+    if actual != expected:
+        raise RuntimeError(f"Frozen V002 source hash mismatch at {relative}: {actual}")
+    frozen_input_hashes[relative] = actual
+
+for reserved in (OUT, MODEL, QA):
+    if reserved.exists():
+        raise FileExistsError(f"V003 output already exists, refusing to overwrite: {reserved}")
 
 if not bpy.data.filepath or Path(bpy.data.filepath).resolve() != BASE.resolve():
     bpy.ops.wm.open_mainfile(filepath=str(BASE))
 
 report = v3.apply_all()
+report["frozen_v002_input_sha256"] = frozen_input_hashes
+report["blender_version"] = bpy.app.version_string
+report["native_status"] = "in_progress_until_render_evidence_and_glb_checks_finish"
 
 # V002 intentionally carries nine packed, currently-unreferenced ground-source
 # textures for future authoring. Blender may drop zero-user datablocks on
@@ -160,6 +185,25 @@ for camera_spec in cameras:
         scene.render.filepath = str(EVID / f"{camera_spec['id']}_{stage}.png")
         bpy.ops.render.render(write_still=True)
 
+required_renders = []
+for cam_spec in cameras:
+    for stage in ("A", "B"):
+        path = EVID / f"{cam_spec['id']}_{stage}.png"
+        if not path.exists() or path.stat().st_size < 1000:
+            raise RuntimeError(f"Native render missing or empty: {path}")
+        with path.open("rb") as f:
+            if f.read(8) != b"\\x89PNG\\r\\n\\x1a\\n":
+                raise RuntimeError(f"Native render does not have PNG signature: {path}")
+        required_renders.append({"path": str(path.relative_to(PROJECT_ROOT)), "sha256": sha(path)})
+if not MODEL.is_file() or MODEL.stat().st_size < 1_000_000:
+    raise RuntimeError("Native GLB missing or unexpectedly tiny")
+if not OUT.is_file() or OUT.stat().st_size < 1_000_000:
+    raise RuntimeError("Native .blend missing or unexpectedly tiny")
+with OUT.open("rb") as f:
+    if f.read(7) != b"BLENDER":
+        raise RuntimeError("V003 master has invalid .blend header")
+report["native_status"] = "written_and_rendered_pending_visual_review"
+report["native_render_evidence"] = required_renders
 report["v002_master_sha256"] = V002_SHA
 report["v003_master_sha256"] = sha(OUT)
 report["native_B_sha256"] = sha(MODEL)
