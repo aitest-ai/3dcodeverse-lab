@@ -1,0 +1,22 @@
+name: Mecha v6.4 Feedback Event Kernel QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-feedback-kernel-v64.js'
+      - 'tests/mecha/v64-feedback-kernel.mjs'
+      - '.github/workflows/mecha-v64-feedback.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  feedback-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate and test bounded feedback source
+        run: |
+          node --check examples/threejs/mech-feedback-kernel-v64.js
+          node tests/mecha/v64-feedback-kernel.mjs
