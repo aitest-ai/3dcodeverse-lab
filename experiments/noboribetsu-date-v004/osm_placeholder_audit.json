@@ -1,0 +1,20 @@
+{
+  "sha256_original_sceneB": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+  "total_osm_mass_triangles": 368,
+  "target_footprints": {
+    "way/283905599": {
+      "name": "高等学問所",
+      "triangles_at_centroid": 20
+    },
+    "way/283905598": {
+      "name": "北京亭",
+      "triangles_at_centroid": 23
+    },
+    "way/283905593": {
+      "name": "七万石",
+      "triangles_at_centroid": 13
+    }
+  },
+  "stage_B_gltf_material": "Unrefined_OSM_mass",
+  "status": "STATIC_PLACEHOLDER_REMOVAL_FEASIBLE_BUT_WEBGL_NOT_TESTED"
+}
