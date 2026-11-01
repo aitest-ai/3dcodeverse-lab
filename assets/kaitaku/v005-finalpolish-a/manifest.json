@@ -1,0 +1,38 @@
+{
+  "asset_id": "kaitaku-v005-finalpolish-a",
+  "status": "runtime_validated_blender_writeback_pending",
+  "scope": [
+    "14 舊島歌郵局",
+    "15 舊山本理髮店",
+    "16 舊渡邊商店"
+  ],
+  "add_fourth_building": false,
+  "source_blend_sha256": "7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc",
+  "baseline_environment_glb_sha256": "32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4",
+  "validated_runtime_a_sha256": "752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55",
+  "glass": {
+    "dark_depth_base_color": [0.055, 0.05, 0.044, 1.0],
+    "inner_reveal_base_color": [0.07, 0.063, 0.052, 1.0],
+    "transmission_changed": false,
+    "roughness_changed": false,
+    "invented_interior": false
+  },
+  "grass": {
+    "runtime_triangles_before": 56769,
+    "runtime_triangles_removed": 547,
+    "road_edge_band_only": true
+  },
+  "protected": [
+    "low stone kerb",
+    "postal passage",
+    "postbox and hedge",
+    "barber ladder",
+    "wood poles",
+    "gable brace",
+    "stairs thresholds landing",
+    "roof hood geometry",
+    "diagnosed upper hood slant patch"
+  ],
+  "android": "not_tested",
+  "native_blender_writeback": "pending_source_artifact"
+}
