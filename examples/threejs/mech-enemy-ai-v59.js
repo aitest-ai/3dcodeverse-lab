@@ -38,7 +38,7 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
     lockedTarget=null;shots=0;warningCount=0;blockedSteps=0;
     preferredSide=id%2 ? 1 : -1;lastFire=null;
   }
-  function update({dt, position, target, visible=false, canOccupy=()=>true, sampleGround=()=>null}={}) {
+  function update({dt, position, target, visible=false, navigationTarget=null, canOccupy=()=>true, sampleGround=()=>null}={}) {
     if(!validPoint(position)||!validPoint(target))return {...snapshot(),position:null,fire:false,blocked:false,error:'invalid-position'};
     // Treat long browser stalls as a pause, never simulate a whole second at once.
     const step=finite(dt) ? clamp(dt,0,.05) : 0;
@@ -66,7 +66,15 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
       const toward={x:(p.x-pos.x)/d,z:(p.z-pos.z)/d};
       const lateral={x:-toward.z*preferredSide,z:toward.x*preferredSide};
       let moveDir;
-      if(d>profile.preferredMax) {moveDir=toward;mode=visible?'approach':'search';}
+      const navigating=!visible && validPoint(navigationTarget) &&
+        distance(pos,navigationTarget)>0.65;
+      if(navigating){
+        // Navigation only redirects the legs; the original target, LOS,
+        // cooldown and locked telegraph remain authoritative.
+        const span=distance(pos,navigationTarget);
+        moveDir={x:(navigationTarget.x-pos.x)/span,z:(navigationTarget.z-pos.z)/span};
+        mode='navigate';
+      } else if(d>profile.preferredMax) {moveDir=toward;mode=visible?'approach':'search';}
       else if(d<profile.preferredMin) {moveDir={x:-toward.x,z:-toward.z};mode='retreat';}
       else {moveDir=lateral;mode=visible?'flank':'search';}
       const stride=profile.speed*step;
