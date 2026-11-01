@@ -1,0 +1,290 @@
+{
+  "schema": "Noboribetsu_Date_V008_R1_Validation/1",
+  "date": "2026-11-01 Asia/Taipei",
+  "status": "OFFLINE_SOURCE_GLTF_NODE_DOM_PASS_GPU_ANDROID_BLENDER_PENDING",
+  "base": "V007 R1 frozen complete runtime ZIP",
+  "model": {
+    "schema": "date-v008-photo-guided-structural-candidate/1",
+    "status": "REAL_GLB_EXPORTED_RELOADED_GEO_VERIFIED",
+    "source_v007_sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+    "v008_glb_sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea",
+    "bytes": 674648,
+    "original_mesh_count": 17,
+    "original_triangles": 14888,
+    "new_mesh_count": 4,
+    "new_triangles": 2120,
+    "total_triangles": 17008,
+    "new_geometry": [
+      {
+        "name": "v008_waraji_upper_paper_ochre",
+        "vertices": 40,
+        "triangles": 60,
+        "bounds": [
+          [
+            49.5325,
+            5.2571,
+            70.1844
+          ],
+          [
+            56.0176,
+            5.9571,
+            73.4684
+          ]
+        ]
+      },
+      {
+        "name": "v008_waraji_upper_paper_cool",
+        "vertices": 40,
+        "triangles": 60,
+        "bounds": [
+          [
+            50.2592,
+            5.2571,
+            70.5505
+          ],
+          [
+            56.7443,
+            5.9571,
+            73.8344
+          ]
+        ]
+      },
+      {
+        "name": "v008_waraji_eave_bracket_ends",
+        "vertices": 160,
+        "triangles": 240,
+        "bounds": [
+          [
+            49.1685,
+            6.2371,
+            69.8448
+          ],
+          [
+            57.1578,
+            6.3771,
+            74.0758
+          ]
+        ]
+      },
+      {
+        "name": "v008_waraji_stone_toe",
+        "vertices": 924,
+        "triangles": 1760,
+        "bounds": [
+          [
+            49.3092,
+            1.6135,
+            70.0152
+          ],
+          [
+            57.0405,
+            1.9206,
+            73.9315
+          ]
+        ]
+      }
+    ],
+    "building_id": "way/283905573",
+    "footprint_front_edge_m": 9.061923528115528,
+    "reference_url": "https://edo-trip.jp/wp/wp-content/uploads/2018/04/f0272006b776b4fd294606a2d4a80622-800x600.jpg",
+    "reference_age": "official image path /2018/04/; site imagery may be older than 2025 renovation",
+    "reality_limit": "window backing, bracket spacing and stone sizes are author-estimated; not photogrammetry or verified 2026 color",
+    "preservation": {
+      "v007_geometry_unchanged": true,
+      "v007_original_file_unchanged": true,
+      "all_roads_unchanged": true,
+      "collision_unchanged": true,
+      "A_stage_unchanged": true
+    },
+    "blender_native": "not_run",
+    "webgl2": "not_tested",
+    "android": "not_tested"
+  },
+  "navigation": {
+    "schema": "date-v008-route-preservation/1",
+    "status": "PASS_STATIC_NAVIGATION_ONLY",
+    "route_length_m": 231.56641497226084,
+    "route_points": 472,
+    "checks": 944,
+    "failures": [],
+    "new_walkable_triangles": 162,
+    "travel": {
+      "blocked": 0,
+      "off_route": 0,
+      "return_blocked": 0,
+      "max_step_delta": 0.08794995392191418,
+      "end_distance_m": 4.263256414560601e-14,
+      "home_distance_m": 6.661338147750939e-16
+    },
+    "camera_stage_switch_drift": 0,
+    "stage_world_triangle_counts": {
+      "A": {
+        "triangles": 1427,
+        "degenerate": 0
+      },
+      "B": {
+        "triangles": 1427,
+        "degenerate": 0
+      }
+    }
+  },
+  "node_contract": {
+    "schema": "date-v008-node-runtime-contract/1",
+    "status": "PASS_NODE_LOGIC_NO_GPU",
+    "new_glb_sha_verified": true,
+    "corrupt_manifest_rejected": true,
+    "hide_v007_and_v005": true,
+    "archived_v005_download_skipped": true,
+    "archived_v007_download_skipped": true,
+    "archived_model_bytes_not_downloaded_on_initial_boot": 1027648,
+    "stage_switches": 2,
+    "stage_pose_drift": 0,
+    "webgl2_verified": false,
+    "android_verified": false
+  },
+  "chromium_fallback": {
+    "schema": "date-v008-no-webgl-fallback-browser/1",
+    "status": "PASS_DOM_FALLBACK_ONLY",
+    "real_3d_play_verified": false,
+    "android_verified": false,
+    "navigation_tested": false,
+    "webgl2_available": false,
+    "load_error": "此瀏覽器目前無法建立 WebGL 2。三維步行尚未啟動；可先查看交付的離線比較圖，或改用支援 WebGL 2 的瀏覽器。",
+    "review_link": "review_v008.html",
+    "manifest_ready": true,
+    "model_events": {},
+    "ready": "failed",
+    "scene_version": "登別伊達時代村 V008 草鞋屋建築精修候選｜商家街後段",
+    "fallback_page_title": "登別伊達時代村 V008｜建築對照",
+    "fallback_images_loaded": 3,
+    "console_errors": [
+      "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+      "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+      "THREE.WebGLRenderer: Error creating WebGL context."
+    ]
+  },
+  "interactive_review": {
+    "schema": "noboribetsu-v008-standalone-review/1",
+    "status": "PASS_STATIC_INTERACTIVE_REVIEW_NO_WEBGL",
+    "1280x800": {
+      "figures": 3,
+      "images": 6,
+      "sliders": 3,
+      "slider_css": "75%"
+    },
+    "430x932": {
+      "figures": 3,
+      "images": 6,
+      "sliders": 3,
+      "slider_css": "75%"
+    }
+  },
+  "local_http": {
+    "status": "PASS_LOCAL_HTTP_CONTENT",
+    "endpoints": {
+      "/index.html": {
+        "status": 200,
+        "bytes": 6637,
+        "content_type": "text/html"
+      },
+      "/scene_view.json": {
+        "status": 200,
+        "bytes": 61962,
+        "content_type": "application/json"
+      },
+      "/assets/v008_waraji_architecture.glb": {
+        "status": 200,
+        "bytes": 674648,
+        "content_type": "model/gltf-binary"
+      },
+      "/review_v008.html": {
+        "status": 200,
+        "bytes": 2075,
+        "content_type": "text/html"
+      }
+    },
+    "webgl_scene_verified": false
+  },
+  "integrity": {
+    "schema": "noboribetsu-date-v008-integrity/1",
+    "status": "PASS_OFFLINE_SOURCE_GLTF_AND_LOGIC_ONLY",
+    "original_files": 69,
+    "unchanged_files": 65,
+    "changed_existing": [
+      "dist/app.js",
+      "dist/index.html",
+      "dist/qa.json",
+      "dist/scene_view.json"
+    ],
+    "new_glb_sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea",
+    "new_glb_bytes": 674648,
+    "new_triangles": 2120,
+    "original_meshes_unchanged": 17,
+    "original_geometry_max_delta_m": 0,
+    "route_points": 472,
+    "route_length_m": 231.56641497226084,
+    "collision_unchanged": true,
+    "two_skipped_hidden_glbs_bytes": 1027648,
+    "chromium_no_webgl_fallback": "PASS_DOM_ONLY",
+    "actual_webgl": "NOT_TESTED",
+    "android": "NOT_TESTED",
+    "blender_native": "NOT_RUN",
+    "private_site": "UNCHANGED"
+  },
+  "cold_replay": {
+    "schema": "date-v008-cold-replay/1",
+    "status": "PASS_IDENTICAL_7_OUTPUTS",
+    "files": [
+      {
+        "path": "dist/app.js",
+        "matches": true,
+        "bytes": 32902,
+        "sha256": "b639d5b2b26c86c487d31f5f650a3367f1a5a6366dfef56152fb0b70e60eed70"
+      },
+      {
+        "path": "dist/index.html",
+        "matches": true,
+        "bytes": 6637,
+        "sha256": "6f9696a666b736c2c5c91810660a52708b6c832a99be59039c45732c3b00bf04"
+      },
+      {
+        "path": "dist/qa.json",
+        "matches": true,
+        "bytes": 507,
+        "sha256": "667f7dc4a7a5fbdae2f2dcc1d4972dd55bbb74eed7e551db6eeab9095be85f5d"
+      },
+      {
+        "path": "dist/scene_view.json",
+        "matches": true,
+        "bytes": 61962,
+        "sha256": "6fb8d3bce60beaf11679a8797439ce956feb4aacade4d030dcf34f1c8c27f76a"
+      },
+      {
+        "path": "dist/assets/v008_waraji_architecture.glb",
+        "matches": true,
+        "bytes": 674648,
+        "sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea"
+      },
+      {
+        "path": "dist/v008_architecture_manifest.json",
+        "matches": true,
+        "bytes": 1266,
+        "sha256": "08059500d66ee51679665091eda29b5bdb75a13898dc4487358bdcdb7d4bb1f6"
+      },
+      {
+        "path": "dist/review_v008.html",
+        "matches": true,
+        "bytes": 2075,
+        "sha256": "c48dc5918d34618a089e1c7b5144e900e3353e1f33a5c78a5df2d6dd75c4b4a3"
+      }
+    ],
+    "conditions": "V007 archive independently extracted; V008 model & integration rebuilt; diagnostic images reused, not re-rendered"
+  },
+  "must_not_claim": [
+    "WebGL2 real 3D rendering",
+    "Android hardware",
+    "Blender native master",
+    "2026 building facade accuracy",
+    "private site CDN/login"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "noboribetsu-v008-standalone-review/1",
+  "status": "PASS_STATIC_INTERACTIVE_REVIEW_NO_WEBGL",
+  "1280x800": {
+    "figures": 3,
+    "images": 6,
+    "sliders": 3,
+    "slider_css": "75%"
+  },
+  "430x932": {
+    "figures": 3,
+    "images": 6,
+    "sliders": 3,
+    "slider_css": "75%"
+  }
+}

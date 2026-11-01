@@ -1,0 +1,49 @@
+{
+  "schema": "date-v008-cold-replay/1",
+  "status": "PASS_IDENTICAL_7_OUTPUTS",
+  "files": [
+    {
+      "path": "dist/app.js",
+      "matches": true,
+      "bytes": 32902,
+      "sha256": "b639d5b2b26c86c487d31f5f650a3367f1a5a6366dfef56152fb0b70e60eed70"
+    },
+    {
+      "path": "dist/index.html",
+      "matches": true,
+      "bytes": 6637,
+      "sha256": "6f9696a666b736c2c5c91810660a52708b6c832a99be59039c45732c3b00bf04"
+    },
+    {
+      "path": "dist/qa.json",
+      "matches": true,
+      "bytes": 507,
+      "sha256": "667f7dc4a7a5fbdae2f2dcc1d4972dd55bbb74eed7e551db6eeab9095be85f5d"
+    },
+    {
+      "path": "dist/scene_view.json",
+      "matches": true,
+      "bytes": 61962,
+      "sha256": "6fb8d3bce60beaf11679a8797439ce956feb4aacade4d030dcf34f1c8c27f76a"
+    },
+    {
+      "path": "dist/assets/v008_waraji_architecture.glb",
+      "matches": true,
+      "bytes": 674648,
+      "sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea"
+    },
+    {
+      "path": "dist/v008_architecture_manifest.json",
+      "matches": true,
+      "bytes": 1266,
+      "sha256": "08059500d66ee51679665091eda29b5bdb75a13898dc4487358bdcdb7d4bb1f6"
+    },
+    {
+      "path": "dist/review_v008.html",
+      "matches": true,
+      "bytes": 2075,
+      "sha256": "c48dc5918d34618a089e1c7b5144e900e3353e1f33a5c78a5df2d6dd75c4b4a3"
+    }
+  ],
+  "conditions": "V007 archive independently extracted; V008 model & integration rebuilt; diagnostic images reused, not re-rendered"
+}

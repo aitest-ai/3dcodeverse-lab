@@ -1,0 +1,30 @@
+{
+  "schema": "date-v008-release-manifest/1",
+  "status": "CANDIDATE_NOT_DEPLOYED",
+  "files": {
+    "Noboribetsu_Date_V008_R1_Runtime.zip": {
+      "bytes": 70313790,
+      "sha256": "89ef081da89828503787839fed5643b5e222304e7bba94495679be73fd782cb8"
+    },
+    "Noboribetsu_Date_V008_R1_SourceQA.zip": {
+      "bytes": 2450062,
+      "sha256": "8c44244805c9852387a89a93480b58d5c18bcf2d673a865b3b8931e029af2aea"
+    },
+    "Noboribetsu_Date_V008_R1_Review.html": {
+      "bytes": 2041780,
+      "sha256": "9ee5347f88cf0812372fae0d717cc393025f310b47f9d1b382b54addc6109a04"
+    },
+    "Noboribetsu_Date_V008_R1_Delivery_Report.md": {
+      "bytes": 3906,
+      "sha256": "c1ee0008265445b0db456d89bab5f637e9078807713766d8cc24b1402bfd7e63"
+    },
+    "Noboribetsu_Date_V008_R1_Validation.json": {
+      "bytes": 8975,
+      "sha256": "3af6acec51043a7059d4ba4641c1b235d83720b5baf510f71c679c19978cdce9"
+    },
+    "V008_architecture_glb": {
+      "bytes": 674648,
+      "sha256": "ff6725b1ecb22b455203c69dd4dd194f68c2b356ce17364ad89e09941d4ca4ea"
+    }
+  }
+}
