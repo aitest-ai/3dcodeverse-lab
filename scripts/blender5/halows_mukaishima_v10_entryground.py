@@ -259,6 +259,12 @@ for nm,pos,tgt,lens in shots:
  cam.location=pos; look(tgt); cam.data.lens=lens
  p=OUT/f"{ID}_{nm}.png"; sc.render.filepath=str(p.resolve()); bpy.ops.render.render(write_still=True); imgs.append(p)
 
+# Preserve the exact lighting and final camera in the editable Blender mother file.
+# The earlier pre-render save protects geometry during the build; this final save
+# ensures the delivered .blend is inspectable with its real render setup intact.
+bpy.context.preferences.filepaths.save_version=0
+bpy.ops.wm.save_as_mainfile(filepath=str(blend.resolve()))
+
 def sha(p):
  h=hashlib.sha256()
  with open(p,"rb") as f:
