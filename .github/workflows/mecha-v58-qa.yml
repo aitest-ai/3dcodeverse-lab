@@ -1,0 +1,24 @@
+name: Mecha v5.8 Ground and Telemetry Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-ground-safety-v58.js'
+      - 'examples/threejs/mech-qa-v58.js'
+      - 'tests/mecha/v58-ground-and-qa.mjs'
+      - '.github/workflows/mecha-v58-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ground-and-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test real pure JS modules
+        run: |
+          node --check examples/threejs/mech-ground-safety-v58.js
+          node --check examples/threejs/mech-qa-v58.js
+          node tests/mecha/v58-ground-and-qa.mjs
