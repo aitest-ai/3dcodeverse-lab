@@ -3,7 +3,8 @@
 
 Bounded scope only:
 - lighten two neutral *unmodeled* closed-window backing/reveal materials;
-- break comb-like continuity of V005 clustered roadside grass in a narrow band;\n- give only the 16 Watanabe ground-floor closed storefront backing/reveal local A3 materials.
+- break comb-like continuity of V005 clustered roadside grass in a narrow band;
+- give only the 16 Watanabe ground-floor closed storefront backing/reveal local A3 materials.
 
 Hard exclusions: stone kerbs, postal passage, postbox/hedge, barber ladder, wood
 poles/braces, stairs/threshold/landing, roof/hood geometry, and the diagnosed
@@ -28,7 +29,9 @@ EXPECTED_SOURCE_SHA256 = "7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e
 ASSET_ID = "kaitaku-v005-finalpolish-a3"
 SEED = 1505006
 DARK_DEPTH = (0.055, 0.050, 0.044, 1.0)
-INNER_REVEAL = (0.070, 0.063, 0.052, 1.0)\nSTORE_DARK_DEPTH = (0.075, 0.068, 0.055, 1.0)\nSTORE_INNER_REVEAL = (0.088, 0.080, 0.066, 1.0)
+INNER_REVEAL = (0.070, 0.063, 0.052, 1.0)
+STORE_DARK_DEPTH = (0.075, 0.068, 0.055, 1.0)
+STORE_INNER_REVEAL = (0.088, 0.080, 0.066, 1.0)
 
 SHOTS = [
     ("01-mainstreet-overview", (24, -33, 17), (0, 2, 2), 40, 1700, 1000),
