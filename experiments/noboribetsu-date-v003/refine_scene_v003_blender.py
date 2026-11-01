@@ -9,14 +9,14 @@ No route, DEM, collision, tile roof, column-foot, building footprint or survey c
 This module is meant to be called from promote_master_v003.py inside Blender 5.2.x.
 """
 from __future__ import annotations
-import json, math, random
+import json, math, os, random
 from collections import Counter
 from pathlib import Path
 
 import bpy
 from mathutils import Vector
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(os.environ.get("NOBORIBETSU_PROJECT_ROOT", Path.cwd())).resolve()
 VERSION = "V003"
 
 MATERIAL_FACTORS = {
