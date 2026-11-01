@@ -285,8 +285,27 @@ def add_ground_edge_blend(collection):
 
 
 def apply_all():
+    A = bpy.data.collections.get("A_DATA_SKELETON")
     B = bpy.data.collections.get("B_SITE_REFINEMENT")
+    assert A is not None, "V002 A_DATA_SKELETON collection missing"
     assert B is not None, "V002 B_SITE_REFINEMENT collection missing"
+    # Global Blender material datablocks can be shared across collections.
+    # Refuse edits if V003 targets are used in the immutable A skeleton.
+    a_material_names = {
+        mat.name for obj in A.all_objects
+        if obj.type == "MESH" and obj.data
+        for mat in obj.data.materials if mat is not None
+    }
+    shared = sorted(a_material_names.intersection(MATERIAL_FACTORS))
+    if shared:
+        raise RuntimeError(f"V003 materials shared with A skeleton: {shared}")
+    a_mesh_ids = {
+        obj.data.as_pointer() for obj in A.all_objects
+        if obj.type == "MESH" and obj.data
+    }
+    for obj in B.all_objects:
+        if obj.type == "MESH" and obj.data and obj.data.as_pointer() in a_mesh_ids:
+            raise RuntimeError(f"A/B share editable mesh data: {obj.name}")
     return {
         "version": VERSION,
         "material_balance": apply_material_balance(),
