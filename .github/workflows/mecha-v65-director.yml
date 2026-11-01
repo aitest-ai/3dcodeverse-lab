@@ -1,0 +1,24 @@
+name: Mecha v6.5 Taipei Defence Mission Director QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-mission-director-v65.js'
+      - 'examples/threejs/mech-enemy-ai-v59.js'
+      - 'tests/mecha/v65-defense-director.mjs'
+      - '.github/workflows/mecha-v65-director.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  director:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test true independent mission director and AI core
+        run: |
+          node --check examples/threejs/mech-mission-director-v65.js
+          node --check examples/threejs/mech-enemy-ai-v59.js
+          node tests/mecha/v65-defense-director.mjs
