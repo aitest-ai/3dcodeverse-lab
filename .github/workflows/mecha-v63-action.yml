@@ -4,6 +4,7 @@ on:
     paths:
       - 'examples/threejs/mech-enemy-action-v63.js'
       - 'examples/threejs/mech-enemy-glb-v63.js'
+      - 'examples/threejs/mech-root-motion-v63.js'
       - 'tests/mecha/v63-action-loader.mjs'
       - '.github/workflows/mecha-v63-action.yml'
   workflow_dispatch:
@@ -21,4 +22,5 @@ jobs:
         run: |
           node --check examples/threejs/mech-enemy-action-v63.js
           node --check examples/threejs/mech-enemy-glb-v63.js
+          node --check examples/threejs/mech-root-motion-v63.js
           node tests/mecha/v63-action-loader.mjs
