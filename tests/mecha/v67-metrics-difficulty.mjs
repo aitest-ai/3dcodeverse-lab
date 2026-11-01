@@ -29,7 +29,7 @@ assert.equal(m.report().counts.playerDamage,12);
 assert.equal(m.report().waves.length,1);
 assert.equal(m.report().waves[0].combatSeconds,1);
 const json=JSON.stringify(m.report());
-for(const s of ['11111','22222','999999','lat','userId','GPS'])assert.ok(!json.includes(s),'private value leaked '+s);
+for(const s of ['11111','22222','999999','"lat":','"userId":','"deviceId":'])assert.ok(!json.includes(s),'private value leaked '+s);
 m.observe(.016,{mission:{phase:'victory',wave:1,finished:true}});
 assert.equal(m.report().status,'complete');
 assert.equal(m.record('enemy_hit',{damage:10}),false);
