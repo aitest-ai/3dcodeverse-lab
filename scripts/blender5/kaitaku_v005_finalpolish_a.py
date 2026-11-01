@@ -26,6 +26,9 @@ import bpy
 from mathutils import Vector
 
 EXPECTED_SOURCE_SHA256 = "7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc"
+VALIDATED_RUNTIME_A_SHA256 = "752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55"
+VALIDATED_RUNTIME_A3_SHA256 = "8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f"
+VALIDATED_RUNTIME_A3_BYTES = 380250208
 ASSET_ID = "kaitaku-v005-finalpolish-a3"
 SEED = 1505006
 DARK_DEPTH = (0.055, 0.050, 0.044, 1.0)
@@ -320,6 +323,7 @@ def main(argv=None):
         "scope": "V005 FinalPolish A3 candidate; A base + store-local A3 overlay; no fourth building",
         "glass": {},
         "grass": {},
+        "storefront_a3": {},
         "protected_geometry_count": len(protected_hash),
     }
 
@@ -387,9 +391,11 @@ def main(argv=None):
         "source_master_sha256": EXPECTED_SOURCE_SHA256,
         "candidate_blend": {"path": outblend.name, "sha256": report["output_blend_sha256"], "bytes": outblend.stat().st_size},
         "runtime_reference": {
-            "validated_environment_glb_sha256": "752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55",
-            "validated_environment_bytes": 380249836,
-            "note": "The workflow supplies this deterministic runtime-equivalent GLB. Native candidate export parity is a separate future check.",
+            "validated_environment_glb_sha256": VALIDATED_RUNTIME_A3_SHA256,
+            "validated_environment_bytes": VALIDATED_RUNTIME_A3_BYTES,
+            "parent_finalpolish_a_sha256": VALIDATED_RUNTIME_A_SHA256,
+            "a2_included": False,
+            "note": "The workflow deterministically builds A then A3. Native candidate export parity is a separate future check.",
         },
         "renders": report.get("renders", []),
         "android": "not tested",
