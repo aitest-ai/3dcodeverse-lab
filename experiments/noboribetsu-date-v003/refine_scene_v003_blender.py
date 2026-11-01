@@ -86,6 +86,8 @@ def apply_material_balance():
     for name, (color_factor, roughness) in MATERIAL_FACTORS.items():
         mat = bpy.data.materials.get(name)
         assert mat is not None, f"Required V002 material missing: {name}"
+        if "v003_provenance" in mat:
+            raise RuntimeError(f"V003 refinement already present on material: {name}")
         _insert_color_multiplier(mat, color_factor)
         _insert_roughness_multiplier(mat, roughness)
         mat["v003_provenance"] = (
@@ -108,9 +110,14 @@ def _material_vertex_refs(mat_name):
     """
     pts = []
     refs = []
-    for ob in bpy.data.objects:
+    # Never modify A_DATA_SKELETON even if a material name is shared.
+    B = bpy.data.collections.get("B_SITE_REFINEMENT")
+    assert B is not None, "V002 B_SITE_REFINEMENT collection missing"
+    for ob in B.all_objects:
         if ob.type != "MESH" or not ob.data:
             continue
+        if ob.get("v003_noren_refinement"):
+            raise RuntimeError(f"V003 noren refinement already applied: {ob.name}")
         slot_ids = {
             i for i, mat in enumerate(ob.data.materials)
             if mat and mat.name == mat_name
@@ -180,6 +187,8 @@ def _deform_material_group(mat_name, fold_amplitude):
         ))
         old_world = ob.matrix_world @ ob.data.vertices[vi].co
         max_disp = max(max_disp, (new_world-old_world).length)
+        if (new_world-old_world).length > 0.05:
+            raise RuntimeError(f"Noren edit exceeds 5 cm at {ob.name} vertex {vi}")
         ob.data.vertices[vi].co = ob.matrix_world.inverted() @ new_world
         ob.data.update()
         ob["v003_noren_refinement"] = "author-estimated drape; no official motif copied"
