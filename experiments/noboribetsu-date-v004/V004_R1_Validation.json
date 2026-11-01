@@ -1,0 +1,109 @@
+{
+  "schema": "noboribetsu-date-v004-r1-delivery-qa/1",
+  "timestamp_local_date": "2026-11-01",
+  "version": "V004-merchant-candidate-r1",
+  "status": "candidate_static_and_navigation_pass_webgl2_blocked",
+  "route_m": 130.01461217900092,
+  "added_m": 47.13759639450049,
+  "new_buildings": [
+    "高等学問所",
+    "北京亭",
+    "七万石"
+  ],
+  "frozen_r3_files_unchanged": 39,
+  "frozen_r3_files_changed": [
+    "app.js",
+    "index.html",
+    "qa.json",
+    "scene_view.json"
+  ],
+  "r3_nonmodel_changes_allowed": [
+    "app.js",
+    "index.html",
+    "qa.json",
+    "scene_view.json"
+  ],
+  "models": {
+    "v004_merchant_road.glb": {
+      "bytes": 49352,
+      "sha256": "d766bbf2b8a7df403b0b76f1c618f1f9ba2796eb4197d2df574fc4de5e58c81d",
+      "gltf_mesh_count": 3,
+      "materials": 3
+    },
+    "v004_merchant_facades.glb": {
+      "bytes": 1208064,
+      "sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+      "gltf_mesh_count": 17,
+      "materials": 17
+    },
+    "v004_merchant_signs.glb": {
+      "bytes": 23272,
+      "sha256": "158c5350a931f7ad4be7d147b23815820bc17c3e6314a17d752f4ca86fd9a0bd",
+      "gltf_mesh_count": 2,
+      "materials": 2
+    }
+  },
+  "route_collision_test": {
+    "version": "V004-merchant-candidate-r1",
+    "route_old": 82.87701578450043,
+    "route_new": 130.01461217900092,
+    "route_points": 255,
+    "old_obstacles": 58,
+    "new_posts": 24,
+    "collision_stats": {
+      "A": {
+        "triangles": 953,
+        "degenerate": 0
+      },
+      "B": {
+        "triangles": 953,
+        "degenerate": 0
+      }
+    },
+    "scanned_points": 510,
+    "blocked_points": [],
+    "walk": {
+      "blocked": 0,
+      "far": 0,
+      "maxSingleDelta": 0.041413805720681096,
+      "end_position": {
+        "x": 42.124944619267424,
+        "y": 1.5008070047490636,
+        "z": 61.894925824387656
+      },
+      "end_error_m": 2.929642751054232e-14
+    },
+    "switch_zero_drift": true,
+    "return_heading": -1.395830691738687,
+    "obstacle_way/283905599": "obstacle",
+    "obstacle_way/283905598": "obstacle",
+    "obstacle_way/283905593": "obstacle",
+    "ok": true
+  },
+  "replay_route_collision_test": {
+    "ok": true,
+    "route_new": 130.01461217900092,
+    "scanned_points": 510,
+    "blocked_points": []
+  },
+  "build_replay_sha256_match": true,
+  "webgl2": {
+    "status": "BLOCKED_BY_ENVIRONMENT",
+    "cause": "headless Chromium host unable to create WebGL2; V004 real browser rendering not validated"
+  },
+  "android_real_device": "NOT_TESTED",
+  "private_site_cdn": "NOT_TESTED",
+  "blender_native_extension_master": "NOT_RENDERED_OR_PRODUCED",
+  "V003_R3": {
+    "original_model_transport_assets_unchanged": true,
+    "inherited_chromium_evidence_applies_to_original_B_only": true
+  },
+  "visual": [
+    "Independent VTK geometry-only diagnostics; not Cycles or browser screenshots",
+    "New storefront heights, roof pitches, doors, road width, sign placements are estimated and require photo alignment"
+  ],
+  "third_person": "disabled",
+  "interiors": "not_modelled",
+  "site_uploaded_or_updated": false,
+  "github_merge": "none"
+}
