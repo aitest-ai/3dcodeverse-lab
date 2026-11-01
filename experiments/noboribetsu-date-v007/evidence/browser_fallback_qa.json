@@ -1,0 +1,21 @@
+{
+  "schema": "date-v007-no-webgl-fallback-browser/1",
+  "status": "PASS_DOM_FALLBACK_ONLY",
+  "real_3d_play_verified": false,
+  "android_verified": false,
+  "navigation_tested": false,
+  "webgl2_available": false,
+  "load_error": "此瀏覽器目前無法建立 WebGL 2。三維步行尚未啟動；可先查看交付的離線比較圖，或改用支援 WebGL 2 的瀏覽器。",
+  "review_link": "review_v007.html",
+  "manifest_ready": true,
+  "model_events": {},
+  "ready": "failed",
+  "scene_version": "登別伊達時代村 V007 近景精修候選｜商家街後段",
+  "fallback_page_title": "登別伊達時代村 V007｜GLB 診斷比較",
+  "fallback_images_loaded": 3,
+  "console_errors": [
+    "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+    "THREE.WebGLRenderer: A WebGL context could not be created. Reason:  Could not create a WebGL context, VENDOR = 0xffff, DEVICE = 0xffff, Sandboxed = no, Optimus = no, AMD switchable = no, Reset notification strategy = 0x0000, ErrorMessage = BindToCurrentSequence failed: .",
+    "THREE.WebGLRenderer: Error creating WebGL context."
+  ]
+}
