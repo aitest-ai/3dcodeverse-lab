@@ -1,0 +1,56 @@
+{
+  "schema": "noboribetsu-date-v009-validation/1",
+  "status": "CANDIDATE_PASS_STATIC_AND_SOURCE_ONLY",
+  "version": "V009-utsuroi-candidate-r1",
+  "checks": {
+    "model": {
+      "status": "GLB_RELOADED_STRUCTURAL_REPAIR_VERIFIED"
+    },
+    "runtime": {
+      "status": "PASS_NODE_LOGIC_ONLY"
+    },
+    "navigation": {
+      "status": "PASS_STATIC_NAVIGATION_ONLY"
+    },
+    "review": {
+      "status": "PASS_DOM_FALLBACK"
+    },
+    "http": {
+      "status": "PASS_LOCAL_RESOURCE_HTTP_ONLY"
+    },
+    "webgl": {
+      "status": "UNAVAILABLE_IN_CURRENT_CONTAINER"
+    },
+    "replay": {
+      "status": "PASS_REPLAY_FROM_V008_ARCHIVE"
+    },
+    "integrity": {
+      "status": "PASS_SOURCE_AND_ASSET_BYTES_ONLY"
+    }
+  },
+  "metrics": {
+    "route_m": 231.56641497226084,
+    "route_points": 472,
+    "A_B_route_checks": 944,
+    "original_faces": 17008,
+    "removed_side_wood_boxes": 20,
+    "removed_faces": 240,
+    "added_faces": 336,
+    "final_faces": 17104,
+    "source_unchanged_files": 68,
+    "original_v008_dist_files": 72,
+    "new_v009_dist_files": 83,
+    "archived_facade_model_bytes_deferred": 1702296
+  },
+  "model_sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620",
+  "not_tested": [
+    "actual Three.js WebGL2 scene and FPS",
+    "Android hardware",
+    "private website CDN/login",
+    "Blender 5.2.3 .blend and Cycles",
+    "current 2026 Utsuroi-kan front elevation"
+  ],
+  "official_use_reference": "https://edo-trip.jp/facility/utsuroi-kan/",
+  "visualization": "VTK fixed camera GLB comparison (NOT actual Three.js screenshot)",
+  "source_archive_required": "Noboribetsu_Date_V008_R1_Runtime.zip"
+}
