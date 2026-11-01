@@ -13,11 +13,12 @@ export const DEFENSE_WAVES_V60=Object.freeze([
   Object.freeze({label:'重裝決戰',roles:Object.freeze(['assault','ranger','heavy','assault'])})
 ]);
 
-export function createTaipeiDefenseMissionV60({duration=300,relayMaxHP=100,betweenWaves=4,waves=DEFENSE_WAVES_V60}={}){
+export function createTaipeiDefenseMissionV60({duration=300,relayMaxHP=100,betweenWaves=4,intermissions=null,waves=DEFENSE_WAVES_V60}={}){
   if(!valid(duration)||duration<30||duration>1800)throw new RangeError('duration must be 30-1800 seconds');
   if(!valid(relayMaxHP)||relayMaxHP<1||relayMaxHP>10000)throw new RangeError('invalid relay health');
   if(!valid(betweenWaves)||betweenWaves<0||betweenWaves>60)throw new RangeError('invalid intermission');
   if(!Array.isArray(waves)||waves.length<1||waves.length>12||waves.some(w=>!Array.isArray(w.roles)||w.roles.length<1||w.roles.length>12||w.roles.some(r=>!VALID_ROLES.has(r))))throw new TypeError('invalid waves');
+  if(intermissions!==null && (!Array.isArray(intermissions)||intermissions.length!==waves.length-1||intermissions.some(x=>!valid(x)||x<0||x>60)))throw new RangeError('Invalid per-wave setup times');
   let phase='idle',reason=null,remaining=duration,relayHP=relayMaxHP,waveIndex=-1,interval=0;
   let anchor=null,kills=0,enemyIds=new Set(),visited=new Set();
   let eventCount=0;
@@ -49,7 +50,7 @@ export function createTaipeiDefenseMissionV60({duration=300,relayMaxHP=100,betwe
     enemyIds.delete(id);kills++;eventCount++;
     if(enemyIds.size===0){
       if(waveIndex===waves.length-1){phase='victory';reason='all-waves-cleared';eventCount++;}
-      else{phase='intermission';interval=betweenWaves;eventCount++;}
+      else{phase='intermission';interval=intermissions?.[waveIndex]??betweenWaves;eventCount++;}
     }
     return true;
   }

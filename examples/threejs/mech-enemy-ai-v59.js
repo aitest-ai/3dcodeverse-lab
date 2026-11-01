@@ -27,19 +27,19 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
   let mode='approach', clock=0, timer=0, cooldown=.38+id*.19;
   let lockedTarget=null, shots=0, warningCount=0, blockedSteps=0;
   let preferredSide=id%2 ? 1 : -1;
-  let lastFire=null,lastStage='normal';
+  let lastFire=null,lastStage='normal',lockedWindup=profile.windup;
   const isOverdrive=()=>role==='heavy'&&lastStage==='overdrive';
   function snapshot() {
     return {id,role,label:profile.label,mode,windup:mode==='telegraph' ? timer : 0,
-      windupTotal:profile.windup*(isOverdrive()?.82:1),cooldown,shots,warningCount,blockedSteps,
+      windupTotal:mode==='telegraph'?lockedWindup:profile.windup*(isOverdrive()?.82:1),cooldown,shots,warningCount,blockedSteps,
       lockedTarget:lockedTarget ? {...lockedTarget} : null,fireRange:profile.range};
   }
   function reset() {
     mode='approach';clock=0;timer=0;cooldown=.38+id*.19;
     lockedTarget=null;shots=0;warningCount=0;blockedSteps=0;
-    preferredSide=id%2 ? 1 : -1;lastFire=null;lastStage='normal';
+    preferredSide=id%2 ? 1 : -1;lastFire=null;lastStage='normal';lockedWindup=profile.windup;
   }
-  function update({dt, position, target, visible=false, navigationTarget=null, stage='normal', canOccupy=()=>true, sampleGround=()=>null}={}) {
+  function update({dt, position, target, visible=false, navigationTarget=null, preferNavigation=false, allowWindup=true, stage='normal', canOccupy=()=>true, sampleGround=()=>null}={}) {
     lastStage=stage==='overdrive'?'overdrive':'normal';
     const faster=isOverdrive();
     if(!validPoint(position)||!validPoint(target))return {...snapshot(),position:null,fire:false,blocked:false,error:'invalid-position'};
@@ -61,15 +61,15 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
     } else if(mode==='recover') {
       timer-=step;
       if(timer<=0){mode='approach';timer=0;}
-    } else if(d<=profile.range && d>=2 && !!visible && cooldown<=1e-8) {
-      mode='telegraph';timer=profile.windup*(faster?.82:1);
+    } else if(d<=profile.range && d>=2 && !!visible && cooldown<=1e-8 && allowWindup) {
+      mode='telegraph';lockedWindup=profile.windup*(faster?.82:1);timer=lockedWindup;
       lockedTarget={x:p.x,z:p.z,y:finite(target.y)?target.y:pos.y};
       warningCount++;
     } else if(step>0 && d>1e-5 && d<125) {
       const toward={x:(p.x-pos.x)/d,z:(p.z-pos.z)/d};
       const lateral={x:-toward.z*preferredSide,z:toward.x*preferredSide};
       let moveDir;
-      const navigating=!visible && validPoint(navigationTarget) &&
+      const navigating=(!visible||preferNavigation) && validPoint(navigationTarget) &&
         distance(pos,navigationTarget)>0.65;
       if(navigating){
         // Navigation only redirects the legs; the original target, LOS,
