@@ -1,0 +1,95 @@
+name: Mecha v6.2 Real Blender Three Enemies
+on:
+  push:
+    paths:
+      - 'scripts/blender5/mecha_enemy_v62.py'
+      - '.github/workflows/mecha-v62-enemies.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  three-real-blender-models:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 36
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check authored Blender code
+        run: python3 -m py_compile scripts/blender5/mecha_enemy_v62.py
+      - name: Retrieve verified predecessor v5.0 Blender scene artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euxo pipefail
+          gh run download 41003028145 -R "$GITHUB_REPOSITORY" \
+            -n blender5-v50-4 -D .v62-base
+          test -s .v62-base/mecha_v50.blend
+          test -s .v62-base/mecha_v50.glb
+          python3 - <<'PY'
+          import pathlib,hashlib
+          p=pathlib.Path(".v62-base/mecha_v50.blend")
+          assert p.stat().st_size>800000
+          print("Actual v5.0 source .blend SHA256",hashlib.sha256(p.read_bytes()).hexdigest())
+          PY
+      - name: Install Linux headless 3D dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download official Blender 5.2.3 LTS and verify SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://download.blender.org/release/Blender5.2"
+          NAME="blender-5.2.3-linux-x64.tar.xz"
+          mkdir -p .tools
+          curl -fL --retry 4 --connect-timeout 30 -o ".tools/$NAME" "$URL/$NAME"
+          curl -fL --retry 4 --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-5.2.3.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          path=pathlib.Path('.tools/blender-5.2.3-linux-x64.tar.xz')
+          line=next(x for x in pathlib.Path('.tools/checksums.sha256').read_text().splitlines() if path.name in x)
+          expected=re.search(r'(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])',line).group().lower()
+          actual=hashlib.sha256(path.read_bytes()).hexdigest()
+          assert expected==actual, (expected,actual)
+          print('Official Blender checksum verified:',actual)
+          PY
+          tar -xf ".tools/$NAME" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Actual Blender 5 rigged variant generation and genuine 4-view rendering
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V62_BASE_BLEND: .v62-base/mecha_v50.blend
+          V62_OUTPUT: outputs/v62
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+            --python scripts/blender5/mecha_enemy_v62.py
+      - name: Independent GLB and mother-file verification
+        run: |
+          python3 - <<'PY'
+          import json,struct,pathlib,hashlib
+          root=pathlib.Path('outputs/v62')
+          rep=json.loads((root/'report.json').read_text())
+          for role in ('assault','ranger','heavy'):
+            folder=root/role
+            glb=(folder/f'enemy_{role}_v62.glb').read_bytes()
+            assert glb[:4]==b'glTF'
+            n,kind=struct.unpack_from('<I4s',glb,12);assert kind==b'JSON'
+            g=json.loads(glb[20:20+n])
+            assert len(g.get('skins',[]))>=1
+            assert len(g.get('animations',[]))>=6
+            assert len(g.get('meshes',[]))>=260
+            assert hashlib.sha256(glb).hexdigest()==rep['characters'][role]['glb_sha256']
+            assert (folder/f'enemy_{role}_v62.blend').stat().st_size>500000
+            for tag in ('front','side','back','three_quarter'):
+              assert (folder/f'preview_{tag}.png').stat().st_size>3000
+            print(role,'GLB',len(glb),'meshes',len(g['meshes']),
+                  'normal_maps',rep['characters'][role]['normal_baked_materials'])
+          PY
+      - name: Retain real BLEND, GLB, four-view renders, and manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taipei-v62-real-blender-${{ github.run_number }}
+          path: outputs/v62/
+          retention-days: 14
+          if-no-files-found: warn
