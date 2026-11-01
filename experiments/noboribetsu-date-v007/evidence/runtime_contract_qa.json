@@ -1,0 +1,12 @@
+{
+  "schema": "date-v007-runtime-contract/1",
+  "status": "PASS_NODE_THREE_INTEGRATION_NO_WEBGL",
+  "original_V005_facade_hidden_in_B": true,
+  "V007_visible_only_B": true,
+  "model_SHA_verified": true,
+  "failed_on_corrupt_manifest": true,
+  "stage_switch_drift": 0,
+  "stage_switches": 3,
+  "source_V005_unchanged": true,
+  "webgl2_verified": false
+}
