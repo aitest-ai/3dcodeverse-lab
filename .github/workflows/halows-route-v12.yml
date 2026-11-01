@@ -8,6 +8,14 @@ on:
       - 'scripts/blender5/halows_site_v09_data.py'
       - 'examples/halows-route-audit-v12.html'
       - '.github/workflows/halows-route-v12.yml'
+  pull_request:
+    branches:
+      - feat/halows-mukaishima-v11-facade-materials
+    paths:
+      - 'scripts/research/halows_route_v12_audit.mjs'
+      - 'scripts/blender5/halows_site_v09_data.py'
+      - 'examples/halows-route-audit-v12.html'
+      - '.github/workflows/halows-route-v12.yml'
   workflow_dispatch:
 permissions:
   contents: read
