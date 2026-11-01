@@ -32,9 +32,9 @@ for i,z in enumerate([.45+j*.48 for j in range(15)]): cube(f"joint{i}",(TX,EF-.0
 cube("entrance_recess",(TX,EF-.10,1.50),(4.75,.10,3),GD)
 for i,dx in enumerate((-1.08,1.08)): cube(f"door{i}",(TX+dx,EF-.17,1.48),(2.05,.08,2.75),GL)
 for i,dx in enumerate((-2.16,0,2.16)): cube(f"doorframe{i}",(TX+dx,EF-.22,1.48),(.08,.10,2.9),M)
-curve=bpy.data.curves.new("arch","CURVE"); curve.dimensions="3D"; curve.bevel_depth=.13; curve.bevel_resolution=2; sp=curve.splines.new("POLY"); pts=[(TX+3.35*math.cos(a),EF-.25,4.85+1.65*math.sin(a)) for a in [math.pi-i*math.pi/30 for i in range(31)]]; sp.points.add(len(pts)-1)
+ARCH=mat("arch_cream",(.98,.94,.82,1),.98,0)\ncurve=bpy.data.curves.new("arch","CURVE"); curve.dimensions="3D"; curve.bevel_depth=.18; curve.bevel_resolution=3; sp=curve.splines.new("POLY"); pts=[(TX+3.35*math.cos(a),EF-.25,4.85+1.65*math.sin(a)) for a in [math.pi-i*math.pi/30 for i in range(31)]]; sp.points.add(len(pts)-1)
 for p,co in zip(sp.points,pts): p.co=(*co,1)
-o=bpy.data.objects.new("arch",curve); bpy.context.collection.objects.link(o); curve.materials.append(WH)
+o=bpy.data.objects.new("arch",curve); bpy.context.collection.objects.link(o); curve.materials.append(ARCH)
 cy=F-4.25/2+.12; cube("canopy",(0,cy,3.04),(L-1.5,4.25,.15),M); cube("green_fascia",(0,F-4.19,3.28),(L-1.2,.30,.45),GD)
 for i,x in enumerate([(-L/2+2.2)+j*((L-4.4)/9) for j in range(10)]): cube(f"col{i}",(x,F-4.03,1.52),(.18,.18,3.04),WH)
 cube("customer_apron",(0,F-3.25,.06),(L+1.2,6.5,.12),P); cube("parking",(0,F-20.5,-.045),(L+22,28,.08),A)
@@ -73,7 +73,7 @@ for x in [15.0,19.4]:
 # Accessible parking indication near entrance; placement is representative.
 for x in [TX-5.2,TX-1.8]:
     cube("accessible_bay_line",(x,F-10.2,.012),(3.0,.055,.024),LN)
-cube("accessible_marker",(TX-3.5,F-12.5,.015),(4.8,3.4,.03),mat("accessible_blue",(.06,.24,.55,1),.82))
+AB=mat("accessible_blue",(.06,.24,.55,1),.82)\ncyl("accessible_sign_post",(TX-3.5,F-9.25,.72),.045,1.44,M)\ncube("accessible_sign",(TX-3.5,F-9.25,1.48),(.62,.08,.62),AB,.03)
 # Parking light poles seen in the official photo context.
 for i,(x,y) in enumerate([(-20,F-18),(20,F-18)]):
     cyl(f"lightpole_{i}",(x,y,4.6),.08,9.2,M)
@@ -87,8 +87,8 @@ for x in [L/2-9.4,L/2-2.6]:
 
 bpy.context.scene["asset_id"]=ID; bpy.context.scene["osm_way_id"]="661155704"; bpy.context.scene["source_note"]="OSM footprint; official Halows photo + Onomichi 2017 plan; heights and facade subdivisions partly estimated"
 blend=OUT/f"{ID}.blend"; glb=OUT/f"{ID}.glb"; bpy.ops.wm.save_as_mainfile(filepath=str(blend.resolve())); bpy.ops.export_scene.gltf(filepath=str(glb.resolve()),export_format="GLB",export_apply=True,export_animations=False)
-sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1400; sc.render.resolution_y=900; sc.world.color=(.68,.76,.78); sc.view_settings.view_transform="Standard"; sc.view_settings.exposure=.25
-bpy.ops.object.light_add(type="SUN",location=(-30,-40,60)); bpy.context.object.data.energy=2.2
+sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1400; sc.render.resolution_y=900; sc.world.color=(.68,.76,.78); sc.view_settings.view_transform="Standard"; sc.view_settings.exposure=.45
+bpy.ops.object.light_add(type="SUN",location=(-30,-40,60)); bpy.context.object.data.energy=2.8
 bpy.ops.object.camera_add(); cam=bpy.context.object; sc.camera=cam
 def look(pt): cam.rotation_euler=(Vector(pt)-cam.location).to_track_quat("-Z","Y").to_euler()
 imgs=[]
