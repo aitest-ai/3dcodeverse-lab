@@ -1,0 +1,238 @@
+{
+  "schema": "date-v007-facades-visual-only/1",
+  "status": "MODEL_EXPORTED_RELOADED_NOT_WEBGL_VERIFIED",
+  "source": {
+    "path": "assets/v005_east_facades.glb",
+    "sha256": "f2f579f398334473a5c93a55109e87fae6d175c1be5756c484a368ee07b20afb",
+    "bytes": 395568
+  },
+  "model": {
+    "path": "assets/v007_east_facades.glb",
+    "sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+    "bytes": 632080
+  },
+  "mesh_count": 17,
+  "total_triangles": 14888,
+  "unchanged_mesh_geometry_except_noren": true,
+  "noren_max_displacement_m": 0.01406719055155614,
+  "collision_changed": false,
+  "route_changed": false,
+  "new_buildings": 0,
+  "new_interiors": 0,
+  "visual_changes": "low-contrast authored material factors + 4 procedurally generated timber textures + 3 original muted limewash textures + restrained noren folds",
+  "material_records": {
+    "plaster_warm": {
+      "before": {
+        "rgb": [
+          199,
+          187,
+          163
+        ],
+        "roughness": 0.98
+      },
+      "after": {
+        "rgb": [
+          213,
+          201,
+          177
+        ],
+        "rough": 0.99
+      },
+      "original_artist_estimate": true
+    },
+    "plaster_lower": {
+      "before": {
+        "rgb": [
+          156,
+          145,
+          128
+        ],
+        "roughness": 1.0
+      },
+      "after": {
+        "rgb": [
+          163,
+          151,
+          134
+        ],
+        "rough": 1.0
+      },
+      "original_artist_estimate": true
+    },
+    "wood_structure": {
+      "before": {
+        "rgb": [
+          56,
+          41,
+          29
+        ],
+        "roughness": 0.91
+      },
+      "after": {
+        "rgb": [
+          71,
+          51,
+          37
+        ],
+        "rough": 0.93
+      },
+      "original_artist_estimate": true
+    },
+    "wood_newer": {
+      "before": {
+        "rgb": [
+          84,
+          59,
+          43
+        ],
+        "roughness": 0.87
+      },
+      "after": {
+        "rgb": [
+          94,
+          68,
+          51
+        ],
+        "rough": 0.91
+      },
+      "original_artist_estimate": true
+    },
+    "wood_edges": {
+      "before": {
+        "rgb": [
+          97,
+          71,
+          48
+        ],
+        "roughness": 0.96
+      },
+      "after": {
+        "rgb": [
+          102,
+          77,
+          57
+        ],
+        "rough": 0.95
+      },
+      "original_artist_estimate": true
+    },
+    "wood_aged": {
+      "before": {
+        "rgb": [
+          38,
+          29,
+          21
+        ],
+        "roughness": 0.93
+      },
+      "after": {
+        "rgb": [
+          51,
+          39,
+          30
+        ],
+        "rough": 0.95
+      },
+      "original_artist_estimate": true
+    },
+    "tile_worn": {
+      "before": {
+        "rgb": [
+          66,
+          71,
+          70
+        ],
+        "roughness": 0.94
+      },
+      "after": {
+        "rgb": [
+          73,
+          77,
+          77
+        ],
+        "rough": 0.96
+      },
+      "original_artist_estimate": true
+    },
+    "tile_mid": {
+      "before": {
+        "rgb": [
+          74,
+          78,
+          79
+        ],
+        "roughness": 0.92
+      },
+      "after": {
+        "rgb": [
+          79,
+          83,
+          84
+        ],
+        "rough": 0.94
+      },
+      "original_artist_estimate": true
+    },
+    "tile_dark": {
+      "before": {
+        "rgb": [
+          56,
+          61,
+          63
+        ],
+        "roughness": 0.91
+      },
+      "after": {
+        "rgb": [
+          65,
+          69,
+          69
+        ],
+        "rough": 0.94
+      },
+      "original_artist_estimate": true
+    },
+    "noren_blue": {
+      "before": {
+        "rgb": [
+          59,
+          80,
+          89
+        ],
+        "roughness": 0.96
+      },
+      "after": {
+        "rgb": [
+          69,
+          87,
+          93
+        ],
+        "rough": 0.99
+      },
+      "original_artist_estimate": true
+    },
+    "plaster_cool": {
+      "before": {
+        "rgb": [
+          194,
+          194,
+          181
+        ],
+        "roughness": 0.98
+      },
+      "after": {
+        "rgb": [
+          210,
+          211,
+          200
+        ],
+        "rough": 0.99
+      },
+      "original_artist_estimate": true
+    }
+  },
+  "authenticity": "artist-estimated, no site survey, no published photos embedded",
+  "webgl2": "NOT_VERIFIED",
+  "android": "NOT_VERIFIED",
+  "blender_native": "NOT_EXECUTED"
+}
