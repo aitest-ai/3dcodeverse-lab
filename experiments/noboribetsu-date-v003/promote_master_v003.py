@@ -69,7 +69,12 @@ for relative, expected in FROZEN_V002_INPUTS.items():
         raise RuntimeError(f"Frozen V002 source hash mismatch at {relative}: {actual}")
     frozen_input_hashes[relative] = actual
 
-for reserved in (OUT, MODEL, QA):
+reserved_outputs = [OUT, MODEL, QA] + [
+    EVID / f"{camera}_{stage}.png"
+    for camera in ("gate_front", "gate_oblique", "street")
+    for stage in ("A", "B")
+]
+for reserved in reserved_outputs:
     if reserved.exists():
         raise FileExistsError(f"V003 output already exists, refusing to overwrite: {reserved}")
 
