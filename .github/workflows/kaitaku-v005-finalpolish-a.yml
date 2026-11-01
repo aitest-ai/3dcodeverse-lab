@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/kaitaku-v005-finalpolish-a.yml'
       - 'scripts/blender5/kaitaku_v005_finalpolish_a.py'
-      - 'scripts/kaitaku/apply_v005_finalpolish_a_runtime.py'
+      - 'scripts/kaitaku/apply_v005_finalpolish_a_runtime.py'\n      - 'scripts/kaitaku/apply_v005_a2_hedge_experiment.py'\n      - 'experiments/kaitaku-v005-a2-hedge/**'
       - 'docs/KAI_V005_FINALPOLISH_A.md'
       - 'assets/kaitaku/v005-finalpolish-a/**'
   workflow_dispatch:
@@ -33,16 +33,16 @@ jobs:
         run: |
           python3 -m py_compile \
             scripts/blender5/kaitaku_v005_finalpolish_a.py \
-            scripts/kaitaku/apply_v005_finalpolish_a_runtime.py
+            scripts/kaitaku/apply_v005_finalpolish_a_runtime.py \\\n            scripts/kaitaku/apply_v005_a2_hedge_experiment.py
       - name: Verify pinned provenance constants
         run: |
           python3 - <<'PY'
           from pathlib import Path
           b=Path('scripts/blender5/kaitaku_v005_finalpolish_a.py').read_text()
-          r=Path('scripts/kaitaku/apply_v005_finalpolish_a_runtime.py').read_text()
+          r=Path('scripts/kaitaku/apply_v005_finalpolish_a_runtime.py').read_text()\n          a2=Path('scripts/kaitaku/apply_v005_a2_hedge_experiment.py').read_text()
           assert '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc' in b
           assert '32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4' in r
-          assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in r
+          assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in r\n          assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in a2\n          assert '45d9beb938e876e55c37b93237b6344b88db202f832e39d5641f2d8a4ffb0265' in a2
           print('Pinned V005 source/runtime hashes present')
           PY
 
