@@ -1,0 +1,22 @@
+name: Mecha v5.9 Three-role Enemy Tactical AI QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-enemy-ai-v59.js'
+      - 'tests/mecha/v59-enemy-tactics.mjs'
+      - '.github/workflows/mecha-v59-ai.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ai-tactics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run deterministic tactical AI tests
+        run: |
+          node --check examples/threejs/mech-enemy-ai-v59.js
+          node tests/mecha/v59-enemy-tactics.mjs
