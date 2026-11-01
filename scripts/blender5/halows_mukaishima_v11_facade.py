@@ -79,7 +79,7 @@ a0=[]
 for i in range(49):
     theta=math.pi-i*math.pi/48
     a0.append((TX+3.17*math.cos(theta),EF-.23,4.83+1.49*math.sin(theta)))
-a0.append((TX-3.17,EF-.23,4.83))
+# The arc endpoints are closed by the polygon edge; no duplicate vertex.
 me=bpy.data.meshes.new("V11_arch_infill_mesh")
 me.from_pydata(a0,[],[tuple(range(len(a0)))])
 me.update()
@@ -116,7 +116,7 @@ def signed_text(n,text,location,size,face="front",horizontal_scale=1.0):
     bpy.ops.object.convert(target="MESH")
     ob.scale.x=horizontal_scale
     return ob
-signed_text("V11_kanji_sign","ハローズ",
+signed_text("V11_katakana_sign","ハローズ",
             (TX,EF-.52,8.57),1.12,"front",1.02)
 SIDE_X=TX-TW/2-.16
 for i,dy in enumerate((-.98,.98)):
