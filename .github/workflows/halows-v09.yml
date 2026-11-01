@@ -26,7 +26,9 @@ jobs:
           from halows_site_v09_data import load_site_data
           d=load_site_data()
           assert d['asset_id']=='halows-mukaishima-v09-geosite'
-          assert len(d['terrain']['grid']['rows'])>=10\nassert len(d['terrain']['grid']['rows'][0])>=10\nassert d['terrain']['grid']['step_m']==20
+          assert len(d['terrain']['grid']['rows'])>=10
+assert len(d['terrain']['grid']['rows'][0])>=10
+assert d['terrain']['grid']['step_m']==20
           assert len(d['roads'])>=4
           print(d['origin_wgs84'], d['building']['long_axis_heading_deg_from_east_ccw'])
           PY
