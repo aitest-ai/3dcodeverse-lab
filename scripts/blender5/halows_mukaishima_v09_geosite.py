@@ -115,7 +115,7 @@ def grading_weight(x,y):
     lx,ly=to_building_local(x,y)
     # Flat graded core preserves the V08 parking/forecourt; 18m feather to DEM.
     dx=max(abs(lx)-38.0,0.0)
-    dy=max(ly-27.0,-56.0-ly,0.0)
+    dy=max(ly-27.0,-53.0-ly,0.0)
     d=math.hypot(dx,dy)
     if d<=0: return 1.0
     if d>=18.0: return 0.0
@@ -123,7 +123,7 @@ def grading_weight(x,y):
     return 1.0-(t*t*(3.0-2.0*t))
 def graded_rel_z(x,y,elev_abs):
     w=grading_weight(x,y)
-    target=PAD-0.30
+    target=PAD-0.08
     return ((elev_abs*(1-w)+target*w)-PAD)
 
 # 5m GSI DEM5A terrain lock.
@@ -143,14 +143,11 @@ for iy in range(ny-1):
 mesh=bpy.data.meshes.new("terrain_mesh"); mesh.from_pydata(verts,[],faces); mesh.update()
 terrain=bpy.data.objects.new("Terrain_GSI_DEM5A",mesh); bpy.context.collection.objects.link(terrain); mesh.materials.append(TERR)
 
-# Estimated grading slab beneath the store/forecourt. Top is below the visible parking surface.
-def rotate_xy(x,y): return ca*x-sa*y,sa*x+ca*y
-px,py=rotate_xy(0,-14.5)
-pad=cube("Store_Grading_Pad",(px,py,-.16),(76,82,.28),SITEPAD,.06); pad.rotation_euler.z=HEAD
-
-def road_z(x,y,elev):
-    return graded_rel_z(x,y,elev)+.035
-def make_road(name,points,width,material):
+def road_z(x,y,elev,follow_site_grade=False):
+    if follow_site_grade:
+        return graded_rel_z(x,y,elev)+.035
+    return elev-PAD+.035
+def make_road(name,points,width,material,follow_site_grade=False):
     pts=[p for p in points if p.get("elev_m") is not None]
     if len(pts)<2: return None
     left=[]; right=[]
@@ -162,7 +159,7 @@ def make_road(name,points,width,material):
         else:
             dx=pts[i+1]["x"]-pts[i-1]["x"]; dy=pts[i+1]["y"]-pts[i-1]["y"]
         ln=max(math.hypot(dx,dy),1e-6); nxv=-dy/ln; nyv=dx/ln
-        z=road_z(p["x"],p["y"],p["elev_m"])
+        z=road_z(p["x"],p["y"],p["elev_m"],follow_site_grade)
         left.append((p["x"]+nxv*width/2,p["y"]+nyv*width/2,z))
         right.append((p["x"]-nxv*width/2,p["y"]-nyv*width/2,z))
     rv=[]; rf=[]
@@ -175,7 +172,7 @@ for r in SITE["roads"]:
     ref=r["tags"].get("ref")
     hw=r["tags"].get("highway")
     width=7.4 if ref=="317" else (6.3 if hw=="tertiary" else 4.8)
-    make_road("OSM_road_"+r["osm_way_id"],r["points"],width,ROAD if ref=="317" or hw=="tertiary" else SERVICE)
+    make_road("OSM_road_"+r["osm_way_id"],r["points"],width,ROAD if ref=="317" or hw=="tertiary" else SERVICE,follow_site_grade=(hw=="service"))
 
 # Low curb strip on the building-side Route 317 approach, kept deliberately simple.
 for key in ("south_service_access","east_service_access"):
@@ -223,6 +220,6 @@ man={"schema_version":1,"asset_id":ID,"model_file":glb.name,"source_file":blend.
 for p in [blend,glb,*imgs,OUT/"site_lock.json"]: man["files"][p.name]={"bytes":p.stat().st_size,"sha256":sha(p)}
 (OUT/"asset_manifest.json").write_text(json.dumps(man,ensure_ascii=False,indent=2))
 (OUT/"report.json").write_text(json.dumps({"status":"PASS_BUILD_EXPORT_RENDER_GEOSITE_ONLY","origin_wgs84":SITE["origin_wgs84"],
-"building_heading_deg":SITE["building"]["long_axis_heading_deg_from_east_ccw"],"store_pad_elevation_m":PAD,
+"building_heading_deg":SITE["building"]["long_axis_heading_deg_from_east_ccw"],"store_pad_elevation_m":PAD,"grading_feather_m":10.0,
 "road_way_ids":[r["osm_way_id"] for r in SITE["roads"]],
-"limitations":SITE["integration_limits"]+["No browser/Android playtest","No actor/bicycle runtime integration in this workflow"]},ensure_ascii=False,indent=2))
+"limitations":SITE["integration_limits"]+["No browser/Android playtest","No actor/bicycle runtime integration in this workflow","Route 317 and tertiary roads preserve locked DEM elevations; only service roads may follow estimated site grading"]},ensure_ascii=False,indent=2))
