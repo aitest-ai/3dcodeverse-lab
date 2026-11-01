@@ -8,10 +8,7 @@ on:
       - 'scripts/blender5/kaitaku_v005_a3_smoke.py'
       - 'scripts/kaitaku/apply_v005_finalpolish_a_runtime.py'
       - 'scripts/kaitaku/apply_v005_a2_hedge_experiment.py'
-      - 'experiments/kaitaku-v005-a2-hedge/**'
       - 'scripts/kaitaku/apply_v005_a3_storefront_readability.py'
-      - 'experiments/kaitaku-v005-a3-storefront/**'
-      - 'docs/KAI_V005_FINALPOLISH_A.md'
       - 'assets/kaitaku/v005-finalpolish-a/**'
   workflow_dispatch:
     inputs:
