@@ -1,0 +1,28 @@
+{
+  "schema": "noboribetsu-date-v010-delivery-sha256/1",
+  "date": "2026-11-01",
+  "artifacts": {
+    "Noboribetsu_Date_V010_R1_Runtime.zip": {
+      "bytes": 72772447,
+      "sha256": "fe3be61782ff688d67cb3f5f8d9faac13e01aa066c1e776edd3960dfa7391787"
+    },
+    "Noboribetsu_Date_V010_R1_SourceQA.zip": {
+      "bytes": 1213744,
+      "sha256": "b8c284c6441bd68a43d85fe2e87a536331a432f9c199f9df2f55d1a2b2b2a13b"
+    },
+    "Noboribetsu_Date_V010_R1_Review.html": {
+      "bytes": 1558105,
+      "sha256": "4cfe64e67e877177979ab029fb7874dc9f4d50f03813faff502d4862e5dd4232"
+    },
+    "Noboribetsu_Date_V010_R1_Delivery_Report.md": {
+      "bytes": 4150,
+      "sha256": "1a6a3d8adeb49aeb8f39fbc31ed12ca212ac6dc57496e026d7d1bf27c2978467"
+    },
+    "Noboribetsu_Date_V010_R1_Validation.json": {
+      "bytes": 2998,
+      "sha256": "aa0eafa71c1aa5be20da797a3dc8932eb9103fff8242a0303cef35c7fca450f8"
+    }
+  },
+  "model_assets_not_modified": true,
+  "private_website_untouched": true
+}

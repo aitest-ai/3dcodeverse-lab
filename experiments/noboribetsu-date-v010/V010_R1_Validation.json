@@ -1,0 +1,87 @@
+{
+  "schema": "noboribetsu-date-v010-r1-acceptance/1",
+  "status": "CANDIDATE_RENDER_AND_INPUT_QA_PASS_WITH_EXTERNAL_GATES",
+  "date_local": "2026-11-01",
+  "runtime": "V010-controls-candidate-r1",
+  "assets": "V009-utsuroi-candidate-r1 (no geometry or collision change)",
+  "webgl2_chromium_swiftshader": {
+    "status": "PASS_ISOLATED_TEST_HARNESS",
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "first_frame_ms_single_run": 7253.799999999814,
+    "triangles_first_frame": 1431986,
+    "geometries": 94,
+    "textures": 47,
+    "grey_placeholder_removed_triangles": 100
+  },
+  "asset_integrity": {
+    "status": "PASS_INDEPENDENT_PYTHON_SHA256",
+    "models_checked": 10,
+    "all_match": true,
+    "browser_uses_test_only_sha_adapter": true,
+    "real_webcrypto_on_secure_origin": "NOT TESTED"
+  },
+  "controls": {
+    "keyboard_v009_movement_m": 0.0,
+    "keyboard_v010_movement_m": 1.028502309185543,
+    "release_drift_m": 0.0,
+    "route_to_end_and_back": "PASS_IN_BROWSER",
+    "A_first_lazy_load": "PASS_IN_BROWSER",
+    "A_B_camera_drift": "ZERO",
+    "mobile_chromium_emulation": {
+      "movement_m": 0.8330006002398782,
+      "release_drift_m": 0.0,
+      "wrapped_look_degrees": 7.02,
+      "android_real_device": false
+    }
+  },
+  "source_diff": {
+    "v009_files": 96,
+    "v010_files": 98,
+    "unchanged_original_files": 92,
+    "changed_existing_files": [
+      "dist/app.js",
+      "dist/index.html",
+      "dist/input-events.js",
+      "dist/qa.json"
+    ],
+    "new_files": [
+      "README_V010.md",
+      "start_v010_local.py"
+    ],
+    "unexpected_changes": []
+  },
+  "known_unresolved": [
+    "Tail terrain black/white zigzag seam visible at route 231.6m",
+    "SwiftShader software FPS too low for smooth animation; no GPU FPS acceptance",
+    "Android physical device untested",
+    "Private website CDN, login and genuine secure origin WebCrypto untested",
+    "Blender-native master and Cycles untested",
+    "Shop facade proportions and modern exterior status not verified against current site photos"
+  ],
+  "not_deployed": true,
+  "old_versions_preserved": true,
+  "third_person_disabled": true,
+  "evidence_files": [
+    "V010_Desktop_B_Scene.png",
+    "V010_Desktop_WebGL2_QA.json",
+    "V010_Mobile_Emulated_WebGL2.png",
+    "V010_Patched_Real_WebGL2_Keyboard_QA.json",
+    "V010_Real_WebGL2_Interaction_QA.json",
+    "V010_Real_WebGL2_Keyboard_QA.json",
+    "V010_Real_WebGL2_Shops_QA.json",
+    "V010_V009_Real_WebGL2_utsuroi.png",
+    "V010_V009_Real_WebGL2_waraji.png",
+    "V010_V009_StreetEnd_WebGL2.png",
+    "V010_WebGL2_Mobile_Touch_QA.json",
+    "V010_runtime_delta.json",
+    "asset_preflight.json",
+    "v010_navigation_node.json"
+  ],
+  "fresh_replay": {
+    "pass": true,
+    "files_matched": 98,
+    "files_expected": 98,
+    "base_v009_zip_sha256": "6c6f75b3cbab4b7e5b26c2c534ccf5da327202b0ea57964ec425603f95436b65"
+  }
+}

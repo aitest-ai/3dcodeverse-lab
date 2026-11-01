@@ -1,0 +1,12 @@
+{
+  "schema": "noboribetsu-date-v010-fresh-v009-replay-1",
+  "input_v009_zip_sha256": "6c6f75b3cbab4b7e5b26c2c534ccf5da327202b0ea57964ec425603f95436b65",
+  "input_zip": "Noboribetsu_Date_V009_R1_Runtime.zip",
+  "method": "fresh extracted V009 ZIP + only sourceqa/scripts/patch_v010.py + sourceqa/templates/README_V010.md and start_v010_local.py",
+  "replayed_files": 98,
+  "v010_reference_files": 98,
+  "byte_identical_files": 98,
+  "unmatched_files": [],
+  "pass": true,
+  "blender_executed": false
+}
