@@ -77,5 +77,11 @@
     "V010_runtime_delta.json",
     "asset_preflight.json",
     "v010_navigation_node.json"
-  ]
+  ],
+  "fresh_replay": {
+    "pass": true,
+    "files_matched": 98,
+    "files_expected": 98,
+    "base_v009_zip_sha256": "6c6f75b3cbab4b7e5b26c2c534ccf5da327202b0ea57964ec425603f95436b65"
+  }
 }
