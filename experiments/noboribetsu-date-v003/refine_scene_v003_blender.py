@@ -41,6 +41,8 @@ def _insert_color_multiplier(mat, factor):
     sock = p.inputs["Base Color"]
     nt = mat.node_tree
     links = list(sock.links)
+    if nt.nodes.get("V003_BaseColorMultiplier") is not None:
+        raise RuntimeError(f"V003 color already applied to {mat.name}")
     if links:
         src = links[0].from_socket
         nt.links.remove(links[0])
@@ -62,6 +64,8 @@ def _insert_roughness_multiplier(mat, factor):
     sock = p.inputs["Roughness"]
     nt = mat.node_tree
     links = list(sock.links)
+    if nt.nodes.get("V003_RoughnessMultiplier") is not None:
+        raise RuntimeError(f"V003 roughness already applied to {mat.name}")
     if links:
         src = links[0].from_socket
         nt.links.remove(links[0])
@@ -73,7 +77,8 @@ def _insert_roughness_multiplier(mat, factor):
         nt.links.new(src, mul.inputs[0])
         nt.links.new(mul.outputs[0], sock)
     else:
-        sock.default_value = factor
+        # Preserve the V002 authored roughness; a multiplier is not an absolute value.
+        sock.default_value = max(0.0, min(1.0, float(sock.default_value) * factor))
 
 
 def apply_material_balance():
@@ -251,6 +256,10 @@ def add_ground_edge_blend(collection):
         p.inputs["Base Color"].default_value = (.17,.14,.095,1)
         p.inputs["Roughness"].default_value = 1.0
         p.inputs["Metallic"].default_value = 0.0
+    if not segs or len(faces) != 2 * segs:
+        raise RuntimeError("V003 ground edge overlay unexpectedly empty or malformed")
+    if bpy.data.objects.get("V003_inferred_edge_blend_NOT_drain") is not None:
+        raise RuntimeError("V003 ground edge overlay already exists")
     ob = _mesh_object("V003_inferred_edge_blend_NOT_drain", positions, faces, mat, collection)
     ob["provenance"] = (
         "Render-only thin soil/moss-toned broken strip on EXISTING road perimeter. "
