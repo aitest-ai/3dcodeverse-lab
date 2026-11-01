@@ -1,0 +1,31 @@
+{
+  "status": "GEOMETRY_SCOPE_PASS__NATIVE_VISUAL_PENDING",
+  "variant": "V005-FinalPolish-A3H-B",
+  "parent_a3_sha256": "8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f",
+  "output_sha256": "09decb57caeb803cefd13bcd2ddf77bb0a2c31f80dc761458caafa778caa4a89",
+  "output_bytes": 380250200,
+  "position_accessors_changed": 12,
+  "geometry_bytes_changed": 304354,
+  "nodes": 592,
+  "meshes": 592,
+  "material_assignments_unchanged": true,
+  "binary_data_outside_12_accessor_spans_identical": true,
+  "photo_source": "https://www.sapporo.travel/sightseeing.photolibrary/area/area07/2571/",
+  "photo_is_measurement": false,
+  "geometry_preview": "VTK offscreen simplified-material matched camera",
+  "native_blender_cycles_a3h_b": "NOT_TESTED",
+  "android_a3h_b": "NOT_TESTED",
+  "promoted": false,
+  "protected": [
+    "V005 original",
+    "A3 parent",
+    "post office passage",
+    "postbox",
+    "kerb",
+    "soil beds",
+    "barber rainhood and slant",
+    "building geometry",
+    "A3 storefront materials",
+    "visitor"
+  ]
+}
