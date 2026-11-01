@@ -1,0 +1,55 @@
+name: Halows Mukaishima V12 Local Road QA
+on:
+  push:
+    branches:
+      - feat/halows-mukaishima-v12-route-audit
+    paths:
+      - 'scripts/research/halows_route_v12_audit.mjs'
+      - 'scripts/blender5/halows_site_v09_data.py'
+      - 'examples/halows-route-audit-v12.html'
+      - '.github/workflows/halows-route-v12.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-geometry-not-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: node --check scripts/research/halows_route_v12_audit.mjs
+      - name: Audit V09 locked OSM graph and generate offline preview
+        run: node scripts/research/halows_route_v12_audit.mjs --write
+      - name: Assert route is NOT approved and artifacts match committed preview
+        run: |
+          test -s outputs/halows-v12-route-audit/report.json
+          test -s outputs/halows-v12-route-audit/route-preview.html
+          cmp examples/halows-route-audit-v12.html outputs/halows-v12-route-audit/route-preview.html
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('outputs/halows-v12-route-audit/report.json').read_text())
+          assert r['counts']['unique_nodes']==39
+          assert r['counts']['edges']==39
+          assert r['counts']['components']==1
+          assert r['anchor_paths']['south']['distance_m']==66.5
+          assert r['anchor_paths']['east']['distance_m']==61.5
+          assert r['anchor_paths']['south']['road_classes']==['trunk']
+          assert not r['approval_gates']['ferry_to_store_connected']
+          assert not r['approval_gates']['legal_bicycle_access_verified']
+          assert not r['approval_gates']['full_3d_runtime_integrated']
+          assert r['status']=='LOCAL_CENTERLINES_CONNECTED__CYCLING_NOT_APPROVED'
+          print('V12 QA gates PASS - NOT A VERIFIED CYCLING ROUTE')
+          PY
+      - name: Archive V12 offline QA only
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: halows-v12-route-audit-${{ github.run_number }}
+          path: outputs/halows-v12-route-audit/
+          retention-days: 14
+          if-no-files-found: warn
