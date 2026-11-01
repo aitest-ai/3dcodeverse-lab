@@ -1,0 +1,36 @@
+{
+  "schema": "noboribetsu-date-v007-integrity/1",
+  "status": "PASS_SOURCE_AND_STATIC_TESTS_ONLY",
+  "old_runtime_files": 63,
+  "unchanged_old_files": 59,
+  "modified_old_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "added_model_sha256": "077e900be4a0591909625b7e1c7b2d8eaa441eb855717da0b9c6b87b7d90b34e",
+  "added_model_size_bytes": 632080,
+  "unchanged_facade_meshes": 16,
+  "total_facade_meshes": 17,
+  "triangles": 14888,
+  "noren_max_displacement_m": 0.01406719055155614,
+  "new_procedural_textured_materials": [
+    "plaster_cool",
+    "plaster_lower",
+    "plaster_warm",
+    "wood_aged",
+    "wood_edges",
+    "wood_newer",
+    "wood_structure"
+  ],
+  "route_length_m": 231.56641497226084,
+  "route_points": 472,
+  "navigation_checks": 944,
+  "browser_fallback_status": "PASS_DOM_FALLBACK_ONLY",
+  "webgl2_actual_scene": "NOT_TESTED",
+  "android": "NOT_TESTED",
+  "blender_native": "NOT_EXECUTED",
+  "private_preview": "UNCHANGED",
+  "baseline_original_GLB_and_collision": "BYTE_IDENTICAL"
+}
