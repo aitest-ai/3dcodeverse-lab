@@ -22,10 +22,14 @@
 
 ## 驗收紀錄與限制
 
-完整獨立 Windows v6.5 ZIP 的 Node/Python **72／72 項測試已於工作目錄通過**，包含真 HP 降低後的第二階段、重裝攻擊真正增加 16→20、中繼站危急、波次方向、安全生成、Android／桌面通用 HUD 介面 DOM 模擬、舊版安裝升級／重複安裝及缺模組拒絕安裝。GitHub CI 只驗證可移植核心，不等同完整 Windows 遊戲的實機畫面。
+完整獨立 Windows v6.5 ZIP 的 Node/Python **73／73 項測試已於工作目錄通過**，包含真 HP 降低後的第二階段、重裝攻擊真正增加 16→20、中繼站危急、波次方向、安全生成、Android／桌面通用 HUD 介面 DOM 模擬、舊版安裝升級／重複安裝及缺模組拒絕安裝。GitHub CI 只驗證可移植核心，不等同完整 Windows 遊戲的實機畫面。
 
 環境限制：Chromium 嘗試開啟本機離線頁回覆 `ERR_BLOCKED_BY_ADMINISTRATOR`，因此 2D 示範頁只作 JavaScript VM／Canvas mock 驗證；**Windows WebGPU、臺北 101 真實街角敵機進場與繞行、GPU FPS／VRAM、五分鐘戰鬥實測和真實畫面截圖仍待驗證**。不能聲稱這些項目已通過。
 
 ## 如何安全接手
 
 先取得完整 v6.5 ZIP，**在原 v6.4 ZIP 的副本上**操作；不要把本純核心當成完整遊戲。將 `patch_slop.py` 的修改限制在它已備份的原城市檔案，保留原始 OSM、全部舊版 GLB 和可編輯 .blend。確認實機紀錄後再考慮開下一個 Draft PR，勿提前合併此 PR 與先前尚未合併的機甲分支。
+
+
+### v6.5 解壓縮驗收補記
+在 2026-11-01 完整 ZIP 重新解壓縮後再跑 Python/Node 回歸檢查：73／73 PASS，退出碼 0。新增 Windows 啟動器隔離測試，確認只使用 v6.5 自己的 `slop-taipei-source`，不覆寫鄰近 v6.4 舊版安裝。ZIP 共 374 個項目、373 份檔案 SHA-256 核對一致，145 份既有正式資產保持相同。仍未完成 Windows WebGPU 真正遊玩。
