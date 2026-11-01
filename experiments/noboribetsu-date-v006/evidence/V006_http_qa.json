@@ -1,0 +1,49 @@
+{
+  "schema": "date-v006-local-http/1",
+  "status": "PASS_HTTP_RESOURCES_ONLY",
+  "tests": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 6433,
+      "integrity": true
+    },
+    {
+      "path": "app.js",
+      "status": 200,
+      "bytes": 29408,
+      "integrity": true
+    },
+    {
+      "path": "scene_view.json",
+      "status": 200,
+      "bytes": 61109,
+      "integrity": true
+    },
+    {
+      "path": "v006_manifest.json",
+      "status": 200,
+      "bytes": 2148,
+      "integrity": true
+    },
+    {
+      "path": "v006_collision.json",
+      "status": 200,
+      "bytes": 21075,
+      "integrity": true
+    },
+    {
+      "path": "assets/v006_tail_road.glb",
+      "status": 200,
+      "bytes": 48424,
+      "integrity": true
+    },
+    {
+      "path": "vendor/three.module.js",
+      "status": 200,
+      "bytes": 603113,
+      "integrity": true
+    }
+  ],
+  "browser_rendering": "NOT_TESTED"
+}
