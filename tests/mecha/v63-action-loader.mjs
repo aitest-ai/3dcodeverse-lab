@@ -30,7 +30,7 @@ const THREE={LoopOnce:'once',AnimationMixer:class {
   uncacheRoot(){uncached++}
 }};
 const loader=createEnemyVisualLoaderV63({THREE,loaderFactory:()=>({async loadAsync(uri){
-  loads++;assert.match(uri,/enemy_(assault|ranger|heavy)_v62.glb/);
+  loads++;assert.match(uri,/enemy_(assault|ranger|heavy)_v63.glb/);
   return {scene:{traverse(){}},animations:clips};
 }}),cloneFactory:()=>({scale:{setScalar(){}},rotation:{y:0}})});
 await loader.preload();assert.equal(loads,3);
@@ -61,4 +61,19 @@ const old={role:'heavy',hp:180,mesh:{parent:{},add(){},remove(){}},torso:{visibl
 noAsset.attach(old);await Promise.resolve();
 assert.equal(old.torso.visible,true,'fallback visible if no GLB');
 noAsset.dispose();
+// A missing new v6.3 asset should first fall back to the equally detailed
+// real v6.2 Blender file, not a crude procedural placeholder.
+let attempts=[];
+const oldVersion=createEnemyVisualLoaderV63({THREE,loaderFactory:()=>({
+  async loadAsync(url){
+    attempts.push(url);
+    if(url.endsWith('_v63.glb'))throw Error('v6.3 model missing');
+    return {scene:{traverse(){}},animations:clips};
+  }}),cloneFactory:()=>({scale:{setScalar(){}},rotation:{y:0}})});
+await oldVersion.loadRole('assault');
+assert.equal(oldVersion.status().loaded.length,1);
+assert.equal(attempts.length,2);
+assert.match(attempts[0],/_v63.glb/);
+assert.match(attempts[1],/_v62.glb/);
+oldVersion.dispose();
 console.log('PASS v6.3: real-shot Fire, HP hit, locomotion return, root masking, cleanup and asset fallback');
