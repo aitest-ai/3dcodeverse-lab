@@ -1,0 +1,28 @@
+{
+  "schema": "date-v008-route-preservation/1",
+  "status": "PASS_STATIC_NAVIGATION_ONLY",
+  "route_length_m": 231.56641497226084,
+  "route_points": 472,
+  "checks": 944,
+  "failures": [],
+  "new_walkable_triangles": 162,
+  "travel": {
+    "blocked": 0,
+    "off_route": 0,
+    "return_blocked": 0,
+    "max_step_delta": 0.08794995392191418,
+    "end_distance_m": 4.263256414560601e-14,
+    "home_distance_m": 6.661338147750939e-16
+  },
+  "camera_stage_switch_drift": 0,
+  "stage_world_triangle_counts": {
+    "A": {
+      "triangles": 1427,
+      "degenerate": 0
+    },
+    "B": {
+      "triangles": 1427,
+      "degenerate": 0
+    }
+  }
+}
