@@ -1,4 +1,4 @@
-name: Kaitaku V005 FinalPolish A Candidate
+name: Kaitaku V005 FinalPolish A3 Candidate
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
           r = Path('scripts/kaitaku/apply_v005_finalpolish_a_runtime.py').read_text()
           a2 = Path('scripts/kaitaku/apply_v005_a2_hedge_experiment.py').read_text()
           a3 = Path('scripts/kaitaku/apply_v005_a3_storefront_readability.py').read_text()
-          assert '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc' in b
+          assert '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc' in b\n          assert '8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f' in b
           assert '32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4' in r
           assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in r
           assert '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55' in a2
@@ -110,10 +110,11 @@ jobs:
       - name: Verify Blender version
         run: blender -b --factory-startup --version
 
-      - name: Produce deterministic runtime-equivalent GLB
+      - name: Produce deterministic A then browser-validated A3 runtime-equivalent GLB
         run: |
-          mkdir -p outputs
-          python3 scripts/kaitaku/apply_v005_finalpolish_a_runtime.py --source "$KAITAKU_BASELINE_GLB" --output outputs/kaitaku-v005-finalpolish-a.glb
+          mkdir -p work outputs
+          python3 scripts/kaitaku/apply_v005_finalpolish_a_runtime.py --source "$KAITAKU_BASELINE_GLB" --output work/kaitaku-v005-finalpolish-a.glb
+          python3 scripts/kaitaku/apply_v005_a3_storefront_readability.py --source work/kaitaku-v005-finalpolish-a.glb --output outputs/kaitaku-v005-finalpolish-a3.glb
 
       - name: Produce protected Blender candidate + five original-material inspection views
         env:
@@ -131,7 +132,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(sha256sum outputs/kaitaku-v005-finalpolish-a.glb | awk '{print $1}')" = '752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55'
+          test "$(sha256sum outputs/kaitaku-v005-finalpolish-a3.glb | awk '{print $1}')" = '8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f'
           test "$(sha256sum "$KAITAKU_BLEND" | awk '{print $1}')" = '7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc'
           test "$(find outputs/renders -type f -name '*.png' | wc -l)" -eq 5
           ls -lah outputs outputs/renders
@@ -140,7 +141,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: kaitaku-v005-finalpolish-a-${{ github.run_number }}
+          name: kaitaku-v005-finalpolish-a3-${{ github.run_number }}
           path: outputs/
           retention-days: 14
           if-no-files-found: warn
