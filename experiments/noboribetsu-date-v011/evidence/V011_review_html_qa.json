@@ -1,0 +1,33 @@
+{
+  "schema": "v011-review-dom-qa/1",
+  "results": [
+    {
+      "viewport": {
+        "width": 1120,
+        "height": 750
+      },
+      "success": true,
+      "images": 3,
+      "slider_values_tested": [
+        15,
+        50,
+        90
+      ],
+      "no_horizontal_overflow": true
+    },
+    {
+      "viewport": {
+        "width": 430,
+        "height": 932
+      },
+      "success": true,
+      "images": 3,
+      "slider_values_tested": [
+        15,
+        50,
+        90
+      ],
+      "no_horizontal_overflow": true
+    }
+  ]
+}

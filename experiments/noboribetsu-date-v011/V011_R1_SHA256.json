@@ -1,0 +1,30 @@
+{
+  "schema": "noboribetsu-date-v011-hashes/1",
+  "base_v010_runtime_sha256": "fe3be61782ff688d67cb3f5f8d9faac13e01aa066c1e776edd3960dfa7391787",
+  "files": {
+    "Noboribetsu_Date_V011_R1_Runtime.zip": {
+      "bytes": 72786379,
+      "sha256": "8881cbefc923c745619f258287be300a12d5176c0517bce129ff16f1c250ab51"
+    },
+    "Noboribetsu_Date_V011_R1_SourceQA.zip": {
+      "bytes": 902182,
+      "sha256": "0161aac3912aa4d4c1ae746b8a73ab8e5d392c72bcca2c745c380125f85aa924"
+    },
+    "Noboribetsu_Date_V011_R1_Review.html": {
+      "bytes": 815164,
+      "sha256": "13fbf6c6445bc00fa8ad3cfaa8344226c08a10aeb68bf76306b0fa0a73314c56"
+    },
+    "Noboribetsu_Date_V011_R1_Validation.json": {
+      "bytes": 2041,
+      "sha256": "9c210c764b56476a79159e7200d9ae6d0ea529bed759f40dd2e1ccbb0fd84bdd"
+    },
+    "Noboribetsu_Date_V011_R1_Delivery_Report.md": {
+      "bytes": 3548,
+      "sha256": "9903522a499fe2f266437ee032d39ffa910d9545c684d7a9d4c05deda6356e5f"
+    },
+    "v011_terrain_gap_patch.json": {
+      "bytes": 56289,
+      "sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "v011-mobile-emulation/1",
+  "device": "Chromium portrait 430x932 touch emulation",
+  "android_real_device": false,
+  "webgl2": true,
+  "simulated_crypto": true,
+  "model_sha_independently_verified": true,
+  "result": "PASS",
+  "loaded": "true",
+  "position_before": "-1.606,-0.375,-23.749",
+  "position_after": "-1.638,-0.375,-22.959",
+  "position_stopped": "-1.638,-0.375,-22.959",
+  "movement_m": 0.7906478356385975,
+  "drift_m": 0.0,
+  "heading": -3.101388,
+  "terrain_metrics": {
+    "cells": 148,
+    "triangles": 296,
+    "source_b_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+    "original_material_reused": true,
+    "collision_unchanged": true,
+    "route_unchanged": true,
+    "original_B_model_unchanged": true
+  },
+  "errors": []
+}
