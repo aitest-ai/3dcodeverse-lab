@@ -1,0 +1,24 @@
+name: Mecha v6.7 Private Battle Metrics and Difficulty Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-battle-metrics-v67.js'
+      - 'examples/threejs/mech-difficulty-v67.js'
+      - 'tests/mecha/v67-metrics-difficulty.mjs'
+      - '.github/workflows/mecha-v67-metrics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  metrics-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify privacy-safe metrics and original standard damage
+        run: |
+          node --check examples/threejs/mech-battle-metrics-v67.js
+          node --check examples/threejs/mech-difficulty-v67.js
+          node tests/mecha/v67-metrics-difficulty.mjs
