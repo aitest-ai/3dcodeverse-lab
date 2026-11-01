@@ -27,18 +27,21 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
   let mode='approach', clock=0, timer=0, cooldown=.38+id*.19;
   let lockedTarget=null, shots=0, warningCount=0, blockedSteps=0;
   let preferredSide=id%2 ? 1 : -1;
-  let lastFire=null;
+  let lastFire=null,lastStage='normal';
+  const isOverdrive=()=>role==='heavy'&&lastStage==='overdrive';
   function snapshot() {
     return {id,role,label:profile.label,mode,windup:mode==='telegraph' ? timer : 0,
-      windupTotal:profile.windup,cooldown,shots,warningCount,blockedSteps,
+      windupTotal:profile.windup*(isOverdrive()?.82:1),cooldown,shots,warningCount,blockedSteps,
       lockedTarget:lockedTarget ? {...lockedTarget} : null,fireRange:profile.range};
   }
   function reset() {
     mode='approach';clock=0;timer=0;cooldown=.38+id*.19;
     lockedTarget=null;shots=0;warningCount=0;blockedSteps=0;
-    preferredSide=id%2 ? 1 : -1;lastFire=null;
+    preferredSide=id%2 ? 1 : -1;lastFire=null;lastStage='normal';
   }
-  function update({dt, position, target, visible=false, navigationTarget=null, canOccupy=()=>true, sampleGround=()=>null}={}) {
+  function update({dt, position, target, visible=false, navigationTarget=null, stage='normal', canOccupy=()=>true, sampleGround=()=>null}={}) {
+    lastStage=stage==='overdrive'?'overdrive':'normal';
+    const faster=isOverdrive();
     if(!validPoint(position)||!validPoint(target))return {...snapshot(),position:null,fire:false,blocked:false,error:'invalid-position'};
     // Treat long browser stalls as a pause, never simulate a whole second at once.
     const step=finite(dt) ? clamp(dt,0,.05) : 0;
@@ -52,14 +55,14 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
       if(timer<=1e-8){
         // Locked target is immutable until release: real lateral player movement can dodge.
         fired=true;aim=lockedTarget ? {...lockedTarget} : null;
-        shots++;mode='recover';timer=profile.recovery;cooldown=profile.cooldown;
+        shots++;mode='recover';timer=profile.recovery;cooldown=profile.cooldown*(faster?.74:1);
         lastFire=aim;
       }
     } else if(mode==='recover') {
       timer-=step;
       if(timer<=0){mode='approach';timer=0;}
     } else if(d<=profile.range && d>=2 && !!visible && cooldown<=1e-8) {
-      mode='telegraph';timer=profile.windup;
+      mode='telegraph';timer=profile.windup*(faster?.82:1);
       lockedTarget={x:p.x,z:p.z,y:finite(target.y)?target.y:pos.y};
       warningCount++;
     } else if(step>0 && d>1e-5 && d<125) {
@@ -77,7 +80,7 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
       } else if(d>profile.preferredMax) {moveDir=toward;mode=visible?'approach':'search';}
       else if(d<profile.preferredMin) {moveDir={x:-toward.x,z:-toward.z};mode='retreat';}
       else {moveDir=lateral;mode=visible?'flank':'search';}
-      const stride=profile.speed*step;
+      const stride=profile.speed*(faster?1.18:1)*step;
       // Authenticated collision checker must reject buildings, water and unsafe terrain.
       function attempt(direction) {
         const next={x:pos.x+direction.x*stride,z:pos.z+direction.z*stride};
@@ -102,7 +105,7 @@ export function createEnemyBrainV59({role='assault',id=1}={}) {
     }
     return {...snapshot(),position:pos,fire:fired,fireTarget:aim,
       faceTarget:mode==='telegraph' && lockedTarget ? {...lockedTarget} : {...p},
-      blocked,moving,speed:moving?profile.speed:0};
+      blocked,moving,speed:moving?profile.speed*(faster?1.18:1):0};
   }
   return {role,profile,update,reset,snapshot,get lastFire(){return lastFire;}};
 }
