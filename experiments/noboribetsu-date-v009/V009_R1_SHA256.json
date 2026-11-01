@@ -1,0 +1,38 @@
+{
+  "schema": "noboribetsu-date-v009-delivery-manifest/1",
+  "status": "ZIP_CRC_AND_HASHES_VERIFIED",
+  "artifacts": [
+    {
+      "filename": "Noboribetsu_Date_V009_R1_Runtime.zip",
+      "bytes": 72752706,
+      "sha256": "6c6f75b3cbab4b7e5b26c2c534ccf5da327202b0ea57964ec425603f95436b65"
+    },
+    {
+      "filename": "Noboribetsu_Date_V009_R1_SourceQA.zip",
+      "bytes": 5813210,
+      "sha256": "b3a9e4bf9da993b50c0ad54c7819eee6405a258f22eff686634fb04472f7cdb0"
+    },
+    {
+      "filename": "Noboribetsu_Date_V009_R1_Review.html",
+      "bytes": 2744842,
+      "sha256": "699db0759d7bb3392741193501d15abdccf3c651644b24732a949be4937afadf"
+    },
+    {
+      "filename": "Noboribetsu_Date_V009_R1_Delivery_Report.md",
+      "bytes": 4222,
+      "sha256": "3cb64c437541170802684afecc4520fbdd63d10980d22a71fc077a40d0f0782d"
+    },
+    {
+      "filename": "Noboribetsu_Date_V009_R1_Validation.json",
+      "bytes": 1658,
+      "sha256": "de523e7822a92c472121f30531a7ac48988101fe528c5a9b9351710ace4c3743"
+    },
+    {
+      "filename": "Noboribetsu_Date_V009_R1_Utsuroi_Facade.glb",
+      "bytes": 670128,
+      "sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620"
+    }
+  ],
+  "original_v008_archive_retained": true,
+  "no_web_deployment": true
+}
