@@ -7,13 +7,14 @@ import { createEnemyActionDirectorV63 } from './mech-enemy-action-v63.js';
  * Textures/materials are shared between clones and disposed only on shutdown.
  */
 export const ENEMY_ASSETS_V63 = Object.freeze({
-  assault:'enemy_assault_v62.glb',
-  ranger:'enemy_ranger_v62.glb',
-  heavy:'enemy_heavy_v62.glb'
+  assault:'enemy_assault_v63.glb',
+  ranger:'enemy_ranger_v63.glb',
+  heavy:'enemy_heavy_v63.glb'
 });
 
 export function createEnemyVisualLoaderV63({THREE,loaderFactory=null,cloneFactory=null,onStatus=()=>{}}={}) {
   const roles=Object.keys(ENEMY_ASSETS_V63);
+  const previousAssets={assault:'enemy_assault_v62.glb',ranger:'enemy_ranger_v62.glb',heavy:'enemy_heavy_v62.glb'};
   const templates=new Map(), loading=new Map(), instances=new Set();
   let disposed=false;
   const safeStatus=(role,s)=>{try{onStatus(role,s);}catch{}};
@@ -33,16 +34,25 @@ export function createEnemyVisualLoaderV63({THREE,loaderFactory=null,cloneFactor
         if(!ready)ready=runtime();
         const {loader,clone}=await ready;
         // Module-relative URL: works on both https:// and local city folder.
-        const url=new URL('../models/'+ENEMY_ASSETS_V63[role],import.meta.url).href;
-        const gltf=await loader.loadAsync(url);
+        // If the verified new GLB is unavailable, try the previous equally
+        // detailed v6.2 GLB before falling back to the old procedural model.
+        let gltf=null,selected='none',lastError=null;
+        for(const [version,name] of [['v63',ENEMY_ASSETS_V63[role]],['v62',previousAssets[role]]]){
+          try{
+            const url=new URL('../models/'+name,import.meta.url).href;
+            const candidate=await loader.loadAsync(url);
+            if(!candidate?.scene||!Array.isArray(candidate.animations)||candidate.animations.length<6)
+              throw new Error('GLB missing scene or six clips');
+            const names=new Set(candidate.animations.map(a=>a.name));
+            for(const required of ['Mecha_Idle','Mecha_Run','Mecha_Fire','Mecha_Hit','Mecha_Dodge','Mecha_Punch'])
+              if(!names.has(required))throw new Error('Missing '+required);
+            gltf=candidate;selected=version;break;
+          }catch(error){lastError=error;}
+        }
         if(disposed)return null;
-        if(!gltf?.scene||!Array.isArray(gltf.animations)||gltf.animations.length<6)
-          throw new Error('GLB scene or six original action clips missing');
-        const names=new Set(gltf.animations.map(a=>a.name));
-        for(const name of ['Mecha_Idle','Mecha_Run','Mecha_Fire','Mecha_Hit','Mecha_Dodge','Mecha_Punch'])
-          if(!names.has(name))throw new Error('Missing '+name);
-        const entry={gltf,clone};templates.set(role,entry);
-        safeStatus(role,'loaded');return entry;
+        if(!gltf)throw lastError??new Error('No valid GLB');
+        const entry={gltf,clone,version:selected};templates.set(role,entry);
+        safeStatus(role,'loaded:'+selected);return entry;
       }catch(error){safeStatus(role,'fallback:'+String(error?.message||error));return null;}
       finally{loading.delete(role);}
     })();
