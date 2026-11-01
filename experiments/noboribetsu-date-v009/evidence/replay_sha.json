@@ -1,0 +1,9 @@
+{
+  "status": "PASS_REPLAY_FROM_V008_ARCHIVE",
+  "input_archive": "Noboribetsu_Date_V008_R1_Runtime.zip",
+  "source_sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620",
+  "replay_sha256": "e724542806e99cbd634ccd98eee219a3a69e41f8e26f0bf6bc99c3f683d92620",
+  "same_sha256": true,
+  "GLB_independent_build": true,
+  "WebGL2_tested": false
+}
