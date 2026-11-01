@@ -1,0 +1,22 @@
+name: Mecha v6.0 Taipei 101 Defence Mission Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-mission-v60.js'
+      - 'tests/mecha/v60-defense-mission.mjs'
+      - '.github/workflows/mecha-v60-defense.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mission-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate real deterministic mission source and test
+        run: |
+          node --check examples/threejs/mech-mission-v60.js
+          node tests/mecha/v60-defense-mission.mjs
