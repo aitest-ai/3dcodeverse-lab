@@ -25,10 +25,11 @@ jobs:
           sys.path.append('scripts/blender5')
           from halows_site_v09_data import load_site_data
           d=load_site_data()
+          grid=d['terrain']['grid']
           assert d['asset_id']=='halows-mukaishima-v09-geosite'
-          assert len(d['terrain']['grid']['rows'])>=10
-assert len(d['terrain']['grid']['rows'][0])>=10
-assert d['terrain']['grid']['step_m']==20
+          assert len(grid['rows'])>=10
+          assert len(grid['rows'][0])>=10
+          assert grid['step_m']==20
           assert len(d['roads'])>=4
           print(d['origin_wgs84'], d['building']['long_axis_heading_deg_from_east_ccw'])
           PY
@@ -51,7 +52,8 @@ assert d['terrain']['grid']['step_m']==20
           filename="blender-5.2.3-linux-x64.tar.xz"
           line=next(x for x in pathlib.Path(".tools/checksums.sha256").read_text().splitlines() if filename in x)
           expected=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line).group().lower()
-          with open(".tools/"+filename,"rb") as f: actual=hashlib.file_digest(f,"sha256").hexdigest()
+          with open(".tools/"+filename,"rb") as f:
+              actual=hashlib.file_digest(f,"sha256").hexdigest()
           assert actual==expected,(actual,expected)
           print("Blender SHA256 verified",actual)
           PY
@@ -66,8 +68,12 @@ assert d['terrain']['grid']['step_m']==20
           xvfb-run -a blender -b --factory-startup --python scripts/blender5/halows_mukaishima_v09_geosite.py
       - name: Validate outputs
         run: |
-          for f in halows-mukaishima-v09-geosite.blend halows-mukaishima-v09-geosite.glb asset_manifest.json report.json site_lock.json; do test -s "outputs/$f"; done
-          for s in site_aerial route317_arrival forecourt north_overview; do test -s "outputs/halows-mukaishima-v09-geosite_${s}.png"; done
+          for f in halows-mukaishima-v09-geosite.blend halows-mukaishima-v09-geosite.glb asset_manifest.json report.json site_lock.json; do
+            test -s "outputs/$f"
+          done
+          for s in site_aerial route317_arrival forecourt north_overview; do
+            test -s "outputs/halows-mukaishima-v09-geosite_${s}.png"
+          done
           python3 scripts/blender5/validate_glb.py outputs
           python3 -m json.tool outputs/site_lock.json >/dev/null
           python3 -m json.tool outputs/asset_manifest.json >/dev/null
