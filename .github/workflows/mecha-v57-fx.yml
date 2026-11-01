@@ -1,0 +1,22 @@
+name: Mecha v5.7 Portable FX Kernel QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-fx-v57.js'
+      - 'tests/mecha/v57-fx-envelope.mjs'
+      - '.github/workflows/mecha-v57-fx.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fx-envelopes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate FX source and deterministic envelopes
+        run: |
+          node --check examples/threejs/mech-fx-v57.js
+          node tests/mecha/v57-fx-envelope.mjs
