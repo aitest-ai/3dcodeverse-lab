@@ -1,0 +1,17 @@
+{
+  "schema": "date-v009-runtime-no-GPU/1",
+  "status": "PASS_NODE_LOGIC_ONLY",
+  "verified_model_requests": [
+    "V009_FACADES"
+  ],
+  "verified_v005_requests": [
+    "V005_ROAD",
+    "V005_SIGNS"
+  ],
+  "corrupt_manifest_rejected": true,
+  "new_model_sha256_verified": true,
+  "stage_switches": 2,
+  "camera_pose_drift": 0,
+  "archived_facades_not_downloaded_at_initial_boot_bytes": 1702296,
+  "precise_limit": "Static control and GLB hash validations only; WebGL2 and real GPU FPS not tested"
+}
