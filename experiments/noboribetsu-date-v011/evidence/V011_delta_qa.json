@@ -1,0 +1,15 @@
+{
+  "original_files": 83,
+  "changed": [
+    "app.js",
+    "index.html",
+    "qa.json",
+    "scene_view.json"
+  ],
+  "added": [
+    "v011_terrain_gap_patch.json"
+  ],
+  "unchanged_original_files": 79,
+  "patch_file_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+  "all_old_models_unchanged": true
+}
