@@ -1,0 +1,56 @@
+{
+  "schema": "noboribetsu-date-v003-source-ready/1",
+  "status": "SOURCE_READY_NOT_BLENDER_EXECUTED",
+  "date_local": "2026-11-01",
+  "project": "Noboribetsu Date Jidaimura",
+  "scope": {
+    "route_m": 82.877,
+    "core": "Otemon to Yugi-kan",
+    "expansion": false,
+    "interiors": false,
+    "third_person": false
+  },
+  "frozen_v002": {
+    "master_blend_sha256": "1d7637c7dd98642ffbfa03074fa6f3af50339a5e965afc2feb47e1ed86567ee1",
+    "scene_A_sha256": "1400aff4bccb89fbc30bb2c931a71e91f8f6faf003e01bcb0c2347a14aa95a10",
+    "collision_sha256": "52cea1f4b65e11a09f5504c48daef3f4eda7ef180312c1a39ab4db152a30e562",
+    "scene_B_sha256": "684b0917f3bf5c2edd87e05cfb2b6f670aab6fa574bb579f6bcaa01258d81314"
+  },
+  "candidate_v003_r2": {
+    "scene_B_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+    "triangles": 1360224,
+    "materials": 40,
+    "textures": 37,
+    "chromium_webgl2_verified": true,
+    "android_real_device_verified": false,
+    "private_site_cdn_login_verified": false
+  },
+  "allowed_changes": [
+    "Yugi-kan noren vertex drape",
+    "listed material Base Color/Roughness factors",
+    "render-only soil/moss edge blend on existing road perimeter"
+  ],
+  "forbidden_changes": [
+    "route",
+    "DEM/geography",
+    "collision",
+    "building footprint",
+    "V002 tile roof rebuild",
+    "V002 column-foot rebuild",
+    "new drainage claim",
+    "new buildings",
+    "park expansion",
+    "third-person character integration"
+  ],
+  "blender_native_expected_outputs": [
+    "authoring/date_v003_master.blend",
+    "models/scene_B_native_v003.glb",
+    "evidence/v003_native/gate_front_A.png",
+    "evidence/v003_native/gate_front_B.png",
+    "evidence/v003_native/gate_oblique_A.png",
+    "evidence/v003_native/gate_oblique_B.png",
+    "evidence/v003_native/street_A.png",
+    "evidence/v003_native/street_B.png",
+    "qa/v003_native_blender_replay.json"
+  ]
+}
