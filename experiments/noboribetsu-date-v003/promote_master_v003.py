@@ -192,7 +192,7 @@ for cam_spec in cameras:
         if not path.exists() or path.stat().st_size < 1000:
             raise RuntimeError(f"Native render missing or empty: {path}")
         with path.open("rb") as f:
-            if f.read(8) != b"\\x89PNG\\r\\n\\x1a\\n":
+            if f.read(8) != b"\x89PNG\r\n\x1a\n":
                 raise RuntimeError(f"Native render does not have PNG signature: {path}")
         required_renders.append({"path": str(path.relative_to(PROJECT_ROOT)), "sha256": sha(path)})
 if not MODEL.is_file() or MODEL.stat().st_size < 1_000_000:
