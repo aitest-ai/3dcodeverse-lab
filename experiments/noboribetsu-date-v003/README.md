@@ -62,6 +62,15 @@ Blender-native 重新輸出的 GLB **不要求與 GLB 後處理 Candidate 逐位
 - B 模型中 V003 要修改的 6 種材質名稱全部存在；R3 Runtime ZIP 也已依保存的 SHA-256 重新核對，ZIP CRC 無損。
 - 對應的獨立唯讀 preflight 程式與 8 個 Python 單元測試另存為 `Noboribetsu_Date_V003_SourceQA2.zip`；**此 ZIP 不含私人 V002 母檔**。
 
+現在也可直接從本分支執行唯讀來源檢查，不用先安裝 Blender：
+
+```bash
+python experiments/noboribetsu-date-v003/verify_frozen_v002.py \
+  /absolute/path/Noboribetsu_Date_V002_Complete.zip
+```
+
+此工具只輸出原始 V002 來源檢查結果，不會建立 V003 的模型或更動既有母檔。
+
 GitHub 此分支修正了四個回寫風險：
 1. 無連線 Roughness 輸入要保留 V002 原值再乘因子，不得直接把 0.98 等倍率當成絕對值。
 2. 暖簾形變只可操作 `B_SITE_REFINEMENT`；依材料標記重複套用，單頂點位移上限 0.05 m，避免改到 `A_DATA_SKELETON`。
