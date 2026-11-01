@@ -89,7 +89,7 @@ jobs:
               assert raw[16:20]==b'JSON'
               gltf=json.loads(f.read(length).decode('utf-8'))
           names={n.get('name') for n in gltf.get('nodes',[])}
-          for name in ['V11_kanji_sign','V11_english_sign','V11_arch_recess_noninterior',
+          for name in ['V11_katakana_sign','V11_english_sign','V11_arch_recess_noninterior',
                        'V11_sliding_track_upper','V11_canopy_underside']:
               assert name in names,name
           assert len(gltf.get('images',[]))>=2, 'Two original texture images must be embedded'
