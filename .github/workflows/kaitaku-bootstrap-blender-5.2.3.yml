@@ -1,0 +1,59 @@
+name: Bootstrap official Blender 5.2.3 portable archive
+
+on:
+  push:
+    paths:
+      - '.github/workflows/kaitaku-bootstrap-blender-5.2.3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-official-blender:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download official Blender 5.2.3 LTS archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p portable
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o "portable/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o portable/blender-5.2.3.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib,json
+          root=pathlib.Path('portable')
+          filename='blender-5.2.3-linux-x64.tar.xz'
+          line=next(x for x in (root/'blender-5.2.3.sha256').read_text().splitlines() if filename in x)
+          expected=re.search(r'(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])',line).group().lower()
+          with (root/filename).open('rb') as f:
+              actual=hashlib.file_digest(f,'sha256').hexdigest()
+          assert actual==expected,(actual,expected)
+          report={
+              'source':'https://download.blender.org/release/Blender5.2/'+filename,
+              'filename':filename,
+              'sha256':actual,
+              'bytes':(root/filename).stat().st_size,
+              'verified_against_official_checksum':True,
+          }
+          (root/'verification.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(json.dumps(report,indent=2))
+          PY
+
+      - name: Upload verified official archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-blender-5.2.3-linux-x64
+          path: |
+            portable/blender-5.2.3-linux-x64.tar.xz
+            portable/blender-5.2.3.sha256
+            portable/verification.json
+          retention-days: 2
+          compression-level: 0
+          if-no-files-found: error
