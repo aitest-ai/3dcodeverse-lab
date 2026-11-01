@@ -1,0 +1,25 @@
+{
+  "schema": "date-v006-surface-geometry-qa/1",
+  "source": "frozen V002 DEM (NOT road survey)",
+  "status": "PASS_STATIC_SURFACE_ONLY",
+  "geometries": {
+    "V006_road_earth": {
+      "triangles": 972,
+      "vertices_checked": 1944,
+      "min_clearance_m": 0.042,
+      "max_clearance_m": 0.042,
+      "below_dem_count": 0,
+      "suspicious_high_m_count": 0
+    },
+    "V006_gravel_edge": {
+      "triangles": 324,
+      "vertices_checked": 648,
+      "min_clearance_m": 0.05,
+      "max_clearance_m": 0.05,
+      "below_dem_count": 0,
+      "suspicious_high_m_count": 0
+    }
+  },
+  "not_surveyed": true,
+  "route_seam_m": 0.0
+}
