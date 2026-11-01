@@ -1,7 +1,10 @@
 import bpy, math, json, hashlib, sys
 from pathlib import Path
 from mathutils import Vector
-OUT=Path("outputs"); OUT.mkdir(exist_ok=True)\nsys.path.append(str(Path(__file__).parent))\nfrom halows_site_v09_data import load_site_data\nSITE=load_site_data()
+OUT=Path("outputs"); OUT.mkdir(exist_ok=True)
+sys.path.append(str(Path(__file__).parent))
+from halows_site_v09_data import load_site_data
+SITE=load_site_data()
 ID="halows-mukaishima-v09-geosite"; L=46.798; D=33.309; H=5.55; F=-D/2
 TX=8.6; TW=10.4; TD=4.8; TB=7.45; TT=12.4; BZ=F+0.85; EF=F-1.57
 bpy.ops.object.select_all(action="SELECT"); bpy.ops.object.delete(use_global=False)
