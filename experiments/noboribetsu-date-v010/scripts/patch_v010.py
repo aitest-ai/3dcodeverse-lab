@@ -72,5 +72,19 @@ for a,b in [('V009 變裝攝影館側牆精修候選','V010 低幀率移動修�
 index.write_text(i)
 import json
 v=json.loads(qa.read_text());v.update({'runtime_patch':'V010-motion-candidate-r1','render_model_assets':'unchanged V009','change_scope':'only motion time accumulation and input flush for low FPS; no model/collision/route edits','webgl2_swiftshader_test':'requires isolated Xvfb plus browser acceptance; does NOT establish Android or private host acceptance'})
+v['version']='V010-controls-candidate-r1'
+v['asset_version']='V009-utsuroi-candidate-r1'
+v['status']='real_chromium_webgl2_and_input_tested_in_isolated_origin'
+v['webgl2']='Chromium ANGLE SwiftShader genuine WebGL2 render/controls passed; isolated about:blank origin with TEST-ONLY hash adapter; all raw models independently SHA256 verified with Python'
+v['android']='Chromium mobile emulation passed for touch; physical Android NOT TESTED'
+v['private_site']='UNMODIFIED AND NOT TESTED'
+v['blender_native']='NOT EXECUTED'
+v['summary']='V010 已在獨立 Chromium WebGL2 環境完成 B 場景渲染、鍵盤/觸控與 A/B 切換測試；Android 實體手機和私人站仍未驗收；測試替身不進入正式程式。'
 qa.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n')
+base=Path(__file__).resolve().parent
+from shutil import copy2
+for src,dst in [(base/'start_v010_local.py',R.parent/'start_v010_local.py'),(base.parent/'templates'/'README_V010.md',R.parent/'README_V010.md')]:
+    if not src.is_file():raise FileNotFoundError(src)
+    if dst.exists():raise FileExistsError('Refusing to overwrite preexisting new file: '+str(dst))
+    copy2(src,dst)
 print('Patched',R)
