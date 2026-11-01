@@ -56,6 +56,6 @@ def sha(p):
  with open(p,"rb") as f:
   for b in iter(lambda:f.read(1<<20),b""): h.update(b)
  return h.hexdigest()
-man={"asset_id":ID,"status":"BLENDER_GENERATED_CANDIDATE_NOT_RUNTIME_INTEGRATED","blender_version":bpy.app.version_string,"files":{},"browser_tested":False,"android_tested":False,"estimated":["heights","canopy projection","door/glazing subdivisions","parking preview"]}
+man={"schema_version":1,"asset_id":ID,"model_file":glb.name,"source_file":blend.name,"clips":[],"requirements":{"skins":False},"min_animation_count":0,"status":"BLENDER_GENERATED_CANDIDATE_NOT_RUNTIME_INTEGRATED","blender_version":bpy.app.version_string,"files":{},"browser_tested":False,"android_tested":False,"estimated":["heights","canopy projection","door/glazing subdivisions","parking preview"]}
 for p in [blend,glb,*imgs]: man["files"][p.name]={"bytes":p.stat().st_size,"sha256":sha(p)}
 (OUT/"asset_manifest.json").write_text(json.dumps(man,indent=2)); (OUT/"report.json").write_text(json.dumps({"status":"PASS_BUILD_EXPORT_RENDER_ONLY","limitations":["no full route integration","no surveyed store elevation","no browser or Android test"]},indent=2))
