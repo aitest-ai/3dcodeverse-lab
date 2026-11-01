@@ -117,7 +117,7 @@ def signed_text(n,text,location,size,face="front",horizontal_scale=1.0):
     ob.scale.x=horizontal_scale
     return ob
 signed_text("V11_katakana_sign","ハローズ",
-            (TX,EF-.52,8.57),1.12,"front",1.02)
+            (TX,EF-.55,8.53),4.0,"front",1.02)
 SIDE_X=TX-TW/2-.16
 for i,dy in enumerate((-.98,.98)):
     cube("V11_west_redpanel_%d"%i,
@@ -125,7 +125,7 @@ for i,dy in enumerate((-.98,.98)):
     cyl("V11_west_green_dot_%d"%i,
         (SIDE_X-.15,BZ+dy-.23,10.8),.27,.12,SG,rot=(0,math.pi/2,0))
 signed_text("V11_english_sign","HALOWS",
-            (SIDE_X-.21,BZ,8.52),.70,"west",.73)
+            (SIDE_X-.21,BZ,8.48),1.25,"west",.82)
 
 # Rotate only newly modeled local-building objects into the same ENU frame as
 # all V10 objects. No updates to OSM positions or geodetic data.
@@ -227,7 +227,7 @@ shots=[
  ("north_overview",(-90,105,62),(0,-5,2.0),48),
  ("entry_eye",(ca*(TX+3)-sa*(F-17),sa*(TX+3)+ca*(F-17),1.68),
              (ca*TX-sa*(F-.2),sa*TX+ca*(F-.2),2.15),38),
- ("tower_identity",(ca*(TX-7)-sa*(EF-25),sa*(TX-7)+ca*(EF-25),10),
+ ("tower_identity",(ca*(TX-20)-sa*(EF-23),sa*(TX-20)+ca*(EF-23),10),
              (ca*TX-sa*EF,sa*TX+ca*EF,9.25),48),
  ("apron_detail",(ca*(TX-12)-sa*(F-18),sa*(TX-12)+ca*(F-18),3.7),
              (ca*(TX-11)-sa*(F-4),sa*(TX-11)+ca*(F-4),.10),43)
