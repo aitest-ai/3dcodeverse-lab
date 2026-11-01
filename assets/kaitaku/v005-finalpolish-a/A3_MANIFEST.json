@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "asset_id": "kaitaku-v005-finalpolish-a3",
+  "status": "preferred_runtime_candidate_blender_writeback_pending",
+  "scope": {
+    "buildings": [
+      "14 舊島歌郵局",
+      "15 舊山本理髮店",
+      "16 舊渡邊商店"
+    ],
+    "add_fourth_building": false
+  },
+  "lineage": {
+    "source_blend_sha256": "7ead93b961f243c3521244a509e53546c73e27af4539a89a303a2e28c632ddbc",
+    "baseline_environment_glb_sha256": "32ddd3721e75b95f54ade22304e4d383930e4411507b0858f7d957f7171462d4",
+    "finalpolish_a_sha256": "752887763308bf71342b0d9ac292fc0f30ffa2e30d0ec6639e7373bb03cd5a55",
+    "a2_experiment_sha256": "45d9beb938e876e55c37b93237b6344b88db202f832e39d5641f2d8a4ffb0265",
+    "a3_sha256": "8df3ada77443c390556e71c873d43dd65fe67996716e08ecfaff4e5faf60e27f"
+  },
+  "promotion": {
+    "rollback_baseline": "FinalPolish A",
+    "preferred_runtime": "FinalPolish A3",
+    "a2_hedge": "experimental_not_promoted",
+    "a2_included_in_a3": false
+  },
+  "finalpolish_a": {
+    "grass_triangles_before": 56769,
+    "grass_triangles_removed": 547,
+    "grass_scope": "V005 clustered grass roadside narrow band only",
+    "dark_depth_base_color": [0.055, 0.05, 0.044, 1.0],
+    "inner_reveal_base_color": [0.07, 0.063, 0.052, 1.0]
+  },
+  "a3": {
+    "storefront_meshes": [
+      "16 Closed shallow storefront backing",
+      "16 Closed shallow storefront backing V005 inner reveal"
+    ],
+    "store_dark_depth_base_color": [0.075, 0.068, 0.055, 1.0],
+    "store_inner_reveal_base_color": [0.088, 0.08, 0.066, 1.0],
+    "geometry_binary_identical_to_a": true,
+    "existing_materials_unchanged": true,
+    "new_material_count": 2,
+    "upper_windows_changed": false,
+    "glass_transmission_changed": false,
+    "glass_roughness_changed": false,
+    "invented_interior": false
+  },
+  "protected": [
+    "low stone kerb",
+    "postal passage",
+    "postbox and hedge placement",
+    "barber ladder",
+    "wood poles",
+    "gable brace",
+    "stairs thresholds landing",
+    "roof and hood geometry",
+    "diagnosed upper hood slant patch"
+  ],
+  "browser_validation": {
+    "a3_ready": true,
+    "environment_hash_matched": true,
+    "visitor_hash_matched": true,
+    "page_errors": 0,
+    "request_failures": 0,
+    "accepted_run_context_loss": false
+  },
+  "blender": {
+    "version_target": "5.2.3 LTS",
+    "writeback_status": "pending_pinned_source_artifact",
+    "native_five_view_render_status": "pending",
+    "native_export_parity_status": "pending"
+  },
+  "android": "not_tested"
+}
