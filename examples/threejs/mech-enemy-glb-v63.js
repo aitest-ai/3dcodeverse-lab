@@ -1,3 +1,4 @@
+import { retainVerticalGroundingV63 } from './mech-root-motion-v63.js';
 import { createEnemyActionDirectorV63 } from './mech-enemy-action-v63.js';
 /**
  * Taipei Mech v6.3 event-synchronized skinned GLB enemy visuals.
@@ -59,8 +60,7 @@ export function createEnemyVisualLoaderV63({THREE,loaderFactory=null,cloneFactor
     // Remove GLB root position tracks from enemy clips to avoid drift/teleport.
     for(const source of entry.gltf.animations){
       const clip=source.clone();
-      clip.tracks=clip.tracks.filter(track =>
-        !(track.name.toLowerCase().includes('root')&&track.name.endsWith('.position')));
+      retainVerticalGroundingV63(clip);
       const short=clip.name.replace(/^Mecha_/, '');
       actions.set(short,mixer.clipAction(clip));
     }
