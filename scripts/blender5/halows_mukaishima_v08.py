@@ -32,7 +32,8 @@ for i,z in enumerate([.45+j*.48 for j in range(15)]): cube(f"joint{i}",(TX,EF-.0
 cube("entrance_recess",(TX,EF-.10,1.50),(4.75,.10,3),GD)
 for i,dx in enumerate((-1.08,1.08)): cube(f"door{i}",(TX+dx,EF-.17,1.48),(2.05,.08,2.75),GL)
 for i,dx in enumerate((-2.16,0,2.16)): cube(f"doorframe{i}",(TX+dx,EF-.22,1.48),(.08,.10,2.9),M)
-ARCH=mat("arch_cream",(.98,.94,.82,1),.98,0)\ncurve=bpy.data.curves.new("arch","CURVE"); curve.dimensions="3D"; curve.bevel_depth=.18; curve.bevel_resolution=3; sp=curve.splines.new("POLY"); pts=[(TX+3.35*math.cos(a),EF-.25,4.85+1.65*math.sin(a)) for a in [math.pi-i*math.pi/30 for i in range(31)]]; sp.points.add(len(pts)-1)
+ARCH=mat("arch_cream",(.98,.94,.82,1),.98,0)
+curve=bpy.data.curves.new("arch","CURVE"); curve.dimensions="3D"; curve.bevel_depth=.18; curve.bevel_resolution=3; sp=curve.splines.new("POLY"); pts=[(TX+3.35*math.cos(a),EF-.25,4.85+1.65*math.sin(a)) for a in [math.pi-i*math.pi/30 for i in range(31)]]; sp.points.add(len(pts)-1)
 for p,co in zip(sp.points,pts): p.co=(*co,1)
 o=bpy.data.objects.new("arch",curve); bpy.context.collection.objects.link(o); curve.materials.append(ARCH)
 cy=F-4.25/2+.12; cube("canopy",(0,cy,3.04),(L-1.5,4.25,.15),M); cube("green_fascia",(0,F-4.19,3.28),(L-1.2,.30,.45),GD)
@@ -73,7 +74,9 @@ for x in [15.0,19.4]:
 # Accessible parking indication near entrance; placement is representative.
 for x in [TX-5.2,TX-1.8]:
     cube("accessible_bay_line",(x,F-10.2,.012),(3.0,.055,.024),LN)
-AB=mat("accessible_blue",(.06,.24,.55,1),.82)\ncyl("accessible_sign_post",(TX-3.5,F-9.25,.72),.045,1.44,M)\ncube("accessible_sign",(TX-3.5,F-9.25,1.48),(.62,.08,.62),AB,.03)
+AB=mat("accessible_blue",(.06,.24,.55,1),.82)
+cyl("accessible_sign_post",(TX-3.5,F-9.25,.72),.045,1.44,M)
+cube("accessible_sign",(TX-3.5,F-9.25,1.48),(.62,.08,.62),AB,.03)
 # Parking light poles seen in the official photo context.
 for i,(x,y) in enumerate([(-20,F-18),(20,F-18)]):
     cyl(f"lightpole_{i}",(x,y,4.6),.08,9.2,M)
