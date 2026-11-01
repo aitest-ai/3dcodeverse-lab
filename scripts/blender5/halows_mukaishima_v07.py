@@ -9,7 +9,7 @@ def mat(n,c,r=.75,m=0):
  x=bpy.data.materials.new(n); x.diffuse_color=c; x.use_nodes=True; b=x.node_tree.nodes["Principled BSDF"]; b.inputs["Base Color"].default_value=c; b.inputs["Roughness"].default_value=r; b.inputs["Metallic"].default_value=m
  if c[3]<.999: b.inputs["Alpha"].default_value=c[3]; x.surface_render_method="DITHERED"
  return x
-W=mat("warm pink",(0.68,.48,.40,1)); W2=mat("tower pink",(.61,.39,.34,1)); C=mat("cream",(.84,.79,.65,1)); G=mat("green",(.035,.19,.15,1),.45,.05); GD=mat("dark green",(.02,.11,.09,1),.4,.08); R=mat("red",(.46,.04,.03,1)); GL=mat("glass",(.05,.16,.17,.48),.22); M=mat("metal",(.55,.58,.56,1),.35,.35); WH=mat("white",(.88,.88,.82,1)); A=mat("asphalt",(.055,.06,.065,1),.95); P=mat("paving",(.54,.30,.20,1),.9); LN=mat("line",(.88,.88,.82,1)); RF=mat("roof",(.27,.29,.29,1),.85); SH=mat("joint",(.38,.24,.21,1))
+W=mat("warm pink",(.76,.54,.48,1)); W2=mat("tower pink",(.69,.43,.39,1)); C=mat("cream",(.93,.87,.74,1)); G=mat("green",(.035,.24,.17,1),.45,.05); GD=mat("dark green",(.018,.15,.105,1),.4,.08); SG=mat("sign green",(.015,.28,.18,1),.38,.05); R=mat("red",(.46,.04,.03,1)); GL=mat("glass",(.05,.16,.17,.48),.22); M=mat("metal",(.55,.58,.56,1),.35,.35); WH=mat("white",(.88,.88,.82,1)); A=mat("asphalt",(.055,.06,.065,1),.95); P=mat("paving",(.54,.30,.20,1),.9); LN=mat("line",(.88,.88,.82,1)); RF=mat("roof",(.27,.29,.29,1),.85); SH=mat("joint",(.38,.24,.21,1))
 def cube(n,loc,size,ma,bev=0):
  bpy.ops.mesh.primitive_cube_add(location=loc); o=bpy.context.object; o.name=n; o.scale=(size[0]/2,size[1]/2,size[2]/2); bpy.ops.object.transform_apply(location=False,rotation=False,scale=True); o.data.materials.append(ma)
  if bev: q=o.modifiers.new("bevel","BEVEL"); q.width=bev; q.segments=2
@@ -18,6 +18,8 @@ def cyl(n,loc,r,d,ma,rot=(0,0,0)):
  bpy.ops.mesh.primitive_cylinder_add(vertices=24,radius=r,depth=d,location=loc,rotation=rot); o=bpy.context.object; o.name=n; o.data.materials.append(ma); return o
 def bar(n,a,b,w,d,ma):
  a,b=Vector(a),Vector(b); v=b-a; o=cube(n,(a+b)/2,(v.length,d,w),ma); o.rotation_euler[1]=-math.atan2(v.z,v.x); return o
+def textmesh(n,body,loc,size,ma):
+ bpy.ops.object.text_add(location=loc,rotation=(math.pi/2,0,0)); o=bpy.context.object; o.name=n; o.data.body=body; o.data.align_x="CENTER"; o.data.align_y="CENTER"; o.data.size=size; o.data.extrude=.025; o.data.bevel_depth=.006; o.data.materials.append(ma); bpy.ops.object.convert(target="MESH"); return o
 cube("A_main",(0,0,H/2),(L,D,H),W,.07); cube("roof",(0,0,H+.04),(L-.45,D-.45,.2),RF)
 for y in (-D/2+.16,D/2-.16): cube("parapet",(0,y,H+.18),(L,.3,.5),C)
 for x in (-L/2+.16,L/2-.16): cube("parapet_side",(x,0,H+.18),(.3,D-.6,.5),C)
@@ -42,9 +44,11 @@ for i,x in enumerate([(-L/2+3)+j*(15/7) for j in range(8)]):
  cube(f"rackL{i}",(x-.42,F-4.7,.47),(.07,.07,.88),M); cube(f"rackR{i}",(x+.42,F-4.7,.47),(.07,.07,.88),M); cube(f"rackT{i}",(x,F-4.7,.91),(.84,.07,.07),M)
 gy=EF-.28
 for i,dx in enumerate((-2.7,0,2.7)): cube(f"red{i}",(TX+dx,gy,10.75),(1.25,.11,2.05),R); cyl(f"disc{i}",(TX+dx+.48,gy-.07,10.70),.42,.13,G,rot=(math.pi/2,0,0))
+textmesh("HALOWS_word","HALOWS",(TX,gy-.13,8.62),.72,SG)
+textmesh("HALOWS_24H","24H OPEN",(TX,gy-.13,7.75),.34,SG)
 bpy.context.scene["asset_id"]=ID; bpy.context.scene["osm_way_id"]="661155704"; bpy.context.scene["source_note"]="OSM footprint; official Halows photo + Onomichi 2017 plan; heights and facade subdivisions partly estimated"
 blend=OUT/f"{ID}.blend"; glb=OUT/f"{ID}.glb"; bpy.ops.wm.save_as_mainfile(filepath=str(blend.resolve())); bpy.ops.export_scene.gltf(filepath=str(glb.resolve()),export_format="GLB",export_apply=True,export_animations=False)
-sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1200; sc.render.resolution_y=800; sc.world.color=(.62,.72,.75)
+sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1200; sc.render.resolution_y=800; sc.world.color=(.68,.76,.78); sc.view_settings.view_transform="Standard"; sc.view_settings.exposure=.25
 bpy.ops.object.light_add(type="SUN",location=(-30,-40,60)); bpy.context.object.data.energy=2.2
 bpy.ops.object.camera_add(); cam=bpy.context.object; sc.camera=cam
 def look(pt): cam.rotation_euler=(Vector(pt)-cam.location).to_track_quat("-Z","Y").to_euler()
