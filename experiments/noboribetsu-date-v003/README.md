@@ -53,3 +53,21 @@ blender -b authoring/date_v002_master.blend \
 Blender-native 重新輸出的 GLB **不要求與 GLB 後處理 Candidate 逐位元相同**；但場景位置、A 骨架、路線、碰撞、鏡頭與未修改貼圖必須保持既有契約。若產生超出暖簾、指定材質因子與道路邊緣過渡以外的幾何／材質變更，必須停下檢查。
 
 目前此分支是 source-ready。因 V002 私有母檔未放入公開 repo，GitHub 雲端 Blender 尚未執行，不能把「腳本提交」描述成「正式 V003 母檔已完成」。
+
+
+## 2026-11-01 Source QA2（仍為 source-ready，未升格）
+這一輪已從使用者保存的 **V002 Complete ZIP 實體檔案**執行唯讀檢查：
+- 5 個凍結來源：V002 Blender 母檔、scene_geometry、collision、A GLB、B GLB，SHA-256 全部符合既有契約。
+- 路面拓樸：504 vertices、668 triangles、338 boundary edges、0 nonmanifold edges。
+- B 模型中 V003 要修改的 6 種材質名稱全部存在；R3 Runtime ZIP 也已依保存的 SHA-256 重新核對，ZIP CRC 無損。
+- 對應的獨立唯讀 preflight 程式與 8 個 Python 單元測試另存為 `Noboribetsu_Date_V003_SourceQA2.zip`；**此 ZIP 不含私人 V002 母檔**。
+
+GitHub 此分支修正了四個回寫風險：
+1. 無連線 Roughness 輸入要保留 V002 原值再乘因子，不得直接把 0.98 等倍率當成絕對值。
+2. 暖簾形變只可操作 `B_SITE_REFINEMENT`；依材料標記重複套用，單頂點位移上限 0.05 m，避免改到 `A_DATA_SKELETON`。
+3. 道路過渡不得產生零面數空幾何，或重複插入同名物件。
+4. `promote_master_v003.py` 強制核對五個 V002 來源 SHA、Blender 5.2.x、輸出路徑不覆寫，並檢查六張 PNG 與 GLB／BLEND 的實體檔案和簽章。
+
+請以完整 V002 解壓專案、明確 `NOBORIBETSU_PROJECT_ROOT`、Blender **5.2.3 LTS** 執行；若任何 SHA 不符，直接停止，不重新製造 V002 代替。Blender 官方在 2026-10-22 發布 5.2.3 LTS。
+
+**狀態嚴格分開：** 此處已通過的是真實來源/格式/拓樸與純 Python 測試，**不是** Blender 5.2.3 實際回寫、Cycles 正式 A/B、Android 真機、或私人預覽 CDN/登入驗收。這些都仍未通過。切勿因此合併 Draft PR、覆寫 V002 或更新私人網站。
