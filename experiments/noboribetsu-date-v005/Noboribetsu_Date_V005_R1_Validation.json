@@ -1,0 +1,135 @@
+{
+  "schema": "noboribetsu-date-v005-r1-validation/1",
+  "version": "V005-east-candidate-r1",
+  "status": "STATIC_NAV_PASS_REAL_WEBGL_NOT_TESTED",
+  "route_start_m": 0,
+  "route_end_m": 197.72393408812707,
+  "added_m": 67.70932190912615,
+  "buildings": [
+    "わらじ屋",
+    "うつろい館"
+  ],
+  "models": {
+    "v005_east_road.glb": {
+      "sha256": "acd6307cc3970bc628e6925167aa6f911c8036f299dc0338a9f5e1d0ebff2982",
+      "bytes": 113552,
+      "meshes": 3,
+      "triangles": 4536,
+      "bounds": [
+        [
+          40.613033294677734,
+          1.3226652145385742,
+          59.08597183227539
+        ],
+        [
+          103.25830078125,
+          1.7912811040878296,
+          96.79493713378906
+        ]
+      ]
+    },
+    "v005_east_facades.glb": {
+      "sha256": "f2f579f398334473a5c93a55109e87fae6d175c1be5756c484a368ee07b20afb",
+      "bytes": 395568,
+      "meshes": 17,
+      "triangles": 14888,
+      "bounds": [
+        [
+          44.31464385986328,
+          1.6670548915863037,
+          53.25478744506836
+        ],
+        [
+          62.983436584472656,
+          8.379332542419434,
+          82.962646484375
+        ]
+      ]
+    },
+    "v005_east_signs.glb": {
+      "sha256": "eb8433c4e316a5ddf7a1567445dc86a9f9722c1f8251ef3e8f1c5bd4ac5d7dcb",
+      "bytes": 31676,
+      "meshes": 2,
+      "triangles": 4,
+      "bounds": [
+        [
+          56.70131301879883,
+          3.847054958343506,
+          67.07147979736328
+        ],
+        [
+          57.36073684692383,
+          5.36433219909668,
+          72.84300994873047
+        ]
+      ]
+    }
+  },
+  "legacy_dist_files_unchanged": 46,
+  "legacy_dist_files_changed": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "navigation": {
+    "passed": true,
+    "A_B_points_tested": 782,
+    "walk": {
+      "blocked": 0,
+      "far": 0,
+      "maxSingleDelta": 0.08794995392191418,
+      "enderr": 4.263256414560601e-14,
+      "backBlocked": 0,
+      "homeerr": 6.661338147750939e-16
+    },
+    "switch_zero_drift": true
+  },
+  "visual_dem_surface": {
+    "sampled": 680,
+    "below_dem_count": 0,
+    "min_clearance_m": 0.025824215882451096
+  },
+  "static_osm_mass_triangles": {
+    "way/283905599": 20,
+    "way/283905598": 23,
+    "way/283905593": 13,
+    "way/283905573": 8,
+    "way/283905580": 7
+  },
+  "replay_build_bit_exact": true,
+  "webgl2_probe": [
+    {
+      "flags": [
+        "--enable-webgl",
+        "--use-gl=angle",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--disable-gpu-sandbox"
+      ],
+      "status": {
+        "ok": false,
+        "version": null
+      }
+    },
+    {
+      "flags": [
+        "--enable-webgl",
+        "--use-gl=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--disable-gpu-sandbox"
+      ],
+      "status": {
+        "ok": false,
+        "version": null
+      }
+    }
+  ],
+  "android": "NOT_TESTED",
+  "blender_native": "NOT_EXECUTED",
+  "private_site": "NOT_CHANGED",
+  "github_merged": false,
+  "visual": "VTK independent GLB render, not Three.js or site photo match",
+  "interiors": "NOT_BUILT",
+  "third_person": "DISABLED"
+}
