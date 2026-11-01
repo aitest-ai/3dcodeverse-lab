@@ -1,0 +1,26 @@
+name: Mecha v6.1 Enemy Navigation and Mission UI QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-enemy-navigation-v61.js'
+      - 'examples/threejs/mech-mission-presentation-v61.js'
+      - 'examples/threejs/mech-enemy-ai-v59.js'
+      - 'tests/mecha/v61-nav-and-ui.mjs'
+      - '.github/workflows/mecha-v61.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nav-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source, route and mission HUD tests
+        run: |
+          node --check examples/threejs/mech-enemy-navigation-v61.js
+          node --check examples/threejs/mech-mission-presentation-v61.js
+          node --check examples/threejs/mech-enemy-ai-v59.js
+          node tests/mecha/v61-nav-and-ui.mjs
