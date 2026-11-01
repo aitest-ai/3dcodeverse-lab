@@ -1,0 +1,64 @@
+{
+  "schema": "noboribetsu-date-v011-r1/1",
+  "status": "candidate_local_webgl2_visual_gap_repair_verified",
+  "base": "Noboribetsu_Date_V010_R1_Runtime.zip",
+  "route_length_m": 231.56641497226084,
+  "root_cause": {
+    "source_grid_step_m": 2,
+    "source_grid_total_cells": 40000,
+    "fully_missing_cells": 148,
+    "original_terrain_triangles": 79704,
+    "missing_terrain_triangles": 296,
+    "missing_height_grid_nodes": 84,
+    "local_x_range_m": [
+      116,
+      174
+    ],
+    "local_z_range_m": [
+      116,
+      162
+    ]
+  },
+  "repair": {
+    "scope": "B visual-only grass mesh, no physics changes",
+    "new_triangles": 296,
+    "method": "4-neighbor Laplace infill, original boundary elevations fixed; NOT SURVEYED",
+    "source_original_grass_material_used": true,
+    "patch_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+    "source_B_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715"
+  },
+  "checks": {
+    "real_chromium_swiftshader_webgl2": true,
+    "scene_loaded": true,
+    "scene_triangles": 1432282,
+    "stage_A_B_switch_zero_drift": true,
+    "mobile_portrait_emulation": true,
+    "mobile_movement_m": 0.7906478356385975,
+    "mobile_release_drift_m": 0.0,
+    "v010_original_files_unchanged": 94,
+    "v010_original_files_changed": 4,
+    "v011_runtime_files": 101,
+    "fresh_dist_files_identical": 84,
+    "roi_black_pixels_before": 1270,
+    "roi_black_pixels_after": 0,
+    "html_review_desktop_mobile": true,
+    "real_webcrypto_in_isolated_browser": false,
+    "isolated_browser_used_test_only_digest_adapter": true
+  },
+  "unverified": {
+    "private_website_cdn_https_login": true,
+    "android_physical_device": true,
+    "native_blender_master": true,
+    "cycles": true,
+    "surveyed_terrain_heights": true
+  },
+  "preservation": {
+    "source_V010_archive_unchanged": true,
+    "all_GLBS": true,
+    "collision": true,
+    "routing": true,
+    "original_textures": true,
+    "official_site_preview": true,
+    "no_auto_merge": true
+  }
+}
