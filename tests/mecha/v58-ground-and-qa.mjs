@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {canStartGroundedDodge,reconcileGroundedDodgeHeight} from '../../examples/threejs/mech-ground-safety-v58.js';
+import {createMechQARecorder} from '../../examples/threejs/mech-qa-v58.js';
+assert.equal(canStartGroundedDodge({y:3,groundY:3}).allowed,true);
+assert.equal(canStartGroundedDodge({y:4,groundY:3}).allowed,false);
+assert.equal(canStartGroundedDodge({y:3,groundY:NaN}).allowed,false);
+assert.equal(reconcileGroundedDodgeHeight({y:3,oldGround:3,newGround:2.8}).y,2.8);
+assert.equal(reconcileGroundedDodgeHeight({y:3,oldGround:3,newGround:5}).y,3);
+const qa=createMechQARecorder({maxSamples:100});
+for(let i=0;i<120;i++)qa.observe({wallTimeMs:i*1000/60,gameDtMs:16.667,mechCpuMs:1.8,active:true,modelActive:true,blocked:i===15||i===16||i===40});
+let s=qa.snapshot();assert.equal(s.windowSamples,100);assert.equal(s.blockedDodgeEvents,2);
+assert.ok(s.updateCadenceHz>59&&s.updateCadenceHz<61);
+qa.mark('dodge_start',{side:-1});const r=qa.exportReport();assert.ok(r.events.some(x=>x.kind==='dodge_start'));
+assert.ok(!JSON.stringify(r).includes('GPS location'));
+qa.observe({wallTimeMs:6000,gameDtMs:16,mechCpuMs:2});
+assert.equal(qa.snapshot().excludedPausedIntervals,1);
+console.log('PASS v5.8: ground/airborne, downhill alignment, 60Hz update-cadence, collision-edge, bounded private QA and pause exclusion');
