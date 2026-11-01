@@ -1,0 +1,26 @@
+{
+  "status": "PASS_LOCAL_HTTP_CONTENT",
+  "endpoints": {
+    "/index.html": {
+      "status": 200,
+      "bytes": 6637,
+      "content_type": "text/html"
+    },
+    "/scene_view.json": {
+      "status": 200,
+      "bytes": 61962,
+      "content_type": "application/json"
+    },
+    "/assets/v008_waraji_architecture.glb": {
+      "status": 200,
+      "bytes": 674648,
+      "content_type": "model/gltf-binary"
+    },
+    "/review_v008.html": {
+      "status": 200,
+      "bytes": 2075,
+      "content_type": "text/html"
+    }
+  },
+  "webgl_scene_verified": false
+}
