@@ -1,0 +1,70 @@
+{
+  "schema": "date-v009-local-http/1",
+  "status": "PASS_LOCAL_RESOURCE_HTTP_ONLY",
+  "resources_checked": 12,
+  "results": [
+    {
+      "resource": "index.html",
+      "http": 200,
+      "bytes": 6647
+    },
+    {
+      "resource": "style.css",
+      "http": 200,
+      "bytes": 11452
+    },
+    {
+      "resource": "app.js",
+      "http": 200,
+      "bytes": 34727
+    },
+    {
+      "resource": "qa.json",
+      "http": 200,
+      "bytes": 398
+    },
+    {
+      "resource": "scene_view.json",
+      "http": 200,
+      "bytes": 62410
+    },
+    {
+      "resource": "v009_facade_manifest.json",
+      "http": 200,
+      "bytes": 1268
+    },
+    {
+      "resource": "assets/v009_utsuroi_facade.glb",
+      "http": 200,
+      "bytes": 670128
+    },
+    {
+      "resource": "vendor/three.module.js",
+      "http": 200,
+      "bytes": 603113
+    },
+    {
+      "resource": "vendor/addons/loaders/GLTFLoader.js",
+      "http": 200,
+      "bytes": 114739
+    },
+    {
+      "resource": "review_v009.html",
+      "http": 200,
+      "bytes": 5188
+    },
+    {
+      "resource": "evidence/utsuroi_side_V008.png",
+      "http": 200,
+      "bytes": 324265
+    },
+    {
+      "resource": "evidence/utsuroi_side_V009.png",
+      "http": 200,
+      "bytes": 316962
+    }
+  ],
+  "webgl2_gpu_playback_verified": false,
+  "private_cdns_verified": false,
+  "android_verified": false
+}
