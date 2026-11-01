@@ -3,7 +3,7 @@
 from pathlib import Path
 import base64, html
 root=Path(__file__).resolve().parents[1]
-a=root/'source_prev/evidence/V010_V009_StreetEnd_WebGL2.png'
+a=root/'evidence/V010_original_street_end_WebGL2.png'
 b=root/'evidence/V011_street_end_WebGL2.png'
 mobile=root/'evidence/V011_Mobile_Emulated_WebGL2.png'
 enc=lambda p:'data:image/png;base64,'+base64.b64encode(p.read_bytes()).decode('ascii')
