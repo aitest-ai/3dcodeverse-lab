@@ -95,25 +95,34 @@ def apply_material_balance():
     return records
 
 
-def _objects_using_material(mat_name):
-    out = []
+def _material_vertex_refs(mat_name):
+    """Return only vertices actually referenced by faces using mat_name.
+
+    V002 may contain multi-material meshes. Never deform every vertex on an
+    object merely because one material slot matches the noren material.
+    """
+    pts = []
+    refs = []
     for ob in bpy.data.objects:
         if ob.type != "MESH" or not ob.data:
             continue
-        if any(m and m.name == mat_name for m in ob.data.materials):
-            out.append(ob)
-    return out
-
-
-def _world_points(objects):
-    pts = []
-    refs = []
-    for ob in objects:
+        slot_ids = {
+            i for i, mat in enumerate(ob.data.materials)
+            if mat and mat.name == mat_name
+        }
+        if not slot_ids:
+            continue
+        vertex_ids = set()
+        for poly in ob.data.polygons:
+            if poly.material_index in slot_ids:
+                vertex_ids.update(poly.vertices)
+        if not vertex_ids:
+            continue
         mw = ob.matrix_world.copy()
-        for v in ob.data.vertices:
-            w = mw @ v.co
+        for vi in sorted(vertex_ids):
+            w = mw @ ob.data.vertices[vi].co
             pts.append((float(w.x), float(-w.y), float(w.z)))
-            refs.append((ob, v.index))
+            refs.append((ob, vi))
     return pts, refs
 
 
@@ -141,9 +150,8 @@ def _pca_long_axis_2d(points):
 
 
 def _deform_material_group(mat_name, fold_amplitude):
-    obs = _objects_using_material(mat_name)
-    assert obs, f"No mesh uses material {mat_name}"
-    points, refs = _world_points(obs)
+    points, refs = _material_vertex_refs(mat_name)
+    assert refs, f"No faces use material {mat_name}"
     center, long = _pca_long_axis_2d(points)
     normal = (-long[1], long[0])
     s = [(p[0]-center[0])*long[0] + (p[1]-center[1])*long[1] for p in points]
@@ -172,7 +180,7 @@ def _deform_material_group(mat_name, fold_amplitude):
         ob["v003_noren_refinement"] = "author-estimated drape; no official motif copied"
     return {
         "material": mat_name,
-        "objects": len(obs),
+        "objects": len({id(ob) for ob, _ in refs}),
         "vertices": len(points),
         "max_vertex_displacement_m": max_disp,
     }
