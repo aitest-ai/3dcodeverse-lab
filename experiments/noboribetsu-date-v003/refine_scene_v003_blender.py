@@ -116,8 +116,8 @@ def _material_vertex_refs(mat_name):
     for ob in B.all_objects:
         if ob.type != "MESH" or not ob.data:
             continue
-        if ob.get("v003_noren_refinement"):
-            raise RuntimeError(f"V003 noren refinement already applied: {ob.name}")
+        if ob.get("v003_noren_" + mat_name):
+            raise RuntimeError(f"V003 noren material already applied: {ob.name} / {mat_name}")
         slot_ids = {
             i for i, mat in enumerate(ob.data.materials)
             if mat and mat.name == mat_name
@@ -191,7 +191,7 @@ def _deform_material_group(mat_name, fold_amplitude):
             raise RuntimeError(f"Noren edit exceeds 5 cm at {ob.name} vertex {vi}")
         ob.data.vertices[vi].co = ob.matrix_world.inverted() @ new_world
         ob.data.update()
-        ob["v003_noren_refinement"] = "author-estimated drape; no official motif copied"
+        ob["v003_noren_" + mat_name] = "author-estimated drape; no official motif copied"
     return {
         "material": mat_name,
         "objects": len({id(ob) for ob, _ in refs}),
