@@ -1,0 +1,85 @@
+name: Mecha v6.3 Real Blender Dynamic Pose Audit
+on:
+  push:
+    paths:
+      - 'scripts/blender5/mecha_v63_pose_audit.py'
+      - '.github/workflows/mecha-v63-pose-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  real-blender-pose-qa:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Static syntax validation
+        run: python3 -m py_compile scripts/blender5/mecha_v63_pose_audit.py
+      - name: Retrieve original v6.2 Blender mother files (not substitute cubes)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 41289012052 -R "$GITHUB_REPOSITORY" \
+            -n taipei-v62-real-blender-1 -D .v63-source
+          for role in assault ranger heavy; do
+            test -s ".v63-source/$role/enemy_${role}_v62.blend"
+          done
+      - name: Install headless graphics libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download SHA-verified official Blender 5.2.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,pathlib,re
+          p=pathlib.Path('.tools/blender-5.2.3-linux-x64.tar.xz')
+          line=next(x for x in pathlib.Path('.tools/checksums.sha256').read_text().splitlines() if p.name in x)
+          expected=re.search(r'(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])',line).group().lower()
+          actual=hashlib.sha256(p.read_bytes()).hexdigest()
+          assert actual==expected, "Official Blender SHA mismatch"
+          print("BLENDER_OFFICIAL_SHA256_OK",actual)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+      - name: Evaluate actual 36 animated poses, BVH contacts and Workbench frames
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V63_MODEL_SOURCE: .v63-source
+          V63_AUDIT_OUTPUT: outputs/v63_pose_audit
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+            --python scripts/blender5/mecha_v63_pose_audit.py
+      - name: Validate complete per-pose evidence rather than just source parse
+        run: |
+          python3 - <<'PY'
+          import pathlib,json
+          root=pathlib.Path('outputs/v63_pose_audit')
+          data=json.loads((root/'report.json').read_text())
+          assert len(data['roles'])==3
+          for role,details in data['roles'].items():
+            assert len(details['samples'])==12,(role,len(details['samples']))
+            for record in details['samples']:
+              f=root/role/f"pose_{record['clip'].lower()}_frame_{record['frame']:02}.png"
+              assert f.stat().st_size>1500
+              assert len(record['contacts'])>=3
+          print('PASS: 3 roles × 4 real clips × 3 sample frames = 36 real Blender renders')
+          PY
+      - name: Upload genuine Blender screenshots and contact report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taipei-v63-pose-qa-${{ github.run_number }}
+          path: outputs/v63_pose_audit/
+          retention-days: 14
+          if-no-files-found: warn

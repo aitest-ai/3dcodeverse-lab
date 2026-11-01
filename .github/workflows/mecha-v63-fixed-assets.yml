@@ -1,0 +1,89 @@
+name: Mecha v6.3 Corrected Real Blender Enemy Assets
+on:
+  push:
+    paths:
+      - 'scripts/blender5/mecha_v63_grounded_variants.py'
+      - '.github/workflows/mecha-v63-fixed-assets.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  fixed-enemy-assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 36
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check reproducible variant Python syntax
+        run: python3 -m py_compile scripts/blender5/mecha_v63_grounded_variants.py
+      - name: Retrieve actual v6.2 editable source BLEND, unchanged
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 41289012052 -R "$GITHUB_REPOSITORY" \
+            -n taipei-v62-real-blender-1 -D .v63-source
+          for role in assault ranger heavy; do
+            test -s ".v63-source/$role/enemy_${role}_v62.blend"
+          done
+      - name: Install minimal graphics dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends \
+            xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download official Blender 5.2.3 with SHA256 verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,pathlib,re
+          p=pathlib.Path('.tools/blender-5.2.3-linux-x64.tar.xz')
+          line=next(x for x in pathlib.Path('.tools/checksums.sha256').read_text().splitlines() if p.name in x)
+          expected=re.search(r'(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])',line).group().lower()
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==expected
+          print('BLENDER_5_2_3_SHA256_PASS')
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+      - name: Build actual 3 v6.3 rigged GLB & editable mothers, with full Run pose grounding audit
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          V63_MODEL_SOURCE: .v63-source
+          V63_FIXED_OUTPUT: outputs/v63_fixed
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 \
+            --python scripts/blender5/mecha_v63_grounded_variants.py
+      - name: Verify 3 original-rig assets, six animations, SHA and 48-frame grounding
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          root=pathlib.Path('outputs/v63_fixed')
+          report=json.loads((root/'report.json').read_text())
+          for role in ('assault','ranger','heavy'):
+            p=root/role
+            row=report['roles'][role]
+            assert len(row['run_per_frame_qa'])==48
+            assert row['run_after_min_z']>=-.012,row
+            assert len(row['animations'])==6
+            assert row['armature_bones']==15
+            assert (p/f'enemy_{role}_v63.blend').stat().st_size>300000
+            raw=(p/f'enemy_{role}_v63.glb').read_bytes()
+            assert hashlib.sha256(raw).hexdigest()==row['glb_sha256']
+            for clip in ('run','fire','hit','dodge'):
+              assert (p/f'pose_{clip}_frame22.png').stat().st_size>1500
+            print('V63_FIXED_REAL_BLENDER_SUCCESS',role,row['run_before_min_z'],row['run_after_min_z'])
+          PY
+      - name: Upload verified .blend, GLB, and genuine motion frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taipei-v63-fixed-blender-${{ github.run_number }}
+          path: outputs/v63_fixed/
+          retention-days: 14
+          if-no-files-found: warn
