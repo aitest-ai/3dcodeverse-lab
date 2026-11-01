@@ -44,7 +44,7 @@ gy=EF-.28
 for i,dx in enumerate((-2.7,0,2.7)): cube(f"red{i}",(TX+dx,gy,10.75),(1.25,.11,2.05),R); cyl(f"disc{i}",(TX+dx+.48,gy-.07,10.70),.42,.13,G,rot=(math.pi/2,0,0))
 bpy.context.scene["asset_id"]=ID; bpy.context.scene["osm_way_id"]="661155704"; bpy.context.scene["source_note"]="OSM footprint; official Halows photo + Onomichi 2017 plan; heights and facade subdivisions partly estimated"
 blend=OUT/f"{ID}.blend"; glb=OUT/f"{ID}.glb"; bpy.ops.wm.save_as_mainfile(filepath=str(blend.resolve())); bpy.ops.export_scene.gltf(filepath=str(glb.resolve()),export_format="GLB",export_apply=True,export_animations=False)
-sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE_NEXT"; sc.render.resolution_x=1200; sc.render.resolution_y=800; sc.world.color=(.62,.72,.75)
+sc=bpy.context.scene; sc.render.engine="BLENDER_EEVEE"; sc.render.resolution_x=1200; sc.render.resolution_y=800; sc.world.color=(.62,.72,.75)
 bpy.ops.object.light_add(type="SUN",location=(-30,-40,60)); bpy.context.object.data.energy=2.2
 bpy.ops.object.camera_add(); cam=bpy.context.object; sc.camera=cam
 def look(pt): cam.rotation_euler=(Vector(pt)-cam.location).to_track_quat("-Z","Y").to_euler()
