@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "Setouchi Onomichi Mukaishima Cycling",
   "candidate": "V16",
-  "status": "RESTORED_V06_RUNTIME_WITH_ISOLATED_HALOWS_V15_GEOMETRY_QA",
+  "status": "V16_AUTHENTIC_V06_RUNTIME_WITH_TWO_SAFE_ASSET_SHA_REPAIRS_AND_V15_QA",
   "source_archive": {
     "name": "Onomichi_V06_Runtime.zip",
     "size_bytes": 210838257,
@@ -46,7 +46,8 @@
   "existing_branch_end_osm_node": "8255588823",
   "unbuilt_gap_straight_line_m": 859.104,
   "modified_existing_files": [
-    "index.html"
+    "index.html",
+    "data/world.json"
   ],
   "changed_original_game_world": false,
   "changed_original_js": false,
@@ -59,7 +60,10 @@
     "v09_geosite_lock_sha": "PASS",
     "vtk_true_mesh_geometry": "PASS_OFFLINE_ONLY",
     "browser_webgl2": "NOT_TESTED_ERR_BLOCKED_BY_ADMINISTRATOR",
-    "android": "NOT_TESTED"
+    "android": "NOT_TESTED",
+    "v06_glb_asset_manifest": "6/6 PASS AFTER V16 SHA INDEX REPAIR",
+    "embedded_images": "39/39 PASS",
+    "original_v06_source_preservation": "195 files; only index.html and world.json SHA refs intentionally modified"
   },
   "approval": {
     "route_to_halows": false,
@@ -70,15 +74,33 @@
   },
   "private_deliverables": [
     {
-      "filename": "Onomichi_V16_SourceSafe_Runtime_Review.zip",
-      "size_bytes": 221848480,
-      "sha256": "d5b4b0d4077f484baa587e02476ce1f3e9255ad7276f1665bd1557284ad13d5a"
+      "filename": "Onomichi_V16_Full_Original_Runtime_Plus_Halows.zip",
+      "size_bytes": 223010122,
+      "sha256": "5643ce4bb378584ebfe958bef43a35ef32feb54abae5f06cf76dcd617f197b91"
     },
     {
-      "filename": "Onomichi_V16_SourceSafe_Patch_QA.zip",
-      "size_bytes": 12386790,
-      "sha256": "1ea813d9d1ef405f2afc66e84449053bd491fc7d6f96aaa81cfde0f885dee571"
+      "filename": "Onomichi_V16_Incremental_Bridge_Patch.zip",
+      "size_bytes": 12482305,
+      "sha256": "3ad71423e85988b348565387611ba783aeb7d8cd92d58124862c34813e7d5163"
     }
   ],
-  "source_notes": "Original V06 ZIP and compiled V15 GLB are private conversation/library artifacts; this public GitHub branch registers provenance and source gates only, and does not distribute the 211MB original or claim successful deployment."
+  "source_notes": "Original V06 ZIP and compiled V15 GLB are private conversation/library artifacts; this public GitHub branch registers provenance and source gates only, and does not distribute the 211MB original or claim successful deployment.",
+  "original_v06_world_sha256": "bfab5d3222aefa77abd5986f3d5be202bf340e10c1252b024f90e99cb094f6be",
+  "v16_world_sha256": "ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5",
+  "runtime_hash_fixes": {
+    "reason": "Original V06 world.json points to two V05 GLB digests instead of packaged V06 binary digests. Loader rejects mismatch.",
+    "harbour": {
+      "stale": "b88f03e7254e6864ac3f08a21f94a377bac497d7c14571edd6d3091e76c4a8fc",
+      "actual": "6067d50d1c9701bc81c8540d69025e410d75002be4bf1d0192427288772bca02"
+    },
+    "mukaishima": {
+      "stale": "5bd468cc08c1c07048704219517478ae14e52f848f2598c683e0145b191c840f",
+      "actual": "de0c393ffe271f3824ea5d283416ff8e12c19c6fe34b5955fa30ec7dd8ea63ea"
+    },
+    "original_untouched": true,
+    "world_route_changed": false,
+    "source_reversible": true
+  },
+  "new_route_gap_viewer": "review/halows-v16/route-gap.html",
+  "new_runtime_hash_repair": "scripts/v16_runtime_hash_fix.py"
 }
