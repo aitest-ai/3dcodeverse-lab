@@ -47,8 +47,8 @@
   "private_v24_deliverables": [
     {
       "filename": "Onomichi_V24_Full_Original_Runtime_Plus_Real_Scale_QA.zip",
-      "bytes": 279385566,
-      "sha256": "c5289bf7c1db947a67eb05558b04891b09e595b8a8b4d9b994b73352343eb4bf",
+      "bytes": 229964855,
+      "sha256": "04d20b6e12958fe692a649275a54aac459b4e82c50ace44fcbeccdc5ab0088d8",
       "entries": 308,
       "crc": "PASS"
     },
@@ -57,6 +57,13 @@
       "bytes": 417142,
       "sha256": "c60fd833209cb49bac94c3ed616562325f38d629afd199764e6ee304ad855d38",
       "entries": 10,
+      "crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V24_Standalone_RealGLB_Scale_Viewer.zip",
+      "bytes": 15026350,
+      "sha256": "7103484612139dd2092ad7dd1971f8fa3f2a8c95ad48ff5513e5930482ab39a2",
+      "entries": 17,
       "crc": "PASS"
     }
   ],
@@ -71,5 +78,7 @@
     "world_route_changed": false,
     "site_deployed": false
   },
-  "note": "Derived OSM/GSI source geometry in git only. All real V06 GLB assets and original V23 Runtime remain in user-private ZIP. Actual mesh screenshot is VTK, not Chrome WebGL."
+  "note": "Derived OSM/GSI source geometry in git only. All real V06 GLB assets and original V23 Runtime remain in user-private ZIP. Actual mesh screenshot is VTK, not Chrome WebGL.",
+  "vtk_source_mesh_preview_created": true,
+  "chromium_localhost_attempt": "ERR_BLOCKED_BY_ADMINISTRATOR"
 }
