@@ -38,6 +38,16 @@ jobs:
           assert d['approval']['site_deployed'] is False
           assert d['changed_original_game_world'] is False
           assert d['changed_original_js'] is False
+          assert d['modified_existing_files']==['index.html','data/world.json']
+          assert d['original_v06_world_sha256']=='bfab5d3222aefa77abd5986f3d5be202bf340e10c1252b024f90e99cb094f6be'
+          assert d['v16_world_sha256']=='ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5'
+          assert d['runtime_hash_fixes']['source_reversible'] is True
+          assert d['runtime_hash_fixes']['world_route_changed'] is False
+          assert d['runtime_hash_fixes']['harbour']['actual']==d['protected_v06_files']['assets/zones/harbour.glb']
+          assert d['runtime_hash_fixes']['mukaishima']['actual']==d['protected_v06_files']['assets/zones/mukaishima.glb']
+          assert d['tests']['embedded_images']=='39/39 PASS'
+          assert len(d['private_deliverables'])==2
+          assert not d['approval']['route_to_halows']
           assert d['source_archive']['private_file_not_committed_to_github'] is True
           assert Path('docs/ONOMICHI_V16_RUNTIME_RESTORE.md').is_file()
           print('PASS: V16 provenance registry and no false route approvals.')
