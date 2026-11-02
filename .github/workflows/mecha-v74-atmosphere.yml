@@ -1,0 +1,22 @@
+name: Mecha v7.4 Smoke and Local Light Math QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-atmosphere-curves-v74.js'
+      - 'tests/mecha/v74-atmosphere-curves.mjs'
+      - '.github/workflows/mecha-v74-atmosphere.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  atmosphere:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact shared v7.4 FX envelopes
+        run: |
+          node --check examples/threejs/mech-atmosphere-curves-v74.js
+          node tests/mecha/v74-atmosphere-curves.mjs
