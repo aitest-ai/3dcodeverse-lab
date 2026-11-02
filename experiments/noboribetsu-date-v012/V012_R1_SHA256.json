@@ -1,0 +1,35 @@
+{
+  "schema": "noboribetsu-date-v012-delivery-sha256/1",
+  "date": "2026-11-02",
+  "files": {
+    "Noboribetsu_Date_V012_R1_Runtime.zip": {
+      "bytes": 72804242,
+      "sha256": "b820fc971d969713c936144fdcb4cfe264ec678b125db79c7f2ed7038eb2de9b"
+    },
+    "Noboribetsu_Date_V012_R1_SourceQA.zip": {
+      "bytes": 1642676,
+      "sha256": "c9dfee3a22bc11b73b5cf0982b431b16713ba2116ce37187ebba233c8d8349f8"
+    },
+    "Noboribetsu_Date_V012_R1_Review.html": {
+      "bytes": 823784,
+      "sha256": "fbe9036194d467677385bb8c6f32064b437758b2d0d1e92b7c648816f489f87f"
+    },
+    "Noboribetsu_Date_V012_R1_Delivery_Report.md": {
+      "bytes": 2607,
+      "sha256": "3050dffab3da85b56bc04e15b0015c5dd16155217f5539ad1d747847e8c4ddac"
+    },
+    "Noboribetsu_Date_V012_R1_Validation.json": {
+      "bytes": 3327,
+      "sha256": "24f3613c18e9d57aa0186df3c203462a75e1f04758b6a85a314451378cb12c58"
+    },
+    "Noboribetsu_Date_V012_R1_Road_Grass_Fade.glb": {
+      "bytes": 23424,
+      "sha256": "b1abd6929e45049b86f854ced0b98f69a5e107484501d616c53eff4c913a5b49"
+    }
+  },
+  "runtime_files": 105,
+  "sourceqa_files": 24,
+  "runtime_zip_crc_pass": true,
+  "source_zip_crc_pass": true,
+  "v011_old_versions_not_overwritten": true
+}
