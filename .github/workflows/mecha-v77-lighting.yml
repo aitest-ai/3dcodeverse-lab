@@ -1,0 +1,22 @@
+name: Taipei Mecha v7.7 City Time and Smoke Distance QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-scene-light-v77.js'
+      - 'tests/mecha/v77-scene-light.mjs'
+      - '.github/workflows/mecha-v77-lighting.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lighting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact Windows scene light helper source
+        run: |
+          node --check examples/threejs/mech-scene-light-v77.js
+          node tests/mecha/v77-scene-light.mjs
