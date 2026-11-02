@@ -1,0 +1,47 @@
+name: Onomichi V20 Shared-node Topology Research
+on:
+  push:
+    branches:
+      - feat/onomichi-v20-osm-live-snapshot
+    paths:
+      - 'scripts/research/onomichi_v20_route_topology.py'
+      - 'assets/setouchi/osm/onomichi-v20-20261102.osm'
+      - '.github/workflows/onomichi-v20-topology.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v19-cross-snapshot-gap-audit
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-corridor-but-not-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax and exact source-locked centreline graph
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v20_route_topology.py
+          python3 scripts/research/onomichi_v20_route_topology.py
+      - name: Disallow approval without bicycle/field/3D collision evidence
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/v20/route-topology-report.json').read_text())
+          assert d['current_centerline_connected']
+          assert d['conclusion'].endswith('NOT_A_VERIFIED_CYCLING_ROUTE')
+          assert d['shortest_any_road']['distance_m']<520
+          assert 575<d['candidate_avoiding_trunk']['distance_m']<640
+          assert 'trunk' not in d['candidate_avoiding_trunk']['road_classes']
+          assert all(x is False for k,x in d['risk_flags'].items() if k!='bicycle_tagged_yes_and_access_no_at_start')
+          assert d['risk_flags']['bicycle_tagged_yes_and_access_no_at_start'] is True
+          assert d['source_sha256']=='5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76'
+          print('GRAPH QA PASS. Navigation still blocked pending field evidence.')
+          PY
+      - name: Archive independent topology QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v20-centreline-audit
+          path: outputs/v20/route-topology-report.json
+          retention-days: 21

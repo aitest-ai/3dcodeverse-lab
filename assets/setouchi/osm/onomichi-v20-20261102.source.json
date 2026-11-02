@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "asset_id": "onomichi-v20-fresh-source-only",
+  "downloaded_utc": "2026-11-02T05:29:20.429097+00:00",
+  "source_url": "https://api.openstreetmap.org/api/0.6/map?bbox=133.1985,34.3964,133.2060,34.4005",
+  "bbox_wgs84": [
+    133.1985,
+    34.3964,
+    133.206,
+    34.4005
+  ],
+  "license": "© OpenStreetMap contributors, ODbL",
+  "sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "bytes": 409700,
+  "osm_nodes": 1436,
+  "osm_ways": 154,
+  "highway_ways": 70,
+  "frontier_node_present": true,
+  "halows_v09_south_node_present": true,
+  "halows_v09_east_node_present": true,
+  "conclusion": "UNREVIEWED_OSM_ROAD_DATA_NOT_A_BICYCLE_ROUTE",
+  "bicycle_access_approved": false,
+  "runtime_changed": false,
+  "source_immutable": true
+}
