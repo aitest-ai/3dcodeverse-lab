@@ -1,0 +1,31 @@
+{
+  "schema": "noboribetsu-date-v017-integrity/1",
+  "status": "SOURCE_QA_AND_ISOLATED_WEBGL2_PASS",
+  "v016_archive_sha256": "44f86918c5c548cf34fc28c7d38e4022dda7a65fbbaf145f99eb58a9c26dd3c9",
+  "v016_files": 113,
+  "unchanged_original_files": 109,
+  "modified_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "added_files": [
+    "dist/README_V017.md",
+    "dist/v017_clearance_audit.json"
+  ],
+  "new_runtime_file_count": 115,
+  "geometry_sample_count": 237,
+  "minimum_margin_m": 0.23203,
+  "webgl2": true,
+  "b_scene_loaded": true,
+  "qa_only_digest_adapter": true,
+  "not_verified": [
+    "Native HTTPS/WebCrypto top level",
+    "private CDN/login",
+    "Android physical device",
+    "Blender native",
+    "surveyed doorway dimensions",
+    "physical egress/accessibility"
+  ]
+}

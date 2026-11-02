@@ -1,0 +1,190 @@
+{
+  "schema": "noboribetsu-date-v017-static-clearance-qa/1",
+  "status": "STATIC_GEOMETRY_PASS_RENDER_PENDING",
+  "sha256": "c5ae969f430253bc08c6a455e661b0e385b7cf351d55f6e7b390ad938fa765ab",
+  "source_runtime_zip_sha256": "44f86918c5c548cf34fc28c7d38e4022dda7a65fbbaf145f99eb58a9c26dd3c9",
+  "summary": {
+    "source_snapshot": "V016 R1 sealed runtime",
+    "site_section": "V004 merchant lane centerline only",
+    "route_start_s_m": 82.877,
+    "route_end_s_m": 130.0146,
+    "sample_interval_max_m": 0.1998,
+    "sample_count": 237,
+    "walkable_centerline_pass": true,
+    "player_radius_m": 0.26,
+    "minimum_capsule_margin_m": 0.23203,
+    "minimum_margin_at_s_m": 89.8677,
+    "maximum_centerline_grade_percent": 1.582,
+    "obstacle_count": 24,
+    "v004_walkable_triangle_count": 206,
+    "offset_probe_sample_count": 1659,
+    "diagnostic_marker_count": 4,
+    "no_interiors_verified": true,
+    "door_threshold_surveyed": false,
+    "collision_or_navigation_modified": false
+  },
+  "closest_per_obstacle": [
+    {
+      "s_m": 89.8677,
+      "x": 2.1257,
+      "y": 0.97112,
+      "z": 58.94363,
+      "nearest_obstacle": "V004_gallery_porchpost_0",
+      "nearest_obstacle_distance_m": 0.49203,
+      "capsule_horizontal_margin_m": 0.23203,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 92.664,
+      "x": 4.91784,
+      "y": 1.00664,
+      "z": 59.09605,
+      "nearest_obstacle": "V004_gallery_porchpost_1",
+      "nearest_obstacle_distance_m": 0.6351,
+      "capsule_horizontal_margin_m": 0.3751,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 115.0344,
+      "x": 27.25497,
+      "y": 1.29078,
+      "z": 60.31542,
+      "nearest_obstacle": "V004_restaurant_porchpost_0",
+      "nearest_obstacle_distance_m": 0.73383,
+      "capsule_horizontal_margin_m": 0.47383,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 95.4603,
+      "x": 7.70998,
+      "y": 1.04216,
+      "z": 59.24847,
+      "nearest_obstacle": "V004_gallery_porchpost_2",
+      "nearest_obstacle_distance_m": 0.78656,
+      "capsule_horizontal_margin_m": 0.52656,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 117.631,
+      "x": 29.84767,
+      "y": 1.32376,
+      "z": 60.45695,
+      "nearest_obstacle": "V004_restaurant_porchpost_1",
+      "nearest_obstacle_distance_m": 0.87604,
+      "capsule_horizontal_margin_m": 0.61604,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 98.0569,
+      "x": 10.30268,
+      "y": 1.07514,
+      "z": 59.39001,
+      "nearest_obstacle": "V004_gallery_porchpost_3",
+      "nearest_obstacle_distance_m": 0.93386,
+      "capsule_horizontal_margin_m": 0.67386,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 120.2276,
+      "x": 32.44038,
+      "y": 1.35674,
+      "z": 60.59849,
+      "nearest_obstacle": "V004_restaurant_porchpost_2",
+      "nearest_obstacle_distance_m": 1.01826,
+      "capsule_horizontal_margin_m": 0.75826,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 100.8532,
+      "x": 13.09483,
+      "y": 1.11065,
+      "z": 59.54243,
+      "nearest_obstacle": "V004_gallery_porchpost_4",
+      "nearest_obstacle_distance_m": 1.08119,
+      "capsule_horizontal_margin_m": 0.82119,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 122.8241,
+      "x": 35.03308,
+      "y": 1.38972,
+      "z": 60.74002,
+      "nearest_obstacle": "V004_restaurant_porchpost_3",
+      "nearest_obstacle_distance_m": 1.16049,
+      "capsule_horizontal_margin_m": 0.90049,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 103.6495,
+      "x": 15.88697,
+      "y": 1.14617,
+      "z": 59.69485,
+      "nearest_obstacle": "V004_gallery_porchpost_5",
+      "nearest_obstacle_distance_m": 1.23294,
+      "capsule_horizontal_margin_m": 0.97294,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 106.2461,
+      "x": 18.47967,
+      "y": 1.17915,
+      "z": 59.83638,
+      "nearest_obstacle": "V004_gallery_porchpost_6",
+      "nearest_obstacle_distance_m": 1.37862,
+      "capsule_horizontal_margin_m": 1.11862,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 125.2209,
+      "x": 37.40447,
+      "y": 1.42508,
+      "z": 61.06047,
+      "nearest_obstacle": "V004_restaurant_porchpost_4",
+      "nearest_obstacle_distance_m": 1.5141,
+      "capsule_horizontal_margin_m": 1.2541,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 109.0424,
+      "x": 21.27181,
+      "y": 1.21467,
+      "z": 59.9888,
+      "nearest_obstacle": "V004_gallery_porchpost_7",
+      "nearest_obstacle_distance_m": 1.52746,
+      "capsule_horizontal_margin_m": 1.26746,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 129.2157,
+      "x": 41.33819,
+      "y": 1.48819,
+      "z": 61.75585,
+      "nearest_obstacle": "V004_shop_porchpost_6",
+      "nearest_obstacle_distance_m": 1.91225,
+      "capsule_horizontal_margin_m": 1.65225,
+      "inside_v004_walkable": true
+    },
+    {
+      "s_m": 127.8175,
+      "x": 39.96139,
+      "y": 1.4661,
+      "z": 61.51247,
+      "nearest_obstacle": "V004_restaurant_porchpost_5",
+      "nearest_obstacle_distance_m": 1.96663,
+      "capsule_horizontal_margin_m": 1.70663,
+      "inside_v004_walkable": true
+    }
+  ],
+  "lateral_sample_offsets_m": [
+    -1.5,
+    -1,
+    -0.5,
+    0,
+    0.5,
+    1,
+    1.5
+  ],
+  "side_offsets_not_certified": true,
+  "route_or_collision_changed": false,
+  "fixed_threshold_interpretation": false
+}
