@@ -36,8 +36,8 @@ jobs:
           assert d['actual_road_width_m'] is None and d['actual_road_surface_height_m'] is None
           assert all(v is False for v in d['critical_approvals'].values())
           assert d['original_v06_character_and_bike_binary_available_in_this_public_CI'] is False
-          assert r['private_v06_assets_pushed_to_github'] is False
-          assert r['road_navigation_approved'] is False
+          assert r['private_binary_assets_committed_to_public_git'] is False
+          assert r['approvals']['legal_cycling_status_verified'] is False
           print("V24 derived ground PASS; no surveyed road or game approval.")
           PY
       - name: Save standalone public derived ground QA JSON
