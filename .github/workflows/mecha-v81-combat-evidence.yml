@@ -1,0 +1,24 @@
+name: Taipei Mecha v8.1 opt-in post-render evidence
+on:
+  push:
+    branches:
+      - feat/mecha-v81-combat-input-frames-20261102
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-combat-evidence-v81.js'
+      - 'tests/mecha/v81-combat-evidence.mjs'
+      - '.github/workflows/mecha-v81-combat-evidence.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/mecha/v78-real-capture-reference.mjs
+      - run: node tests/mecha/v79-image-diagnostics.mjs
+      - run: node tests/mecha/v80-captured-png-review.mjs
+      - run: node tests/mecha/v81-combat-evidence.mjs
