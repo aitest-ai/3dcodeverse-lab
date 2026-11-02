@@ -1,0 +1,9 @@
+{
+  "schema": "noboribetsu-date-v013-replay/1",
+  "status": "PASS",
+  "original_zip_sha256": "b820fc971d969713c936144fdcb4cfe264ec678b125db79c7f2ed7038eb2de9b",
+  "replayed_files": 108,
+  "matching_files": 108,
+  "mismatches": [],
+  "patch_sha256": "8b85b28c51b8ec818faad28eb57180c0089deddf186cc103ae2162ac94acd30a"
+}

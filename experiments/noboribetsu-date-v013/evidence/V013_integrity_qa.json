@@ -1,0 +1,27 @@
+{
+  "schema": "noboribetsu-date-v013-integrity/1",
+  "status": "PASS",
+  "original_files": 105,
+  "unchanged_original_files": 101,
+  "changed_original_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "new_files": [
+    "README_V013.md",
+    "V013_delta_qa.json",
+    "dist/v013_selective_road_grass.json"
+  ],
+  "V011_gap_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+  "V012_edge_sha256": "fee891da9536ba155e8fd00d560629da7ed6c9e88de0e1b29f38faf598059704",
+  "v013_json_sha256": "8b85b28c51b8ec818faad28eb57180c0089deddf186cc103ae2162ac94acd30a",
+  "v013_glb_sha256": "05e0815f9524470e2f4c4f0ef067265956cec9a172bc6c1803467bbae2a580c2",
+  "triangles": 2436,
+  "triangles_with_zero_area": 0,
+  "route_m": 231.56641497226084,
+  "model_and_collision_unchanged": true,
+  "blender_native_tested": false,
+  "android_hardware_tested": false
+}
