@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {cityLightingPresetV77,smokeViewFrameV77,sceneExplosionLightV77,cameraDistanceV77} from '../../examples/threejs/mech-scene-light-v77.js';
+assert.equal(cityLightingPresetV77('midday'),'midday');
+assert.equal(cityLightingPresetV77('midnight'),'midnight');
+assert.equal(cityLightingPresetV77('garbled'),'golden');
+const opacity=d=>smokeViewFrameV77({preset:'golden',cameraDistance:d,baseAlpha:.31,baseTint:[.4,.5,.6]}).opacity;
+assert.ok(opacity(0.2)<.005);
+assert.ok(opacity(20)>.25);
+assert.ok(opacity(120)<.005);
+const noon=sceneExplosionLightV77({preset:'midday',baseIntensity:3.3});
+const night=sceneExplosionLightV77({preset:'midnight',baseIntensity:3.3});
+assert.ok(noon.intensity<night.intensity);
+assert.ok(noon.color.every(v=>v>=0&&v<=1));
+assert.equal(cameraDistanceV77({x:0,y:0,z:0},{x:3,y:4,z:0}),5);
+assert.equal(cameraDistanceV77(null,null),20);
+console.log('PASS v7.7 actual Taipei time buttons and distance response: deterministic day/dusk/night smoke and bounded light');
