@@ -1,0 +1,22 @@
+name: Taipei Mecha v8.0 actual PNG review logic
+on:
+  push:
+    branches: [feat/mecha-v80-ingame-image-qa-20261102]
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-capture-review-v80.js'
+      - 'tests/mecha/v80-captured-png-review.mjs'
+      - '.github/workflows/mecha-v80-image-review.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/mecha/v78-real-capture-reference.mjs
+      - run: node tests/mecha/v79-image-diagnostics.mjs
+      - run: node tests/mecha/v80-captured-png-review.mjs
