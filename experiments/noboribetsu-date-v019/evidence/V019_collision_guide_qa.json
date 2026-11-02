@@ -1,0 +1,92 @@
+{
+  "schema": "noboribetsu-date-v019-guidance-collision-verification/1",
+  "passed": true,
+  "model_is_author_estimated": true,
+  "physical_accessibility_verified": false,
+  "collision_modified": false,
+  "route_modified": false,
+  "guide_marker_count": 13,
+  "actual_game_collision_engine": true,
+  "walkable_markers": 13,
+  "errors": [],
+  "samples": [
+    {
+      "s_m": 85,
+      "centerline_gap_m": 2.7211494961967635e-8,
+      "walkable": true,
+      "ground_y_m": 0.9092927258014577
+    },
+    {
+      "s_m": 86.5,
+      "centerline_gap_m": 3.553748586842948e-8,
+      "walkable": true,
+      "ground_y_m": 0.928345126692973
+    },
+    {
+      "s_m": 88,
+      "centerline_gap_m": 1.5648596474184998e-9,
+      "walkable": true,
+      "ground_y_m": 0.9473975275152542
+    },
+    {
+      "s_m": 89.5,
+      "centerline_gap_m": 3.866721937720079e-8,
+      "walkable": true,
+      "ground_y_m": 0.9664499283375356
+    },
+    {
+      "s_m": 91,
+      "centerline_gap_m": 2.4081761453196323e-8,
+      "walkable": true,
+      "ground_y_m": 0.9855023292290509
+    },
+    {
+      "s_m": 92.5,
+      "centerline_gap_m": 1.3020591145412391e-8,
+      "walkable": true,
+      "ground_y_m": 1.004554730051332
+    },
+    {
+      "s_m": 94,
+      "centerline_gap_m": 4.972838257801756e-8,
+      "walkable": true,
+      "ground_y_m": 1.0236071309428474
+    },
+    {
+      "s_m": 95.5,
+      "centerline_gap_m": 1.2626037050066379e-8,
+      "walkable": true,
+      "ground_y_m": 1.0426595317651286
+    },
+    {
+      "s_m": 97,
+      "centerline_gap_m": 2.4476329762476665e-8,
+      "walkable": true,
+      "ground_y_m": 1.0617119325874098
+    },
+    {
+      "s_m": 98.5,
+      "centerline_gap_m": 3.82726510074044e-8,
+      "walkable": true,
+      "ground_y_m": 1.0807643334789252
+    },
+    {
+      "s_m": 100,
+      "centerline_gap_m": 1.1703055278660934e-9,
+      "walkable": true,
+      "ground_y_m": 1.0998167343012064
+    },
+    {
+      "s_m": 101.5,
+      "centerline_gap_m": 3.5932047046536234e-8,
+      "walkable": true,
+      "ground_y_m": 1.1188691351234876
+    },
+    {
+      "s_m": 103,
+      "centerline_gap_m": 2.6816933723344832e-8,
+      "walkable": true,
+      "ground_y_m": 1.1379215360150028
+    }
+  ]
+}
