@@ -1,0 +1,22 @@
+name: Taipei mech v7.9 offline frame QA
+on:
+  push:
+    branches:
+      - feat/mecha-v79-capture-diagnostics-20261102
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-image-diagnostics-v79.js'
+      - 'tests/mecha/v79-image-diagnostics.mjs'
+      - '.github/workflows/mecha-v79-image-diagnostics.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/mecha/v78-real-capture-reference.mjs
+      - run: node tests/mecha/v79-image-diagnostics.mjs
