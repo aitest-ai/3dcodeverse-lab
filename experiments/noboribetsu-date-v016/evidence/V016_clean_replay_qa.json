@@ -1,0 +1,12 @@
+{
+  "schema": "noboribetsu-date-v016-clean-replay/1",
+  "status": "PASS",
+  "matched_files": 113,
+  "total_files": 113,
+  "hash_mismatches": 0,
+  "v015_originals_not_overwritten": true,
+  "sources": [
+    "/mnt/data/Noboribetsu_Date_V015_R1_Runtime.zip",
+    "/mnt/data/Noboribetsu_Date_V015_R1_SourceQA.zip"
+  ]
+}
