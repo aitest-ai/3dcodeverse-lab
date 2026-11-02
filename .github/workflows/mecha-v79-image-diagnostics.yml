@@ -8,6 +8,7 @@ on:
       - 'examples/threejs/mech-image-diagnostics-v79.js'
       - 'tests/mecha/v79-image-diagnostics.mjs'
       - '.github/workflows/mecha-v79-image-diagnostics.yml'
+      - 'qa/v79_offline_capture_audit.html'
 permissions:
   contents: read
 jobs:
