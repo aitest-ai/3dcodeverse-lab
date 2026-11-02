@@ -1,0 +1,8 @@
+{
+  "schema": "noboribetsu-date-v015-replay/1",
+  "base_input_files": 111,
+  "output_files": 112,
+  "matched": 112,
+  "unexpected": [],
+  "bitwise_identical": true
+}
