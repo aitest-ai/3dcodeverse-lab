@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "project": "瀨戶內騎行世界 Onomichi V17",
+  "status": "GEOGRAPHIC_SOURCE_CORRIDOR_NOT_NAVIGABLE",
+  "parent_v16_branch": "feat/onomichi-v16-v06-runtime-recovery",
+  "source": {
+    "v06_private_original_archive_sha256": "d9b29904db113a82ab348e4dfed026e05941ae5bdedd5448afda83891efce375",
+    "v06_original_osm_bbox_snapshot_sha256": "c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab",
+    "v16_patched_world_sha256": "ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5",
+    "v09_site_lock_sha256": "71873821d96c937465fd6cbd3f05d0f6a66c564f4f3cbcd6f6e968b462f2ccf9",
+    "osm_snapshot_retrieved_utc": "2026-10-31T11:19:57.999194Z",
+    "license": "ODbL © OpenStreetMap contributors",
+    "attribution_url": "https://www.openstreetmap.org/copyright"
+  },
+  "road": {
+    "osm_way_id": "114435640",
+    "name_ja": "向島循環線",
+    "ref": "377",
+    "osm_highway": "secondary",
+    "osm_lanes_tag": "1",
+    "osm_maxspeed_tag": "40",
+    "osm_surface_tag": "asphalt",
+    "segment_count": 21,
+    "segment_length_m": 565.335,
+    "start_node_id": "8255588823",
+    "frontier_node_id": "1296327682",
+    "nodes_wgs84_id_lat_lon": [
+      [
+        "8255588823",
+        34.4043239,
+        133.2026783
+      ],
+      [
+        "3923656338",
+        34.4042815,
+        133.2027188
+      ],
+      [
+        "6209421720",
+        34.4041118,
+        133.2028319
+      ],
+      [
+        "6209421719",
+        34.4039861,
+        133.2028881
+      ],
+      [
+        "6209421721",
+        34.4038723,
+        133.2029368
+      ],
+      [
+        "6209421724",
+        34.4033324,
+        133.2030273
+      ],
+      [
+        "6209421723",
+        34.4031178,
+        133.2030533
+      ],
+      [
+        "1296327585",
+        34.4028396,
+        133.2030797
+      ],
+      [
+        "6209421722",
+        34.4027733,
+        133.2030809
+      ],
+      [
+        "4184560646",
+        34.4024491,
+        133.2031137
+      ],
+      [
+        "12198108780",
+        34.4023151,
+        133.2031341
+      ],
+      [
+        "1296327540",
+        34.4022219,
+        133.2031484
+      ],
+      [
+        "1296327685",
+        34.4020839,
+        133.20325
+      ],
+      [
+        "1296327552",
+        34.4016422,
+        133.2035155
+      ],
+      [
+        "3923656311",
+        34.4010645,
+        133.2038578
+      ],
+      [
+        "1296327600",
+        34.4010219,
+        133.2038831
+      ],
+      [
+        "6191315898",
+        34.4009713,
+        133.203916
+      ],
+      [
+        "6191315902",
+        34.4009028,
+        133.2039606
+      ],
+      [
+        "1296327681",
+        34.4002061,
+        133.2044031
+      ],
+      [
+        "6191415272",
+        34.3999709,
+        133.204561
+      ],
+      [
+        "1296327478",
+        34.3998557,
+        133.2046416
+      ],
+      [
+        "1296327682",
+        34.3996339,
+        133.2048095
+      ]
+    ],
+    "all_heights_unknown": true,
+    "bicycle_legality_unverified": true
+  },
+  "source_boundary_gap": {
+    "source_v06_end_osm_id": "1296327682",
+    "v09_closest_osm_id": "1296327655",
+    "v09_nearest_way_id": "1384242539",
+    "v09_origin_lat_lon": [
+      34.39702355,
+      133.19961285
+    ],
+    "v09_nearest_local_enu_east_north_m": [
+      150.425,
+      -6.406
+    ],
+    "min_nearest_node_straight_m": 441.235,
+    "shared_node_confirmed": false,
+    "direct_connect_permitted": false
+  },
+  "approval": {
+    "source_coordinate_chain": true,
+    "route_v06_to_377_osm_node_shared": true,
+    "route_377_to_v09": false,
+    "bicycle_blue_line_verified": false,
+    "legal_access_verified": false,
+    "reliable_vertical_height": false,
+    "full_bike_collision_tested": false,
+    "ferry_to_store_navigable": false,
+    "android_tested": false,
+    "browser_webgl2_tested": false,
+    "deployed": false
+  },
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V17_Road_Evidence_Patch.zip",
+      "bytes": 42609,
+      "sha256": "e25439de26ec24c965b2b62865a3cbe720279f65172a33fa7cba4b5bb1845b5a"
+    },
+    {
+      "filename": "Onomichi_V17_Full_Original_Runtime_Plus_Road_Atlas.zip",
+      "bytes": 221910191,
+      "sha256": "2ce3c1414046349558fadefd77f2b6ca5dd44902f5f418f468fc5c1d936541b8"
+    }
+  ],
+  "notes": "User-owned original V06 files and GLB are NOT uploaded to this public repo. This OSM-derived node subset is published with ODbL attribution solely for reproducible geometry QA, never as cycling navigation."
+}

@@ -1,0 +1,66 @@
+name: Onomichi V17 OSM study gates (not bicycle navigation)
+on:
+  push:
+    branches:
+      - feat/onomichi-v17-route-evidence
+    paths:
+      - 'assets/setouchi/onomichi-v17-road-evidence.json'
+      - '.github/workflows/onomichi-v17-road-evidence.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v16-v06-runtime-recovery
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-geometry-source-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check OSM source identity, centreline distance, and no fake route approval
+        run: |
+          python3 - <<'PY'
+          import json,math
+          from pathlib import Path
+          d=json.loads(Path('assets/setouchi/onomichi-v17-road-evidence.json').read_text())
+          src=d['source'];r=d['road'];g=d['source_boundary_gap'];a=d['approval']
+          assert d['schema_version']==1
+          assert src['v06_original_osm_bbox_snapshot_sha256']=='c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab'
+          assert src['v16_patched_world_sha256']=='ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5'
+          assert src['v09_site_lock_sha256']=='71873821d96c937465fd6cbd3f05d0f6a66c564f4f3cbcd6f6e968b462f2ccf9'
+          assert 'ODbL' in src['license'] and 'OpenStreetMap' in src['license']
+          assert r['osm_way_id']=='114435640' and r['ref']=='377' and r['osm_highway']=='secondary'
+          assert r['osm_lanes_tag']=='1' and r['osm_maxspeed_tag']=='40'
+          pts=r['nodes_wgs84_id_lat_lon']
+          assert len(pts)==22 and r['segment_count']==21
+          assert pts[0][0]=='8255588823' and pts[-1][0]=='1296327682'
+          assert len({p[0] for p in pts})==22
+          assert r['all_heights_unknown'] and r['bicycle_legality_unverified']
+          def xyz(lat,lon):
+              la,lo=math.radians(lat),math.radians(lon)
+              a=6378137.;e2=6.6943799901413165e-3
+              n=a/math.sqrt(1-e2*math.sin(la)**2)
+              return (n*math.cos(la)*math.cos(lo),n*math.cos(la)*math.sin(lo),n*(1-e2)*math.sin(la))
+          def enu(lat,lon):
+              base=xyz(34.4059115,133.201729);p=xyz(lat,lon)
+              dx,dy,dz=(p[i]-base[i] for i in range(3))
+              la,lo=math.radians(34.4059115),math.radians(133.201729)
+              east=-math.sin(lo)*dx+math.cos(lo)*dy
+              north=-math.sin(la)*math.cos(lo)*dx-math.sin(la)*math.sin(lo)*dy+math.cos(la)*dz
+              return east,-north
+          points=[enu(a,b) for _,a,b in pts]
+          length=sum(math.dist(a,b) for a,b in zip(points,points[1:]))
+          assert abs(length-r['segment_length_m'])<.01,(length,r['segment_length_m'])
+          lat0,lon0=g['v09_origin_lat_lon'];east,north=g['v09_nearest_local_enu_east_north_m']
+          glat=lat0+north/111132.0
+          glon=lon0+east/(111320*math.cos(math.radians(lat0)))
+          gap=math.dist(points[-1],enu(glat,glon))
+          assert abs(gap-g['min_nearest_node_straight_m'])<.01,(gap,g['min_nearest_node_straight_m'])
+          assert not g['shared_node_confirmed'] and not g['direct_connect_permitted']
+          assert a['source_coordinate_chain'] and a['route_v06_to_377_osm_node_shared']
+          assert all(v is False for k,v in a.items() if k not in ('source_coordinate_chain','route_v06_to_377_osm_node_shared'))
+          assert all(p['filename'].endswith('.zip') for p in d['private_deliverables'])
+          print('V17 source-only QA PASS',round(length,3),'m; gap',round(gap,3),'m')
+          print('NOT a cycling route. Full original V06/V15 binaries not in this CI.')
+          PY
