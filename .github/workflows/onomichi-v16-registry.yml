@@ -1,0 +1,55 @@
+name: Onomichi V16 source registry safety gates
+on:
+  push:
+    branches:
+      - feat/onomichi-v16-v06-runtime-recovery
+    paths:
+      - assets/setouchi/onomichi-v16-source-registry.json
+      - docs/ONOMICHI_V16_RUNTIME_RESTORE.md
+      - .github/workflows/onomichi-v16-registry.yml
+  pull_request:
+    branches:
+      - feat/halows-mukaishima-v15-surface-review
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-registration-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm V16 provenance and explicitly blocked route
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('assets/setouchi/onomichi-v16-source-registry.json')
+          d=json.loads(p.read_text())
+          assert d['schema_version']==1 and d['candidate']=='V16'
+          assert d['source_archive']['sha256']=='d9b29904db113a82ab348e4dfed026e05941ae5bdedd5448afda83891efce375'
+          assert len(d['protected_v06_files'])==8
+          assert d['existing_branch_end_osm_node']=='8255588823'
+          assert d['unbuilt_gap_straight_line_m']>850
+          assert d['tests']['v06_node_logic']=='21/21 PASS'
+          assert d['approval']['route_to_halows'] is False
+          assert d['approval']['vertical_alignment'] is False
+          assert d['approval']['collision'] is False
+          assert d['approval']['site_deployed'] is False
+          assert d['changed_original_game_world'] is False
+          assert d['changed_original_js'] is False
+          assert d['modified_existing_files']==['index.html','data/world.json']
+          assert d['original_v06_world_sha256']=='bfab5d3222aefa77abd5986f3d5be202bf340e10c1252b024f90e99cb094f6be'
+          assert d['v16_world_sha256']=='ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5'
+          assert d['runtime_hash_fixes']['source_reversible'] is True
+          assert d['runtime_hash_fixes']['world_route_changed'] is False
+          assert d['runtime_hash_fixes']['harbour']['actual']==d['protected_v06_files']['assets/zones/harbour.glb']
+          assert d['runtime_hash_fixes']['mukaishima']['actual']==d['protected_v06_files']['assets/zones/mukaishima.glb']
+          assert d['tests']['embedded_images']=='39/39 PASS'
+          assert len(d['private_deliverables'])==2
+          assert not d['approval']['route_to_halows']
+          assert d['source_archive']['private_file_not_committed_to_github'] is True
+          assert Path('docs/ONOMICHI_V16_RUNTIME_RESTORE.md').is_file()
+          print('PASS: V16 provenance registry and no false route approvals.')
+          print('NOTE: This CI does not download private original V06/V15 binaries.')
+          PY
