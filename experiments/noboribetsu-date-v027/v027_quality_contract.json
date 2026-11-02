@@ -1,0 +1,41 @@
+{
+  "schema": "noboribetsu-date-v027-qa-only/1",
+  "source_v026_pr": 120,
+  "release_kind": "qa_only",
+  "runtime_changed": false,
+  "base_v026_runtime_sha256": "4e7436827c398689bc97906f268cbd49415ed2d08b2d612d868eb91d98e00167",
+  "source_v025_runtime_sha256": "edad5d98c6632a7be7ae668cb80f6d6f2e4eb7f3f948507ce99e83f281bbc085",
+  "source_v026_qa_sha256": "626c24d005c2192c984b2843d25c2253aed59dbc7602c56511ec1a768e0883f2",
+  "v025_files": 134,
+  "v026_files": 137,
+  "v025_unchanged_in_v026": 130,
+  "original_5_mesh_vertex_identical": true,
+  "route_points": 472,
+  "models": {
+    "v025_triangles": 792,
+    "v026_triangles": 952,
+    "old_retained": 792,
+    "new_sash": 112,
+    "new_shadow": 48,
+    "zero_area_triangles": 0
+  },
+  "author_model_measurements_only": {
+    "window_outer_width_m": 2.49,
+    "window_outer_height_m": 2.959,
+    "paper_width_m": 1.988,
+    "paper_height_m": 1.62,
+    "paper_to_window_width_ratio": 0.7984
+  },
+  "isolated_full_B_webgl2": true,
+  "isolated_full_B_entered": true,
+  "isolated_v026_toggle_pass": true,
+  "isolated_v025_fallback_pass": true,
+  "isolated_W_move_m": 1.26744,
+  "real_android_tested": false,
+  "blender_available": false,
+  "blend_native_created": false,
+  "cycles_rendered": false,
+  "private_host_tested": false,
+  "site_surveyed": false,
+  "merge_policy": "DRAFT_NOT_MERGED_NOT_DEPLOYED"
+}
