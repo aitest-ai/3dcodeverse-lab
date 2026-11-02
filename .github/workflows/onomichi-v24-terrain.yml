@@ -1,0 +1,48 @@
+name: Onomichi V24 GSI Contact + Real-Asset Scale Source QA
+on:
+  push:
+    branches: [feat/onomichi-v24-scale-and-terrain-seams]
+    paths:
+      - scripts/research/onomichi_v24_terrain_contact.py
+      - assets/setouchi/onomichi-v24-scale-registry.json
+      - .github/workflows/onomichi-v24-terrain.yml
+  pull_request:
+    branches: [feat/onomichi-v23-ground-visual-qa]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  derived-ground-not-navigable:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lock original V23 derived GSI sample and recalculate V24 diagnostic
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v24_terrain_contact.py
+          python3 scripts/research/onomichi_v24_terrain_contact.py
+      - name: Refuse to promote terrain probes into road/collision approvals
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("outputs/onomichi-v24/V24_Public_Terrain_Contact.json").read_text())
+          r=json.loads(Path("assets/setouchi/onomichi-v24-scale-registry.json").read_text())
+          assert d['grid_vertices']==3366 and d['osm_way_id']=="388716484"
+          assert 74.32<d['centreline_length_m']<74.40
+          assert d['centreline_ground_samples']==77
+          assert d['interpolation_difference_m']==[.0273,.0095,.0057,.0036]
+          assert .195<d['lateral_ground_height_difference_only_not_lane_width']['1.5']['max_m']<.215
+          assert d['actual_road_width_m'] is None and d['actual_road_surface_height_m'] is None
+          assert all(v is False for v in d['critical_approvals'].values())
+          assert d['original_v06_character_and_bike_binary_available_in_this_public_CI'] is False
+          assert r['private_v06_assets_pushed_to_github'] is False
+          assert r['road_navigation_approved'] is False
+          print("V24 derived ground PASS; no surveyed road or game approval.")
+          PY
+      - name: Save standalone public derived ground QA JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v24-source-derived-terrain-qa
+          path: outputs/onomichi-v24/V24_Public_Terrain_Contact.json
+          retention-days: 14
