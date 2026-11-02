@@ -1,0 +1,22 @@
+name: Mecha v6.9 Private Battle Debrief Reference QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-battle-debrief-reference-v69.js'
+      - 'tests/mecha/v69-debrief-reference.mjs'
+      - '.github/workflows/mecha-v69-debrief.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  debrief:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate reference code and test
+        run: |
+          node --check examples/threejs/mech-battle-debrief-reference-v69.js
+          node tests/mecha/v69-debrief-reference.mjs
