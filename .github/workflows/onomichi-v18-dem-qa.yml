@@ -1,0 +1,49 @@
+name: Onomichi V18 derived DEM evidence registry QA
+on:
+  push:
+    branches:
+      - feat/onomichi-v18-dem-elevation-qa
+    paths:
+      - assets/setouchi/onomichi-v18-dem-evidence.json
+      - scripts/research/onomichi_v18_dem_recheck.py
+      - .github/workflows/onomichi-v18-dem-qa.yml
+  pull_request:
+    branches:
+      - feat/onomichi-v17-route-evidence
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-derived-evidence-not-gameplay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source-aware derived registry and strict NO_NAV gate
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v18_dem_recheck.py
+          python3 - <<'PY'
+          import json,math
+          from pathlib import Path
+          x=json.loads(Path("assets/setouchi/onomichi-v18-dem-evidence.json").read_text())
+          assert x["road"]["osm_way_id"]=="114435640"
+          assert x["parent_v17_osm_snapshot_sha256"]=="c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab"
+          assert x["elevation_tile"]["sha256"]=="79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c"
+          nodes=x["road"]["wgs84_nodes_and_dem_m"]
+          assert len(nodes)==22 and len(set(n["node_id"] for n in nodes))==22
+          assert [round(min(n["gsi_dem_ground_m"] for n in nodes),2),
+                  round(max(n["gsi_dem_ground_m"] for n in nodes),2)]==[1.73,2.81]
+          assert nodes[0]["node_id"]=="8255588823" and nodes[0]["gsi_dem_ground_m"]==2.39
+          assert nodes[-1]["node_id"]=="1296327682"
+          assert not any(n["road_surface_height_verified"] for n in nodes)
+          assert x["sampling"]["profile_samples_in_private_v18_package"]==113
+          assert abs(x["road"]["study_length_m"]-565.335)<0.01
+          assert x["gap"]["nearest_source_node_gap_m"]==441.235
+          assert not x["gap"]["osm_node_connection_confirmed"]
+          assert not x["approvals"]["approved_cycling_route"]
+          assert not x["approvals"]["halows_v15_y_placement"]
+          assert not x["approvals"]["runtime_integrated"]
+          assert Path("docs/ONOMICHI_V18_DEM_ELEVATION.md").is_file()
+          print("PASS: 22 derived GSI DEM node records, all no-route gates")
+          print("NOTE: Source PNG is private; real image-pixel replay is validated separately in delivered V18 ZIP.")
+          PY
