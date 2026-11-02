@@ -1,0 +1,106 @@
+{
+  "schema": "noboribetsu-date-v019-porch-centerline-guide/1",
+  "stage": "B",
+  "default_visible": true,
+  "diagnostic_not_surveyed": true,
+  "collision_changed": false,
+  "route_changed": false,
+  "geometry_changed": false,
+  "B_only": true,
+  "player_radius_m": 0.26,
+  "source_scene_v018_sha256": "867ed8946e445a35f15371505f87e259cc5bcb9392197503710096547f53b5d2",
+  "source_v017_clearance_sha256": "c5ae969f430253bc08c6a455e661b0e385b7cf351d55f6e7b390ad938fa765ab",
+  "route_start_s_m": 85,
+  "route_end_s_m": 103,
+  "warning_range_s_m": [
+    84.5,
+    105
+  ],
+  "lateral_warning_offset_m": -0.45,
+  "samples": [
+    {
+      "s_m": 85.0,
+      "x": -2.7348089,
+      "y": 0.9092927,
+      "z": 58.6783023
+    },
+    {
+      "s_m": 86.5,
+      "x": -1.2370389,
+      "y": 0.9283451,
+      "z": 58.7600644
+    },
+    {
+      "s_m": 88.0,
+      "x": 0.2607311,
+      "y": 0.9473975,
+      "z": 58.8418264
+    },
+    {
+      "s_m": 89.5,
+      "x": 1.7585011,
+      "y": 0.9664499,
+      "z": 58.9235884
+    },
+    {
+      "s_m": 91.0,
+      "x": 3.2562711,
+      "y": 0.9855023,
+      "z": 59.0053505
+    },
+    {
+      "s_m": 92.5,
+      "x": 4.7540411,
+      "y": 1.0045547,
+      "z": 59.0871125
+    },
+    {
+      "s_m": 94.0,
+      "x": 6.2518111,
+      "y": 1.0236071,
+      "z": 59.1688746
+    },
+    {
+      "s_m": 95.5,
+      "x": 7.7495811,
+      "y": 1.0426595,
+      "z": 59.2506366
+    },
+    {
+      "s_m": 97.0,
+      "x": 9.2473511,
+      "y": 1.0617119,
+      "z": 59.3323986
+    },
+    {
+      "s_m": 98.5,
+      "x": 10.7451211,
+      "y": 1.0807643,
+      "z": 59.4141607
+    },
+    {
+      "s_m": 100.0,
+      "x": 12.2428911,
+      "y": 1.0998167,
+      "z": 59.4959227
+    },
+    {
+      "s_m": 101.5,
+      "x": 13.7406611,
+      "y": 1.1188691,
+      "z": 59.5776847
+    },
+    {
+      "s_m": 103.0,
+      "x": 15.2384311,
+      "y": 1.1379215,
+      "z": 59.6594468
+    }
+  ],
+  "point_memo": "Model-derived route centerline markers only; not safe doorway/evacuation route; no physical survey",
+  "limitations": [
+    "V004 buildings are author-estimated",
+    "Only centerline was cleared by CollisionWorld; left offset probes block",
+    "No physical accessibility or passage certification"
+  ]
+}

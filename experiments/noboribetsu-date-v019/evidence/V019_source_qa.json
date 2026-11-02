@@ -1,0 +1,20 @@
+{
+  "schema": "noboribetsu-date-v019-source-contract-qa/1",
+  "pass": true,
+  "v018_unchanged": 112,
+  "v018_modified": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json",
+    "dist/style.css"
+  ],
+  "v018_assets_unchanged": true,
+  "v018_route_collision_unchanged": true,
+  "v019_guide_markers": 13,
+  "guide_sha256": "05d4f157f3762136947c7d3921fa9b4e8aae7a82e258e7c6c70d166640500fe6",
+  "v018_original_sha256": "99930d2271c9d059e5c724d597a4b01d82a1e6b7d942eb57b919873e1b81ea9e",
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_site_https_tested": false
+}

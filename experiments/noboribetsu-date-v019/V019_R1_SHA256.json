@@ -1,0 +1,29 @@
+{
+  "schema": "noboribetsu-date-v019-delivery-sha256/1",
+  "files": {
+    "Noboribetsu_Date_V019_R1_Delivery_Report.md": {
+      "bytes": 2767,
+      "sha256": "2fea53745aa32080bfa85254b05b6d7ab77bbf66649e41d31a5b9a5dca3e21ba"
+    },
+    "Noboribetsu_Date_V019_R1_Review.html": {
+      "bytes": 623105,
+      "sha256": "ff4d5022996334830712c8f8b4710c9e6929074beab3e58528429fec4a8d02cc"
+    },
+    "Noboribetsu_Date_V019_R1_Validation.json": {
+      "bytes": 1007,
+      "sha256": "3f31f4bda2eefb745ce0a5f61038b560481d571399696ac610197314f077ef6c"
+    },
+    "Noboribetsu_Date_V019_R1_Comparison.png": {
+      "bytes": 285246,
+      "sha256": "a066a9a88ba047885b45789a8ba421b5686ed9bc0c4ce1bce7d7be00231f9485"
+    },
+    "Noboribetsu_Date_V019_R1_Runtime.zip": {
+      "bytes": 72845460,
+      "sha256": "bb7e93bb5639b8f45461b968ab0fce25432199d8594ed4c3c264b90164ded8ea"
+    },
+    "Noboribetsu_Date_V019_R1_SourceQA.zip": {
+      "bytes": 1471518,
+      "sha256": "ed0593a1fd9629b4a63efebd4c8dad8d81537f21c7d7faf8c2a4d1ac15041c48"
+    }
+  }
+}
