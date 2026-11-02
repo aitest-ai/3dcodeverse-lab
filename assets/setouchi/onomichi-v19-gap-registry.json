@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "project": "Setouchi Onomichi × Halows",
+  "candidate": "V19",
+  "status": "ARCHIVED_SNAPSHOTS_DISCONNECTED__NOT_A_RIDEABLE_ROUTE",
+  "source": {
+    "v06_osm_xml_sha256": "c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab",
+    "v06_retrieved_at_utc": "2026-10-31T11:19:57.999194Z",
+    "v06_api_request_bbox": [
+      133.197,
+      34.4028,
+      133.207,
+      34.4095
+    ],
+    "v09_halows_site_lock_sha256": "71873821d96c937465fd6cbd3f05d0f6a66c564f4f3cbcd6f6e968b462f2ccf9",
+    "v06_runtime_sha256": "d9b29904db113a82ab348e4dfed026e05941ae5bdedd5448afda83891efce375",
+    "parent_v18_sha256": "4d49c74171cd778f0f4a50363ea1bcc90d0963331550202ca85694776a005fe9",
+    "license": "© OpenStreetMap contributors, ODbL",
+    "public_original_source_files_bundled_in_github": false
+  },
+  "measured": {
+    "v06_total_osm_nodes": 3906,
+    "v06_all_osm_ways": 737,
+    "v06_highway_ways": 183,
+    "v06_road_nodes": 857,
+    "v06_frontier_reachable_road_nodes": 86,
+    "v09_road_ways": 4,
+    "v09_road_nodes": 39,
+    "common_osm_node_ids": 0,
+    "minimum_polyline_separation_m": 441.24,
+    "source_v06_nearest_way_id": "114435640",
+    "source_v06_highway": "secondary",
+    "source_v09_nearest_way_id": "1384242539",
+    "source_v09_highway": "trunk",
+    "nearest_point_v06_lat_lon": [
+      34.3996339,
+      133.2048095
+    ],
+    "nearest_point_v09_lat_lon": [
+      34.39696591,
+      133.20125049
+    ],
+    "nearest_any_v06_osm_node_to_halows_m": 232.74,
+    "nearest_any_v06_osm_node_is_road": false,
+    "nearest_v06_road_node_to_halows_m": 558.73,
+    "prior_v17_route377_centerline_m": 565.335
+  },
+  "evidence": {
+    "v19_offline_browser_interaction": "PASS via Chromium set_content; local file URL not certified",
+    "original_node_tests": "21/21 PASS",
+    "source_protected_files_count": 10,
+    "source_protected_sha256": "PASS",
+    "new_2026_11_osm_xml_retrieved": false,
+    "reason_new_xml_unavailable": "Network DNS in project compute container; web fetch cannot access OSM XML endpoint; no new 2026 snapshot claimed"
+  },
+  "interpretation": "441.24 m describes a gap between the closest two archived road centreline geometries, not a confirmed 441.24-m physical road absence. The closest arbitrary OSM node at 232.74m is not a highway node.",
+  "prohibitions": {
+    "runtime_modified": false,
+    "origin_world_json_modified": false,
+    "original_six_glbs_modified": false,
+    "role_and_bike_animations_modified": false,
+    "new_bicycle_navmesh_created": false,
+    "candidate_line_is_road": false,
+    "cycling_legality_approved": false,
+    "y_datum_aligned": false,
+    "browser_3d_playtest_passed": false,
+    "android_playtest_passed": false,
+    "site_deployed": false
+  },
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V19_Full_Original_Runtime_Plus_Gap_Audit.zip",
+      "bytes": 223094053,
+      "sha256": "ef1e9ebe7fc8feee09fa48ee187c9bc00cfeb6dec0097d42129ca41052f647fa"
+    },
+    {
+      "filename": "Onomichi_V19_Connectedness_Incremental_Patch.zip",
+      "bytes": 397138,
+      "sha256": "e3ceb24d97d7226e8d93c11ae92650cd4730cb310e4dee48d1b2bd97e4e56a67"
+    }
+  ]
+}
