@@ -1,0 +1,70 @@
+name: Onomichi V21 OSM access & bicycle routing preflight
+on:
+  push:
+    branches:
+      - feat/onomichi-v21-bicycle-risk-audit
+    paths:
+      - 'scripts/research/onomichi_v21_access_audit.py'
+      - 'assets/setouchi/onomichi-v21-risk-registry.json'
+      - '.github/workflows/onomichi-v21-access.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v20-osm-live-snapshot
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-evidence-not-permission:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify V20 original XML and node geometry
+        run: |
+          echo '5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76  assets/setouchi/osm/onomichi-v20-20261102.osm' | sha256sum -c -
+          python3 scripts/research/onomichi_v20_route_topology.py
+      - name: Generate V21 segment-level OSM tagging audit
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v21_access_audit.py
+          python3 scripts/research/onomichi_v21_access_audit.py
+      - name: Assert source interpretation without falsely granting cycling permission
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path("outputs/v21/bicycle-risk-audit.json").read_text())
+          assert d["source_osm_xml_sha256"]=="5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76"
+          assert d["road_ways_total"]==70
+          assert d["bicycle_relation_count"]==1
+          assert d["turn_restriction_relations_found"]==0
+          assert d["absence_of_turn_restrictions_does_not_prove_all_turns_legal"] is True
+          paths=d["paths"]
+          assert paths["shortest_any_road"]["distance_m"]==483.06
+          assert paths["candidate_avoiding_trunk"]["distance_m"]==604.1
+          assert paths["candidate_avoiding_trunk_to_east"]["distance_m"]==660.7
+          assert paths["shortest_any_road"]["intersection_with_bicycle_route"]==["167631309"]
+          assert not paths["candidate_avoiding_trunk"]["intersection_with_bicycle_route"]
+          a=paths["candidate_avoiding_trunk"]["way_evidence"]
+          assert len(a)==9
+          assert a[0]["way_id"]=="388716484"
+          assert a[0]["mode_specific_bicycle_override"] is True
+          assert a[0]["tags"]["bicycle"]=="yes"
+          assert a[0]["tags"]["access"]=="no"
+          assert all(not e["actual_field_legality_confirmed"] for e in a)
+          assert all(v is False for v in d["approval_gates"].values())
+          assert d["status"].endswith("NO_NAVIGATION")
+          p=json.loads(Path("assets/setouchi/onomichi-v21-risk-registry.json").read_text())
+          assert p["status"]=="V21_OFFLINE_QA_ONLY"
+          assert p["source_osm_sha256"]==d["source_osm_xml_sha256"]
+          assert p["private_runtime_files_not_uploaded"] is True
+          print("PASS: source-locked tags and navigation blocked.")
+          print("Public CI does not load the private user-owned V06 game.")
+          PY
+      - name: Upload V21 source-only QA JSON
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: onomichi-v21-risk-audit
+          path: outputs/v21/bicycle-risk-audit.json
+          retention-days: 14
+          if-no-files-found: warn
