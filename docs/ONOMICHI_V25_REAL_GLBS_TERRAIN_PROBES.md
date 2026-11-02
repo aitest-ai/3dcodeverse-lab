@@ -19,9 +19,9 @@
 - 另用 Playwright `page.set_content` 在**移除 WebGL 模型載入的獨立 DOM 測試**中成功操作探針滑桿、SVG 及 JSON 匯出，絕非完整 3D 操作證據。
 
 ## V25 完整私人交付（GitHub 只有來源與測試，不包含私有 V06 GLBs）
-- `Onomichi_V25_Full_Original_Runtime_Plus_Probe_QA.zip` 230515065 bytes／316 entries／SHA256 `9a20f109c0a28cc135655a6fed6853220b2f9b58ac81462b2048bcbba6faeae3`／CRC PASS。
-- `Onomichi_V25_GSI_Probe_Incremental_Patch.zip` 476999 bytes／9 entries／SHA256 `07f3a1cbf424c699f16d0c4ffb5d8b0b3042201021c86bbc3b5033988594cbd7`／CRC PASS；只能在 **V24 新副本**套用。
-- `Onomichi_V25_Standalone_Original_GLBS_Probe_Viewer.zip` 15116354 bytes／20 entries／SHA256 `7ec083ef58d8ac18a94b2f11418201d0d9390a6348243533a5f7b6cb1392d588`／CRC PASS，內含私有真正 GLB 和 vendored Three.js，不能隨 public GitHub 發布。
+- `Onomichi_V25_Full_Original_Runtime_Plus_Probe_QA.zip` 230517068 bytes／317 entries／SHA256 `5fe5b9f35ef31c693c867b2773f808aca15c44ea18096557d06c22ff39b5c3b2`／CRC PASS。
+- `Onomichi_V25_GSI_Probe_Incremental_Patch.zip` 479002 bytes／10 entries／SHA256 `37fa29ed0985ae0f7e16e31e6a42f3b7e636ee9ebacd0e30aabd9ff17bf7ba92`／CRC PASS；只能在 **V24 新副本**套用。
+- `Onomichi_V25_Standalone_Original_GLBS_Probe_Viewer.zip` 15118391 bytes／21 entries／SHA256 `55aa94138545f5acf1c1aac5dd3d62c8bc6dcc368e9f2d1159aafebeb3f75139`／CRC PASS，內含私有真正 GLB 和 vendored Three.js，不能隨 public GitHub 發布。
 
 ## 尚待 V26 的 Gate
 1. 取得**這個 74m 路段的 2026 現場照片及路口交通標誌、路緣坡口、障礙物和道路淨寬**，記錄來源時間；其他路口照片不能冒充。
