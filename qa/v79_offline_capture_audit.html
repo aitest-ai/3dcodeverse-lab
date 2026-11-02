@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>臺北機甲 v7.9｜三時段實景截圖品質驗收</title>
+<style>
+:root{font-family:system-ui,"Noto Sans TC",sans-serif;color-scheme:dark;background:#0b111d;color:#edf4fe}
+*{box-sizing:border-box}body{margin:0}main{max-width:1200px;margin:auto;padding:24px}
+h1{font-size:clamp(24px,3vw,34px);margin:5px 0}h2{font-size:17px}
+p{color:#b5cce1;line-height:1.6}b{color:#ecf7ff}
+.tag{color:#7cdeee;font-size:12px;font-weight:700;letter-spacing:2px}
+.note{padding:14px;background:#14253a;border-left:3px solid #4eadd2}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.card{background:#131f30;border:1px solid #2b405a;padding:16px;border-radius:13px;min-width:0}
+.card input{width:100%;margin:10px 0}.preview{aspect-ratio:16/9;background:#233247;display:flex;align-items:center;justify-content:center;overflow:hidden;color:#b2c9e2;text-align:center}
+.preview img{width:100%;height:100%;object-fit:contain}
+.metrics{font-size:12px;white-space:pre-line;line-height:1.7;margin-top:12px;color:#b8d3e8}
+button{padding:10px 13px;color:white;background:#14618a;border:1px solid #356385;border-radius:8px;cursor:pointer;margin:4px 4px 4px 0}button:disabled{opacity:.45}
+#report{padding:18px;background:#142238;border:1px solid #264664;border-radius:10px;white-space:pre-wrap;line-height:1.7}
+footer{font-size:12px;color:#9bb9d1;margin-top:25px}@media(max-width:750px){.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<div class="tag">TAIPEI MECHA • V7.9 • OFFLINE FRAME QA</div><h1>臺北機甲｜三時段真實截圖品質檢查</h1>
+<p>從 v7.8 遊戲自行取得三張 PNG，依序讀入正午、黃昏、夜晚，檢查黑畫面、過曝、透明、細節和時段差異。</p>
+<p class="note">本頁<strong>沒有任何預設的假臺北圖</strong>，而且不連網、不上傳、不保留圖片。自動檢查無法證明圖片出自真正 WebGPU、同一鏡位或實際 FPS；請人工再看機甲、煙霧與街景。</p>
+<section class="grid">
+<div class="card"><h2>01 正午 Midday</h2><input id="midday" aria-label="正午 PNG" type="file" accept="image/png,.png"><div id="view-midday" class="preview">尚未選擇實際 PNG</div><div id="metric-midday" class="metrics"></div></div>
+<div class="card"><h2>02 黃昏 Golden</h2><input id="golden" aria-label="黃昏 PNG" type="file" accept="image/png,.png"><div id="view-golden" class="preview">尚未選擇實際 PNG</div><div id="metric-golden" class="metrics"></div></div>
+<div class="card"><h2>03 夜晚 Midnight</h2><input id="midnight" aria-label="夜晚 PNG" type="file" accept="image/png,.png"><div id="view-midnight" class="preview">尚未選擇實際 PNG</div><div id="metric-midnight" class="metrics"></div></div>
+</section>
+<button id="run">分析三時段</button><button id="save" disabled>下載無個資 JSON</button><button id="reset">清空全部</button>
+<output id="status" role="status" aria-live="polite">待命</output>
+<h2>檢測結果</h2><div id="report">需要三張實際 PNG 才會開始分析。</div>
+<footer>每張 30 MB 以內、256×144 以上；JSON 不含圖片、檔名、裝置識別資訊、攝影機位置或 GPS。這是 v7.9 獨立驗收頁，並非完整 Windows 遊戲。</footer>
+<script>
+'use strict';
+/**
+ * Taipei Mech v7.9 - independent, offline, browser/Node-compatible screenshot QA.
+ * Pixel heuristics only. No WebGPU provenance, GPS, upload or frame-rate claim.
+ */
+const SCENE_PRESETS_V79 = Object.freeze(['midday','golden','midnight']);
+const asPercent=n=>Math.round(n*1000)/10, fixed=n=>Math.round(n*100)/100;
+function inspectRGBAFrameV79({width,height,data,source='unverified'}={}){
+ if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>16384||height>16384)throw new RangeError('Frame dimensions must be 1..16384');
+ if(!data||typeof data.length!=='number'||data.length!==width*height*4)throw new TypeError('Full RGBA byte array required');
+ const step=Math.max(1,Math.floor(Math.sqrt(width*height/9216)));
+ let total=0,opaque=0,black=0,white=0,clipped=0,luma=0,lumaSquare=0,colorful=0;
+ const bins=new Set();
+ for(let y=0;y<height;y+=step)for(let x=0;x<width;x+=step){
+  const i=(y*width+x)*4,r=data[i],g=data[i+1],b=data[i+2],a=data[i+3];
+  if(![r,g,b,a].every(v=>Number.isInteger(v)&&v>=0&&v<=255))throw new TypeError('RGBA components must be bytes');
+  total++;if(a<250)continue;
+  opaque++;const v=(.2126*r+.7152*g+.0722*b)/255;luma+=v;lumaSquare+=v*v;
+  if(v<.055)black++;if(v>.955)white++;if(v<.022||v>.978)clipped++;
+  if(Math.max(r,g,b)-Math.min(r,g,b)>28)colorful++;
+  bins.add(`${r>>5},${g>>5},${b>>5}`);
+ }
+ const o=Math.max(1,opaque),mean=luma/o,variance=Math.max(0,lumaSquare/o-mean*mean);
+ const result={width,height,source,samples:total,opaquePercent:asPercent(opaque/total),meanLuma:fixed(mean),lumaStd:fixed(Math.sqrt(variance)),
+ blackPercent:asPercent(black/o),whitePercent:asPercent(white/o),clippedPercent:asPercent(clipped/o),colorBins:bins.size,colorfulPercent:asPercent(colorful/o),flags:[]};
+ if(result.opaquePercent<98)result.flags.push('transparent_or_missing_pixels');
+ if(result.blackPercent>=98)result.flags.push('near_black');
+ if(result.whitePercent>=98)result.flags.push('near_white');
+ if(result.colorBins<6||result.lumaStd<.025)result.flags.push('low_detail');
+ if(result.clippedPercent>=94)result.flags.push('severe_clipping');
+ return result;
+}
+function createSceneSignatureV79({width,height,data}={},gridWidth=16,gridHeight=9){
+ if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||!data||data.length!==width*height*4)throw new TypeError('Frame RGBA dimensions mismatch');
+ const values=[];
+ for(let gy=0;gy<gridHeight;gy++)for(let gx=0;gx<gridWidth;gx++){
+  const x=Math.min(width-1,Math.floor((gx+.5)*width/gridWidth)),y=Math.min(height-1,Math.floor((gy+.5)*height/gridHeight));
+  const i=(y*width+x)*4;
+  values.push(data[i+3]<250?-1:(.2126*data[i]+.7152*data[i+1]+.0722*data[i+2])/255);
+ }
+ return values;
+}
+function compareSceneSignaturesV79(a,b){
+ if(!Array.isArray(a)||!Array.isArray(b)||a.length!==b.length||a.length<9)throw new TypeError('Matching signatures required');
+ let count=0,delta=0;
+ for(let i=0;i<a.length;i++){if(!Number.isFinite(a[i])||!Number.isFinite(b[i])||a[i]<0||b[i]<0)continue;count++;delta+=Math.abs(a[i]-b[i]);}
+ return {comparedTiles:count,meanLumaDifference:count?fixed(delta/count):null};
+}
+/** Red flags invite HUMAN review; green result never authenticates the screenshot. */
+function auditThreePresetsV79(frames){
+ if(!frames||SCENE_PRESETS_V79.some(p=>!frames[p]))throw new TypeError('Three ordered preset frames required');
+ const dims=new Set(SCENE_PRESETS_V79.map(p=>`${frames[p].width}x${frames[p].height}`));
+ const metrics=Object.fromEntries(SCENE_PRESETS_V79.map(p=>[p,inspectRGBAFrameV79(frames[p])]));
+ const flags=[];if(dims.size!==1)flags.push('dimension_mismatch');
+ for(const p of SCENE_PRESETS_V79)for(const flag of metrics[p].flags)flags.push(`${p}:${flag}`);
+ const comparisons={};
+ if(dims.size===1)for(const [a,b] of [['midday','golden'],['golden','midnight'],['midday','midnight']]){
+  const diff=compareSceneSignaturesV79(createSceneSignatureV79(frames[a]),createSceneSignatureV79(frames[b]));
+  comparisons[`${a}_${b}`]=diff;
+  if(diff.comparedTiles>=100&&diff.meanLumaDifference!==null&&diff.meanLumaDifference<.015)flags.push(`${a}_${b}:visually_similar_review`);
+ }
+ return {schema:'taipei-mecha-v79-image-qa',version:'7.9',analysis:'offline-decoded-rgba-only',presets:[...SCENE_PRESETS_V79],
+ metrics,comparisons,flags,status:flags.length?'manual_review_needed':'automatic_checks_no_flags',
+ limitations:'Cannot prove WebGPU origin, common camera, performance, correct city geometry, or human-visible animation quality; human review always required.'};
+}
+
+const $=x=>document.getElementById(x),presets=SCENE_PRESETS_V79,images={},links={};let report=null;
+function tell(s){$('status').textContent=s;}
+async function decode(file){
+ if(!file||file.size>30000000||file.size===0)throw Error('PNG 檔案應在 30MB 以下');
+ const sig=new Uint8Array(await file.slice(0,8).arrayBuffer());
+ if([137,80,78,71,13,10,26,10].some((v,i)=>sig[i]!==v))throw Error('不是有效的 PNG 標頭');
+ const bitmap=await createImageBitmap(file);
+ try{
+  if(bitmap.width<256||bitmap.height<144||bitmap.width>16384||bitmap.height>16384)throw Error('圖片尺寸超出支援範圍');
+  const canvas=document.createElement('canvas');canvas.width=bitmap.width;canvas.height=bitmap.height;
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});if(!ctx)throw Error('瀏覽器無法讀取像素');
+  ctx.drawImage(bitmap,0,0);
+  return {width:canvas.width,height:canvas.height,data:ctx.getImageData(0,0,canvas.width,canvas.height).data,source:'user-selected-local-png-unverified-origin'};
+ }finally{bitmap.close();}
+}
+function discard(p){delete images[p];if(links[p])URL.revokeObjectURL(links[p]);delete links[p];}
+async function selected(p){
+ const file=$(p).files[0];discard(p);report=null;$('save').disabled=true;$('metric-'+p).textContent='';
+ $('view-'+p).textContent='正在解碼...';
+ if(!file){$('view-'+p).textContent='尚未選擇實際 PNG';return;}
+ try{
+  const img=await decode(file);images[p]=img;links[p]=URL.createObjectURL(file);
+  const el=document.createElement('img');el.src=links[p];el.alt=p+' 使用者提供的圖片';
+  $('view-'+p).replaceChildren(el);
+  const m=inspectRGBAFrameV79(img);
+  $('metric-'+p).textContent='尺寸 '+m.width+'×'+m.height+'\n平均亮度 '+m.meanLuma+' / 亮度變化 '+m.lumaStd+'\n暗部 '+m.blackPercent+'% / 高亮 '+m.whitePercent+'%\n細節色階 '+m.colorBins+'\n疑點 '+(m.flags.join(', ')||'無');
+  tell('已選取 '+p+'，尚待三張一起分析');
+ }catch(err){$('view-'+p).textContent='讀取失敗';$('metric-'+p).textContent=String(err.message||err);tell('請重新選取有效 PNG');}
+}
+for(const p of presets)$(p).addEventListener('change',()=>selected(p));
+$('run').addEventListener('click',()=>{
+ if(presets.some(p=>!images[p])){$('report').textContent='請先選擇三張可解碼的 PNG。';return;}
+ try{
+  report=auditThreePresetsV79(images);$('save').disabled=false;
+  const lines=[report.flags.length?'⚠ 有疑點，請人工複查':'✓ 自動檢查暫無疑點（仍需人工驗收）',
+   ...Object.entries(report.metrics).map(([p,m])=>p+': 平均亮度 '+m.meanLuma+'，暗部 '+m.blackPercent+'%，透明 '+(100-m.opaquePercent).toFixed(1)+'%'),
+   ...Object.entries(report.comparisons).map(([p,v])=>p+': 亮度差 '+v.meanLumaDifference),
+   '異常旗標：'+(report.flags.join('；')||'無'),'本檢測不驗證 WebGPU 來源、視角、FPS、模型穿模。'];
+  $('report').textContent=lines.join('\n');tell('本機分析完成');
+ }catch(err){$('report').textContent='分析錯誤：'+String(err.message||err);}
+});
+$('save').addEventListener('click',()=>{if(!report)return;const u=URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='taipei-mecha-v79-image-audit.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1200);});
+$('reset').addEventListener('click',()=>{for(const p of presets){discard(p);$(p).value='';$('view-'+p).textContent='尚未選擇實際 PNG';$('metric-'+p).textContent='';}report=null;$('save').disabled=true;$('report').textContent='需要三張實際 PNG 才會開始分析。';tell('已清空');});
+</script></main></body></html>
