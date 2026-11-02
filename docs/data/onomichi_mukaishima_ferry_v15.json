@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "asset_id": "onomichi-mukaishima-ferry-v15-reference-only",
+  "updated_at": "2026-11-02",
+  "provenance": {
+    "official": "https://www.city.onomichi.hiroshima.jp/soshiki/32/65681.html",
+    "safety": "https://www.city.onomichi.hiroshima.jp/site/onomichikanko/59215.html",
+    "additional": "https://www.ononavi.jp/playing/cruising/detail.html?detail_id=468"
+  },
+  "services": [
+    {
+      "id": "station_tomihama",
+      "name_ja": "尾道駅前～向島富浜",
+      "active_reference": true,
+      "main_port": "尾道駅前",
+      "island_port": "向島富浜",
+      "port_coordinates": null,
+      "geometry_status": "NOT_SURVEYED",
+      "current_timetable_verified": false,
+      "render_status": "REFERENCE_ONLY_NOT_GLTF"
+    },
+    {
+      "id": "tsuchido_kaneyoshi",
+      "name_ja": "尾道土堂～向島兼吉",
+      "active_reference": true,
+      "main_port": "尾道土堂",
+      "island_port": "向島兼吉",
+      "port_coordinates": null,
+      "geometry_status": "NOT_SURVEYED",
+      "current_timetable_verified": false,
+      "render_status": "REFERENCE_ONLY_NOT_GLTF"
+    }
+  ],
+  "retired_route_warning": "福本渡船已於2025年3月底停止營運，勿在遊戲當成現行航線",
+  "permitted_route_to_halows": false,
+  "legal_bicycle_approach_verified": false,
+  "network_intersection_certified": false,
+  "roads_between_ferry_and_shop_mapped": false,
+  "runtime_integration_approved": false,
+  "bridge_bicycle_guidance": "尾道市不建議騎自行車跨越狹窄繁忙的尾道大橋；建議使用渡船",
+  "license_notes": "Public factual route names and operator information only; no map/photo assets bundled."
+}
