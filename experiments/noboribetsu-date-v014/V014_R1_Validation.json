@@ -1,0 +1,45 @@
+{
+  "schema": "noboribetsu-date-v014-validation/1",
+  "status": "CANDIDATE_WITH_EXPLICIT_GATES",
+  "geometry": {
+    "stone_count": 50,
+    "triangles": 100,
+    "vertices": 200,
+    "existing_stone_skipped": 0,
+    "min_old_stone_distance_m": 2.8887412839921045,
+    "road_geometry_untouched": true,
+    "collision_unchanged": true,
+    "webgl_tested": false,
+    "status": "SOURCE_GEOMETRY_PASS"
+  },
+  "clean_replay_files": 111,
+  "clean_replay_identical": true,
+  "webgl2": {
+    "actual_browser_rendered": true,
+    "browser": "Chromium Xvfb SwiftShader WebGL2",
+    "v011_v012_v013_loaded": true,
+    "v014_loaded": true,
+    "javascript_errors_observed": 0,
+    "missing_requests_observed": 0,
+    "before_after_changed_pixels_threshold14": 5703,
+    "scene_total_draw_triangles_after": 1439198,
+    "test_only_sha_adapter": true,
+    "native_webcrypto_in_real_site_not_tested": true
+  },
+  "ui": {
+    "user_toggle_false_true_observed": true,
+    "ab_eye_target_up_fov_zero_observed": true,
+    "test_process_browser_cleanup_timed_out": true
+  },
+  "assets": {
+    "inlay_glb_sha256": "23da34856d0a126b1c5e58ceefdc131c92365fd180fe58b3f3cfb50894078251",
+    "inlay_json_sha256": "ff75ca46c929fef89483bc0194f3eb6877df8e79a108c267490cd8079fe7aa3e",
+    "underlying_v004_road_sha256": "d766bbf2b8a7df403b0b76f1c618f1f9ba2796eb4197d2df574fc4de5e58c81d"
+  },
+  "not_tested": [
+    "Android actual device",
+    "private website actual HTTPS/CDN/login",
+    "Blender-native .blend/Cycles",
+    "actual stone position and dimensions surveyed"
+  ]
+}
