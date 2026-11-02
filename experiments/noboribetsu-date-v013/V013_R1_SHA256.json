@@ -1,0 +1,25 @@
+{
+  "schema": "Noboribetsu-Date-V013-artifact-integrity/1",
+  "files": {
+    "Noboribetsu_Date_V013_R1_Runtime.zip": {
+      "size_bytes": 72843623,
+      "sha256": "96256b439255e18ee993fa56bc41b6d6f211c01646c7ea1b251e0d7cbc571205"
+    },
+    "Noboribetsu_Date_V013_R1_SourceQA.zip": {
+      "size_bytes": 1402966,
+      "sha256": "5539e28d7f5ee135c1ba4291ed14585b11781495459c0f7233d6a40da626dfa3"
+    },
+    "Noboribetsu_Date_V013_R1_Review.html": {
+      "size_bytes": 546572,
+      "sha256": "d651750391d8ce1571e9350eb382765217ac9d461b07bc7a5e154c21e6a9195e"
+    },
+    "Noboribetsu_Date_V013_R1_Selective_Road_Edges.glb": {
+      "size_bytes": 50320,
+      "sha256": "05e0815f9524470e2f4c4f0ef067265956cec9a172bc6c1803467bbae2a580c2"
+    },
+    "Noboribetsu_Date_V013_R1_Delivery_Report.md": {
+      "size_bytes": 3248,
+      "sha256": "717c9a7d62c68b51d89bf48856bb2d3fde32d68c3b13f35abaa6209b5541711f"
+    }
+  }
+}
