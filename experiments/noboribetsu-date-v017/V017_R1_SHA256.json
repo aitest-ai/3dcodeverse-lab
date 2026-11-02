@@ -1,0 +1,34 @@
+{
+  "schema": "noboribetsu-date-v017-delivery-sha256/1",
+  "status": "CANDIDATE_ISOLATED_WEBGL2_PASS",
+  "original_v016_sha256": "44f86918c5c548cf34fc28c7d38e4022dda7a65fbbaf145f99eb58a9c26dd3c9",
+  "artifacts": [
+    {
+      "name": "Noboribetsu_Date_V017_R1_Runtime.zip",
+      "bytes": 72856829,
+      "sha256": "eb6ceb13d51b813b8111070cd13eadf36b13fb9ff246964519e6118892458866",
+      "files": 115
+    },
+    {
+      "name": "Noboribetsu_Date_V017_R1_SourceQA.zip",
+      "bytes": 320111,
+      "sha256": "66a889c524e4069c60552b29faa3f0ef3bae244955354e623a872256ad24b6d7",
+      "files": 17
+    },
+    {
+      "name": "Noboribetsu_Date_V017_R1_Review.html",
+      "bytes": 209680,
+      "sha256": "693fc5bb2cf7743da58586543488dca48099860db30127a3f6821fab72444a22"
+    },
+    {
+      "name": "V017_Clearance_Diagnostic_Rings.glb",
+      "bytes": 5332,
+      "sha256": "cb818ca8dce051629a59fb0841ae0d88a1d48ede414d96722eee1106b4630034"
+    }
+  ],
+  "limitations": [
+    "private HTTPS and Android not tested",
+    "doorway threshold dimensions unknown",
+    "Blender native not run"
+  ]
+}
