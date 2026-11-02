@@ -1,0 +1,74 @@
+{
+  "schema": "noboribetsu-date-v018-qa-only-runtime/1",
+  "base_version": "V017 R1",
+  "runtime_logic_changed": false,
+  "underlying_original_files": 115,
+  "original_asset_sha256": "eb6ceb13d51b813b8111070cd13eadf36b13fb9ff246964519e6118892458866",
+  "collision_replay_pass": 10,
+  "collision_replay_count": 10,
+  "browser_dom_pass": 6,
+  "browser_dom_count": 6,
+  "centerline_clearance_m": 0.23073,
+  "offset_checks": [
+    {
+      "offset_m": -1.5,
+      "passes": 208,
+      "blocked": 29,
+      "reasons": {
+        "obstacle": 29
+      }
+    },
+    {
+      "offset_m": -1,
+      "passes": 199,
+      "blocked": 38,
+      "reasons": {
+        "obstacle": 38
+      }
+    },
+    {
+      "offset_m": -0.5,
+      "passes": 227,
+      "blocked": 10,
+      "reasons": {
+        "obstacle": 10
+      }
+    },
+    {
+      "offset_m": 0,
+      "passes": 237,
+      "blocked": 0,
+      "reasons": {}
+    },
+    {
+      "offset_m": 0.5,
+      "passes": 237,
+      "blocked": 0,
+      "reasons": {}
+    },
+    {
+      "offset_m": 1,
+      "passes": 237,
+      "blocked": 0,
+      "reasons": {}
+    },
+    {
+      "offset_m": 1.5,
+      "passes": 237,
+      "blocked": 0,
+      "reasons": {}
+    }
+  ],
+  "integration_scope": "QA-only; game runtime unchanged",
+  "new_runtime_root_files": [
+    "README_V018_QA.md",
+    "V018_QA_summary.json"
+  ],
+  "not_tested": [
+    "full scene WebGL2 this round",
+    "Android real device",
+    "private HTTPS/CDN/login",
+    "Blender native",
+    "shop thresholds"
+  ]
+}
