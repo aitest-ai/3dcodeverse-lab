@@ -1,0 +1,39 @@
+{
+  "schema": "noboribetsu-date-v019-validation/1",
+  "status": "candidate_pass_with_external_gates",
+  "v018_unchanged_files": 112,
+  "v018_modified_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json",
+    "dist/style.css"
+  ],
+  "v019_runtime_files": 118,
+  "guide_markers": 13,
+  "guide_collision_safe": true,
+  "source_sha_verified": true,
+  "webgl2_real": true,
+  "webgl2_toggle": {
+    "guide_count": 13,
+    "guide_verified": true,
+    "initial_switch_on": "true",
+    "off": "false",
+    "back_on": "true",
+    "B_stage": "B",
+    "camera_test_hook_shipped": false,
+    "porch_pose": {
+      "x": 2.741929577151329,
+      "y": 0.9789596418397345,
+      "z": 58.97727299355677,
+      "stage": "B"
+    },
+    "porch_side_by_side_captured": true,
+    "screenshot": true
+  },
+  "webgl2_test_only_sha_adapter": true,
+  "webgl2_real_site_tested": false,
+  "android_real_tested": false,
+  "blender_native_executed": false,
+  "roi_changed_pixels_gt20": 2093
+}
