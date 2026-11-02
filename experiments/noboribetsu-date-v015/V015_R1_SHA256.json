@@ -1,0 +1,17 @@
+{
+  "schema": "noboribetsu-date-v015-delivery-sha256/1",
+  "runtime": {
+    "bytes": 72835044,
+    "sha256": "4a2b65d685da20f1355d5b9e5811c58e143b7128cf71fc6832946a932ef85441",
+    "files": 112
+  },
+  "sourceqa": {
+    "bytes": 582831,
+    "sha256": "7a3e6d58d6032a9bd5e91ec625f85f6a2093801e1016f6706a93d40aca12f24f",
+    "files": 21
+  },
+  "patch_sha256": "9ae9cc015b1759a0e57cd361e567eba79d211a22c28b6613f67dcf11929a29d7",
+  "base_version": "V014_R1",
+  "webgl_full_before_after_pass": false,
+  "clean_replay_112_of_112": true
+}
