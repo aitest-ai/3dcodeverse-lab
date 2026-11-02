@@ -1,0 +1,20 @@
+{
+  "schema": "noboribetsu-v015-qa-partial-webgl2/1",
+  "first_run": "Chromium with invalid inherited DISPLAY=:0 failed to launch",
+  "second_run": "fresh isolated Xvfb :149 successfully created WebGL2 and loaded scene",
+  "reported_console": {
+    "webgl2": true,
+    "scene_loaded": true,
+    "metrics_v011_v012_v013_v014_v015_present": true,
+    "v015_footers": 8,
+    "before_screenshot_bytes": 370207
+  },
+  "unverified": {
+    "after_real_webgl_screenshot": true,
+    "complete_browser_shutdown": true,
+    "pixel_diff_webgl_before_after": true,
+    "private_http_session": true,
+    "android_physical_device": true
+  },
+  "status": "PARTIAL_BROWSER_PASS_NOT_FULL_ART_ACCEPTANCE"
+}
