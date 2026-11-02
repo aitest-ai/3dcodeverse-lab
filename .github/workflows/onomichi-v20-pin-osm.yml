@@ -1,0 +1,47 @@
+name: Onomichi V20 Pin Verified OSM XML Snapshot
+on:
+  push:
+    branches:
+      - feat/onomichi-v20-osm-live-snapshot
+    paths:
+      - '.github/workflows/onomichi-v20-pin-osm.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  pin-source-archive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Reject replacement of existing historical source
+        run: |
+          test ! -e assets/setouchi/osm/onomichi-v20-20261102.osm
+          test ! -e assets/setouchi/osm/onomichi-v20-20261102.source.json
+      - name: Download one immutable OSM research snapshot
+        run: python3 scripts/research/onomichi_v20_fetch_osm.py
+      - name: Require exactly audited earlier source bytes before publishing
+        run: |
+          test -s outputs/v20/onomichi-v20-current-bbox.osm
+          echo '5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76  outputs/v20/onomichi-v20-current-bbox.osm' | sha256sum -c -
+          mkdir -p assets/setouchi/osm
+          cp outputs/v20/onomichi-v20-current-bbox.osm assets/setouchi/osm/onomichi-v20-20261102.osm
+          cp outputs/v20/onomichi-v20-current-bbox.source.json assets/setouchi/osm/onomichi-v20-20261102.source.json
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('assets/setouchi/osm/onomichi-v20-20261102.source.json')
+          x=json.loads(p.read_text())
+          assert x['sha256']=='5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76'
+          assert x['frontier_node_present'] and x['halows_v09_south_node_present'] and x['halows_v09_east_node_present']
+          assert x['bicycle_access_approved'] is False and x['runtime_changed'] is False
+          PY
+      - name: Push public ODbL source snapshot only to current V20 branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/setouchi/osm/onomichi-v20-20261102.osm assets/setouchi/osm/onomichi-v20-20261102.source.json
+          git commit -m "data(setouchi): pin audited 2026-11-02 OSM XML snapshot (ODbL)"
+          test "$(git branch --show-current)" = "feat/onomichi-v20-osm-live-snapshot"
+          git push origin HEAD:feat/onomichi-v20-osm-live-snapshot
