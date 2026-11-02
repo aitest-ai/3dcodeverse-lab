@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {ATMOSPHERE_PRESETS_V74,smokeCurveV74,lightCurveV74,cameraImpulseV74} from '../../examples/threejs/mech-atmosphere-curves-v74.js';
+assert.deepEqual(Object.keys(ATMOSPHERE_PRESETS_V74),['full','balanced','light']);
+assert.deepEqual([ATMOSPHERE_PRESETS_V74.full.maxSmoke,ATMOSPHERE_PRESETS_V74.balanced.maxSmoke,ATMOSPHERE_PRESETS_V74.light.maxSmoke],[36,22,9]);
+assert.deepEqual([ATMOSPHERE_PRESETS_V74.full.maxLights,ATMOSPHERE_PRESETS_V74.balanced.maxLights,ATMOSPHERE_PRESETS_V74.light.maxLights],[3,1,0]);
+const early=smokeCurveV74(.3,3.4,2),late=smokeCurveV74(2.3,3.4,2);
+assert.ok(early.alpha>0&&late.radius>early.radius&&late.rise>early.rise);
+assert.equal(smokeCurveV74(3.4,3.4,2).alpha,0);
+assert.equal(lightCurveV74(.4,.4).intensity,0);
+assert.equal(cameraImpulseV74('blast','full',0,true),0);
+assert.ok(cameraImpulseV74('blast','full',0,false)>cameraImpulseV74('blast','balanced',0,false));
+assert.ok(cameraImpulseV74('blast','balanced',0,false)>cameraImpulseV74('blast','light',0,false));
+assert.equal(cameraImpulseV74('blast','full',95,false),0);
+console.log('PASS v7.4: original smoke diffusion and decay, real light caps by manual quality, opt-out camera shake');
