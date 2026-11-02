@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: read
 jobs:
   pin-source-archive:
     runs-on: ubuntu-24.04
@@ -20,8 +21,15 @@ jobs:
         run: |
           test ! -e assets/setouchi/osm/onomichi-v20-20261102.osm
           test ! -e assets/setouchi/osm/onomichi-v20-20261102.source.json
-      - name: Download one immutable OSM research snapshot
-        run: python3 scripts/research/onomichi_v20_fetch_osm.py
+      - name: Recover the exact already-verified original XML artifact (do not re-fetch)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p outputs/v20
+          gh run download 41394293756 --repo "$GITHUB_REPOSITORY" \
+            --name onomichi-v20-fresh-osm-evidence --dir outputs/v20
+          test -s outputs/v20/onomichi-v20-current-bbox.osm
+          test -s outputs/v20/onomichi-v20-current-bbox.source.json
       - name: Require exactly audited earlier source bytes before publishing
         run: |
           test -s outputs/v20/onomichi-v20-current-bbox.osm
