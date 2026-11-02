@@ -1,0 +1,34 @@
+{
+  "schema": "noboribetsu-date-v014-artifact-manifest/1",
+  "source_v013_sha256": "96256b439255e18ee993fa56bc41b6d6f211c01646c7ea1b251e0d7cbc571205",
+  "outputs": {
+    "Noboribetsu_Date_V014_R1_Runtime.zip": {
+      "bytes": 72848724,
+      "sha256": "4baa64f1303048b1ef715b0cbe51f4433371085b013303e41e099d5215936104"
+    },
+    "Noboribetsu_Date_V014_R1_SourceQA.zip": {
+      "bytes": 898380,
+      "sha256": "60d70b62143602f86c3e0ede23985dde4feef865ecfa9cfaa227f7612ab8eeb2"
+    },
+    "Noboribetsu_Date_V014_R1_Central_Stones.glb": {
+      "bytes": 5380,
+      "sha256": "23da34856d0a126b1c5e58ceefdc131c92365fd180fe58b3f3cfb50894078251"
+    },
+    "Noboribetsu_Date_V014_R1_Review.html": {
+      "bytes": 457788,
+      "sha256": "ea8db8e4c7c8ab283f50e295763a6aaca5fbfa1235fa65ca39797f80e6702b36"
+    },
+    "Noboribetsu_Date_V014_R1_Comparison.png": {
+      "bytes": 195417,
+      "sha256": "db6da5b4affb76f1ae038d076e21598f2a3834a68f600aff39b5ed9d21c8e4bb"
+    },
+    "Noboribetsu_Date_V014_R1_Delivery_Report.md": {
+      "bytes": 1345,
+      "sha256": "22f3e4015162edb669aad91c6907dac6a5974ed62779d0c7c9cf0d2f97b5519d"
+    },
+    "Noboribetsu_Date_V014_R1_Validation.json": {
+      "bytes": 1548,
+      "sha256": "238e077d9630e1c254048b1b48954a9a1100272f8955cc02355479ac009f9f83"
+    }
+  }
+}
