@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "asset_id": "onomichi-v18-gsi-dem5a-route377-ground-profile",
+  "parent_snapshot_git_blob": "9f9169a740a001b3c42f951eb580ac82286047fc",
+  "road_way_id": "114435640",
+  "parent_v17_osm_snapshot_sha256": "c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab",
+  "elevation_tile": {
+    "z": 15,
+    "x": 28508,
+    "y": 13045,
+    "sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+    "original_source": "GSI DEM5A PNG",
+    "source_date": "2026-10-31",
+    "formula": "x=65536*R+256*G+B; h=(x if x<2^23 else x-2^24)*0.01; x=2^23 NA",
+    "official_spec": "https://maps.gsi.go.jp/development/demtile.html",
+    "source_license": "Geospatial Information Authority of Japan tile terms; 地理院タイル（標高タイル）を加工して作成"
+  },
+  "road": {
+    "osm_ref": "377",
+    "osm_way_id": "114435640",
+    "study_length_m": 565.335,
+    "source_node_count": 22,
+    "wgs84_nodes_and_dem_m": [
+      {
+        "node_id": "8255588823",
+        "lat": 34.4043239,
+        "lon": 133.2026783,
+        "gsi_dem_ground_m": 2.39,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "3923656338",
+        "lat": 34.4042815,
+        "lon": 133.2027188,
+        "gsi_dem_ground_m": 2.36,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421720",
+        "lat": 34.4041118,
+        "lon": 133.2028319,
+        "gsi_dem_ground_m": 2.33,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421719",
+        "lat": 34.4039861,
+        "lon": 133.2028881,
+        "gsi_dem_ground_m": 2.35,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421721",
+        "lat": 34.4038723,
+        "lon": 133.2029368,
+        "gsi_dem_ground_m": 2.33,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421724",
+        "lat": 34.4033324,
+        "lon": 133.2030273,
+        "gsi_dem_ground_m": 2.25,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421723",
+        "lat": 34.4031178,
+        "lon": 133.2030533,
+        "gsi_dem_ground_m": 2.09,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327585",
+        "lat": 34.4028396,
+        "lon": 133.2030797,
+        "gsi_dem_ground_m": 2.15,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6209421722",
+        "lat": 34.4027733,
+        "lon": 133.2030809,
+        "gsi_dem_ground_m": 2.17,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "4184560646",
+        "lat": 34.4024491,
+        "lon": 133.2031137,
+        "gsi_dem_ground_m": 2.13,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "12198108780",
+        "lat": 34.4023151,
+        "lon": 133.2031341,
+        "gsi_dem_ground_m": 2,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327540",
+        "lat": 34.4022219,
+        "lon": 133.2031484,
+        "gsi_dem_ground_m": 1.89,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327685",
+        "lat": 34.4020839,
+        "lon": 133.20325,
+        "gsi_dem_ground_m": 1.83,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327552",
+        "lat": 34.4016422,
+        "lon": 133.2035155,
+        "gsi_dem_ground_m": 1.73,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "3923656311",
+        "lat": 34.4010645,
+        "lon": 133.2038578,
+        "gsi_dem_ground_m": 1.76,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327600",
+        "lat": 34.4010219,
+        "lon": 133.2038831,
+        "gsi_dem_ground_m": 1.8,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6191315898",
+        "lat": 34.4009713,
+        "lon": 133.203916,
+        "gsi_dem_ground_m": 1.83,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6191315902",
+        "lat": 34.4009028,
+        "lon": 133.2039606,
+        "gsi_dem_ground_m": 1.84,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327681",
+        "lat": 34.4002061,
+        "lon": 133.2044031,
+        "gsi_dem_ground_m": 2.37,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "6191415272",
+        "lat": 34.3999709,
+        "lon": 133.204561,
+        "gsi_dem_ground_m": 2.53,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327478",
+        "lat": 34.3998557,
+        "lon": 133.2046416,
+        "gsi_dem_ground_m": 2.66,
+        "road_surface_height_verified": false
+      },
+      {
+        "node_id": "1296327682",
+        "lat": 34.3996339,
+        "lon": 133.2048095,
+        "gsi_dem_ground_m": 2.81,
+        "road_surface_height_verified": false
+      }
+    ]
+  },
+  "sampling": {
+    "dem_nodes_covered": 22,
+    "profile_samples_in_private_v18_package": 113,
+    "minimum_ground_m": 1.73,
+    "maximum_ground_m": 2.81,
+    "vertical_encoding_resolution_m": 0.01
+  },
+  "v06_reference": {
+    "route_end_node_id": "8255588823",
+    "v06_world_y_m": 2.39,
+    "gsi_ground_m": 2.39,
+    "single_point_difference_m": 0,
+    "shared_v06_halows_v15_vertical_datum_proven": false
+  },
+  "gap": {
+    "nearest_source_node_gap_m": 441.235,
+    "osm_node_connection_confirmed": false,
+    "gap_is_road": false
+  },
+  "approvals": {
+    "source_values_verified_against_original_tile_in_private_package": true,
+    "approved_cycling_route": false,
+    "surveyed_road_grade": false,
+    "halows_v15_y_placement": false,
+    "continuous_collision": false,
+    "browser_gameplay": false,
+    "android_gameplay": false,
+    "runtime_integrated": false
+  },
+  "original_unchanged": {
+    "v06_world_sha256": "ec06865c6cb69f34c833b981e93df7a511c05e252afb2be278fc4f730e003fd5",
+    "user_owned_binary_files_not_pushed_to_public_repo": true
+  },
+  "notes": "This JSON contains OSM + GSI derived public research values; original GSI tile and large private V06 Runtime remain outside this public repository."
+}
