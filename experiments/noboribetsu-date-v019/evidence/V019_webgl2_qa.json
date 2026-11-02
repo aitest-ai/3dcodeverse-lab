@@ -1,0 +1,32 @@
+{
+  "schema": "noboribetsu-date-v019-isolated-real-webgl2/1",
+  "status": "pass",
+  "test_only_hash_adapter": true,
+  "test_adapter_shipped": false,
+  "original_b_sha256_independently_verified": true,
+  "browser_page_source": "about:blank + virtual date.local subresource routing",
+  "real_site_https_tested": false,
+  "android_tested": false,
+  "loaded": true,
+  "real_webgl2": true,
+  "checks": {
+    "guide_count": 13,
+    "guide_verified": true,
+    "initial_switch_on": "true",
+    "off": "false",
+    "back_on": "true",
+    "B_stage": "B",
+    "camera_test_hook_shipped": false,
+    "porch_pose": {
+      "x": 2.741929577151329,
+      "y": 0.9789596418397345,
+      "z": 58.97727299355677,
+      "stage": "B"
+    },
+    "porch_side_by_side_captured": true,
+    "screenshot": true
+  },
+  "errors": [],
+  "request_missing": [],
+  "load_error": ""
+}
