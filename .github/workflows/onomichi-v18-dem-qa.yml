@@ -6,6 +6,7 @@ on:
     paths:
       - assets/setouchi/onomichi-v18-dem-evidence.json
       - scripts/research/onomichi_v18_dem_recheck.py
+      - scripts/research/onomichi_v18_gap_snapshot.py
       - .github/workflows/onomichi-v18-dem-qa.yml
   pull_request:
     branches:
@@ -22,6 +23,7 @@ jobs:
       - name: Validate source-aware derived registry and strict NO_NAV gate
         run: |
           python3 -m py_compile scripts/research/onomichi_v18_dem_recheck.py
+          python3 -m py_compile scripts/research/onomichi_v18_gap_snapshot.py
           python3 - <<'PY'
           import json,math
           from pathlib import Path
