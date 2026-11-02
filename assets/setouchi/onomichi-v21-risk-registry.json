@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "project": "瀨戶內騎行世界／Onomichi Cycling",
+  "candidate": "V21",
+  "status": "V21_OFFLINE_QA_ONLY",
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "source_osm_file": "assets/setouchi/osm/onomichi-v20-20261102.osm",
+  "source_license": "© OpenStreetMap contributors (ODbL)",
+  "analysis": {
+    "roads_with_highway_tag": 70,
+    "route_bicycle_relation_count": 1,
+    "route_bicycle_relation_id": "2236106",
+    "turn_restriction_relations_in_bbox": 0,
+    "missing_osm_turn_restrictions_proves_legal_turns": false,
+    "shortest_centerline_m": 483.06,
+    "shortest_osm_unique_ways": 2,
+    "shortest_includes_trunk": true,
+    "shortest_bicycle_relation_member_ways": [
+      "167631309"
+    ],
+    "non_trunk_centerline_m": 604.1,
+    "non_trunk_unique_ways": 9,
+    "non_trunk_bicycle_route_relation_member_ways": [],
+    "east_centerline_m": 660.7,
+    "east_unique_ways": 9,
+    "initial_exception_way": "388716484",
+    "initial_exception_tags": {
+      "access": "no",
+      "bicycle": "yes",
+      "foot": "yes",
+      "motor_vehicle": "yes"
+    },
+    "specific_bicycle_tag_overrides_general_access_in_osm_semantics": true,
+    "field_traffic_signs_and_legal_access_verified": false,
+    "osmx_route_is_not_navigation": true
+  },
+  "approval_gates": {
+    "road_route_approved": false,
+    "intersections_field_verified": false,
+    "road_width_and_curb_cuts_verified": false,
+    "shared_v15_y_datum": false,
+    "full_sweep_collision": false,
+    "actual_webgl2_playtest": false,
+    "android_realplay": false,
+    "ferry_to_halows_connected_in_runtime": false
+  },
+  "protected_v20_core_files": 10,
+  "protected_sha256_same": "PASS",
+  "original_node_tests": "21/21 PASS",
+  "existing_files_intentionally_changed": [
+    "index.html"
+  ],
+  "original_world_json_changed": false,
+  "original_main_js_changed": false,
+  "protected_six_glbs_changed": false,
+  "private_runtime_files_not_uploaded": true,
+  "offline_browser_ui_tested": "Chromium actual set_content; 3/3 route buttons and counts passed; JavaScript 0 errors",
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V21_Full_Original_Runtime_Plus_Risk_Audit.zip",
+      "bytes": 223627498,
+      "sha256": "2cca82ed61b012043ed2e560a2b885572032f356373f6bdf2f66b7c2fea84bb3",
+      "files": 276,
+      "zip_crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V21_Bicycle_Risk_Incremental_Patch.zip",
+      "bytes": 357319,
+      "sha256": "69b5491dc45db2c4a51e1f68d81f69e06954eb2707067308ccc92b042c3c6f29",
+      "files": 8,
+      "zip_crc": "PASS"
+    }
+  ],
+  "local_reproducers": [
+    "scripts/v21_routing_risk.py",
+    "scripts/v21_dashboard.py"
+  ],
+  "ui_file": "review/onomichi-v21/V21_Offline_Bicycle_Risk_Atlas.html",
+  "public_github_ci_tests_only": "Pinned public OSM XML and derived OSM tag evidence; never private original binary game.",
+  "next_gate": "Acquire 2026 reliable road signs/curbs and riding rights, turn directions, road surface heights and continuous swept collision before adding any rideable path"
+}
