@@ -1,0 +1,24 @@
+name: Taipei Mecha v7.3 Performance and Cosmetic Quality Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-performance-v73.js'
+      - 'examples/threejs/mech-quality-v73.js'
+      - 'tests/mecha/v73-performance-quality.mjs'
+      - '.github/workflows/mecha-v73-performance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact shared Windows sources
+        run: |
+          node --check examples/threejs/mech-performance-v73.js
+          node --check examples/threejs/mech-quality-v73.js
+          node tests/mecha/v73-performance-quality.mjs
