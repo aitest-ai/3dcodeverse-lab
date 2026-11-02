@@ -1,0 +1,60 @@
+{
+  "schema": "noboribetsu-date-v018-chromium-dom-input/1",
+  "browser_dom": true,
+  "physical_touch": false,
+  "webgl_scene_loaded": false,
+  "source_sha256": {
+    "input-events.js": "e47ad91cf4ab51fe6fed45189366342910d7d82b1c4c1ac8da9e24ca8e25eb43",
+    "walk-session.js": "e18af659c595788ccabe1a7ebf1a88f8a8129bd7c72321e48c8941b5a39f3203",
+    "navigation.js": "558d11cc48d8186c80e5094a6085586ebbf6f4bd4c77b82420493381f0056f22",
+    "controls.js": "96254ec52609243ec88fb2952d6b8c48bc42aea9e0d73eb82812a0fc8fbd90dd"
+  },
+  "checks": [
+    {
+      "name": "Keyboard W advances in Chromium DOM",
+      "pass": true,
+      "distance_m": 1.2
+    },
+    {
+      "name": "Keyboard release stops movement",
+      "pass": true,
+      "drift_m": 0.0
+    },
+    {
+      "name": "Two simultaneous touch pointer owners",
+      "pass": true,
+      "owners": [
+        41,
+        {
+          "id": 42,
+          "x": 235,
+          "y": 90
+        }
+      ]
+    },
+    {
+      "name": "Touch joystick moves and concurrent look rotates",
+      "pass": true,
+      "move_m": 0.715,
+      "heading_delta_rad": 0.1225
+    },
+    {
+      "name": "Both touch pointers released; no drift",
+      "pass": true,
+      "drift_m": 0.0
+    },
+    {
+      "name": "Blur cancels input and prevents movement",
+      "pass": true,
+      "drift_m": 0.0
+    }
+  ],
+  "page_errors": [],
+  "limitations": [
+    "Chromium DOM/PointerEvent regression only, not full WebGL scene",
+    "synthetic touch PointerEvent, not Android physical hardware",
+    "collision geometry author-estimated"
+  ],
+  "chromium_version": "144.0.7559.96",
+  "pass": true
+}

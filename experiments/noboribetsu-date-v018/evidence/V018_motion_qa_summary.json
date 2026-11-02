@@ -1,0 +1,138 @@
+{
+  "schema": "noboribetsu-date-v018-actual-collision-motion-qa/1",
+  "source_v017_runtime_sha256": "eb6ceb13d51b813b8111070cd13eadf36b13fb9ff246964519e6118892458866",
+  "source_files": [
+    "navigation.js",
+    "controls.js",
+    "walk-session.js",
+    "collision.json",
+    "extension_collision.json",
+    "v005_collision.json",
+    "v006_collision.json",
+    "scene_view.json"
+  ],
+  "environment": "Node 22: actual imported runtime collision/move/session code; no browser/GPU",
+  "scope": "V004 s=82.877..130.0146 plus narrow porch near s~89.87",
+  "player_radius_m": 0.26,
+  "nav_tris": 1427,
+  "obstacles": 91,
+  "checks": [
+    {
+      "name": "V004 centerline: full navigation-world walkability",
+      "pass": true,
+      "count": 236,
+      "misaligned": 0
+    },
+    {
+      "name": "Narrowest post range consistent with V017",
+      "pass": true,
+      "margin": 0.23073,
+      "s": 89.8770000000001,
+      "obstacle": "V004_gallery_porchpost_0"
+    },
+    {
+      "name": "Lateral sampling distinguishes safe centerline from blocked porch side",
+      "pass": true,
+      "lateral": [
+        {
+          "offset_m": -1.5,
+          "passes": 208,
+          "blocked": 29,
+          "reasons": {
+            "obstacle": 29
+          }
+        },
+        {
+          "offset_m": -1,
+          "passes": 199,
+          "blocked": 38,
+          "reasons": {
+            "obstacle": 38
+          }
+        },
+        {
+          "offset_m": -0.5,
+          "passes": 227,
+          "blocked": 10,
+          "reasons": {
+            "obstacle": 10
+          }
+        },
+        {
+          "offset_m": 0,
+          "passes": 237,
+          "blocked": 0,
+          "reasons": {}
+        },
+        {
+          "offset_m": 0.5,
+          "passes": 237,
+          "blocked": 0,
+          "reasons": {}
+        },
+        {
+          "offset_m": 1,
+          "passes": 237,
+          "blocked": 0,
+          "reasons": {}
+        },
+        {
+          "offset_m": 1.5,
+          "passes": 237,
+          "blocked": 0,
+          "reasons": {}
+        }
+      ]
+    },
+    {
+      "name": "Keyboard forward movement advances past near posts",
+      "pass": true,
+      "progress_m": 28.8,
+      "blockedSteps": 0,
+      "maxDeviation": 0,
+      "minMargin": 0.227
+    },
+    {
+      "name": "No obstacle penetration during forward motion",
+      "pass": true,
+      "minMargin": 0.22694
+    },
+    {
+      "name": "Turn/look while close to a porch column does not teleport",
+      "pass": true,
+      "heading": -2.562057601019589
+    },
+    {
+      "name": "Approaching porchpost is blocked rather than penetrated",
+      "pass": true,
+      "blocked_substeps": 35,
+      "invalid": 0,
+      "minAfter": 0.00052,
+      "post_id": "V004_gallery_porchpost_0"
+    },
+    {
+      "name": "Sideways movement beside the pillar never enters an obstacle",
+      "pass": true,
+      "slide_m": 0.99,
+      "slideBlocked": 0
+    },
+    {
+      "name": "Key release prevents drift",
+      "pass": true,
+      "drift_m": 0
+    },
+    {
+      "name": "A/B stage roundtrip preserves pose",
+      "pass": true,
+      "stage": "B"
+    }
+  ],
+  "failures": [],
+  "pass": true,
+  "limitations": [
+    "not real browser PointerEvents",
+    "not actual shop doorway threshold",
+    "not Android physical device",
+    "centerline & simulated movement only; not accessibility claim"
+  ]
+}
