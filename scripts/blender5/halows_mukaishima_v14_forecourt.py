@@ -20,6 +20,8 @@ if source.count(marker)!=1:
 prefix=source.split(marker)[0]
 prefix=prefix.replace('ID="halows-mukaishima-v11-facade"',
                       'ID="halows-mukaishima-v14-forecourt"')
+prefix=prefix.replace('if ID!="halows-mukaishima-v11-facade"',
+                      'if ID!="halows-mukaishima-v14-forecourt"')
 exec(compile(prefix,str(PARENT),"exec"),globals())
 if ID!="halows-mukaishima-v14-forecourt":
     raise RuntimeError("Did not inherit V11 geometry correctly")
