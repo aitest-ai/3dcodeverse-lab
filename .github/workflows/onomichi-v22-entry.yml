@@ -1,0 +1,55 @@
+name: Onomichi V22 377-to-317 Shared Entry Evidence (Not Navigation)
+on:
+  push:
+    branches:
+      - feat/onomichi-v22-shared-entry-fieldgate
+    paths:
+      - 'scripts/research/onomichi_v22_shared_entry.py'
+      - 'assets/setouchi/onomichi-v22-entry-registry.json'
+      - '.github/workflows/onomichi-v22-entry.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v21-bicycle-risk-audit
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-geometry-and-block-access:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recalculate source-locked four-node entry and endpoint connections
+        run: |
+          echo '5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76  assets/setouchi/osm/onomichi-v20-20261102.osm' | sha256sum -c -
+          python3 -m py_compile scripts/research/onomichi_v22_shared_entry.py
+          python3 scripts/research/onomichi_v22_shared_entry.py
+      - name: Verify source provenance and strict negative field gates
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/v22/onomichi-shared-entry-gate.json').read_text())
+          r=json.loads(Path('assets/setouchi/onomichi-v22-entry-registry.json').read_text())
+          assert d['source_osm_sha256']==r['source_osm_sha256']
+          assert d['osm_way_id']=='388716484'
+          assert d['osm_node_ids']==['1296327682','3918810183','3918810175','3918269426']
+          assert abs(d['length_centerline_m']-74.36)<0.05
+          assert len(d['edge_centerline_m'])==3
+          assert len(d['known_ways_sharing_endpoints'])>=3
+          assert d['tags']['access']=='no' and d['tags']['bicycle']=='yes'
+          assert d['gsi_original_tile_pixel_check_in_public_ci'] is False
+          assert all(v is None for v in d['field_evidence_pending'].values())
+          assert all(v is False for v in d['approvals'].values())
+          assert r['protected_v21_sha256_verified_in_private_package']==10
+          assert r['original_runtime_node_tests']=='PASS'
+          assert r['public_repo_includes_private_v06_runtime'] is False
+          print('V22 GITHUB PASS: exact OSM geometry and restrictions, no navigation.')
+          print('Original private GSI image and Runtime are NOT tested in this public CI.')
+          PY
+      - name: Upload source-only QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v22-entry-evidence
+          path: outputs/v22/onomichi-shared-entry-gate.json
+          retention-days: 21

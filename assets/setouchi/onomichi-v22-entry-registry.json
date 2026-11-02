@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "candidate": "V22",
+  "status": "ENTRY_GEOMETRY_VERIFIED__FIELD_AND_CYCLING_NOT_APPROVED",
+  "parent_draft_pr": 112,
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "osm_way_id": "388716484",
+  "node_ids": [
+    "1296327682",
+    "3918810183",
+    "3918810175",
+    "3918269426"
+  ],
+  "segment_lengths_m": [
+    33.659,
+    16.483,
+    24.222
+  ],
+  "entry_centerline_length_m": 74.36,
+  "entry_tags": {
+    "highway": "residential",
+    "access": "no",
+    "bicycle": "yes",
+    "foot": "yes",
+    "motor_vehicle": "yes"
+  },
+  "endpoint_roads": {
+    "1296327682": [
+      "114435640 secondary/ref 377"
+    ],
+    "3918269426": [
+      "167631309 trunk/ref 317",
+      "388652159 residential"
+    ]
+  },
+  "gsi_tile_sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+  "derived_gsi_ground_at_nodes_m": [
+    2.81,
+    2.7,
+    2.8,
+    2.48
+  ],
+  "not_surveyed": [
+    "current_traffic_signs",
+    "bicycle_legal_rights",
+    "curb_cuts",
+    "road_width",
+    "junction_turns",
+    "road_surface_y",
+    "all_bicycle_collision",
+    "true_desktop_webgl2_gameplay",
+    "android_gameplay"
+  ],
+  "source_xml_reproducible_in_public_github": true,
+  "source_gsi_pixels_not_in_public_github": true,
+  "protected_v21_sha256_verified_in_private_package": 10,
+  "original_runtime_node_tests": "PASS",
+  "original_game_world_changed": false,
+  "v22_existing_files_changed": [
+    "index.html"
+  ],
+  "offline_html_js_syntax_test": "PASS via Node 22",
+  "chromium_actual_interaction": "NOT_PASSED_BY_TEST_ENV",
+  "public_repo_includes_private_v06_runtime": false,
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V22_Full_Runtime_Entry_Evidence_QA.zip",
+      "bytes": 224111283,
+      "sha256": "9af06efb794620e2056359e9ad1404a13468a4cb6feb0ac9f60bf4994a632f97",
+      "entries": 285,
+      "crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V22_Shared_Entry_Incremental_Patch.zip",
+      "bytes": 168506,
+      "sha256": "f1146846560fcb0765cb66c250d5b1b6ba920e29bcdc243a6fb7da0eae2cf771",
+      "entries": 10,
+      "crc": "PASS"
+    }
+  ],
+  "source_license": "© OpenStreetMap contributors ODbL; GSI elevation tiles processed. No official photos bundled."
+}
