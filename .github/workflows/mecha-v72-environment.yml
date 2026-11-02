@@ -1,0 +1,22 @@
+name: Mecha v7.2 Genuine OSM Wreck Contact Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-wreck-environment-v72.js'
+      - 'tests/mecha/v72-environment.mjs'
+      - '.github/workflows/mecha-v72-environment.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  authentic-street-contact:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify actual source SHA and core behaviour
+        run: |
+          node --check examples/threejs/mech-wreck-environment-v72.js
+          node tests/mecha/v72-environment.mjs
