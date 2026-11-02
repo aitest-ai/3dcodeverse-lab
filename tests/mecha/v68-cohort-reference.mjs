@@ -11,7 +11,7 @@ assert.equal(c.add(sample()).reason,'duplicate');
 assert.equal(c.add(sample('standard','defeat',125)).added,true);
 assert.equal(c.add(sample('training','victory',90)).added,true);
 assert.equal(c.add(sample('challenge','time-expired',135)).added,true);
-assert.equal(c.add({...sample('standard','abandoned',55),status:'recording'}).added,true);
+assert.equal(c.add({...sample('standard','abandoned',70),status:'recording'}).added,true);
 const s=c.analyze();
 assert.equal(s.loaded,5);assert.equal(s.eligible,4);
 assert.equal(s.groups[1].eligible,2);assert.equal(s.groups[1].wins,1);assert.equal(s.groups[1].rate,50);
