@@ -1,0 +1,105 @@
+name: Onomichi V23 Authentic Blender GSI Ground Visual QA
+on:
+  push:
+    branches:
+      - feat/onomichi-v23-ground-visual-qa
+    paths:
+      - 'assets/setouchi/onomichi-v23-gsi-ground-sample.json'
+      - 'scripts/blender5/onomichi_v23_entry_ground.py'
+      - '.github/workflows/onomichi-v23-blender.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v22-shared-entry-fieldgate
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-gsi-terrain-not-road:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate source-locked grid and four OSM anchors
+        run: |
+          python3 -m py_compile scripts/blender5/onomichi_v23_entry_ground.py
+          python3 - <<'PY'
+          import json,base64,zlib,struct,hashlib
+          from pathlib import Path
+          d=json.loads(Path('assets/setouchi/onomichi-v23-gsi-ground-sample.json').read_text())
+          raw=zlib.decompress(base64.b64decode(d['dem_ground_cm_int16_le_zlib_base64']))
+          z=struct.unpack('<3366h',raw)
+          assert (len(z),min(z),max(z))==(3366,148,1161)
+          assert hashlib.sha256(raw).hexdigest()=='03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1'
+          assert d['gsi_tile_sha256']=='79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c'
+          assert d['osm_source_sha256']=='5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76'
+          assert d['osm_nodes']==['1296327682','3918810183','3918810175','3918269426']
+          assert d['ground_height_is_not_pavement_height'] and not d['road_navigation_authorized']
+          print('V23 pinned derived GSI grid 3366 cells source QA PASS')
+          PY
+      - name: Install headless Blender deps
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download verified Blender 5.2.3 with mirrors
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          EXPECTED=78486c018b4443efe5e75ab54c290ed8c15abafd249b862c2c9ce2530a918eec
+          mkdir -p .tools
+          for BASE in \
+            "https://mirror.blender.org/release/Blender5.2" \
+            "https://download.blender.org/release/Blender5.2" \
+            "https://mirror.nju.edu.cn/blender/blender-release/Blender5.2"; do
+            if curl -fL --retry 2 --connect-timeout 30 --max-time 150 -o ".tools/$FILE" "$BASE/$FILE"; then
+              echo "$EXPECTED  .tools/$FILE" | sha256sum -c -
+              break
+            fi
+            rm -f ".tools/$FILE"
+          done
+          test -s ".tools/$FILE"
+          echo "$EXPECTED  .tools/$FILE" | sha256sum -c -
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Build true source-derived Blender, GLB, real renders
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python scripts/blender5/onomichi_v23_entry_ground.py
+      - name: Verify hashes and explicit field and road-surface blockers
+        run: |
+          python3 - <<'PY'
+          import hashlib,json,struct
+          from pathlib import Path
+          p=Path('outputs/onomichi-v23')
+          r=json.loads((p/'V23_Build_Report.json').read_text())
+          assert r['status']=='BLENDER_MODEL_AND_RENDER_ONLY__NOT_RIDEABLE'
+          assert r['grid_vertices']==3366
+          assert r['actual_road_width_m'] is None
+          assert r['actual_pavement_height_m'] is None
+          assert r['legality_verified'] is False
+          assert r['road_collision_verified'] is False
+          assert r['v06_runtime_merged'] is False
+          assert len(r['rendered_views'])==4
+          for name,info in r['files'].items():
+            f=p/name
+            assert f.stat().st_size==info['bytes'] and hashlib.sha256(f.read_bytes()).hexdigest()==info['sha256'],name
+          f=p/'onomichi-v23-gsi-entry-ground.glb'
+          with f.open('rb') as fp:
+            header=fp.read(20)
+            assert header[:4]==b'glTF' and struct.unpack_from('<I',header,4)[0]==2
+            n=struct.unpack_from('<I',header,12)[0]
+            g=json.loads(fp.read(n))
+          names={n.get('name') for n in g['nodes']}
+          assert any('GSI_DEM_original_height_samples' in (n or '') for n in names)
+          assert not any('road_collision' in (n or '') for n in names)
+          print('PASS true Blender model / four renders, no legal or collision approval')
+          PY
+      - name: Retain V23 source-locked Blender and true preview
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: onomichi-v23-blender-ground-candidate
+          path: outputs/onomichi-v23/
+          retention-days: 14
+          if-no-files-found: warn

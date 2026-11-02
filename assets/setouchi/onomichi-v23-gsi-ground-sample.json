@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "id": "onomichi-v23-real-gsi-ground-sample",
+  "origin_lat_lon": [
+    34.399288575,
+    133.204908475
+  ],
+  "x_m": [
+    -50,
+    50,
+    2
+  ],
+  "north_m": [
+    -66,
+    64,
+    2
+  ],
+  "dem_ground_cm_int16_le_zlib_base64": "eNq9mNlvVUUcx8/MnMJtbwtVlroUlLoguIOCC4KIGBd4kBiiqNG4JGz6QHggQWJcECHGgDGExIgxkPDQIJAQkgI+IYk+IGIFChWklNJaCxVKe4G21O9n7pnEv2D6STj3Hu6Z772/fWaymSgmiAfEODFW3CFuEzWCe1xvFCPEKJGKjqQjOSVaxN+C9xdEj7goOkVfkjd5U24eN5MESveLsRl3itsz7hPcu1kMF0GFlf4R50SbaBWo8b4zozvpFyVmhnlSoHS3YFV+B999tKgW4zJuFSMzhopryTX/nQvivEDhbAaq7aIj6RKxVOaaeeIZgUpNBitioRsEV6xUJSrFdeJqctX7gZVQQqEtA5UmgQU7kytiUCSVFeYjsUA8JVid2BojsBYxdX0GViJiUMKzpzJY7aRgdZSJCO7xvtN7PxdJZZ/ZI7aJjwUqWC54GxVWLRdlAhXuYbEz4og4JH4RKGK9y8Iaa7Biu1fJR1I5Zn4TP4vvxWNipnheTBVEQoUYnJETqPEs2XdC/C7+FEQCUU3G8gyf6VJedkszjsopc1wcElvFa+Jt8Z54XVBdsFJQKRFkI/A8kdsoyD3qF/eHmCG+EhHxA77OXE7iqDSaE2Kf+FZ8Jj4Un4j5YrzA83icpxLRmxTBOtRgoveS4P/4LBWI+k0Wl/k46Y6kktoO0+FVvhMbxRdilSBTsRhVhqjmimf71DWIVizE6igRwQMC6/JtUCGTSw13Y6k8QQLZA+aAz8xd4iuBxd4VD4lQ+ekErIKHsRYqRMC/gsqPbVhskMDCRItjcVOIpDLZVoku02XOikpbabHaB+ItEVSoOrcIVJzgD+vh8dCBg+VQT00Ald5IKivtG2KiGC2mi0bTaH4UX4rJ4h7B5HGXwKt4FzWyj2oTZhbUiGqshyWJ9n7/b3cklWpXb+vtGvGymC1miGmixbSYKYI5DcuhyESFGpk3IoMKihKrB+tReXhdjIvWSCqz3ETRZ/vsD+IV8aJ4VowSZOsL4hERVJgAyVAqCFWRCkpkh4gOU2C7h77cHEllpVstFopqsdlutgvELDFeYLWXBArM0lQcIjqoUEWKeVfw1R8lVFgfpZbktGiKpFLvDopfxXYxR2ywG+wc0WN6fEejM4f9ABMU0wYKKPGav0JShAjG+1gOW53xO4LTkVRaXZM4I06KXWKMWG/X20QsNou997EYKkyCpYIJcJggM6ky/UkROkIxdlu9rZqz6TyOynnXJtrFBXFJrBAH7UFbLdaYNeZVMU1QMW8SVHYykSpTmvWpxBRh9maC/UswBTZn+RlHpct1ii5xWZwXI8Ueu8fOFGvNWr/zIALuFXQyrESH4i9MTXTm4Hl2FUznXM/6O/2RVK64i6IgGsR80WSb7C6xXPSbfrNIMNWSlUy0VEoqflDhikqIXqZaFIjh4gwVSyWXBkt9I/bavfYnsVNQbZYJpsDZgmhmB0U008mIAHou1RKvs5PA62HHRJW54GO7EEnlzbRarHPrXCLqbJ1FaZWYKs6Zc+Z9wU4jTIDsZokCspIooFqGCGbnhAKvfTb6juxMHJXP0wlikVvkdtvd3lILxTBBB/tUzBXTBRWGDoz3sRqVkkzEJvg4qOD5ZkFWtnmL5SKprE6niCVuibfWNnFMu8B3BN6mE3N6QhTTiZmUWJ0dHQrhRAFPc2XlQxkNosn3tcGRVKamNeKwO+zmCZR2mB3mOcHKD4sHBSdZeJ0IJnLxeHH/0+0nVqZXshJL/SFQ4XrU52ZZJJXytEIMFfvdftdgGyw7P6rjpAwmWCaKcGJFJvKHxcJUjvepi6zJSUN9xmEfD/lIKiYdcAMun+bT4+64qxKbzCbztOD0B+9jLbIwnFsyHWE5Jgy6Gq/xMZM4Knj9qEDtpPd+WSSV4oYmJ3pdr9sqdpqdfgonEx8VKFBZUCEbWTmc/oSOHCZXporG/9Hu97QVkVRcOkgMFnTlWrHFbPHdF88TxXidqRulURkhkqkfYWrF+2RnmCyoNN0J32doJJWKtFyUiuVuuWs2zf7ktyoDBbxLlUeJazgdZWLlGnZ8WC2cJgIz0lV/9lMZSaXEW2uZW+aW2qWW6Q4Pk3381uJnKv3qRHDYsdKb6FxcsVrYVWA1ruEE2Pqnh0dSKbgjgkmCbkXUYilWY0JFLaiEHTgTLPHJ9B1Ofi5mUD15jxpTVJlfocL0uFpba7eb7b6vh7N8+kc4cw3zPb+F++QINYxVUME/Ybbkt5WYInybvP/VdUkclb0uZ3OW3CCn8UmYg/kUSqiE2oWvmMPCfgXCPox444yG53mGZyu8ytfJf9Pdh18=",
+  "ground_height_is_not_pavement_height": true,
+  "gsi_tile_sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+  "osm_source_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "osm_way_id": "388716484",
+  "osm_nodes": [
+    "1296327682",
+    "3918810183",
+    "3918810175",
+    "3918269426"
+  ],
+  "osm_way_lat_lon": [
+    [
+      34.3996339,
+      133.2048095
+    ],
+    [
+      34.3993419,
+      133.2049068
+    ],
+    [
+      34.399198,
+      133.2049503
+    ],
+    [
+      34.3989805,
+      133.2049673
+    ]
+  ],
+  "osm_tags": {
+    "highway": "residential",
+    "access": "no",
+    "bicycle": "yes",
+    "foot": "yes",
+    "motor_vehicle": "yes"
+  },
+  "gsi_source_notice": "地理院タイル（標高タイル）を加工して作成",
+  "osm_attribution": "© OpenStreetMap contributors (ODbL)",
+  "source_date": "2026-11-02",
+  "field_photos_of_exact_way_verified": false,
+  "road_width_verified": false,
+  "road_navigation_authorized": false
+}

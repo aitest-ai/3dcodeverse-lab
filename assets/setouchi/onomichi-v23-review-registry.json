@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "candidate": "V23",
+  "status": "REAL_GSI_GROUND_MODEL_NOT_RIDEABLE",
+  "parent_draft_pr": 114,
+  "source_gsi_sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+  "sampled_ground_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "way": "388716484",
+  "extent_east_m": 100,
+  "extent_north_m": 130,
+  "original_ground_samples": 3366,
+  "sampled_height_range_m": [
+    1.48,
+    11.61
+  ],
+  "native_blender_asset_generated": true,
+  "blender5_ci_run": 41406671236,
+  "original_blender_views": [
+    "V23_aerial_Blender.png",
+    "V23_route_end_Blender.png",
+    "V23_junction_end_Blender.png",
+    "V23_terrain_oblique_Blender.png"
+  ],
+  "GITHUB_ARTIFACT_ID": 13124245810,
+  "protected_core_files_unchanged": 11,
+  "original_node_logic_tests": "21/21 PASS",
+  "true_webgl_browser_gameplay": false,
+  "android_gameplay": false,
+  "field_photo_of_exact_way_verified": false,
+  "road_width_verified": false,
+  "actual_road_surface_height_verified": false,
+  "bicycle_access_field_verified": false,
+  "continuous_collision_verified": false,
+  "world_json_modified": false,
+  "main_mjs_modified": false,
+  "site_deployed": false,
+  "private_runtime_not_uploaded_to_public_github": true,
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V23_Full_Original_Runtime_Plus_GSI_Blender_QA.zip",
+      "bytes": 229952461,
+      "crc": "PASS",
+      "sha256": "51719e1f3e0b96674e52a4ee71548093c11f4cbdbf3fdbb4d469133152e37639"
+    },
+    {
+      "filename": "Onomichi_V23_GSI_3D_Incremental_Patch.zip",
+      "bytes": 5844829,
+      "crc": "PASS",
+      "sha256": "4f9d7c255824220ea162aba80317d6ceee7899ef19c671c46640d5b0ccb85d97"
+    }
+  ],
+  "note": "Public V23 source includes derived GSI samples and Blender authoring pipeline only. User private original V22 Runtime is not uploaded. All route geometry is visual indicator not pavement.",
+  "original_blender_glb_sha256": "a45dc26ca6f4e3d28787148493e4014db6df2f06c709899ccb5cb7a55c2a484a",
+  "original_blender_editable_blend_sha256": "4e54bfabb816a8322a1ad7a41116ea2f07afb0d71e2c7f835d75b1f6956e13d0",
+  "original_native_blender_artifact_id": 13124245810,
+  "browser_http_request_200": true,
+  "browser_chromium_localhost_blocked": true
+}
