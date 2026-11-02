@@ -1,0 +1,11 @@
+{
+  "stone_count": 50,
+  "triangles": 100,
+  "vertices": 200,
+  "existing_stone_skipped": 0,
+  "min_old_stone_distance_m": 2.8887412839921045,
+  "road_geometry_untouched": true,
+  "collision_unchanged": true,
+  "webgl_tested": false,
+  "status": "SOURCE_GEOMETRY_PASS"
+}
