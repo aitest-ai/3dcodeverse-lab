@@ -6,7 +6,7 @@
   "input_v024_runtime_sha256": "256ad79b619065e2e1188662608a86578ac8468372fedb53ceedeef995a19cb0",
   "new_glb_path": "dist/assets/v025_v004_pbr_microdetail.glb",
   "new_glb_bytes": 2136700,
-  "new_glb_sha256": "pending_contract_in_full_Runtime",
+  "new_glb_sha256": "dcce63b79b8f73a96c500e907b5349b86b5a0cbb617fe89351419ce894071b00",
   "model_meshed_faces": 792,
   "mesh_count": 5,
   "new_procedural_maps": 8,
@@ -29,5 +29,7 @@
   "android_real_tested": false,
   "private_host_tested": false,
   "not_surveyed": true,
-  "merge_policy": "draft, do not merge or deploy"
+  "merge_policy": "draft, do not merge or deploy",
+  "runtime_zip_sha256": "edad5d98c6632a7be7ae668cb80f6d6f2e4eb7f3f948507ce99e83f281bbc085",
+  "sourceqa_zip_sha256": "0a49b398ef44ebb6b0f3c86ae43f223d19ea87f0bdf9f1674457b742c44682e9"
 }
