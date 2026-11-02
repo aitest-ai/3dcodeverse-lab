@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "candidate": "V23",
+  "status": "REAL_GSI_GROUND_MODEL_NOT_RIDEABLE",
+  "parent_draft_pr": 114,
+  "source_gsi_sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+  "sampled_ground_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "way": "388716484",
+  "extent_east_m": 100,
+  "extent_north_m": 130,
+  "original_ground_samples": 3366,
+  "sampled_height_range_m": [
+    1.48,
+    11.61
+  ],
+  "native_blender_asset_generated": true,
+  "blender5_ci_run": 41406671236,
+  "original_blender_views": [
+    "V23_aerial_Blender.png",
+    "V23_route_end_Blender.png",
+    "V23_junction_end_Blender.png",
+    "V23_terrain_oblique_Blender.png"
+  ],
+  "GITHUB_ARTIFACT_ID": 13124245810,
+  "protected_core_files_unchanged": 11,
+  "original_node_logic_tests": "21/21 PASS",
+  "true_webgl_browser_gameplay": false,
+  "android_gameplay": false,
+  "field_photo_of_exact_way_verified": false,
+  "road_width_verified": false,
+  "actual_road_surface_height_verified": false,
+  "bicycle_access_field_verified": false,
+  "continuous_collision_verified": false,
+  "world_json_modified": false,
+  "main_mjs_modified": false,
+  "site_deployed": false,
+  "private_runtime_not_uploaded_to_public_github": true,
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V23_Full_Original_Runtime_Plus_GSI_Blender_QA.zip",
+      "bytes": 229952461,
+      "crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V23_GSI_3D_Incremental_Patch.zip",
+      "bytes": 5844829,
+      "crc": "PASS"
+    }
+  ],
+  "note": "Public V23 source includes derived GSI samples and Blender authoring pipeline only. User private original V22 Runtime is not uploaded. All route geometry is visual indicator not pavement."
+}
