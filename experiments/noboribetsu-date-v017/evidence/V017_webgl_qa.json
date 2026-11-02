@@ -1,0 +1,106 @@
+{
+  "schema": "noboribetsu-date-v017-isolated-webgl2/1",
+  "real_webgl2": true,
+  "loaded": "true",
+  "success": true,
+  "source_sha_verified_independently": true,
+  "test_only_sha_adapter": true,
+  "production_runtime_sha_guard_unchanged": true,
+  "limitations": [
+    "virtual subresource routing from about:blank",
+    "no true localhost native WebCrypto",
+    "no Android physical device",
+    "visual stone footing artist-estimated"
+  ],
+  "page_errors": [],
+  "missing": [],
+  "checks_count": 39,
+  "metrics": {
+    "v011": {
+      "cells": 148,
+      "triangles": 296,
+      "source_b_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+      "original_material_reused": true,
+      "collision_unchanged": true,
+      "route_unchanged": true,
+      "original_B_model_unchanged": true
+    },
+    "v012": {
+      "triangles": 972,
+      "vertices": 656,
+      "source_glb_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+      "collision_unchanged": true,
+      "route_unchanged": true,
+      "V011_terrain_patch_untouched": true
+    },
+    "v013": {
+      "triangles": 2436,
+      "vertices": 1688,
+      "sections": [
+        {
+          "name": "V004",
+          "triangles": 840
+        },
+        {
+          "name": "V005",
+          "triangles": 1596
+        }
+      ],
+      "stage": "B",
+      "collision_unchanged": true,
+      "route_unchanged": true,
+      "v011_gap_untouched": true,
+      "v012_fade_untouched": true
+    },
+    "v014": {
+      "stones": 50,
+      "triangles": 100,
+      "stage": "B",
+      "collision_unchanged": true,
+      "photo_informed_only": true,
+      "not_surveyed": true
+    },
+    "v015": {
+      "support_count": 8,
+      "triangles": 96,
+      "stage": "B",
+      "collision_unchanged": true,
+      "unresolved_buried_posts": 4,
+      "visible": true
+    },
+    "v016": {
+      "sample_count": 4,
+      "continuous_plinths": 2,
+      "original_plinths_unchanged": true,
+      "unresolved_burial_samples": 4,
+      "markers_visible": false,
+      "source_authenticated": true,
+      "no_new_repair_geometry": true
+    },
+    "v017": {
+      "sample_count": 237,
+      "minimum_capsule_margin_m": 0.23203,
+      "marker_count": 4,
+      "centerline_pass": true,
+      "door_threshold_surveyed": false,
+      "collision_changed": false,
+      "markers_visible": false,
+      "sha_verified": true
+    },
+    "renderer": {
+      "triangles": 1439294,
+      "geometries": 99,
+      "textures": 47,
+      "pixelRatio": 1
+    }
+  },
+  "markers": 4,
+  "default_visible": false,
+  "toggle_observed": {
+    "initial": "false",
+    "on": "true",
+    "off": "false",
+    "metric": false,
+    "disabled": false
+  }
+}
