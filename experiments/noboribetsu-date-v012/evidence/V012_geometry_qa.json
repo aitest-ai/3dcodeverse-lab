@@ -1,0 +1,18 @@
+{
+  "schema": "V012-R1-edge-builder-qa/1",
+  "status": "PASS_SOURCE_GEOMETRY_ONLY",
+  "road_glb_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+  "route_samples": 82,
+  "first_s": 197.72393408812707,
+  "last_s": 231.56641497226084,
+  "triangles": 972,
+  "vertices": 656,
+  "min_y": 0.78153,
+  "max_y": 1.42218,
+  "max_abs_dem_road_height_difference_m": 0.10772546979539588,
+  "collision_changed": false,
+  "terrain_gap_v011_changed": false,
+  "min_inner_offset_m": 3.03,
+  "outer_offset_m": 3.64,
+  "webgl2_verified": false
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "noboribetsu-v012-clean-replay/1",
+  "status": "PASS",
+  "file_count": 105,
+  "byte_identical_files": 105,
+  "mismatch": []
+}

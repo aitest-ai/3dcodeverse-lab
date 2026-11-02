@@ -1,0 +1,24 @@
+{
+  "schema": "noboribetsu-v012-validation/1",
+  "status": "PASS_SOURCE_AND_RUNTIME_ASSETS",
+  "original_files": 101,
+  "unchanged_original_files": 97,
+  "changed_original_files": [
+    "dist/app.js",
+    "dist/index.html",
+    "dist/qa.json",
+    "dist/scene_view.json"
+  ],
+  "v011_terrain_gap_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+  "v006_road_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+  "new_overlay_bytes": 47995,
+  "new_overlay_sha256": "fee891da9536ba155e8fd00d560629da7ed6c9e88de0e1b29f38faf598059704",
+  "new_triangles": 972,
+  "new_vertices": 656,
+  "stage_A_unchanged": true,
+  "collision_unchanged": true,
+  "route_unchanged": true,
+  "android_real_device_tested": false,
+  "private_web_deployment_tested": false,
+  "blender_native_tested": false
+}

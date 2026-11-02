@@ -1,0 +1,96 @@
+{
+  "schema": "noboribetsu-date-v012-r1-acceptance/1",
+  "date_local": "2026-11-02",
+  "status": "CANDIDATE_PASSED_ISOLATED_WEBGL2_NOT_RELEASE_ACCEPTED",
+  "purpose": "Visual-only V006 tail road/grass fade; not park extension or facade rebuild",
+  "route_m": 231.56641497226084,
+  "scope_road_start_m": 197.72393408812707,
+  "scope_road_end_m": 231.56641497226084,
+  "new_overlay": {
+    "triangles": 972,
+    "vertices": 656,
+    "renderer_double_sided_draw_triangles_extra": 1944,
+    "visual_only": true,
+    "road_collision_modified": false,
+    "V011_148_gap_cells_modified": false,
+    "v002_dem_raster_modified": false
+  },
+  "geometry_source_validation": {
+    "schema": "V012-R1-edge-builder-qa/1",
+    "status": "PASS_SOURCE_GEOMETRY_ONLY",
+    "road_glb_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+    "route_samples": 82,
+    "first_s": 197.72393408812707,
+    "last_s": 231.56641497226084,
+    "triangles": 972,
+    "vertices": 656,
+    "min_y": 0.78153,
+    "max_y": 1.42218,
+    "max_abs_dem_road_height_difference_m": 0.10772546979539588,
+    "collision_changed": false,
+    "terrain_gap_v011_changed": false,
+    "min_inner_offset_m": 3.03,
+    "outer_offset_m": 3.64,
+    "webgl2_verified": false
+  },
+  "file_integrity": {
+    "schema": "noboribetsu-v012-validation/1",
+    "status": "PASS_SOURCE_AND_RUNTIME_ASSETS",
+    "original_files": 101,
+    "unchanged_original_files": 97,
+    "changed_original_files": [
+      "dist/app.js",
+      "dist/index.html",
+      "dist/qa.json",
+      "dist/scene_view.json"
+    ],
+    "v011_terrain_gap_sha256": "71f541341123354025d81e740f3bc55bbbf70e02634236e33be7e61bed77cf64",
+    "v006_road_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+    "new_overlay_bytes": 47995,
+    "new_overlay_sha256": "fee891da9536ba155e8fd00d560629da7ed6c9e88de0e1b29f38faf598059704",
+    "new_triangles": 972,
+    "new_vertices": 656,
+    "stage_A_unchanged": true,
+    "collision_unchanged": true,
+    "route_unchanged": true,
+    "android_real_device_tested": false,
+    "private_web_deployment_tested": false,
+    "blender_native_tested": false
+  },
+  "clean_replay": {
+    "schema": "noboribetsu-v012-clean-replay/1",
+    "status": "PASS",
+    "file_count": 105,
+    "byte_identical_files": 105,
+    "mismatch": []
+  },
+  "browser": {
+    "chromium_swiftshader_webgl2": true,
+    "model_load_success": true,
+    "errors": [],
+    "A_then_B": true,
+    "pose_switch_drift_zero": true,
+    "real_render_drawn_triangles": 1434226,
+    "real_render_geometries": 96,
+    "model_sha_verified_independently": true,
+    "isolated_virtual_subresources": true,
+    "sha_test_adapter_used_in_browser": true,
+    "sha_test_adapter_in_production": false,
+    "first_frame_ms_single_swiftshader_run": 7634.20000000007,
+    "fps_verified_on_android": false
+  },
+  "mobile": {
+    "chromium_portrait_emulation": "PASS",
+    "movement_m": 0.791647017300009,
+    "release_drift_m": 0.0,
+    "android_real_device": false
+  },
+  "not_tested": [
+    "Android hardware",
+    "private website CDN/HTTPS/login",
+    "Blender native editable master/Cycles",
+    "surveyed shoulder/drainage",
+    "unmodified fresh public internet"
+  ],
+  "source_note": "Original frozen V002 GSI heights, V006 road GLB; patch is a non-surveyed visual overlay."
+}

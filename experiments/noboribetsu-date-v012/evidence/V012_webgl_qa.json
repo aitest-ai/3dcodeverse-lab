@@ -1,0 +1,74 @@
+{
+  "schema": "noboribetsu-v012-isolated-real-webgl2/1",
+  "full_model_sha256_verified_python": true,
+  "browser_test_sha_adapter": true,
+  "adapter_in_runtime": false,
+  "real_webgl2": true,
+  "android_real_device": false,
+  "private_site_HTTPS_tested": false,
+  "success": true,
+  "steps": [],
+  "errors": [],
+  "network_errors": [],
+  "loaded": "true",
+  "load_error_text": "",
+  "tail": {
+    "position": "121.699,1.365,80.989",
+    "stage": "B",
+    "road_grass": {
+      "triangles": 972,
+      "vertices": 656,
+      "source_glb_sha256": "423a928696dadd4fcea9a516f0a854e504e8eae6209adc141706e5cbe0737642",
+      "collision_unchanged": true,
+      "route_unchanged": true,
+      "V011_terrain_patch_untouched": true
+    },
+    "terrain_gap": {
+      "cells": 148,
+      "triangles": 296,
+      "source_b_sha256": "3feac26ec59250494330974775bda07c089c0a4642eb4471dc18fd22b2ba6715",
+      "original_material_reused": true,
+      "collision_unchanged": true,
+      "route_unchanged": true,
+      "original_B_model_unchanged": true
+    },
+    "rendered": {
+      "triangles": 1434226,
+      "geometries": 96,
+      "textures": 47,
+      "pixelRatio": 1
+    },
+    "first_frame": 7634.20000000007
+  },
+  "a_stage": "A",
+  "b_stage": "B",
+  "switches": [
+    {
+      "from": "B",
+      "to": "B",
+      "eye_delta_m": 0,
+      "target_delta_m": 0,
+      "up_delta": 0,
+      "fov_delta": 0,
+      "at_ms": 7413.699999999953
+    },
+    {
+      "from": "B",
+      "to": "A",
+      "eye_delta_m": 0,
+      "target_delta_m": 0,
+      "up_delta": 0,
+      "fov_delta": 0,
+      "at_ms": 16998.099999999977
+    },
+    {
+      "from": "A",
+      "to": "B",
+      "eye_delta_m": 0,
+      "target_delta_m": 0,
+      "up_delta": 0,
+      "fov_delta": 0,
+      "at_ms": 17098.899999999907
+    }
+  ]
+}
