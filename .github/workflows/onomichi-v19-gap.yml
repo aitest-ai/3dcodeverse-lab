@@ -1,0 +1,54 @@
+name: Onomichi V19 archived OSM snapshot gap QA
+on:
+  push:
+    branches:
+      - feat/onomichi-v19-cross-snapshot-gap-audit
+    paths:
+      - 'assets/setouchi/onomichi-v19-gap-registry.json'
+      - 'docs/ONOMICHI_V19_CROSS_SNAPSHOT_ROAD_GAP.md'
+      - '.github/workflows/onomichi-v19-gap.yml'
+  pull_request:
+    branches:
+      - feat/onomichi-v18-dem-elevation-qa
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-evidence-only-no-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check exact source snapshot locks and blocked navigation flags
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('assets/setouchi/onomichi-v19-gap-registry.json')
+          d=json.loads(p.read_text())
+          a=d['source'];m=d['measured'];e=d['evidence'];g=d['prohibitions']
+          assert d['schema_version']==1 and d['candidate']=='V19'
+          assert 'NOT_A_RIDEABLE_ROUTE' in d['status']
+          assert a['v06_osm_xml_sha256']=='c972cd5db85ea729f969c0d3db390ad42f4513ccb98a505574a907bf131b3bab'
+          assert a['v09_halows_site_lock_sha256']=='71873821d96c937465fd6cbd3f05d0f6a66c564f4f3cbcd6f6e968b462f2ccf9'
+          assert a['parent_v18_sha256']=='4d49c74171cd778f0f4a50363ea1bcc90d0963331550202ca85694776a005fe9'
+          assert a['v06_api_request_bbox']==[133.197,34.4028,133.207,34.4095]
+          assert m['v06_total_osm_nodes']==3906
+          assert m['v06_highway_ways']==183 and m['v06_road_nodes']==857
+          assert m['v09_road_ways']==4 and m['v09_road_nodes']==39
+          assert m['common_osm_node_ids']==0
+          assert 440 < m['minimum_polyline_separation_m'] < 442
+          assert m['source_v06_nearest_way_id']=='114435640' and m['source_v06_highway']=='secondary'
+          assert m['source_v09_nearest_way_id']=='1384242539' and m['source_v09_highway']=='trunk'
+          assert m['nearest_any_v06_osm_node_is_road'] is False
+          assert m['nearest_any_v06_osm_node_to_halows_m'] < m['nearest_v06_road_node_to_halows_m']
+          assert e['original_node_tests']=='21/21 PASS'
+          assert e['source_protected_files_count']==10
+          assert e['new_2026_11_osm_xml_retrieved'] is False
+          assert len(d['private_deliverables'])==2
+          assert all(x['sha256'] and x['bytes']>300000 for x in d['private_deliverables'])
+          assert all(v is False for v in g.values()), 'No source-free route approval allowed'
+          assert Path('docs/ONOMICHI_V19_CROSS_SNAPSHOT_ROAD_GAP.md').is_file()
+          print('V19 derived registry PASS. PRIVATE full V06/V09 files are NOT tested by public CI.')
+          print('V19 cannot be a cycling route or auto-deploy until a new approved OSM snapshot and safety checks.')
+          PY
