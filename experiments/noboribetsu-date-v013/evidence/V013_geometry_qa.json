@@ -1,0 +1,60 @@
+{
+  "schema": "noboribetsu-date-v013-source-geometry/1",
+  "status": "PASS_SOURCE_ONLY",
+  "triangle_count": 2436,
+  "vertex_count": 1688,
+  "section_checks": [
+    {
+      "section": "V004",
+      "s_start": 82.877,
+      "s_end": 130.01465,
+      "stations": 88,
+      "accepted_station_sides": 151,
+      "active_segment_sides": 140,
+      "triangles": 840,
+      "vertices": 604,
+      "rejections": {
+        "stone_edge": 0,
+        "near_facade": 17,
+        "steep_dem": 0,
+        "no_dem": 0,
+        "old_edge_overlap": 8
+      },
+      "source_road_sha256": "d766bbf2b8a7df403b0b76f1c618f1f9ba2796eb4197d2df574fc4de5e58c81d",
+      "preexisting_edge_materials": [
+        "road_asphalt",
+        "road_patinated_edge",
+        "stone_warm_grey"
+      ],
+      "skip_existing_stone": true
+    },
+    {
+      "section": "V005",
+      "s_start": 130.01465,
+      "s_end": 197.72393408812707,
+      "stations": 137,
+      "accepted_station_sides": 271,
+      "active_segment_sides": 266,
+      "triangles": 1596,
+      "vertices": 1084,
+      "rejections": {
+        "stone_edge": 0,
+        "near_facade": 3,
+        "steep_dem": 0,
+        "no_dem": 0,
+        "old_edge_overlap": 0
+      },
+      "source_road_sha256": "acd6307cc3970bc628e6925167aa6f911c8036f299dc0338a9f5e1d0ebff2982",
+      "preexisting_edge_materials": [
+        "road_earth",
+        "edge_patina",
+        "road_cobbles"
+      ],
+      "skip_existing_stone": true
+    }
+  ],
+  "max_abs_terrain_height_difference_m": 0.2593501226808361,
+  "collision_changed": false,
+  "v011_gap_changed": false,
+  "webgl_tested": false
+}
