@@ -1,0 +1,22 @@
+name: Mecha v7.5 Authentic OSM Smoke and Local Light Budget Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-smoke-city-v75.js'
+      - 'tests/mecha/v75-smoke-city.mjs'
+      - '.github/workflows/mecha-v75-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-geo-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test byte-identical Windows smoke planner source
+        run: |
+          node --check examples/threejs/mech-smoke-city-v75.js
+          node tests/mecha/v75-smoke-city.mjs
