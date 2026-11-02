@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {wreckPoseV70,cinematicRingV70,shardCountV70} from '../../examples/threejs/mech-cinematic-timing-v70.js';
+assert.deepEqual(wreckPoseV70(0,2),{progress:0,roll:0,sink:0,done:false});
+assert.ok(wreckPoseV70(1,2,-1,true).roll<0);
+assert.equal(wreckPoseV70(2,2,-1,true).roll,-.41);
+assert.equal(wreckPoseV70(2,2,1,false).sink,.18);
+assert.equal(cinematicRingV70(0,2,'victory').opacity,.75);
+assert.equal(cinematicRingV70(2,2,'victory').opacity,0);
+assert.ok(cinematicRingV70(1.4,2,'victory').radius>cinematicRingV70(1.4,2,'impact').radius);
+assert.equal(shardCountV70('heavy',100,30),19);
+assert.equal(shardCountV70('ranger',5,20),5);
+assert.equal(shardCountV70('assault',100,0),0);
+console.log('PASS v7.0 cinematic timing: bounded rigid-mech fall, effects and GPU geometry cap');
