@@ -1,0 +1,27 @@
+{
+  "schema": "noboribetsu-date-v016-delivery-sha256/1",
+  "status": "DIAGNOSTIC_CANDIDATE_REAL_WEBGL_TOGGLE_PASS_VISUAL_COMPARE_PENDING",
+  "artifacts": {
+    "Noboribetsu_Date_V016_R1_Runtime.zip": {
+      "size_bytes": 72854244,
+      "sha256": "44f86918c5c548cf34fc28c7d38e4022dda7a65fbbaf145f99eb58a9c26dd3c9"
+    },
+    "Noboribetsu_Date_V016_R1_SourceQA.zip": {
+      "size_bytes": 737983,
+      "sha256": "1a0814d3683d85bff0c9f4ca9cab19a777065435c350390c5d28518eaaddb996"
+    },
+    "Noboribetsu_Date_V016_R1_Review.html": {
+      "size_bytes": 250834,
+      "sha256": "97a1a246e6542fbfde61fed142d283dc50ba22b62bd9fa67819e022129564a01"
+    },
+    "Noboribetsu_Date_V016_R1_Delivery_Report.md": {
+      "size_bytes": 3471,
+      "sha256": "8a0c58012fbb849f0b044ca48219378b436e5f633a1dae724eeffc2db54f3b7b"
+    }
+  },
+  "original_model_unchanged": true,
+  "new_permanent_footings": 0,
+  "replay_matched": 113,
+  "webgl_loaded_and_toggle_passed": true,
+  "webgl2_after_screenshot_verified": false
+}

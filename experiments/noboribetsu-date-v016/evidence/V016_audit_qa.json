@@ -1,0 +1,15 @@
+{
+  "schema": "noboribetsu-date-v016-audit/1",
+  "status": "SOURCE_GEOMETRY_PASS_VISUAL_PENDING",
+  "sample_count": 4,
+  "distinct_original_plinths": 2,
+  "preserved_base_components": 5,
+  "exposed_height_min_m": 0.44196,
+  "exposed_height_max_m": 0.4879,
+  "original_facade_mesh_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "v016_json_sha256": "db0adee2a80ca59f160898850d38fbe6f653ae7f35f26ca3b61192127b4dbc6d",
+  "false_independent_post_assumption_corrected": true,
+  "no_new_footing_geometry": true,
+  "source_road_sha256": "d766bbf2b8a7df403b0b76f1c618f1f9ba2796eb4197d2df574fc4de5e58c81d",
+  "source_v015_supports_intact": true
+}
