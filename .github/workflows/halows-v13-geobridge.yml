@@ -1,0 +1,68 @@
+name: Halows V13 WGS84 horizontal bridge QA
+on:
+  push:
+    branches:
+      - feat/halows-mukaishima-v13-glb-geobridge
+    paths:
+      - 'scripts/research/halows_v13_geo_alignment.mjs'
+      - 'scripts/blender5/halows_site_v09_data.py'
+      - '.github/workflows/halows-v13-geobridge.yml'
+  pull_request:
+    branches:
+      - feat/halows-mukaishima-v12-route-audit
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-horizontal-not-navigation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore source-locked V09 site JSON without modifying input
+        run: |
+          python3 - <<'PY'
+          import sys,json,pathlib,hashlib
+          sys.path.append('scripts/blender5')
+          from halows_site_v09_data import load_site_data
+          d=load_site_data()
+          p=pathlib.Path('outputs/halows-v13/site_lock.json')
+          p.parent.mkdir(parents=True,exist_ok=True)
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2),encoding='utf-8')
+          expected='71873821d96c937465fd6cbd3f05d0f6a66c564f4f3cbcd6f6e968b462f2ccf9'
+          actual=hashlib.sha256(p.read_bytes()).hexdigest()
+          assert actual==expected,(actual,expected)
+          print('Original V09 site SHA-256 lock PASS')
+          PY
+      - name: Check geobridge JS and calculate transform
+        run: |
+          node --check scripts/research/halows_v13_geo_alignment.mjs
+          node scripts/research/halows_v13_geo_alignment.mjs
+      - name: Verify horizontal only and enforce route and vertical blocks
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/halows-v13/geo_alignment.json').read_text())
+          p=d['position_from_v09_into_v06_gltf_m']
+          assert abs(p['x']+194.586)<.25,p
+          assert abs(p['z']-985.935)<.25,p
+          assert p['y'] is None
+          assert d['v06_anchor_check']['error_m']<.25
+          assert d['y_gate']=='BLOCKED_NO_SHARED_V06_VERTICAL_DATUM'
+          assert not d['route_ferry_to_halows_confirmed']
+          assert not d['original_v06_runtime_available_for_full_integration']
+          assert not d['visual_3d_browser_tested']
+          print('HORIZONTAL PASS; Y, FERRY, BICYCLE, BROWSER BLOCKED')
+          PY
+      - name: Upload horizontal-only QA
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: halows-v13-horizontal-only-${{ github.run_number }}
+          path: outputs/halows-v13/geo_alignment.json
+          retention-days: 14
+          if-no-files-found: warn
