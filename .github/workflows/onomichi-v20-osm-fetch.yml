@@ -1,0 +1,29 @@
+name: Onomichi V20 Fresh OSM XML Evidence
+on:
+  push:
+    branches:
+      - feat/onomichi-v20-osm-live-snapshot
+    paths:
+      - 'scripts/research/onomichi_v20_fetch_osm.py'
+      - '.github/workflows/onomichi-v20-osm-fetch.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fetch-source-evidence-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax
+        run: python3 -m py_compile scripts/research/onomichi_v20_fetch_osm.py
+      - name: Retrieve and validate original XML or record explicit failure
+        run: python3 scripts/research/onomichi_v20_fetch_osm.py
+      - name: Preserve immutable evidence in run artifact only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v20-fresh-osm-evidence
+          path: outputs/v20/
+          retention-days: 21
+          if-no-files-found: warn
