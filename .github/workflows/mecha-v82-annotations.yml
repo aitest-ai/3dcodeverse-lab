@@ -1,0 +1,24 @@
+name: Taipei Mecha v8.2 offline manual visual annotations
+on:
+  push:
+    branches: [feat/mecha-v82-manual-visual-annotations-20261103]
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-frame-annotations-v82.js'
+      - 'tests/mecha/v82-visual-annotations.mjs'
+      - '.github/workflows/mecha-v82-annotations.yml'
+permissions:
+  contents: read
+jobs:
+  annotation-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/mecha/v78-real-capture-reference.mjs
+      - run: node tests/mecha/v79-image-diagnostics.mjs
+      - run: node tests/mecha/v80-captured-png-review.mjs
+      - run: node tests/mecha/v81-combat-evidence.mjs
+      - run: node tests/mecha/v82-visual-annotations.mjs
