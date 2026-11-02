@@ -21,6 +21,8 @@ prefix=s.split(marker)[0].replace(
  'if ID!="halows-mukaishima-v14-forecourt"',
  'if ID!="halows-mukaishima-v15-surface"')
 exec(compile(prefix,str(PARENT),"exec"),globals())
+# V14 prefix reuses git_blob internally for V11; restore our V14 provenance.
+git_blob=EXPECTED
 if ID!="halows-mukaishima-v15-surface":
     raise RuntimeError("V15 asset identity mismatch")
 preexisting={ob.name for ob in bpy.context.scene.objects}
@@ -74,8 +76,8 @@ def baked_albedo(name,base,seed,dim=512,roof=False):
     rng=random.Random(seed); vals=[]
     for y in range(dim):
         for x in range(dim):
-            low=.009*(math.sin(x*.033+y*.014)+math.sin(x*.007-y*.024))
-            fleck=(rng.random()-.5)*.036
+            low=.0027*(math.sin(x*.033+y*.014)+math.sin(x*.007-y*.024))
+            fleck=(rng.random()-.5)*.018
             if roof: low*=.55; fleck*=.5
             change=low+fleck
             vals.extend([max(.015,min(.95,c+change)) for c in base]+[1.0])
@@ -96,7 +98,7 @@ asphalt_m=image_material("V15_asphalt_micro_mottle",asphalt,.97)
 obj=bpy.data.objects.get("parking")
 if obj and obj.type=="MESH":
     obj.data.materials.clear();obj.data.materials.append(asphalt_m)
-    planar_uv(obj,3.6)
+    planar_uv(obj,9.0)
 # A measured curb-cut isn't present. Only trim the join already introduced
 # by V14 with texture-consistent low contrast: no crossing or route created.
 for x in (-16,16):
