@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "project": "Setouchi Onomichi Cycling",
+  "candidate": "V20",
+  "status": "OSM_SHARED_NODE_GEOMETRY_CONNECTED_NOT_NAVIGATION",
+  "osm_source": {
+    "url": "https://api.openstreetmap.org/api/0.6/map?bbox=133.1985,34.3964,133.2060,34.4005",
+    "obtained_utc": "2026-11-02T05:29:20Z",
+    "sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+    "path": "assets/setouchi/osm/onomichi-v20-20261102.osm",
+    "bytes": 409700,
+    "license": "© OpenStreetMap contributors / ODbL",
+    "nodes": 1436,
+    "ways": 154,
+    "highway_ways": 70
+  },
+  "road_graph": {
+    "from_original_frontier": "1296327682",
+    "to_halows_v09_road": "1296327655",
+    "archive_v19_gap_m": 441.24,
+    "new_same_id_connected": true,
+    "any_highway_centerline_m": 483.06,
+    "nontrunk_candidate_m": 604.1,
+    "nontrunk_east_road_m": 660.7,
+    "nontrunk_path_nodes": 33,
+    "nontrunk_way_ids": [
+      "388716484",
+      "388652159",
+      "388652134",
+      "388652127",
+      "388716464",
+      "388716444",
+      "388716505",
+      "114435648",
+      "114435628"
+    ],
+    "special_tag_warning": "way 388716484 access=no, bicycle=yes; check real permissions and field safety"
+  },
+  "gsi_ground_study": {
+    "source_tile_shas": [
+      "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+      "8d7110f73993b6772fd7f59057366355a631d6cb0a12c982ab1b01e8ae9acde2"
+    ],
+    "derived_profile_count": 123,
+    "dem_ground_range_m": [
+      1.64,
+      7.49
+    ],
+    "road_grade_not_surveyed": true,
+    "visual_only_3d_glb_mesh_count": 3
+  },
+  "protected_runtime": {
+    "source_v19_zip_sha256": "ef1e9ebe7fc8feee09fa48ee187c9bc00cfeb6dec0097d42129ca41052f647fa",
+    "protected_10_sha256": "PASS",
+    "native_node_tests": "21/21 PASS",
+    "modified_existing_files": [
+      "index.html"
+    ],
+    "world_json_unchanged": true,
+    "src_game_unchanged": true,
+    "original_six_glbs_unchanged": true
+  },
+  "tests": {
+    "osm_fetch_action": 41394293756,
+    "immutable_osm_pin_action": 41394692662,
+    "osm_graph_ci": 41394899988,
+    "offline_html_chromium": "PASS set_content UI route toggles",
+    "threejs_browser_render": "NOT_TESTED_ERR_BLOCKED_BY_ADMINISTRATOR",
+    "actual_rideplay": "NOT_TESTED",
+    "android": "NOT_TESTED"
+  },
+  "approval": {
+    "shared_node_connected": true,
+    "bicycle_right_of_way": false,
+    "field_curb_cuts": false,
+    "road_surface_height": false,
+    "turn_restrictions_verified": false,
+    "oneway_routing_verified": false,
+    "full_swept_collision": false,
+    "halows_vertical_alignment": false,
+    "v06_character_bike_ferry_integration": false,
+    "public_deployment": false
+  },
+  "private_deliverables": [
+    {
+      "name": "Onomichi_V20_Full_Original_Runtime_Plus_Real_OSM_Connection_QA.zip",
+      "bytes": 223591920,
+      "sha256": "9c43c1e065a7154e4a2484e0c16fe62acf01830ec3ae4438ef69903e1af444ce"
+    },
+    {
+      "name": "Onomichi_V20_Real_OSM_Connection_Incremental_Patch.zip",
+      "bytes": 501281,
+      "sha256": "00d08b0a82efa57d3955a45091e63e7abb1fa83a531575114593a6630d229fb9"
+    }
+  ],
+  "license_note": "Public OSM research XML is pinned in repo. User-owned V19 223MB Runtime, V06 characters/bike/ferry, and V15 model remain private conversation ZIP files, not published on GitHub."
+}
