@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {createCombatEvidenceV81,classifyCombatKeyV81} from '../../examples/threejs/mech-combat-evidence-v81.js';
+const key=(key,shiftKey=false)=>classifyCombatKeyV81({key,shiftKey});
+assert.deepEqual(['f','f','g','v','v'].map((x,i)=>key(x,[false,true,false,false,true][i])),['beam_input','charge_input','blast_input','dodge_right_input','dodge_left_input']);
+assert.equal(classifyCombatKeyV81({key:'v',target:{tagName:'INPUT'}}),null);
+assert.equal(classifyCombatKeyV81({key:'f',repeat:true}),null);
+assert.equal(classifyCombatKeyV81({key:'f',ctrlKey:true}),null);
+assert.equal(classifyCombatKeyV81({key:'g',shiftKey:true}),null);
+const png=()=>({blob:new Blob([new Uint8Array(3000)],{type:'image/png'}),valid:true,checks:{width:800,height:450,contrast:80}});
+let count=0;const recorder=createCombatEvidenceV81({captureFrame:async()=>{count++;return png();},holdFrames:3,maxShots:5,cooldownMs:800});
+const flush=async()=>{for(let i=0;i<12;i++)await Promise.resolve();};
+assert.equal(recorder.observeInput('beam_input',1000),false,'default disabled');
+recorder.toggle(true);
+assert.equal(recorder.observeInput('beam_input',1000,{cameraLocked:true}),false,'camera capture collision');
+for(let i=0;i<5;i++){
+ assert.equal(recorder.observeInput(['beam_input','charge_input','blast_input','dodge_right_input','dodge_left_input'][i],1000+i*1200),true);
+ assert.equal(recorder.observeInput('beam_input',1000+i*1200+1),false,'busy/pending');
+ recorder.afterRender();recorder.afterRender();assert.equal(recorder.snapshot().count,i);
+ recorder.afterRender();await flush();assert.equal(recorder.snapshot().count,i+1);
+}
+assert.equal(count,5);assert.equal(recorder.snapshot().enabled,false,'bounded auto stop');
+assert.equal(recorder.getFiles().length,5);assert.equal(recorder.report().shots.length,5);
+assert.equal(recorder.report().shots[0].action,'beam_input');assert.equal(recorder.report().shots[0].elapsedMs,0);
+assert.ok(recorder.report().limitations.some(s=>s.includes('NOT proven')));
+assert.ok(recorder.report().shots.every(s=>!('position' in s)&&!('blob' in s)&&!('GPS' in s)));
+assert.equal(recorder.observeInput('beam_input',7000),false,'disabled at limit');
+let resolve;const interrupted=createCombatEvidenceV81({captureFrame:()=>new Promise(r=>{resolve=r}),holdFrames:2});
+interrupted.toggle(true);interrupted.observeInput('beam_input',100);interrupted.afterRender();interrupted.afterRender();await flush();
+interrupted.clear();resolve(png());await flush();assert.equal(interrupted.snapshot().count,0,'late old capture must not resurrect');
+let finishDuringCameraLock;
+const collision=createCombatEvidenceV81({captureFrame:()=>new Promise(r=>{finishDuringCameraLock=r}),holdFrames:2});
+collision.toggle(true);collision.observeInput('charge_input',100);collision.afterRender();collision.afterRender();await flush();
+collision.afterRender({cameraLocked:true});finishDuringCameraLock(png());await flush();
+assert.equal(collision.getFiles().length,0,'camera lock during GPU readback must invalidate old frame');
+const failed=createCombatEvidenceV81({captureFrame:async()=>({blob:new Blob([new Uint8Array(5)],{type:'image/png'}),valid:false}),holdFrames:2});
+failed.toggle(true);failed.observeInput('beam_input',0);failed.afterRender();failed.afterRender();await flush();
+assert.equal(failed.getFiles().length,0);assert.ok(failed.snapshot().lastError.includes('PNG'));
+console.log('PASS v8.1 opt-in post-render: five real input labels, hard cap, locked-camera guard, late cancellation, errors and privacy');
