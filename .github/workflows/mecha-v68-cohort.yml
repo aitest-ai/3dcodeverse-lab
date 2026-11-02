@@ -1,0 +1,22 @@
+name: Mecha v6.8 Offline Cohort Reference QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-cohort-reference-v68.js'
+      - 'tests/mecha/v68-cohort-reference.mjs'
+      - '.github/workflows/mecha-v68-cohort.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cohort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate and execute cohort reference
+        run: |
+          node --check examples/threejs/mech-cohort-reference-v68.js
+          node tests/mecha/v68-cohort-reference.mjs
