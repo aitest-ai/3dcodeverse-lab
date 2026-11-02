@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "candidate": "V24",
+  "status": "PRIVATE_REAL_ASSET_SCALE_AND_PUBLIC_GSI_SEAM_QA__NO_NAVIGATION",
+  "source_v23_pr": 118,
+  "source_grid_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "source_gsi_tile_sha256": "79dc9e009a448aec5726ee1c13906270fef196e92c36286075e5474310318e9c",
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "source_way": "388716484",
+  "raw_source_2m_grid_vertices": 3366,
+  "ground_centreline_length_m": 74.364,
+  "ground_contact_sample_count": 77,
+  "ground_height_range_m": [
+    2.47,
+    2.95
+  ],
+  "point_interpolation_minus_original_gsi_m": [
+    0.0273,
+    0.0095,
+    0.0057,
+    0.0036
+  ],
+  "diagnostic_side_offsets_m": [
+    0.75,
+    1.5,
+    2.5
+  ],
+  "opposing_terrain_delta_max_at_1_5m_m": 0.2062,
+  "actor_original_glb_sha256": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+  "bicycle_original_glb_sha256": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
+  "terrain_v23_glb_sha256": "a45dc26ca6f4e3d28787148493e4014db6df2f06c709899ccb5cb7a55c2a484a",
+  "original_actor_height_m": 1.75401,
+  "original_bicycle_length_m": 1.77699,
+  "original_bicycle_width_m": 0.59478,
+  "original_private_asset_mesh_counts": {
+    "actor": 10,
+    "bicycle": 139,
+    "terrain": 11
+  },
+  "private_binary_assets_committed_to_public_git": false,
+  "protected_prior_game_files": 11,
+  "protected_prior_game_byte_identity": "PASS",
+  "original_node_tests": "21/21 PASS",
+  "existing_original_files_modified": [
+    "index.html"
+  ],
+  "private_v24_deliverables": [
+    {
+      "filename": "Onomichi_V24_Full_Original_Runtime_Plus_Real_Scale_QA.zip",
+      "bytes": 279385566,
+      "sha256": "c5289bf7c1db947a67eb05558b04891b09e595b8a8b4d9b994b73352343eb4bf",
+      "entries": 308,
+      "crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V24_Incremental_Real_Asset_QA_Patch.zip",
+      "bytes": 417142,
+      "sha256": "c60fd833209cb49bac94c3ed616562325f38d629afd199764e6ee304ad855d38",
+      "entries": 10,
+      "crc": "PASS"
+    }
+  ],
+  "approvals": {
+    "actual_road_width_surveyed": false,
+    "legal_cycling_status_verified": false,
+    "road_surface_height_surveyed": false,
+    "swept_collision_passed": false,
+    "bridge_or_curb_height_verified": false,
+    "actual_webgl2_browser_passed": false,
+    "android_gameplay_passed": false,
+    "world_route_changed": false,
+    "site_deployed": false
+  },
+  "note": "Derived OSM/GSI source geometry in git only. All real V06 GLB assets and original V23 Runtime remain in user-private ZIP. Actual mesh screenshot is VTK, not Chrome WebGL."
+}
