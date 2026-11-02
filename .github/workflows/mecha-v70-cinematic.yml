@@ -1,0 +1,22 @@
+name: Mecha v7.0 Bounded Cinematic Core QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-cinematic-timing-v70.js'
+      - 'tests/mecha/v70-cinematic-timing.mjs'
+      - '.github/workflows/mecha-v70-cinematic.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cinematic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate portable effect timing and budget
+        run: |
+          node --check examples/threejs/mech-cinematic-timing-v70.js
+          node tests/mecha/v70-cinematic-timing.mjs
