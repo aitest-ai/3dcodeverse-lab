@@ -1,0 +1,22 @@
+name: Taipei Mecha v7.6 Two-layer Smoke Material QA
+on:
+  push:
+    paths:
+      - 'examples/threejs/mech-atmosphere-material-v76.js'
+      - 'tests/mecha/v76-smoke-material.mjs'
+      - '.github/workflows/mecha-v76-smoke-material.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke-material:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact v7.6 Windows pure smoke and lighting source
+        run: |
+          node --check examples/threejs/mech-atmosphere-material-v76.js
+          node tests/mecha/v76-smoke-material.mjs
