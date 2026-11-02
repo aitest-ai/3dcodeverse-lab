@@ -1,0 +1,60 @@
+name: Onomichi V25 public GSI side-probe and field-evidence safety QA
+on:
+  push:
+    branches:
+      - feat/onomichi-v25-original-glb-terrain-probes
+    paths:
+      - scripts/research/onomichi_v25_probe_preflight.py
+      - assets/setouchi/onomichi-v25-probe-registry.json
+      - .github/workflows/onomichi-v25-probes.yml
+  pull_request:
+    branches:
+      - feat/onomichi-v24-scale-and-terrain-seams
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-derived-dem-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompute 7 lateral probes from pinned original V23 derived grid
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v25_probe_preflight.py
+          python3 scripts/research/onomichi_v25_probe_preflight.py
+      - name: Verify exact results and enforce non-navigation blocks
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/onomichi-v25/public-probe-report.json').read_text())
+          r=json.loads(Path('assets/setouchi/onomichi-v25-probe-registry.json').read_text())
+          assert d['source_osm_sha256']==r['OSM_source_sha256']
+          assert d['source_grid_sha256']==r['GSI_derived_grid_sha256']
+          assert d['osm_way_id']=='388716484' and d['samples']==77
+          assert len(d['offsets'])==7
+          assert abs(d['centerline_m']-74.3638)<.001
+          for k,m in r['max_cross_ground_delta_m_by_half_offset'].items():
+              # 1.0/2.0 represented numerically in recomputation dictionary keys
+              assert abs(d['offsets'][str(float(k))]['max_ground_difference_m']-m)<.0001,(k,m)
+              assert d['offsets'][str(float(k))]['observed_real_road_width_m'] is None
+          assert d['road_width_measured_m'] is None
+          assert d['road_surface_height_measured_m'] is None
+          assert d['user_private_original_GLBS_in_public_ci'] is False
+          assert all(v is False for v in d['approvals'].values())
+          assert r['private_GLBS_pushed_to_public_GitHub'] is False
+          assert r['collision_approved'] is False
+          assert r['original_world_or_game_mjs_changed'] is False
+          assert r['native_original_node_tests']=='21/21 PASS'
+          assert r['protected_original_11_files']=='PASS'
+          assert len(r['private_deliverables'])==3
+          assert r['ThreeJS_full_3D_playtest'].startswith('BLOCKED')
+          print('V25 derived DEM source QA PASS; does NOT certify roadway width, user private GLB or gameplay.')
+          PY
+      - name: Archive source-only numeric result, never user-owned private 3D models
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v25-derived-ground-probes
+          path: outputs/onomichi-v25/public-probe-report.json
+          retention-days: 14

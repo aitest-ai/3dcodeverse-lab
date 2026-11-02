@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "candidate": "V25",
+  "parent_pr": 121,
+  "status": "SOURCE_GSI_TERRAIN_PROBES_AND_PRIVATE_REAL_GLBS__NOT_NAVIGATION",
+  "OSM_way": "388716484",
+  "OSM_source_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "GSI_derived_grid_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "grid_size": [
+    51,
+    66
+  ],
+  "DEM_samples": 3366,
+  "centreline_length_m": 74.3638,
+  "probe_points": 77,
+  "probe_half_offsets_m": [
+    0.5,
+    0.75,
+    1,
+    1.25,
+    1.5,
+    2,
+    2.5
+  ],
+  "max_cross_ground_delta_m_by_half_offset": {
+    "1": 0.1849,
+    "2": 0.2316,
+    "0.5": 0.0964,
+    "0.75": 0.1446,
+    "1.25": 0.2,
+    "1.5": 0.2062,
+    "2.5": 0.2349
+  },
+  "real_world_road_width_m": null,
+  "private_original_asset_sha256": {
+    "actor": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+    "bicycle": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
+    "terrain": "a45dc26ca6f4e3d28787148493e4014db6df2f06c709899ccb5cb7a55c2a484a"
+  },
+  "parent_v24_full_zip_sha256": "04d20b6e12958fe692a649275a54aac459b4e82c50ace44fcbeccdc5ab0088d8",
+  "protected_original_11_files": "PASS",
+  "native_original_node_tests": "21/21 PASS",
+  "original_runtime_files_changed": [
+    "index.html"
+  ],
+  "original_world_or_game_mjs_changed": false,
+  "private_GLBS_pushed_to_public_GitHub": false,
+  "UI_and_field_form_chromium_set_content_test": "PASS (DOM and data binding mock, NOT WebGL)",
+  "ThreeJS_full_3D_playtest": "BLOCKED ERR_BLOCKED_BY_ADMINISTRATOR",
+  "field_evidence_submission_behavior": "User-controlled JSON export; nullable width, date, photo evidence source URL; no auto ride approval",
+  "road_or_pavement_model_built": false,
+  "collision_approved": false,
+  "legal_bicycle_access_verified": false,
+  "android_tested": false,
+  "private_deliverables": [
+    {
+      "file": "Onomichi_V25_Full_Original_Runtime_Plus_Probe_QA.zip",
+      "bytes": 230517068,
+      "sha256": "5fe5b9f35ef31c693c867b2773f808aca15c44ea18096557d06c22ff39b5c3b2",
+      "entries": 317,
+      "zip_crc": "PASS"
+    },
+    {
+      "file": "Onomichi_V25_GSI_Probe_Incremental_Patch.zip",
+      "bytes": 479002,
+      "sha256": "37fa29ed0985ae0f7e16e31e6a42f3b7e636ee9ebacd0e30aabd9ff17bf7ba92",
+      "entries": 10,
+      "zip_crc": "PASS"
+    },
+    {
+      "file": "Onomichi_V25_Standalone_Original_GLBS_Probe_Viewer.zip",
+      "bytes": 15118391,
+      "sha256": "55aa94138545f5acf1c1aac5dd3d62c8bc6dcc368e9f2d1159aafebeb3f75139",
+      "entries": 21,
+      "zip_crc": "PASS"
+    }
+  ],
+  "source_citation": "© OpenStreetMap contributors ODbL; GSI derived height grid from original GSI elevation tile, no official photos distributed"
+}
