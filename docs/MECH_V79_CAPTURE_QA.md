@@ -7,7 +7,7 @@
 - `examples/threejs/mech-image-diagnostics-v79.js`：對呼叫端提供的已解碼 RGBA 進行黑屏／白屏／透明像素／低細節／過曝及三時段亮度差的離線檢查。並不取得、產生或認證 WebGPU 畫面。
 - `tests/mecha/v79-image-diagnostics.mjs`：用合成測試像素檢查异常與尺寸，**不是**臺北 101 遊戲截圖。
 - `.github/workflows/mecha-v79-image-diagnostics.yml`：Node 22 執行 v7.8、v7.9 可攜式程式測試。
-- **另行交付的** `v79_offline_capture_audit.html` 是可直接開啟的獨立離線驗收頁，使用者自選 PNG，於本機顯示、分析並匯出不含圖片或相機資料的 JSON。獨立 HTML 尚未集成完整 Windows 包。
+- **也已提交至此 GitHub 分支的** `qa/v79_offline_capture_audit.html` 是可直接開啟的獨立離線驗收頁，使用者自選 PNG，於本機顯示、分析並匯出不含圖片或相機資料的 JSON。獨立 HTML 已可下載，但尚未集成完整 Windows 包。
 
 ## 真正玩法驗收與限制
 
