@@ -1,0 +1,39 @@
+name: Onomichi V26 Nine OSM Field Stations - fail-closed safety QA
+on:
+  push:
+    branches:
+      - feat/onomichi-v26-9station-measurement-gate
+    paths:
+      - assets/setouchi/onomichi-v26-field-stations.json
+      - scripts/research/onomichi_v26_evidence_gate.py
+      - .github/workflows/onomichi-v26-field-stations.yml
+  pull_request:
+    branches: [feat/onomichi-v25-original-glb-terrain-probes]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  require-source-and-no-gameplay-claims:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate public geospatial station data with all road approval blocked
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v26_evidence_gate.py
+          python3 scripts/research/onomichi_v26_evidence_gate.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('assets/setouchi/onomichi-v26-field-stations.json').read_text())
+          assert len(d['station_measurements'])==9
+          assert all(p['measured_clear_width_m'] is None and p['measured_pavement_m'] is None for p in d['station_measurements'])
+          assert all(p['barrier']=='unknown' and p['field_bicycle_sign']=='unknown' for p in d['station_measurements'])
+          assert d['checks']['original_v06_node_tests']==21 and d['checks']['new_v26_evidence_tests']==5
+          assert d['checks']['protected_v25_original_files']==11
+          assert d['checks']['full_threejs_webgl2_gameplay'] is False
+          assert all(x['crc']=='PASS' for x in d['private_deliverables'])
+          assert d['private_game_assets_in_public_git'] is False
+          print('PASS: V26 public OSM/GSI 9-station registry — no field widths, no navigation claims')
+          print('Private V06 character/bicycle/terrain GLBs are not present in public CI.')
+          PY
