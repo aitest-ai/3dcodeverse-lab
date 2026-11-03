@@ -1,0 +1,64 @@
+name: Onomichi V28 wheel DEM source-only QA (no gameplay approval)
+on:
+  push:
+    branches:
+      - feat/onomichi-v28-original-bike-wheel-contact
+    paths:
+      - scripts/research/onomichi_v28_public_wheel_contact.py
+      - assets/setouchi/onomichi-v28-wheel-registry.json
+      - docs/ONOMICHI_V28_SOURCE_WHEEL_CONTACT.md
+      - .github/workflows/onomichi-v28-wheel-contact.yml
+  pull_request:
+    branches:
+      - feat/onomichi-v27-source-bbox-sweep
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ground-wheel-math-not-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompute exact-source GSI front/rear wheel probe positions without user-private model
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v28_public_wheel_contact.py
+          python3 scripts/research/onomichi_v28_public_wheel_contact.py
+      - name: Verify 373 positions and strict unapproved-road gates
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('outputs/onomichi-v28/public-source-wheel-contact.json').read_text())
+          assert d['source_osm_way']=='388716484'
+          assert d['source_osm_sha256']=='5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76'
+          assert d['source_gsi_derived_sha256']=='03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1'
+          assert 74.32<d['source_centerline_length_m']<74.40
+          assert d['sampled_positions']==373
+          assert 3.0<d['maximum_absolute_source_dem_pitch_deg']<3.6
+          assert 0.04<d['maximum_front_to_rear_dem_difference_m']<0.08
+          assert d['wheelbase_m_from_verified_private_metadata']==1.08
+          assert all(v is False for v in d['flags'].values())
+          print('PASS source GSI wheel geometry only; real bike mesh / legal cycling NOT checked here.')
+          PY
+      - name: Verify public provenance and private artifact non-distribution
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('assets/setouchi/onomichi-v28-wheel-registry.json').read_text())
+          assert r['candidate']=='V28'
+          assert r['source_original_bike_glb_sha256']=='7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece'
+          assert r['source_original_actor_glb_sha256']=='4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1'
+          assert r['private_original_GLBS_in_public_repo'] is False
+          assert r['local_full_original_game_node_tests']=='37/37 PASS'
+          assert all(v is False for v in r['road_and_game_approvals'].values())
+          assert Path('docs/ONOMICHI_V28_SOURCE_WHEEL_CONTACT.md').is_file()
+          print('PASS public registry; no user-private GLB assets are committed.')
+          PY
+      - name: Save public derived results only
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v28-public-dem-wheel-contact
+          path: outputs/onomichi-v28/public-source-wheel-contact.json
+          retention-days: 21
