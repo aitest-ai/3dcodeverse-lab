@@ -1,0 +1,13 @@
+verify-export	Import native scene, verify real skeleton and build Web artifact	﻿2026-11-03T04:21:30.6695066Z ##[group]Run python scripts/export_web.py --godot "$PWD/tools/engine/Godot_v4.6.3-stable_linux.x86_64" > evidence/github-godot-export.log 2>&1
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6696624Z [36;1mpython scripts/export_web.py --godot "$PWD/tools/engine/Godot_v4.6.3-stable_linux.x86_64" > evidence/github-godot-export.log 2>&1[0m
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6697727Z [36;1mtools/engine/Godot_v4.6.3-stable_linux.x86_64 --headless --path godot --script res://scripts/inspect_asset.gd > evidence/github-godot-asset-check.log 2>&1[0m
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6719743Z shell: /usr/bin/bash -e {0}
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6720017Z env:
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6720296Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6720762Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6721238Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6721670Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6722076Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6722512Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:30.6722859Z ##[endgroup]
+verify-export	Import native scene, verify real skeleton and build Web artifact	2026-11-03T04:21:41.5829076Z ##[error]Process completed with exit code 1.

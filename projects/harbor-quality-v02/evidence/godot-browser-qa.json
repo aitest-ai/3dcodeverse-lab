@@ -1,6 +1,5 @@
 {
-  "status": "FAIL",
-  "error": "Blocked navigation {'target': [-5, -4], 'position': [-2.59685111045837, 0.0508388616144657, -4.13466262817383], 'error_m': 2.4069189036467042}",
+  "status": "PASS",
   "checks": [
     {
       "name": "Actual mature engine Web build starts",
@@ -23,7 +22,7 @@
       "detail": [
         0,
         0.0508391931653023,
-        2.99736452102661
+        3.26292133331299
       ]
     },
     {
@@ -100,6 +99,67 @@
       "name": "Express choice changes task rules",
       "pass": true,
       "detail": null
+    },
+    {
+      "name": "Three native pickups collected exactly once",
+      "pass": true,
+      "detail": [
+        "tea",
+        "tree",
+        "sea"
+      ]
+    },
+    {
+      "name": "Second NPC accepts completed handout",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Complete route awards base reward and exact time-dependent bonus",
+      "pass": true,
+      "detail": 150
+    },
+    {
+      "name": "Facial morph responds to actual B key",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Live atelier Idle animates skeleton",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Live atelier Walk animates skeleton",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Live atelier Run animates skeleton",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "CharacterBody cannot pass through solid building",
+      "pass": true,
+      "detail": [
+        0.553922355175018,
+        0.0508390367031097,
+        -7.06968307495117
+      ]
+    },
+    {
+      "name": "Native SpringArm retracts before building",
+      "pass": true,
+      "detail": {
+        "hit": 0.264062494039536,
+        "desired": 5.19999980926514
+      }
+    },
+    {
+      "name": "No JS or engine runtime errors",
+      "pass": true,
+      "detail": []
     }
   ],
   "navigation": [
@@ -109,11 +169,12 @@
         -0.17180192470551003
       ],
       "position": [
-        -3.89166307449341,
-        0.0508398376405239,
-        -0.124953389167786
+        -1.13543152809143,
+        0.0485473237931728,
+        1.19746351242065
       ],
-      "error_m": 1.0795423189313558
+      "error_m": 2.165545213205586,
+      "keyboard_pulses": 7
     },
     {
       "target": [
@@ -121,39 +182,146 @@
         -4
       ],
       "position": [
-        -2.59685111045837,
-        0.0508388616144657,
-        -4.13466262817383
+        -4.4125804901123,
+        0.0508245602250099,
+        -3.75510668754578
       ],
-      "error_m": 2.4069189036467042
+      "error_m": 0.6364231415351783,
+      "keyboard_pulses": 24
+    },
+    {
+      "target": [
+        -5,
+        2.5
+      ],
+      "position": [
+        -4.4125804901123,
+        0.0508398376405239,
+        2.09144973754883
+      ],
+      "error_m": 0.715524281590517,
+      "keyboard_pulses": 17
+    },
+    {
+      "target": [
+        -2,
+        2.5
+      ],
+      "position": [
+        -2.60085868835449,
+        0.04948565736413,
+        2.09144973754883
+      ],
+      "error_m": 0.7265978807566108,
+      "keyboard_pulses": 5
+    },
+    {
+      "target": [
+        -2,
+        9
+      ],
+      "position": [
+        -2.21437883377075,
+        0.0508387535810471,
+        8.46934127807617
+      ],
+      "error_m": 0.5723259242099205,
+      "keyboard_pulses": 18
+    },
+    {
+      "target": [
+        6,
+        9
+      ],
+      "position": [
+        5.51639938354492,
+        0.0508387535810471,
+        8.46934127807617
+      ],
+      "error_m": 0.7179611656556125,
+      "keyboard_pulses": 21
+    },
+    {
+      "target": [
+        13,
+        9
+      ],
+      "position": [
+        12.7642946243286,
+        0.050839826464653,
+        8.46934127807617
+      ],
+      "error_m": 0.5806511028786805,
+      "keyboard_pulses": 21
+    },
+    {
+      "target": [
+        13,
+        -5
+      ],
+      "position": [
+        12.7642946243286,
+        0.0508387535810471,
+        -4.53103017807007
+      ],
+      "error_m": 0.5248711441881574,
+      "keyboard_pulses": 42
+    },
+    {
+      "target": [
+        7.8419508934021,
+        -3.4
+      ],
+      "position": [
+        10.3962306976318,
+        0.0508397854864597,
+        -4.53103017807007
+      ],
+      "error_m": 2.793487888286064,
+      "keyboard_pulses": 8
+    },
+    {
+      "target": [
+        0,
+        -5
+      ],
+      "position": [
+        0.553922355175018,
+        0.0508385039865971,
+        -4.80134296417236
+      ],
+      "error_m": 0.5884680054569349,
+      "keyboard_pulses": 35
     }
   ],
-  "snapshot": {
-    "arm_length": 5.19999980926514,
+  "final": {
+    "arm_length": 0.264062494039536,
     "bones": [
       [
-        -0.258197993040085,
-        0.666228532791138,
-        -0.516668021678925,
-        0.47172823548317
+        -0.280375212430954,
+        0.668618857860565,
+        -0.501106142997742,
+        0.472473561763763
       ],
       [
-        0.94710111618042,
-        0.118502214550972,
-        -0.0174134839326143,
-        0.297747611999512
+        0.956245362758636,
+        0.115595646202564,
+        -0.0169863682240248,
+        0.268223732709885
       ],
       [
-        0.260462135076523,
-        -0.109796889126301,
-        0.0217801406979561,
-        0.958973288536072
+        0.230004280805588,
+        -0.111371830105782,
+        0.018455607816577,
+        0.966619789600372
       ]
     ],
     "buttons": {},
-    "camera_yaw": 3.78489488639389e-08,
+    "camera_yaw": -4.18666648864746,
     "collected": [
-      "tea"
+      "tea",
+      "tree",
+      "sea"
     ],
     "collisions": [
       {
@@ -167,10 +335,10 @@
     ],
     "desired_arm": 5.19999980926514,
     "dialog": false,
-    "elapsed": 47.1666666666653,
+    "elapsed": 155.416666666682,
     "engine": "Godot 4.6.3-stable (official)",
     "express": true,
-    "fps": 3,
+    "fps": 6,
     "input": [
       0,
       0,
@@ -180,16 +348,16 @@
     ],
     "low_quality": true,
     "motion": "Idle",
-    "nearest": "guide",
+    "nearest": "",
     "npcs": [
       {
-        "attention": true,
+        "attention": false,
         "id": "guide",
-        "motion": "Idle",
+        "motion": "Walk",
         "position": [
-          -1.93329048156738,
-          0.0474350824952126,
-          -1.93387997150421
+          -1.57850515842438,
+          0.0507807359099388,
+          -1.9621593952179
         ]
       },
       {
@@ -197,23 +365,23 @@
         "id": "keeper",
         "motion": "Idle",
         "position": [
-          7.84411525726318,
-          0.0508279912173748,
+          7.84408187866211,
+          0.0508396960794926,
           -5
         ]
       }
     ],
-    "physics_frames": 4270,
+    "physics_frames": 14460,
     "position": [
-      -2.59685111045837,
-      0.0508388616144657,
-      -4.13466262817383
+      0.553922355175018,
+      0.0508390367031097,
+      -7.06968307495117
     ],
-    "process_frames": 537,
-    "quest": 1,
+    "process_frames": 2053,
+    "quest": 3,
     "ready": true,
-    "score": 25,
-    "smile": 0,
+    "score": 150,
+    "smile": 1,
     "started": true,
     "velocity": [
       0,
@@ -224,6 +392,16 @@
       1280,
       800
     ]
+  },
+  "performance": {
+    "renderer": "Chromium ANGLE SwiftShader software",
+    "viewport_css": [
+      960,
+      600
+    ],
+    "quality": "low/shadows off during gameplay checks",
+    "fps_median_observed": 8.0,
+    "hardware_certification": false
   },
   "errors": [],
   "engine_errors": []
