@@ -1,0 +1,51 @@
+name: Onomichi V27 real-source bicycle bbox hypothetical scenarios
+on:
+  push:
+    branches: [feat/onomichi-v27-source-bbox-sweep]
+    paths:
+      - scripts/research/onomichi_v27_bbox_envelope.py
+      - assets/setouchi/onomichi-v27-geometry-evidence.json
+      - .github/workflows/onomichi-v27-bbox.yml
+  pull_request:
+    branches: [feat/onomichi-v26-9station-measurement-gate]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa-public-source-not-private-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompute 24 source-dimension geometry cases
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v27_bbox_envelope.py
+          python3 scripts/research/onomichi_v27_bbox_envelope.py
+      - name: Enforce no field road widths, legal rights or collision approvals
+        run: |
+          python3 - <<'PY'
+          import json,math
+          from pathlib import Path
+          r=json.loads(Path('assets/setouchi/onomichi-v27-geometry-evidence.json').read_text())
+          d=json.loads(Path('outputs/onomichi-v27/derived-geometry-only.json').read_text())
+          assert r['candidate']=='V27' and r['geometry_scenarios']==24
+          assert d['station_count']==9 and d['case_count']==24
+          assert abs(d['bicycle_visual_bbox_length_m']-r['private_bicycle_visual_bbox_m']['length'])<.000001
+          assert abs(d['bicycle_visual_bbox_width_m']-r['private_bicycle_visual_bbox_m']['width'])<.000001
+          assert abs(d['cases'][0]['half_projection_m']-r['yaw0_half_projected_width_m'])<.0002
+          assert abs(d['cases'][12]['half_projection_m']-r['yaw20_half_projected_width_m'])<.0002
+          assert d['actual_field_width_m'] is None and d['actual_road_surface_height_m'] is None
+          assert all(v is False for v in d['approvals'].values())
+          assert all(v is False for v in r['approvals'].values())
+          assert r['full_3D_Chrome_WebGL2'].startswith('NOT_PASSED')
+          assert r['protected_existing_original_files']==11
+          assert r['user_private_V06_models_uploaded_to_public_GitHub'] is False
+          assert len(r['private_delivery'])==3
+          print('PASS public source-derived geometry only; user-owned GLBs and real road legality not in public CI')
+          PY
+      - name: Archive source-only results
+        uses: actions/upload-artifact@v4
+        with:
+          name: onomichi-v27-source-bbox-scenarios
+          path: outputs/onomichi-v27/derived-geometry-only.json
+          retention-days: 21

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "candidate": "V27",
+  "state": "AUTHENTIC_V06_VISUAL_BBOX_ASSUMED_CORRIDOR__NO_NAVIGATION",
+  "parent_pr": 129,
+  "source_osm_way_id": "388716484",
+  "source_osm_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "source_derived_GSI_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "private_original_bicycle_glb_sha256": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
+  "private_original_actor_glb_sha256": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+  "private_bicycle_visual_bbox_m": {
+    "length": 1.77699,
+    "width": 0.59478
+  },
+  "private_original_actor_height_m": 1.75401,
+  "osm_centerline_length_m": 74.3638,
+  "field_stations": 9,
+  "hypothetical_position_samples": 371,
+  "hypothetical_yaw_degrees": [
+    0,
+    10,
+    20,
+    30
+  ],
+  "hypothetical_full_width_m": [
+    1,
+    1.2,
+    1.5,
+    1.8,
+    2.2,
+    3
+  ],
+  "hypothetical_side_buffer_m": 0.15,
+  "geometry_scenarios": 24,
+  "yaw0_half_projected_width_m": 0.2974,
+  "yaw20_half_projected_width_m": 0.5833,
+  "full_3d_GSI_ground_source_authoring_blender": true,
+  "real_blender_action_run": 41554536189,
+  "real_blender_artifact": 13193624096,
+  "blender_ground_heights": 3366,
+  "blender_hypothetical_1_8m_strip_not_a_road": true,
+  "protected_existing_original_files": 11,
+  "only_preexisting_file_changed": "index.html",
+  "original_node_logic_tests": "21/21 PASS",
+  "new_v27_node_tests": "5/5 PASS",
+  "source_python_gate": "PASS",
+  "chromium_2D_DOM_UI": "PASS",
+  "full_3D_Chrome_WebGL2": "NOT_PASSED_ERR_BLOCKED_BY_ADMINISTRATOR",
+  "android_gameplay": "NOT_TESTED",
+  "approvals": {
+    "observed_road_clear_width": false,
+    "bicycle_legal_permission": false,
+    "road_surface_heights": false,
+    "real_curbs_or_barriers": false,
+    "actual_rider_bike_physics": false,
+    "real_world_swept_collision": false,
+    "runtime_route_integrated": false,
+    "main_or_site_deployed": false
+  },
+  "user_private_V06_models_uploaded_to_public_GitHub": false,
+  "private_delivery": [
+    {
+      "filename": "Onomichi_V27_Full_Original_Runtime_Plus_Sweep_Lab.zip",
+      "bytes": 235449431,
+      "sha256": "f9d7caaf516fb1f34bf6748fd487df629ee8123a54831172f958c2f326dee8ee",
+      "entries": 342,
+      "zip_crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V27_Conditional_Width_Incremental_Patch.zip",
+      "bytes": 3374098,
+      "sha256": "7580727305185ebaa3fe4363663837798b8af857df952a1ee4342c59132e0cf8",
+      "entries": 18,
+      "zip_crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V27_Standalone_Original_GLBS_Lab.zip",
+      "bytes": 18249672,
+      "sha256": "caec36b683aa4a330dc07b670a46c462aa6f9ace519ceb16ec74edf6c68d58e2",
+      "entries": 26,
+      "zip_crc": "PASS"
+    }
+  ],
+  "user_warning": "Vehicle outer bbox yaw projection is not a full wheel/tire rider animation or dynamic swept collision. No field roadway width surveyed. The 1.8m study strip is hypothetical only."
+}

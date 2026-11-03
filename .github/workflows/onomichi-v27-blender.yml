@@ -1,0 +1,88 @@
+name: Onomichi V27 source-locked Blender conditional width study
+on:
+  push:
+    branches: [feat/onomichi-v27-source-bbox-sweep]
+    paths:
+      - scripts/blender5/onomichi_v27_hypothetical_strip.py
+      - .github/workflows/onomichi-v27-blender.yml
+  pull_request:
+    branches: [feat/onomichi-v26-9station-measurement-gate]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  produce-true-blender-study:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pinned source and syntax
+        run: |
+          python3 -m py_compile scripts/blender5/onomichi_v27_hypothetical_strip.py
+          python3 - <<'PY'
+          import json,zlib,base64,hashlib,struct
+          from pathlib import Path
+          x=json.loads(Path('assets/setouchi/onomichi-v23-gsi-ground-sample.json').read_text())
+          d=zlib.decompress(base64.b64decode(x['dem_ground_cm_int16_le_zlib_base64']))
+          assert len(d)==6732
+          assert hashlib.sha256(d).hexdigest()=='03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1'
+          assert x['osm_way_id']=='388716484'
+          print('V27 derived GSI source locked')
+          PY
+      - name: Install headless Blender dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download verified official Blender 5.2.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE=blender-5.2.3-linux-x64.tar.xz
+          EXPECTED=78486c018b4443efe5e75ab54c290ed8c15abafd249b862c2c9ce2530a918eec
+          mkdir -p .tools
+          for BASE in \
+            "https://mirror.blender.org/release/Blender5.2" \
+            "https://download.blender.org/release/Blender5.2" \
+            "https://mirror.nju.edu.cn/blender/blender-release/Blender5.2"; do
+            if curl -fL --retry 2 --connect-timeout 30 --max-time 150 -o ".tools/$FILE" "$BASE/$FILE"; then
+              echo "$EXPECTED  .tools/$FILE" | sha256sum -c -
+              break
+            fi
+            rm -f ".tools/$FILE"
+          done
+          test -s ".tools/$FILE"
+          echo "$EXPECTED  .tools/$FILE" | sha256sum -c -
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-5.2.3-linux-x64" >> "$GITHUB_PATH"
+      - name: Generate editable BLEND, GLB and two actual renders
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b --factory-startup --python-exit-code 1 --python scripts/blender5/onomichi_v27_hypothetical_strip.py
+      - name: Verify results and strict research-only gate
+        run: |
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('outputs/onomichi-v27')
+          x=json.loads((p/'V27_Blender_Report.json').read_text())
+          assert x['status']=='RESEARCH_ONLY_NO_REAL_WIDTH_OR_NAVMESH'
+          assert x['samples']==3366 and x['real_road_width_m'] is None
+          assert x['hypothetical_strip_width_m']==1.8
+          assert x['no_collision_or_real_bicycle_rig_checked'] is True
+          for n,f in x['artifacts'].items():
+            raw=(p/n).read_bytes()
+            assert hashlib.sha256(raw).hexdigest()==f['sha256']
+            assert len(raw)==f['bytes']
+          assert (p/'V27_Editable_GSI_Hypothetical_Width.blend').stat().st_size>10000
+          assert (p/'V27_GSI_Hypothetical_Width_Only.glb').read_bytes()[:4]==b'glTF'
+          print('TRUE BLENDER V27 geometry source QA PASS; real road/collision remain unverified')
+          PY
+      - name: Archive editable Blender and source-derived visuals
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: onomichi-v27-conditional-width-blender
+          path: outputs/onomichi-v27/
+          retention-days: 21
+          if-no-files-found: warn
