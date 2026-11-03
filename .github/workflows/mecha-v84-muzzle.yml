@@ -1,0 +1,27 @@
+name: Mecha v8.4 candidate muzzle anchor (no Blender runner)
+on:
+  push:
+    branches: [feat/mecha-v84-authored-muzzle-tip-20261103]
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-muzzle-anchor-v84.js'
+      - 'scripts/blender5/*v84*.py'
+      - 'tests/mecha/v84-*'
+      - '.github/workflows/mecha-v84-muzzle.yml'
+permissions:
+  contents: read
+jobs:
+  pure-math-and-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python tests/mecha/v84-muzzle-geometry.py
+      - run: python tests/mecha/v84-verify-glb.py
+      - run: node tests/mecha/v84-muzzle-anchor.mjs
+      - run: python -m py_compile scripts/blender5/author_muzzle_anchor_v84.py
