@@ -1,0 +1,20 @@
+config_version=5
+
+[application]
+config/name="港邊散策 · 角色與引擎 v02"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=1024
+anti_aliasing/quality/screen_space_aa=0
+textures/default_filters/use_nearest_mipmap_filter=false
+
+audio/driver/enable_input=false

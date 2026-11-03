@@ -1,0 +1,31 @@
+name: Harbor Unreal v02 import pilot
+on:
+  workflow_dispatch:
+jobs:
+  import_character:
+    runs-on: [self-hosted, Windows, unreal-5.6]
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require preinstalled licensed Unreal Editor
+        shell: pwsh
+        run: |
+          if (-not $env:UE_EDITOR_CMD -or -not (Test-Path $env:UE_EDITOR_CMD)) {
+            throw "Configure UE_EDITOR_CMD on this authorized runner to UnrealEditor-Cmd.exe."
+          }
+      - name: Import skeletal character and report actual native assets
+        shell: pwsh
+        run: |
+          $project = Join-Path $env:GITHUB_WORKSPACE 'projects/harbor-quality-v02/unreal/HarborPilot.uproject'
+          $script = Join-Path $env:GITHUB_WORKSPACE 'projects/harbor-quality-v02/unreal/import_character.py'
+          & $env:UE_EDITOR_CMD $project -unattended -nop4 -NullRHI "-ExecutePythonScript=$script"
+          if ($LASTEXITCODE -ne 0) { throw "Unreal import failed: $LASTEXITCODE" }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: harbor-unreal-v02-import-evidence
+          path: |
+            projects/harbor-quality-v02/evidence/unreal-import.json
+            projects/harbor-quality-v02/unreal/Saved/Logs/

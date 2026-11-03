@@ -1,0 +1,29 @@
+Actual mature engine Web build starts True
+Idle has real changing bone poses True
+User low-quality setting switches shadows off True
+Native CharacterBody3D moves using W and AnimationTree selects Walk True
+Deceleration returns to Idle True
+Mouse drag rotates actual SpringArm rig True
+Inverse drag restores navigation heading True
+Both NPCs patrol in engine physics True
+E opens native NPC dialogue and two route choices True
+Express choice changes task rules True
+navigation -5 -4 [-3.22815823554993, 0.0508390665054321, -1.87070488929749] [0, 0, 0, 0, False]
+navigation -5 2.5 [-4.4125804901123, 0.0508397817611694, 1.07645952701569] [0, 0, 0, 0, False]
+navigation -2 9 [-2.60085868835449, 0.0508387461304665, 7.30967235565186] [0, 0, 0, 0, False]
+navigation 6 9 [2.88247513771057, 0.0508387535810471, 8.46934127807617] [0, 0, 0, 0, False]
+Three native pickups collected exactly once True
+navigation 13 9 [10.3234052658081, 0.0476023778319359, 8.46934127807617] [0, 0, 0, 0, False]
+navigation 13 -5 [12.7642946243286, 0.0508387535810471, 3.97689294815063] [0, 0, 0, 0, False]
+navigation 13 -5 [12.7642946243286, 0.0508387610316277, -0.638713955879211] [0, 0, 0, 0, False]
+Second NPC accepts completed handout True
+Complete route awards base reward and exact time-dependent bonus True
+Facial morph responds to actual B key True
+Live atelier Idle animates skeleton True
+Live atelier Walk animates skeleton True
+Live atelier Run animates skeleton True
+navigation 0 -5 [6.37828922271729, 0.0508397668600082, -4.43902730941772] [0, 0, 0, 0, False]
+navigation 0 -5 [1.57919502258301, 0.0508387498557568, -4.43902730941772] [0, 0, 0, 0, False]
+CharacterBody cannot pass through solid building True
+Native SpringArm retracts before building True
+No JS or engine runtime errors True

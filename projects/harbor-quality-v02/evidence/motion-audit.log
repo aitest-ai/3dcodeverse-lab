@@ -1,0 +1,62 @@
+{
+  "Idle": {
+    "frames": 61,
+    "min_sole_z_m": 0.005000000353902578,
+    "max_lowest_sole_z_m": 0.008775470778346062,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": null,
+    "stance_velocity_samples": 0
+  },
+  "Walk": {
+    "frames": 33,
+    "min_sole_z_m": 0.004999998956918716,
+    "max_lowest_sole_z_m": 0.048281699419021606,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": 0.985811423510313,
+    "stance_velocity_samples": 30
+  },
+  "Run": {
+    "frames": 23,
+    "min_sole_z_m": 0.004999998956918716,
+    "max_lowest_sole_z_m": 0.2626309394836426,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": 5.881682932376862,
+    "stance_velocity_samples": 5
+  },
+  "Turn": {
+    "frames": 61,
+    "min_sole_z_m": 0.005000000353902578,
+    "max_lowest_sole_z_m": 0.008775470778346062,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": null,
+    "stance_velocity_samples": 0
+  },
+  "Talk": {
+    "frames": 71,
+    "min_sole_z_m": 0.005000000353902578,
+    "max_lowest_sole_z_m": 0.007450694218277931,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": null,
+    "stance_velocity_samples": 0
+  },
+  "Interact": {
+    "frames": 49,
+    "min_sole_z_m": 0.005000000353902578,
+    "max_lowest_sole_z_m": 0.008766958490014076,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": null,
+    "stance_velocity_samples": 0
+  },
+  "Celebrate": {
+    "frames": 25,
+    "min_sole_z_m": 0.004999999888241291,
+    "max_lowest_sole_z_m": 0.027799535542726517,
+    "frames_below_minus_5mm": 0,
+    "estimated_stance_forward_speed_mps": null,
+    "stance_velocity_samples": 1
+  }
+}
+Blender 4.3.2
+Read blend: "/workspace/work/harbor-quality-v02/assets/harbor-courier-v02.blend"
+
+Blender quit

@@ -1,0 +1,1369 @@
+{
+  "status": "MEASURED_NOT_ART_APPROVED",
+  "fps": 24,
+  "clips": {
+    "Idle": {
+      "frames": 61,
+      "min_sole_z_m": 0.005000000353902578,
+      "max_lowest_sole_z_m": 0.008775470778346062,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": null,
+      "stance_velocity_samples": 0,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.005091038066893816
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.005008036736398935
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.005000000353902578
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.005061240401118994
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.005187647882848978
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.005400136578828096
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.00569147476926446
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.006027572322636843
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.006404265761375427
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.006811133585870266
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.007204728201031685
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.0075874608010053635
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.007964162155985832
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.008270656690001488
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.008516035974025726
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.0086885467171669
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.008775470778346062
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.00875391811132431
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.008656887337565422
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.008499637246131897
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.008272898383438587
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.008015405386686325
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.007725578732788563
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.007400781847536564
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.007066992111504078
+        },
+        {
+          "frame": 25,
+          "minimum_sole_z_m": 0.006724327802658081
+        },
+        {
+          "frame": 26,
+          "minimum_sole_z_m": 0.006383372470736504
+        },
+        {
+          "frame": 27,
+          "minimum_sole_z_m": 0.006058201659470797
+        },
+        {
+          "frame": 28,
+          "minimum_sole_z_m": 0.005765649024397135
+        },
+        {
+          "frame": 29,
+          "minimum_sole_z_m": 0.005520254839211702
+        },
+        {
+          "frame": 30,
+          "minimum_sole_z_m": 0.005332044791430235
+        },
+        {
+          "frame": 31,
+          "minimum_sole_z_m": 0.0052113947458565235
+        },
+        {
+          "frame": 32,
+          "minimum_sole_z_m": 0.005163209978491068
+        },
+        {
+          "frame": 33,
+          "minimum_sole_z_m": 0.005194047931581736
+        },
+        {
+          "frame": 34,
+          "minimum_sole_z_m": 0.005288852844387293
+        },
+        {
+          "frame": 35,
+          "minimum_sole_z_m": 0.005452456418424845
+        },
+        {
+          "frame": 36,
+          "minimum_sole_z_m": 0.0057038371451199055
+        },
+        {
+          "frame": 37,
+          "minimum_sole_z_m": 0.006008232478052378
+        },
+        {
+          "frame": 38,
+          "minimum_sole_z_m": 0.006356827449053526
+        },
+        {
+          "frame": 39,
+          "minimum_sole_z_m": 0.006742435973137617
+        },
+        {
+          "frame": 40,
+          "minimum_sole_z_m": 0.007129833567887545
+        },
+        {
+          "frame": 41,
+          "minimum_sole_z_m": 0.007506416644901037
+        },
+        {
+          "frame": 42,
+          "minimum_sole_z_m": 0.007872190326452255
+        },
+        {
+          "frame": 43,
+          "minimum_sole_z_m": 0.008188865147531033
+        },
+        {
+          "frame": 44,
+          "minimum_sole_z_m": 0.00845149252563715
+        },
+        {
+          "frame": 45,
+          "minimum_sole_z_m": 0.008635817095637321
+        },
+        {
+          "frame": 46,
+          "minimum_sole_z_m": 0.008737942203879356
+        },
+        {
+          "frame": 47,
+          "minimum_sole_z_m": 0.008747649379074574
+        },
+        {
+          "frame": 48,
+          "minimum_sole_z_m": 0.008671030402183533
+        },
+        {
+          "frame": 49,
+          "minimum_sole_z_m": 0.008517459034919739
+        },
+        {
+          "frame": 50,
+          "minimum_sole_z_m": 0.008300415240228176
+        },
+        {
+          "frame": 51,
+          "minimum_sole_z_m": 0.008041175082325935
+        },
+        {
+          "frame": 52,
+          "minimum_sole_z_m": 0.007756345439702272
+        },
+        {
+          "frame": 53,
+          "minimum_sole_z_m": 0.007430478930473328
+        },
+        {
+          "frame": 54,
+          "minimum_sole_z_m": 0.007077372167259455
+        },
+        {
+          "frame": 55,
+          "minimum_sole_z_m": 0.006728052627295256
+        },
+        {
+          "frame": 56,
+          "minimum_sole_z_m": 0.006381251383572817
+        },
+        {
+          "frame": 57,
+          "minimum_sole_z_m": 0.006028518546372652
+        },
+        {
+          "frame": 58,
+          "minimum_sole_z_m": 0.005715711507946253
+        },
+        {
+          "frame": 59,
+          "minimum_sole_z_m": 0.005442442838102579
+        },
+        {
+          "frame": 60,
+          "minimum_sole_z_m": 0.0052191889844834805
+        }
+      ]
+    },
+    "Walk": {
+      "frames": 33,
+      "min_sole_z_m": 0.004999998956918716,
+      "max_lowest_sole_z_m": 0.048281699419021606,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": 0.985811423510313,
+      "stance_velocity_samples": 30,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.016892921179533005
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.013305779546499252
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.005587812513113022
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.0068800561130046844
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.026631664484739304
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.048281699419021606
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.046283308416604996
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.04367206245660782
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.03979486599564552
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.03496018052101135
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.030540669336915016
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.0266844742000103
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.02314664050936699
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.019413594156503677
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.01616097241640091
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.013422813266515732
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.0111907459795475
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.008627217262983322
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.004999998956918716
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.009957101196050644
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.029492903500795364
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.044671058654785156
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.04168388247489929
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.038421258330345154
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.03512841463088989
+        },
+        {
+          "frame": 25,
+          "minimum_sole_z_m": 0.03171622008085251
+        },
+        {
+          "frame": 26,
+          "minimum_sole_z_m": 0.02892381325364113
+        },
+        {
+          "frame": 27,
+          "minimum_sole_z_m": 0.026876699179410934
+        },
+        {
+          "frame": 28,
+          "minimum_sole_z_m": 0.025405090302228928
+        },
+        {
+          "frame": 29,
+          "minimum_sole_z_m": 0.02394172176718712
+        },
+        {
+          "frame": 30,
+          "minimum_sole_z_m": 0.022435728460550308
+        },
+        {
+          "frame": 31,
+          "minimum_sole_z_m": 0.020458009093999863
+        },
+        {
+          "frame": 32,
+          "minimum_sole_z_m": 0.016892921179533005
+        }
+      ]
+    },
+    "Run": {
+      "frames": 23,
+      "min_sole_z_m": 0.004999998956918716,
+      "max_lowest_sole_z_m": 0.2626309394836426,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": 5.881682932376862,
+      "stance_velocity_samples": 5,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.11306680738925934
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.07586745917797089
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.04816795513033867
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.02847486361861229
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.009763766080141068
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.11563515663146973
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.1683005392551422
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.19610343873500824
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.22152896225452423
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.2626309394836426
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.19924895465373993
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.12524159252643585
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.08307953178882599
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.05009474977850914
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.03080623224377632
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.004999998956918716
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.10740849375724792
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.16017033159732819
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.19267025589942932
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.2158522605895996
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.25398626923561096
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.21062354743480682
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.13783036172389984
+        }
+      ]
+    },
+    "Turn": {
+      "frames": 61,
+      "min_sole_z_m": 0.005000000353902578,
+      "max_lowest_sole_z_m": 0.008775470778346062,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": null,
+      "stance_velocity_samples": 0,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.005091038066893816
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.005008036736398935
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.005000000353902578
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.005061240401118994
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.005187647882848978
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.005400136578828096
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.00569147476926446
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.006027572322636843
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.006404265761375427
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.006811133585870266
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.007204728201031685
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.0075874608010053635
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.007964162155985832
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.008270656690001488
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.008516035974025726
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.0086885467171669
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.008775470778346062
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.00875391811132431
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.008656887337565422
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.008499637246131897
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.008272898383438587
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.008015405386686325
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.007725578732788563
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.007400781847536564
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.007066992111504078
+        },
+        {
+          "frame": 25,
+          "minimum_sole_z_m": 0.006724327802658081
+        },
+        {
+          "frame": 26,
+          "minimum_sole_z_m": 0.006383372470736504
+        },
+        {
+          "frame": 27,
+          "minimum_sole_z_m": 0.006058201659470797
+        },
+        {
+          "frame": 28,
+          "minimum_sole_z_m": 0.005765649024397135
+        },
+        {
+          "frame": 29,
+          "minimum_sole_z_m": 0.005520254839211702
+        },
+        {
+          "frame": 30,
+          "minimum_sole_z_m": 0.005332044791430235
+        },
+        {
+          "frame": 31,
+          "minimum_sole_z_m": 0.0052113947458565235
+        },
+        {
+          "frame": 32,
+          "minimum_sole_z_m": 0.005163209978491068
+        },
+        {
+          "frame": 33,
+          "minimum_sole_z_m": 0.005194047931581736
+        },
+        {
+          "frame": 34,
+          "minimum_sole_z_m": 0.005288852844387293
+        },
+        {
+          "frame": 35,
+          "minimum_sole_z_m": 0.005452456418424845
+        },
+        {
+          "frame": 36,
+          "minimum_sole_z_m": 0.0057038371451199055
+        },
+        {
+          "frame": 37,
+          "minimum_sole_z_m": 0.006008232478052378
+        },
+        {
+          "frame": 38,
+          "minimum_sole_z_m": 0.006356827449053526
+        },
+        {
+          "frame": 39,
+          "minimum_sole_z_m": 0.006742435973137617
+        },
+        {
+          "frame": 40,
+          "minimum_sole_z_m": 0.007129833567887545
+        },
+        {
+          "frame": 41,
+          "minimum_sole_z_m": 0.007506416644901037
+        },
+        {
+          "frame": 42,
+          "minimum_sole_z_m": 0.007872190326452255
+        },
+        {
+          "frame": 43,
+          "minimum_sole_z_m": 0.008188865147531033
+        },
+        {
+          "frame": 44,
+          "minimum_sole_z_m": 0.00845149252563715
+        },
+        {
+          "frame": 45,
+          "minimum_sole_z_m": 0.008635817095637321
+        },
+        {
+          "frame": 46,
+          "minimum_sole_z_m": 0.008737942203879356
+        },
+        {
+          "frame": 47,
+          "minimum_sole_z_m": 0.008747649379074574
+        },
+        {
+          "frame": 48,
+          "minimum_sole_z_m": 0.008671030402183533
+        },
+        {
+          "frame": 49,
+          "minimum_sole_z_m": 0.008517459034919739
+        },
+        {
+          "frame": 50,
+          "minimum_sole_z_m": 0.008300415240228176
+        },
+        {
+          "frame": 51,
+          "minimum_sole_z_m": 0.008041175082325935
+        },
+        {
+          "frame": 52,
+          "minimum_sole_z_m": 0.007756345439702272
+        },
+        {
+          "frame": 53,
+          "minimum_sole_z_m": 0.007430478930473328
+        },
+        {
+          "frame": 54,
+          "minimum_sole_z_m": 0.007077372167259455
+        },
+        {
+          "frame": 55,
+          "minimum_sole_z_m": 0.006728052627295256
+        },
+        {
+          "frame": 56,
+          "minimum_sole_z_m": 0.006381251383572817
+        },
+        {
+          "frame": 57,
+          "minimum_sole_z_m": 0.006028518546372652
+        },
+        {
+          "frame": 58,
+          "minimum_sole_z_m": 0.005715711507946253
+        },
+        {
+          "frame": 59,
+          "minimum_sole_z_m": 0.005442442838102579
+        },
+        {
+          "frame": 60,
+          "minimum_sole_z_m": 0.0052191889844834805
+        }
+      ]
+    },
+    "Talk": {
+      "frames": 71,
+      "min_sole_z_m": 0.005000000353902578,
+      "max_lowest_sole_z_m": 0.007450694218277931,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": null,
+      "stance_velocity_samples": 0,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.005014773923903704
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.00500435521826148
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.005000000353902578
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.005017678719013929
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.005086713936179876
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.005221787374466658
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.0054057384841144085
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.005620231386274099
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.005853648297488689
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.006111539900302887
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.006352303549647331
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.00658870954066515
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.006814450025558472
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.0070159244351089
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.007186884991824627
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.007327365688979626
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.007394689135253429
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.0073601966723799706
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.007293442729860544
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.007200909778475761
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.007091635838150978
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.006967551074922085
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.0068352920934557915
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.006696287076920271
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.006551986560225487
+        },
+        {
+          "frame": 25,
+          "minimum_sole_z_m": 0.006383707281202078
+        },
+        {
+          "frame": 26,
+          "minimum_sole_z_m": 0.006228123791515827
+        },
+        {
+          "frame": 27,
+          "minimum_sole_z_m": 0.0060705519281327724
+        },
+        {
+          "frame": 28,
+          "minimum_sole_z_m": 0.005912478081882
+        },
+        {
+          "frame": 29,
+          "minimum_sole_z_m": 0.005752867553383112
+        },
+        {
+          "frame": 30,
+          "minimum_sole_z_m": 0.005595388822257519
+        },
+        {
+          "frame": 31,
+          "minimum_sole_z_m": 0.005432236474007368
+        },
+        {
+          "frame": 32,
+          "minimum_sole_z_m": 0.005280633922666311
+        },
+        {
+          "frame": 33,
+          "minimum_sole_z_m": 0.005146881099790335
+        },
+        {
+          "frame": 34,
+          "minimum_sole_z_m": 0.0050450838170945644
+        },
+        {
+          "frame": 35,
+          "minimum_sole_z_m": 0.005009047221392393
+        },
+        {
+          "frame": 36,
+          "minimum_sole_z_m": 0.005002334248274565
+        },
+        {
+          "frame": 37,
+          "minimum_sole_z_m": 0.005017686169594526
+        },
+        {
+          "frame": 38,
+          "minimum_sole_z_m": 0.005074854474514723
+        },
+        {
+          "frame": 39,
+          "minimum_sole_z_m": 0.005194933619350195
+        },
+        {
+          "frame": 40,
+          "minimum_sole_z_m": 0.005372639279812574
+        },
+        {
+          "frame": 41,
+          "minimum_sole_z_m": 0.0055914646945893764
+        },
+        {
+          "frame": 42,
+          "minimum_sole_z_m": 0.005832860711961985
+        },
+        {
+          "frame": 43,
+          "minimum_sole_z_m": 0.006096367724239826
+        },
+        {
+          "frame": 44,
+          "minimum_sole_z_m": 0.006354538723826408
+        },
+        {
+          "frame": 45,
+          "minimum_sole_z_m": 0.006600136868655682
+        },
+        {
+          "frame": 46,
+          "minimum_sole_z_m": 0.006833811290562153
+        },
+        {
+          "frame": 47,
+          "minimum_sole_z_m": 0.007046271115541458
+        },
+        {
+          "frame": 48,
+          "minimum_sole_z_m": 0.007245798595249653
+        },
+        {
+          "frame": 49,
+          "minimum_sole_z_m": 0.00737184239551425
+        },
+        {
+          "frame": 50,
+          "minimum_sole_z_m": 0.007439687382429838
+        },
+        {
+          "frame": 51,
+          "minimum_sole_z_m": 0.007450694218277931
+        },
+        {
+          "frame": 52,
+          "minimum_sole_z_m": 0.007388900965452194
+        },
+        {
+          "frame": 53,
+          "minimum_sole_z_m": 0.007310572080314159
+        },
+        {
+          "frame": 54,
+          "minimum_sole_z_m": 0.007217695005238056
+        },
+        {
+          "frame": 55,
+          "minimum_sole_z_m": 0.007113290019333363
+        },
+        {
+          "frame": 56,
+          "minimum_sole_z_m": 0.007000468671321869
+        },
+        {
+          "frame": 57,
+          "minimum_sole_z_m": 0.006878073792904615
+        },
+        {
+          "frame": 58,
+          "minimum_sole_z_m": 0.006748833693563938
+        },
+        {
+          "frame": 59,
+          "minimum_sole_z_m": 0.006613845005631447
+        },
+        {
+          "frame": 60,
+          "minimum_sole_z_m": 0.006456502713263035
+        },
+        {
+          "frame": 61,
+          "minimum_sole_z_m": 0.0063068801537156105
+        },
+        {
+          "frame": 62,
+          "minimum_sole_z_m": 0.006153959780931473
+        },
+        {
+          "frame": 63,
+          "minimum_sole_z_m": 0.006000287365168333
+        },
+        {
+          "frame": 64,
+          "minimum_sole_z_m": 0.005847771652042866
+        },
+        {
+          "frame": 65,
+          "minimum_sole_z_m": 0.005696285516023636
+        },
+        {
+          "frame": 66,
+          "minimum_sole_z_m": 0.0055490415543317795
+        },
+        {
+          "frame": 67,
+          "minimum_sole_z_m": 0.005397687200456858
+        },
+        {
+          "frame": 68,
+          "minimum_sole_z_m": 0.005258213263005018
+        },
+        {
+          "frame": 69,
+          "minimum_sole_z_m": 0.00513652665540576
+        },
+        {
+          "frame": 70,
+          "minimum_sole_z_m": 0.005042796488851309
+        }
+      ]
+    },
+    "Interact": {
+      "frames": 49,
+      "min_sole_z_m": 0.005000000353902578,
+      "max_lowest_sole_z_m": 0.008766958490014076,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": null,
+      "stance_velocity_samples": 0,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.0051209148950874805
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.005023528356105089
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.005043719429522753
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.005172851029783487
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.0054179090075194836
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.005792810115963221
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.006229319144040346
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.006722079589962959
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.007218498736619949
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.007686778903007507
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.008117590099573135
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.008455157279968262
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.008687710389494896
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.008766958490014076
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.008707491680979729
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.008535422384738922
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.008258610963821411
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.00791891384869814
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.007524053566157818
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.007098398171365261
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.006669528782367706
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.006243954878300428
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.0058496561832726
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.005530260968953371
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.0052991160191595554
+        },
+        {
+          "frame": 25,
+          "minimum_sole_z_m": 0.005152708385139704
+        },
+        {
+          "frame": 26,
+          "minimum_sole_z_m": 0.005049797240644693
+        },
+        {
+          "frame": 27,
+          "minimum_sole_z_m": 0.005000000353902578
+        },
+        {
+          "frame": 28,
+          "minimum_sole_z_m": 0.005025299731642008
+        },
+        {
+          "frame": 29,
+          "minimum_sole_z_m": 0.005156442988663912
+        },
+        {
+          "frame": 30,
+          "minimum_sole_z_m": 0.0053588771261274815
+        },
+        {
+          "frame": 31,
+          "minimum_sole_z_m": 0.005612620618194342
+        },
+        {
+          "frame": 32,
+          "minimum_sole_z_m": 0.005897304508835077
+        },
+        {
+          "frame": 33,
+          "minimum_sole_z_m": 0.006190967280417681
+        },
+        {
+          "frame": 34,
+          "minimum_sole_z_m": 0.0064690192230045795
+        },
+        {
+          "frame": 35,
+          "minimum_sole_z_m": 0.006712332833558321
+        },
+        {
+          "frame": 36,
+          "minimum_sole_z_m": 0.006900584325194359
+        },
+        {
+          "frame": 37,
+          "minimum_sole_z_m": 0.006997397169470787
+        },
+        {
+          "frame": 38,
+          "minimum_sole_z_m": 0.007003455422818661
+        },
+        {
+          "frame": 39,
+          "minimum_sole_z_m": 0.006938145495951176
+        },
+        {
+          "frame": 40,
+          "minimum_sole_z_m": 0.006820134352892637
+        },
+        {
+          "frame": 41,
+          "minimum_sole_z_m": 0.006653118412941694
+        },
+        {
+          "frame": 42,
+          "minimum_sole_z_m": 0.006453823298215866
+        },
+        {
+          "frame": 43,
+          "minimum_sole_z_m": 0.006232499610632658
+        },
+        {
+          "frame": 44,
+          "minimum_sole_z_m": 0.005997501779347658
+        },
+        {
+          "frame": 45,
+          "minimum_sole_z_m": 0.005758526269346476
+        },
+        {
+          "frame": 46,
+          "minimum_sole_z_m": 0.005526459310203791
+        },
+        {
+          "frame": 47,
+          "minimum_sole_z_m": 0.005310943815857172
+        },
+        {
+          "frame": 48,
+          "minimum_sole_z_m": 0.0051209148950874805
+        }
+      ]
+    },
+    "Celebrate": {
+      "frames": 25,
+      "min_sole_z_m": 0.004999999888241291,
+      "max_lowest_sole_z_m": 0.027799535542726517,
+      "frames_below_minus_5mm": 0,
+      "estimated_stance_forward_speed_mps": null,
+      "stance_velocity_samples": 1,
+      "samples": [
+        {
+          "frame": 0,
+          "minimum_sole_z_m": 0.004999999888241291
+        },
+        {
+          "frame": 1,
+          "minimum_sole_z_m": 0.006235586479306221
+        },
+        {
+          "frame": 2,
+          "minimum_sole_z_m": 0.00889662280678749
+        },
+        {
+          "frame": 3,
+          "minimum_sole_z_m": 0.012531259097158909
+        },
+        {
+          "frame": 4,
+          "minimum_sole_z_m": 0.017295274883508682
+        },
+        {
+          "frame": 5,
+          "minimum_sole_z_m": 0.022512149065732956
+        },
+        {
+          "frame": 6,
+          "minimum_sole_z_m": 0.02641966938972473
+        },
+        {
+          "frame": 7,
+          "minimum_sole_z_m": 0.027799535542726517
+        },
+        {
+          "frame": 8,
+          "minimum_sole_z_m": 0.02483399584889412
+        },
+        {
+          "frame": 9,
+          "minimum_sole_z_m": 0.02242879569530487
+        },
+        {
+          "frame": 10,
+          "minimum_sole_z_m": 0.02126617729663849
+        },
+        {
+          "frame": 11,
+          "minimum_sole_z_m": 0.020482566207647324
+        },
+        {
+          "frame": 12,
+          "minimum_sole_z_m": 0.019929450005292892
+        },
+        {
+          "frame": 13,
+          "minimum_sole_z_m": 0.019434139132499695
+        },
+        {
+          "frame": 14,
+          "minimum_sole_z_m": 0.019220467656850815
+        },
+        {
+          "frame": 15,
+          "minimum_sole_z_m": 0.019633524119853973
+        },
+        {
+          "frame": 16,
+          "minimum_sole_z_m": 0.021081887185573578
+        },
+        {
+          "frame": 17,
+          "minimum_sole_z_m": 0.024247366935014725
+        },
+        {
+          "frame": 18,
+          "minimum_sole_z_m": 0.025127604603767395
+        },
+        {
+          "frame": 19,
+          "minimum_sole_z_m": 0.02225378155708313
+        },
+        {
+          "frame": 20,
+          "minimum_sole_z_m": 0.017795506864786148
+        },
+        {
+          "frame": 21,
+          "minimum_sole_z_m": 0.01341873500496149
+        },
+        {
+          "frame": 22,
+          "minimum_sole_z_m": 0.009472436271607876
+        },
+        {
+          "frame": 23,
+          "minimum_sole_z_m": 0.006468820385634899
+        },
+        {
+          "frame": 24,
+          "minimum_sole_z_m": 0.004999999888241291
+        }
+      ]
+    }
+  },
+  "scope": "Every integer animation frame; evaluated skinned outsole vertices and ball bone trajectories. Does not prove complete cloth/body non-intersection."
+}

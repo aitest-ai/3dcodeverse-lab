@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "asset_id": "harbor-courier-v02",
+  "model_file": "harbor-courier-v02.glb",
+  "source_file": "harbor-courier-v02.blend",
+  "unit": "meter",
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Turn",
+    "Talk",
+    "Interact",
+    "Celebrate"
+  ],
+  "min_animation_count": 7,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  },
+  "source": "Quaternius CC0 anatomy, short base hair and locomotion; original anatomically fitted jacket/trousers/shoes, collars, cuffs, pouch, flexible straps, framing hair locks and scarf; proportional facial edits.",
+  "license_note": "CC0 base inputs; original styling and newly authored geometry; no KochiGame assets",
+  "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+}

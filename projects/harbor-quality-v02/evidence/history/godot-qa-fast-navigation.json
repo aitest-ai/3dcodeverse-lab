@@ -1,0 +1,230 @@
+{
+  "status": "FAIL",
+  "error": "Blocked navigation {'target': [-5, -4], 'position': [-2.59685111045837, 0.0508388616144657, -4.13466262817383], 'error_m': 2.4069189036467042}",
+  "checks": [
+    {
+      "name": "Actual mature engine Web build starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Idle has real changing bone poses",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "User low-quality setting switches shadows off",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Native CharacterBody3D moves using W and AnimationTree selects Walk",
+      "pass": true,
+      "detail": [
+        0,
+        0.0508391931653023,
+        2.99736452102661
+      ]
+    },
+    {
+      "name": "Deceleration returns to Idle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Mouse drag rotates actual SpringArm rig",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Inverse drag restores navigation heading",
+      "pass": true,
+      "detail": 3.78489488639389e-08
+    },
+    {
+      "name": "Both NPCs patrol in engine physics",
+      "pass": true,
+      "detail": [
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Idle",
+            "position": [
+              -1.93998181819916,
+              0.0508398450911045,
+              -0.140617966651917
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Walk",
+            "position": [
+              7.59622573852539,
+              0.050837829709053,
+              -5
+            ]
+          }
+        ],
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Walk",
+            "position": [
+              -2.74304342269897,
+              0.0508195236325264,
+              -1.5486912727356
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Walk",
+            "position": [
+              6.72026872634888,
+              0.0508369468152523,
+              -5
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "E opens native NPC dialogue and two route choices",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Express choice changes task rules",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "navigation": [
+    {
+      "target": [
+        -2.8131377696991,
+        -0.17180192470551003
+      ],
+      "position": [
+        -3.89166307449341,
+        0.0508398376405239,
+        -0.124953389167786
+      ],
+      "error_m": 1.0795423189313558
+    },
+    {
+      "target": [
+        -5,
+        -4
+      ],
+      "position": [
+        -2.59685111045837,
+        0.0508388616144657,
+        -4.13466262817383
+      ],
+      "error_m": 2.4069189036467042
+    }
+  ],
+  "snapshot": {
+    "arm_length": 5.19999980926514,
+    "bones": [
+      [
+        -0.258197993040085,
+        0.666228532791138,
+        -0.516668021678925,
+        0.47172823548317
+      ],
+      [
+        0.94710111618042,
+        0.118502214550972,
+        -0.0174134839326143,
+        0.297747611999512
+      ],
+      [
+        0.260462135076523,
+        -0.109796889126301,
+        0.0217801406979561,
+        0.958973288536072
+      ]
+    ],
+    "buttons": {},
+    "camera_yaw": 3.78489488639389e-08,
+    "collected": [
+      "tea"
+    ],
+    "collisions": [
+      {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "path": "/root/HarborQualityPilot/@StaticBody3D@3"
+      }
+    ],
+    "desired_arm": 5.19999980926514,
+    "dialog": false,
+    "elapsed": 47.1666666666653,
+    "engine": "Godot 4.6.3-stable (official)",
+    "express": true,
+    "fps": 3,
+    "input": [
+      0,
+      0,
+      0,
+      0,
+      false
+    ],
+    "low_quality": true,
+    "motion": "Idle",
+    "nearest": "guide",
+    "npcs": [
+      {
+        "attention": true,
+        "id": "guide",
+        "motion": "Idle",
+        "position": [
+          -1.93329048156738,
+          0.0474350824952126,
+          -1.93387997150421
+        ]
+      },
+      {
+        "attention": false,
+        "id": "keeper",
+        "motion": "Idle",
+        "position": [
+          7.84411525726318,
+          0.0508279912173748,
+          -5
+        ]
+      }
+    ],
+    "physics_frames": 4270,
+    "position": [
+      -2.59685111045837,
+      0.0508388616144657,
+      -4.13466262817383
+    ],
+    "process_frames": 537,
+    "quest": 1,
+    "ready": true,
+    "score": 25,
+    "smile": 0,
+    "started": true,
+    "velocity": [
+      0,
+      0,
+      0
+    ],
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  "errors": [],
+  "engine_errors": []
+}

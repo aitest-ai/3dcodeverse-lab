@@ -1,0 +1,16 @@
+[
+  {
+    "name": "universal-base-characters",
+    "url": "https://quaternius.itch.io/universal-base-characters",
+    "license": "CC0-1.0",
+    "bytes": 128968391,
+    "sha256": "fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40"
+  },
+  {
+    "name": "universal-animation-library",
+    "url": "https://quaternius.itch.io/universal-animation-library",
+    "license": "CC0-1.0",
+    "bytes": 15904933,
+    "sha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724"
+  }
+]

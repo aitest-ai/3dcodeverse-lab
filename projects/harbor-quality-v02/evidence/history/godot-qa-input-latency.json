@@ -1,0 +1,301 @@
+{
+  "status": "FAIL",
+  "error": "Blocked navigation {'target': [13, 9], 'position': [15.5690422058105, 0.0500890538096428, 9.39949798583984], 'error_m': 2.59991855563319}",
+  "checks": [
+    {
+      "name": "Actual mature engine Web build starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Idle has real changing bone poses",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "User low-quality setting switches shadows off",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Native CharacterBody3D moves using W and AnimationTree selects Walk",
+      "pass": true,
+      "detail": [
+        0,
+        0.0508391819894314,
+        3.38332509994507
+      ]
+    },
+    {
+      "name": "Deceleration returns to Idle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Mouse drag rotates actual SpringArm rig",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Inverse drag restores navigation heading",
+      "pass": true,
+      "detail": 3.78489488639389e-08
+    },
+    {
+      "name": "Both NPCs patrol in engine physics",
+      "pass": true,
+      "detail": [
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Idle",
+            "position": [
+              -1.94052004814148,
+              0.0508398376405239,
+              -0.139357075095177
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Walk",
+            "position": [
+              7.73789072036743,
+              0.050839114934206,
+              -5
+            ]
+          }
+        ],
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Walk",
+            "position": [
+              -2.88323163986206,
+              0.0507573783397675,
+              -1.79491257667542
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Idle",
+            "position": [
+              6.65650606155396,
+              0.0508157461881638,
+              -5
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "name": "E opens native NPC dialogue and two route choices",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Express choice changes task rules",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Three native pickups collected exactly once",
+      "pass": true,
+      "detail": [
+        "tea",
+        "tree",
+        "sea"
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "target": [
+        -2.92026567459106,
+        -0.35995900630950994
+      ],
+      "position": [
+        -3.42978692054749,
+        0.0508398041129112,
+        -0.449802756309509
+      ],
+      "error_m": 0.517381676806451
+    },
+    {
+      "target": [
+        -5,
+        -4
+      ],
+      "position": [
+        -5.20868015289307,
+        0.0508367195725441,
+        -3.45051002502441
+      ],
+      "error_m": 0.5877811147103567
+    },
+    {
+      "target": [
+        -5,
+        2.5
+      ],
+      "position": [
+        -5.20868015289307,
+        0.0508358553051949,
+        2.91533732414246
+      ],
+      "error_m": 0.46481447808485266
+    },
+    {
+      "target": [
+        -2,
+        2.5
+      ],
+      "position": [
+        -1.55616319179535,
+        0.0508392155170441,
+        2.91533732414246
+      ],
+      "error_m": 0.6078619951461929
+    },
+    {
+      "target": [
+        -2,
+        9
+      ],
+      "position": [
+        -1.55616319179535,
+        0.0508387535810471,
+        9.39949798583984
+      ],
+      "error_m": 0.5971513652394846
+    },
+    {
+      "target": [
+        6,
+        9
+      ],
+      "position": [
+        5.55376768112183,
+        0.0508387535810471,
+        9.39949798583984
+      ],
+      "error_m": 0.5989339889349061
+    },
+    {
+      "target": [
+        13,
+        9
+      ],
+      "position": [
+        15.5690422058105,
+        0.0500890538096428,
+        9.39949798583984
+      ],
+      "error_m": 2.59991855563319
+    }
+  ],
+  "snapshot": {
+    "arm_length": 2.51874995231628,
+    "bones": [
+      [
+        -0.266917616128922,
+        0.66716742515564,
+        -0.510777354240417,
+        0.471963167190552
+      ],
+      [
+        0.951984941959381,
+        0.117336809635162,
+        -0.0172422342002392,
+        0.282239973545074
+      ],
+      [
+        0.247918158769608,
+        -0.110355995595455,
+        0.0203978251665831,
+        0.96225893497467
+      ]
+    ],
+    "buttons": {},
+    "camera_yaw": 3.78489488639389e-08,
+    "collected": [
+      "tea",
+      "tree",
+      "sea"
+    ],
+    "collisions": [
+      {
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "path": "/root/HarborQualityPilot/@StaticBody3D@3"
+      }
+    ],
+    "desired_arm": 5.19999980926514,
+    "dialog": false,
+    "elapsed": 42.6999999999989,
+    "engine": "Godot 4.6.3-stable (official)",
+    "express": true,
+    "fps": 9,
+    "input": [
+      0,
+      0,
+      0,
+      0,
+      false
+    ],
+    "low_quality": true,
+    "motion": "Idle",
+    "nearest": "",
+    "npcs": [
+      {
+        "attention": false,
+        "id": "guide",
+        "motion": "Walk",
+        "position": [
+          -1.2917799949646,
+          0.0508119910955429,
+          -1.66912937164307
+        ]
+      },
+      {
+        "attention": false,
+        "id": "keeper",
+        "motion": "Walk",
+        "position": [
+          7.02973890304565,
+          0.0483321212232113,
+          -5
+        ]
+      }
+    ],
+    "physics_frames": 4010,
+    "position": [
+      15.5690422058105,
+      0.0500890538096428,
+      9.39949798583984
+    ],
+    "process_frames": 530,
+    "quest": 2,
+    "ready": true,
+    "score": 75,
+    "smile": 0,
+    "started": true,
+    "velocity": [
+      0,
+      0,
+      0
+    ],
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  "errors": [],
+  "engine_errors": []
+}

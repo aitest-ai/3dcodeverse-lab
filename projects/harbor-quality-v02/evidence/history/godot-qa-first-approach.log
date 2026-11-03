@@ -1,0 +1,16 @@
+Actual mature engine Web build starts True
+Idle has real changing bone poses True
+User low-quality setting switches shadows off True
+Native CharacterBody3D moves using W and AnimationTree selects Walk True
+Deceleration returns to Idle True
+Mouse drag rotates actual SpringArm rig True
+Inverse drag restores navigation heading True
+Both NPCs patrol in engine physics True
+Traceback (most recent call last):
+  File "/workspace/work/harbor-quality-v02/scripts/browser_qa.py", line 44, in <module>
+    n=next(n for n in snap()['npcs'] if n['id']=='guide');go(n['position'][0],n['position'][2]+1.5)
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/work/harbor-quality-v02/scripts/browser_qa.py", line 32, in go
+    if distance>tol+.35:raise AssertionError('Blocked navigation '+str(navigation[-1]))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Blocked navigation {'target': [-2.8131377696991, -0.17180192470551003], 'position': [-0.3735691010952, 0.0508095696568489, 1.56499803066254], 'error_m': 2.9946568040094785}

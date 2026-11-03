@@ -1,0 +1,124 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started Registering global classes... (5 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  16% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  33% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  50% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  66% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (9 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02.glb[39m[0m
+[  10% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Jacket_sea_green_Albedo.png[39m[0m
+[  20% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Jacket_sea_green_Roughness.png[39m[0m
+[  30% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Shirt_oat_canvas_Albedo.png[39m[0m
+[  40% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Shirt_oat_canvas_Roughness.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Trousers_ink_Albedo.png[39m[0m
+[  60% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_Trousers_ink_Roughness.png[39m[0m
+[  70% ] [90m[1m_update_scan_actions[22m | harbor-courier-v02_T_Eye_Brown.png[39m[0m
+[  80% ] [90m[1m_update_scan_actions[22m | harbor.otf[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (9 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  10% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  20% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  30% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  40% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  50% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  60% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  70% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  80% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mpreload_reimporting_scene[22m | Started Preparing scenes for reload (1 steps)[39m[0m
+[   0% ] [90m[1mpreload_reimporting_scene[22m | Analyzing scene [empty][39m[0m
+[  50% ] [90m[1mpreload_reimporting_scene[22m | Preparation done.[39m[0m
+[92m[ DONE ][39m [1mpreload_reimporting_scene[22m
+[0m
+[   0% ] [90m[1mreimport[22m | harbor.otf[39m[0m
+[  10% ] [90m[1mreimport[22m | harbor.otf[39m[0m
+[  20% ] [90m[1mreimport[22m | harbor-courier-v02_Jacket_sea_green_Albedo.png[39m[0m
+[  30% ] [90m[1mreimport[22m | harbor-courier-v02_Jacket_sea_green_Roughness.png[39m[0m
+[  40% ] [90m[1mreimport[22m | harbor-courier-v02_Shirt_oat_canvas_Albedo.png[39m[0m
+[  50% ] [90m[1mreimport[22m | harbor-courier-v02_Shirt_oat_canvas_Roughness.png[39m[0m
+[  60% ] [90m[1mreimport[22m | harbor-courier-v02_Trousers_ink_Albedo.png[39m[0m
+[  70% ] [90m[1mreimport[22m | harbor-courier-v02_Trousers_ink_Roughness.png[39m[0m
+[  80% ] [90m[1mreimport[22m | harbor-courier-v02.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  90% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (9 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+SCENE_SAVED 34 static batches; native CharacterBody3D + SpringArm3D + AnimationTree
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02.glb-3f3e3b733481e202fd09519f83d20d8f.scn[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02.glb.import[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Jacket_sea_green_Albedo.png-72ddf59a4b0ccb123eb4018341d115c5.ctex[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Jacket_sea_green_Albedo.png.import[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Jacket_sea_green_Roughness.png-10943ccb95de31a3ea0811c4cd78b2b3.ctex[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Jacket_sea_green_Roughness.png.import[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Shirt_oat_canvas_Albedo.png-5ea82c4e0f67618ec983bfea6589d37e.ctex[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Shirt_oat_canvas_Albedo.png.import[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Shirt_oat_canvas_Roughness.png-52a1b722cfe2d285ec8cd2a9288d19e1.ctex[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Shirt_oat_canvas_Roughness.png.import[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Trousers_ink_Albedo.png-31b40bac937eb03986b15a122134ff3f.ctex[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Trousers_ink_Albedo.png.import[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_Trousers_ink_Roughness.png-c15f8cd8f0baef92ecd920fdf1c9ee7b.ctex[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_Trousers_ink_Roughness.png.import[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor-courier-v02_T_Eye_Brown.png-9e753b0d9b34b44dce4692127d24a654.ctex[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://assets/harbor-courier-v02_T_Eye_Brown.png.import[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/harbor.otf-f7a5b5b25b35b1c710957b7561464ca6.fontdata[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://fonts/harbor.otf.import[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://scripts/actor.gdc[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://scripts/build_scene.gdc[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://scripts/game.gdc[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://scripts/inspect_asset.gdc[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://scripts/static_batch.gdc[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/actor.gd.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/build_scene.gd.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/game.gd.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/inspect_asset.gd.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/static_batch.gd.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://main.tscn.remap[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+[92m[ DONE ][39m [1msavepack[22m
+[0m
