@@ -1,0 +1,20 @@
+{
+  "asset_id": "harbor-courier-v02",
+  "blender": "4.3.2",
+  "bone_count": 65,
+  "smile_vertices": 158,
+  "blink_vertices": 158,
+  "art_approved": false,
+  "changes": [
+    "Fitted continuous weighted garments replace fantasy outfit",
+    "New thin collars/cuffs/seams and anatomically shaped shoes",
+    "Flexible weighted straps sampled from anatomy",
+    "Warm skin and chestnut layered hair with original framing strands",
+    "Original thin folded scarf and rounded mail pouch"
+  ],
+  "pending": [
+    "Visual approval",
+    "All-frame deformation and sole-motion measurement",
+    "Unreal Editor import not run"
+  ]
+}

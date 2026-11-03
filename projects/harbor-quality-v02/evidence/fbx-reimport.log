@@ -1,0 +1,5 @@
+FBX version: 7400
+{"status": "PASS_FBX_REIMPORT_IN_BLENDER", "bones": 65, "meshes": 14, "clips": ["Key|Celebrate", "Key|Idle", "Key|Interact", "Key|Run", "Key|Talk", "Key|Turn", "Key|Walk", "LinXiRig|Celebrate", "LinXiRig|Idle", "LinXiRig|Interact", "LinXiRig|Run", "LinXiRig|Talk", "LinXiRig|Turn", "LinXiRig|Walk"], "limit": "This is Blender FBX reimport, not Unreal Editor import validation."}
+Blender 4.3.2
+
+Blender quit

@@ -1,0 +1,183 @@
+{
+  "status": "FAIL",
+  "error": "Blocked navigation {'target': [-2.8131377696991, -0.17180192470551003], 'position': [-0.3735691010952, 0.0508095696568489, 1.56499803066254], 'error_m': 2.9946568040094785}",
+  "checks": [
+    {
+      "name": "Actual mature engine Web build starts",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Idle has real changing bone poses",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "User low-quality setting switches shadows off",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Native CharacterBody3D moves using W and AnimationTree selects Walk",
+      "pass": true,
+      "detail": [
+        0,
+        0.0508391931653023,
+        3.21468138694763
+      ]
+    },
+    {
+      "name": "Deceleration returns to Idle",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Mouse drag rotates actual SpringArm rig",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Inverse drag restores navigation heading",
+      "pass": true,
+      "detail": 3.78489488639389e-08
+    },
+    {
+      "name": "Both NPCs patrol in engine physics",
+      "pass": true,
+      "detail": [
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Idle",
+            "position": [
+              -1.93998181819916,
+              0.0508398450911045,
+              -0.140617966651917
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Walk",
+            "position": [
+              7.59622573852539,
+              0.050837829709053,
+              -5
+            ]
+          }
+        ],
+        [
+          {
+            "attention": false,
+            "id": "guide",
+            "motion": "Walk",
+            "position": [
+              -2.74304342269897,
+              0.0508195236325264,
+              -1.5486912727356
+            ]
+          },
+          {
+            "attention": false,
+            "id": "keeper",
+            "motion": "Walk",
+            "position": [
+              6.72026872634888,
+              0.0508369468152523,
+              -5
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "target": [
+        -2.8131377696991,
+        -0.17180192470551003
+      ],
+      "position": [
+        -0.3735691010952,
+        0.0508095696568489,
+        1.56499803066254
+      ],
+      "error_m": 2.9946568040094785
+    }
+  ],
+  "snapshot": {
+    "arm_length": 5.19999980926514,
+    "bones": [
+      [
+        -0.287503212690353,
+        0.66938978433609,
+        -0.495679497718811,
+        0.472822517156601
+      ],
+      [
+        0.958054423332214,
+        0.114575751125813,
+        -0.0168364811688662,
+        0.262146532535553
+      ],
+      [
+        0.220133736729622,
+        -0.111968457698822,
+        0.0173843279480934,
+        0.968866407871246
+      ]
+    ],
+    "buttons": {},
+    "camera_yaw": 3.78489488639389e-08,
+    "collected": [],
+    "desired_arm": 5.19999980926514,
+    "dialog": false,
+    "elapsed": 0,
+    "engine": "Godot 4.6.3-stable (official)",
+    "express": false,
+    "fps": 3,
+    "low_quality": true,
+    "motion": "Idle",
+    "nearest": "guide",
+    "npcs": [
+      {
+        "attention": true,
+        "id": "guide",
+        "motion": "Idle",
+        "position": [
+          -1.80529463291168,
+          0.0508145019412041,
+          -0.454565554857254
+        ]
+      },
+      {
+        "attention": false,
+        "id": "keeper",
+        "motion": "Walk",
+        "position": [
+          7.76620388031006,
+          0.050839114934206,
+          -5
+        ]
+      }
+    ],
+    "physics_frames": 5340,
+    "position": [
+      -0.373304218053818,
+      0.0501000732183456,
+      1.56505155563354
+    ],
+    "quest": 0,
+    "ready": true,
+    "score": 0,
+    "smile": 0,
+    "started": true,
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  "errors": [],
+  "engine_errors": []
+}

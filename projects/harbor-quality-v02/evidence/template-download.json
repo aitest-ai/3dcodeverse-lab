@@ -1,0 +1,16 @@
+[
+  {
+    "file": "web_nothreads_release.zip",
+    "bytes": 9574223,
+    "sha256": "1446f79dc12f60ce5d244c39fb6628ec298337ca5c4f91a16491feea72aa1bc9",
+    "crc32_verified": true,
+    "official_source": "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_export_templates.tpz"
+  },
+  {
+    "file": "web_release.zip",
+    "bytes": 9567847,
+    "sha256": "1541239534dea19428f7c65bf94e89b2c95e45bdcde92989fd36f46ba85d3bcd",
+    "crc32_verified": true,
+    "official_source": "https://github.com/godotengine/godot/releases/download/4.6.3-stable/Godot_v4.6.3-stable_export_templates.tpz"
+  }
+]

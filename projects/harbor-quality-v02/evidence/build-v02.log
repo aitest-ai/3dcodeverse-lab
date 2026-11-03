@@ -1,0 +1,74 @@
+04:11:39 | INFO: Data are loaded, start creating Blender stuff
+04:11:39 | INFO: Blender create Mesh node Eyebrows
+04:11:39 | INFO: Blender create Mesh node Eyes
+Blender 4.3.2
+Error: Cannot read '/workspace/work/cc0/universal-base-characters/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal_png.png': No such file or directory
+04:11:39 | ERROR: Missing image file (index 2): /workspace/work/cc0/universal-base-characters/Universal Base Characters[Standard]/Base Characters/Godot - UE/T_Eye_Normal_png.png
+04:11:39 | INFO: Blender create Mesh node Superhero_Female
+04:11:39 | INFO: glTF import finished in 0.08s
+04:11:40 | INFO: Data are loaded, start creating Blender stuff
+04:11:40 | INFO: Blender create Mesh node Plane.002
+04:11:40 | INFO: glTF import finished in 0.02s
+04:11:40 | INFO: Data are loaded, start creating Blender stuff
+04:11:40 | INFO: Blender create Mesh node Mannequin
+04:11:42 | INFO: glTF import finished in 1.31s
+Info: Saved "harbor-courier-v02.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+04:11:45 | INFO: Starting glTF 2.0 export
+04:11:45 | INFO: Extracting primitive: Eyes
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Superhero_Female
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Eyebrows
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Original_hair_highlight
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Original_continuous_collar_band
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Original_flexible_mail_strap
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | WARNING: There are more than 4 joint vertex influences.The 4 with highest weight will be used (and normalized).
+04:11:45 | INFO: Extracting primitive: Superhero_Female.005
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Original_closed_sneaker_outsole
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Superhero_Female.004
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Original_coral_neckerchief
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Cube.003
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Superhero_Female.002
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 2
+04:11:45 | INFO: Extracting primitive: Superhero_Female.003
+04:11:45 | WARNING: The active Vertex Color will not be exported, as it is not used in the node tree of the material
+04:11:45 | INFO: Primitives created: 1
+04:11:45 | INFO: Extracting primitive: Cube.002
+04:11:45 | INFO: Primitives created: 1
+04:11:48 | INFO: Finished glTF 2.0 export in 3.031597137451172 s
+
+
+FBX export starting... '/workspace/work/harbor-quality-v02/assets/harbor-courier-v02.fbx'
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+(bpy.data.armatures['Armature'], 'POSE')
+export finished in 2.8429 sec.
+V02_COMPLETE 930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81
+
+Blender quit

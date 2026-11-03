@@ -1,0 +1,7 @@
+{
+  "status":"NOT_RUN_ENGINE_UNAVAILABLE",
+  "observed":"No UnrealEditor or UnrealEditor-Cmd installed; managed environment has no configured Epic credential binding.",
+  "delivered":"Skeletal FBX, editable Blender mother, GLB, .uproject, Python import task and manual self-hosted GitHub Actions workflow.",
+  "not_claimed":["Unreal Editor import success","Unreal rendering","Unreal gameplay","Unreal executable build"],
+  "next_requirement":"A user-authorized runner with legally obtained Unreal 5.6, PythonScriptPlugin and EditorScriptingUtilities. No engine credentials or binaries are included in Git."
+}

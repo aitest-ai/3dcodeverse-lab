@@ -1,0 +1,44 @@
+name: Harbor Godot v02 character and Web export
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/harbor-quality-v02-20261103]
+    paths:
+      - 'projects/harbor-quality-v02/godot/**'
+      - 'projects/harbor-quality-v02/scripts/**'
+      - 'projects/harbor-quality-v02/assets/**'
+      - '.github/workflows/harbor-godot-v02.yml'
+permissions:
+  contents: read
+jobs:
+  verify-export:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: projects/harbor-quality-v02
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate real GLB buffers, weights, skeleton and animation
+        run: |
+          python scripts/validate_glb.py assets
+          python scripts/check_asset.py
+      - name: Acquire official pinned Godot and required Web templates
+        run: |
+          python scripts/bootstrap_godot_ci.py
+          python scripts/fetch_web_templates.py
+      - name: Import native scene, verify real skeleton and build Web artifact
+        run: |
+          python scripts/export_web.py --godot "$PWD/tools/engine/Godot_v4.6.3-stable_linux.x86_64" > evidence/github-godot-export.log 2>&1
+          tools/engine/Godot_v4.6.3-stable_linux.x86_64 --headless --path godot --script res://scripts/inspect_asset.gd > evidence/github-godot-asset-check.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: harbor-v02-godot-web-and-evidence
+          path: |
+            projects/harbor-quality-v02/web/
+            projects/harbor-quality-v02/evidence/
+          retention-days: 30

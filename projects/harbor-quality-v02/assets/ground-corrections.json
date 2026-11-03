@@ -1,0 +1,37 @@
+{
+  "Celebrate": {
+    "sampled_min_before_m": 0.0007783807814121246,
+    "static_vertical_correction_m": 0.0042216192185878755,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Idle": {
+    "sampled_min_before_m": -0.005052091088145971,
+    "static_vertical_correction_m": 0.010052091088145972,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Interact": {
+    "sampled_min_before_m": -0.005063797812908888,
+    "static_vertical_correction_m": 0.010063797812908889,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Run": {
+    "sampled_min_before_m": -0.0348692312836647,
+    "static_vertical_correction_m": 0.0398692312836647,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Talk": {
+    "sampled_min_before_m": -0.0043211583979427814,
+    "static_vertical_correction_m": 0.009321158397942782,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Turn": {
+    "sampled_min_before_m": -0.005052091088145971,
+    "static_vertical_correction_m": 0.010052091088145972,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  },
+  "Walk": {
+    "sampled_min_before_m": -0.03013128787279129,
+    "static_vertical_correction_m": 0.03513128787279129,
+    "method": "evaluated outsole sampling; no Foot IK claim"
+  }
+}

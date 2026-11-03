@@ -1,0 +1,257 @@
+Blender 4.3.2
+Read blend: "/workspace/work/harbor-quality-v02/assets/harbor-courier-v02.blend"
+Fra:12 Mem:85.81M (Peak 88.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tailored_Jacket
+Fra:12 Mem:86.83M (Peak 88.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LinXi_Anatomy
+Fra:12 Mem:87.85M (Peak 88.81M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tapered_Trousers
+Fra:12 Mem:89.65M (Peak 89.65M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Anatomical_Sneakers
+Fra:12 Mem:90.03M (Peak 90.03M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Shirt_oat_canvas
+Fra:12 Mem:91.28M (Peak 91.28M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_soft_copper
+Fra:12 Mem:91.67M (Peak 91.67M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Jacket_sea_green
+Fra:12 Mem:91.77M (Peak 91.77M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Satchel_cognac
+Fra:12 Mem:92.37M (Peak 92.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_thin_envelope_flap
+Fra:12 Mem:92.37M (Peak 92.37M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eyes
+Fra:12 Mem:92.42M (Peak 92.42M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_magnetic_clasp
+Fra:12 Mem:92.49M (Peak 92.49M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_coral_neckerchief
+Fra:12 Mem:92.19M (Peak 92.49M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Sneaker_rubber
+Fra:12 Mem:92.88M (Peak 92.88M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Preview ground
+Fra:12 Mem:92.88M (Peak 92.88M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_chestnut
+Fra:12 Mem:93.43M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading T_Eye_Brown
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Albedo
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Roughness
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Albedo
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Roughness
+Fra:12 Mem:87.04M (Peak 93.43M) | Time:00:00.05 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Albedo
+Fra:12 Mem:86.78M (Peak 93.43M) | Time:00:00.05 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Roughness
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.05 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Waiting for render to start
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.05 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.05 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.05 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Shaders
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Procedurals
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Background
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Camera
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes
+Fra:12 Mem:67.43M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.05 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.05 | Mem:2.65M, Peak:2.65M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.05 | Mem:2.85M, Peak:2.85M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH 0%
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.06 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.06 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.07 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.07 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Objects Flags
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Images
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Camera Volume
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Integrator
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Film
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.07 | Mem:6.95M, Peak:7.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Baking
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.07 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Sample 0/48
+Fra:12 Mem:91.50M (Peak 93.43M) | Time:00:00.44 | Remaining:00:17.58 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 1/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:12.37 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 48/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:12.37 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Finished
+Saved: '/workspace/work/harbor-quality-v02/evidence/character/front.png'
+Time: 00:12.67 (Saving: 00:00.29)
+
+Fra:12 Mem:88.23M (Peak 89.62M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LinXi_Anatomy
+Fra:12 Mem:88.32M (Peak 89.62M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tailored_Jacket
+Fra:12 Mem:88.62M (Peak 89.62M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tapered_Trousers
+Fra:12 Mem:89.02M (Peak 89.62M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Anatomical_Sneakers
+Fra:12 Mem:89.85M (Peak 89.85M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Shirt_oat_canvas
+Fra:12 Mem:91.63M (Peak 91.63M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eyes
+Fra:12 Mem:91.72M (Peak 91.72M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_soft_copper
+Fra:12 Mem:91.97M (Peak 91.97M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Jacket_sea_green
+Fra:12 Mem:91.99M (Peak 91.99M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Satchel_cognac
+Fra:12 Mem:92.02M (Peak 92.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_thin_envelope_flap
+Fra:12 Mem:92.01M (Peak 92.02M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_magnetic_clasp
+Fra:12 Mem:92.08M (Peak 92.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_coral_neckerchief
+Fra:12 Mem:92.08M (Peak 92.08M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Sneaker_rubber
+Fra:12 Mem:92.10M (Peak 92.10M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Preview ground
+Fra:12 Mem:92.40M (Peak 92.40M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_chestnut
+Fra:12 Mem:93.43M (Peak 93.43M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading T_Eye_Brown
+Fra:12 Mem:85.52M (Peak 93.43M) | Time:00:00.02 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Albedo
+Fra:12 Mem:85.77M (Peak 93.43M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Roughness
+Fra:12 Mem:86.02M (Peak 93.43M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Albedo
+Fra:12 Mem:86.55M (Peak 93.43M) | Time:00:00.03 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Roughness
+Fra:12 Mem:87.05M (Peak 93.43M) | Time:00:00.03 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Albedo
+Fra:12 Mem:86.79M (Peak 93.43M) | Time:00:00.03 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Roughness
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Waiting for render to start
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.03 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Shaders
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Procedurals
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Background
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Camera
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes
+Fra:12 Mem:67.43M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.03 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.03 | Mem:2.65M, Peak:2.65M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.03 | Mem:2.85M, Peak:2.85M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH 0%
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.03 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.03 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.05 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.05 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Objects Flags
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Images
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Camera Volume
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Integrator
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Film
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.06 | Mem:6.95M, Peak:7.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Baking
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.06 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Sample 0/48
+Fra:12 Mem:91.50M (Peak 93.43M) | Time:00:00.42 | Remaining:00:17.28 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 1/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:11.58 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 48/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:11.58 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Finished
+Saved: '/workspace/work/harbor-quality-v02/evidence/character/side.png'
+Time: 00:11.64 (Saving: 00:00.06)
+
+Fra:12 Mem:88.23M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tailored_Jacket
+Fra:12 Mem:88.24M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Shirt_oat_canvas
+Fra:12 Mem:88.35M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LinXi_Anatomy
+Fra:12 Mem:90.72M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_soft_copper
+Fra:12 Mem:91.42M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Jacket_sea_green
+Fra:12 Mem:91.94M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Satchel_cognac
+Fra:12 Mem:92.04M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_thin_envelope_flap
+Fra:12 Mem:92.07M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_magnetic_clasp
+Fra:12 Mem:92.74M (Peak 92.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_coral_neckerchief
+Fra:12 Mem:92.82M (Peak 92.82M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Sneaker_rubber
+Fra:12 Mem:92.84M (Peak 92.84M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Preview ground
+Fra:12 Mem:92.84M (Peak 92.84M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_chestnut
+Fra:12 Mem:92.73M (Peak 92.84M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eyes
+Fra:12 Mem:93.43M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Albedo
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Roughness
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading T_Eye_Brown
+Fra:12 Mem:86.53M (Peak 93.43M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Albedo
+Fra:12 Mem:86.78M (Peak 93.43M) | Time:00:00.01 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Roughness
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Waiting for render to start
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Shaders
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Procedurals
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Background
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Camera
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes
+Fra:12 Mem:67.43M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:2.65M, Peak:2.65M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:2.85M, Peak:2.85M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH 0%
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Objects Flags
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Images
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Camera Volume
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.03 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Integrator
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.03 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Film
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.03 | Mem:6.95M, Peak:7.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.03 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Baking
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.03 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.03 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Sample 0/48
+Fra:12 Mem:91.50M (Peak 93.43M) | Time:00:00.27 | Remaining:00:11.39 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 1/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:09.97 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 48/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:09.97 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Finished
+Saved: '/workspace/work/harbor-quality-v02/evidence/character/back.png'
+Time: 00:10.05 (Saving: 00:00.07)
+
+Fra:12 Mem:88.23M (Peak 91.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_Tailored_Jacket
+Fra:12 Mem:88.24M (Peak 91.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Shirt_oat_canvas
+Fra:12 Mem:89.05M (Peak 91.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | LinXi_Anatomy
+Fra:12 Mem:90.97M (Peak 91.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_soft_copper
+Fra:12 Mem:91.28M (Peak 91.74M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Jacket_sea_green
+Fra:12 Mem:91.88M (Peak 91.88M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Satchel_cognac
+Fra:12 Mem:92.42M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_thin_envelope_flap
+Fra:12 Mem:92.27M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_magnetic_clasp
+Fra:12 Mem:92.35M (Peak 92.42M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Original_coral_neckerchief
+Fra:12 Mem:92.43M (Peak 92.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Sneaker_rubber
+Fra:12 Mem:92.69M (Peak 92.69M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Preview ground
+Fra:12 Mem:92.73M (Peak 92.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Merged_Hair_chestnut
+Fra:12 Mem:92.73M (Peak 92.73M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eyes
+Fra:12 Mem:93.43M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Albedo
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading T_Eye_Brown
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Jacket_sea_green_Roughness
+Fra:12 Mem:85.26M (Peak 93.43M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading Shirt_oat_canvas_Roughness
+Fra:12 Mem:86.54M (Peak 93.43M) | Time:00:00.01 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Albedo
+Fra:12 Mem:86.54M (Peak 93.43M) | Time:00:00.01 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading Trousers_ink_Roughness
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Waiting for render to start
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene
+Fra:12 Mem:66.68M (Peak 93.43M) | Time:00:00.02 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Shaders
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Procedurals
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Background
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Camera
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes Flags
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:12 Mem:66.77M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Meshes
+Fra:12 Mem:67.43M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:1.76M, Peak:1.76M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:2.65M, Peak:2.65M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:2.85M, Peak:2.85M | Scene, ViewLayer | Updating Geometry BVH Superhero_Female 1/1 | Building BVH 0%
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:3.08M, Peak:3.28M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:12 Mem:68.32M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:5.42M, Peak:6.54M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Objects Flags
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Images
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Camera Volume
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:6.94M, Peak:6.94M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Integrator
+Fra:12 Mem:69.84M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Film
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.02 | Mem:6.95M, Peak:7.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Baking
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:12 Mem:69.85M (Peak 93.43M) | Time:00:00.02 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Sample 0/48
+Fra:12 Mem:91.50M (Peak 93.43M) | Time:00:00.29 | Remaining:00:12.63 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 1/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:13.89 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Sample 48/48
+Fra:12 Mem:101.12M (Peak 120.34M) | Time:00:13.89 | Mem:28.67M, Peak:28.67M | Scene, ViewLayer | Finished
+Saved: '/workspace/work/harbor-quality-v02/evidence/character/face.png'
+Time: 00:13.95 (Saving: 00:00.06)
+
+
+Blender quit

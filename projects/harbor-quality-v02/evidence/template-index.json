@@ -1,0 +1,247 @@
+[
+  {
+    "name": "templates/android_debug.apk",
+    "compressed": 123101058,
+    "bytes": 124546428,
+    "method": 8,
+    "offset": 0
+  },
+  {
+    "name": "templates/android_release.apk",
+    "compressed": 101991111,
+    "bytes": 102855501,
+    "method": 8,
+    "offset": 123101143
+  },
+  {
+    "name": "templates/android_source.zip",
+    "compressed": 210063193,
+    "bytes": 210059811,
+    "method": 8,
+    "offset": 225092341
+  },
+  {
+    "name": "templates/icudt_godot.dat",
+    "compressed": 2822340,
+    "bytes": 4797072,
+    "method": 8,
+    "offset": 435155620
+  },
+  {
+    "name": "templates/ios.zip",
+    "compressed": 197728623,
+    "bytes": 202389716,
+    "method": 8,
+    "offset": 437978043
+  },
+  {
+    "name": "templates/linux_debug.arm32",
+    "compressed": 24398257,
+    "bytes": 65517260,
+    "method": 8,
+    "offset": 635706741
+  },
+  {
+    "name": "templates/linux_debug.arm64",
+    "compressed": 26144107,
+    "bytes": 66667624,
+    "method": 8,
+    "offset": 660105083
+  },
+  {
+    "name": "templates/linux_debug.x86_32",
+    "compressed": 26653226,
+    "bytes": 73175992,
+    "method": 8,
+    "offset": 686249275
+  },
+  {
+    "name": "templates/linux_debug.x86_64",
+    "compressed": 26756503,
+    "bytes": 72189976,
+    "method": 8,
+    "offset": 712902587
+  },
+  {
+    "name": "templates/linux_release.arm32",
+    "compressed": 24905379,
+    "bytes": 63534788,
+    "method": 8,
+    "offset": 739659176
+  },
+  {
+    "name": "templates/linux_release.arm64",
+    "compressed": 26439289,
+    "bytes": 64783480,
+    "method": 8,
+    "offset": 764564642
+  },
+  {
+    "name": "templates/linux_release.x86_32",
+    "compressed": 27558159,
+    "bytes": 72799096,
+    "method": 8,
+    "offset": 791004018
+  },
+  {
+    "name": "templates/linux_release.x86_64",
+    "compressed": 27151358,
+    "bytes": 71075864,
+    "method": 8,
+    "offset": 818562265
+  },
+  {
+    "name": "templates/macos.zip",
+    "compressed": 126204660,
+    "bytes": 127052403,
+    "method": 8,
+    "offset": 845713711
+  },
+  {
+    "name": "templates/version.txt",
+    "compressed": 13,
+    "bytes": 13,
+    "method": 0,
+    "offset": 971918448
+  },
+  {
+    "name": "templates/web_debug.zip",
+    "compressed": 10175635,
+    "bytes": 10194723,
+    "method": 8,
+    "offset": 971918540
+  },
+  {
+    "name": "templates/web_dlink_debug.zip",
+    "compressed": 11392808,
+    "bytes": 11496268,
+    "method": 8,
+    "offset": 982094256
+  },
+  {
+    "name": "templates/web_dlink_nothreads_debug.zip",
+    "compressed": 11316575,
+    "bytes": 11421692,
+    "method": 8,
+    "offset": 993487151
+  },
+  {
+    "name": "templates/web_dlink_nothreads_release.zip",
+    "compressed": 11098312,
+    "bytes": 11191550,
+    "method": 8,
+    "offset": 1004803823
+  },
+  {
+    "name": "templates/web_dlink_release.zip",
+    "compressed": 11099287,
+    "bytes": 11191519,
+    "method": 8,
+    "offset": 1015902234
+  },
+  {
+    "name": "templates/web_nothreads_debug.zip",
+    "compressed": 10101853,
+    "bytes": 10120053,
+    "method": 8,
+    "offset": 1027001610
+  },
+  {
+    "name": "templates/web_nothreads_release.zip",
+    "compressed": 9548031,
+    "bytes": 9574223,
+    "method": 8,
+    "offset": 1037103554
+  },
+  {
+    "name": "templates/web_release.zip",
+    "compressed": 9542747,
+    "bytes": 9567847,
+    "method": 8,
+    "offset": 1046651678
+  },
+  {
+    "name": "templates/windows_debug_arm64_console.exe",
+    "compressed": 61026,
+    "bytes": 159232,
+    "method": 8,
+    "offset": 1056194508
+  },
+  {
+    "name": "templates/windows_debug_arm64.exe",
+    "compressed": 29754664,
+    "bytes": 95427584,
+    "method": 8,
+    "offset": 1056255633
+  },
+  {
+    "name": "templates/windows_debug_x86_32_console.exe",
+    "compressed": 77894,
+    "bytes": 192000,
+    "method": 8,
+    "offset": 1086010388
+  },
+  {
+    "name": "templates/windows_debug_x86_32.exe",
+    "compressed": 34787301,
+    "bytes": 111409664,
+    "method": 8,
+    "offset": 1086088382
+  },
+  {
+    "name": "templates/windows_debug_x86_64_console.exe",
+    "compressed": 76432,
+    "bytes": 188928,
+    "method": 8,
+    "offset": 1120875775
+  },
+  {
+    "name": "templates/windows_debug_x86_64.exe",
+    "compressed": 33379759,
+    "bytes": 100787712,
+    "method": 8,
+    "offset": 1120952307
+  },
+  {
+    "name": "templates/windows_release_arm64_console.exe",
+    "compressed": 61026,
+    "bytes": 159232,
+    "method": 8,
+    "offset": 1154332158
+  },
+  {
+    "name": "templates/windows_release_arm64.exe",
+    "compressed": 27970299,
+    "bytes": 86918656,
+    "method": 8,
+    "offset": 1154393285
+  },
+  {
+    "name": "templates/windows_release_x86_32_console.exe",
+    "compressed": 77895,
+    "bytes": 192000,
+    "method": 8,
+    "offset": 1182363677
+  },
+  {
+    "name": "templates/windows_release_x86_32.exe",
+    "compressed": 37479998,
+    "bytes": 117430784,
+    "method": 8,
+    "offset": 1182441674
+  },
+  {
+    "name": "templates/windows_release_x86_64_console.exe",
+    "compressed": 76432,
+    "bytes": 188928,
+    "method": 8,
+    "offset": 1219921766
+  },
+  {
+    "name": "templates/windows_release_x86_64.exe",
+    "compressed": 35916343,
+    "bytes": 104659456,
+    "method": 8,
+    "offset": 1219998300
+  }
+]

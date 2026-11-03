@@ -1,0 +1,10 @@
+.godot/
+tools/
+web/
+__pycache__/
+*.blend1
+*.webm
+*.mp4
+video-raw/
+!evidence/*.log
+!evidence/history/*.log
