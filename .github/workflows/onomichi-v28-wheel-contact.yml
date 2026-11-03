@@ -50,9 +50,9 @@ jobs:
           assert r['candidate']=='V28'
           assert r['source_original_bike_glb_sha256']=='7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece'
           assert r['source_original_actor_glb_sha256']=='4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1'
-          assert r['private_original_GLBS_in_public_repo'] is False
-          assert r['local_full_original_game_node_tests']=='37/37 PASS'
-          assert all(v is False for v in r['road_and_game_approvals'].values())
+          assert r['private_source_bike_GLBS_in_public_repo'] is False
+          assert r['native_node_tests'].startswith('37/37 PASS')
+          assert all(r[k] is False for k in ['actual_legal_riding','real_bike_rider_hands_feet_contact_tested','road_width_and_curbs_surveyed','road_surface_height_surveyed','road_collision_verified','ferry_to_halows_74m_rideable_route_connected','main_or_site_modified'])
           assert Path('docs/ONOMICHI_V28_SOURCE_WHEEL_CONTACT.md').is_file()
           print('PASS public registry; no user-private GLB assets are committed.')
           PY
