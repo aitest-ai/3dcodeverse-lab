@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {sampleAuthoredMuzzleV84,evaluateVisualOnlyAlignmentV84} from '../../examples/threejs/mech-muzzle-anchor-v84.js';
+const marker={name:'MuzzleTip_R',updateWorldMatrix(){},getWorldPosition(){return {x:1,y:2,z:3}},localToWorld(){return {x:1,y:2,z:2}}};
+const model={traverse(fn){fn(marker)}},makeVector=(x,y,z)=>({x,y,z});
+assert.equal(sampleAuthoredMuzzleV84({model,makeVector}).status,'pose_not_evaluated');
+const observed=sampleAuthoredMuzzleV84({model,makeVector,poseUpdated:true});
+assert.equal(observed.status,'authored_node_ready');
+assert.deepEqual(observed.forward,{x:0,y:0,z:-1});
+assert.equal(evaluateVisualOnlyAlignmentV84(observed,{start:{x:1.02,y:2,z:3},dir:{x:0,y:0,z:-1}}).safeForVisualPreview,true);
+assert.equal(evaluateVisualOnlyAlignmentV84(observed,{start:{x:4,y:2,z:3},dir:{x:0,y:0,z:-1}}).safeForVisualPreview,false);
+assert.equal(evaluateVisualOnlyAlignmentV84(observed,{start:{x:1,y:2,z:3},dir:{x:1,y:0,z:0}}).safeForVisualPreview,false);
+assert.equal(sampleAuthoredMuzzleV84({model:{traverse(f){f(marker);f(marker)}},makeVector,poseUpdated:true}).status,'duplicate_anchor');
+assert.equal(sampleAuthoredMuzzleV84({model:{traverse(f){}},makeVector,poseUpdated:true}).status,'anchor_missing');
+console.log('PASS v8.4 authored GLB node readback, angle / distance tolerance, missing / duplicate refusal');
