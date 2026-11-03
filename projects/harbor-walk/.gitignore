@@ -8,3 +8,6 @@ evidence/*.mp4
 
 *.webm
 *.mp4
+
+!evidence/*.log
+!evidence/history/*.log

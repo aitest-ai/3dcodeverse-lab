@@ -1,0 +1,25 @@
+
+> harbor-walk-framework@0.1.0 build
+> tsc --noEmit && vite build
+
+✘ [ERROR] Expected "}" but found ")"
+
+    vite.config.ts:2:235:
+      2 │ ...Chunks:{three:['three'],physics:['@dimforge/rapier3d-compat']}}}});
+        │                                                                     ^
+        ╵                                                                     }
+
+failed to load config from /workspace/work/harbor-framework/vite.config.ts
+error during build:
+Error: Build failed with 1 error:
+vite.config.ts:2:235: ERROR: Expected "}" but found ")"
+    at failureErrorWithLog (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:1752:15)
+    at /workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:1211:25
+    at runOnEndCallbacks (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:1592:45)
+    at buildResponseToResult (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:1209:7)
+    at /workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:1236:16
+    at responseCallbacks.<computed> (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:886:9)
+    at handleIncomingPacket (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:941:12)
+    at Socket.readFromStdout (/workspace/work/harbor-framework/node_modules/esbuild/lib/main.js:864:7)
+    at Socket.emit (node:events:514:28)
+    at addChunk (node:internal/streams/readable:569:12)
