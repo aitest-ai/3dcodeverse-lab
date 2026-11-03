@@ -1,0 +1,25 @@
+name: Taipei Mecha v8.3 GLB weapon socket audit
+on:
+  push:
+    branches: [feat/mecha-v83-real-glb-weapon-socket-audit-20261103]
+  pull_request:
+    paths:
+      - 'examples/threejs/mech-weapon-socket-v83.js'
+      - 'tests/mecha/v83-weapon-socket.mjs'
+      - '.github/workflows/mecha-v83-socket.yml'
+permissions:
+  contents: read
+jobs:
+  node-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tests/mecha/v78-real-capture-reference.mjs
+      - run: node tests/mecha/v79-image-diagnostics.mjs
+      - run: node tests/mecha/v80-captured-png-review.mjs
+      - run: node tests/mecha/v81-combat-evidence.mjs
+      - run: node tests/mecha/v82-visual-annotations.mjs
+      - run: node tests/mecha/v83-weapon-socket.mjs
