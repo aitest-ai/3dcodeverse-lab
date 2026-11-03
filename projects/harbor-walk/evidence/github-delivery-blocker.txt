@@ -1,0 +1,5 @@
+Observed command: gh repo create aitest-ai/harbor-walk-framework --private --source . --remote origin --push
+Result: GraphQL: Resource not accessible by integration (createRepository)
+No repository was created. Do not repeat the unchanged create operation.
+Fallback authorized by user: independent branch and projects/harbor-walk/ directory in aitest-ai/3dcodeverse-lab; Draft PR only.
+Existing repository metadata confirms push permission; original checkout/main/assets remain unchanged.

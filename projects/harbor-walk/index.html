@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#244b42" />
+    <title>港邊散策 · Harbor Walk</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22><rect width=%2280%22 height=%2280%22 rx=%2220%22 fill=%22%23264f46%22/><path d=%22M15 49Q27 36 40 49T65 49M15 60Q27 47 40 60T65 60%22 fill=%22none%22 stroke=%22%23efdcb4%22 stroke-width=%225%22/></svg>"
+    />
+  </head>
+  <body>
+    <canvas id="game" aria-label="港邊散策 3D 遊戲場景" tabindex="0"></canvas>
+    <div id="loading">
+      <span class="eyebrow">A LITTLE JOURNEY BY THE SEA</span>
+      <h1>港邊散策</h1>
+      <p id="load-status" role="status">正在準備街區…</p>
+      <div class="load-track"><i id="load-fill"></i></div>
+      <button id="retry" hidden>重新載入</button>
+    </div>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">≋</span>
+        <div>港邊散策<small>HARBOR WALK</small></div>
+      </div>
+      <div class="place-label">
+        <i></i> 海風里 <span>SEABREEZE QUARTER</span>
+      </div>
+      <div class="top-actions">
+        <button id="quality" title="切換畫質">畫質：標準</button
+        ><button id="help" aria-label="操作說明">?</button>
+      </div>
+    </header>
+    <aside id="intro" hidden>
+      <span class="eyebrow">EXPLORE · MEET · DISCOVER</span>
+      <h1>慢一點，<br />海風會帶路。</h1>
+      <p>走進一座靠海的小街區，<br />遇見日常裡，值得停留的片刻。</p>
+      <button id="start" class="primary">開始散策 <span>↗</span></button>
+      <div class="intro-meta">
+        <span>原創街區探索</span><span>約 3 分鐘的小旅行</span>
+      </div>
+    </aside>
+    <section id="mission" class="panel" hidden>
+      <div class="eyebrow">
+        <span class="gold-dot"></span> 街區手帖
+        <span id="quest-step">01 / 03</span>
+      </div>
+      <h2 id="mission-title">一封海風的問候</h2>
+      <p id="objective"></p>
+      <div id="stamp-slots">
+        <span data-stamp="tea">茶香</span><span data-stamp="garden">樹影</span
+        ><span data-stamp="pier">海風</span>
+      </div>
+      <div class="mission-foot">
+        <span id="score">000</span> <small>旅途點數</small
+        ><time id="elapsed">00:00</time>
+      </div>
+    </section>
+    <div id="npc-labels"></div>
+    <div id="interact" hidden><kbd>E</kbd><span>與阿澄聊聊</span></div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <section id="dialogue" hidden aria-label="NPC 對話" role="dialog">
+      <div class="dialogue-head">
+        <span id="dialogue-role" class="eyebrow"></span
+        ><button id="close-dialogue" aria-label="關閉對話">×</button>
+      </div>
+      <h2 id="dialogue-name"></h2>
+      <p id="dialogue-text"></p>
+      <div id="dialogue-options"></div>
+    </section>
+    <section id="completion" hidden>
+      <span class="eyebrow">A SMALL JOURNEY, WELL TRAVELLED</span>
+      <h2>把海風，留在心裡。</h2>
+      <p>三枚印記、一封手帖，和兩位新朋友。</p>
+      <div class="result">
+        <strong>150</strong><span>旅途點數</span><span id="result-time"></span>
+      </div>
+      <button id="continue" class="primary">繼續散策 <span>↗</span></button>
+    </section>
+    <div id="help-panel" class="panel" hidden>
+      <h2>散策指南</h2>
+      <p>
+        W A S D　移動<br />Shift　跑步<br />按住滑鼠拖曳　旋轉視角<br />滾輪　調整遠近<br />E　與附近居民對話<br />Space　跳躍<br />Esc　關閉對話
+      </p>
+      <p>找阿澄接下委託，依地圖收集三枚印記，再到書店找阿青。</p>
+      <small>手機目前提供版面適配，尚未提供觸控移動。</small>
+    </div>
+    <footer>
+      <div class="control-hints">
+        <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 移動</span
+        ><span><kbd>SHIFT</kbd> 跑步</span><span>◉ 拖曳旋轉視角</span
+        ><span><kbd>E</kbd> 互動</span>
+      </div>
+      <div class="location-note">
+        24° N · 一座想像中的臺灣港口 <span>ORIGINAL WORLD / 01</span>
+      </div>
+    </footer>
+    <div id="map-panel">
+      <div class="map-heading"><span>街區地圖</span><small>N ↑</small></div>
+      <canvas
+        id="minimap"
+        width="240"
+        height="200"
+        aria-label="即時街區地圖"
+      ></canvas>
+      <div class="map-legend">
+        <span>● 你</span><span>◆ 印記</span><span>○ 居民</span>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

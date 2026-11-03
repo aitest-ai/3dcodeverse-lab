@@ -1,0 +1,2445 @@
+{
+  "archive": "KochiGame_GirlFishing.zip",
+  "bytes": 465170862,
+  "sha256": "b971e5f70a58b1a53c2b981e49a73efc4e1e9e90f4ae344c442c67c1d0971997",
+  "members": 402,
+  "uncompressed_bytes": 738716909,
+  "compressed_bytes": 465061366,
+  "unsafe": [],
+  "extensions": {
+    "": 77,
+    ".dll": 22,
+    ".mtlx": 46,
+    ".glsl": 110,
+    ".metal": 18,
+    ".mdl": 13,
+    ".osl": 92,
+    ".md": 1,
+    ".h": 5,
+    ".ini": 1,
+    ".bin": 1,
+    ".cur": 1,
+    ".tps": 1,
+    ".ttf": 1,
+    ".exe": 2,
+    ".pdb": 1,
+    ".pak": 1,
+    ".ucas": 2,
+    ".utoc": 2,
+    ".txt": 5
+  },
+  "files": [
+    {
+      "path": "Windows/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/DbgHelp/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/DbgHelp/dbghelp.dll",
+      "bytes": 2232720,
+      "compressed": 977559,
+      "crc": "0xec991711"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/disney_brdf_2012.mtlx",
+      "bytes": 1073,
+      "compressed": 358,
+      "crc": "0x93696fe6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/disney_brdf_2015.mtlx",
+      "bytes": 1481,
+      "compressed": 461,
+      "crc": "0xccf7990e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/gltf_pbr.mtlx",
+      "bytes": 40125,
+      "compressed": 3790,
+      "crc": "0xcf7789e3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_add.mtlx",
+      "bytes": 2706,
+      "compressed": 467,
+      "crc": "0x89d4457e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_conductor.mtlx",
+      "bytes": 9897,
+      "compressed": 2197,
+      "crc": "0xa7e54aa1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_dielectric.mtlx",
+      "bytes": 9871,
+      "compressed": 2057,
+      "crc": "0x43233533"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_diffuse.mtlx",
+      "bytes": 2601,
+      "compressed": 874,
+      "crc": "0x11f6e84"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_emission.mtlx",
+      "bytes": 769,
+      "compressed": 336,
+      "crc": "0x92b1ca8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_layer.mtlx",
+      "bytes": 1773,
+      "compressed": 648,
+      "crc": "0xa1635b2a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_mix.mtlx",
+      "bytes": 2128,
+      "compressed": 471,
+      "crc": "0x8986dec2"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_sheen.mtlx",
+      "bytes": 2164,
+      "compressed": 728,
+      "crc": "0x7d1f36b0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_sss.mtlx",
+      "bytes": 6973,
+      "compressed": 2093,
+      "crc": "0x31028164"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/lama/lama_translucent.mtlx",
+      "bytes": 2094,
+      "compressed": 797,
+      "crc": "0xa9a32a56"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/open_pbr_surface.mtlx",
+      "bytes": 10888,
+      "compressed": 2350,
+      "crc": "0xb5014501"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/standard_surface.mtlx",
+      "bytes": 28452,
+      "compressed": 4215,
+      "crc": "0x91f5131"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/translation/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/translation/standard_surface_to_gltf_pbr.mtlx",
+      "bytes": 6409,
+      "compressed": 969,
+      "crc": "0xcea6b748"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/translation/standard_surface_to_usd.mtlx",
+      "bytes": 5012,
+      "compressed": 856,
+      "crc": "0x9d5883e5"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/bxdf/usd_preview_surface.mtlx",
+      "bytes": 20684,
+      "compressed": 2616,
+      "crc": "0x3a140c17"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/cmlib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/cmlib/cmlib_defs.mtlx",
+      "bytes": 4956,
+      "compressed": 491,
+      "crc": "0xb993d357"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/cmlib/cmlib_ng.mtlx",
+      "bytes": 17743,
+      "compressed": 1514,
+      "crc": "0xb146cee4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genglsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genglsl/lights_genglsl_impl.mtlx",
+      "bytes": 617,
+      "compressed": 200,
+      "crc": "0x85b0d618"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genglsl/mx_directional_light.glsl",
+      "bytes": 186,
+      "compressed": 123,
+      "crc": "0x661b317e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genglsl/mx_point_light.glsl",
+      "bytes": 378,
+      "compressed": 206,
+      "crc": "0x7694ae4b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genglsl/mx_spot_light.glsl",
+      "bytes": 637,
+      "compressed": 282,
+      "crc": "0x4eddb90f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genmsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genmsl/lights_genmsl_impl.mtlx",
+      "bytes": 614,
+      "compressed": 200,
+      "crc": "0xe23c8e77"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genmsl/mx_directional_light.metal",
+      "bytes": 192,
+      "compressed": 127,
+      "crc": "0xa61d54f2"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genmsl/mx_point_light.metal",
+      "bytes": 384,
+      "compressed": 206,
+      "crc": "0x62cdcbd6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/genmsl/mx_spot_light.metal",
+      "bytes": 643,
+      "compressed": 284,
+      "crc": "0x347d9c12"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/lights/lights_defs.mtlx",
+      "bytes": 2465,
+      "compressed": 613,
+      "crc": "0xfd3841ef"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/core.mdl",
+      "bytes": 8817,
+      "compressed": 2452,
+      "crc": "0x59d0a139"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/hsv.mdl",
+      "bytes": 2815,
+      "compressed": 1139,
+      "crc": "0xefd4a3c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/noise.mdl",
+      "bytes": 24235,
+      "compressed": 4475,
+      "crc": "0xbb45dc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/pbrlib.mdl",
+      "bytes": 1086,
+      "compressed": 620,
+      "crc": "0xc4fa4ff1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/pbrlib_1_6.mdl",
+      "bytes": 36005,
+      "compressed": 6705,
+      "crc": "0xc62938c8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/pbrlib_1_7.mdl",
+      "bytes": 10593,
+      "compressed": 2378,
+      "crc": "0x92c83cdf"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/pbrlib_1_8.mdl",
+      "bytes": 1306,
+      "compressed": 737,
+      "crc": "0x16bd219"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/sampling.mdl",
+      "bytes": 6307,
+      "compressed": 1640,
+      "crc": "0x316f5726"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/stdlib.mdl",
+      "bytes": 543,
+      "compressed": 333,
+      "crc": "0xe0dbeeab"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/stdlib_1_6.mdl",
+      "bytes": 122659,
+      "compressed": 10408,
+      "crc": "0x21ac1fbc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/stdlib_1_7.mdl",
+      "bytes": 576,
+      "compressed": 350,
+      "crc": "0x942bbbd1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/stdlib_1_8.mdl",
+      "bytes": 20597,
+      "compressed": 2447,
+      "crc": "0x3d2c790b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/mdl/materialx/swizzle.mdl",
+      "bytes": 73630,
+      "compressed": 5958,
+      "crc": "0x4a97e6e1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genglsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genglsl/nprlib_genglsl_impl.mtlx",
+      "bytes": 681,
+      "compressed": 288,
+      "crc": "0x86f32876"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genmdl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genmdl/nprlib_genmdl_impl.mtlx",
+      "bytes": 779,
+      "compressed": 348,
+      "crc": "0x898a7d9e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genmsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genmsl/nprlib_genmsl_impl.mtlx",
+      "bytes": 678,
+      "compressed": 287,
+      "crc": "0xe41104da"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genosl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/genosl/nprlib_genosl_impl.mtlx",
+      "bytes": 715,
+      "compressed": 316,
+      "crc": "0x26decdb8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/nprlib_defs.mtlx",
+      "bytes": 2690,
+      "compressed": 827,
+      "crc": "0xc2285157"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/nprlib/nprlib_ng.mtlx",
+      "bytes": 4965,
+      "compressed": 947,
+      "crc": "0xcdc902b5"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_environment_fis.glsl",
+      "bytes": 2850,
+      "compressed": 1159,
+      "crc": "0x887e8447"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_environment_none.glsl",
+      "bytes": 246,
+      "compressed": 151,
+      "crc": "0xaa4838c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_environment_prefilter.glsl",
+      "bytes": 1116,
+      "compressed": 541,
+      "crc": "0xa3b07e16"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_generate_albedo_table.glsl",
+      "bytes": 382,
+      "compressed": 216,
+      "crc": "0x9da08357"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_generate_prefilter_env.glsl",
+      "bytes": 2808,
+      "compressed": 1136,
+      "crc": "0xea40cac9"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_microfacet.glsl",
+      "bytes": 2246,
+      "compressed": 730,
+      "crc": "0x578fbab3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_microfacet_diffuse.glsl",
+      "bytes": 3223,
+      "compressed": 1287,
+      "crc": "0xda03524f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_microfacet_sheen.glsl",
+      "bytes": 3255,
+      "compressed": 1192,
+      "crc": "0xc873d9dc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_microfacet_specular.glsl",
+      "bytes": 19693,
+      "compressed": 5688,
+      "crc": "0x17be5f86"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_shadow.glsl",
+      "bytes": 779,
+      "compressed": 389,
+      "crc": "0xd4e7c6d3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_transmission_opacity.glsl",
+      "bytes": 177,
+      "compressed": 138,
+      "crc": "0x44611c4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/lib/mx_transmission_refract.glsl",
+      "bytes": 525,
+      "compressed": 308,
+      "crc": "0xd1ee918e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_add_edf.glsl",
+      "bytes": 98,
+      "compressed": 78,
+      "crc": "0x12432196"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_anisotropic_vdf.glsl",
+      "bytes": 170,
+      "compressed": 138,
+      "crc": "0x27316767"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_artistic_ior.glsl",
+      "bytes": 590,
+      "compressed": 307,
+      "crc": "0x9a121e4d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_blackbody.glsl",
+      "bytes": 1784,
+      "compressed": 731,
+      "crc": "0x11930e1a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_burley_diffuse_bsdf.glsl",
+      "bytes": 1059,
+      "compressed": 386,
+      "crc": "0xf04d1581"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_conductor_bsdf.glsl",
+      "bytes": 2241,
+      "compressed": 667,
+      "crc": "0x96714af6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_dielectric_bsdf.glsl",
+      "bytes": 3760,
+      "compressed": 806,
+      "crc": "0xd895d676"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_displacement_float.glsl",
+      "bytes": 150,
+      "compressed": 104,
+      "crc": "0x9405e0eb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_displacement_vector3.glsl",
+      "bytes": 145,
+      "compressed": 105,
+      "crc": "0x72732bcf"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_generalized_schlick_bsdf.glsl",
+      "bytes": 4378,
+      "compressed": 893,
+      "crc": "0xe7d0cc8b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_generalized_schlick_edf.glsl",
+      "bytes": 349,
+      "compressed": 229,
+      "crc": "0x6f164855"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_oren_nayar_diffuse_bsdf.glsl",
+      "bytes": 989,
+      "compressed": 376,
+      "crc": "0x10f8dec9"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_roughness_anisotropy.glsl",
+      "bytes": 460,
+      "compressed": 204,
+      "crc": "0xb9b2b7cc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_roughness_dual.glsl",
+      "bytes": 277,
+      "compressed": 137,
+      "crc": "0xd119a306"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_sheen_bsdf.glsl",
+      "bytes": 1402,
+      "compressed": 499,
+      "crc": "0x7fcf46eb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_subsurface_bsdf.glsl",
+      "bytes": 1080,
+      "compressed": 420,
+      "crc": "0xa314b95d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_translucent_bsdf.glsl",
+      "bytes": 914,
+      "compressed": 385,
+      "crc": "0x744a152d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/mx_uniform_edf.glsl",
+      "bytes": 92,
+      "compressed": 76,
+      "crc": "0x5d474e0d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genglsl/pbrlib_genglsl_impl.mtlx",
+      "bytes": 4812,
+      "compressed": 708,
+      "crc": "0xac3b66c7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genmdl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genmdl/pbrlib_genmdl_impl.mtlx",
+      "bytes": 10145,
+      "compressed": 1341,
+      "crc": "0x335144cc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genmsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genmsl/pbrlib_genmsl_impl.mtlx",
+      "bytes": 4695,
+      "compressed": 703,
+      "crc": "0x7979fd1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_anisotropic_vdf.osl",
+      "bytes": 247,
+      "compressed": 169,
+      "crc": "0x7b658596"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_burley_diffuse_bsdf.osl",
+      "bytes": 252,
+      "compressed": 179,
+      "crc": "0x55b2449f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_conductor_bsdf.osl",
+      "bytes": 1205,
+      "compressed": 600,
+      "crc": "0xb627493b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_dielectric_bsdf.osl",
+      "bytes": 1428,
+      "compressed": 584,
+      "crc": "0xacde49a3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_generalized_schlick_bsdf.osl",
+      "bytes": 1639,
+      "compressed": 685,
+      "crc": "0x2bc2ca1f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_oren_nayar_diffuse_bsdf.osl",
+      "bytes": 212,
+      "compressed": 149,
+      "crc": "0xc377cabb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_sheen_bsdf.osl",
+      "bytes": 839,
+      "compressed": 463,
+      "crc": "0xd370dbdc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_subsurface_bsdf.osl",
+      "bytes": 272,
+      "compressed": 197,
+      "crc": "0x888e61c0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_surface.osl",
+      "bytes": 199,
+      "compressed": 136,
+      "crc": "0x6c6895f6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/legacy/mx_translucent_bsdf.osl",
+      "bytes": 178,
+      "compressed": 132,
+      "crc": "0xdc9c7519"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/lib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/lib/mx_microfacet.osl",
+      "bytes": 1810,
+      "compressed": 414,
+      "crc": "0xfa0f5bc1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/lib/mx_microfacet_sheen.osl",
+      "bytes": 544,
+      "compressed": 268,
+      "crc": "0x76beab74"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/lib/mx_microfacet_specular.osl",
+      "bytes": 2348,
+      "compressed": 855,
+      "crc": "0xe96ab9fa"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_anisotropic_vdf.osl",
+      "bytes": 245,
+      "compressed": 180,
+      "crc": "0x8c6ad108"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_artistic_ior.osl",
+      "bytes": 609,
+      "compressed": 310,
+      "crc": "0x4961389b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_blackbody.osl",
+      "bytes": 1821,
+      "compressed": 744,
+      "crc": "0x9c8d0552"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_dielectric_bsdf.osl",
+      "bytes": 611,
+      "compressed": 219,
+      "crc": "0x24cbabb0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_displacement_float.osl",
+      "bytes": 145,
+      "compressed": 97,
+      "crc": "0x8ab2bdde"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_displacement_vector3.osl",
+      "bytes": 140,
+      "compressed": 95,
+      "crc": "0xaf0a6a57"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_generalized_schlick_bsdf.osl",
+      "bytes": 759,
+      "compressed": 241,
+      "crc": "0xd51b01a4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_generalized_schlick_edf.osl",
+      "bytes": 278,
+      "compressed": 189,
+      "crc": "0x4d139e6a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_roughness_anisotropy.osl",
+      "bytes": 466,
+      "compressed": 208,
+      "crc": "0x676f497a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_roughness_dual.osl",
+      "bytes": 308,
+      "compressed": 149,
+      "crc": "0x26e43e48"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_subsurface_bsdf.osl",
+      "bytes": 228,
+      "compressed": 171,
+      "crc": "0x9f02c2e4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/mx_surface.osl",
+      "bytes": 190,
+      "compressed": 127,
+      "crc": "0xa00fbe13"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/genosl/pbrlib_genosl_impl.mtlx",
+      "bytes": 5085,
+      "compressed": 830,
+      "crc": "0x5322ab0d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/pbrlib_defs.mtlx",
+      "bytes": 22274,
+      "compressed": 2875,
+      "crc": "0x4a0b5c89"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/pbrlib/pbrlib_ng.mtlx",
+      "bytes": 816,
+      "compressed": 347,
+      "crc": "0x9edcc69d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/README.md",
+      "bytes": 4994,
+      "compressed": 1493,
+      "crc": "0x253cc0fe"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_hsv.glsl",
+      "bytes": 3569,
+      "compressed": 1523,
+      "crc": "0xec668239"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_math.glsl",
+      "bytes": 175,
+      "compressed": 89,
+      "crc": "0x80ba8c2e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_noise.glsl",
+      "bytes": 20239,
+      "compressed": 4072,
+      "crc": "0xa7cae07f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_sampling.glsl",
+      "bytes": 2930,
+      "compressed": 857,
+      "crc": "0xd7d55552"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_transform_uv.glsl",
+      "bytes": 121,
+      "compressed": 81,
+      "crc": "0xb9598de1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/lib/mx_transform_uv_vflip.glsl",
+      "bytes": 141,
+      "compressed": 98,
+      "crc": "0x90afb29d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_aastep.glsl",
+      "bytes": 205,
+      "compressed": 141,
+      "crc": "0x3d62c8f1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_burn_color3.glsl",
+      "bytes": 259,
+      "compressed": 132,
+      "crc": "0xa7109955"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_burn_color4.glsl",
+      "bytes": 309,
+      "compressed": 139,
+      "crc": "0xf1ed4a43"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_burn_float.glsl",
+      "bytes": 232,
+      "compressed": 148,
+      "crc": "0x7a9dec0a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_cellnoise2d_float.glsl",
+      "bytes": 143,
+      "compressed": 109,
+      "crc": "0xf624bde0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_cellnoise3d_float.glsl",
+      "bytes": 143,
+      "compressed": 109,
+      "crc": "0xf5865a91"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_creatematrix_vector3_matrix33.glsl",
+      "bytes": 213,
+      "compressed": 123,
+      "crc": "0x42620144"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_creatematrix_vector3_matrix44.glsl",
+      "bytes": 283,
+      "compressed": 138,
+      "crc": "0xcae1b74a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_creatematrix_vector4_matrix44.glsl",
+      "bytes": 291,
+      "compressed": 139,
+      "crc": "0x18c49db0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_disjointover_color4.glsl",
+      "bytes": 619,
+      "compressed": 262,
+      "crc": "0x1abbcbe4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_dodge_color3.glsl",
+      "bytes": 264,
+      "compressed": 133,
+      "crc": "0x48b1f1b4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_dodge_color4.glsl",
+      "bytes": 317,
+      "compressed": 140,
+      "crc": "0x346342f7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_dodge_float.glsl",
+      "bytes": 231,
+      "compressed": 149,
+      "crc": "0xe64806b7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_fractal3d_float.glsl",
+      "bytes": 277,
+      "compressed": 164,
+      "crc": "0xffa5e096"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_fractal3d_vector2.glsl",
+      "bytes": 275,
+      "compressed": 170,
+      "crc": "0xa57e98fe"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_fractal3d_vector3.glsl",
+      "bytes": 275,
+      "compressed": 166,
+      "crc": "0x710d0e65"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_fractal3d_vector4.glsl",
+      "bytes": 275,
+      "compressed": 170,
+      "crc": "0x31c4e567"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_hsvtorgb_color3.glsl",
+      "bytes": 120,
+      "compressed": 98,
+      "crc": "0x5444a680"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_hsvtorgb_color4.glsl",
+      "bytes": 135,
+      "compressed": 110,
+      "crc": "0xa3c6b03f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_color3.glsl",
+      "bytes": 389,
+      "compressed": 218,
+      "crc": "0xd7d3702f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_color4.glsl",
+      "bytes": 385,
+      "compressed": 213,
+      "crc": "0xfcc535dc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_float.glsl",
+      "bytes": 388,
+      "compressed": 215,
+      "crc": "0x6ca21cff"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_vector2.glsl",
+      "bytes": 389,
+      "compressed": 215,
+      "crc": "0x1640ff79"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_vector3.glsl",
+      "bytes": 390,
+      "compressed": 218,
+      "crc": "0x50a02f95"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_image_vector4.glsl",
+      "bytes": 386,
+      "compressed": 214,
+      "crc": "0x76b5170d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_luminance_color3.glsl",
+      "bytes": 118,
+      "compressed": 92,
+      "crc": "0x146b79d3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_luminance_color4.glsl",
+      "bytes": 135,
+      "compressed": 106,
+      "crc": "0xe2af3d06"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_mix_surfaceshader.glsl",
+      "bytes": 239,
+      "compressed": 122,
+      "crc": "0xcc8f757d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise2d_float.glsl",
+      "bytes": 217,
+      "compressed": 141,
+      "crc": "0xe2242a81"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise2d_vector2.glsl",
+      "bytes": 218,
+      "compressed": 149,
+      "crc": "0x4c8d1fbb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise2d_vector3.glsl",
+      "bytes": 215,
+      "compressed": 148,
+      "crc": "0xe3b9f042"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise2d_vector4.glsl",
+      "bytes": 283,
+      "compressed": 177,
+      "crc": "0x95a262f7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise3d_float.glsl",
+      "bytes": 217,
+      "compressed": 140,
+      "crc": "0x77552150"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise3d_vector2.glsl",
+      "bytes": 218,
+      "compressed": 149,
+      "crc": "0xf60cb71d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise3d_vector3.glsl",
+      "bytes": 215,
+      "compressed": 145,
+      "crc": "0x9f7ca7a8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_noise3d_vector4.glsl",
+      "bytes": 287,
+      "compressed": 178,
+      "crc": "0x30697439"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_normalmap.glsl",
+      "bytes": 703,
+      "compressed": 296,
+      "crc": "0x76ae8e01"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_premult_color4.glsl",
+      "bytes": 101,
+      "compressed": 83,
+      "crc": "0x3795e048"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramplr_float.glsl",
+      "bytes": 155,
+      "compressed": 110,
+      "crc": "0x2a3204cb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramplr_vector2.glsl",
+      "bytes": 154,
+      "compressed": 109,
+      "crc": "0xfe1e2d3b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramplr_vector3.glsl",
+      "bytes": 154,
+      "compressed": 111,
+      "crc": "0x954397a9"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramplr_vector4.glsl",
+      "bytes": 154,
+      "compressed": 111,
+      "crc": "0x5ea2b416"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramptb_float.glsl",
+      "bytes": 155,
+      "compressed": 111,
+      "crc": "0x39d0c635"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramptb_vector2.glsl",
+      "bytes": 154,
+      "compressed": 110,
+      "crc": "0x65ae687c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramptb_vector3.glsl",
+      "bytes": 154,
+      "compressed": 112,
+      "crc": "0xef3d2ee"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_ramptb_vector4.glsl",
+      "bytes": 154,
+      "compressed": 112,
+      "crc": "0xc512f151"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_rgbtohsv_color3.glsl",
+      "bytes": 120,
+      "compressed": 100,
+      "crc": "0x59ad4f98"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_rgbtohsv_color4.glsl",
+      "bytes": 135,
+      "compressed": 111,
+      "crc": "0x4350f9a2"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_rotate_vector2.glsl",
+      "bytes": 256,
+      "compressed": 143,
+      "crc": "0xe99c0a7f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_rotate_vector3.glsl",
+      "bytes": 911,
+      "compressed": 293,
+      "crc": "0x492aa124"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_smoothstep_float.glsl",
+      "bytes": 234,
+      "compressed": 126,
+      "crc": "0xfb089a68"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_smoothstep_vector2.glsl",
+      "bytes": 237,
+      "compressed": 134,
+      "crc": "0xfcdca837"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_smoothstep_vector3.glsl",
+      "bytes": 295,
+      "compressed": 143,
+      "crc": "0xe1633614"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_smoothstep_vector4.glsl",
+      "bytes": 353,
+      "compressed": 152,
+      "crc": "0x8069c375"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splitlr_float.glsl",
+      "bytes": 199,
+      "compressed": 129,
+      "crc": "0xd5e61ff5"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splitlr_vector2.glsl",
+      "bytes": 198,
+      "compressed": 132,
+      "crc": "0xab3fc31a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splitlr_vector3.glsl",
+      "bytes": 198,
+      "compressed": 134,
+      "crc": "0x90374156"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splitlr_vector4.glsl",
+      "bytes": 198,
+      "compressed": 134,
+      "crc": "0x310cceb2"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splittb_float.glsl",
+      "bytes": 199,
+      "compressed": 131,
+      "crc": "0x945058d7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splittb_vector2.glsl",
+      "bytes": 198,
+      "compressed": 133,
+      "crc": "0xac01e328"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splittb_vector3.glsl",
+      "bytes": 198,
+      "compressed": 135,
+      "crc": "0x97096164"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_splittb_vector4.glsl",
+      "bytes": 198,
+      "compressed": 135,
+      "crc": "0x3632ee80"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_transformmatrix_vector2M3.glsl",
+      "bytes": 146,
+      "compressed": 108,
+      "crc": "0x9e84f1c1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_transformmatrix_vector3M4.glsl",
+      "bytes": 147,
+      "compressed": 109,
+      "crc": "0x8971d82c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_unpremult_color4.glsl",
+      "bytes": 103,
+      "compressed": 85,
+      "crc": "0x43786139"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise2d_float.glsl",
+      "bytes": 172,
+      "compressed": 121,
+      "crc": "0x927816eb"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise2d_vector2.glsl",
+      "bytes": 172,
+      "compressed": 126,
+      "crc": "0xa7b915e5"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise2d_vector3.glsl",
+      "bytes": 172,
+      "compressed": 127,
+      "crc": "0x70bb399c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise3d_float.glsl",
+      "bytes": 172,
+      "compressed": 120,
+      "crc": "0xff6ce89d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise3d_vector2.glsl",
+      "bytes": 172,
+      "compressed": 127,
+      "crc": "0x57aa8279"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/mx_worleynoise3d_vector3.glsl",
+      "bytes": 172,
+      "compressed": 126,
+      "crc": "0x80a8ae00"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genglsl/stdlib_genglsl_impl.mtlx",
+      "bytes": 76686,
+      "compressed": 5747,
+      "crc": "0x33a74000"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmdl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmdl/stdlib_genmdl_impl.mtlx",
+      "bytes": 92058,
+      "compressed": 6550,
+      "crc": "0xdbc5e903"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/lib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/lib/mx_math.metal",
+      "bytes": 4171,
+      "compressed": 1025,
+      "crc": "0x8d9fc39c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/lib/mx_matscalaroperators.metal",
+      "bytes": 1064,
+      "compressed": 191,
+      "crc": "0xa82add72"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/lib/mx_sampling.metal",
+      "bytes": 2975,
+      "compressed": 864,
+      "crc": "0xc177c83e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/lib/mx_texture.metal",
+      "bytes": 747,
+      "compressed": 239,
+      "crc": "0xcab001ac"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_burn_color3.metal",
+      "bytes": 295,
+      "compressed": 141,
+      "crc": "0xb50f91ed"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_burn_color4.metal",
+      "bytes": 352,
+      "compressed": 148,
+      "crc": "0x5a6e0881"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_burn_float.metal",
+      "bytes": 232,
+      "compressed": 148,
+      "crc": "0x7a9dec0a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_dodge_color3.metal",
+      "bytes": 300,
+      "compressed": 142,
+      "crc": "0x53a881fc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_dodge_color4.metal",
+      "bytes": 360,
+      "compressed": 150,
+      "crc": "0x7e790bd1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_dodge_float.metal",
+      "bytes": 231,
+      "compressed": 149,
+      "crc": "0xe64806b7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_normalmap.metal",
+      "bytes": 706,
+      "compressed": 299,
+      "crc": "0xbb4da656"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_smoothstep_float.metal",
+      "bytes": 234,
+      "compressed": 126,
+      "crc": "0xfb089a68"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_smoothstep_vector2.metal",
+      "bytes": 266,
+      "compressed": 142,
+      "crc": "0x3ca4dcca"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_smoothstep_vector3.metal",
+      "bytes": 357,
+      "compressed": 159,
+      "crc": "0xda13bd78"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/mx_smoothstep_vector4.metal",
+      "bytes": 396,
+      "compressed": 161,
+      "crc": "0x1ce37834"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genmsl/stdlib_genmsl_impl.mtlx",
+      "bytes": 76418,
+      "compressed": 5775,
+      "crc": "0x8d290971"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/color4.h",
+      "bytes": 6337,
+      "compressed": 1124,
+      "crc": "0x6a68cb61"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/matrix33.h",
+      "bytes": 2859,
+      "compressed": 701,
+      "crc": "0xede46bf4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/mx_funcs.h",
+      "bytes": 16449,
+      "compressed": 2592,
+      "crc": "0xd853af71"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/vector2.h",
+      "bytes": 6030,
+      "compressed": 1075,
+      "crc": "0x35bc1470"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/include/vector4.h",
+      "bytes": 9398,
+      "compressed": 1531,
+      "crc": "0x4f6305a7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/lib/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/lib/mx_sampling.osl",
+      "bytes": 5609,
+      "compressed": 1243,
+      "crc": "0x5f72d232"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/lib/mx_transform_uv.osl",
+      "bytes": 71,
+      "compressed": 58,
+      "crc": "0xcc5c8b1b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/lib/mx_transform_uv_vflip.osl",
+      "bytes": 100,
+      "compressed": 76,
+      "crc": "0xa9af4192"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_ambientocclusion_float.osl",
+      "bytes": 188,
+      "compressed": 140,
+      "crc": "0xdd65b124"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_burn_color3.osl",
+      "bytes": 261,
+      "compressed": 133,
+      "crc": "0xca42ab19"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_burn_color4.osl",
+      "bytes": 347,
+      "compressed": 145,
+      "crc": "0x61bfa2e8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_burn_float.osl",
+      "bytes": 226,
+      "compressed": 148,
+      "crc": "0x174d993d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_cellnoise2d_float.osl",
+      "bytes": 121,
+      "compressed": 93,
+      "crc": "0xa92fe3a7"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_cellnoise3d_float.osl",
+      "bytes": 106,
+      "compressed": 86,
+      "crc": "0x439d48e5"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_creatematrix.osl",
+      "bytes": 928,
+      "compressed": 193,
+      "crc": "0x688babf0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_disjointover_color4.osl",
+      "bytes": 603,
+      "compressed": 256,
+      "crc": "0xe5dd8b8f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_dodge_color3.osl",
+      "bytes": 266,
+      "compressed": 134,
+      "crc": "0x7d989e07"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_dodge_color4.osl",
+      "bytes": 356,
+      "compressed": 149,
+      "crc": "0x60b727c2"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_dodge_float.osl",
+      "bytes": 216,
+      "compressed": 145,
+      "crc": "0xeb044e00"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_fractal3d_float.osl",
+      "bytes": 236,
+      "compressed": 145,
+      "crc": "0x650e69e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_fractal3d_vector2.osl",
+      "bytes": 244,
+      "compressed": 148,
+      "crc": "0x5ab5379"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_fractal3d_vector3.osl",
+      "bytes": 241,
+      "compressed": 146,
+      "crc": "0x9f3f819a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_fractal3d_vector4.osl",
+      "bytes": 244,
+      "compressed": 148,
+      "crc": "0x1b35020"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_frame_float.osl",
+      "bytes": 84,
+      "compressed": 72,
+      "crc": "0xe00f435b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geomcolor_color3.osl",
+      "bytes": 100,
+      "compressed": 85,
+      "crc": "0x8b70ce62"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geomcolor_color4.osl",
+      "bytes": 240,
+      "compressed": 136,
+      "crc": "0xa75adc68"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geomcolor_float.osl",
+      "bytes": 99,
+      "compressed": 86,
+      "crc": "0x165cd25e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_boolean.osl",
+      "bytes": 156,
+      "compressed": 115,
+      "crc": "0xde1bd0ca"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_color3.osl",
+      "bytes": 158,
+      "compressed": 114,
+      "crc": "0xd68c9ecd"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_color4.osl",
+      "bytes": 384,
+      "compressed": 174,
+      "crc": "0x870e451c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_float.osl",
+      "bytes": 181,
+      "compressed": 120,
+      "crc": "0xd7da3b41"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_integer.osl",
+      "bytes": 156,
+      "compressed": 114,
+      "crc": "0xea1ba508"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_string.osl",
+      "bytes": 161,
+      "compressed": 111,
+      "crc": "0x9a9e1586"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_vector2.osl",
+      "bytes": 279,
+      "compressed": 154,
+      "crc": "0x2a03b65e"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_vector3.osl",
+      "bytes": 161,
+      "compressed": 114,
+      "crc": "0x63494d8f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_geompropvalue_vector4.osl",
+      "bytes": 333,
+      "compressed": 165,
+      "crc": "0x60fabf5d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_heighttonormal_vector3.osl",
+      "bytes": 178,
+      "compressed": 127,
+      "crc": "0x92f7b759"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_hsvtorgb_color3.osl",
+      "bytes": 109,
+      "compressed": 95,
+      "crc": "0xccce0b2b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_hsvtorgb_color4.osl",
+      "bytes": 126,
+      "compressed": 103,
+      "crc": "0xa15dede"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_color3.osl",
+      "bytes": 786,
+      "compressed": 356,
+      "crc": "0x83e42d3a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_color4.osl",
+      "bytes": 963,
+      "compressed": 414,
+      "crc": "0x5d96e605"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_float.osl",
+      "bytes": 786,
+      "compressed": 362,
+      "crc": "0xf6eca7c0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_vector2.osl",
+      "bytes": 839,
+      "compressed": 378,
+      "crc": "0x3371043b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_vector3.osl",
+      "bytes": 758,
+      "compressed": 345,
+      "crc": "0x66bc0dbe"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_image_vector4.osl",
+      "bytes": 994,
+      "compressed": 424,
+      "crc": "0x3e54bb7c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_luminance_color3.osl",
+      "bytes": 116,
+      "compressed": 89,
+      "crc": "0x4980b5d1"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_luminance_color4.osl",
+      "bytes": 136,
+      "compressed": 102,
+      "crc": "0x4d7058ba"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_mix_surfaceshader.osl",
+      "bytes": 248,
+      "compressed": 125,
+      "crc": "0xd7cc0fc4"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise2d_float.osl",
+      "bytes": 199,
+      "compressed": 128,
+      "crc": "0x808562e0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise2d_vector2.osl",
+      "bytes": 210,
+      "compressed": 129,
+      "crc": "0x5ca3512f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise2d_vector3.osl",
+      "bytes": 204,
+      "compressed": 131,
+      "crc": "0x145e6e54"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise2d_vector4.osl",
+      "bytes": 210,
+      "compressed": 131,
+      "crc": "0x52b6d5de"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise3d_float.osl",
+      "bytes": 184,
+      "compressed": 122,
+      "crc": "0x69ed4fab"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise3d_vector2.osl",
+      "bytes": 195,
+      "compressed": 125,
+      "crc": "0x622877c3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise3d_vector3.osl",
+      "bytes": 189,
+      "compressed": 121,
+      "crc": "0x69d5b9b6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_noise3d_vector4.osl",
+      "bytes": 195,
+      "compressed": 125,
+      "crc": "0x6317e23b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_normalmap.osl",
+      "bytes": 765,
+      "compressed": 281,
+      "crc": "0x14a757b0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_premult_color4.osl",
+      "bytes": 106,
+      "compressed": 82,
+      "crc": "0xcfa34265"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_rgbtohsv_color3.osl",
+      "bytes": 109,
+      "compressed": 94,
+      "crc": "0xda694254"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_rgbtohsv_color4.osl",
+      "bytes": 126,
+      "compressed": 103,
+      "crc": "0x610e07ca"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_rotate_vector2.osl",
+      "bytes": 268,
+      "compressed": 145,
+      "crc": "0xc1ca6049"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_rotate_vector3.osl",
+      "bytes": 1090,
+      "compressed": 337,
+      "crc": "0xc07dd3aa"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_surface_unlit.osl",
+      "bytes": 421,
+      "compressed": 181,
+      "crc": "0x5b3cb8da"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_time_float.osl",
+      "bytes": 142,
+      "compressed": 101,
+      "crc": "0x7ecf6da3"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_transformmatrix_vector2M3.osl",
+      "bytes": 192,
+      "compressed": 129,
+      "crc": "0x9aeb96ea"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_unpremult_color4.osl",
+      "bytes": 108,
+      "compressed": 84,
+      "crc": "0x479e18b6"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise2d_float.osl",
+      "bytes": 146,
+      "compressed": 103,
+      "crc": "0x12daf5a9"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise2d_vector2.osl",
+      "bytes": 152,
+      "compressed": 105,
+      "crc": "0x38073a2b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise2d_vector3.osl",
+      "bytes": 151,
+      "compressed": 107,
+      "crc": "0xd3a78712"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise3d_float.osl",
+      "bytes": 145,
+      "compressed": 103,
+      "crc": "0xce93bb35"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise3d_vector2.osl",
+      "bytes": 151,
+      "compressed": 105,
+      "crc": "0xd1fb5517"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/mx_worleynoise3d_vector3.osl",
+      "bytes": 150,
+      "compressed": 105,
+      "crc": "0xdda32878"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/genosl/stdlib_genosl_impl.mtlx",
+      "bytes": 77356,
+      "compressed": 5871,
+      "crc": "0x208d377d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/stdlib_defs.mtlx",
+      "bytes": 257283,
+      "compressed": 17780,
+      "crc": "0x283f576"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/stdlib/stdlib_ng.mtlx",
+      "bytes": 220628,
+      "compressed": 15135,
+      "crc": "0x4120594d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/essl.mtlx",
+      "bytes": 476,
+      "compressed": 227,
+      "crc": "0x9025b600"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/genglsl.mtlx",
+      "bytes": 467,
+      "compressed": 220,
+      "crc": "0xa4dd381a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/genmdl.mtlx",
+      "bytes": 466,
+      "compressed": 218,
+      "crc": "0xbc3db16b"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/genmsl.mtlx",
+      "bytes": 484,
+      "compressed": 227,
+      "crc": "0x445c68d8"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MaterialX/libraries/targets/genosl.mtlx",
+      "bytes": 466,
+      "compressed": 218,
+      "crc": "0xd164f85f"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MsQuic/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MsQuic/v220/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MsQuic/v220/win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/MsQuic/v220/win64/msquic.dll",
+      "bytes": 2547104,
+      "compressed": 1239898,
+      "crc": "0xce2ef80c"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/NVIDIA/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/NVIDIA/NVaftermath/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/NVIDIA/NVaftermath/Win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/NVIDIA/NVaftermath/Win64/GFSDK_Aftermath_Lib.x64.dll",
+      "bytes": 5442616,
+      "compressed": 2004125,
+      "crc": "0x1accc02d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Ogg/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Ogg/Win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Ogg/Win64/VS2015/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Ogg/Win64/VS2015/libogg_64.dll",
+      "bytes": 59856,
+      "compressed": 21132,
+      "crc": "0xfc1602a"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Vorbis/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Vorbis/Win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Vorbis/Win64/VS2015/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbisfile_64.dll",
+      "bytes": 48592,
+      "compressed": 27168,
+      "crc": "0xb998f55d"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbis_64.dll",
+      "bytes": 1724880,
+      "compressed": 250244,
+      "crc": "0x297c24cc"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Windows/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Windows/XAudio2_9/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Windows/XAudio2_9/x64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Binaries/ThirdParty/Windows/XAudio2_9/x64/xaudio2_9redist.dll",
+      "bytes": 858176,
+      "compressed": 431129,
+      "crc": "0x302e7a9f"
+    },
+    {
+      "path": "Windows/Engine/Config/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Config/StagedBuild_GirlFishing.ini",
+      "bytes": 3,
+      "compressed": 3,
+      "crc": "0x11097e1"
+    },
+    {
+      "path": "Windows/Engine/Content/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/Renderer/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/Renderer/TessellationTable.bin",
+      "bytes": 259568,
+      "compressed": 122975,
+      "crc": "0xe020cfe"
+    },
+    {
+      "path": "Windows/Engine/Content/Slate/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/Slate/Cursor/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/Slate/Cursor/invisible.cur",
+      "bytes": 326,
+      "compressed": 52,
+      "crc": "0xc3970d25"
+    },
+    {
+      "path": "Windows/Engine/Content/SlateDebug/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/SlateDebug/Fonts/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Content/SlateDebug/Fonts/LastResort.tps",
+      "bytes": 930,
+      "compressed": 502,
+      "crc": "0xa2b67d98"
+    },
+    {
+      "path": "Windows/Engine/Content/SlateDebug/Fonts/LastResort.ttf",
+      "bytes": 5395052,
+      "compressed": 1038521,
+      "crc": "0x4196e81f"
+    },
+    {
+      "path": "Windows/Engine/Plugins/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/Binaries/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/Onnxruntime/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/Onnxruntime/Win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/Onnxruntime/Win64/onnxruntime.dll",
+      "bytes": 14692896,
+      "compressed": 5342832,
+      "crc": "0x9805cfa6"
+    },
+    {
+      "path": "Windows/GirlFishing/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_atomic-mt-x64.dll",
+      "bytes": 28112,
+      "compressed": 16009,
+      "crc": "0x17fbc464"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_chrono-mt-x64.dll",
+      "bytes": 46544,
+      "compressed": 23016,
+      "crc": "0xfa909a99"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_filesystem-mt-x64.dll",
+      "bytes": 163280,
+      "compressed": 73241,
+      "crc": "0x2f51273e"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_iostreams-mt-x64.dll",
+      "bytes": 59856,
+      "compressed": 27112,
+      "crc": "0x9dbcf4d0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_program_options-mt-x64.dll",
+      "bytes": 355792,
+      "compressed": 124114,
+      "crc": "0x4f2d431e"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_python311-mt-x64.dll",
+      "bytes": 204752,
+      "compressed": 81945,
+      "crc": "0xd148d247"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_regex-mt-x64.dll",
+      "bytes": 240080,
+      "compressed": 112418,
+      "crc": "0x8994210c"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_system-mt-x64.dll",
+      "bytes": 20432,
+      "compressed": 12113,
+      "crc": "0xca615a88"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/boost_thread-mt-x64.dll",
+      "bytes": 85456,
+      "compressed": 39596,
+      "crc": "0xd37a1c68"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/D3D12/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/D3D12/x64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/D3D12/x64/D3D12Core.dll",
+      "bytes": 3344912,
+      "compressed": 1131593,
+      "crc": "0x14321cba"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/D3D12/x64/d3d12SDKLayers.dll",
+      "bytes": 5784080,
+      "compressed": 2290021,
+      "crc": "0x880cb119"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/DML/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/DML/x64/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/DML/x64/DirectML.dll",
+      "bytes": 18537992,
+      "compressed": 9318077,
+      "crc": "0x70ed3337"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "bytes": 152220160,
+      "compressed": 58688897,
+      "crc": "0xcc5fe3f2"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.pdb",
+      "bytes": 182292480,
+      "compressed": 50584739,
+      "crc": "0x3ca196c4"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/tbb12.dll",
+      "bytes": 331728,
+      "compressed": 103131,
+      "crc": "0x8fa49e7d"
+    },
+    {
+      "path": "Windows/GirlFishing/Binaries/Win64/tbbmalloc.dll",
+      "bytes": 117712,
+      "compressed": 53041,
+      "crc": "0xc476caa0"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/GirlFishing-Windows.pak",
+      "bytes": 21775283,
+      "compressed": 20549081,
+      "crc": "0x34deeadb"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/GirlFishing-Windows.ucas",
+      "bytes": 314955120,
+      "compressed": 308851537,
+      "crc": "0x6e280fc9"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/GirlFishing-Windows.utoc",
+      "bytes": 285772,
+      "compressed": 172432,
+      "crc": "0x262781d9"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/global.ucas",
+      "bytes": 2599376,
+      "compressed": 1027294,
+      "crc": "0xd0b0820b"
+    },
+    {
+      "path": "Windows/GirlFishing/Content/Paks/global.utoc",
+      "bytes": 674,
+      "compressed": 172,
+      "crc": "0x688b36a9"
+    },
+    {
+      "path": "Windows/GirlFishing.exe",
+      "bytes": 173568,
+      "compressed": 95192,
+      "crc": "0x4752f531"
+    },
+    {
+      "path": "Windows/Manifest_DebugFiles_Win64.txt",
+      "bytes": 230,
+      "compressed": 142,
+      "crc": "0xa38be1e2"
+    },
+    {
+      "path": "Windows/Manifest_NonUFSFiles_Win64.txt",
+      "bytes": 33478,
+      "compressed": 2504,
+      "crc": "0x4b6a8ec5"
+    },
+    {
+      "path": "Windows/Manifest_ObsoleteNonUFSFiles_DESKTOPTM05KNT.txt",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Manifest_ObsoleteUFSFiles_DESKTOPTM05KNT.txt",
+      "bytes": 0,
+      "compressed": 0,
+      "crc": "0x0"
+    },
+    {
+      "path": "Windows/Manifest_UFSFiles_Win64.txt",
+      "bytes": 241125,
+      "compressed": 22094,
+      "crc": "0x2f3b7749"
+    }
+  ]
+}

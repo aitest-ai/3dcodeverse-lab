@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>角色工房 · 港邊散策</title>
+    <style>
+      body {
+        margin: 0;
+        font:
+          14px "Noto Sans CJK TC",
+          sans-serif;
+        color: #2b5144;
+        background: #e9e5d6;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+      aside {
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        padding: 25px;
+        background: #f7f2e6ed;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        width: 220px;
+        box-shadow: 0 8px 50px #23422b16;
+      }
+      h1 {
+        font-size: 24px;
+        font-family: serif;
+        margin: 8px 0 20px;
+      }
+      small {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #8d987e;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        margin: 15px 0 6px;
+      }
+      button,
+      select {
+        background: #2e5847;
+        color: #eee5cf;
+        border: 0;
+        padding: 10px 12px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin: 4px 0;
+        font: inherit;
+      }
+      select {
+        width: 100%;
+      }
+      .views {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      button {
+        font-size: 12px;
+      }
+      input {
+        width: 100%;
+        accent-color: #2e5847;
+      }
+      p {
+        font-size: 11px;
+        line-height: 1.9;
+        color: #758267;
+      }
+      a {
+        color: #2e5847;
+      }
+      #status {
+        position: fixed;
+        bottom: 25px;
+        left: 25px;
+        font-size: 11px;
+        background: #f7f2e6d9;
+        padding: 12px 18px;
+        border-radius: 3px;
+        line-height: 1.8;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+    <aside>
+      <small>CHARACTER ATELIER / 01</small>
+      <h1>海風信使</h1>
+      <p>CC0 人形與動作，原創配色、郵包及領巾。<br />拖曳旋轉 · 滾輪縮放</p>
+      <label for="clip">骨架動畫</label
+      ><select id="clip">
+        <option>Idle</option>
+        <option>Walk</option>
+        <option>Run</option>
+        <option>Turn</option>
+        <option>Talk</option>
+        <option>Interact</option>
+        <option>Celebrate</option></select
+      ><label>視角</label>
+      <div class="views">
+        <button data-view="front">正面</button
+        ><button data-view="side">側面</button
+        ><button data-view="back">背面</button
+        ><button data-view="face">臉部</button>
+      </div>
+      <label for="smile">臉部微笑 · Blend Shape</label
+      ><input type="range" id="smile" min="0" max="1" value="0" step="0.01" />
+      <p><a href="/">← 回到港邊散策</a></p>
+    </aside>
+    <div id="status">正在載入真實 GLB…</div>
+    <script type="module" src="/src/viewer.ts"></script>
+  </body>
+</html>

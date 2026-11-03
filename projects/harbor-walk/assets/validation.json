@@ -1,0 +1,16 @@
+{
+  "asset_id": "harbor-courier",
+  "mesh_count": 15,
+  "skin_count": 1,
+  "animation_clips": [
+    "Celebrate",
+    "Idle",
+    "Interact",
+    "Run",
+    "Talk",
+    "Turn",
+    "Walk"
+  ],
+  "file_bytes": 11547472,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

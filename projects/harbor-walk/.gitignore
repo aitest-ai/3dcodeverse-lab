@@ -1,0 +1,10 @@
+node_modules/
+dist/
+__pycache__/
+*.blend1
+evidence/video-raw/
+evidence/*.webm
+evidence/*.mp4
+
+*.webm
+*.mp4
