@@ -1,0 +1,28 @@
+name: Taipei Mecha v8.5 Full Frame Muzzle QA
+on:
+  push:
+    branches:
+      - feat/mecha-v85-fullframe-muzzle-animation-qa-20261103
+  pull_request:
+    paths:
+      - 'scripts/blender5/*v85*.py'
+      - 'tests/mecha/v85-*'
+      - 'examples/threejs/mech-animation-qa-v85.js'
+      - '.github/workflows/mecha-v85-animation.yml'
+permissions:
+  contents: read
+jobs:
+  core-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python tests/mecha/v85-trajectory.py
+      - run: node tests/mecha/v85-animation-qa.mjs
+      - run: python -m py_compile scripts/blender5/audit_animation_muzzle_v85.py
+      - run: python -m py_compile scripts/blender5/trajectory_math_v85.py
