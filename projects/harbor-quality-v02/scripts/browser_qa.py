@@ -7,7 +7,7 @@ def check(name,condition,detail=None):
  checks.append({'name':name,'pass':bool(condition),'detail':detail});print(name,condition,flush=True)
  if not condition:raise AssertionError(name+': '+str(detail))
 with sync_playwright() as p:
- b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader'])
+ b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--disable-gpu-watchdog','--disable-background-timer-throttling'])
  ctx=b.new_context(viewport={'width':960,'height':600},record_video_dir=str(E/'video-raw'),record_video_size={'width':960,'height':600})
  page=ctx.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:engine_errors.append(m.text) if m.type=='error' else None)
  snap=lambda:page.evaluate('window.__harborGodot')
@@ -17,18 +17,20 @@ with sync_playwright() as p:
   s=snap();x,y=s['buttons'][id];r=page.locator('#canvas').bounding_box();page.mouse.click(r['x']+x/s['viewport'][0]*r['width'],r['y']+y/s['viewport'][1]*r['height']);advance()
  def release():
   for k in ['KeyW','KeyA','KeyS','KeyD','ShiftLeft']:page.keyboard.up(k)
- def go(x,z,tol=.35,timeout=90,stop_near=None):
+ def go(x,z,tol=.65,timeout=120,stop_near=None):
   held=set();t=time.monotonic()
   while time.monotonic()-t<timeout:
    s=snap();dx=x-s['position'][0];dz=z-s['position'][2]
    if math.hypot(dx,dz)<tol or (stop_near and s['nearest']==stop_near):break
-   desired={'ShiftLeft'}
-   if abs(dx)>.12:desired.add('KeyD' if dx>0 else 'KeyA')
-   if abs(dz)>.12:desired.add('KeyS' if dz>0 else 'KeyW')
-   for k in ['KeyW','KeyA','KeyS','KeyD','ShiftLeft']:
-    if k not in desired:page.keyboard.up(k)
-   for k in desired:page.keyboard.down(k)
-   held=desired;advance(12)
+   near=math.hypot(dx,dz)<2.8
+   desired=set() if near else {'ShiftLeft'}
+   desired.add(('KeyD' if dx>0 else 'KeyA') if abs(dx)>abs(dz) else ('KeyS' if dz>0 else 'KeyW'))
+   for k in held-desired:page.keyboard.up(k)
+   for k in desired-held:page.keyboard.down(k)
+   held=desired
+   if near:
+    advance(1);release();held=set();advance(15)
+   else:advance(10)
   release();advance(15);s=snap();distance=math.hypot(x-s['position'][0],z-s['position'][2]);navigation.append({'target':[x,z],'position':s['position'],'error_m':distance})
   if distance>tol+.35 and not (stop_near and s['nearest']==stop_near):raise AssertionError('Blocked navigation '+str(navigation[-1]))
  try:

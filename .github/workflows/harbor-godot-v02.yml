@@ -32,7 +32,7 @@ jobs:
           python scripts/fetch_web_templates.py
       - name: Import native scene, verify real skeleton and build Web artifact
         run: |
-          python scripts/export_web.py --godot "$PWD/tools/engine/Godot_v4.6.3-stable_linux.x86_64" > evidence/github-godot-export.log 2>&1
+          python scripts/export_web.py --godot "$PWD/tools/engine/Godot_v4.6.3-stable_linux.x86_64" > evidence/github-godot-export.log 2>&1 || { cat evidence/github-godot-export.log; exit 1; }
           tools/engine/Godot_v4.6.3-stable_linux.x86_64 --headless --path godot --script res://scripts/inspect_asset.gd > evidence/github-godot-asset-check.log 2>&1
       - uses: actions/upload-artifact@v4
         if: always()

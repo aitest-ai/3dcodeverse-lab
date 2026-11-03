@@ -161,7 +161,8 @@ func _unhandled_input(event: InputEvent) -> void:
   if event.physical_keycode==KEY_Q:
    low_quality=not low_quality
    get_node("Sun").shadow_enabled=not low_quality
-   banner.text="畫質：省電（陰影關閉）" if low_quality else "畫質：標準（陰影開啟）"
+   get_viewport().scaling_3d_scale=.5 if low_quality else 1.0
+   banner.text="畫質：省電（低解析度／陰影關閉）" if low_quality else "畫質：標準（陰影開啟）"
   if event.physical_keycode==KEY_V:
    posture=(posture+1)%3
    arm.spring_length=[5.2,2.7,.85][posture]
