@@ -1,0 +1,17 @@
+
+> harbor-walk-framework@0.1.0 test
+> tsx --test tests/*.test.ts
+
+using deprecated parameters for the initialization function; pass a single object instead
+✔ quest rejects early delivery, collection before acceptance, invalid/duplicate stamps and duplicate rewards (0.89459ms)
+✔ quest timer freezes before acceptance and after completion (0.131728ms)
+✔ real Rapier capsule falls, grounds, collides with a wall and slides along it (80.78782ms)
+✔ camera retracts in front of solid geometry and recovers when clear (4.603726ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 433.385387

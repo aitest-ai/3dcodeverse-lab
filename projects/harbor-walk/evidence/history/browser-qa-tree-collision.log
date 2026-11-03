@@ -1,0 +1,18 @@
+WebGL game renders with a real skinned GLB True
+Idle bone quaternions change over time True
+Mouse drag rotates third-person camera True
+Camera yaw restored by inverse mouse drag True
+WASD translates player and selects Walk True
+Released input decelerates to idle True
+Both NPCs actually patrol True
+Proximity + E opens NPC dialogue True
+Accepting dialogue starts quest True
+All three pickups collected once True
+Traceback (most recent call last):
+  File "/workspace/work/harbor-framework/scripts/browser_qa.py", line 59, in <module>
+    go(12,8);go(12,-5.3);go(7,-5.3,tolerance=.4)
+             ^^^^^^^^^^^
+  File "/workspace/work/harbor-framework/scripts/browser_qa.py", line 31, in go
+    if math.hypot(x-s['position'][0],z-s['position'][2])>tolerance+.4:raise AssertionError('Navigation did not reach '+str([x,z])+' '+str(s['position']))
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Navigation did not reach [12, -5.3] [11.957353591918945, 0.04497791767120363, -2.464905023574829]

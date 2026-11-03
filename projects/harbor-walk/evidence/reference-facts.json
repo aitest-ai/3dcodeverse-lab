@@ -1,0 +1,243 @@
+{
+  "exe_bytes": 152220160,
+  "exe_sha256": "8ff21247bea38b2f58be0499e0986796784c938c4349d7a5aef012b1676ef487",
+  "engine_markers": [
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "Unreal Engine 5.6.1",
+      "byte_offset": 131379224,
+      "verified": true
+    },
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "++UE5+Release-5.6",
+      "byte_offset": 113171712,
+      "verified": true
+    },
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "++UE5+Release-5.6-CL-44394996",
+      "byte_offset": 113171776,
+      "verified": true
+    }
+  ],
+  "chunk_kinds": {
+    "ExportBundleData": 812,
+    "ShaderCode": 1401,
+    "BulkData": 223,
+    "ShaderCodeLibrary": 4,
+    "ContainerHeader": 1
+  },
+  "chunk_count": 2441,
+  "project_paths": 477,
+  "claims_limit": "Names and manifests establish asset presence only, not decoded topology or algorithms.",
+  "selected_paths": [
+    {
+      "chunk": "d364d81e82f5c0cc00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 27693,
+      "path": "../../../GirlFishing/Content/RetargetAnim/RyotsuAnim/ABP_Unarmed_Ryotsu.uasset"
+    },
+    {
+      "chunk": "0bb5820a0186cc9a00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 5519,
+      "path": "../../../GirlFishing/Content/xSeries/xUI/WBP_AimIcon.uasset"
+    },
+    {
+      "chunk": "dc43786951eba8d200000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8501,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OoharaAnim/BS_Idle_Walk_Run.uasset"
+    },
+    {
+      "chunk": "e284c0f4090ab68c00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 12602,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_GirlBase.uasset"
+    },
+    {
+      "chunk": "0650c4b4f0b8eae500000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 26139,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/OL_Base/SM_OLFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "82d5d064b5c3e12d00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8486,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OLFatAnim/BS_Idle_Walk_Run.uasset"
+    },
+    {
+      "chunk": "bbf4ed4c54e55a1000000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8430,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OLAnim/BS_Idle_Walk_Run.uasset"
+    },
+    {
+      "chunk": "d30fd65896a4616700000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 26147,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/OL_Base_Fat/SM_FatFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "39e17057acaf5f8c00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 807,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_SaveGame.uasset"
+    },
+    {
+      "chunk": "743885ad2786b14b00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 37820,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_GameManager.uasset"
+    },
+    {
+      "chunk": "86d510cac1f7dda400000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 120337,
+      "path": "../../../GirlFishing/Content/xSeries/xUI/UI_Fishing.uasset"
+    },
+    {
+      "chunk": "6998ce21adfa80b900000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 1132,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/INT_Girl.uasset"
+    },
+    {
+      "chunk": "fe7258ebc013324200000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8287,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Reiko/SM_ReikoFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "21f582c341b1bae900000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 12491,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Ryotsu/SM_RyotsuFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "1e243b38f72c29f200000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 10470,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_GirlNPC.uasset"
+    },
+    {
+      "chunk": "4075e15830a54fd300000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 19735,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Ai/SM_AiFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "c01033e11215ff0800000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 32595,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Oohara/SM_OoharaFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "2896ebb8e131a39300000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 28990,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OLAnim/ABP_Unarmed_OL.uasset"
+    },
+    {
+      "chunk": "118e1aa1538da8fb00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 22320,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OoharaAnim/ABP_Unarmed_Oohara.uasset"
+    },
+    {
+      "chunk": "479a5a6c2033c68800000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8946,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/OL_Base/SM_OLFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "22753fbc10408d2a00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 3651,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_GirlSP.uasset"
+    },
+    {
+      "chunk": "931d4b52750997f800000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 10525,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/BP_GirlNPC_Fat.uasset"
+    },
+    {
+      "chunk": "813ad93fc10ab0e900000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 8501,
+      "path": "../../../GirlFishing/Content/RetargetAnim/RyotsuAnim/BS_Idle_Walk_Run.uasset"
+    },
+    {
+      "chunk": "b3f929a00836a3cd00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 10316,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Ai/SM_AiFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "d8b3d6fe66acf33800000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 13232,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Oohara/SM_OoharaFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "ba2f665c5a128b9300000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 32677,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Ryotsu/SM_RyotsuFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "048ffbda1f71ea1e00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 26051,
+      "path": "../../../GirlFishing/Content/RetargetAnim/OLFatAnim/ABP_Unarmed_Fat.uasset"
+    },
+    {
+      "chunk": "6517af920d05ec2f00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 19743,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/Reiko/SM_ReikoFinal_Skeleton.uasset"
+    },
+    {
+      "chunk": "974f3ead57df871a00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 1219,
+      "path": "../../../GirlFishing/Content/SchoolRoom/Asset/obj_SchoolWallClock/SkeltalMeshes/obj_SchoolWallClock_Skeleton.uasset"
+    },
+    {
+      "chunk": "481e7df9a5ebbb2d00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 480,
+      "path": "../../../GirlFishing/Content/xSeries/xBP/Struct_Save.uasset"
+    },
+    {
+      "chunk": "d74c5b49f979229d00000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 11059,
+      "path": "../../../GirlFishing/Content/xSeries/xModel/OL_Base_Fat/SM_FatFinal_PhysicsAsset.uasset"
+    },
+    {
+      "chunk": "de777e319a6dbd7600000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 16147,
+      "path": "../../../GirlFishing/Content/xSeries/xUI/UI_FinalResult.uasset"
+    },
+    {
+      "chunk": "bd9d662447de040000000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 33996,
+      "path": "../../../GirlFishing/Content/xSeries/xUI/UI_Menu.uasset"
+    },
+    {
+      "chunk": "9da551d3d19752d500000001",
+      "kind": "ExportBundleData",
+      "uncompressed_chunk_bytes": 693,
+      "path": "../../../GirlFishing/Content/SchoolRoom/Asset/obj_SchoolWallClock/SkeltalMeshes/obj_SchoolWallClock_PhysicsAsset.uasset"
+    }
+  ]
+}

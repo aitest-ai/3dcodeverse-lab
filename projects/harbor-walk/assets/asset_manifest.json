@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "asset_id": "harbor-courier",
+  "model_file": "harbor-courier.glb",
+  "source_file": "harbor-courier.blend",
+  "unit": "meter",
+  "coordinate_system": "Blender Z-up / glTF Y-up; visual forward checked in browser",
+  "source": "Original Harbor Courier styling/accessories; Quaternius CC0 anatomy, hair, outfit and locomotion. Pipeline informed by 3dcodeverse-lab aviator_human.py; independently implemented.",
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Talk",
+    "Interact",
+    "Celebrate",
+    "Turn"
+  ],
+  "min_animation_count": 7,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  },
+  "license_note": "CC0 source geometry/animations plus original accessories; see THIRD_PARTY_NOTICES.md",
+  "sha256": "6c1f696d6faf9ce4e249a77ca9b341ff6b10d8179927e36fe68e373546b1ddea"
+}

@@ -1,0 +1,9 @@
+GirlFishing-Windows
+  container_id: FIoContainerId(a46a23700a961cb3)
+  container_flags: EIoContainerFlags(Compressed | Indexed)
+  version: ReplaceIoChunkHashWithIoHash
+  mount_point: ../../../
+  chunks: 2441
+  packages: 812
+  container_header_version: Some(SoftPackageReferencesOffset)
+  compression_methods: [Oodle]

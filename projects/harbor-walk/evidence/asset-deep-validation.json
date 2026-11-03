@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "sha256": "6c1f696d6faf9ce4e249a77ca9b341ff6b10d8179927e36fe68e373546b1ddea",
+  "bytes": 11547472,
+  "skin_count": 1,
+  "bones": 65,
+  "weighted_vertices": 17925,
+  "maximum_weight_sum_error": 1.2665987014770508e-07,
+  "morph_targets": 1,
+  "animations": {
+    "Celebrate": {
+      "channels": 195,
+      "nonconstant_channels": 20
+    },
+    "Idle": {
+      "channels": 195,
+      "nonconstant_channels": 18
+    },
+    "Interact": {
+      "channels": 195,
+      "nonconstant_channels": 20
+    },
+    "Run": {
+      "channels": 195,
+      "nonconstant_channels": 20
+    },
+    "Talk": {
+      "channels": 195,
+      "nonconstant_channels": 42
+    },
+    "Turn": {
+      "channels": 195,
+      "nonconstant_channels": 5
+    },
+    "Walk": {
+      "channels": 195,
+      "nonconstant_channels": 22
+    }
+  },
+  "limitations": [
+    "Does not certify anatomy, skin deformation, foot slip, facial quality or hardware performance."
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "real animated bones: Idle",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Walk",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Run",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Turn",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Talk",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Interact",
+      "pass": true
+    },
+    {
+      "name": "real animated bones: Celebrate",
+      "pass": true
+    },
+    {
+      "name": "facial slider accepts value",
+      "pass": true
+    },
+    {
+      "name": "asset failure presents retry UI",
+      "pass": true
+    },
+    {
+      "name": "retry reload recovers real game",
+      "pass": true
+    },
+    {
+      "name": "430px responsive layout has no horizontal overflow",
+      "pass": true
+    }
+  ],
+  "javascript_errors": [],
+  "limitations": [
+    "Mobile layout is tested using Chromium emulation, not Android hardware or touch locomotion.",
+    "Facial slider UI plus binary morph structure is verified; subtle facial quality remains a manual art review."
+  ]
+}

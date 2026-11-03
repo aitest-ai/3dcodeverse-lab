@@ -1,0 +1,391 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "WebGL game renders with a real skinned GLB",
+      "pass": true,
+      "detail": {
+        "calls": 113,
+        "triangles": 96678,
+        "geometries": 90,
+        "textures": 69
+      }
+    },
+    {
+      "name": "Idle bone quaternions change over time",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Mouse drag rotates third-person camera",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Camera yaw restored by inverse mouse drag",
+      "pass": true,
+      "detail": {
+        "yaw": 0,
+        "pitch": 0.3,
+        "distance": 5.5,
+        "desiredDistance": 5.5
+      }
+    },
+    {
+      "name": "WASD translates player and selects Walk",
+      "pass": true,
+      "detail": [
+        -7.363931217696518e-05,
+        0.04495735406875612,
+        4.326754093170166
+      ]
+    },
+    {
+      "name": "Released input decelerates to idle",
+      "pass": true,
+      "detail": "Idle"
+    },
+    {
+      "name": "Both NPCs actually patrol",
+      "pass": true,
+      "detail": [
+        [
+          {
+            "id": "guide",
+            "position": [
+              -2.9020822048187256,
+              0.04436482429504396,
+              -0.8051219582557678
+            ],
+            "state": "idle",
+            "animation": "Walk"
+          },
+          {
+            "id": "keeper",
+            "position": [
+              5.67471981048584,
+              0.04507948398590089,
+              -5.9999542236328125
+            ],
+            "state": "idle",
+            "animation": "Idle"
+          }
+        ],
+        [
+          {
+            "id": "guide",
+            "position": [
+              -1.995834469795227,
+              0.0449966335296631,
+              -0.9210572838783264
+            ],
+            "state": "patrol",
+            "animation": "Walk"
+          },
+          {
+            "id": "keeper",
+            "position": [
+              5.528748989105225,
+              0.045096530914306654,
+              -5.168305397033691
+            ],
+            "state": "idle",
+            "animation": "Idle"
+          }
+        ]
+      ]
+    },
+    {
+      "name": "Proximity + E opens NPC dialogue",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Accepting dialogue starts quest",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "All three pickups collected once",
+      "pass": true,
+      "detail": [
+        "tea",
+        "garden",
+        "pier"
+      ]
+    },
+    {
+      "name": "Second NPC offers delivery",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Complete quest loop awards exactly 150",
+      "pass": true,
+      "detail": 150
+    },
+    {
+      "name": "Player cannot cross solid bookshop wall",
+      "pass": true,
+      "detail": [
+        2.545380115509033,
+        0.04499973297119142,
+        -8.664937973022461
+      ]
+    },
+    {
+      "name": "Camera boom retracts against building",
+      "pass": true,
+      "detail": {
+        "yaw": -3.138000000000001,
+        "pitch": 0.3,
+        "distance": 0.12,
+        "desiredDistance": 5.5
+      }
+    },
+    {
+      "name": "No JavaScript runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "navigation": [
+    {
+      "target": [
+        -1.995834469795227,
+        0.5789427161216736
+      ],
+      "position": [
+        -1.5987528562545776,
+        0.044952466487884535,
+        0.09615863859653473
+      ],
+      "distance": 0.6251034101041563,
+      "frames": 124
+    },
+    {
+      "target": [
+        -5.5,
+        -4.8
+      ],
+      "position": [
+        -5.673547744750977,
+        0.0444933319091797,
+        -4.753855228424072
+      ],
+      "distance": 0.17957772593488494,
+      "frames": 164
+    },
+    {
+      "target": [
+        -6,
+        3.6
+      ],
+      "position": [
+        -5.870041847229004,
+        0.044961764812469496,
+        3.5598349571228027
+      ],
+      "distance": 0.13602335145472877,
+      "frames": 200
+    },
+    {
+      "target": [
+        -3.5,
+        3.6
+      ],
+      "position": [
+        -3.0274643898010254,
+        0.045035734176635756,
+        3.561824321746826
+      ],
+      "distance": 0.474075189517662,
+      "frames": 215
+    },
+    {
+      "target": [
+        -3.5,
+        8
+      ],
+      "position": [
+        -3.1732499599456787,
+        0.042591347694396986,
+        8.156509399414062
+      ],
+      "distance": 0.3622992972397975,
+      "frames": 242
+    },
+    {
+      "target": [
+        8,
+        8
+      ],
+      "position": [
+        8.068822860717773,
+        0.04326476097106935,
+        8.153873443603516
+      ],
+      "distance": 0.1685634088519283,
+      "frames": 287
+    },
+    {
+      "target": [
+        15,
+        8
+      ],
+      "position": [
+        14.984916687011719,
+        0.04461653470993043,
+        8.153284072875977
+      ],
+      "distance": 0.15402439199084716,
+      "frames": 324
+    },
+    {
+      "target": [
+        15,
+        -5.3
+      ],
+      "position": [
+        14.984650611877441,
+        0.044533624649047865,
+        -5.53514289855957
+      ],
+      "distance": 0.23564334588257188,
+      "frames": 373
+    },
+    {
+      "target": [
+        7,
+        -5.3
+      ],
+      "position": [
+        6.37434196472168,
+        0.040440275669097914,
+        -5.232644081115723
+      ],
+      "distance": 0.6292732291438062,
+      "frames": 412
+    },
+    {
+      "target": [
+        3,
+        -5.3
+      ],
+      "position": [
+        2.549563407897949,
+        0.04509998798370363,
+        -5.232516765594482
+      ],
+      "distance": 0.45546362141266483,
+      "frames": 448
+    }
+  ],
+  "final": {
+    "ready": true,
+    "started": true,
+    "position": [
+      2.5452170372009277,
+      0.04509992837905885,
+      -8.664942741394043
+    ],
+    "velocity": [
+      -3.1448842487062182e-30,
+      0,
+      -6.096744001023173e-14
+    ],
+    "heading": 9.424777960769385,
+    "bones": [
+      {
+        "name": "upperarm_l",
+        "q": [
+          -0.26387150988093766,
+          0.6668394953630671,
+          -0.5128672369628092,
+          0.4718729924350016
+        ]
+      },
+      {
+        "name": "thigh_l",
+        "q": [
+          0.948192338182885,
+          0.11606628815234662,
+          -0.017055534850493766,
+          0.2952439849833492
+        ]
+      },
+      {
+        "name": "calf_l",
+        "q": [
+          0.2568580364328217,
+          -0.11030010058892041,
+          0.021451060613804744,
+          0.9598946364083988
+        ]
+      }
+    ],
+    "grounded": true,
+    "animation": "Idle",
+    "animationTime": 2.113299999999989,
+    "quest": "complete",
+    "collected": [
+      "tea",
+      "garden",
+      "pier"
+    ],
+    "score": 150,
+    "distance": 81.75938599082193,
+    "camera": {
+      "yaw": -3.138000000000001,
+      "pitch": 0.3,
+      "distance": 0.12,
+      "desiredDistance": 5.5
+    },
+    "dialogue": false,
+    "interactions": 2,
+    "npcs": [
+      {
+        "id": "guide",
+        "position": [
+          -1.6680818796157837,
+          0.04499079227447511,
+          0.20123837888240814
+        ],
+        "state": "patrol",
+        "animation": "Walk"
+      },
+      {
+        "id": "keeper",
+        "position": [
+          5.6759185791015625,
+          0.04507960319519044,
+          -5.988465785980225
+        ],
+        "state": "idle",
+        "animation": "Idle"
+      }
+    ],
+    "frames": 521,
+    "render": {
+      "calls": 71,
+      "triangles": 62048,
+      "geometries": 100,
+      "textures": 71
+    },
+    "quality": "low"
+  },
+  "performance": {
+    "renderer": "Chromium ANGLE SwiftShader (software)",
+    "viewport": [
+      960,
+      600
+    ],
+    "quality": "low",
+    "samples": 300,
+    "mean_frame_ms": 332.6533333333333,
+    "mean_fps": 3.006132510321055,
+    "p95_frame_ms": 550,
+    "not_hardware_benchmark": true
+  },
+  "javascript_errors": []
+}

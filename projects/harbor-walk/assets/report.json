@@ -1,0 +1,21 @@
+{
+  "blender_version": "4.3.2",
+  "bone_count": 65,
+  "smile_vertices_changed": 226,
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Talk",
+    "Interact",
+    "Celebrate",
+    "Turn"
+  ],
+  "art_approved": false,
+  "known_limits": [
+    "No foot IK",
+    "Satchel rigidly weighted to pelvis",
+    "CC0 outfit is adapted, not wholly original topology",
+    "Visual inspection required; structural validation alone is insufficient"
+  ]
+}

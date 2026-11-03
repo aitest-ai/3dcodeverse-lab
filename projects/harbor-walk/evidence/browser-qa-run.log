@@ -1,0 +1,15 @@
+WebGL game renders with a real skinned GLB True
+Idle bone quaternions change over time True
+Mouse drag rotates third-person camera True
+Camera yaw restored by inverse mouse drag True
+WASD translates player and selects Walk True
+Released input decelerates to idle True
+Both NPCs actually patrol True
+Proximity + E opens NPC dialogue True
+Accepting dialogue starts quest True
+All three pickups collected once True
+Second NPC offers delivery True
+Complete quest loop awards exactly 150 True
+Player cannot cross solid bookshop wall True
+Camera boom retracts against building True
+No JavaScript runtime errors True

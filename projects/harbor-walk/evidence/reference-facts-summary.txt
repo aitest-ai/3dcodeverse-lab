@@ -1,0 +1,37 @@
+{
+  "exe_bytes": 152220160,
+  "exe_sha256": "8ff21247bea38b2f58be0499e0986796784c938c4349d7a5aef012b1676ef487",
+  "engine_markers": [
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "Unreal Engine 5.6.1",
+      "byte_offset": 131379224,
+      "verified": true
+    },
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "++UE5+Release-5.6",
+      "byte_offset": 113171712,
+      "verified": true
+    },
+    {
+      "file": "Windows/GirlFishing/Binaries/Win64/GirlFishing-Win64-Shipping.exe",
+      "encoding": "UTF-16LE",
+      "text": "++UE5+Release-5.6-CL-44394996",
+      "byte_offset": 113171776,
+      "verified": true
+    }
+  ],
+  "chunk_kinds": {
+    "ExportBundleData": 812,
+    "ShaderCode": 1401,
+    "BulkData": 223,
+    "ShaderCodeLibrary": 4,
+    "ContainerHeader": 1
+  },
+  "chunk_count": 2441,
+  "project_paths": 477,
+  "claims_limit": "Names and manifests establish asset presence only, not decoded topology or algorithms."
+}
