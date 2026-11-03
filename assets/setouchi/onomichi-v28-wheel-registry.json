@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "candidate": "V28",
+  "project": "瀨戶內騎行世界（尾道／向島）",
+  "status": "PRIVATE_TRUE_V06_BIKE_TERRAIN_CONTACT_STUDY__NOT_RIDEABLE",
+  "base_branch": "feat/onomichi-v27-source-bbox-sweep",
+  "source_osm_way_id": "388716484",
+  "source_osm_xml_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "GSI_derived_ground_sample_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "source_original_bike_glb_sha256": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
+  "source_original_actor_glb_sha256": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+  "original_bike_meshes_read_locally": 139,
+  "original_actor_Cycle_animation_present_locally": true,
+  "original_wheelbase_m": 1.08,
+  "original_nominal_wheel_radius_m": 0.35,
+  "source_Osm_centerline_length_m": 74.3638,
+  "source_2m_ground_samples": 3366,
+  "private_simulation_frames": 373,
+  "smoothed_test_track_max_offset_from_osm_m": 0.02387,
+  "private_bike_dem_model_max_pitch_deg": 3.316,
+  "private_bike_model_max_kinematic_steer_deg": 10.077,
+  "true_source_bicycle_XZ_hull_approx_plan_sweep_m2": 43.5145,
+  "method": "139 original GLB visible meshes projected to convex hull and pose-sampled at 0.2m; two-wheel source GSI circular contact height constraints; this is NOT dynamic collision.",
+  "public_ci_has_source_only_GSI_math": true,
+  "private_source_bike_GLBS_in_public_repo": false,
+  "protected_original_v27_files": 11,
+  "original_v27_existing_files_count": 342,
+  "intentionally_modified_existing_files": [
+    "index.html"
+  ],
+  "native_node_tests": "37/37 PASS (original 21 + V26/V27 and 6 new V28)",
+  "desktop_mobile_dom_ui_tests": "PASS via Playwright Chromium set_content; 3D module blocked",
+  "actual_WebGL2_threejs_motion": "NOT_PASSED_ERR_BLOCKED_BY_ADMINISTRATOR",
+  "android_playtest": false,
+  "actual_legal_riding": false,
+  "real_bike_rider_hands_feet_contact_tested": false,
+  "road_width_and_curbs_surveyed": false,
+  "road_surface_height_surveyed": false,
+  "road_collision_verified": false,
+  "ferry_to_halows_74m_rideable_route_connected": false,
+  "main_or_site_modified": false,
+  "private_deliverables": [
+    {
+      "filename": "Onomichi_V28_Full_Original_Runtime_Plus_Wheel_Contact_Lab.zip",
+      "bytes": 235696298,
+      "sha256": "2b83e637fca50f20eb4237b9ebc3ae52a4264079a686819b44d694c7978905d1",
+      "entries": 362,
+      "zip_crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V28_Incremental_Original_Bike_Motion_Patch.zip",
+      "bytes": 1784638,
+      "sha256": "2d80f450ed4d5ca386b233f90c4313a18d818efa1464a0daac6eb4be546d4e64",
+      "entries": 21,
+      "zip_crc": "PASS"
+    },
+    {
+      "filename": "Onomichi_V28_Standalone_True_V06_Bike_Rider_Viewer.zip",
+      "bytes": 16394366,
+      "sha256": "a6290754d0ab90e0394c172587c1cd844d9293d829e7708420a5cce7076bdcf3",
+      "entries": 30,
+      "zip_crc": "PASS"
+    }
+  ],
+  "privacy": "Large private original actor/bicycle/ferry V06 ZIP not published to repo. User downloads from conversation.",
+  "notes": "No surveyed road width; colored GSI surface is terrain, not pavement. Public Actions only audit derived source; private 139-mesh bike and source Cycle verified locally. The original source-clip hands/feet-to-bike contact needs actual WebGL2 testing before acceptance."
+}
