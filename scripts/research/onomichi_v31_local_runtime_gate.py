@@ -126,7 +126,7 @@ def prepare(archive:pathlib.Path,target:pathlib.Path,*,fixture_mode:bool=False)-
     if not fixture_mode and archive_sha!=V28_ZIP_SHA:
         raise ValueError("Full V28 package SHA256 mismatch; refusing unverified runtime")
     assets_root=pathlib.Path(__file__).resolve().parents[2]/"apps"/"onomichi-v31-original-runtime"
-    if not (assets_root/"observer.mjs").is_file() or not (assets_root/"launch.html").is_file():
+    if not all((assets_root/n).is_file() for n in ("observer.mjs","observer_ui.html","launch.html")):
         raise ValueError("V31 observer sources missing")
     with zipfile.ZipFile(archive) as z:
         rel,prefix,total=inspect_archive(z)
@@ -149,6 +149,7 @@ def prepare(archive:pathlib.Path,target:pathlib.Path,*,fixture_mode:bool=False)-
             review=work/"review"/"onomichi-v31"
             review.mkdir(parents=True,exist_ok=True)
             shutil.copy2(assets_root/"observer.mjs",review/"observer.mjs")
+            shutil.copy2(assets_root/"observer_ui.html",review/"observer_ui.html")
             shutil.copy2(assets_root/"launch.html",review/"index.html")
             src=(work/"src/avatar.mjs").read_text(encoding="utf-8")
             status=TEST_LABEL if fixture_mode else REAL_LABEL
@@ -166,6 +167,7 @@ def prepare(archive:pathlib.Path,target:pathlib.Path,*,fixture_mode:bool=False)-
               "instrumented_copy_index_only":True,
               "added_files":["review/onomichi-v31/observer.mjs",
                              "review/onomichi-v31/index.html",
+                             "review/onomichi-v31/observer_ui.html",
                              "review/onomichi-v31/audit.json"],
               "original_driver_source_inspection":inspector(src),
               "original_avatar_driver_live_integration_verified":False,
