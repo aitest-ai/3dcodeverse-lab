@@ -33,6 +33,7 @@ try:
   page.wait_for_timeout(450)
   assert page.evaluate("document.documentElement.scrollWidth<=window.innerWidth+2"),'Mobile horizontal overflow'
   assert page.locator('#canvas').is_visible()
+  page.screenshot(path=str(DIST/'V30_Mobile_Layout_No_Private_Model.png'),full_page=True)
   print('PASS Chromium mobile viewport layout (not Android hardware)')
   browser.close()
 finally:
