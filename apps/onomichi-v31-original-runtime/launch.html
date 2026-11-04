@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>瀨戶內 V31｜原版遊玩測試入口</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,"Noto Sans TC",sans-serif;color:#eaf3f1;background:#0d1a21}
+*{box-sizing:border-box}main{max-width:1050px;margin:0 auto;padding:clamp(18px,4vw,45px)}
+h1{font-size:clamp(25px,4vw,38px);line-height:1.2;margin:12px 0}h2{font-size:17px;margin:0 0 12px}
+p{line-height:1.8;color:#c3d6d4}.eyebrow{color:#76d3b4;letter-spacing:.14em;font-size:12px;font-weight:800}
+.warning{background:#332d23;border:1px solid #796748;color:#ffdfae;border-radius:11px;padding:15px;margin:22px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.panel{background:#172831;border:1px solid #385965;border-radius:14px;padding:20px}
+.info{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;color:#c2d5d3}
+a.launch{display:inline-block;color:#effffb;text-decoration:none;font-weight:700;background:#28725f;border:1px solid #72b99f;border-radius:9px;padding:12px 20px;margin:13px 0}
+a.launch:hover{background:#388974}ol{padding-left:23px;color:#d6e5e2;line-height:2}
+small{color:#9dbbb7}code{background:#1f3841;border-radius:4px;padding:3px 6px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><main>
+<div class="eyebrow">SETOUCHI CYCLING WORLD · ORIGINAL RUNTIME · V31</div>
+<h1>原版瀨戶內騎行世界｜獨立遊玩驗收</h1>
+<p>這個入口是從你自己持有的原始 V28 完整遊戲包建立的「新工作副本」，不是簡化展示版。遊戲程式、GLB 人物、自行車、渡船和 Halows 不改動，只有副本的首頁多載入一個小型操作記錄面板。</p>
+<div class="warning"><b>注意：</b>下方的來源核對代表檔案沒有被更換；不代表遊戲操作、腳踩踏板、手抓車把、真道路通行或 Android 已通過。沒有載入真 V28 ZIP 時，此入口只能是測試樣本。</div>
+<div class="grid">
+<section class="panel">
+<h2>① 來源查核</h2>
+<div class="info" id="source">正在讀取核驗記錄…</div>
+<a class="launch" href="../../index.html" target="_blank" rel="noopener">開啟原版遊戲副本</a>
+<p><small>請在新分頁的遊戲畫面右下角展開「V31 原版遊玩驗收記錄」。如面板未出現，應先查瀏覽器 Console，不要自行宣布通過。</small></p>
+</section>
+<section class="panel">
+<h2>② 實際應測的操作</h2>
+<ol>
+<li>先讓 3D 環境真的載入，檢查人物是否能走路、停下。</li>
+<li>從步行切換騎車並退回步行，檢查人物有無漂浮。</li>
+<li>左右轉彎、上坡，觀察車輪與車架是否合理。</li>
+<li>切換第一／第三人稱，檢查鏡頭是否穿牆、撞到人物。</li>
+<li>操作既有渡船功能，確認上下船與移動。</li>
+<li>打開 V30 獨立工作臺，對同一原版模型測八個手腳接觸點。</li>
+</ol>
+</section>
+<section class="panel">
+<h2>③ 操作證據</h2>
+<p>原版遊戲副本的右下角有開始、停止、匯出 JSON 按鈕。只會記錄 WASD 等操控代碼、滑鼠／觸控種類、是否發生錯誤及人工確認項目；不蒐集鍵入文字、GPS 或滑鼠座標。</p>
+<p>匯出的 JSON 要連同真實遊玩畫面（手、腳、自行車及鏡頭）一起檢查，才能判斷問題。</p>
+</section>
+<section class="panel">
+<h2>④ 保護原版</h2>
+<p>原本的 <code>src/main.mjs</code>、<code>src/avatar.mjs</code>、<code>data/world.json</code> 與原版 GLB 保持逐位元相同。新增功能只限獨立資料夾，網站不會自動部署，也沒有新可騎道路。</p>
+<p><small>驗收報告只是本機檔案，沒有任何自動上傳或遠端儲存。</small></p>
+</section>
+</div></main>
+<script type="module">
+const el=document.getElementById('source');
+try{
+ const r=await fetch('./audit.json',{cache:'no-store'});
+ if(!r.ok)throw Error('audit unavailable');
+ const j=await r.json();
+ const real=j.status==='V28_ORIGINAL_ARCHIVE_AND_CORE_SHA_VERIFIED' && j.core_hashes_verified===true;
+ el.textContent=[
+  '來源類型：'+(real?'V28 完整原始 ZIP SHA + 12 核心檔案通過':'合成／未核准的測試來源'),
+  '核心原始碼是否更動：'+(j.original_game_core_changed===false?'否':'不可確認'),
+  '觀測器只新增於獨立首頁：'+(j.instrumented_copy_index_only===true?'是':'未確認'),
+  '原始檔案數：'+String(j.source_members_count??'未知'),
+  '原版主遊戲操作已人工驗收：未完成',
+  '原版車輪／騎姿碰撞及 Android：未完成'
+ ].join('\n');
+}catch(error){
+ el.textContent='缺少有效來源驗證：'+String(error.message||error);
+}
+</script>
+</body></html>

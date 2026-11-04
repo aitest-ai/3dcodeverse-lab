@@ -1,0 +1,70 @@
+name: Onomichi V31 original-runtime local QA gate (no private assets)
+on:
+  push:
+    branches: [feat/onomichi-v31-original-runtime-playtest]
+    paths:
+      - scripts/research/onomichi_v31_local_runtime_gate.py
+      - apps/onomichi-v31-original-runtime/**
+      - tests/test_onomichi_v31_*.py
+      - docs/ONOMICHI_V31_ORIGINAL_RUNTIME_PLAYTEST.md
+      - .github/workflows/onomichi-v31-runtime-playtest.yml
+  pull_request:
+    branches: [feat/onomichi-v30-webgl2-pose-workbench]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-runtime-source-only-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Strict ZIP provenance, source-hash and mutation-safety unit tests (synthetic ZIP)
+        run: |
+          python -m py_compile scripts/research/onomichi_v31_local_runtime_gate.py tests/test_onomichi_v31_runtime_gate.py
+          python -m unittest discover -s tests -p 'test_onomichi_v31_runtime_gate.py' -v
+      - name: Check isolated observer syntax and static source-only page
+        run: |
+          node --check apps/onomichi-v31-original-runtime/observer.mjs
+          python - <<'PY'
+          from pathlib import Path
+          html=Path('apps/onomichi-v31-original-runtime/launch.html').read_text()
+          assert '../../index.html' in html
+          assert 'V31' in html
+          p=Path('apps/onomichi-v31-original-runtime/observer.mjs').read_text()
+          assert 'new URL' in p and 'observer_ui.html' in p
+          assert 'real_collision_verified:false' in p
+          print('PASS source-only observer and portal paths')
+          PY
+      - name: Install Playwright and headless Chromium for actual browser test
+        run: |
+          python -m pip install --no-cache-dir playwright==1.56.0
+          python -m playwright install --with-deps chromium
+      - name: Test real Chromium event recording and JSON export using SYNTHETIC game ONLY
+        run: python tests/test_onomichi_v31_browser.py
+      - name: Assemble source-only offline V31 kit, no user models
+        run: |
+          mkdir -p outputs/onomichi-v31-kit/scripts/research
+          mkdir -p outputs/onomichi-v31-kit/apps/onomichi-v31-original-runtime
+          mkdir -p outputs/onomichi-v31-kit/docs
+          cp scripts/research/onomichi_v31_local_runtime_gate.py outputs/onomichi-v31-kit/scripts/research/
+          cp apps/onomichi-v31-original-runtime/{observer.mjs,observer_ui.html,launch.html} outputs/onomichi-v31-kit/apps/onomichi-v31-original-runtime/
+          cp docs/ONOMICHI_V31_ORIGINAL_RUNTIME_PLAYTEST.md outputs/onomichi-v31-kit/docs/
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('outputs/onomichi-v31-kit')
+          names=[p.suffix.lower() for p in root.rglob('*') if p.is_file()]
+          assert not any(n in ('.glb','.blend','.zip','.osmbin') for n in names)
+          assert len(list(root.rglob('*.*')))>=5
+          print('PASS: local tool only; no private original runtime bytes')
+          PY
+      - name: Upload source-only V31 local runtime playtest tool
+        uses: actions/upload-artifact@v4
+        with:
+          name: Onomichi_V31_Original_Runtime_Playtest_Kit_SOURCE_ONLY
+          path: outputs/onomichi-v31-kit/
+          retention-days: 30
+          if-no-files-found: error

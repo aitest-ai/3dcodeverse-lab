@@ -1,0 +1,49 @@
+<style>
+:host{position:fixed;z-index:2147483600;right:12px;bottom:12px;width:min(360px,calc(100vw - 24px));max-height:calc(100dvh - 24px);font:13px/1.55 system-ui,"Noto Sans TC",sans-serif;color:#eaf5f4;pointer-events:none}
+*,*:before,*:after{box-sizing:border-box}
+.panel{pointer-events:auto;background:#142630f4;border:1px solid #83b5ac;border-radius:13px;padding:12px;box-shadow:0 10px 35px #06151888;max-height:calc(100dvh - 24px);overflow-y:auto;backdrop-filter:blur(10px)}
+.head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.h{font-size:15px;font-weight:800}.sub{font-size:11px;color:#b6d3cf;margin:6px 0}
+button{cursor:pointer;color:#f4fffd;border:1px solid #5c8588;border-radius:8px;padding:7px 10px;font:inherit;background:#26525d}
+button:hover{background:#367879}button:disabled{opacity:.35;cursor:not-allowed}
+button.primary{background:#147868}.buttons{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.status{font-size:12px;color:#f3dbac;background:#3a3328;border:1px solid #8d7851;padding:8px;border-radius:7px;margin:8px 0}
+.data{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}
+.box{background:#223d45;border:1px solid #4a747a;padding:7px;border-radius:6px}
+.box b{display:block;font-size:18px}.box small{display:block;color:#bfd4d2;font-size:10px}
+details{border-top:1px solid #496469;padding-top:9px;margin-top:9px}
+summary{cursor:pointer;font-size:12px;font-weight:700}
+label.step{display:flex;align-items:flex-start;gap:6px;margin:7px 0;font-size:12px}
+label.step input{accent-color:#6ad2b8;margin-top:3px}
+.note{font-size:11px;line-height:1.5;color:#d9c99d;margin-top:8px}
+.hidden .rest{display:none}.hidden{max-height:90px}
+</style>
+<div class="panel" id="panel">
+ <div class="head"><div class="h">V31｜原版遊玩驗收記錄</div><button id="toggle" aria-expanded="true">縮小</button></div>
+ <div class="rest">
+  <div class="sub">只在本機旁觀原遊戲操作，不修改人物、車輛、渡船或碰撞。</div>
+  <div id="source" class="status">正在讀取本地來源驗證…</div>
+  <div class="data">
+   <div class="box"><small>已記錄事件</small><b id="count">0</b></div>
+   <div class="box"><small>觀察器 RAF（非遊戲 FPS）</small><b id="fps">—</b></div>
+   <div class="box"><small>頁面 canvas 數</small><b id="canvases">0</b></div>
+   <div class="box"><small>視窗大小</small><b id="viewport">—</b></div>
+  </div>
+  <div class="buttons">
+   <button class="primary" id="start">開始記錄</button>
+   <button id="stop" disabled>停止</button>
+   <button id="save" disabled>匯出 JSON</button>
+   <button id="reset">清空</button>
+  </div>
+  <details open>
+   <summary>人工操作驗收（需親自勾選）</summary>
+   <label class="step"><input type="checkbox" data-manual="walk">步行與停止、人物動作實際正常</label>
+   <label class="step"><input type="checkbox" data-manual="cycle">實際切換騎車／下車正常</label>
+   <label class="step"><input type="checkbox" data-manual="turn">實際左右轉彎與車輪方向一致</label>
+   <label class="step"><input type="checkbox" data-manual="camera">第一／第三人稱及鏡頭切換正常</label>
+   <label class="step"><input type="checkbox" data-manual="ferry">渡船登船、行駛、下船操作正常</label>
+   <label class="step"><input type="checkbox" data-manual="pose">目視騎姿手抓把、腳踩踏板正常</label>
+  </details>
+  <div class="note" id="warning">勾選是人工確認，系統不能自動證明碰撞、道路通行權或所有動畫已通過。</div>
+ </div>
+</div>
