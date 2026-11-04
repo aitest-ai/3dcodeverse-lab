@@ -1,0 +1,51 @@
+{
+  "schema": "noboribetsu-date-v033-original-seam-isolation/1",
+  "kind": "inspector_only_not_promoted",
+  "base_pr": 133,
+  "source_inspector_zip_sha256": "661eb6a6d18d4f430ccd0ed1a0b2805548793dd4fe6b662542212dc4e64730e5",
+  "source_runtime_zip_sha256": "57882e06ad6f9256c3150ff562656eb745b24331fe0c9893c777c351dde394f0",
+  "source_v031_roof_glb_sha256": "3971f06b4bbba86432db3df09e486295e57d272f0ba4b187dbc0d4bdc7b1e763",
+  "base_inspector_files": 32,
+  "unchanged_files": 30,
+  "updated_files": [
+    "app.js",
+    "index.html"
+  ],
+  "added_glbs": 2,
+  "inspector_glbs": 10,
+  "v033_variants": {
+    "trim": {
+      "sha256": "c4391fbe3df863edc77a36b847ee62d47a3fd4a639c12919c2f945d03183bfed",
+      "bytes": 567464,
+      "meshes": 3,
+      "triangles": 6840,
+      "removed_lip_faces": 360
+    },
+    "blend": {
+      "sha256": "0e9aa5090a906b783682f567ebfc4f4c8b2b2b89cd2b89eb892b4771f28f09bb",
+      "bytes": 567464,
+      "meshes": 3,
+      "triangles": 6840,
+      "removed_lip_faces": 360,
+      "changed_surface_vertices": 864,
+      "max_offset_game_units": 0.003
+    }
+  },
+  "source_roof_has_white_band_without_overlays": true,
+  "original_geometry_changed": false,
+  "full_runtime_changed": false,
+  "clean_replay_sources_match": true,
+  "webgl2": true,
+  "webgl2_comparison_screenshots": 6,
+  "diagnostic_screenshots": 4,
+  "chrome_mobile_emulation_430x932": true,
+  "javascript_errors": 0,
+  "visual_art_status": "NOT_APPROVED_LOW_VISIBLE_DELTA",
+  "default_roof_mode": "V031",
+  "blender_native_tested": false,
+  "android_device_tested": false,
+  "private_host_tested": false,
+  "inspector_zip_sha256": "b1a430f27f390bc284ba5febbdcd07b5ea45c1e281c5b2308d16c5fb38356339",
+  "sourceqa_zip_sha256": "d82ecf5b0ed87a765555761e3885f6e340ce57e907a77feb20ac6180c8a07eaa",
+  "merge_policy": "DRAFT_ONLY_NO_MERGE_NO_DEPLOY"
+}
