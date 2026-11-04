@@ -11,6 +11,7 @@ const result=await build({
  legalComments:'eof',metafile:true
 });
 await copyFile(resolve(root,'index.html'),resolve(dist,'index.html'));
+await copyFile(resolve(root,'node_modules/three/LICENSE'),resolve(dist,'LICENSE_THREE.txt'));
 await writeFile(resolve(dist,'README-START-HERE.txt'),
  '瀨戶內 V30：真正 Three.js WebGL2 人物／自行車騎姿檢視\n\n'+
  '1. 本 ZIP 不包含私人 GLB，請保留原始 GLB 在自己的裝置上。\n'+
