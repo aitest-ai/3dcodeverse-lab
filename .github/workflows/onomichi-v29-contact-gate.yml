@@ -1,0 +1,38 @@
+name: Onomichi V29 source-only pose contact safety gate
+on:
+  push:
+    branches: [feat/onomichi-v29-contact-gate]
+  pull_request:
+    branches: [feat/onomichi-v28-original-bike-wheel-contact]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-source-ci-not-gameplay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify synthetic Python cases
+        run: |
+          python3 -m py_compile scripts/research/onomichi_v29_contact_gate.py
+          python3 -m unittest discover -s tests -p 'test_onomichi_v29_contact_gate.py' -v
+      - name: Verify isolated Node marker mock (not real WebGL)
+        run: |
+          node --check scripts/research/onomichi_v29_runtime_probe.mjs
+          node --test tests/test_onomichi_v29_runtime_probe.mjs
+      - name: Verify no rideable road is asserted
+        run: |
+          python3 scripts/research/onomichi_v29_contact_gate.py --capture tests/onomichi-v29-synthetic-contact.json --output /tmp/v29.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          x=json.loads(Path('/tmp/v29.json').read_text())
+          r=json.loads(Path('assets/setouchi/onomichi-v29-contact-registry.json').read_text())
+          assert x['status']=='SYNTHETIC_UNIT_TEST_ONLY' and x['frame_count']==6
+          assert x['distances_mm']['left_hand_to_grip']['median_mm']==20
+          assert x['review_only']['rideable_route_approved'] is False
+          assert r['based_on_sha']=='4f324c2d7989bf45416f82213444ac254e148266'
+          assert all(r[k] is False for k in ['real_actor_and_bike_glbs_available_in_this_run','instrumented_original_v28_runtime','chromium_webgl2_visual_acceptance','android_visual_acceptance','field_width_and_legal_road_rights','road_surface_and_collision_verified','ferry_to_halows_rideable_route_connected','main_or_website_modified','private_assets_committed_to_public_repo'])
+          print('PASS: synthetic calculations only; private GLBs and real 3D untested')
+          PY
