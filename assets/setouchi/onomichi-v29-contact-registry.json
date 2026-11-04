@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "candidate": "V29",
+  "status": "OFFLINE_POSE_CONTACT_GATE_READY_NOT_ACTUAL_WEBGL2_TESTED",
+  "based_on_branch": "feat/onomichi-v28-original-bike-wheel-contact",
+  "based_on_sha": "4f324c2d7989bf45416f82213444ac254e148266",
+  "original_actor_glb_sha256": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+  "original_bike_glb_sha256": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
+  "original_osm_way": "388716484",
+  "original_osm_xml_sha256": "5adaecd750f1bea9517ddb9b0ebfabec11414b4f60309e98122d1434859ada76",
+  "original_gsi_derived_sha256": "03726ce15167b760f6a738c1862097c258857299cae7a32353a84931c44cdbf1",
+  "sampled_original_v28_positions": 373,
+  "measurement_categories": [
+    "left_hand_to_grip",
+    "right_hand_to_grip",
+    "left_foot_to_pedal",
+    "right_foot_to_pedal"
+  ],
+  "real_actor_and_bike_glbs_available_in_this_run": false,
+  "instrumented_original_v28_runtime": false,
+  "chromium_webgl2_visual_acceptance": false,
+  "android_visual_acceptance": false,
+  "field_width_and_legal_road_rights": false,
+  "road_surface_and_collision_verified": false,
+  "ferry_to_halows_rideable_route_connected": false,
+  "main_or_website_modified": false,
+  "files_added_only": true,
+  "private_assets_committed_to_public_repo": false,
+  "local_python_tests": "8/8 PASS",
+  "local_node_mock_tests": "4/4 PASS",
+  "note": "Public CI only checks synthetic marker math; true source GLBs and WebGL2 animation need separate local verification."
+}
