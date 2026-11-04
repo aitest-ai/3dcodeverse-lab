@@ -1,0 +1,108 @@
+{
+  "scope": "Derived from full browser-mesh reports; actual production mesh sampled at120Hz, not art approval",
+  "assets": {
+    "harbor-courier-review": {
+      "Idle": {
+        "samples": 301,
+        "max_same_support_reference_drift_m": 5.179590105175906e-07,
+        "actual_all_footwear_min_y_m": 0.0029995796241031915,
+        "reference_planar_speed_max_mps": 3.369451559041786e-05,
+        "reference_planar_speed_mean_mps": 9.688994180061644e-06
+      },
+      "Walk": {
+        "samples": 161,
+        "max_same_support_reference_drift_m": 0.00021723505012123125,
+        "actual_all_footwear_min_y_m": 0.002864982215097619,
+        "reference_planar_speed_max_mps": 0.02240593324752386,
+        "reference_planar_speed_mean_mps": 0.0014805176762314805
+      },
+      "Run": {
+        "samples": 113,
+        "max_same_support_reference_drift_m": 7.218261622558963e-05,
+        "actual_all_footwear_min_y_m": 0.0026590052177731874,
+        "reference_planar_speed_max_mps": 0.008081957840499195,
+        "reference_planar_speed_mean_mps": 0.004726337632836789
+      },
+      "Start": {
+        "samples": 209,
+        "max_same_support_reference_drift_m": 0.00037292380903099204,
+        "actual_all_footwear_min_y_m": 0.001451339662906826,
+        "reference_planar_speed_max_mps": 0.0458392440007552,
+        "reference_planar_speed_mean_mps": 0.002278861683839271
+      },
+      "Stop": {
+        "samples": 209,
+        "max_same_support_reference_drift_m": 0.0002535450649452381,
+        "actual_all_footwear_min_y_m": 0.002045534054358124,
+        "reference_planar_speed_max_mps": 0.03043439110394329,
+        "reference_planar_speed_mean_mps": 0.002338830844957525
+      },
+      "TurnLeft": {
+        "samples": 193,
+        "max_same_support_reference_drift_m": 0.0004750793755343819,
+        "actual_all_footwear_min_y_m": 0.001819204647147455,
+        "reference_planar_speed_max_mps": 0.057047912371968636,
+        "reference_planar_speed_mean_mps": 0.0022536454797592413
+      },
+      "TurnRight": {
+        "samples": 193,
+        "max_same_support_reference_drift_m": 0.00040695668622504905,
+        "actual_all_footwear_min_y_m": 0.0017568572878396485,
+        "reference_planar_speed_max_mps": 0.04885036648308464,
+        "reference_planar_speed_mean_mps": 0.0022336903177992847
+      }
+    },
+    "taiwan-oldman-review": {
+      "Idle": {
+        "samples": 301,
+        "max_same_support_reference_drift_m": 5.391522923170797e-07,
+        "actual_all_footwear_min_y_m": 0.002999590885467928,
+        "reference_planar_speed_max_mps": 4.2344676020008174e-05,
+        "reference_planar_speed_mean_mps": 1.095823551753267e-05
+      },
+      "Walk": {
+        "samples": 161,
+        "max_same_support_reference_drift_m": 0.00018297928479747247,
+        "actual_all_footwear_min_y_m": 0.002858707268710816,
+        "reference_planar_speed_max_mps": 0.02004351497947219,
+        "reference_planar_speed_mean_mps": 0.001609467526741022
+      },
+      "Run": {
+        "samples": 113,
+        "max_same_support_reference_drift_m": 5.5934259976995617e-05,
+        "actual_all_footwear_min_y_m": 0.002713089420125353,
+        "reference_planar_speed_max_mps": 0.006246088355284935,
+        "reference_planar_speed_mean_mps": 0.0034663423719168683
+      },
+      "Start": {
+        "samples": 209,
+        "max_same_support_reference_drift_m": 0.00023383683976481925,
+        "actual_all_footwear_min_y_m": 0.0022649042201742936,
+        "reference_planar_speed_max_mps": 0.03254873609199016,
+        "reference_planar_speed_mean_mps": 0.0020526991760126956
+      },
+      "Stop": {
+        "samples": 209,
+        "max_same_support_reference_drift_m": 9.203360165504079e-05,
+        "actual_all_footwear_min_y_m": 0.0026658816148156933,
+        "reference_planar_speed_max_mps": 0.014659736639620063,
+        "reference_planar_speed_mean_mps": 0.0023323976890766932
+      },
+      "TurnLeft": {
+        "samples": 193,
+        "max_same_support_reference_drift_m": 0.0002558781303270599,
+        "actual_all_footwear_min_y_m": 0.0026700060369975777,
+        "reference_planar_speed_max_mps": 0.035632490475752336,
+        "reference_planar_speed_mean_mps": 0.002147466298612638
+      },
+      "TurnRight": {
+        "samples": 193,
+        "max_same_support_reference_drift_m": 0.00022376847315047117,
+        "actual_all_footwear_min_y_m": 0.0026566966367528276,
+        "reference_planar_speed_max_mps": 0.031549029067919,
+        "reference_planar_speed_mean_mps": 0.0022171045118326168
+      }
+    }
+  },
+  "art_approved": false
+}

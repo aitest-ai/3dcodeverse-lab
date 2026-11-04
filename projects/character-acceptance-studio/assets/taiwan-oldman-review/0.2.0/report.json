@@ -1,0 +1,21 @@
+{
+  "blender": "5.2.3 LTS",
+  "source_blend": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.blend",
+  "source_sha256": "8b08b26d3b7ac6428f5fdd3cf59631073a94e5550411520251f4db26ecc3ccf4",
+  "source_unchanged": true,
+  "bones": 53,
+  "fps": 60,
+  "leg_length_m": 0.7686645538899042,
+  "half_stance_width_m": 0.16299547255039215,
+  "topology_uv_positions_changed": false,
+  "shoe_vertices_reweighted": 644,
+  "texture_resolution_changed": false,
+  "art_approved": false,
+  "game_ready": false,
+  "known_limitations": [
+    "Full garment/body collisions not solved",
+    "Root/contact paths are authored candidates, not captured or trained motion",
+    "Human art and physical phone not tested",
+    "Toe/heel contact uses selected actual shoe vertices; not physical ground reaction forces"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "shared_root": "Character_Studio_0.2.0/",
+  "runtime_includes_editable_mothers_glbs_textures_profiles_licenses_and_complete_html": true,
+  "evidence_contains_real_framebuffer_sequences_and_sampled_videos": true,
+  "archives": [
+    {
+      "file": "Character_Studio_0.2.0_Runtime_Source.zip",
+      "bytes": 78592311,
+      "sha256": "d659bd770fe963863ab07aef3b03190f2db442ff949fed6df6c2029be680bdf3",
+      "entries": 194,
+      "verified_sha256_count": 193,
+      "index": "RUNTIME_FILES_V02.sha256",
+      "zip_crc": "PASS",
+      "art_approved": false,
+      "game_ready": false
+    },
+    {
+      "file": "Character_Studio_0.2.0_Evidence.zip",
+      "bytes": 59210864,
+      "sha256": "364464bb757f0ab30ccb56151a2636e57e01fda1f96576982f5e1c9d5dd518df",
+      "entries": 488,
+      "verified_sha256_count": 487,
+      "index": "EVIDENCE_FILES_V02.sha256",
+      "zip_crc": "PASS",
+      "art_approved": false,
+      "game_ready": false
+    }
+  ]
+}

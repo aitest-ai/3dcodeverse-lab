@@ -1,0 +1,69 @@
+{
+  "observations": [
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.2.0",
+      "clip": "Run",
+      "time_s": 0.23333333333333334,
+      "camera": "chest",
+      "image": "evidence-v02/details/harbor-courier-review/Run/chest/001.png",
+      "region": "胸口／領口",
+      "verdict": "failed",
+      "notes": "領口片狀外翻、胸部鼓起與內外衣層輪廓生硬；需要局部修版與權重檢查。",
+      "reviewer": "AI visual inspection of actual browser framebuffer, not human art approval"
+    },
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.2.0",
+      "clip": "Run",
+      "time_s": 0.23333333333333334,
+      "camera": "elbow",
+      "image": "evidence-v02/details/harbor-courier-review/Run/elbow/001.png",
+      "region": "袖口／肘",
+      "verdict": "failed",
+      "notes": "袖口內緣仍出現細尖／鋸齒狀輪廓，不能視為完整動態服裝通過。",
+      "reviewer": "AI visual inspection of actual browser framebuffer, not human art approval"
+    },
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.2.0",
+      "clip": "Run",
+      "time_s": 0.23333333333333334,
+      "camera": "hem",
+      "image": "evidence-v02/details/harbor-courier-review/Run/hem/001.png",
+      "region": "衣襬／腰臀",
+      "verdict": "failed",
+      "notes": "開襟下襬及胸前內衣片輪廓不自然，包與跨肩帶仍需碰撞檢查。",
+      "reviewer": "AI visual inspection of actual browser framebuffer, not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.2.0",
+      "clip": "Run",
+      "time_s": 0.23333333333333334,
+      "camera": "hem",
+      "image": "evidence-v02/details/taiwan-oldman-review/Run/hem/001.png",
+      "region": "腰口／衣襬",
+      "verdict": "failed",
+      "notes": "綠上衣與褲腰接合呈鋸齒狀淺色邊緣；需辨識衣身穿模與邊界拓樸／權重。",
+      "reviewer": "AI visual inspection of actual browser framebuffer, not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.2.0",
+      "clip": "Run",
+      "time_s": 0.23333333333333334,
+      "camera": "chest",
+      "image": "evidence-v02/details/taiwan-oldman-review/Run/chest/001.png",
+      "region": "臉／視線",
+      "verdict": "needs-review",
+      "notes": "跑步候選抬頭時眼球視線偏上；表情／視線自然度未核准。",
+      "reviewer": "AI visual inspection of actual browser framebuffer, not human art approval"
+    }
+  ],
+  "motion_naturalness": "pending human review; measured torso lean is not acceptance",
+  "human_art_review": "NOT_TESTED",
+  "physical_phone": "NOT_TESTED",
+  "art_approved": false,
+  "game_ready": false
+}

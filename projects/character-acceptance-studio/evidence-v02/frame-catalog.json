@@ -1,0 +1,1909 @@
+{
+  "sequences": [
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Start",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Start",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Start",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Start",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Stop",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Stop",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Stop",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Stop",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnLeft",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnLeft",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnLeft",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnLeft",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnRight",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.9328000000000005,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnRight",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnRight",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.9328000000000005,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "TurnRight",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "mode": "A v0.1 / B v0.2, normalized action fraction",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Start",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Start",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Start",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Start",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Stop",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Stop",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Stop",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Stop",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.7333333492279053,
+      "samples_s": [
+        0,
+        0.21666666865348816,
+        0.4333333373069763,
+        0.6500000059604645,
+        0.8666666746139526,
+        1.0833333432674408,
+        1.300000011920929,
+        1.5166666805744171
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnLeft",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnLeft",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnLeft",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnLeft",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnRight",
+      "view": "front",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnRight",
+      "view": "side",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnRight",
+      "view": "back",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          4.653657836759943e-16,
+          0.8480000000000003,
+          -3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "TurnRight",
+      "view": "feetwide",
+      "frames": 8,
+      "duration_s": 1.600000023841858,
+      "samples_s": [
+        0,
+        0.20000000298023224,
+        0.4000000059604645,
+        0.6000000089406967,
+        0.800000011920929,
+        1.0000000149011612,
+        1.2000000178813934,
+        1.4000000208616257
+      ],
+      "mode": "B only; v0.1 has no matching clip",
+      "camera": {
+        "position": [
+          1.05,
+          0.44999999999999996,
+          2.4
+        ],
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render"
+    }
+  ],
+  "art_approved": false
+}
