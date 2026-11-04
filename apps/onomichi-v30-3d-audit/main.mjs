@@ -255,6 +255,8 @@ async function loadOriginals(){
  if(!af||!bf)throw new Error('必須同時選取原人物與原自行車兩份 .glb');
  ui.load.disabled=true;ui.sourceState.textContent='核對檔案中…';
  try{
+  // Do not leave old validated models visible if a new uploaded GLB fails.
+  clearModels();
   const [ab,bb]=await Promise.all([af.arrayBuffer(),bf.arrayBuffer()]);
   validateGlbHeader(ab);validateGlbHeader(bb);
   const [as,bs]=await Promise.all([digestSha256(ab),digestSha256(bb)]);
@@ -380,6 +382,11 @@ function exportCapture(){
 }
 function wire(){
  ui.load.addEventListener('click',()=>loadOriginals().catch(e=>{note(String(e.message||e),true);ui.sourceState.textContent='核對未通過';checkRows()}));
+ for(const input of [ui.actorFile,ui.bikeFile])input.addEventListener('change',()=>{
+  if(loaded)clearModels();
+  ui.sourceState.textContent='新來源待核對';
+  note('新 GLB 尚未通過來源 SHA256，舊模型畫面已清除。');
+ });
  for(const id of ['px','py','pz','yaw'])$(id).addEventListener('change',()=>{try{applyPose()}catch(e){note(e.message,true)}});
  $('resetPose').addEventListener('click',()=>{
   ['px','py','pz','yaw'].forEach(id=>$(id).value='0');
