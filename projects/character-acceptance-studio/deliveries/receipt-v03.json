@@ -1,0 +1,27 @@
+{
+  "version": "0.3.0",
+  "shared_root": "Character_Studio_0.3.0/",
+  "runtime_scope": "v0.2 baseline and v0.3 editable assets, original source subset, exact viewer and build dependencies; original older archives preserved separately",
+  "archives": [
+    {
+      "file": "Character_Studio_0.3.0_Runtime_Source.zip",
+      "bytes": 78068017,
+      "sha256": "87895a247ae2c6547204251ee0fd616b221524b248c5737eea13a0d2f70b109d",
+      "index": "RUNTIME_FILES_V03.sha256",
+      "verified_data_entries": 178,
+      "zip_crc": "PASS",
+      "art_approved": false,
+      "game_ready": false
+    },
+    {
+      "file": "Character_Studio_0.3.0_Evidence.zip",
+      "bytes": 61994073,
+      "sha256": "b4681033e229bca03304036e150253930b6a49ef16aa148abcbd5fddf5c30358",
+      "index": "EVIDENCE_FILES_V03.sha256",
+      "verified_data_entries": 498,
+      "zip_crc": "PASS",
+      "art_approved": false,
+      "game_ready": false
+    }
+  ]
+}

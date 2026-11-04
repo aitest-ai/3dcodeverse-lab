@@ -1,0 +1,20 @@
+{
+  "blender": "5.2.3 LTS",
+  "source_blend": "assets/taiwan-oldman-review/0.2.0/taiwan-oldman-review.blend",
+  "source_sha256": "7670b402a998335e3d878f3a19f74e4fe6250a04ba5bc7651a048ca4170e3cd7",
+  "source_unchanged": true,
+  "body_geometry_weights_unchanged": true,
+  "raw_original_topology_available_in": "0.2.0",
+  "garment_changes": "garment-change-log.json",
+  "posture_changes": "posture-audit.json",
+  "root_and_lower_body_channels_preserved": true,
+  "packed_images_changed": false,
+  "art_approved": false,
+  "game_ready": false,
+  "limitations": [
+    "No physical cloth simulation",
+    "No all-body collision guarantee",
+    "Human art and physical phone untested",
+    "Head-forward axis constraint is not pupil gaze correction"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "blender": "5.2.3 LTS",
+  "separate_processes_and_output": "work/v03-replay",
+  "assets": [
+    {
+      "id": "harbor-courier-review",
+      "version": "0.3.0",
+      "published_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "rebuild_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "bytes": 2663404,
+      "byte_identical": true
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "published_sha256": "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43",
+      "rebuild_sha256": "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43",
+      "bytes": 7446536,
+      "byte_identical": true
+    }
+  ],
+  "art_approved": false
+}

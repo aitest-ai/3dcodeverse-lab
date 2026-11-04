@@ -1,0 +1,21 @@
+{
+  "prototypes": [
+    {
+      "file": "history/harbor-cuff-gap-rejected.jpg",
+      "status": "REJECTED_NOT_REGISTERED",
+      "reason": "Overlarge cuff cross-section left a gap and exposed inner/jagged silhouette"
+    },
+    {
+      "file": "history/oldman-hem-fit-rejected.jpg",
+      "status": "REJECTED_NOT_REGISTERED",
+      "reason": "Hem extension with pelvis-only blend exposed the back under new posture"
+    },
+    {
+      "file": "history/oldman-normal-projection-rejected.png",
+      "status": "REJECTED_NOT_REGISTERED",
+      "reason": "Unbounded signed nearest-normal projection across open surfaces made spikes/holes; replaced with bounded radial fit and separately sampled same-character weights"
+    }
+  ],
+  "included_in_registry": false,
+  "art_approved": false
+}

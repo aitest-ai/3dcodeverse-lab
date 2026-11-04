@@ -1,0 +1,140 @@
+{
+  "status": "ACTUAL_DELIVERY_BROWSER_SMOKE_PASS",
+  "base": "http://127.0.0.1:8769",
+  "checks": [
+    {
+      "case": "real delivered candidate and downloaded exact native profile",
+      "id": "harbor-courier-review",
+      "sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "profile_sha256": "d7116049f7d2518e0e67d2457b88273654d0066357ed50b897caf531ebfeacd7",
+      "pass": true
+    },
+    {
+      "case": "real delivered candidate and downloaded exact native profile",
+      "id": "taiwan-oldman-review",
+      "sha256": "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43",
+      "profile_sha256": "4fed5adcf4890f482b38b932181569cb0f003e81a700b207390e646457f327b5",
+      "pass": true
+    },
+    {
+      "case": "actual observation download pins version/hash/camera/root without auto art approval",
+      "pass": true
+    },
+    {
+      "case": "actual MediaRecorder six-second button capture, software rendering; inspect recorded timing separately",
+      "file": "harbor-walk-continuous-browser.webm",
+      "bytes": 131218,
+      "pass": true
+    },
+    {
+      "case": "single HTML loads exact A/B and all seven B clips",
+      "id": "harbor-courier-review",
+      "assets": [
+        "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235",
+        "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143"
+      ],
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Start",
+        "Stop",
+        "TurnLeft",
+        "TurnRight"
+      ],
+      "pass": true
+    },
+    {
+      "case": "single HTML loads exact A/B and all seven B clips",
+      "id": "taiwan-oldman-review",
+      "assets": [
+        "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988",
+        "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43"
+      ],
+      "clips": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Start",
+        "Stop",
+        "TurnLeft",
+        "TurnRight"
+      ],
+      "pass": true
+    },
+    {
+      "case": "single HTML uses embedded model/profile/program bytes; no model/CDN requests",
+      "requests": [
+        "http://127.0.0.1:8769/OPEN_STUDIO_V03.html",
+        "blob:http://127.0.0.1:8769/f9e1f332-41d4-463b-9187-2d27403c56fc",
+        "blob:http://127.0.0.1:8769/8cf5c73a-a8d7-491e-b311-6643ecc86e44",
+        "blob:http://127.0.0.1:8769/191be31b-8796-4fdc-b401-053d50b7fe52",
+        "blob:http://127.0.0.1:8769/d0f6caeb-e22a-4f16-8310-3976abfb4575",
+        "blob:http://127.0.0.1:8769/8613813f-7fae-4c0d-9ad5-7e960a87ba9c",
+        "blob:http://127.0.0.1:8769/50631464-7b50-4b4b-bc7e-9f4c5d667364",
+        "blob:http://127.0.0.1:8769/acc9e7a3-152f-46f4-884f-78a9b24e082b",
+        "blob:http://127.0.0.1:8769/98da9748-62d7-41f8-bb19-c6e3d1149012",
+        "blob:http://127.0.0.1:8769/5e3b3604-17be-4f0a-8a5e-b356d05d7eda",
+        "blob:http://127.0.0.1:8769/e17f0160-0d2f-46a3-9546-7cfc516d59c2",
+        "blob:http://127.0.0.1:8769/f0457abc-9aeb-4fde-b502-7dcd2de5d3f2",
+        "blob:http://127.0.0.1:8769/d36779d9-6c09-4937-bf5d-55447c0fa851",
+        "blob:http://127.0.0.1:8769/d413f446-a818-4172-9ed7-e4a2ff50398f",
+        "blob:http://127.0.0.1:8769/ba6473ef-77b0-46d0-bc82-f57e43c0d5ed",
+        "blob:http://127.0.0.1:8769/ab24cf4b-f62a-44ff-bd44-81c3c22b2461",
+        "blob:http://127.0.0.1:8769/63a74554-e8e2-4e5a-b7b9-eae2fea761f0",
+        "blob:http://127.0.0.1:8769/578a93b8-429d-4d8b-ac2b-c867c88b4f1f",
+        "blob:http://127.0.0.1:8769/ace69fb3-a536-402e-86cd-748f293570d8",
+        "blob:http://127.0.0.1:8769/d7fcea9f-b9b7-4383-93a2-625943af640d",
+        "blob:http://127.0.0.1:8769/c48b4a89-5869-48d4-97cd-4c23f6b6fe43",
+        "blob:http://127.0.0.1:8769/1eedb0c4-1354-4fb7-9053-46ff6d0fdf8b",
+        "blob:http://127.0.0.1:8769/73b47a2e-27b7-4abe-be93-c4879ac42604",
+        "blob:http://127.0.0.1:8769/f634d6e6-98fe-4976-8446-76050e9d6a53",
+        "blob:http://127.0.0.1:8769/6fbe7161-2264-42f2-a00e-0e92e5510a07",
+        "blob:http://127.0.0.1:8769/2dd59157-e17c-4c53-b74b-056bbff7f345",
+        "blob:http://127.0.0.1:8769/05847fce-183a-49a1-88df-2b1de61c3625",
+        "blob:http://127.0.0.1:8769/4afba0ec-e67d-44fe-8e9c-bcc7080bb671",
+        "blob:http://127.0.0.1:8769/e7441a2f-dfac-4506-b2ed-81e458bef6de",
+        "blob:http://127.0.0.1:8769/d966e33d-db40-41b4-884f-bb1d7c0db1c1",
+        "blob:http://127.0.0.1:8769/74cb0a74-01f7-4b1b-ae92-6c1a98928084",
+        "blob:http://127.0.0.1:8769/c13b146e-6973-4550-880d-e4f5bfbfcff4",
+        "blob:http://127.0.0.1:8769/9e23dac9-a64d-459f-8b1d-6c59e09a3198",
+        "blob:http://127.0.0.1:8769/cc4fefec-a76c-4974-ab93-40990b3c1ea7",
+        "blob:http://127.0.0.1:8769/38e8ff24-f80c-4817-bf37-1c51c2d33960",
+        "blob:http://127.0.0.1:8769/654b2561-425d-4edd-9718-3690d6b3f94a",
+        "blob:http://127.0.0.1:8769/e22cc519-8ca7-4299-8e8c-01fb566cbf64",
+        "blob:http://127.0.0.1:8769/6b4f2aac-24ea-4f9a-8cba-44dfa63cdca6",
+        "blob:http://127.0.0.1:8769/cdb4ccb5-6805-42b6-973b-246764328c2b",
+        "blob:http://127.0.0.1:8769/7830b777-bbdb-456d-a649-0bd34dc47043",
+        "blob:http://127.0.0.1:8769/37a95ce3-c4a1-4ee0-89b8-1db90a2ee590",
+        "blob:http://127.0.0.1:8769/707af854-60d5-4c73-a573-00b2d3556fb6",
+        "blob:http://127.0.0.1:8769/0a87170b-af75-44aa-bc23-2c4005d45584",
+        "blob:http://127.0.0.1:8769/29da9a87-a9a9-4be5-a6a0-1a8b553f5f4b",
+        "blob:http://127.0.0.1:8769/d18d77c3-12bd-4ffc-b776-3133513c5131",
+        "blob:http://127.0.0.1:8769/246b3626-ba16-4d6c-8c55-ce9931c8afd8",
+        "blob:http://127.0.0.1:8769/cf53c88a-1d56-42e3-8cc8-43919d1ce9cd",
+        "blob:http://127.0.0.1:8769/3083f3d8-a5b5-49cb-acf5-83cfc1749f59",
+        "blob:http://127.0.0.1:8769/a1e2e2ec-e553-4fe5-9233-a8c8dc095ef4",
+        "blob:http://127.0.0.1:8769/64ed0a7b-7b18-45ef-9430-37235b089d47",
+        "blob:http://127.0.0.1:8769/9eea80b5-fb5b-4412-9ecc-7e16c40d6813",
+        "blob:http://127.0.0.1:8769/f905fdc9-3dd1-41d9-979e-c96ab8e7412d",
+        "blob:http://127.0.0.1:8769/0e9d9d4b-be4f-44f1-bfaf-ad5676db138d",
+        "blob:http://127.0.0.1:8769/3b250ee4-96bf-408b-9f50-baa552419726",
+        "blob:http://127.0.0.1:8769/a8273ba1-ae4a-427d-a79c-097068b8ca96",
+        "blob:http://127.0.0.1:8769/74353884-d66c-4111-b6cf-d99e75d3c36d"
+      ],
+      "pass": true
+    },
+    {
+      "case": "changed one real GLB byte rejected by unmodified native WebCrypto, no placeholder/fallback",
+      "message": "SHA-256 不符，已攔截\n預期 689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143\n實際 7e1d35542994de0928600fd619d3bb2ea3567c29253609b0319542ce892b9bc3\n可按「重新載入固定版本」重試。",
+      "pass": true
+    },
+    {
+      "case": "evidence gallery loads actual four PNGs and labels actual v0.2/v0.3 comparison",
+      "pass": true
+    }
+  ],
+  "page_errors": [],
+  "art_approved": false,
+  "game_ready": false
+}

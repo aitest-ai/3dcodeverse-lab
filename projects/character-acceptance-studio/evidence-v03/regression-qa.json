@@ -1,0 +1,38 @@
+{
+  "status": "ROOT_LEGS_TEXTURES_AND_POSTURE_NUMERICAL_PASS",
+  "assets": [
+    {
+      "id": "harbor-courier-review",
+      "version": "0.3.0",
+      "protected_channels": 261,
+      "max_root_leg_channel_component_difference": 0,
+      "embedded_images_byte_identical": true,
+      "run_before_lean_range_deg": [
+        17.61876828488546,
+        20.764004189981677
+      ],
+      "run_after_lean_range_deg": [
+        12.000181221826477,
+        12.004615297410128
+      ],
+      "art_approved": false
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "protected_channels": 198,
+      "max_root_leg_channel_component_difference": 0,
+      "embedded_images_byte_identical": true,
+      "run_before_lean_range_deg": [
+        20.158780579590026,
+        22.982735804734382
+      ],
+      "run_after_lean_range_deg": [
+        11.999960852669895,
+        12.004827084118263
+      ],
+      "art_approved": false
+    }
+  ],
+  "art_approved": false
+}
