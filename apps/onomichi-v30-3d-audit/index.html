@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>瀨戶內 V30｜原版 3D 騎姿驗收工作臺</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color:#ecf1ef;background:#0e171c;--bg:#152127;--card:#1a2b32;--line:#365059;--mint:#78d6bc;--muted:#acbec2;--amber:#f3c17d}
+*{box-sizing:border-box}body{margin:0}a{color:#8cdccf}
+main{max-width:1560px;padding:24px clamp(12px,2.5vw,36px) 55px;margin:auto}
+.brand{font-size:12px;color:var(--mint);letter-spacing:.15em;font-weight:750}
+header{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+h1{font-size:clamp(23px,3vw,36px);line-height:1.15;margin:10px 0}
+h2{font-size:17px;margin:0 0 12px}h3{font-size:14px;margin:13px 0 8px}
+.sub{color:var(--muted);font-size:14px;line-height:1.7;margin:3px 0 16px;max-width:940px}
+.tag{font-size:12px;background:#254037;border:1px solid #486d5e;color:#d7f9e5;padding:7px 12px;border-radius:30px;white-space:nowrap}
+.warn{border:1px solid #786045;background:#2b281f;color:#fbe6bf;padding:11px 15px;border-radius:10px;font-size:13px;line-height:1.6;margin-bottom:17px}
+.layout{display:grid;grid-template-columns:minmax(380px,1.55fr) minmax(310px,1fr);gap:17px;align-items:start}
+.panel{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:17px;min-width:0}
+.surface{background:#0e202b;border-radius:12px;border:1px solid #3b5c67;height:min(61vh,680px);min-height:360px;position:relative;overflow:hidden}
+.surface canvas{display:block;width:100%;height:100%}
+.viewportOverlay{pointer-events:none;position:absolute;top:14px;left:14px;max-width:70%;background:#12242bdc;color:#d9ebee;border:1px solid #517078;padding:7px 11px;border-radius:9px;font-size:12px;line-height:1.6}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row.between{justify-content:space-between}
+button,select,input[type=number],input[type=file],input[type=range]{accent-color:#78d6bc}
+button,select{font:inherit;border:1px solid #53727c;background:#243941;color:#f3f9f8;border-radius:8px;padding:9px 12px;font-size:13px}
+button{cursor:pointer}button:hover:enabled{background:#2e5154}
+button:disabled{opacity:.38;cursor:not-allowed}
+button.primary{background:#2c6f65;border-color:#5b9f8d;font-weight:700}button.danger{background:#583b33;border-color:#8c6960}
+input[type=file]{max-width:100%;font-size:12px;color:var(--muted)}
+input[type=number]{background:#11262b;color:white;border:1px solid #436069;border-radius:7px;padding:7px 6px;width:70px}
+select{max-width:100%}
+fieldset{border:1px solid #3b565d;border-radius:10px;padding:10px;margin:11px 0}
+legend{font-size:12px;color:#a4c8bd}
+small,.muted{color:var(--muted);font-size:12px;line-height:1.55}
+.status{color:#bfdad6;background:#152b32;padding:10px;border-radius:9px;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;border:1px solid #38535e}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.metric{border:1px solid #3a6064;border-radius:10px;padding:10px;background:#173238}
+.metric strong{display:block;font-size:22px;margin:4px 0}.metric span{font-size:11px;color:#c2d7d6}
+.markerGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.markerRow{padding:10px;border:1px solid #38545b;border-radius:10px;background:#15272d;min-width:0}
+.markerName{display:flex;align-items:center;font-size:12px;font-weight:700;margin-bottom:8px;gap:6px}
+.dot{width:9px;height:9px;display:inline-block;border-radius:50%;background:var(--dot)}
+.markerRow select{width:100%;font-size:12px;padding:6px;margin-bottom:6px}
+.offsets{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.offsets label{font-size:10px;color:var(--muted)}
+.offsets input{width:60px;font-size:12px;padding:5px}
+.controls{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-top:10px}
+.controls label{font-size:11px;color:var(--muted)}
+.controls input{width:100%}
+.controls input[type=range]{width:100%}
+.callout{margin-top:12px;padding:10px;border:1px solid #5b6552;background:#253128;border-radius:9px;font-size:12px;color:#e4eacd;line-height:1.6}
+.table{width:100%;border-collapse:collapse;font-size:12px}
+.table th,.table td{text-align:left;padding:8px 5px;border-bottom:1px solid #33515b;font-variant-numeric:tabular-nums}
+.table th:not(:first-child),.table td:not(:first-child){text-align:right}
+.check{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#d4e7e3;line-height:1.55;margin:11px 0}
+.check input{margin-top:3px;accent-color:#77d6b9}
+#err{color:#ffd5bd;white-space:pre-wrap;font-size:13px;line-height:1.5}
+footer{font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7}
+@media(max-width:1060px){.layout{grid-template-columns:1fr}.surface{height:480px}}
+@media(max-width:640px){main{padding:14px 10px 35px}.surface{height:390px;min-height:290px}.markerGrid{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}.panel{padding:11px}h1{font-size:23px}}
+</style>
+</head>
+<body><main>
+<header><div><div class="brand">SETOUCHI CYCLING WORLD · V30 / WORKBENCH</div><h1>原版人物 × 自行車｜3D 騎姿驗收</h1></div><span class="tag">獨立研究版 · 原網站不變</span></header>
+<p class="sub">在瀏覽器本機讀取 V06 原始 GLB，播放真正的 Cycle 動畫，從各方向檢查手腳與自行車是否對齊。只有檔案 SHA256 完全符合原版時才允許載入。檔案不會上傳到 GitHub 或其他伺服器。</p>
+<div class="warn"><b>請區分三種成果：</b>WebGL2 場景能顯示 ≠ 原版人物騎姿通過 ≠ 尾道街道合法可騎。本頁沒有把新道路加入主遊戲，也沒有改動原版人物模型、車輛、渡船或 Halows。</div>
+<div class="layout">
+<div>
+<section class="panel">
+ <div class="row between"><h2>3D 實際畫面</h2><span id="webglState" class="tag">正在檢查 WebGL2</span></div>
+ <div class="surface" id="viewport"><canvas id="canvas" aria-label="原版人物與自行車的 Three.js 3D 檢視畫面"></canvas><div id="overlay" class="viewportOverlay">未載入原版 GLB，目前僅有測試地板與座標格線。</div></div>
+ <div class="row" style="margin-top:12px"><button id="front">正面</button><button id="side">左側</button><button id="rear">背面</button><button id="threeQuarter">斜側</button><button id="fit">鏡頭適應模型</button><button id="play" disabled>暫停 Cycle</button></div>
+ <p class="muted">滑鼠拖曳可轉視角，滾輪可縮放；手機以單指旋轉、雙指縮放。畫面亮色小球是人工校準的接觸點，連線是手／腳到車體的距離。</p>
+</section>
+<section class="panel">
+ <h2>接觸距離（即時顯示）</h2>
+ <div id="metrics" class="grid4"><div class="muted">請先驗證原版模型與 8 個接觸點。</div></div>
+ <p class="muted">毫米（mm）。距離只表示空間位置差；握把姿勢自然與否仍需看原版模型動畫。</p>
+</section>
+<section class="panel">
+ <h2>本機採樣與交付</h2>
+ <div class="row"><label for="phase" class="muted">人工情境標記</label><select id="phase"><option value="straight">直行觀察</option><option value="turn">轉彎觀察</option><option value="start_stop">起步／停止觀察</option></select><label for="rate" class="muted">動畫速度</label><select id="rate"><option value="0.5">0.5 倍</option><option value="1" selected>正常</option><option value="1.5">1.5 倍</option></select></div>
+ <label class="check"><input id="confirmed" type="checkbox"><span>我已在 3D 畫面逐一核對 8 個標記的位置，確認它們不是未校準的骨頭原點。</span></label>
+ <div class="row"><button id="record" class="primary" disabled>開始記錄</button><button id="export" disabled>匯出 V29 相容座標 JSON</button><span id="frames" class="tag">0 幀</span></div>
+ <p class="muted">直行／轉彎由人手動標記，本頁沒有實際道路轉向或車輪物理模擬，因此任何階段仍須回到原遊戲驗收。</p>
+</section>
+</div>
+<div>
+<section class="panel">
+ <h2>① 載入原版 GLB</h2>
+ <label class="muted" for="actorFile">原人物（包含 Cycle 動畫）</label><input id="actorFile" type="file" accept=".glb,model/gltf-binary">
+ <label class="muted" for="bikeFile" style="display:block;margin-top:12px">原自行車 GLB</label><input id="bikeFile" type="file" accept=".glb,model/gltf-binary">
+ <div class="row" style="margin-top:13px"><button id="load" class="primary">核對 SHA256 並載入</button><span id="sourceState" class="tag">未核對來源</span></div>
+ <p class="muted">會拒絕來源不符的 GLB，也不接受整包 ZIP。來源必須是 V28 已驗證的 V06 角色與自行車。</p>
+ <div id="err" role="alert"></div><div id="sourceInfo" class="status">未載入。V30 公開版本不含使用者私人模型。</div>
+</section>
+<section class="panel">
+ <h2>② 人物位置（只改工作臺顯示）</h2>
+ <div class="controls">
+ <div><label for="px">X 左右（m）</label><input id="px" type="number" step=".01" min="-3" max="3" value="0"></div>
+ <div><label for="py">Y 高度（m）</label><input id="py" type="number" step=".01" min="-3" max="3" value="0"></div>
+ <div><label for="pz">Z 前後（m）</label><input id="pz" type="number" step=".01" min="-3" max="3" value="0"></div>
+ <div><label for="yaw">Y 旋轉（度）</label><input id="yaw" type="number" step="1" min="-180" max="180" value="0"></div>
+ </div>
+ <div class="row" style="margin-top:12px"><button id="resetPose">位置回正</button><span class="muted">只調整預覽根節點，不寫回來源 GLB。</span></div>
+</section>
+<section class="panel">
+ <div class="row between"><h2>③ 校準八個真實接觸點</h2><span class="tag">需手動逐一確認</span></div>
+ <p class="muted">選骨頭／節點，再調整其局部 XYZ 偏移。可在畫面查看小球是否落在真實手掌、握把、腳掌、踏板接觸表面；下方不會自動假設零偏移正確。</p>
+ <div id="markers" class="markerGrid"></div>
+ <div class="row" style="margin-top:12px"><button id="saveConfig" disabled>匯出校準設定</button><label class="muted" for="configFile">匯入已儲存設定</label><input id="configFile" type="file" accept=".json,application/json"></div>
+ <div class="callout">原本的 V29 靜態圖表只能讀 JSON；V30 新增可旋轉的真 3D 檢視、來源檢查與標記位置調整。但這仍是「獨立人車工作臺」，不是完整尾道街景。</div>
+</section>
+<section class="panel">
+ <h2>驗收狀態</h2>
+ <table class="table"><thead><tr><th>項目</th><th>狀態</th></tr></thead><tbody id="checks"><tr><td>原 GLB SHA256</td><td>未驗</td></tr><tr><td>Cycle 動畫</td><td>未驗</td></tr><tr><td>WebGL2</td><td>未驗</td></tr><tr><td>真道路騎行</td><td>未通過</td></tr></tbody></table>
+</section>
+</div>
+</div>
+<footer>瀨戶內騎行世界 V30｜基礎為 V28 原車／人物 SHA、V29 距離量測。僅在瀏覽器記憶體處理選取的檔案；本頁無上傳端點。真實現地道路路權、路寬、路緣、坡口、Android 及主遊戲操作，均不因本頁通過而自動取得核准。</footer>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

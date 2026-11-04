@@ -1,0 +1,66 @@
+name: Onomichi V30 local GLB WebGL2 workbench (no game deployment)
+on:
+  push:
+    branches: [feat/onomichi-v30-webgl2-pose-workbench]
+    paths:
+      - apps/onomichi-v30-3d-audit/**
+      - tests/test_onomichi_v30_rules.mjs
+      - tests/test_onomichi_v30_browser.py
+      - .github/workflows/onomichi-v30-3d-lab.yml
+      - scripts/research/onomichi_v29_runtime_probe.mjs
+      - docs/ONOMICHI_V30_3D_WORKBENCH.md
+  pull_request:
+    branches: [feat/onomichi-v29-contact-gate]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-source-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify V29 remains unmodified, plus V30 pure input safety tests
+        run: |
+          node --check apps/onomichi-v30-3d-audit/main.mjs
+          node --test tests/test_onomichi_v29_runtime_probe.mjs tests/test_onomichi_v30_rules.mjs
+      - name: Install pinned local viewer dependencies and bundle Three.js offline for consumers
+        run: |
+          npm install --prefix apps/onomichi-v30-3d-audit --no-audit --no-fund
+          npm run build --prefix apps/onomichi-v30-3d-audit
+      - name: Assert result contains no private user GLBs or automatic route permission
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path('apps/onomichi-v30-3d-audit/dist')
+          files={f.name for f in p.iterdir()}
+          assert files=={'index.html','app.js','README-START-HERE.txt','SOURCE_ONLY_MANIFEST.json','LICENSE_THREE.txt'} or files=={'index.html','app.js','README-START-HERE.txt','SOURCE_ONLY_MANIFEST.json'}
+          assert not list(p.rglob('*.glb')) and not list(p.rglob('*.blend'))
+          manifest=json.loads((p/'SOURCE_ONLY_MANIFEST.json').read_text())
+          assert manifest['originalModelsIncluded'] is False
+          assert manifest['originalGameModified'] is False
+          assert manifest['roadApproved'] is False
+          registry=json.loads(Path('assets/setouchi/onomichi-v30-3d-registry.json').read_text())
+          assert registry['main_or_website_modified'] is False
+          assert registry['private_glbs_committed'] is False
+          print('PASS source-only offline 3D app; no binary model or navigation')
+          PY
+      - name: Install Chromium Playwright for real WebGL2 independent viewer smoke
+        run: |
+          python3 -m pip install --user playwright==1.56.0
+          python3 -m playwright install --with-deps chromium
+      - name: Actually open built HTML in Chromium (grid only, private GLBs unavailable)
+        run: |
+          python3 tests/test_onomichi_v30_browser.py
+      - name: Upload standalone V30 WebGL2 viewer, without original/private models
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Onomichi_V30_Standalone_GLBFingerprint_Pose_Viewer
+          path: apps/onomichi-v30-3d-audit/dist/
+          if-no-files-found: error
+          retention-days: 30
