@@ -23,6 +23,7 @@ try:
   assert page.evaluate("document.getElementById('canvas').width")>0
   assert page.evaluate("document.getElementById('canvas').height")>0
   for id in ['front','side','rear','threeQuarter','fit']:page.locator('#'+id).click()
+  page.screenshot(path=str(DIST/'V30_Desktop_Real_WebGL2_No_Private_Model.png'),full_page=True)
   assert page.locator('#record').is_disabled()
   assert page.locator('#export').is_disabled()
   assert '未載入原版 GLB' in page.locator('#overlay').inner_text()
