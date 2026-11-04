@@ -1,0 +1,50 @@
+{
+  "schema": "noboribetsu-date-v036-roof-side-seam-continuity/1",
+  "status": "geometry_and_webgl2_pass_visual_not_approved",
+  "parent_pr": 144,
+  "base_branch": "qa/noboribetsu-date-v035-visible-band-two-face-study-r1",
+  "parent_inspector_zip_sha256": "9aba85e945cc4a6cf7a465c867933aaee5570af34ef08453b3fdd0107beda7b1",
+  "source_v004_glb_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "glb_source_triangles": [
+    8,
+    9
+  ],
+  "source_white_band_faces": 48,
+  "original_band_outer_edges": 4,
+  "v035_B_affected_perimeter_edges": 3,
+  "v035_B_max_gap_model_units": 0.035,
+  "v036_C_external_boundary_move_model_units": 0,
+  "v036_C_mesh_vertices": 273,
+  "v036_C_mesh_triangles": 480,
+  "v036_C_glb_sha256": "49ad222e94348ba7d474c984c8a4703254937060095925e29ae6de7a2cea1cf3",
+  "old_inspector_files": 44,
+  "old_files_sha_unchanged": 42,
+  "new_inspector_files": 47,
+  "clean_replay_file_hash_matched": 47,
+  "old_glbs_byte_identical": true,
+  "all_loaded_glbs": 11,
+  "real_chromium_webgl2": true,
+  "real_chromium_desktop_screenshots": 7,
+  "mobile_emulation_chromium_430x932_screenshots": 1,
+  "browser_page_errors": 0,
+  "browser_console_errors": 0,
+  "pixels_max_rgb_channel_diff_gt10_relative_to_original_roof": {
+    "v035_A": 38557,
+    "v035_B": 7358,
+    "v036_C": 24
+  },
+  "new_candidate_art_review": "NOT_APPROVED_INSUFFICIENT_VISIBLE_IMPROVEMENT",
+  "red_gap_plane": "diagnostic_only_not_building_asset",
+  "original_v031_runtime_sha256": "57882e06ad6f9256c3150ff562656eb745b24331fe0c9893c777c351dde394f0",
+  "full_runtime_modified": false,
+  "blender_available": false,
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_host_tested": false,
+  "onsite_dimensions_verified": false,
+  "deliveries": {
+    "inspector_zip_sha256": "fce794787e2b647972069aff5545a298859160663b4a014f7b7dd66f13198ce4",
+    "sourceqa_zip_sha256": "9524e41f0f26a312ebffb227b4bb29ec9cfaed795281b2dd1dd14e373e522e8a"
+  },
+  "merge_policy": "DRAFT_NO_MERGE_NO_DEPLOY_NO_OVERWRITE"
+}
