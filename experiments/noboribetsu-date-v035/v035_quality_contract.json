@@ -1,0 +1,42 @@
+{
+  "schema": "noboribetsu-date-v035-visible-two-face-study/1",
+  "kind": "inspector_only_not_approved",
+  "source_v034_pr": 140,
+  "source_inspector_zip_sha256": "b631c6d0fbed245a493a087848dc6ceaf94373d9da6de4ada8349a3b97fa7040",
+  "original_v004_glb_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "previously_suspected_hidden_faces": [
+    20,
+    21
+  ],
+  "webgl_visually_verified_faces": [
+    8,
+    9
+  ],
+  "retained_faces": 46,
+  "total_original_faces": 48,
+  "original_glbs_byte_identical": true,
+  "base_file_count": 41,
+  "unchanged_base_files": 39,
+  "output_file_count": 44,
+  "clean_replay_equal_files": 44,
+  "material_candidate": "warm gray color modification on 2 exact triangles",
+  "geometry_candidate_delta_y": -0.035,
+  "real_webgl2_browser": true,
+  "desktop_camera_views": 2,
+  "desktop_real_screenshots": 6,
+  "phone_chromium_emulation_430x932": true,
+  "browser_errors": 0,
+  "pixels_changed_gt10_roof": {
+    "material": 39510,
+    "geometry": 7572
+  },
+  "new_portable_glb_sha256": "f34a75e9ea5dcd223b4831f174ff452deec9040ca4fe5bb21a1dbc170983bec2",
+  "full_game_runtime_changed": false,
+  "art_approved": false,
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_site_tested": false,
+  "inspector_zip_sha256": "9aba85e945cc4a6cf7a465c867933aaee5570af34ef08453b3fdd0107beda7b1",
+  "sourceqa_zip_sha256": "05b058a6ce797a5457fc6471bbd67d3f684f2e1d990d0a0d99196613df5489b8",
+  "merge_policy": "DRAFT_NO_MERGE_NO_DEPLOY"
+}
