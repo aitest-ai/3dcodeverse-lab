@@ -1,0 +1,12 @@
+{
+  "asset_id": "taiwan-oldman-review",
+  "mesh_count": 21,
+  "skin_count": 1,
+  "animation_clips": [
+    "Idle",
+    "Walk",
+    "Run"
+  ],
+  "file_bytes": 7110528,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

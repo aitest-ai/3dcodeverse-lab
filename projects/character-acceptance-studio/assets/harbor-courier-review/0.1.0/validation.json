@@ -1,0 +1,16 @@
+{
+  "asset_id": "harbor-courier-review",
+  "mesh_count": 18,
+  "skin_count": 1,
+  "animation_clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Start",
+    "Stop",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "file_bytes": 2497028,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

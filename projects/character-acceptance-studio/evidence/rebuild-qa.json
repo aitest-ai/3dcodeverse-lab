@@ -1,0 +1,26 @@
+{
+  "status": "EXACT_BINARY_REBUILD_PASS",
+  "default_output": "work/rebuilt-assets (sources and published assets untouched)",
+  "glbs": [
+    {
+      "model": "assets/harbor-courier-review/0.1.0/harbor-courier-review.glb",
+      "published_sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d",
+      "rebuilt_sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d",
+      "byte_identical": true
+    },
+    {
+      "model": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-baseline.glb",
+      "published_sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f",
+      "rebuilt_sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f",
+      "byte_identical": true
+    },
+    {
+      "model": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.glb",
+      "published_sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907",
+      "rebuilt_sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907",
+      "byte_identical": true
+    }
+  ],
+  "preserved_source_files_verified": 41,
+  "art_approved": false
+}

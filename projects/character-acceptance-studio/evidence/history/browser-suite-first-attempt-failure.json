@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "Native WebGL2 + pinned Harbor load",
+    "Seven actual named Harbor animations selectable",
+    "Actual animated foot bone travel, no static substitute",
+    "Pause and +/- one actual 30fps frame",
+    "Paused timeline stays fixed",
+    "Playback rate control",
+    "Loop default distinguishes locomotion from one-shot transition",
+    "Eight real camera presets",
+    "Actual same-camera/source-time A/B WebGL comparison",
+    "Skeleton and pace-grid UI toggles"
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(missing)\n",
+  "page_errors": []
+}

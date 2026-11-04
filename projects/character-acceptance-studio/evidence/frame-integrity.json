@@ -1,0 +1,8 @@
+{
+  "status": "PNG_DECODE_PASS",
+  "actual_browser_frames": 128,
+  "sequences": 16,
+  "frames_per_sequence": 8,
+  "image_decode": "Pillow full pixel decode",
+  "art_approved": false
+}

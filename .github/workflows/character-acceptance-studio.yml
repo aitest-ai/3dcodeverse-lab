@@ -1,0 +1,45 @@
+name: Character acceptance studio - integrity only
+on:
+  push:
+    branches: [feat/character-acceptance-studio-v01-20261104]
+    paths: ['projects/character-acceptance-studio/**', '.github/workflows/character-acceptance-studio.yml']
+  workflow_dispatch:
+    inputs:
+      rebuild:
+        description: Rebuild candidates in verified Blender 5.2.3 (never art approval)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile portable source
+        run: python3 -m compileall -q projects/character-acceptance-studio/scripts
+      - name: Exact asset locks, decoded binary data, motion seam and negative gates
+        run: python3 projects/character-acceptance-studio/scripts/verify_registry.py
+      - name: Repository GLB handoff contract
+        run: |
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/harbor-courier-review/0.1.0
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/taiwan-oldman-review/0.1.0
+      - name: Optional true Blender rebuild and cold read
+        if: inputs.rebuild == true
+        working-directory: projects/character-acceptance-studio
+        run: |
+          python3 scripts/bootstrap_blender.py --dest work/tools
+          BLENDER_BIN="$PWD/work/tools/blender-5.2.3-linux-x64/blender"
+          "$BLENDER_BIN" -b --threads 4 --python-exit-code 1 --python scripts/build_harbor.py
+          "$BLENDER_BIN" -b --threads 4 --python-exit-code 1 --python scripts/retarget_oldman.py
+          python3 ../../scripts/blender5/validate_glb.py work/rebuilt-assets/harbor-courier-review/0.1.0
+          python3 ../../scripts/blender5/validate_glb.py work/rebuilt-assets/taiwan-oldman-review/0.1.0
+          python3 scripts/vendor/inspect_glb.py work/rebuilt-assets/harbor-courier-review/0.1.0/harbor-courier-review.glb --out work/rebuilt-harbor-inspection.json
+          python3 scripts/vendor/inspect_glb.py work/rebuilt-assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.glb --out work/rebuilt-oldman-inspection.json
+      - name: Preserve measured report (not art/device/gameplay approval)
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-integrity-report
+          path: projects/character-acceptance-studio/evidence/program-qa.json
+          retention-days: 30

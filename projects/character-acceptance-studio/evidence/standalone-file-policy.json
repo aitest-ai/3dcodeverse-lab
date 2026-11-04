@@ -1,0 +1,8 @@
+{
+  "status": "NOT_TESTED_POLICY_BLOCKED",
+  "scheme": "file://",
+  "error": "ERR_BLOCKED_BY_ADMINISTRATOR",
+  "policy_changed": false,
+  "fallback": "Serve exact complete embedded HTML over already supported localhost HTTP; verify separately",
+  "art_approved": false
+}

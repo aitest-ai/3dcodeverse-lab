@@ -1,0 +1,122 @@
+{
+  "status": "REJECTED_LOOP_SEAM_DETECTED",
+  "note": "Earlier structural checks passed but the added loop-seam gate found incorrect parent evaluation. This is failed historical evidence, not final acceptance.",
+  "original_report": {
+    "status": "PROGRAM_AND_STRUCTURE_PASS_ONLY",
+    "checks": [
+      "harbor-courier-review/source: full SHA/bytes and decoded GLB structure",
+      "harbor-courier-review/candidate: full SHA/bytes and decoded GLB structure",
+      "harbor-courier-review: actual animated bone travel and sampled grounding",
+      "harbor-courier-review: exact lock and four negative identity/approval/overwrite gates",
+      "taiwan-oldman-review/source: full SHA/bytes and decoded GLB structure",
+      "taiwan-oldman-review/candidate: full SHA/bytes and decoded GLB structure",
+      "Oldman opaque skin + masked sandal alpha export regression",
+      "taiwan-oldman-review: actual animated bone travel and sampled grounding",
+      "taiwan-oldman-review: exact lock and four negative identity/approval/overwrite gates"
+    ],
+    "diagnostics": {
+      "harbor-courier-review": {
+        "Idle": {
+          "minimum_sampled_sole_z_m": 0.003999993205070496,
+          "max_lowest_sole_z_m": 0.0040000006556510925,
+          "max_joint_loop_seam_m": 0.9615928089060491,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 1,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Walk": {
+          "minimum_sampled_sole_z_m": 0.003999993205070496,
+          "max_lowest_sole_z_m": 0.0040000006556510925,
+          "max_joint_loop_seam_m": 0.9865500392400118,
+          "stance_residual_mean_mps": 0.44775979085402084,
+          "stance_samples": 33,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Run": {
+          "minimum_sampled_sole_z_m": 0.038217976689338684,
+          "max_lowest_sole_z_m": 0.3155577778816223,
+          "max_joint_loop_seam_m": 1.0329156260464858,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 0,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Start": {
+          "minimum_sampled_sole_z_m": 0.003999993205070496,
+          "max_lowest_sole_z_m": 0.0040000081062316895,
+          "max_joint_loop_seam_m": 1.187329385625301,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 22,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Stop": {
+          "minimum_sampled_sole_z_m": 0.003999998793005943,
+          "max_lowest_sole_z_m": 0.0040000081062316895,
+          "max_joint_loop_seam_m": 1.040375155224235,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 14,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "TurnLeft": {
+          "minimum_sampled_sole_z_m": 0.003999996930360794,
+          "max_lowest_sole_z_m": 0.0040000006556510925,
+          "max_joint_loop_seam_m": 0.9891629328673364,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 45,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "TurnRight": {
+          "minimum_sampled_sole_z_m": 0.003999998327344656,
+          "max_lowest_sole_z_m": 0.0040000020526349545,
+          "max_joint_loop_seam_m": 0.567188767169549,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 44,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        }
+      },
+      "taiwan-oldman-review": {
+        "Idle": {
+          "minimum_sampled_sole_z_m": 0.0040000006556510925,
+          "max_lowest_sole_z_m": 0.0040000006556510925,
+          "max_joint_loop_seam_m": 0.001896185977298142,
+          "stance_residual_mean_mps": null,
+          "stance_samples": 0,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Walk": {
+          "minimum_sampled_sole_z_m": 0.003999999258667231,
+          "max_lowest_sole_z_m": 0.0040000006556510925,
+          "max_joint_loop_seam_m": 0.0,
+          "stance_residual_mean_mps": 0.027407263608082825,
+          "stance_samples": 46,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        },
+        "Run": {
+          "minimum_sampled_sole_z_m": 0.004436745308339596,
+          "max_lowest_sole_z_m": 0.20454572141170502,
+          "max_joint_loop_seam_m": 0.0032426773785027728,
+          "stance_residual_mean_mps": 0.01876618713140521,
+          "stance_samples": 8,
+          "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+          "status": "measured_not_art_approved"
+        }
+      }
+    },
+    "art_approved": false,
+    "game_ready": false,
+    "not_tested": [
+      "Human art acceptance",
+      "Physical phone",
+      "Full cloth collisions",
+      "Map/gameplay integration"
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "videos": [
+    {
+      "file": "harbor-courier-review-run-webgl-comparison.mp4",
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 880,
+          "r_frame_rate": "24/1",
+          "nb_frames": "134"
+        }
+      ],
+      "format": {
+        "duration": "5.583333",
+        "size": "1387049"
+      }
+    },
+    {
+      "file": "harbor-courier-review-walk-webgl-comparison.mp4",
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 880,
+          "r_frame_rate": "24/1",
+          "nb_frames": "191"
+        }
+      ],
+      "format": {
+        "duration": "7.958333",
+        "size": "1356458"
+      }
+    },
+    {
+      "file": "taiwan-oldman-review-run-webgl-comparison.mp4",
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 880,
+          "r_frame_rate": "24/1",
+          "nb_frames": "134"
+        }
+      ],
+      "format": {
+        "duration": "5.583333",
+        "size": "1074946"
+      }
+    },
+    {
+      "file": "taiwan-oldman-review-walk-webgl-comparison.mp4",
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 880,
+          "r_frame_rate": "24/1",
+          "nb_frames": "191"
+        }
+      ],
+      "format": {
+        "duration": "7.958333",
+        "size": "1142150"
+      }
+    }
+  ],
+  "scope": "Encoding integrity/duration, not real-time performance"
+}

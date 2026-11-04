@@ -1,0 +1,485 @@
+{
+  "sequences": [
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "front",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "back",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "elbow",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "front",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "back",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "elbow",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "front",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "back",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "elbow",
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "front",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "back",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "elbow",
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "view": "side",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "view": "side",
+      "camera": {
+        "position": [
+          4.8,
+          0.9328000000000002,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.88,
+          0
+        ]
+      },
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "view": "side",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "duration_s": 1.3333333730697632,
+      "samples_s": [
+        0,
+        0.1666666716337204,
+        0.3333333432674408,
+        0.5000000149011612,
+        0.6666666865348816,
+        0.833333358168602,
+        1.0000000298023224,
+        1.1666667014360428
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    },
+    {
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "view": "side",
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "duration_s": 0.9333333373069763,
+      "samples_s": [
+        0,
+        0.11666666716337204,
+        0.23333333432674408,
+        0.3500000014901161,
+        0.46666666865348816,
+        0.5833333358168602,
+        0.7000000029802322,
+        0.8166666701436043
+      ],
+      "source": "Real Chromium WebGL2, full native SHA verified GLBs, same camera and time for A/B; 8 sampled animation phases, not real-time 30fps video",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ]
+    }
+  ],
+  "art_approved": false
+}

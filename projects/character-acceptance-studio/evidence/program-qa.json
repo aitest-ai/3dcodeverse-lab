@@ -1,0 +1,118 @@
+{
+  "status": "PROGRAM_AND_STRUCTURE_PASS_ONLY",
+  "checks": [
+    "harbor-courier-review/source: full SHA/bytes and decoded GLB structure",
+    "harbor-courier-review/candidate: full SHA/bytes and decoded GLB structure",
+    "harbor-courier-review: actual animated bone travel and sampled grounding",
+    "harbor-courier-review: exact lock and four negative identity/approval/overwrite gates",
+    "taiwan-oldman-review/source: full SHA/bytes and decoded GLB structure",
+    "taiwan-oldman-review/candidate: full SHA/bytes and decoded GLB structure",
+    "Oldman opaque skin + masked sandal alpha export regression",
+    "taiwan-oldman-review: actual animated bone travel and sampled grounding",
+    "taiwan-oldman-review: exact lock and four negative identity/approval/overwrite gates"
+  ],
+  "diagnostics": {
+    "harbor-courier-review": {
+      "Idle": {
+        "minimum_sampled_sole_z_m": 0.004000000189989805,
+        "max_lowest_sole_z_m": 0.004000000189989805,
+        "max_joint_loop_seam_m": 0.002777983188157198,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 0,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Walk": {
+        "minimum_sampled_sole_z_m": 0.003999999724328518,
+        "max_lowest_sole_z_m": 0.0040000006556510925,
+        "max_joint_loop_seam_m": 0.017808274877838114,
+        "stance_residual_mean_mps": 0.0395390220607321,
+        "stance_samples": 36,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Run": {
+        "minimum_sampled_sole_z_m": 0.003999985754489899,
+        "max_lowest_sole_z_m": 0.24823616445064545,
+        "max_joint_loop_seam_m": 0.003702041120291615,
+        "stance_residual_mean_mps": 5.428836669096881e-07,
+        "stance_samples": 2,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Start": {
+        "minimum_sampled_sole_z_m": 0.003999999258667231,
+        "max_lowest_sole_z_m": 0.0040000006556510925,
+        "max_joint_loop_seam_m": 0.6152116004677579,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 22,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Stop": {
+        "minimum_sampled_sole_z_m": 0.003999998327344656,
+        "max_lowest_sole_z_m": 0.0040000020526349545,
+        "max_joint_loop_seam_m": 0.3836319919667267,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 12,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "TurnLeft": {
+        "minimum_sampled_sole_z_m": 0.003999997861683369,
+        "max_lowest_sole_z_m": 0.0040000020526349545,
+        "max_joint_loop_seam_m": 0.6087817790623639,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 23,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "TurnRight": {
+        "minimum_sampled_sole_z_m": 0.003999997861683369,
+        "max_lowest_sole_z_m": 0.0040000020526349545,
+        "max_joint_loop_seam_m": 0.6087819555283338,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 26,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      }
+    },
+    "taiwan-oldman-review": {
+      "Idle": {
+        "minimum_sampled_sole_z_m": 0.0040000006556510925,
+        "max_lowest_sole_z_m": 0.0040000006556510925,
+        "max_joint_loop_seam_m": 0.001896185977298142,
+        "stance_residual_mean_mps": null,
+        "stance_samples": 0,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Walk": {
+        "minimum_sampled_sole_z_m": 0.003999999258667231,
+        "max_lowest_sole_z_m": 0.0040000006556510925,
+        "max_joint_loop_seam_m": 0.0,
+        "stance_residual_mean_mps": 0.027407263608082825,
+        "stance_samples": 46,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      },
+      "Run": {
+        "minimum_sampled_sole_z_m": 0.004436745308339596,
+        "max_lowest_sole_z_m": 0.20454572141170502,
+        "max_joint_loop_seam_m": 0.0032426773785027728,
+        "stance_residual_mean_mps": 0.01876618713140521,
+        "stance_samples": 8,
+        "method": "low evaluated shoe height (< per-foot min +23mm), forward foot velocity >0.1m/s, residual versus constant treadmill speed; diagnostic only",
+        "status": "measured_not_art_approved"
+      }
+    }
+  },
+  "art_approved": false,
+  "game_ready": false,
+  "not_tested": [
+    "Human art acceptance",
+    "Physical phone",
+    "Full cloth collisions",
+    "Map/gameplay integration"
+  ]
+}
