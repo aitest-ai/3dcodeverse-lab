@@ -1,0 +1,294 @@
+{
+  "schema": "setouchi.pose_contact.capture.v1",
+  "source": "synthetic",
+  "coordinate_system": "THREE_WORLD_METERS",
+  "player_animation": "Cycle",
+  "asset_sha256": {
+    "actor_glb": "4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
+    "bike_glb": "7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece"
+  },
+  "environment": {
+    "webgl2": false,
+    "capture_method": "synthetic",
+    "browser": "not_applicable"
+  },
+  "frames": [
+    {
+      "t_s": 0,
+      "phase": "straight",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    },
+    {
+      "t_s": 0.1,
+      "phase": "straight",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    },
+    {
+      "t_s": 0.2,
+      "phase": "straight",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    },
+    {
+      "t_s": 0.3,
+      "phase": "turn",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    },
+    {
+      "t_s": 0.4,
+      "phase": "turn",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    },
+    {
+      "t_s": 0.5,
+      "phase": "turn",
+      "markers": {
+        "rider_hand_left": [
+          0.02,
+          1,
+          0.4
+        ],
+        "bike_grip_left": [
+          0,
+          1,
+          0.4
+        ],
+        "rider_hand_right": [
+          0.61,
+          1,
+          0.4
+        ],
+        "bike_grip_right": [
+          0.6,
+          1,
+          0.4
+        ],
+        "rider_foot_left": [
+          -0.2,
+          0.43,
+          -0.1
+        ],
+        "bike_pedal_left": [
+          -0.2,
+          0.4,
+          -0.1
+        ],
+        "rider_foot_right": [
+          0.2,
+          0.43,
+          0.1
+        ],
+        "bike_pedal_right": [
+          0.2,
+          0.4,
+          0.1
+        ]
+      }
+    }
+  ],
+  "safety_notice": "ONLY synthetic marker pairs; not real body/bike animation, road or collision."
+}
