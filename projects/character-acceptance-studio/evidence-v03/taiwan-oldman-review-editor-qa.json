@@ -1,0 +1,102 @@
+{
+  "asset": "taiwan-oldman-review",
+  "blender": "5.2.3 LTS",
+  "source_sha256": "7670b402a998335e3d878f3a19f74e4fe6250a04ba5bc7651a048ca4170e3cd7",
+  "candidate_sha256": "fc4db3aee075b31de667b608e2ffc346fdc83d6299dbe6cd7d9ec57d12632def",
+  "body_shoes_hair_pants_raw_geometry_weights_uv_shapes_unchanged": true,
+  "rest_bones_identical": true,
+  "images_byte_identical_and_pixels_decoded": {
+    "brown_eye.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "cc14a193f411197a1924885800ae7ccb3717295dccad63358f92f3a2ec37515e"
+    },
+    "eyebrow001.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b"
+    },
+    "eyelashes01.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35"
+    },
+    "old_lightskinned_male_diffuse2.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "7a96cb8c080fd26d6e45802bf1ee95be2d2d290ec77f8cad18ae805804435f6f"
+    },
+    "oldman_cc0_hair_gray": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "1bb8842e0799c8563174f49b051a4c180cbf49bb3ec67f763a79d8cd83aba276"
+    },
+    "oldman_v28_age_normal": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "1405c6029b39d1d9919a4b363e9f062095bce11bdb9fbdda4629be280026d025"
+    },
+    "oldman_v28_cc0_skin_detail": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "c081bddf90f6c3a87736e8abea1c7586167ef8e8397838fa112b15c5c368cf11"
+    },
+    "oldman_v29_cc0_hair_tone": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f"
+    },
+    "oldman_v29_strand_normal": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8"
+    },
+    "shoes03_diffuse.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "3ab689b0f00e6d23538c48a0c9fe3022abd79ea28d1c9db391703ed19329d6ab"
+    },
+    "teeth.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "22f9b3f2e88b36ef1686b049c91d5e210a3779db53358ab60f11350f108cf035"
+    },
+    "tongue01_diffuse.png": {
+      "dimensions": [
+        512,
+        512
+      ],
+      "sha256": "6ab705e2462400c1e223530e032c85ad44dd5d3706b4de0943bc196495b71bb7"
+    }
+  },
+  "changed_existing_meshes": [
+    "OpenSourceCloth_oldman_toigo_basic_tucked_t-shirt"
+  ],
+  "removed_meshes": [],
+  "new_meshes": [],
+  "closed_cuffs": {},
+  "art_approved": false,
+  "offline_render": "NOT_RENDERED"
+}

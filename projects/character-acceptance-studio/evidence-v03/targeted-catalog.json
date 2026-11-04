@@ -1,0 +1,71 @@
+{
+  "frames": [
+    {
+      "file": "evidence-v03/targeted/harbor-courier-review-run-chest.png",
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "chest",
+      "same_camera_and_time": true,
+      "source_sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235",
+      "candidate_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    },
+    {
+      "file": "evidence-v03/targeted/harbor-courier-review-run-elbow.png",
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "elbow",
+      "same_camera_and_time": true,
+      "source_sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235",
+      "candidate_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    },
+    {
+      "file": "evidence-v03/targeted/harbor-courier-review-run-hem.png",
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "hem",
+      "same_camera_and_time": true,
+      "source_sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235",
+      "candidate_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    },
+    {
+      "file": "evidence-v03/targeted/harbor-courier-review-run-back.png",
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "back",
+      "same_camera_and_time": true,
+      "source_sha256": "4a3f2aa7da8d92b4bc611a9f77e1bd930707f4328d519f9b2bbbdedef2552235",
+      "candidate_sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    },
+    {
+      "file": "evidence-v03/targeted/taiwan-oldman-review-run-hem.png",
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "hem",
+      "same_camera_and_time": true,
+      "source_sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988",
+      "candidate_sha256": "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    },
+    {
+      "file": "evidence-v03/targeted/taiwan-oldman-review-run-back.png",
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "camera_preset": "back",
+      "same_camera_and_time": true,
+      "source_sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988",
+      "candidate_sha256": "8b9a2c5a28fdc363b39068a47f34cdb0823b97d6ef81b95066405a7b57134c43",
+      "source": "Actual Chromium WebGL framebuffer; copied unchanged"
+    }
+  ],
+  "art_approved": false
+}

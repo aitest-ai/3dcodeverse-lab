@@ -1,0 +1,4867 @@
+{
+  "Idle": [
+    {
+      "before_lean_deg": 4.926460766672391,
+      "after_lean_deg": 4.926460766672391,
+      "target_lean_deg": 4.926460766672391,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.81504448557311,
+      "after_lean_deg": 4.81504448557311,
+      "target_lean_deg": 4.81504448557311,
+      "head_forward_elevation_before_deg": -13.731218747200966,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.700049496806221,
+      "after_lean_deg": 4.700049496806221,
+      "target_lean_deg": 4.700049496806221,
+      "head_forward_elevation_before_deg": -13.571054871512377,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.592875138749045,
+      "after_lean_deg": 4.592875138749045,
+      "target_lean_deg": 4.592875138749045,
+      "head_forward_elevation_before_deg": -13.388154915270468,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.490657467822475,
+      "after_lean_deg": 4.490657467822475,
+      "target_lean_deg": 4.490657467822475,
+      "head_forward_elevation_before_deg": -13.200477469331222,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.394111833431765,
+      "after_lean_deg": 4.394111833431765,
+      "target_lean_deg": 4.394111833431765,
+      "head_forward_elevation_before_deg": -13.009295068428163,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.3039374855970305,
+      "after_lean_deg": 4.3039374855970305,
+      "target_lean_deg": 4.3039374855970305,
+      "head_forward_elevation_before_deg": -12.815890877581767,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.220833303001161,
+      "after_lean_deg": 4.220833303001161,
+      "target_lean_deg": 4.220833303001161,
+      "head_forward_elevation_before_deg": -12.621568124472516,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.145517847667006,
+      "after_lean_deg": 4.145517847667006,
+      "target_lean_deg": 4.145517847667006,
+      "head_forward_elevation_before_deg": -12.427611246435417,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.078161809862603,
+      "after_lean_deg": 4.078161809862603,
+      "target_lean_deg": 4.078161809862603,
+      "head_forward_elevation_before_deg": -12.234742127203136,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.021015557297248,
+      "after_lean_deg": 4.021015557297248,
+      "target_lean_deg": 4.021015557297248,
+      "head_forward_elevation_before_deg": -12.045789703200526,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9761321127211335,
+      "after_lean_deg": 3.9761321127211335,
+      "target_lean_deg": 3.9761321127211335,
+      "head_forward_elevation_before_deg": -11.863405703938401,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.944338846560798,
+      "after_lean_deg": 3.944338846560798,
+      "target_lean_deg": 3.944338846560798,
+      "head_forward_elevation_before_deg": -11.688979924919554,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9274494046841437,
+      "after_lean_deg": 3.9274494046841437,
+      "target_lean_deg": 3.9274494046841437,
+      "head_forward_elevation_before_deg": -11.524900294325292,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.92464587160593,
+      "after_lean_deg": 3.92464587160593,
+      "target_lean_deg": 3.92464587160593,
+      "head_forward_elevation_before_deg": -11.370936994135405,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9357950478171735,
+      "after_lean_deg": 3.9357950478171735,
+      "target_lean_deg": 3.9357950478171735,
+      "head_forward_elevation_before_deg": -11.227505097907882,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.960764012483317,
+      "after_lean_deg": 3.960764012483317,
+      "target_lean_deg": 3.960764012483317,
+      "head_forward_elevation_before_deg": -11.095043412037457,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9995966806139407,
+      "after_lean_deg": 3.9995966806139407,
+      "target_lean_deg": 3.9995966806139407,
+      "head_forward_elevation_before_deg": -10.973977804362974,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.051603141694949,
+      "after_lean_deg": 4.051603141694949,
+      "target_lean_deg": 4.051603141694949,
+      "head_forward_elevation_before_deg": -10.86473742906007,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.116583518059188,
+      "after_lean_deg": 4.116583518059188,
+      "target_lean_deg": 4.116583518059188,
+      "head_forward_elevation_before_deg": -10.767731698449277,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.193155026599765,
+      "after_lean_deg": 4.193155026599765,
+      "target_lean_deg": 4.193155026599765,
+      "head_forward_elevation_before_deg": -10.683399137877831,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.28017325988001,
+      "after_lean_deg": 4.28017325988001,
+      "target_lean_deg": 4.28017325988001,
+      "head_forward_elevation_before_deg": -10.61217013245379,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.376665509089026,
+      "after_lean_deg": 4.376665509089026,
+      "target_lean_deg": 4.376665509089026,
+      "head_forward_elevation_before_deg": -10.554458287737233,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.481643222210883,
+      "after_lean_deg": 4.481643222210883,
+      "target_lean_deg": 4.481643222210883,
+      "head_forward_elevation_before_deg": -10.510658461726399,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.59407451736226,
+      "after_lean_deg": 4.59407451736226,
+      "target_lean_deg": 4.59407451736226,
+      "head_forward_elevation_before_deg": -10.48121164540601,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.712941139990247,
+      "after_lean_deg": 4.712941139990247,
+      "target_lean_deg": 4.712941139990247,
+      "head_forward_elevation_before_deg": -10.466583029111776,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.837221150162911,
+      "after_lean_deg": 4.837221150162911,
+      "target_lean_deg": 4.837221150162911,
+      "head_forward_elevation_before_deg": -10.467128962266804,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.965936239393154,
+      "after_lean_deg": 4.965936239393154,
+      "target_lean_deg": 4.965936239393154,
+      "head_forward_elevation_before_deg": -10.483336733562973,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.098031767345465,
+      "after_lean_deg": 5.098031767345465,
+      "target_lean_deg": 5.098031767345465,
+      "head_forward_elevation_before_deg": -10.515575928701512,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.232498938440078,
+      "after_lean_deg": 5.232498938440078,
+      "target_lean_deg": 5.232498938440078,
+      "head_forward_elevation_before_deg": -10.564458639524673,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.368334645177206,
+      "after_lean_deg": 5.368334645177206,
+      "target_lean_deg": 5.368334645177206,
+      "head_forward_elevation_before_deg": -10.629877112987701,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.504545270863325,
+      "after_lean_deg": 5.504545270863325,
+      "target_lean_deg": 5.504545270863325,
+      "head_forward_elevation_before_deg": -10.712640967409161,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.6401028096361125,
+      "after_lean_deg": 5.6401028096361125,
+      "target_lean_deg": 5.6401028096361125,
+      "head_forward_elevation_before_deg": -10.810720959088417,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.7739603863317175,
+      "after_lean_deg": 5.7739603863317175,
+      "target_lean_deg": 5.7739603863317175,
+      "head_forward_elevation_before_deg": -10.922960383571604,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.905133384329526,
+      "after_lean_deg": 5.905133384329526,
+      "target_lean_deg": 5.905133384329526,
+      "head_forward_elevation_before_deg": -11.047521031626934,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.032616730683391,
+      "after_lean_deg": 6.032616730683391,
+      "target_lean_deg": 6.032613839378859,
+      "head_forward_elevation_before_deg": -11.182773817184833,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.155385061577371,
+      "after_lean_deg": 6.155385061577371,
+      "target_lean_deg": 6.155073173152202,
+      "head_forward_elevation_before_deg": -11.327040497388388,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.27240162049764,
+      "after_lean_deg": 6.27240162049764,
+      "target_lean_deg": 6.270729616103941,
+      "head_forward_elevation_before_deg": -11.478678721474628,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.382672688803024,
+      "after_lean_deg": 6.382672688803024,
+      "target_lean_deg": 6.37807024360397,
+      "head_forward_elevation_before_deg": -11.635998397545057,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.4851801664266295,
+      "after_lean_deg": 6.476685967837707,
+      "target_lean_deg": 6.475881389008432,
+      "head_forward_elevation_before_deg": -11.786431045089714,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.578902369768808,
+      "after_lean_deg": 6.564604060849551,
+      "target_lean_deg": 6.56325921018104,
+      "head_forward_elevation_before_deg": -11.942703767742119,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.662179339927793,
+      "after_lean_deg": 6.640995660545987,
+      "target_lean_deg": 6.63899910753581,
+      "head_forward_elevation_before_deg": -12.097609373109863,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.7359503830181096,
+      "after_lean_deg": 6.707139417783915,
+      "target_lean_deg": 6.704438730142339,
+      "head_forward_elevation_before_deg": -12.251936346840436,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.80019472811996,
+      "after_lean_deg": 6.763500193918596,
+      "target_lean_deg": 6.760064535278607,
+      "head_forward_elevation_before_deg": -12.405656341842715,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.856052954471812,
+      "after_lean_deg": 6.811524621213386,
+      "target_lean_deg": 6.807341377247358,
+      "head_forward_elevation_before_deg": -12.559714467608025,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.90490330391817,
+      "after_lean_deg": 6.852720856795023,
+      "target_lean_deg": 6.847824359629503,
+      "head_forward_elevation_before_deg": -12.714961391070506,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.946058217290505,
+      "after_lean_deg": 6.881759365795875,
+      "target_lean_deg": 6.881287052698166,
+      "head_forward_elevation_before_deg": -12.864112755515935,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.979354612248119,
+      "after_lean_deg": 6.908448716385082,
+      "target_lean_deg": 6.907920554143763,
+      "head_forward_elevation_before_deg": -13.019201106456748,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.00461472080928,
+      "after_lean_deg": 6.9284190972548165,
+      "target_lean_deg": 6.92785967918445,
+      "head_forward_elevation_before_deg": -13.174001736478468,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.02166767230527,
+      "after_lean_deg": 6.941773530428779,
+      "target_lean_deg": 6.941189257992069,
+      "head_forward_elevation_before_deg": -13.32810753093131,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.030361336180631,
+      "after_lean_deg": 6.948555149287507,
+      "target_lean_deg": 6.947943769566828,
+      "head_forward_elevation_before_deg": -13.480945371055057,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.030550490630674,
+      "after_lean_deg": 6.948697260214233,
+      "target_lean_deg": 6.948090424018571,
+      "head_forward_elevation_before_deg": -13.631821127604594,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.02206724473287,
+      "after_lean_deg": 6.94209111388121,
+      "target_lean_deg": 6.941500312138693,
+      "head_forward_elevation_before_deg": -13.780012433176529,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.004724981393577,
+      "after_lean_deg": 6.928508817701559,
+      "target_lean_deg": 6.927946206071238,
+      "head_forward_elevation_before_deg": -13.924695813105815,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.978355379124434,
+      "after_lean_deg": 6.907646875459444,
+      "target_lean_deg": 6.907127063012833,
+      "head_forward_elevation_before_deg": -14.06481761926284,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.9428744985894015,
+      "after_lean_deg": 6.879201321730171,
+      "target_lean_deg": 6.878719707529609,
+      "head_forward_elevation_before_deg": -14.19934211870662,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.897956573215443,
+      "after_lean_deg": 6.8469280818379925,
+      "target_lean_deg": 6.842117587392758,
+      "head_forward_elevation_before_deg": -14.332699354465934,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.843111295249232,
+      "after_lean_deg": 6.8004859307222025,
+      "target_lean_deg": 6.796480343370602,
+      "head_forward_elevation_before_deg": -14.451403417306413,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.778947392322774,
+      "after_lean_deg": 6.744994216261253,
+      "target_lean_deg": 6.741812834226929,
+      "head_forward_elevation_before_deg": -14.560455288294792,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.705622879745471,
+      "after_lean_deg": 6.680128701125501,
+      "target_lean_deg": 6.677733023431016,
+      "head_forward_elevation_before_deg": -14.658434073703825,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.624060748258552,
+      "after_lean_deg": 6.606243590070706,
+      "target_lean_deg": 6.604566152303303,
+      "head_forward_elevation_before_deg": -14.743816565002822,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.534946077018643,
+      "after_lean_deg": 6.523614923094241,
+      "target_lean_deg": 6.522543860922513,
+      "head_forward_elevation_before_deg": -14.815234573979644,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.439008527938643,
+      "after_lean_deg": 6.432675878483183,
+      "target_lean_deg": 6.432091029840372,
+      "head_forward_elevation_before_deg": -14.871544134115952,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.33695830037832,
+      "after_lean_deg": 6.33695830037832,
+      "target_lean_deg": 6.3338058761696105,
+      "head_forward_elevation_before_deg": -14.915548252424394,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.229479233342728,
+      "after_lean_deg": 6.229479233342728,
+      "target_lean_deg": 6.228477463295514,
+      "head_forward_elevation_before_deg": -14.936549693639368,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.117258613506518,
+      "after_lean_deg": 6.117258613506518,
+      "target_lean_deg": 6.117124443234239,
+      "head_forward_elevation_before_deg": -14.94191517770916,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.001036108516853,
+      "after_lean_deg": 6.001036108516853,
+      "target_lean_deg": 6.001036108424163,
+      "head_forward_elevation_before_deg": -14.930865753775093,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.881529048399727,
+      "after_lean_deg": 5.881529048399727,
+      "target_lean_deg": 5.881529048399727,
+      "head_forward_elevation_before_deg": -14.902412045387525,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.759430333045562,
+      "after_lean_deg": 5.759430333045562,
+      "target_lean_deg": 5.759430333045562,
+      "head_forward_elevation_before_deg": -14.856282842161372,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.635439178681187,
+      "after_lean_deg": 5.635439178681187,
+      "target_lean_deg": 5.635439178681187,
+      "head_forward_elevation_before_deg": -14.791269659248671,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.510288621264046,
+      "after_lean_deg": 5.510288621264046,
+      "target_lean_deg": 5.510288621264046,
+      "head_forward_elevation_before_deg": -14.70904874791711,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.384675600852183,
+      "after_lean_deg": 5.384675600852183,
+      "target_lean_deg": 5.384675600852183,
+      "head_forward_elevation_before_deg": -14.610378563025108,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.259307083090287,
+      "after_lean_deg": 5.259307083090287,
+      "target_lean_deg": 5.259307083090287,
+      "head_forward_elevation_before_deg": -14.496708148001014,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.134873184937318,
+      "after_lean_deg": 5.134873184937318,
+      "target_lean_deg": 5.134873184937318,
+      "head_forward_elevation_before_deg": -14.369275853377793,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.012103963746715,
+      "after_lean_deg": 5.012103963746715,
+      "target_lean_deg": 5.012103963746715,
+      "head_forward_elevation_before_deg": -14.2294316006184,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.891695986905987,
+      "after_lean_deg": 4.891695986905987,
+      "target_lean_deg": 4.891695986905987,
+      "head_forward_elevation_before_deg": -14.078400422844517,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.774366062432262,
+      "after_lean_deg": 4.774366062432262,
+      "target_lean_deg": 4.774366062432262,
+      "head_forward_elevation_before_deg": -13.917463362845501,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.660813062289052,
+      "after_lean_deg": 4.660813062289052,
+      "target_lean_deg": 4.660813062289052,
+      "head_forward_elevation_before_deg": -13.747923323657446,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.551754832973876,
+      "after_lean_deg": 4.551754832973876,
+      "target_lean_deg": 4.551754832973876,
+      "head_forward_elevation_before_deg": -13.571066317372663,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.447870436286377,
+      "after_lean_deg": 4.447870436286377,
+      "target_lean_deg": 4.447870436286377,
+      "head_forward_elevation_before_deg": -13.388150680721424,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.349882044549025,
+      "after_lean_deg": 4.349882044549025,
+      "target_lean_deg": 4.349882044549025,
+      "head_forward_elevation_before_deg": -13.200476186542693,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.258512804817511,
+      "after_lean_deg": 4.258512804817511,
+      "target_lean_deg": 4.258512804817511,
+      "head_forward_elevation_before_deg": -13.009294857180267,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.174456255967609,
+      "after_lean_deg": 4.174456255967609,
+      "target_lean_deg": 4.174456255967609,
+      "head_forward_elevation_before_deg": -12.815905613465624,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.098414920281003,
+      "after_lean_deg": 4.098414920281003,
+      "target_lean_deg": 4.098414920281003,
+      "head_forward_elevation_before_deg": -12.621568809477132,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.031115758233168,
+      "after_lean_deg": 4.031115758233168,
+      "target_lean_deg": 4.031115758233168,
+      "head_forward_elevation_before_deg": -12.427600375857565,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.972733084328178,
+      "after_lean_deg": 3.972733084328178,
+      "target_lean_deg": 3.972733084328178,
+      "head_forward_elevation_before_deg": -12.234751401257814,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.925504800764839,
+      "after_lean_deg": 3.925504800764839,
+      "target_lean_deg": 3.925504800764839,
+      "head_forward_elevation_before_deg": -12.045819017634741,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.891466907891015,
+      "after_lean_deg": 3.891466907891015,
+      "target_lean_deg": 3.891466907891015,
+      "head_forward_elevation_before_deg": -11.863430258447123,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.8714532541922524,
+      "after_lean_deg": 3.8714532541922524,
+      "target_lean_deg": 3.8714532541922524,
+      "head_forward_elevation_before_deg": -11.688995742198777,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.867274030075335,
+      "after_lean_deg": 3.867274030075335,
+      "target_lean_deg": 3.867274030075335,
+      "head_forward_elevation_before_deg": -11.524894054251492,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.878130531982565,
+      "after_lean_deg": 3.878130531982565,
+      "target_lean_deg": 3.878130531982565,
+      "head_forward_elevation_before_deg": -11.3709251749761,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9040826362319003,
+      "after_lean_deg": 3.9040826362319003,
+      "target_lean_deg": 3.9040826362319003,
+      "head_forward_elevation_before_deg": -11.227488252260184,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.944440524526842,
+      "after_lean_deg": 3.944440524526842,
+      "target_lean_deg": 3.944440524526842,
+      "head_forward_elevation_before_deg": -11.095036365271215,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9989736869848165,
+      "after_lean_deg": 3.9989736869848165,
+      "target_lean_deg": 3.9989736869848165,
+      "head_forward_elevation_before_deg": -10.973977801471268,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.06631550884804,
+      "after_lean_deg": 4.06631550884804,
+      "target_lean_deg": 4.06631550884804,
+      "head_forward_elevation_before_deg": -10.864741268408409,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.145339811131794,
+      "after_lean_deg": 4.145339811131794,
+      "target_lean_deg": 4.145339811131794,
+      "head_forward_elevation_before_deg": -10.767725031327533,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.235087271033149,
+      "after_lean_deg": 4.235087271033149,
+      "target_lean_deg": 4.235087271033149,
+      "head_forward_elevation_before_deg": -10.683399171937154,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.334542186810628,
+      "after_lean_deg": 4.334542186810628,
+      "target_lean_deg": 4.334542186810628,
+      "head_forward_elevation_before_deg": -10.61217415721181,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.442672605392855,
+      "after_lean_deg": 4.442672605392855,
+      "target_lean_deg": 4.442672605392855,
+      "head_forward_elevation_before_deg": -10.554451202982758,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.558468272771019,
+      "after_lean_deg": 4.558468272771019,
+      "target_lean_deg": 4.558468272771019,
+      "head_forward_elevation_before_deg": -10.510658282755596,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.680914116573901,
+      "after_lean_deg": 4.680914116573901,
+      "target_lean_deg": 4.680914116573901,
+      "head_forward_elevation_before_deg": -10.481215859705936,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.809003067338316,
+      "after_lean_deg": 4.809003067338316,
+      "target_lean_deg": 4.809003067338316,
+      "head_forward_elevation_before_deg": -10.466583120168602,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.941702073583228,
+      "after_lean_deg": 4.941702073583228,
+      "target_lean_deg": 4.941702073583228,
+      "head_forward_elevation_before_deg": -10.467153192455116,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.078041040098353,
+      "after_lean_deg": 5.078041040098353,
+      "target_lean_deg": 5.078041040098353,
+      "head_forward_elevation_before_deg": -10.483343739891277,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.21696151698154,
+      "after_lean_deg": 5.21696151698154,
+      "target_lean_deg": 5.21696151698154,
+      "head_forward_elevation_before_deg": -10.515567438966539,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.357435665210819,
+      "after_lean_deg": 5.357435665210819,
+      "target_lean_deg": 5.357435665210819,
+      "head_forward_elevation_before_deg": -10.56444592261907,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.49847625237576,
+      "after_lean_deg": 5.49847625237576,
+      "target_lean_deg": 5.49847625237576,
+      "head_forward_elevation_before_deg": -10.629866080611528,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.639095530873145,
+      "after_lean_deg": 5.639095530873145,
+      "target_lean_deg": 5.639095530873145,
+      "head_forward_elevation_before_deg": -10.712620963961756,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.7782637330151365,
+      "after_lean_deg": 5.7782637330151365,
+      "target_lean_deg": 5.7782637330151365,
+      "head_forward_elevation_before_deg": -10.81071359132027,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.914946639303512,
+      "after_lean_deg": 5.914946639303512,
+      "target_lean_deg": 5.914946639303512,
+      "head_forward_elevation_before_deg": -10.92295907542367,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.04813828766132,
+      "after_lean_deg": 6.04813828766132,
+      "target_lean_deg": 6.04812899393155,
+      "head_forward_elevation_before_deg": -11.047540653667749,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.176815366466191,
+      "after_lean_deg": 6.176815366466191,
+      "target_lean_deg": 6.176356143949131,
+      "head_forward_elevation_before_deg": -11.182783213257101,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.299980319037568,
+      "after_lean_deg": 6.299980319037568,
+      "target_lean_deg": 6.297750822519046,
+      "head_forward_elevation_before_deg": -11.327044510226106,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.41661178843017,
+      "after_lean_deg": 6.411186566802932,
+      "target_lean_deg": 6.410688787986942,
+      "head_forward_elevation_before_deg": -11.471705334471663,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.525687678874196,
+      "after_lean_deg": 6.514915793300505,
+      "target_lean_deg": 6.513907084698625,
+      "head_forward_elevation_before_deg": -11.622121673632288,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.626192384432619,
+      "after_lean_deg": 6.608189796262055,
+      "target_lean_deg": 6.606502385551645,
+      "head_forward_elevation_before_deg": -11.77416112807146,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.717104336059275,
+      "after_lean_deg": 6.6903742030602205,
+      "target_lean_deg": 6.6878762148417845,
+      "head_forward_elevation_before_deg": -11.92664078747676,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.796768656285974,
+      "after_lean_deg": 6.760535720180907,
+      "target_lean_deg": 6.757131365589443,
+      "head_forward_elevation_before_deg": -12.07819642686054,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.866126657573136,
+      "after_lean_deg": 6.820076063200567,
+      "target_lean_deg": 6.815756389365989,
+      "head_forward_elevation_before_deg": -12.229707637955105,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.925150849596392,
+      "after_lean_deg": 6.864808895113426,
+      "target_lean_deg": 6.864361853117042,
+      "head_forward_elevation_before_deg": -12.375167490160273,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.974994862229078,
+      "after_lean_deg": 6.904973964293843,
+      "target_lean_deg": 6.90445583800294,
+      "head_forward_elevation_before_deg": -12.526835317095058,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.0170446512579705,
+      "after_lean_deg": 6.938162173869868,
+      "target_lean_deg": 6.937586134968271,
+      "head_forward_elevation_before_deg": -12.680524109258236,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.050592952939499,
+      "after_lean_deg": 6.964189809445142,
+      "target_lean_deg": 6.963554984659209,
+      "head_forward_elevation_before_deg": -12.835582285693473,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.075452216609869,
+      "after_lean_deg": 6.983213026162028,
+      "target_lean_deg": 6.982529572772963,
+      "head_forward_elevation_before_deg": -12.99163744618825,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.091480743170072,
+      "after_lean_deg": 6.995350928587264,
+      "target_lean_deg": 6.994641810542798,
+      "head_forward_elevation_before_deg": -13.148269680220208,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.098525721007804,
+      "after_lean_deg": 7.000651699377761,
+      "target_lean_deg": 6.999935072849664,
+      "head_forward_elevation_before_deg": -13.304886382539255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.096411664149116,
+      "after_lean_deg": 6.999073689304713,
+      "target_lean_deg": 6.9983486237624275,
+      "head_forward_elevation_before_deg": -13.460907351269384,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.084982069252991,
+      "after_lean_deg": 6.990437708422998,
+      "target_lean_deg": 6.9897425413903145,
+      "head_forward_elevation_before_deg": -13.615459398718777,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.064064681368304,
+      "after_lean_deg": 6.974523773708025,
+      "target_lean_deg": 6.973866178530374,
+      "head_forward_elevation_before_deg": -13.76770111434805,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.033511546493581,
+      "after_lean_deg": 6.950995522848127,
+      "target_lean_deg": 6.950384463056568,
+      "head_forward_elevation_before_deg": -13.916556558646159,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.9930623262040505,
+      "after_lean_deg": 6.919318010751433,
+      "target_lean_deg": 6.918769458396545,
+      "head_forward_elevation_before_deg": -14.060891684842503,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.942230785049646,
+      "after_lean_deg": 6.878675412025434,
+      "target_lean_deg": 6.878200181123853,
+      "head_forward_elevation_before_deg": -14.199497868593028,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.881607613427883,
+      "after_lean_deg": 6.833182905985188,
+      "target_lean_deg": 6.828620989173571,
+      "head_forward_elevation_before_deg": -14.336080318463518,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.811384109828746,
+      "after_lean_deg": 6.7731992951658615,
+      "target_lean_deg": 6.769617485055687,
+      "head_forward_elevation_before_deg": -14.457150782173034,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.732418806492877,
+      "after_lean_deg": 6.704010560323369,
+      "target_lean_deg": 6.701343353700615,
+      "head_forward_elevation_before_deg": -14.567603403234052,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.645410639518435,
+      "after_lean_deg": 6.625754810347812,
+      "target_lean_deg": 6.623902067340688,
+      "head_forward_elevation_before_deg": -14.66598140412314,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.55110737936123,
+      "after_lean_deg": 6.538740321190363,
+      "target_lean_deg": 6.5375698932130755,
+      "head_forward_elevation_before_deg": -14.750846376021231,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.450228004620095,
+      "after_lean_deg": 6.443411375218459,
+      "target_lean_deg": 6.442773770891325,
+      "head_forward_elevation_before_deg": -14.82106012774631,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.3434595608920334,
+      "after_lean_deg": 6.3434595608920334,
+      "target_lean_deg": 6.34012258441595,
+      "head_forward_elevation_before_deg": -14.879707382308391,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.231483814384915,
+      "after_lean_deg": 6.231483814384915,
+      "target_lean_deg": 6.230455656410929,
+      "head_forward_elevation_before_deg": -14.91553969595838,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.115020849770256,
+      "after_lean_deg": 6.115020849770256,
+      "target_lean_deg": 6.114894208780677,
+      "head_forward_elevation_before_deg": -14.936549385369906,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.994791014478259,
+      "after_lean_deg": 5.994791014478259,
+      "target_lean_deg": 5.994791014478259,
+      "head_forward_elevation_before_deg": -14.941914988807072,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.871508135833333,
+      "after_lean_deg": 5.871508135833333,
+      "target_lean_deg": 5.871508135833333,
+      "head_forward_elevation_before_deg": -14.930865585225007,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.745886331011437,
+      "after_lean_deg": 5.745886331011437,
+      "target_lean_deg": 5.745886331011437,
+      "head_forward_elevation_before_deg": -14.902427795731693,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.618610984941273,
+      "after_lean_deg": 5.618610984941273,
+      "target_lean_deg": 5.618610984941273,
+      "head_forward_elevation_before_deg": -14.856290087695415,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.490376939459486,
+      "after_lean_deg": 5.490376939459486,
+      "target_lean_deg": 5.490376939459486,
+      "head_forward_elevation_before_deg": -14.791271985798538,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.361924530039353,
+      "after_lean_deg": 5.361924530039353,
+      "target_lean_deg": 5.361924530039353,
+      "head_forward_elevation_before_deg": -14.709048611340318,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.229798113573415,
+      "after_lean_deg": 5.229798113573415,
+      "target_lean_deg": 5.229798113573415,
+      "head_forward_elevation_before_deg": -14.629871503141775,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.107170945170025,
+      "after_lean_deg": 5.107170945170025,
+      "target_lean_deg": 5.107170945170025,
+      "head_forward_elevation_before_deg": -14.496701377224113,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.015046760874093,
+      "after_lean_deg": 5.015046760874093,
+      "target_lean_deg": 5.015046760874093,
+      "head_forward_elevation_before_deg": -14.215460901384345,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.926460766672391,
+      "after_lean_deg": 4.926460766672391,
+      "target_lean_deg": 4.926460766672391,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ],
+  "Walk": [
+    {
+      "before_lean_deg": 8.077319787572144,
+      "after_lean_deg": 7.558498740004748,
+      "target_lean_deg": 7.554716639813572,
+      "head_forward_elevation_before_deg": -12.464169004372364,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.09528021830841,
+      "after_lean_deg": 7.565634218657418,
+      "target_lean_deg": 7.561774375782018,
+      "head_forward_elevation_before_deg": -12.436375421504936,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.12369119298614,
+      "after_lean_deg": 7.576729107459591,
+      "target_lean_deg": 7.572738409706848,
+      "head_forward_elevation_before_deg": -12.432049920589865,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.163780396611546,
+      "after_lean_deg": 7.591974519537003,
+      "target_lean_deg": 7.587797997873922,
+      "head_forward_elevation_before_deg": -12.448240200435766,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.212993155082843,
+      "after_lean_deg": 7.610046102312258,
+      "target_lean_deg": 7.605640990942458,
+      "head_forward_elevation_before_deg": -12.47895124819369,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.26977814954628,
+      "after_lean_deg": 7.630035148866936,
+      "target_lean_deg": 7.625371830380589,
+      "head_forward_elevation_before_deg": -12.518900594305281,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.332150117292077,
+      "after_lean_deg": 7.650992584953046,
+      "target_lean_deg": 7.6460197066964595,
+      "head_forward_elevation_before_deg": -12.56332388895016,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.398180013853558,
+      "after_lean_deg": 7.667203232500761,
+      "target_lean_deg": 7.666753660556248,
+      "head_forward_elevation_before_deg": -12.60119325495698,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.466069654906926,
+      "after_lean_deg": 7.687390704483307,
+      "target_lean_deg": 7.686914720100932,
+      "head_forward_elevation_before_deg": -12.639951015642255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.534092359061496,
+      "after_lean_deg": 7.706504795228292,
+      "target_lean_deg": 7.705990117380354,
+      "head_forward_elevation_before_deg": -12.66917054227844,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.600128302909516,
+      "after_lean_deg": 7.724021815073466,
+      "target_lean_deg": 7.723479346228919,
+      "head_forward_elevation_before_deg": -12.68474608962632,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.662185683301674,
+      "after_lean_deg": 7.739596958423438,
+      "target_lean_deg": 7.739032352340996,
+      "head_forward_elevation_before_deg": -12.682642715168052,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.718311618452088,
+      "after_lean_deg": 7.752996378338371,
+      "target_lean_deg": 7.752394250008156,
+      "head_forward_elevation_before_deg": -12.65883844124231,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.766572175358236,
+      "after_lean_deg": 7.763986182033703,
+      "target_lean_deg": 7.763369956271049,
+      "head_forward_elevation_before_deg": -12.601531131664752,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.805195845706097,
+      "after_lean_deg": 7.772458332898663,
+      "target_lean_deg": 7.771823811440819,
+      "head_forward_elevation_before_deg": -12.530169790130254,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.831823994894835,
+      "after_lean_deg": 7.778128836778315,
+      "target_lean_deg": 7.777486005859601,
+      "head_forward_elevation_before_deg": -12.45465025757255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.846339209272733,
+      "after_lean_deg": 7.781169189253012,
+      "target_lean_deg": 7.780516572319637,
+      "head_forward_elevation_before_deg": -12.392037147079176,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.84714440749386,
+      "after_lean_deg": 7.781330580872231,
+      "target_lean_deg": 7.780683542932564,
+      "head_forward_elevation_before_deg": -12.366545061259764,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.836381055689381,
+      "after_lean_deg": 7.779103196833695,
+      "target_lean_deg": 7.778441670913637,
+      "head_forward_elevation_before_deg": -12.366026477512726,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.815347759650443,
+      "after_lean_deg": 7.774640555851124,
+      "target_lean_deg": 7.773998301181391,
+      "head_forward_elevation_before_deg": -12.386968586718185,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.785083605317439,
+      "after_lean_deg": 7.768076679799158,
+      "target_lean_deg": 7.767457710173055,
+      "head_forward_elevation_before_deg": -12.42673419293216,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.746711141845932,
+      "after_lean_deg": 7.759512485112933,
+      "target_lean_deg": 7.758909354049738,
+      "head_forward_elevation_before_deg": -12.482383355926842,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.701380211715735,
+      "after_lean_deg": 7.749014204616256,
+      "target_lean_deg": 7.748432151880662,
+      "head_forward_elevation_before_deg": -12.55091192144985,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.65024582033297,
+      "after_lean_deg": 7.7366688575299,
+      "target_lean_deg": 7.736104559583779,
+      "head_forward_elevation_before_deg": -12.629244970580306,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.59446543400432,
+      "after_lean_deg": 7.722558505131498,
+      "target_lean_deg": 7.722018135564772,
+      "head_forward_elevation_before_deg": -12.714325216160303,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.5352682022235,
+      "after_lean_deg": 7.706810570945577,
+      "target_lean_deg": 7.706310255802827,
+      "head_forward_elevation_before_deg": -12.803033363352592,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.473835105277395,
+      "after_lean_deg": 7.689633615436195,
+      "target_lean_deg": 7.68914834514533,
+      "head_forward_elevation_before_deg": -12.892329505970137,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.411418851692602,
+      "after_lean_deg": 7.671235516547818,
+      "target_lean_deg": 7.670775655275691,
+      "head_forward_elevation_before_deg": -12.979127166433061,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.349244290261018,
+      "after_lean_deg": 7.651919384490842,
+      "target_lean_deg": 7.651496563915326,
+      "head_forward_elevation_before_deg": -13.060438530288582,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.28855790206984,
+      "after_lean_deg": 7.636448435235137,
+      "target_lean_deg": 7.631699862342187,
+      "head_forward_elevation_before_deg": -13.139064123576773,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.230661118216934,
+      "after_lean_deg": 7.616352912744731,
+      "target_lean_deg": 7.611877195246974,
+      "head_forward_elevation_before_deg": -13.200545651855986,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.176815620043934,
+      "after_lean_deg": 7.59682052956319,
+      "target_lean_deg": 7.592592561248158,
+      "head_forward_elevation_before_deg": -13.248120505392473,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.128334383146532,
+      "after_lean_deg": 7.578509205121949,
+      "target_lean_deg": 7.574507127860558,
+      "head_forward_elevation_before_deg": -13.27906814619249,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.086501090654812,
+      "after_lean_deg": 7.562155215271848,
+      "target_lean_deg": 7.5583368658700945,
+      "head_forward_elevation_before_deg": -13.290861082165552,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.052621037417401,
+      "after_lean_deg": 7.548527067741232,
+      "target_lean_deg": 7.5448487687089285,
+      "head_forward_elevation_before_deg": -13.280974977586274,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.02821805955874,
+      "after_lean_deg": 7.538479765422954,
+      "target_lean_deg": 7.534912415306219,
+      "head_forward_elevation_before_deg": -13.24625623123205,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.014054625529464,
+      "after_lean_deg": 7.532572990684994,
+      "target_lean_deg": 7.529059375671035,
+      "head_forward_elevation_before_deg": -13.185830470680038,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.01181101620921,
+      "after_lean_deg": 7.53163092798423,
+      "target_lean_deg": 7.528126368855777,
+      "head_forward_elevation_before_deg": -13.09589004157622,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.020116020940986,
+      "after_lean_deg": 7.535111140506391,
+      "target_lean_deg": 7.531572021616233,
+      "head_forward_elevation_before_deg": -12.981437434327129,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.038619090850064,
+      "after_lean_deg": 7.542778152058758,
+      "target_lean_deg": 7.539170320857434,
+      "head_forward_elevation_before_deg": -12.84452272334347,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.06610704017586,
+      "after_lean_deg": 7.55399077207146,
+      "target_lean_deg": 7.550260223122099,
+      "head_forward_elevation_before_deg": -12.689408830978923,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.101599295007341,
+      "after_lean_deg": 7.56812762166259,
+      "target_lean_deg": 7.56423409863965,
+      "head_forward_elevation_before_deg": -12.519653556515577,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.144068688038987,
+      "after_lean_deg": 7.584543272945175,
+      "target_lean_deg": 7.580452864094509,
+      "head_forward_elevation_before_deg": -12.339031534316495,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.192501750001291,
+      "after_lean_deg": 7.602603081585394,
+      "target_lean_deg": 7.598296567318322,
+      "head_forward_elevation_before_deg": -12.151150713671106,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.245832896564327,
+      "after_lean_deg": 7.62171799616741,
+      "target_lean_deg": 7.617161930870037,
+      "head_forward_elevation_before_deg": -11.959937865507607,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.303041937451653,
+      "after_lean_deg": 7.6413456973825795,
+      "target_lean_deg": 7.636514631102658,
+      "head_forward_elevation_before_deg": -11.758390966637688,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.363008340815924,
+      "after_lean_deg": 7.656287122658366,
+      "target_lean_deg": 7.655850643666436,
+      "head_forward_elevation_before_deg": -11.577190171744874,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.424774752871498,
+      "after_lean_deg": 7.6752616544494785,
+      "target_lean_deg": 7.674788390591025,
+      "head_forward_elevation_before_deg": -11.459432477919798,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.48682978702629,
+      "after_lean_deg": 7.693345168083005,
+      "target_lean_deg": 7.69285346457379,
+      "head_forward_elevation_before_deg": -11.40927184131795,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.547853059860525,
+      "after_lean_deg": 7.710240076946969,
+      "target_lean_deg": 7.709716595285268,
+      "head_forward_elevation_before_deg": -11.455809294371875,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.606397176260847,
+      "after_lean_deg": 7.7256376478825475,
+      "target_lean_deg": 7.725088631856703,
+      "head_forward_elevation_before_deg": -11.573740920213522,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.661073987134033,
+      "after_lean_deg": 7.73932945133815,
+      "target_lean_deg": 7.738761032271431,
+      "head_forward_elevation_before_deg": -11.751371863842968,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.710439430208218,
+      "after_lean_deg": 7.751156106956932,
+      "target_lean_deg": 7.750559390581505,
+      "head_forward_elevation_before_deg": -11.977217170833521,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.753128874132782,
+      "after_lean_deg": 7.760983509918342,
+      "target_lean_deg": 7.760359255408074,
+      "head_forward_elevation_before_deg": -12.239697419420702,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.787762951398639,
+      "after_lean_deg": 7.7686722606359,
+      "target_lean_deg": 7.76804385513004,
+      "head_forward_elevation_before_deg": -12.527294512508771,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.81266321833635,
+      "after_lean_deg": 7.774066898123396,
+      "target_lean_deg": 7.773425187706579,
+      "head_forward_elevation_before_deg": -12.829365893189559,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.827386088001829,
+      "after_lean_deg": 7.777192947925404,
+      "target_lean_deg": 7.77655160122612,
+      "head_forward_elevation_before_deg": -13.131481569080728,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.83041160489015,
+      "after_lean_deg": 7.777834555467561,
+      "target_lean_deg": 7.777189025707432,
+      "head_forward_elevation_before_deg": -13.42243701215947,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.823242224013098,
+      "after_lean_deg": 7.77631875770889,
+      "target_lean_deg": 7.7756757757358494,
+      "head_forward_elevation_before_deg": -13.681453193655328,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.806562327507995,
+      "after_lean_deg": 7.772755953679579,
+      "target_lean_deg": 7.7721176458944,
+      "head_forward_elevation_before_deg": -13.881330015633043,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.781375147247667,
+      "after_lean_deg": 7.767260325366798,
+      "target_lean_deg": 7.766644139195015,
+      "head_forward_elevation_before_deg": -14.029322741533035,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.748680177263497,
+      "after_lean_deg": 7.759962015648668,
+      "target_lean_deg": 7.759355071608917,
+      "head_forward_elevation_before_deg": -14.116907649953014,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.709485651006709,
+      "after_lean_deg": 7.750930160255604,
+      "target_lean_deg": 7.750336222362853,
+      "head_forward_elevation_before_deg": -14.163722073963664,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.664744096752202,
+      "after_lean_deg": 7.740216398091549,
+      "target_lean_deg": 7.739655762108078,
+      "head_forward_elevation_before_deg": -14.187876473844035,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.615552913248237,
+      "after_lean_deg": 7.72796381554298,
+      "target_lean_deg": 7.727423423445975,
+      "head_forward_elevation_before_deg": -14.186287314272839,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.5629349962048,
+      "after_lean_deg": 7.714269550765532,
+      "target_lean_deg": 7.713750830328262,
+      "head_forward_elevation_before_deg": -14.16077179331432,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.508007110318902,
+      "after_lean_deg": 7.699299077531357,
+      "target_lean_deg": 7.69880498115813,
+      "head_forward_elevation_before_deg": -14.113239215080375,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.451867588497327,
+      "after_lean_deg": 7.683262002135915,
+      "target_lean_deg": 7.682791666904849,
+      "head_forward_elevation_before_deg": -14.045683318150962,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.395635910452214,
+      "after_lean_deg": 7.666422817238923,
+      "target_lean_deg": 7.6659756557253615,
+      "head_forward_elevation_before_deg": -13.959858091919902,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.340491102264272,
+      "after_lean_deg": 7.649123777225753,
+      "target_lean_deg": 7.64870174412053,
+      "head_forward_elevation_before_deg": -13.85772328684545,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.287620260303743,
+      "after_lean_deg": 7.636119213440925,
+      "target_lean_deg": 7.631386205406111,
+      "head_forward_elevation_before_deg": -13.746841962976509,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.238175748849338,
+      "after_lean_deg": 7.619003494614488,
+      "target_lean_deg": 7.614502831850676,
+      "head_forward_elevation_before_deg": -13.617855939383011,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.193381289625718,
+      "after_lean_deg": 7.602905957818637,
+      "target_lean_deg": 7.598614287853714,
+      "head_forward_elevation_before_deg": -13.47858960189631,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.154473594827413,
+      "after_lean_deg": 7.588459306914282,
+      "target_lean_deg": 7.584344312232559,
+      "head_forward_elevation_before_deg": -13.331257346896352,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.122665500213047,
+      "after_lean_deg": 7.576320178271226,
+      "target_lean_deg": 7.572346823380684,
+      "head_forward_elevation_before_deg": -13.177940417268582,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.100479677832181,
+      "after_lean_deg": 7.567671583852927,
+      "target_lean_deg": 7.563799168833699,
+      "head_forward_elevation_before_deg": -13.01708793783685,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.085404820192414,
+      "after_lean_deg": 7.561716596940697,
+      "target_lean_deg": 7.557905960992267,
+      "head_forward_elevation_before_deg": -12.861826604463689,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.075822662669266,
+      "after_lean_deg": 7.557886478816985,
+      "target_lean_deg": 7.554123861638528,
+      "head_forward_elevation_before_deg": -12.722520996685514,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.071610365026539,
+      "after_lean_deg": 7.556212366747305,
+      "target_lean_deg": 7.552452322466179,
+      "head_forward_elevation_before_deg": -12.60515708014637,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.070707040828193,
+      "after_lean_deg": 7.555845045402466,
+      "target_lean_deg": 7.552093149636637,
+      "head_forward_elevation_before_deg": -12.520667187116326,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.07731827708787,
+      "after_lean_deg": 7.55849722721702,
+      "target_lean_deg": 7.554716042093382,
+      "head_forward_elevation_before_deg": -12.464169004372364,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ],
+  "Run": [
+    {
+      "before_lean_deg": 19.428647757923883,
+      "after_lean_deg": 12.004406821606299,
+      "target_lean_deg": 11.99967847452562,
+      "head_forward_elevation_before_deg": 2.875236147318047,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.3068852553187,
+      "after_lean_deg": 12.004255235789891,
+      "target_lean_deg": 11.99963684531573,
+      "head_forward_elevation_before_deg": 2.2128161841947223,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.098050546807762,
+      "after_lean_deg": 12.003999360121869,
+      "target_lean_deg": 11.999552515233935,
+      "head_forward_elevation_before_deg": 1.032392467974399,
+      "head_forward_target_elevation_deg": 1.032392467974399
+    },
+    {
+      "before_lean_deg": 18.759174458979356,
+      "after_lean_deg": 12.003570421752997,
+      "target_lean_deg": 11.999372041891363,
+      "head_forward_elevation_before_deg": -0.8737336645604026,
+      "head_forward_target_elevation_deg": -0.8737336645604026
+    },
+    {
+      "before_lean_deg": 18.389510664595957,
+      "after_lean_deg": 12.003027290762192,
+      "target_lean_deg": 11.999091252714425,
+      "head_forward_elevation_before_deg": -2.9993149724020283,
+      "head_forward_target_elevation_deg": -2.9993149724020283
+    },
+    {
+      "before_lean_deg": 18.068033833885146,
+      "after_lean_deg": 12.002474030004944,
+      "target_lean_deg": 11.998746797272597,
+      "head_forward_elevation_before_deg": -4.9337888137954,
+      "head_forward_target_elevation_deg": -4.9337888137954
+    },
+    {
+      "before_lean_deg": 17.862025119590992,
+      "after_lean_deg": 12.002069411863916,
+      "target_lean_deg": 11.998460220073385,
+      "head_forward_elevation_before_deg": -6.324608656753501,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 17.889807527802915,
+      "after_lean_deg": 12.002138936514765,
+      "target_lean_deg": 11.998502394288108,
+      "head_forward_elevation_before_deg": -6.684730305362279,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 18.090936546000755,
+      "after_lean_deg": 12.002548444272641,
+      "target_lean_deg": 11.998775164146048,
+      "head_forward_elevation_before_deg": -6.168419569190851,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 18.459126510687476,
+      "after_lean_deg": 12.003162550344504,
+      "target_lean_deg": 11.999152351136717,
+      "head_forward_elevation_before_deg": -4.834670082845665,
+      "head_forward_target_elevation_deg": -4.834670082845665
+    },
+    {
+      "before_lean_deg": 18.910831705847883,
+      "after_lean_deg": 12.003788517935634,
+      "target_lean_deg": 11.999460394507691,
+      "head_forward_elevation_before_deg": -3.035267213968868,
+      "head_forward_target_elevation_deg": -3.035267213968868
+    },
+    {
+      "before_lean_deg": 19.37896237814873,
+      "after_lean_deg": 12.004356160533076,
+      "target_lean_deg": 11.999662097273823,
+      "head_forward_elevation_before_deg": -1.0777580981322976,
+      "head_forward_target_elevation_deg": -1.0777580981322976
+    },
+    {
+      "before_lean_deg": 19.829781223430523,
+      "after_lean_deg": 12.000242067332657,
+      "target_lean_deg": 11.999784713462677,
+      "head_forward_elevation_before_deg": 0.8690710084373412,
+      "head_forward_target_elevation_deg": 0.8690710084373412
+    },
+    {
+      "before_lean_deg": 20.221740289539355,
+      "after_lean_deg": 12.000318948028294,
+      "target_lean_deg": 11.99985452150729,
+      "head_forward_elevation_before_deg": 2.6327251667723877,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.528020820560126,
+      "after_lean_deg": 12.000397505921793,
+      "target_lean_deg": 11.999892900605559,
+      "head_forward_elevation_before_deg": 4.0917898877266214,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.7004109666706,
+      "after_lean_deg": 12.00045114770012,
+      "target_lean_deg": 11.999909859332988,
+      "head_forward_elevation_before_deg": 5.07096029226287,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.764004189981677,
+      "after_lean_deg": 12.00046531749234,
+      "target_lean_deg": 11.999915413085295,
+      "head_forward_elevation_before_deg": 5.6482210532742805,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.711866737082758,
+      "after_lean_deg": 12.000466538425485,
+      "target_lean_deg": 11.99991088604863,
+      "head_forward_elevation_before_deg": 5.796400708233562,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.588509160474494,
+      "after_lean_deg": 12.000453926566786,
+      "target_lean_deg": 11.99989918667343,
+      "head_forward_elevation_before_deg": 5.667107175779019,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.434132237676838,
+      "after_lean_deg": 12.000423214703215,
+      "target_lean_deg": 11.999882358334574,
+      "head_forward_elevation_before_deg": 5.391600326290448,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.24797437700461,
+      "after_lean_deg": 12.000386266568398,
+      "target_lean_deg": 11.999858288243116,
+      "head_forward_elevation_before_deg": 4.9696287176511955,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 20.038835301889456,
+      "after_lean_deg": 12.00033229588676,
+      "target_lean_deg": 11.999825325202082,
+      "head_forward_elevation_before_deg": 4.430997949735631,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.813781978571672,
+      "after_lean_deg": 12.000268297947642,
+      "target_lean_deg": 11.999781241528927,
+      "head_forward_elevation_before_deg": 3.802530945372499,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.5795439797388,
+      "after_lean_deg": 12.000181221826477,
+      "target_lean_deg": 11.999723505255579,
+      "head_forward_elevation_before_deg": 3.1093670005003315,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.342514064443332,
+      "after_lean_deg": 12.004615297410128,
+      "target_lean_deg": 11.999649555187796,
+      "head_forward_elevation_before_deg": 2.3713623412628158,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.108550677945072,
+      "after_lean_deg": 12.00428270718709,
+      "target_lean_deg": 11.999557188783127,
+      "head_forward_elevation_before_deg": 1.624908939532327,
+      "head_forward_target_elevation_deg": 1.624908939532327
+    },
+    {
+      "before_lean_deg": 18.884095906330035,
+      "after_lean_deg": 12.003964271322587,
+      "target_lean_deg": 11.99944577516324,
+      "head_forward_elevation_before_deg": 0.8907414116937543,
+      "head_forward_target_elevation_deg": 0.8907414116937543
+    },
+    {
+      "before_lean_deg": 18.68454061590319,
+      "after_lean_deg": 12.003661239387787,
+      "target_lean_deg": 11.999323389932112,
+      "head_forward_elevation_before_deg": 0.2910677109490085,
+      "head_forward_target_elevation_deg": 0.2910677109490085
+    },
+    {
+      "before_lean_deg": 18.48865741232834,
+      "after_lean_deg": 12.003346819180134,
+      "target_lean_deg": 11.999177011902235,
+      "head_forward_elevation_before_deg": -0.4321702162315092,
+      "head_forward_target_elevation_deg": -0.4321702162315092
+    },
+    {
+      "before_lean_deg": 18.264339831753574,
+      "after_lean_deg": 12.002948822789577,
+      "target_lean_deg": 11.998970109688772,
+      "head_forward_elevation_before_deg": -1.5434630454500575,
+      "head_forward_target_elevation_deg": -1.5434630454500575
+    },
+    {
+      "before_lean_deg": 18.04184294493296,
+      "after_lean_deg": 12.00252203832963,
+      "target_lean_deg": 11.998713551872347,
+      "head_forward_elevation_before_deg": -2.936632510979316,
+      "head_forward_target_elevation_deg": -2.936632510979316
+    },
+    {
+      "before_lean_deg": 17.824716287233816,
+      "after_lean_deg": 12.002079570695882,
+      "target_lean_deg": 11.998401710970107,
+      "head_forward_elevation_before_deg": -4.631749424103249,
+      "head_forward_target_elevation_deg": -4.631749424103249
+    },
+    {
+      "before_lean_deg": 17.66057843314434,
+      "after_lean_deg": 12.001667171293906,
+      "target_lean_deg": 11.998116747598354,
+      "head_forward_elevation_before_deg": -6.161326988274951,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 17.61876828488546,
+      "after_lean_deg": 12.00156833011484,
+      "target_lean_deg": 11.998036378780878,
+      "head_forward_elevation_before_deg": -7.101818252822343,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 17.6617378794314,
+      "after_lean_deg": 12.00167582137783,
+      "target_lean_deg": 11.998118928836757,
+      "head_forward_elevation_before_deg": -7.429952955086149,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 17.781674243076683,
+      "after_lean_deg": 12.001952727496013,
+      "target_lean_deg": 11.998331444685038,
+      "head_forward_elevation_before_deg": -7.17446092133548,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 17.93518720028298,
+      "after_lean_deg": 12.002281606963932,
+      "target_lean_deg": 11.998568812414627,
+      "head_forward_elevation_before_deg": -6.556609821561351,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 18.080062320507253,
+      "after_lean_deg": 12.00256908890318,
+      "target_lean_deg": 11.998761776469413,
+      "head_forward_elevation_before_deg": -5.819565799211594,
+      "head_forward_target_elevation_deg": -5.819565799211594
+    },
+    {
+      "before_lean_deg": 18.223047098200027,
+      "after_lean_deg": 12.002800807285507,
+      "target_lean_deg": 11.998926704113503,
+      "head_forward_elevation_before_deg": -5.0099868348008805,
+      "head_forward_target_elevation_deg": -5.0099868348008805
+    },
+    {
+      "before_lean_deg": 18.35984599064739,
+      "after_lean_deg": 12.003012753764478,
+      "target_lean_deg": 11.999063897596965,
+      "head_forward_elevation_before_deg": -4.151855933015005,
+      "head_forward_target_elevation_deg": -4.151855933015005
+    },
+    {
+      "before_lean_deg": 18.489831394977937,
+      "after_lean_deg": 12.003210691957024,
+      "target_lean_deg": 11.999177977310632,
+      "head_forward_elevation_before_deg": -3.2892210040662846,
+      "head_forward_target_elevation_deg": -3.2892210040662846
+    },
+    {
+      "before_lean_deg": 18.610379287292446,
+      "after_lean_deg": 12.003380621386121,
+      "target_lean_deg": 11.999271313612773,
+      "head_forward_elevation_before_deg": -2.4549897494983357,
+      "head_forward_target_elevation_deg": -2.4549897494983357
+    },
+    {
+      "before_lean_deg": 18.72194810625516,
+      "after_lean_deg": 12.00354288942656,
+      "target_lean_deg": 11.999348228619713,
+      "head_forward_elevation_before_deg": -1.6658286804080487,
+      "head_forward_target_elevation_deg": -1.6658286804080487
+    },
+    {
+      "before_lean_deg": 18.82338929252369,
+      "after_lean_deg": 12.003667202356988,
+      "target_lean_deg": 11.999411092933746,
+      "head_forward_elevation_before_deg": -0.9382094936798785,
+      "head_forward_target_elevation_deg": -0.9382094936798785
+    },
+    {
+      "before_lean_deg": 18.915764826915197,
+      "after_lean_deg": 12.003787660420917,
+      "target_lean_deg": 11.99946304953541,
+      "head_forward_elevation_before_deg": -0.27699367080968074,
+      "head_forward_target_elevation_deg": -0.27699367080968074
+    },
+    {
+      "before_lean_deg": 18.998874309015118,
+      "after_lean_deg": 12.003890500983806,
+      "target_lean_deg": 11.999505865835241,
+      "head_forward_elevation_before_deg": 0.31218436596095017,
+      "head_forward_target_elevation_deg": 0.31218436596095017
+    },
+    {
+      "before_lean_deg": 19.073716593020315,
+      "after_lean_deg": 12.004001448185422,
+      "target_lean_deg": 11.999541493855482,
+      "head_forward_elevation_before_deg": 0.8309117934138962,
+      "head_forward_target_elevation_deg": 0.8309117934138962
+    },
+    {
+      "before_lean_deg": 19.14047443998939,
+      "after_lean_deg": 12.004072494849707,
+      "target_lean_deg": 11.999571100232945,
+      "head_forward_elevation_before_deg": 1.279482986459046,
+      "head_forward_target_elevation_deg": 1.279482986459046
+    },
+    {
+      "before_lean_deg": 19.199927768809324,
+      "after_lean_deg": 12.00414126769897,
+      "target_lean_deg": 11.99959585403643,
+      "head_forward_elevation_before_deg": 1.6623973184409473,
+      "head_forward_target_elevation_deg": 1.6623973184409473
+    },
+    {
+      "before_lean_deg": 19.252250691965816,
+      "after_lean_deg": 12.004203073821516,
+      "target_lean_deg": 11.99961645446997,
+      "head_forward_elevation_before_deg": 1.9827474902939102,
+      "head_forward_target_elevation_deg": 1.9827474902939102
+    },
+    {
+      "before_lean_deg": 19.297826975128928,
+      "after_lean_deg": 12.004259763783134,
+      "target_lean_deg": 11.999633541117634,
+      "head_forward_elevation_before_deg": 2.245832581250442,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.33677745766447,
+      "after_lean_deg": 12.00429732406978,
+      "target_lean_deg": 11.999647539223988,
+      "head_forward_elevation_before_deg": 2.455974954694395,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.36907482767324,
+      "after_lean_deg": 12.004349822099012,
+      "target_lean_deg": 11.999658739958141,
+      "head_forward_elevation_before_deg": 2.618093321344264,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.394662409509966,
+      "after_lean_deg": 12.004359149521294,
+      "target_lean_deg": 11.9996673604916,
+      "head_forward_elevation_before_deg": 2.736753754737929,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.413317386328306,
+      "after_lean_deg": 12.004402109781662,
+      "target_lean_deg": 11.999673507849728,
+      "head_forward_elevation_before_deg": 2.8163800193599555,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.44387918058482,
+      "after_lean_deg": 12.00444908387946,
+      "target_lean_deg": 11.999683334323544,
+      "head_forward_elevation_before_deg": 2.972488550090375,
+      "head_forward_target_elevation_deg": 2.0
+    },
+    {
+      "before_lean_deg": 19.42864315775353,
+      "after_lean_deg": 12.004405169157476,
+      "target_lean_deg": 11.999678473046663,
+      "head_forward_elevation_before_deg": 2.8752430780470672,
+      "head_forward_target_elevation_deg": 2.0
+    }
+  ],
+  "Start": [
+    {
+      "before_lean_deg": 4.926460766672391,
+      "after_lean_deg": 4.926460766672391,
+      "target_lean_deg": 4.926460766672391,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.928088002045758,
+      "after_lean_deg": 4.928088002045758,
+      "target_lean_deg": 4.928088002045758,
+      "head_forward_elevation_before_deg": -13.917346765733553,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.93874615745817,
+      "after_lean_deg": 4.93874615745817,
+      "target_lean_deg": 4.93874615745817,
+      "head_forward_elevation_before_deg": -13.916617908013878,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.96554807510464,
+      "after_lean_deg": 4.96554807510464,
+      "target_lean_deg": 4.96554807510464,
+      "head_forward_elevation_before_deg": -13.914584574472586,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.013785693318252,
+      "after_lean_deg": 5.013785693318252,
+      "target_lean_deg": 5.013785693318252,
+      "head_forward_elevation_before_deg": -13.910549581198865,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.087224319729651,
+      "after_lean_deg": 5.087224319729651,
+      "target_lean_deg": 5.087224319729651,
+      "head_forward_elevation_before_deg": -13.903692479682526,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.18825314944369,
+      "after_lean_deg": 5.18825314944369,
+      "target_lean_deg": 5.18825314944369,
+      "head_forward_elevation_before_deg": -13.89298410298529,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.318177413021269,
+      "after_lean_deg": 5.318177413021269,
+      "target_lean_deg": 5.318177413021269,
+      "head_forward_elevation_before_deg": -13.877417122114103,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.477297846339933,
+      "after_lean_deg": 5.477297846339933,
+      "target_lean_deg": 5.477297846339933,
+      "head_forward_elevation_before_deg": -13.85597793070451,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.665042656220801,
+      "after_lean_deg": 5.665042656220801,
+      "target_lean_deg": 5.665042656220801,
+      "head_forward_elevation_before_deg": -13.827952442920658,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.880031971682629,
+      "after_lean_deg": 5.880031971682629,
+      "target_lean_deg": 5.880031971682629,
+      "head_forward_elevation_before_deg": -13.792995175779916,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.120504403763497,
+      "after_lean_deg": 6.120504403763497,
+      "target_lean_deg": 6.1203587917107,
+      "head_forward_elevation_before_deg": -13.75109448832167,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.38374249448052,
+      "after_lean_deg": 6.38374249448052,
+      "target_lean_deg": 6.379101716152599,
+      "head_forward_elevation_before_deg": -13.703023917371054,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.666103129052734,
+      "after_lean_deg": 6.644532762969331,
+      "target_lean_deg": 6.642520144815032,
+      "head_forward_elevation_before_deg": -13.62250473720771,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.963159903857382,
+      "after_lean_deg": 6.8955115399532145,
+      "target_lean_deg": 6.895016097011467,
+      "head_forward_elevation_before_deg": -13.507064347030791,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.270824712904776,
+      "after_lean_deg": 7.124607999039401,
+      "target_lean_deg": 7.1235355698959495,
+      "head_forward_elevation_before_deg": -13.345390368399446,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.583276283898403,
+      "after_lean_deg": 7.320611552868519,
+      "target_lean_deg": 7.318672077355426,
+      "head_forward_elevation_before_deg": -13.14175618471249,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.893685764464397,
+      "after_lean_deg": 7.479736630147407,
+      "target_lean_deg": 7.476700832734699,
+      "head_forward_elevation_before_deg": -12.919443526365109,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.09114520171914,
+      "after_lean_deg": 7.564024349246089,
+      "target_lean_deg": 7.560158222495796,
+      "head_forward_elevation_before_deg": -12.58102250834166,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.224799446514387,
+      "after_lean_deg": 7.614296665842079,
+      "target_lean_deg": 7.609818038348202,
+      "head_forward_elevation_before_deg": -12.235147935760915,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.348234151117591,
+      "after_lean_deg": 7.651610268771209,
+      "target_lean_deg": 7.651175064418327,
+      "head_forward_elevation_before_deg": -11.976333290975637,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.459698931402006,
+      "after_lean_deg": 7.685554414917586,
+      "target_lean_deg": 7.685071312259076,
+      "head_forward_elevation_before_deg": -11.829846900320769,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.555844661184667,
+      "after_lean_deg": 7.712376403728802,
+      "target_lean_deg": 7.711860737080212,
+      "head_forward_elevation_before_deg": -11.783812354428719,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.636159101484253,
+      "after_lean_deg": 7.733170324339794,
+      "target_lean_deg": 7.732611089995031,
+      "head_forward_elevation_before_deg": -11.843204010591581,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.699853196485712,
+      "after_lean_deg": 7.748654517526255,
+      "target_lean_deg": 7.748071923390632,
+      "head_forward_elevation_before_deg": -11.99302377413464,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.748116682309808,
+      "after_lean_deg": 7.759844414271563,
+      "target_lean_deg": 7.759227595810621,
+      "head_forward_elevation_before_deg": -12.215974525916417,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.784012855787546,
+      "after_lean_deg": 7.76785548576243,
+      "target_lean_deg": 7.76722308007889,
+      "head_forward_elevation_before_deg": -12.491191404092454,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.81006792281853,
+      "after_lean_deg": 7.77351642974924,
+      "target_lean_deg": 7.772869828521795,
+      "head_forward_elevation_before_deg": -12.790658337865413,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.826458816048477,
+      "after_lean_deg": 7.777005563043664,
+      "target_lean_deg": 7.776355897692728,
+      "head_forward_elevation_before_deg": -13.103056759180374,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.830509910569482,
+      "after_lean_deg": 7.777852595131285,
+      "target_lean_deg": 7.77720970829852,
+      "head_forward_elevation_before_deg": -13.410084002919266,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.82281050719697,
+      "after_lean_deg": 7.77623191620983,
+      "target_lean_deg": 7.775584344818974,
+      "head_forward_elevation_before_deg": -13.68979442881454,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.80337107378583,
+      "after_lean_deg": 7.772065102629289,
+      "target_lean_deg": 7.771430875842258,
+      "head_forward_elevation_before_deg": -13.905892377708744,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.77321182453849,
+      "after_lean_deg": 7.76546177091214,
+      "target_lean_deg": 7.764843832478563,
+      "head_forward_elevation_before_deg": -14.059649322199613,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.732439225672389,
+      "after_lean_deg": 7.756254033241964,
+      "target_lean_deg": 7.755655551442921,
+      "head_forward_elevation_before_deg": -14.13980212208893,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.682953070486152,
+      "after_lean_deg": 7.744648547936511,
+      "target_lean_deg": 7.744052872740884,
+      "head_forward_elevation_before_deg": -14.181865931768828,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.625078728921915,
+      "after_lean_deg": 7.730380931291416,
+      "target_lean_deg": 7.729833069458586,
+      "head_forward_elevation_before_deg": -14.188283832818037,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.561110214250327,
+      "after_lean_deg": 7.71379412834352,
+      "target_lean_deg": 7.713265488714741,
+      "head_forward_elevation_before_deg": -14.159483458002564,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.492585759341662,
+      "after_lean_deg": 7.694989619793649,
+      "target_lean_deg": 7.694481667563672,
+      "head_forward_elevation_before_deg": -14.096672639316116,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.421105933840018,
+      "after_lean_deg": 7.674135940950929,
+      "target_lean_deg": 7.673690568841945,
+      "head_forward_elevation_before_deg": -14.000896208016947,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.349901019940136,
+      "after_lean_deg": 7.652129173868772,
+      "target_lean_deg": 7.651705439104248,
+      "head_forward_elevation_before_deg": -13.876477852216759,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.2809492933187,
+      "after_lean_deg": 7.633849557505514,
+      "target_lean_deg": 7.629147719228658,
+      "head_forward_elevation_before_deg": -13.730634565503086,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.21703885962007,
+      "after_lean_deg": 7.611481002487744,
+      "target_lean_deg": 7.607076821236826,
+      "head_forward_elevation_before_deg": -13.555491346942837,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.162034823447986,
+      "after_lean_deg": 7.591301902406743,
+      "target_lean_deg": 7.587152169585905,
+      "head_forward_elevation_before_deg": -13.362314274623664,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.118720004594417,
+      "after_lean_deg": 7.574805174445268,
+      "target_lean_deg": 7.570837576079759,
+      "head_forward_elevation_before_deg": -13.154505222887925,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.091940512814114,
+      "after_lean_deg": 7.564316339729557,
+      "target_lean_deg": 7.560469471596703,
+      "head_forward_elevation_before_deg": -12.933346195080436,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.076428851357184,
+      "after_lean_deg": 7.5581359936409545,
+      "target_lean_deg": 7.55436396173739,
+      "head_forward_elevation_before_deg": -12.734262394320996,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.070977757215694,
+      "after_lean_deg": 7.555943051058456,
+      "target_lean_deg": 7.552200816233281,
+      "head_forward_elevation_before_deg": -12.575409380903352,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.074344262324761,
+      "after_lean_deg": 7.557317698326497,
+      "target_lean_deg": 7.553537820225285,
+      "head_forward_elevation_before_deg": -12.47672383317437,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.09914853542081,
+      "after_lean_deg": 7.567150243323509,
+      "target_lean_deg": 7.563281573626627,
+      "head_forward_elevation_before_deg": -12.434348694210525,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.146566161924863,
+      "after_lean_deg": 7.585484347126509,
+      "target_lean_deg": 7.581389845810851,
+      "head_forward_elevation_before_deg": -12.439237033875818,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.216058306790213,
+      "after_lean_deg": 7.61114386279917,
+      "target_lean_deg": 7.6067292489523,
+      "head_forward_elevation_before_deg": -12.480926822808286,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.302130790325943,
+      "after_lean_deg": 7.641035706980209,
+      "target_lean_deg": 7.636213425749214,
+      "head_forward_elevation_before_deg": -12.542530468243873,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.398178505237988,
+      "after_lean_deg": 7.667199452720763,
+      "target_lean_deg": 7.66675319969946,
+      "head_forward_elevation_before_deg": -12.60119325495698,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.498980498812047,
+      "after_lean_deg": 7.696779703987418,
+      "target_lean_deg": 7.6962812729774654,
+      "head_forward_elevation_before_deg": -12.655026289290527,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.598856172501668,
+      "after_lean_deg": 7.723682731114095,
+      "target_lean_deg": 7.723151714299121,
+      "head_forward_elevation_before_deg": -12.684644811646514,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.690342202204565,
+      "after_lean_deg": 7.746391277762994,
+      "target_lean_deg": 7.745817393356614,
+      "head_forward_elevation_before_deg": -12.674671137784008,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.766234792783706,
+      "after_lean_deg": 7.763906405794538,
+      "target_lean_deg": 7.763294833076341,
+      "head_forward_elevation_before_deg": -12.602054722789003,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.8201435972934,
+      "after_lean_deg": 7.775667179052375,
+      "target_lean_deg": 7.775018757247545,
+      "head_forward_elevation_before_deg": -12.492941127122556,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.846588905552403,
+      "after_lean_deg": 7.7812263627561045,
+      "target_lean_deg": 7.780568363605097,
+      "head_forward_elevation_before_deg": -12.390765497247253,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.842304093791945,
+      "after_lean_deg": 7.78033691982867,
+      "target_lean_deg": 7.779678022200235,
+      "head_forward_elevation_before_deg": -12.363799139196308,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.812889879684322,
+      "after_lean_deg": 7.774114405821022,
+      "target_lean_deg": 7.773473629610743,
+      "head_forward_elevation_before_deg": -12.389966872650445,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.76198014052199,
+      "after_lean_deg": 7.762955504441836,
+      "target_lean_deg": 7.76234555224469,
+      "head_forward_elevation_before_deg": -12.459744075358437,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.69329024737845,
+      "after_lean_deg": 7.747097409557187,
+      "target_lean_deg": 7.746518215503575,
+      "head_forward_elevation_before_deg": -12.563207521832112,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.610946864522166,
+      "after_lean_deg": 7.726799473139004,
+      "target_lean_deg": 7.7262511477347875,
+      "head_forward_elevation_before_deg": -12.689418797816348,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.519818648224902,
+      "after_lean_deg": 7.702588234759512,
+      "target_lean_deg": 7.702078218628082,
+      "head_forward_elevation_before_deg": -12.825903662552282,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.424195615875847,
+      "after_lean_deg": 7.675074613440602,
+      "target_lean_deg": 7.674615319311884,
+      "head_forward_elevation_before_deg": -12.961658565958583,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.328453675167768,
+      "after_lean_deg": 7.649768777331637,
+      "target_lean_deg": 7.644825216387217,
+      "head_forward_elevation_before_deg": -13.091919622954077,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.237045488756545,
+      "after_lean_deg": 7.6186194020061535,
+      "target_lean_deg": 7.614108931571259,
+      "head_forward_elevation_before_deg": -13.194320530645284,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.155197437599625,
+      "after_lean_deg": 7.588739792231718,
+      "target_lean_deg": 7.584613839795724,
+      "head_forward_elevation_before_deg": -13.263860070858607,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.08771266559645,
+      "after_lean_deg": 7.562629633380199,
+      "target_lean_deg": 7.558812664848205,
+      "head_forward_elevation_before_deg": -13.290796791007482,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.039143604253315,
+      "after_lean_deg": 7.542993784780027,
+      "target_lean_deg": 7.539384142100364,
+      "head_forward_elevation_before_deg": -13.266292117588959,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.013732465321786,
+      "after_lean_deg": 7.532431088602768,
+      "target_lean_deg": 7.528925503437604,
+      "head_forward_elevation_before_deg": -13.182725722634233,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.01538273155136,
+      "after_lean_deg": 7.533129820569695,
+      "target_lean_deg": 7.5296109161361775,
+      "head_forward_elevation_before_deg": -13.032979421049331,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.040928137929072,
+      "after_lean_deg": 7.543728760955898,
+      "target_lean_deg": 7.540110972476607,
+      "head_forward_elevation_before_deg": -12.830122268501112,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.086986770672977,
+      "after_lean_deg": 7.562363940703164,
+      "target_lean_deg": 7.558527651772175,
+      "head_forward_elevation_before_deg": -12.586702043135043,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.149977334136302,
+      "after_lean_deg": 7.586782515014965,
+      "target_lean_deg": 7.582666635290963,
+      "head_forward_elevation_before_deg": -12.315237400908428,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.226073191447218,
+      "after_lean_deg": 7.614737834601621,
+      "target_lean_deg": 7.610266321425991,
+      "head_forward_elevation_before_deg": -12.029127441330774,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.311050207065492,
+      "after_lean_deg": 7.644036935801626,
+      "target_lean_deg": 7.639152347218772,
+      "head_forward_elevation_before_deg": -11.731517294710871,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.401375150819053,
+      "after_lean_deg": 7.668179623515678,
+      "target_lean_deg": 7.667728422165584,
+      "head_forward_elevation_before_deg": -11.498116238167253,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.493281333818619,
+      "after_lean_deg": 7.695165679554774,
+      "target_lean_deg": 7.694677889008705,
+      "head_forward_elevation_before_deg": -11.40975229427693,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.582187500977625,
+      "after_lean_deg": 7.719360663826754,
+      "target_lean_deg": 7.718825448346818,
+      "head_forward_elevation_before_deg": -11.517380470585428,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.663000510876385,
+      "after_lean_deg": 7.739798360187747,
+      "target_lean_deg": 7.739231052298059,
+      "head_forward_elevation_before_deg": -11.759052270556882,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.731911282342082,
+      "after_lean_deg": 7.756142693712194,
+      "target_lean_deg": 7.755534403461015,
+      "head_forward_elevation_before_deg": -12.099308438857378,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.785441754707788,
+      "after_lean_deg": 7.768164185873327,
+      "target_lean_deg": 7.767536140825489,
+      "head_forward_elevation_before_deg": -12.50483328859966,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.819014858572281,
+      "after_lean_deg": 7.775432356587094,
+      "target_lean_deg": 7.7747789753477665,
+      "head_forward_elevation_before_deg": -12.935984389082606,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.830714061608546,
+      "after_lean_deg": 7.777894460292894,
+      "target_lean_deg": 7.777252653987092,
+      "head_forward_elevation_before_deg": -13.352278536529374,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.821373689423854,
+      "after_lean_deg": 7.775920542116552,
+      "target_lean_deg": 7.775279796622201,
+      "head_forward_elevation_before_deg": -13.714985507812377,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.794011926690882,
+      "after_lean_deg": 7.770031632522457,
+      "target_lean_deg": 7.7694055234072,
+      "head_forward_elevation_before_deg": -13.966869772198606,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.752382269231388,
+      "after_lean_deg": 7.760799139890682,
+      "target_lean_deg": 7.7601910021259295,
+      "head_forward_elevation_before_deg": -14.110453062527696,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.699054474693893,
+      "after_lean_deg": 7.748471194290952,
+      "target_lean_deg": 7.747883310389346,
+      "head_forward_elevation_before_deg": -14.172385416943845,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.636675770919448,
+      "after_lean_deg": 7.733287506693367,
+      "target_lean_deg": 7.732739977768014,
+      "head_forward_elevation_before_deg": -14.189714285512835,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.56886741805767,
+      "after_lean_deg": 7.715844032891799,
+      "target_lean_deg": 7.715323455879113,
+      "head_forward_elevation_before_deg": -14.164755319378255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.497761054393509,
+      "after_lean_deg": 7.696427689729482,
+      "target_lean_deg": 7.695938849768504,
+      "head_forward_elevation_before_deg": -14.102404103656841,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.425778654831607,
+      "after_lean_deg": 7.675536235904009,
+      "target_lean_deg": 7.675088201300219,
+      "head_forward_elevation_before_deg": -14.008036626485474,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.356100538913996,
+      "after_lean_deg": 7.654106352729409,
+      "target_lean_deg": 7.653671643651904,
+      "head_forward_elevation_before_deg": -13.888523590003105,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.290162966571977,
+      "after_lean_deg": 7.636976393013807,
+      "target_lean_deg": 7.63223622678157,
+      "head_forward_elevation_before_deg": -13.75296430737043,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.230478885743189,
+      "after_lean_deg": 7.616277652441258,
+      "target_lean_deg": 7.611813324821653,
+      "head_forward_elevation_before_deg": -13.595731296637583,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.179070510608968,
+      "after_lean_deg": 7.597648271364047,
+      "target_lean_deg": 7.593416912854955,
+      "head_forward_elevation_before_deg": -13.427691849828278,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.136809918509806,
+      "after_lean_deg": 7.581754348481266,
+      "target_lean_deg": 7.5777190612764915,
+      "head_forward_elevation_before_deg": -13.251850984787398,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.10695919480877,
+      "after_lean_deg": 7.570216018967666,
+      "target_lean_deg": 7.566310951663008,
+      "head_forward_elevation_before_deg": -13.071948223303009,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.088270174946148,
+      "after_lean_deg": 7.56285612502483,
+      "target_lean_deg": 7.559031454093895,
+      "head_forward_elevation_before_deg": -12.893640947798588,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.076685290927466,
+      "after_lean_deg": 7.558237783737756,
+      "target_lean_deg": 7.554465498654464,
+      "head_forward_elevation_before_deg": -12.738949783035023,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.071740022283276,
+      "after_lean_deg": 7.556267314817544,
+      "target_lean_deg": 7.552503855124782,
+      "head_forward_elevation_before_deg": -12.610702112206784,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.070681160461229,
+      "after_lean_deg": 7.555830103234662,
+      "target_lean_deg": 7.552082855572952,
+      "head_forward_elevation_before_deg": -12.521628138321368,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.07731827708787,
+      "after_lean_deg": 7.55849722721702,
+      "target_lean_deg": 7.554716042093382,
+      "head_forward_elevation_before_deg": -12.464169004372364,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ],
+  "Stop": [
+    {
+      "before_lean_deg": 8.077319787572144,
+      "after_lean_deg": 7.558498740004748,
+      "target_lean_deg": 7.554716639813572,
+      "head_forward_elevation_before_deg": -12.464169004372364,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.095604912830348,
+      "after_lean_deg": 7.565759214821796,
+      "target_lean_deg": 7.561901060458216,
+      "head_forward_elevation_before_deg": -12.43617004590204,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.125602277522725,
+      "after_lean_deg": 7.577470015705129,
+      "target_lean_deg": 7.573467176602338,
+      "head_forward_elevation_before_deg": -12.432316120991203,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.169449408692307,
+      "after_lean_deg": 7.594081566891329,
+      "target_lean_deg": 7.589889258259784,
+      "head_forward_elevation_before_deg": -12.451538094876915,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.22455840903159,
+      "after_lean_deg": 7.614192434767807,
+      "target_lean_deg": 7.609733155641454,
+      "head_forward_elevation_before_deg": -12.486530479308112,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.290412373225424,
+      "after_lean_deg": 7.6370786955819625,
+      "target_lean_deg": 7.632319507962832,
+      "head_forward_elevation_before_deg": -12.534042946741147,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.363266584041032,
+      "after_lean_deg": 7.656370556135753,
+      "target_lean_deg": 7.655931862720022,
+      "head_forward_elevation_before_deg": -12.578181875426534,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.442240888970897,
+      "after_lean_deg": 7.68044198589912,
+      "target_lean_deg": 7.679968749107157,
+      "head_forward_elevation_before_deg": -12.6277072064293,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.523011785867263,
+      "after_lean_deg": 7.70346343937053,
+      "target_lean_deg": 7.702957474813803,
+      "head_forward_elevation_before_deg": -12.665022391631961,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.603298808989978,
+      "after_lean_deg": 7.724831585794588,
+      "target_lean_deg": 7.724294335489343,
+      "head_forward_elevation_before_deg": -12.684950010052965,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.679003176823361,
+      "after_lean_deg": 7.743676358991804,
+      "target_lean_deg": 7.74310496587537,
+      "head_forward_elevation_before_deg": -12.678644826926403,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.745219674468112,
+      "after_lean_deg": 7.759176119534413,
+      "target_lean_deg": 7.758571226294836,
+      "head_forward_elevation_before_deg": -12.63172114689126,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.799001703891413,
+      "after_lean_deg": 7.77111931222638,
+      "target_lean_deg": 7.770487416861925,
+      "head_forward_elevation_before_deg": -12.5429048432547,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.83402716649679,
+      "after_lean_deg": 7.778600879007547,
+      "target_lean_deg": 7.777948518252333,
+      "head_forward_elevation_before_deg": -12.446368385757554,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.848333181360713,
+      "after_lean_deg": 7.781581215122319,
+      "target_lean_deg": 7.7809298353174405,
+      "head_forward_elevation_before_deg": -12.377609785265003,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.839903793124941,
+      "after_lean_deg": 7.77983350596461,
+      "target_lean_deg": 7.779177777932056,
+      "head_forward_elevation_before_deg": -12.364365074416844,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.812610835878685,
+      "after_lean_deg": 7.774050449163819,
+      "target_lean_deg": 7.7734139911794085,
+      "head_forward_elevation_before_deg": -12.390302505455704,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.768244466028737,
+      "after_lean_deg": 7.764358141053566,
+      "target_lean_deg": 7.763741986663819,
+      "head_forward_elevation_before_deg": -12.450611887578377,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.70858443389613,
+      "after_lean_deg": 7.750708578957697,
+      "target_lean_deg": 7.750125181549809,
+      "head_forward_elevation_before_deg": -12.540011324069086,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.636922410166129,
+      "after_lean_deg": 7.733360593199582,
+      "target_lean_deg": 7.732801483774863,
+      "head_forward_elevation_before_deg": -12.649722562353013,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.556179129074089,
+      "after_lean_deg": 7.712471269338604,
+      "target_lean_deg": 7.711950155375967,
+      "head_forward_elevation_before_deg": -12.771846418789945,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.469054941675827,
+      "after_lean_deg": 7.6882593052839034,
+      "target_lean_deg": 7.687775129328808,
+      "head_forward_elevation_before_deg": -12.899077394020846,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.379167895820457,
+      "after_lean_deg": 7.661346670875734,
+      "target_lean_deg": 7.660899580137786,
+      "head_forward_elevation_before_deg": -13.022180056383968,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.290773993386912,
+      "after_lean_deg": 7.6371999769133785,
+      "target_lean_deg": 7.6324402290636595,
+      "head_forward_elevation_before_deg": -13.136556607937505,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.207454471873438,
+      "after_lean_deg": 7.608030347199675,
+      "target_lean_deg": 7.603667721884409,
+      "head_forward_elevation_before_deg": -13.222186838022873,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.133100822634631,
+      "after_lean_deg": 7.580342398439148,
+      "target_lean_deg": 7.5763160824687725,
+      "head_forward_elevation_before_deg": -13.276829474429324,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.072653592143869,
+      "after_lean_deg": 7.556626793372059,
+      "target_lean_deg": 7.552866809163348,
+      "head_forward_elevation_before_deg": -13.290142443252497,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.030974638870855,
+      "after_lean_deg": 7.539626944793564,
+      "target_lean_deg": 7.536044201747051,
+      "head_forward_elevation_before_deg": -13.252342253956066,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.011896893773972,
+      "after_lean_deg": 7.53165757293851,
+      "target_lean_deg": 7.528162110565404,
+      "head_forward_elevation_before_deg": -13.156480647648811,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.018504455768111,
+      "after_lean_deg": 7.534439380010957,
+      "target_lean_deg": 7.530905112353283,
+      "head_forward_elevation_before_deg": -12.997405691378695,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.048261763087217,
+      "after_lean_deg": 7.546756798789447,
+      "target_lean_deg": 7.5430874467472995,
+      "head_forward_elevation_before_deg": -12.786562521768037,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.097812096739242,
+      "after_lean_deg": 7.566643995023838,
+      "target_lean_deg": 7.5627613769967965,
+      "head_forward_elevation_before_deg": -12.536743023882126,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.164046415184226,
+      "after_lean_deg": 7.592078720733788,
+      "target_lean_deg": 7.587896341040419,
+      "head_forward_elevation_before_deg": -12.259660847913112,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.243598340355963,
+      "after_lean_deg": 7.620940931568268,
+      "target_lean_deg": 7.6163876354274604,
+      "head_forward_elevation_before_deg": -11.967667762982094,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.332504923762356,
+      "after_lean_deg": 7.651111784143508,
+      "target_lean_deg": 7.6461341699871594,
+      "head_forward_elevation_before_deg": -11.663800119015697,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.426737076181384,
+      "after_lean_deg": 7.675838907971311,
+      "target_lean_deg": 7.675374194317961,
+      "head_forward_elevation_before_deg": -11.456578443958016,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.52181179888913,
+      "after_lean_deg": 7.7031375046626644,
+      "target_lean_deg": 7.702627329017087,
+      "head_forward_elevation_before_deg": -11.425086209303922,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.612823358308336,
+      "after_lean_deg": 7.727272872578644,
+      "target_lean_deg": 7.726729293024283,
+      "head_forward_elevation_before_deg": -11.590517503715605,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.694436730676248,
+      "after_lean_deg": 7.747375384899806,
+      "target_lean_deg": 7.746790275663658,
+      "head_forward_elevation_before_deg": -11.896935434352605,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.76094524678085,
+      "after_lean_deg": 7.762723231139113,
+      "target_lean_deg": 7.762114112242992,
+      "head_forward_elevation_before_deg": -12.297241939932142,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.807254275979476,
+      "after_lean_deg": 7.772909084983322,
+      "target_lean_deg": 7.772266299880095,
+      "head_forward_elevation_before_deg": -12.751427856767815,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.829447473872243,
+      "after_lean_deg": 7.777632114923247,
+      "target_lean_deg": 7.776986085826304,
+      "head_forward_elevation_before_deg": -13.21608948311802,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.825064626711654,
+      "after_lean_deg": 7.776709030185072,
+      "target_lean_deg": 7.776061346330064,
+      "head_forward_elevation_before_deg": -13.64265660008464,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.798029614685928,
+      "after_lean_deg": 7.77091501274578,
+      "target_lean_deg": 7.770277021096373,
+      "head_forward_elevation_before_deg": -13.94263112124205,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.752019196829375,
+      "after_lean_deg": 7.7607151461888595,
+      "target_lean_deg": 7.760109140943239,
+      "head_forward_elevation_before_deg": -14.111107664591575,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.690532417673777,
+      "after_lean_deg": 7.746434905916127,
+      "target_lean_deg": 7.745862666663475,
+      "head_forward_elevation_before_deg": -14.177921269491508,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.617139300149711,
+      "after_lean_deg": 7.72837140754532,
+      "target_lean_deg": 7.727826093067531,
+      "head_forward_elevation_before_deg": -14.186675952833117,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.536046100853941,
+      "after_lean_deg": 7.707028331428796,
+      "target_lean_deg": 7.706521872268248,
+      "head_forward_elevation_before_deg": -14.139801998047787,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.4514273737117,
+      "after_lean_deg": 7.683132697832755,
+      "target_lean_deg": 7.682663077020973,
+      "head_forward_elevation_before_deg": -14.045086820258714,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.367025696971817,
+      "after_lean_deg": 7.657547974844628,
+      "target_lean_deg": 7.657112161865574,
+      "head_forward_elevation_before_deg": -13.90916662003401,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.28659394883448,
+      "after_lean_deg": 7.635773171730024,
+      "target_lean_deg": 7.631042611858132,
+      "head_forward_elevation_before_deg": -13.744399686918987,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.214311126581464,
+      "after_lean_deg": 7.610492829121214,
+      "target_lean_deg": 7.606109254663588,
+      "head_forward_elevation_before_deg": -13.54705094426654,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.154472729835703,
+      "after_lean_deg": 7.588456890232035,
+      "target_lean_deg": 7.584343990054802,
+      "head_forward_elevation_before_deg": -13.331257346896352,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.110978585371894,
+      "after_lean_deg": 7.571788570359551,
+      "target_lean_deg": 7.5678626750138385,
+      "head_forward_elevation_before_deg": -13.10249425455844,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.086159152314735,
+      "after_lean_deg": 7.562023284767559,
+      "target_lean_deg": 7.558202501577034,
+      "head_forward_elevation_before_deg": -12.870288962754588,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.073593597318432,
+      "after_lean_deg": 7.557006732709125,
+      "target_lean_deg": 7.553239997103234,
+      "head_forward_elevation_before_deg": -12.672260961774192,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.070541882070886,
+      "after_lean_deg": 7.555780404286398,
+      "target_lean_deg": 7.5520274532478515,
+      "head_forward_elevation_before_deg": -12.532344560900679,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.081152270223857,
+      "after_lean_deg": 7.56002611030439,
+      "target_lean_deg": 7.5562309494379685,
+      "head_forward_elevation_before_deg": -12.453758923101208,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.113592420693964,
+      "after_lean_deg": 7.572805511914023,
+      "target_lean_deg": 7.568869150431637,
+      "head_forward_elevation_before_deg": -12.431538241368397,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.167840449847931,
+      "after_lean_deg": 7.5934763990146426,
+      "target_lean_deg": 7.58929668114667,
+      "head_forward_elevation_before_deg": -12.45058456914265,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.239005251287223,
+      "after_lean_deg": 7.6193143540950095,
+      "target_lean_deg": 7.614791688274908,
+      "head_forward_elevation_before_deg": -12.496534360008827,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.322633552974022,
+      "after_lean_deg": 7.647854950546453,
+      "target_lean_deg": 7.642937093119056,
+      "head_forward_elevation_before_deg": -12.556875145863087,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.412180755908253,
+      "after_lean_deg": 7.671464096756876,
+      "target_lean_deg": 7.6710057740010935,
+      "head_forward_elevation_before_deg": -12.610034232290896,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.503084580876992,
+      "after_lean_deg": 7.697924037064219,
+      "target_lean_deg": 7.697431111413419,
+      "head_forward_elevation_before_deg": -12.656806253867753,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.59172846239026,
+      "after_lean_deg": 7.721848851409727,
+      "target_lean_deg": 7.72130934651332,
+      "head_forward_elevation_before_deg": -12.683922090234578,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.672394020747276,
+      "after_lean_deg": 7.7420857580886135,
+      "target_lean_deg": 7.7415115660384375,
+      "head_forward_elevation_before_deg": -12.6804639871574,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.741207038749062,
+      "after_lean_deg": 7.758264163555321,
+      "target_lean_deg": 7.757659325068373,
+      "head_forward_elevation_before_deg": -12.636576929723889,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.7957347085153,
+      "after_lean_deg": 7.770409118950889,
+      "target_lean_deg": 7.769779600493512,
+      "head_forward_elevation_before_deg": -12.549450121074097,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.831120467470383,
+      "after_lean_deg": 7.7779774697271975,
+      "target_lean_deg": 7.777338123282792,
+      "head_forward_elevation_before_deg": -12.457239683213489,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.84753810189289,
+      "after_lean_deg": 7.781423527002702,
+      "target_lean_deg": 7.780765138145349,
+      "head_forward_elevation_before_deg": -12.38486813809421,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.8440981346303,
+      "after_lean_deg": 7.780702407127911,
+      "target_lean_deg": 7.780051219357336,
+      "head_forward_elevation_before_deg": -12.363900576456851,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.825719609325029,
+      "after_lean_deg": 7.776847982786144,
+      "target_lean_deg": 7.776199770390654,
+      "head_forward_elevation_before_deg": -12.375139705959608,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.794124999938127,
+      "after_lean_deg": 7.770068732488594,
+      "target_lean_deg": 7.769430093110592,
+      "head_forward_elevation_before_deg": -12.414422215897549,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.752739522121372,
+      "after_lean_deg": 7.760882749993218,
+      "target_lean_deg": 7.76027152566709,
+      "head_forward_elevation_before_deg": -12.47340024082686,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.703157684711146,
+      "after_lean_deg": 7.749438244891238,
+      "target_lean_deg": 7.748850859054541,
+      "head_forward_elevation_before_deg": -12.548208415615992,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.647882541181826,
+      "after_lean_deg": 7.736085786662491,
+      "target_lean_deg": 7.735521448315721,
+      "head_forward_elevation_before_deg": -12.632863765012278,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.588878246891229,
+      "after_lean_deg": 7.7210972353424205,
+      "target_lean_deg": 7.72056945407377,
+      "head_forward_elevation_before_deg": -12.722706015859108,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.527615102884722,
+      "after_lean_deg": 7.70472803578218,
+      "target_lean_deg": 7.704220834974261,
+      "head_forward_elevation_before_deg": -12.814397148945945,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.466153706842324,
+      "after_lean_deg": 7.6874183517811305,
+      "target_lean_deg": 7.686938974921923,
+      "head_forward_elevation_before_deg": -12.903175707289112,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.404390452981941,
+      "after_lean_deg": 7.6691039336589695,
+      "target_lean_deg": 7.668645941536517,
+      "head_forward_elevation_before_deg": -12.990037854061342,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.339688498112261,
+      "after_lean_deg": 7.648865768754261,
+      "target_lean_deg": 7.6484444680229355,
+      "head_forward_elevation_before_deg": -13.083454446637026,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.269190420528878,
+      "after_lean_deg": 7.629823546460059,
+      "target_lean_deg": 7.625172224263645,
+      "head_forward_elevation_before_deg": -13.198190572273907,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.19160607686303,
+      "after_lean_deg": 7.602256481451988,
+      "target_lean_deg": 7.597972789208573,
+      "head_forward_elevation_before_deg": -13.327944446913902,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.107048816285637,
+      "after_lean_deg": 7.570264452017553,
+      "target_lean_deg": 7.566345604159364,
+      "head_forward_elevation_before_deg": -13.480017396017878,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 8.015133814172401,
+      "after_lean_deg": 7.53302524613781,
+      "target_lean_deg": 7.5295075875147175,
+      "head_forward_elevation_before_deg": -13.656285826752796,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.8221395857438285,
+      "after_lean_deg": 7.446029747900854,
+      "target_lean_deg": 7.443290649405351,
+      "head_forward_elevation_before_deg": -13.741025571083,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.600170945579758,
+      "after_lean_deg": 7.330143084748621,
+      "target_lean_deg": 7.328169103121378,
+      "head_forward_elevation_before_deg": -13.802178111234191,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.370612438036608,
+      "after_lean_deg": 7.191224560822096,
+      "target_lean_deg": 7.189916336505412,
+      "head_forward_elevation_before_deg": -13.853766654559145,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.137072674091044,
+      "after_lean_deg": 7.029357232381569,
+      "target_lean_deg": 7.028567092434423,
+      "head_forward_elevation_before_deg": -13.891806024731556,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.901106324149671,
+      "after_lean_deg": 6.849513333506413,
+      "target_lean_deg": 6.844707198033544,
+      "head_forward_elevation_before_deg": -13.920160413060627,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.666158898451352,
+      "after_lean_deg": 6.64457678488006,
+      "target_lean_deg": 6.642570157915611,
+      "head_forward_elevation_before_deg": -13.924926617604008,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.435544871376323,
+      "after_lean_deg": 6.429354721612569,
+      "target_lean_deg": 6.428787809139774,
+      "head_forward_elevation_before_deg": -13.920090476716922,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.211837482435264,
+      "after_lean_deg": 6.211837482435264,
+      "target_lean_deg": 6.211048835290948,
+      "head_forward_elevation_before_deg": -13.91115922194371,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.997764182291881,
+      "after_lean_deg": 5.997764182291881,
+      "target_lean_deg": 5.997764182291881,
+      "head_forward_elevation_before_deg": -13.900864614012248,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.796397610534673,
+      "after_lean_deg": 5.796397610534673,
+      "target_lean_deg": 5.796397610534673,
+      "head_forward_elevation_before_deg": -13.895913913505465,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.610976399963503,
+      "after_lean_deg": 5.610976399963503,
+      "target_lean_deg": 5.610976399963503,
+      "head_forward_elevation_before_deg": -13.894993017584412,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.444684668250239,
+      "after_lean_deg": 5.444684668250239,
+      "target_lean_deg": 5.444684668250239,
+      "head_forward_elevation_before_deg": -13.896786857141258,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.300116520448152,
+      "after_lean_deg": 5.300116520448152,
+      "target_lean_deg": 5.300116520448152,
+      "head_forward_elevation_before_deg": -13.90024417053578,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.179281693166488,
+      "after_lean_deg": 5.179281693166488,
+      "target_lean_deg": 5.179281693166488,
+      "head_forward_elevation_before_deg": -13.90445549414457,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.0833664380026775,
+      "after_lean_deg": 5.0833664380026775,
+      "target_lean_deg": 5.0833664380026775,
+      "head_forward_elevation_before_deg": -13.908666069251003,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.01243400100891,
+      "after_lean_deg": 5.01243400100891,
+      "target_lean_deg": 5.01243400100891,
+      "head_forward_elevation_before_deg": -13.912296517254402,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.965201005462935,
+      "after_lean_deg": 4.965201005462935,
+      "target_lean_deg": 4.965201005462935,
+      "head_forward_elevation_before_deg": -13.915015512477494,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.93869094196633,
+      "after_lean_deg": 4.93869094196633,
+      "target_lean_deg": 4.93869094196633,
+      "head_forward_elevation_before_deg": -13.916661279486542,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.928092173098169,
+      "after_lean_deg": 4.928092173098169,
+      "target_lean_deg": 4.928092173098169,
+      "head_forward_elevation_before_deg": -13.917371660434474,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.926462662608528,
+      "after_lean_deg": 4.926462662608528,
+      "target_lean_deg": 4.926462662608528,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ],
+  "TurnLeft": [
+    {
+      "before_lean_deg": 4.926460766672391,
+      "after_lean_deg": 4.926460766672391,
+      "target_lean_deg": 4.926460766672391,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.8150441063245575,
+      "after_lean_deg": 4.8150441063245575,
+      "target_lean_deg": 4.8150441063245575,
+      "head_forward_elevation_before_deg": -13.731218747200966,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.700049496806221,
+      "after_lean_deg": 4.700049496806221,
+      "target_lean_deg": 4.700049496806221,
+      "head_forward_elevation_before_deg": -13.571054871512377,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.592875138749045,
+      "after_lean_deg": 4.592875138749045,
+      "target_lean_deg": 4.592875138749045,
+      "head_forward_elevation_before_deg": -13.388154915270468,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.490657467822475,
+      "after_lean_deg": 4.490657467822475,
+      "target_lean_deg": 4.490657467822475,
+      "head_forward_elevation_before_deg": -13.200477469331222,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.394111833431765,
+      "after_lean_deg": 4.394111833431765,
+      "target_lean_deg": 4.394111833431765,
+      "head_forward_elevation_before_deg": -13.009295068428163,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.30393786512021,
+      "after_lean_deg": 4.30393786512021,
+      "target_lean_deg": 4.30393786512021,
+      "head_forward_elevation_before_deg": -12.815890877581767,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.22083292343423,
+      "after_lean_deg": 4.22083292343423,
+      "target_lean_deg": 4.22083292343423,
+      "head_forward_elevation_before_deg": -12.621568124472516,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.145518227273593,
+      "after_lean_deg": 4.145518227273593,
+      "target_lean_deg": 4.145518227273593,
+      "head_forward_elevation_before_deg": -12.427611246435417,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.078161430220126,
+      "after_lean_deg": 4.078161430220126,
+      "target_lean_deg": 4.078161430220126,
+      "head_forward_elevation_before_deg": -12.234742127203136,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.021015557297248,
+      "after_lean_deg": 4.021015557297248,
+      "target_lean_deg": 4.021015557297248,
+      "head_forward_elevation_before_deg": -12.045789703200526,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9761321127211335,
+      "after_lean_deg": 3.9761321127211335,
+      "target_lean_deg": 3.9761321127211335,
+      "head_forward_elevation_before_deg": -11.863405703938401,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.944338846560798,
+      "after_lean_deg": 3.944338846560798,
+      "target_lean_deg": 3.944338846560798,
+      "head_forward_elevation_before_deg": -11.688979924919554,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9274494046841437,
+      "after_lean_deg": 3.9274494046841437,
+      "target_lean_deg": 3.9274494046841437,
+      "head_forward_elevation_before_deg": -11.524900294325292,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.924646251340002,
+      "after_lean_deg": 3.924646251340002,
+      "target_lean_deg": 3.924646251340002,
+      "head_forward_elevation_before_deg": -11.370936994135405,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9357948360311346,
+      "after_lean_deg": 3.9357948360311346,
+      "target_lean_deg": 3.9357948360311346,
+      "head_forward_elevation_before_deg": -11.227514853406197,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9607566567116352,
+      "after_lean_deg": 3.9607566567116352,
+      "target_lean_deg": 3.9607566567116352,
+      "head_forward_elevation_before_deg": -11.095022911026767,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9995878292224782,
+      "after_lean_deg": 3.9995878292224782,
+      "target_lean_deg": 3.9995878292224782,
+      "head_forward_elevation_before_deg": -10.973969097571056,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.051602645391402,
+      "after_lean_deg": 4.051602645391402,
+      "target_lean_deg": 4.051602645391402,
+      "head_forward_elevation_before_deg": -10.864747299931384,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.116583468817249,
+      "after_lean_deg": 4.116583468817249,
+      "target_lean_deg": 4.116583468817249,
+      "head_forward_elevation_before_deg": -10.767732956189557,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.193174134333515,
+      "after_lean_deg": 4.193174134333515,
+      "target_lean_deg": 4.193174134333515,
+      "head_forward_elevation_before_deg": -10.68343422709308,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.280162690134429,
+      "after_lean_deg": 4.280162690134429,
+      "target_lean_deg": 4.280162690134429,
+      "head_forward_elevation_before_deg": -10.612159129150255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.376663008060725,
+      "after_lean_deg": 4.376663008060725,
+      "target_lean_deg": 4.376663008060725,
+      "head_forward_elevation_before_deg": -10.554442167197255,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.481642669239293,
+      "after_lean_deg": 4.481642669239293,
+      "target_lean_deg": 4.481642669239293,
+      "head_forward_elevation_before_deg": -10.510653516960893,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.594073235154278,
+      "after_lean_deg": 4.594073235154278,
+      "target_lean_deg": 4.594073235154278,
+      "head_forward_elevation_before_deg": -10.481206518068511,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.712941853771673,
+      "after_lean_deg": 4.712941853771673,
+      "target_lean_deg": 4.712941853771673,
+      "head_forward_elevation_before_deg": -10.466568832608468,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.837213700799116,
+      "after_lean_deg": 4.837213700799116,
+      "target_lean_deg": 4.837213700799116,
+      "head_forward_elevation_before_deg": -10.467126686412458,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.965946478051336,
+      "after_lean_deg": 4.965946478051336,
+      "target_lean_deg": 4.965946478051336,
+      "head_forward_elevation_before_deg": -10.483359232275392,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.098034265517849,
+      "after_lean_deg": 5.098034265517849,
+      "target_lean_deg": 5.098034265517849,
+      "head_forward_elevation_before_deg": -10.515578217507109,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.232499930807454,
+      "after_lean_deg": 5.232499930807454,
+      "target_lean_deg": 5.232499930807454,
+      "head_forward_elevation_before_deg": -10.56445001436694,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.368334857011006,
+      "after_lean_deg": 5.368334857011006,
+      "target_lean_deg": 5.368334857011006,
+      "head_forward_elevation_before_deg": -10.629884739254596,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.504536793376577,
+      "after_lean_deg": 5.504536793376577,
+      "target_lean_deg": 5.504536793376577,
+      "head_forward_elevation_before_deg": -10.712637310393482,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.640102430840962,
+      "after_lean_deg": 5.640102430840962,
+      "target_lean_deg": 5.640102430840962,
+      "head_forward_elevation_before_deg": -10.81072667367222,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.7739624164879455,
+      "after_lean_deg": 5.7739624164879455,
+      "target_lean_deg": 5.7739624164879455,
+      "head_forward_elevation_before_deg": -10.922947846176818,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.90514305252962,
+      "after_lean_deg": 5.90514305252962,
+      "target_lean_deg": 5.90514305252962,
+      "head_forward_elevation_before_deg": -11.047534462315191,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.032616825316984,
+      "after_lean_deg": 6.032616825316984,
+      "target_lean_deg": 6.032613933987286,
+      "head_forward_elevation_before_deg": -11.182770919082992,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.155386376899552,
+      "after_lean_deg": 6.155386376899552,
+      "target_lean_deg": 6.155074480566701,
+      "head_forward_elevation_before_deg": -11.327047150687319,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.2724033296743125,
+      "after_lean_deg": 6.2724033296743125,
+      "target_lean_deg": 6.270731293962097,
+      "head_forward_elevation_before_deg": -11.478680391858983,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.382670876872455,
+      "after_lean_deg": 6.382670876872455,
+      "target_lean_deg": 6.378068496421132,
+      "head_forward_elevation_before_deg": -11.63600276630452,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.485181232537553,
+      "after_lean_deg": 6.4766871217542015,
+      "target_lean_deg": 6.475882394760532,
+      "head_forward_elevation_before_deg": -11.78644321903464,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.5789016719713365,
+      "after_lean_deg": 6.5646008885479485,
+      "target_lean_deg": 6.563258567729476,
+      "head_forward_elevation_before_deg": -11.942704586168544,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.662169181081844,
+      "after_lean_deg": 6.64098019159846,
+      "target_lean_deg": 6.638989985689696,
+      "head_forward_elevation_before_deg": -12.097589915971339,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.735961262714694,
+      "after_lean_deg": 6.707146979021711,
+      "target_lean_deg": 6.704448260102031,
+      "head_forward_elevation_before_deg": -12.251926892279329,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.800183920608893,
+      "after_lean_deg": 6.763500344200563,
+      "target_lean_deg": 6.760055288618198,
+      "head_forward_elevation_before_deg": -12.405666872963284,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.856055891624444,
+      "after_lean_deg": 6.811522374348424,
+      "target_lean_deg": 6.807343835789438,
+      "head_forward_elevation_before_deg": -12.55970136212622,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.904911830564906,
+      "after_lean_deg": 6.852728314546456,
+      "target_lean_deg": 6.847831354012081,
+      "head_forward_elevation_before_deg": -12.714980599200809,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.946069553842753,
+      "after_lean_deg": 6.881775187279646,
+      "target_lean_deg": 6.88129618804646,
+      "head_forward_elevation_before_deg": -12.864111426155517,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.9793358768596,
+      "after_lean_deg": 6.908430247757765,
+      "target_lean_deg": 6.907905679679604,
+      "head_forward_elevation_before_deg": -13.019175366359836,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.004602844482964,
+      "after_lean_deg": 6.928426508701008,
+      "target_lean_deg": 6.927850358984813,
+      "head_forward_elevation_before_deg": -13.174006559517132,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.021667861222546,
+      "after_lean_deg": 6.941770585707974,
+      "target_lean_deg": 6.9411894050718494,
+      "head_forward_elevation_before_deg": -13.328111556268924,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.03036022297275,
+      "after_lean_deg": 6.948554280151235,
+      "target_lean_deg": 6.947942906440143,
+      "head_forward_elevation_before_deg": -13.480942226004094,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.030558823170113,
+      "after_lean_deg": 6.948708143852841,
+      "target_lean_deg": 6.948096884066461,
+      "head_forward_elevation_before_deg": -13.631831902376739,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.022065566512232,
+      "after_lean_deg": 6.942090964122351,
+      "target_lean_deg": 6.941499005820814,
+      "head_forward_elevation_before_deg": -13.780020260147754,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.004733873868851,
+      "after_lean_deg": 6.928525572117116,
+      "target_lean_deg": 6.927953184239714,
+      "head_forward_elevation_before_deg": -13.924703217683557,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.978365581770744,
+      "after_lean_deg": 6.90766175746368,
+      "target_lean_deg": 6.907135166753248,
+      "head_forward_elevation_before_deg": -14.064836955733858,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.942876368593183,
+      "after_lean_deg": 6.8792019986414035,
+      "target_lean_deg": 6.878721216552699,
+      "head_forward_elevation_before_deg": -14.199338045860848,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.897957164447938,
+      "after_lean_deg": 6.846918154684542,
+      "target_lean_deg": 6.842118073805284,
+      "head_forward_elevation_before_deg": -14.332680415977592,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.843130473753688,
+      "after_lean_deg": 6.800507203898215,
+      "target_lean_deg": 6.796496480194025,
+      "head_forward_elevation_before_deg": -14.451417927960762,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.7789382048567814,
+      "after_lean_deg": 6.744992244559902,
+      "target_lean_deg": 6.741804910681559,
+      "head_forward_elevation_before_deg": -14.56043552903519,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.705614094096066,
+      "after_lean_deg": 6.680122082779531,
+      "target_lean_deg": 6.6777252466306605,
+      "head_forward_elevation_before_deg": -14.65841786979809,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.624077843602487,
+      "after_lean_deg": 6.606257592516555,
+      "target_lean_deg": 6.604581685519057,
+      "head_forward_elevation_before_deg": -14.74382468557155,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.5349521919209765,
+      "after_lean_deg": 6.5236127827107,
+      "target_lean_deg": 6.522549558398585,
+      "head_forward_elevation_before_deg": -14.81523667063976,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.439005386198958,
+      "after_lean_deg": 6.432672737378227,
+      "target_lean_deg": 6.432088034742458,
+      "head_forward_elevation_before_deg": -14.871533686475328,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.336957817301725,
+      "after_lean_deg": 6.336957817301725,
+      "target_lean_deg": 6.333805406549864,
+      "head_forward_elevation_before_deg": -14.91555016525167,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.229478476539703,
+      "after_lean_deg": 6.229478476539703,
+      "target_lean_deg": 6.228476716369106,
+      "head_forward_elevation_before_deg": -14.936543448204851,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.117248502637315,
+      "after_lean_deg": 6.117248502637315,
+      "target_lean_deg": 6.117114367037621,
+      "head_forward_elevation_before_deg": -14.941913755461528,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.001041278835539,
+      "after_lean_deg": 6.001041278835539,
+      "target_lean_deg": 6.001041278741455,
+      "head_forward_elevation_before_deg": -14.930880664477922,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.881529427024699,
+      "after_lean_deg": 5.881529427024699,
+      "target_lean_deg": 5.881529427024699,
+      "head_forward_elevation_before_deg": -14.902421550379149,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.759441031341961,
+      "after_lean_deg": 5.759441031341961,
+      "target_lean_deg": 5.759441031341961,
+      "head_forward_elevation_before_deg": -14.856286930899788,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.635430212587633,
+      "after_lean_deg": 5.635430212587633,
+      "target_lean_deg": 5.635430212587633,
+      "head_forward_elevation_before_deg": -14.791251073027896,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.510289963734929,
+      "after_lean_deg": 5.510289963734929,
+      "target_lean_deg": 5.510289963734929,
+      "head_forward_elevation_before_deg": -14.709043437554698,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.384677924857153,
+      "after_lean_deg": 5.384677924857153,
+      "target_lean_deg": 5.384677924857153,
+      "head_forward_elevation_before_deg": -14.610376184044522,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.259299337276531,
+      "after_lean_deg": 5.259299337276531,
+      "target_lean_deg": 5.259299337276531,
+      "head_forward_elevation_before_deg": -14.49669147510319,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.134865283659967,
+      "after_lean_deg": 5.134865283659967,
+      "target_lean_deg": 5.134865283659967,
+      "head_forward_elevation_before_deg": -14.369288218023858,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.01210590799249,
+      "after_lean_deg": 5.01210590799249,
+      "target_lean_deg": 5.01210590799249,
+      "head_forward_elevation_before_deg": -14.229435334938007,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.891706555702239,
+      "after_lean_deg": 4.891706555702239,
+      "target_lean_deg": 4.891706555702239,
+      "head_forward_elevation_before_deg": -14.078398179291275,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.774365887610995,
+      "after_lean_deg": 4.774365887610995,
+      "target_lean_deg": 4.774365887610995,
+      "head_forward_elevation_before_deg": -13.917462506777158,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.6608134593051,
+      "after_lean_deg": 4.6608134593051,
+      "target_lean_deg": 4.6608134593051,
+      "head_forward_elevation_before_deg": -13.747920307833732,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.551753622047291,
+      "after_lean_deg": 4.551753622047291,
+      "target_lean_deg": 4.551753622047291,
+      "head_forward_elevation_before_deg": -13.571066039560593,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.4478605364667665,
+      "after_lean_deg": 4.4478605364667665,
+      "target_lean_deg": 4.4478605364667665,
+      "head_forward_elevation_before_deg": -13.388144035263261,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.349884996805567,
+      "after_lean_deg": 4.349884996805567,
+      "target_lean_deg": 4.349884996805567,
+      "head_forward_elevation_before_deg": -13.200470690303762,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.258522060588903,
+      "after_lean_deg": 4.258522060588903,
+      "target_lean_deg": 4.258522060588903,
+      "head_forward_elevation_before_deg": -13.009311157556487,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.1757992640614425,
+      "after_lean_deg": 4.1757992640614425,
+      "target_lean_deg": 4.1757992640614425,
+      "head_forward_elevation_before_deg": -12.819160434001851,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.147449834709143,
+      "after_lean_deg": 4.147449834709143,
+      "target_lean_deg": 4.147449834709143,
+      "head_forward_elevation_before_deg": -12.74923937353665,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.256890221850297,
+      "after_lean_deg": 4.256890221850297,
+      "target_lean_deg": 4.256890221850297,
+      "head_forward_elevation_before_deg": -13.005736305154054,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.616540460750213,
+      "after_lean_deg": 4.616540460750213,
+      "target_lean_deg": 4.616540460750213,
+      "head_forward_elevation_before_deg": -13.677852037948815,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.3423888565667506,
+      "after_lean_deg": 5.3423888565667506,
+      "target_lean_deg": 5.3423888565667506,
+      "head_forward_elevation_before_deg": -14.573640563527682,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.330965929280225,
+      "after_lean_deg": 6.330965929280225,
+      "target_lean_deg": 6.3279775349500955,
+      "head_forward_elevation_before_deg": -14.917169042809483,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.002697967040536,
+      "after_lean_deg": 6.926921522891382,
+      "target_lean_deg": 6.926354801409418,
+      "head_forward_elevation_before_deg": -13.937737962341703,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.748481466383595,
+      "after_lean_deg": 6.718229213491997,
+      "target_lean_deg": 6.7153909132505145,
+      "head_forward_elevation_before_deg": -12.28015096237044,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.5312366388884895,
+      "after_lean_deg": 5.5312366388884895,
+      "target_lean_deg": 5.5312366388884895,
+      "head_forward_elevation_before_deg": -10.730763689309804,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.281040969626293,
+      "after_lean_deg": 4.281040969626293,
+      "target_lean_deg": 4.281040969626293,
+      "head_forward_elevation_before_deg": -10.611573021221316,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9355932202150448,
+      "after_lean_deg": 3.9355932202150448,
+      "target_lean_deg": 3.9355932202150448,
+      "head_forward_elevation_before_deg": -11.61966785416782,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.303920786576786,
+      "after_lean_deg": 4.303920786576786,
+      "target_lean_deg": 4.303920786576786,
+      "head_forward_elevation_before_deg": -12.815829654145533,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.697547142464414,
+      "after_lean_deg": 4.697547142464414,
+      "target_lean_deg": 4.697547142464414,
+      "head_forward_elevation_before_deg": -13.56693731224464,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.8963529453921915,
+      "after_lean_deg": 4.8963529453921915,
+      "target_lean_deg": 4.8963529453921915,
+      "head_forward_elevation_before_deg": -13.85593623983832,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.926471004727404,
+      "after_lean_deg": 4.926471004727404,
+      "target_lean_deg": 4.926471004727404,
+      "head_forward_elevation_before_deg": -13.917469315912346,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ],
+  "TurnRight": [
+    {
+      "before_lean_deg": 4.926460766672391,
+      "after_lean_deg": 4.926460766672391,
+      "target_lean_deg": 4.926460766672391,
+      "head_forward_elevation_before_deg": -13.917463503577864,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.8150441063245575,
+      "after_lean_deg": 4.8150441063245575,
+      "target_lean_deg": 4.8150441063245575,
+      "head_forward_elevation_before_deg": -13.731218747200966,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.700049496806221,
+      "after_lean_deg": 4.700049496806221,
+      "target_lean_deg": 4.700049496806221,
+      "head_forward_elevation_before_deg": -13.571054871512377,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.592875138749045,
+      "after_lean_deg": 4.592875138749045,
+      "target_lean_deg": 4.592875138749045,
+      "head_forward_elevation_before_deg": -13.388154915270468,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.490657467822475,
+      "after_lean_deg": 4.490657467822475,
+      "target_lean_deg": 4.490657467822475,
+      "head_forward_elevation_before_deg": -13.200477469331222,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.394111833431765,
+      "after_lean_deg": 4.394111833431765,
+      "target_lean_deg": 4.394111833431765,
+      "head_forward_elevation_before_deg": -13.009295068428163,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.30393786512021,
+      "after_lean_deg": 4.30393786512021,
+      "target_lean_deg": 4.30393786512021,
+      "head_forward_elevation_before_deg": -12.815890877581767,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.22083292343423,
+      "after_lean_deg": 4.22083292343423,
+      "target_lean_deg": 4.22083292343423,
+      "head_forward_elevation_before_deg": -12.621568124472516,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.145518227273593,
+      "after_lean_deg": 4.145518227273593,
+      "target_lean_deg": 4.145518227273593,
+      "head_forward_elevation_before_deg": -12.427611246435417,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.078161430220126,
+      "after_lean_deg": 4.078161430220126,
+      "target_lean_deg": 4.078161430220126,
+      "head_forward_elevation_before_deg": -12.234742127203136,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.021015557297248,
+      "after_lean_deg": 4.021015557297248,
+      "target_lean_deg": 4.021015557297248,
+      "head_forward_elevation_before_deg": -12.045789703200526,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9761321127211335,
+      "after_lean_deg": 3.9761321127211335,
+      "target_lean_deg": 3.9761321127211335,
+      "head_forward_elevation_before_deg": -11.863405703938401,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.944338846560798,
+      "after_lean_deg": 3.944338846560798,
+      "target_lean_deg": 3.944338846560798,
+      "head_forward_elevation_before_deg": -11.688979924919554,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9274494046841437,
+      "after_lean_deg": 3.9274494046841437,
+      "target_lean_deg": 3.9274494046841437,
+      "head_forward_elevation_before_deg": -11.524900294325292,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.924646251340002,
+      "after_lean_deg": 3.924646251340002,
+      "target_lean_deg": 3.924646251340002,
+      "head_forward_elevation_before_deg": -11.370936994135405,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9357952806479686,
+      "after_lean_deg": 3.9357952806479686,
+      "target_lean_deg": 3.9357952806479686,
+      "head_forward_elevation_before_deg": -11.227503168720885,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9607570325424835,
+      "after_lean_deg": 3.9607570325424835,
+      "target_lean_deg": 3.9607570325424835,
+      "head_forward_elevation_before_deg": -11.095026986122097,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9995977161244207,
+      "after_lean_deg": 3.9995977161244207,
+      "target_lean_deg": 3.9995977161244207,
+      "head_forward_elevation_before_deg": -10.973984883514364,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.051603016921015,
+      "after_lean_deg": 4.051603016921015,
+      "target_lean_deg": 4.051603016921015,
+      "head_forward_elevation_before_deg": -10.864745246229367,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.1165830728460415,
+      "after_lean_deg": 4.1165830728460415,
+      "target_lean_deg": 4.1165830728460415,
+      "head_forward_elevation_before_deg": -10.76772549299342,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.193154065681719,
+      "after_lean_deg": 4.193154065681719,
+      "target_lean_deg": 4.193154065681719,
+      "head_forward_elevation_before_deg": -10.68341049233438,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.280172775686874,
+      "after_lean_deg": 4.280172775686874,
+      "target_lean_deg": 4.280172775686874,
+      "head_forward_elevation_before_deg": -10.612172250131609,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.3766547561684455,
+      "after_lean_deg": 4.3766547561684455,
+      "target_lean_deg": 4.3766547561684455,
+      "head_forward_elevation_before_deg": -10.554446467515946,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.4816442435994315,
+      "after_lean_deg": 4.4816442435994315,
+      "target_lean_deg": 4.4816442435994315,
+      "head_forward_elevation_before_deg": -10.510651311914565,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.594092051878115,
+      "after_lean_deg": 4.594092051878115,
+      "target_lean_deg": 4.594092051878115,
+      "head_forward_elevation_before_deg": -10.481232241258825,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.712931213177711,
+      "after_lean_deg": 4.712931213177711,
+      "target_lean_deg": 4.712931213177711,
+      "head_forward_elevation_before_deg": -10.46656197874088,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.8372150342174685,
+      "after_lean_deg": 4.8372150342174685,
+      "target_lean_deg": 4.8372150342174685,
+      "head_forward_elevation_before_deg": -10.467123855213618,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.965954584826294,
+      "after_lean_deg": 4.965954584826294,
+      "target_lean_deg": 4.965954584826294,
+      "head_forward_elevation_before_deg": -10.483365529605106,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.09804228825298,
+      "after_lean_deg": 5.09804228825298,
+      "target_lean_deg": 5.09804228825298,
+      "head_forward_elevation_before_deg": -10.515598182394404,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.232501849753894,
+      "after_lean_deg": 5.232501849753894,
+      "target_lean_deg": 5.232501849753894,
+      "head_forward_elevation_before_deg": -10.564451280229832,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.3683354017770615,
+      "after_lean_deg": 5.3683354017770615,
+      "target_lean_deg": 5.3683354017770615,
+      "head_forward_elevation_before_deg": -10.62987962927815,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.50453541992898,
+      "after_lean_deg": 5.50453541992898,
+      "target_lean_deg": 5.50453541992898,
+      "head_forward_elevation_before_deg": -10.71264353356271,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.640112976403944,
+      "after_lean_deg": 5.640112976403944,
+      "target_lean_deg": 5.640112976403944,
+      "head_forward_elevation_before_deg": -10.810737299312262,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.7739535587996125,
+      "after_lean_deg": 5.7739535587996125,
+      "target_lean_deg": 5.7739535587996125,
+      "head_forward_elevation_before_deg": -10.922955305714876,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.905143241839835,
+      "after_lean_deg": 5.905143241839835,
+      "target_lean_deg": 5.905143241839835,
+      "head_forward_elevation_before_deg": -11.04753112981046,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.0326171092177585,
+      "after_lean_deg": 6.0326171092177585,
+      "target_lean_deg": 6.032614217812568,
+      "head_forward_elevation_before_deg": -11.182773895676993,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.155393680563812,
+      "after_lean_deg": 6.155393680563812,
+      "target_lean_deg": 6.155081740319103,
+      "head_forward_elevation_before_deg": -11.327061093171125,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.272401907533736,
+      "after_lean_deg": 6.272401907533736,
+      "target_lean_deg": 6.270729897880488,
+      "head_forward_elevation_before_deg": -11.478672286818588,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.382680901566216,
+      "after_lean_deg": 6.382680901566216,
+      "target_lean_deg": 6.378078162883859,
+      "head_forward_elevation_before_deg": -11.636014522679684,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.48517014366481,
+      "after_lean_deg": 6.476672112422114,
+      "target_lean_deg": 6.4758719336817565,
+      "head_forward_elevation_before_deg": -11.786415093471176,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.578911823518712,
+      "after_lean_deg": 6.564611795221576,
+      "target_lean_deg": 6.563267914092967,
+      "head_forward_elevation_before_deg": -11.94271584768649,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.662177548642603,
+      "after_lean_deg": 6.64099308078429,
+      "target_lean_deg": 6.63899749910449,
+      "head_forward_elevation_before_deg": -12.097598316442376,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.7359605483205955,
+      "after_lean_deg": 6.707153351337994,
+      "target_lean_deg": 6.704447634336899,
+      "head_forward_elevation_before_deg": -12.251939435973444,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.800194882317037,
+      "after_lean_deg": 6.763516788178696,
+      "target_lean_deg": 6.76006466720584,
+      "head_forward_elevation_before_deg": -12.405691050676149,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.856062214228757,
+      "after_lean_deg": 6.811528846261156,
+      "target_lean_deg": 6.807349128112193,
+      "head_forward_elevation_before_deg": -12.559716860739995,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.904911098317074,
+      "after_lean_deg": 6.852722296344986,
+      "target_lean_deg": 6.847830753352388,
+      "head_forward_elevation_before_deg": -12.714972384431682,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.94605878411813,
+      "after_lean_deg": 6.881765790825702,
+      "target_lean_deg": 6.881287509466674,
+      "head_forward_elevation_before_deg": -12.86411114940252,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.979345890207544,
+      "after_lean_deg": 6.908446402425442,
+      "target_lean_deg": 6.907913629527018,
+      "head_forward_elevation_before_deg": -13.019188922715847,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.004603033405584,
+      "after_lean_deg": 6.928409124662408,
+      "target_lean_deg": 6.927850507246259,
+      "head_forward_elevation_before_deg": -13.17398759719234,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.021657659689472,
+      "after_lean_deg": 6.9417724752390555,
+      "target_lean_deg": 6.94118146274484,
+      "head_forward_elevation_before_deg": -13.328122281796984,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.030355270616397,
+      "after_lean_deg": 6.948550501113041,
+      "target_lean_deg": 6.947939066620881,
+      "head_forward_elevation_before_deg": -13.480941410700066,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.0305493773770955,
+      "after_lean_deg": 6.948692838738347,
+      "target_lean_deg": 6.948089560933843,
+      "head_forward_elevation_before_deg": -13.631820222078575,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.022066866892776,
+      "after_lean_deg": 6.942095538259171,
+      "target_lean_deg": 6.941500018030094,
+      "head_forward_elevation_before_deg": -13.780043963346865,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.004735020319858,
+      "after_lean_deg": 6.928523220878117,
+      "target_lean_deg": 6.927954083889068,
+      "head_forward_elevation_before_deg": -13.924706381698215,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.978356859202135,
+      "after_lean_deg": 6.907645837457078,
+      "target_lean_deg": 6.9071282386087365,
+      "head_forward_elevation_before_deg": -14.064816854705466,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.942872609071621,
+      "after_lean_deg": 6.879191116811051,
+      "target_lean_deg": 6.8787181827581945,
+      "head_forward_elevation_before_deg": -14.199343165452731,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.8979560549622265,
+      "after_lean_deg": 6.8469190698459546,
+      "target_lean_deg": 6.842117161020871,
+      "head_forward_elevation_before_deg": -14.332685167160449,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.843111922620751,
+      "after_lean_deg": 6.800483165143541,
+      "target_lean_deg": 6.796480871243922,
+      "head_forward_elevation_before_deg": -14.451387011676413,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.778946332398936,
+      "after_lean_deg": 6.745000102284031,
+      "target_lean_deg": 6.741811920118298,
+      "head_forward_elevation_before_deg": -14.560458908674466,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.705639938167796,
+      "after_lean_deg": 6.680143589993216,
+      "target_lean_deg": 6.677748122982315,
+      "head_forward_elevation_before_deg": -14.658442870969946,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.624061734462564,
+      "after_lean_deg": 6.606239991913378,
+      "target_lean_deg": 6.604567048392732,
+      "head_forward_elevation_before_deg": -14.743813356990454,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.534952790552568,
+      "after_lean_deg": 6.523625921206897,
+      "target_lean_deg": 6.52255011616484,
+      "head_forward_elevation_before_deg": -14.815256608406038,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.4390071618684335,
+      "after_lean_deg": 6.432684335733018,
+      "target_lean_deg": 6.432089727532205,
+      "head_forward_elevation_before_deg": -14.871555668063989,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.336958489543635,
+      "after_lean_deg": 6.336958489543635,
+      "target_lean_deg": 6.333806060065422,
+      "head_forward_elevation_before_deg": -14.915542527980099,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.229488505508302,
+      "after_lean_deg": 6.229488505508302,
+      "target_lean_deg": 6.228486614449958,
+      "head_forward_elevation_before_deg": -14.936561770852618,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.117249490121556,
+      "after_lean_deg": 6.117249490121556,
+      "target_lean_deg": 6.117115351135805,
+      "head_forward_elevation_before_deg": -14.941917538802791,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.00102607694948,
+      "after_lean_deg": 6.00102607694948,
+      "target_lean_deg": 6.001026076859456,
+      "head_forward_elevation_before_deg": -14.930855588477451,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.881550399453165,
+      "after_lean_deg": 5.881550399453165,
+      "target_lean_deg": 5.881550399453165,
+      "head_forward_elevation_before_deg": -14.902452428542706,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.759429433631245,
+      "after_lean_deg": 5.759429433631245,
+      "target_lean_deg": 5.759429433631245,
+      "head_forward_elevation_before_deg": -14.856273718095773,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.635438753779315,
+      "after_lean_deg": 5.635438753779315,
+      "target_lean_deg": 5.635438753779315,
+      "head_forward_elevation_before_deg": -14.791270958955078,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.510280048471238,
+      "after_lean_deg": 5.510280048471238,
+      "target_lean_deg": 5.510280048471238,
+      "head_forward_elevation_before_deg": -14.709034516915294,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.384666077718383,
+      "after_lean_deg": 5.384666077718383,
+      "target_lean_deg": 5.384666077718383,
+      "head_forward_elevation_before_deg": -14.610368399972288,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.259300259786443,
+      "after_lean_deg": 5.259300259786443,
+      "target_lean_deg": 5.259300259786443,
+      "head_forward_elevation_before_deg": -14.496690602581896,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.134853798969375,
+      "after_lean_deg": 5.134853798969375,
+      "target_lean_deg": 5.134853798969375,
+      "head_forward_elevation_before_deg": -14.369253389481297,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.012107072743105,
+      "after_lean_deg": 5.012107072743105,
+      "target_lean_deg": 5.012107072743105,
+      "head_forward_elevation_before_deg": -14.229431088086283,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.891695856553062,
+      "after_lean_deg": 4.891695856553062,
+      "target_lean_deg": 4.891695856553062,
+      "head_forward_elevation_before_deg": -14.07838868760609,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.774353409958519,
+      "after_lean_deg": 4.774353409958519,
+      "target_lean_deg": 4.774353409958519,
+      "head_forward_elevation_before_deg": -13.917449563477337,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.660821055294241,
+      "after_lean_deg": 4.660821055294241,
+      "target_lean_deg": 4.660821055294241,
+      "head_forward_elevation_before_deg": -13.747921815900451,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.551755447139682,
+      "after_lean_deg": 4.551755447139682,
+      "target_lean_deg": 4.551755447139682,
+      "head_forward_elevation_before_deg": -13.571063767537892,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.447879429721115,
+      "after_lean_deg": 4.447879429721115,
+      "target_lean_deg": 4.447879429721115,
+      "head_forward_elevation_before_deg": -13.38816263172085,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.349890864443171,
+      "after_lean_deg": 4.349890864443171,
+      "target_lean_deg": 4.349890864443171,
+      "head_forward_elevation_before_deg": -13.200481303507994,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.258505324234746,
+      "after_lean_deg": 4.258505324234746,
+      "target_lean_deg": 4.258505324234746,
+      "head_forward_elevation_before_deg": -13.009289634957007,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.175789015045567,
+      "after_lean_deg": 4.175789015045567,
+      "target_lean_deg": 4.175789015045567,
+      "head_forward_elevation_before_deg": -12.819152121942851,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.147431233910337,
+      "after_lean_deg": 4.147431233910337,
+      "target_lean_deg": 4.147431233910337,
+      "head_forward_elevation_before_deg": -12.749221704201304,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.256881492185088,
+      "after_lean_deg": 4.256881492185088,
+      "target_lean_deg": 4.256881492185088,
+      "head_forward_elevation_before_deg": -13.00573287368459,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.616541598827754,
+      "after_lean_deg": 4.616541598827754,
+      "target_lean_deg": 4.616541598827754,
+      "head_forward_elevation_before_deg": -13.677856167665418,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.342372555910157,
+      "after_lean_deg": 5.342372555910157,
+      "target_lean_deg": 5.342372555910157,
+      "head_forward_elevation_before_deg": -14.573624891773742,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.330966307614745,
+      "after_lean_deg": 6.330966307614745,
+      "target_lean_deg": 6.3279779031103125,
+      "head_forward_elevation_before_deg": -14.917169322495033,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 7.002691139414308,
+      "after_lean_deg": 6.926912452712996,
+      "target_lean_deg": 6.926349438527926,
+      "head_forward_elevation_before_deg": -13.9377345135235,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 6.748479954274952,
+      "after_lean_deg": 6.71822618906145,
+      "target_lean_deg": 6.715389594609827,
+      "head_forward_elevation_before_deg": -12.280149293893286,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 5.531238912078821,
+      "after_lean_deg": 5.531238912078821,
+      "target_lean_deg": 5.531238912078821,
+      "head_forward_elevation_before_deg": -10.730765707519549,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.281040590046969,
+      "after_lean_deg": 4.281040590046969,
+      "target_lean_deg": 4.281040590046969,
+      "head_forward_elevation_before_deg": -10.611564618195697,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 3.9355732479654466,
+      "after_lean_deg": 3.9355732479654466,
+      "target_lean_deg": 3.9355732479654466,
+      "head_forward_elevation_before_deg": -11.619643714878723,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.3039018104165265,
+      "after_lean_deg": 4.3039018104165265,
+      "target_lean_deg": 4.3039018104165265,
+      "head_forward_elevation_before_deg": -12.815808211348727,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.697538797579599,
+      "after_lean_deg": 4.697538797579599,
+      "target_lean_deg": 4.697538797579599,
+      "head_forward_elevation_before_deg": -13.566929765146448,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.896343086094376,
+      "after_lean_deg": 4.896343086094376,
+      "target_lean_deg": 4.896343086094376,
+      "head_forward_elevation_before_deg": -13.855926269631764,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    },
+    {
+      "before_lean_deg": 4.926449011868098,
+      "after_lean_deg": 4.926449011868098,
+      "target_lean_deg": 4.926449011868098,
+      "head_forward_elevation_before_deg": -13.917455287927814,
+      "head_forward_target_elevation_deg": -6.000000000000001
+    }
+  ]
+}

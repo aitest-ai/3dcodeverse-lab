@@ -1,0 +1,33 @@
+name: Character studio v0.3 - geometry and motion integrity only
+on:
+  push:
+    branches: [feat/character-studio-v03-garment-posture-20261104]
+    paths: ['projects/character-acceptance-studio/**', '.github/workflows/character-studio-v03.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile portable source
+        run: python3 -m compileall -q projects/character-acceptance-studio/scripts
+      - name: Versioned binary, recorded contact samples and clip joins
+        run: python3 projects/character-acceptance-studio/scripts/verify_motion_v03.py
+      - name: Decode actual root and leg tracks, image bytes and posture regression
+        run: python3 projects/character-acceptance-studio/scripts/verify_regression_v03.py
+      - name: Exact review-only version locks and overwrite refusal
+        run: python3 projects/character-acceptance-studio/scripts/verify_locks_v03.py
+      - name: Repository GLB contract
+        run: |
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/harbor-courier-review/0.3.0
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/taiwan-oldman-review/0.3.0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-v03-numerical-reports-not-art-approval
+          path: |
+            projects/character-acceptance-studio/evidence-v03/numerical-qa.json
+            projects/character-acceptance-studio/evidence-v03/regression-qa.json
+          retention-days: 30

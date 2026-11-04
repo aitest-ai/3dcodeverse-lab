@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "asset_id": "harbor-courier-review",
+  "version": "0.3.0",
+  "model_file": "harbor-courier-review.glb",
+  "source_file": "harbor-courier-review.blend",
+  "unit": "meter",
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Start",
+    "Stop",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "min_animation_count": 7,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  },
+  "source": "Exact 0.2.0 character + project-authored editable garment/posture correction; upstream licenses unchanged",
+  "license_note": "Unchanged third-party source license; see root THIRD_PARTY_NOTICES.md",
+  "sha256": "689bfd4a8d9de41ec8a4ed5069f8bce569b5c77ef275e986e16a215784a2a143",
+  "art_approved": false,
+  "game_ready": false,
+  "textures": [
+    {
+      "file": "textures/Jacket_sea_green_Albedo.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "34fd744435a83d35900aba7cd07f1350984348e7d594538d5b9d25f13124122e"
+    },
+    {
+      "file": "textures/Jacket_sea_green_Roughness.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "748b84a9ed9802e09e81cb77c0b68e315a9f58c19ead5dd0137dd3521ced3145"
+    },
+    {
+      "file": "textures/Shirt_oat_canvas_Albedo.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "fde3f01d1f3bed283b1fbc9fdc08aa03f464577579aacfa5c975e6a6082a7d0d"
+    },
+    {
+      "file": "textures/Shirt_oat_canvas_Roughness.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "ba9181a86490944cf10d6fee5c6b6a6db3352a5aeb0c15b2f0e95069447b4a2e"
+    },
+    {
+      "file": "textures/T_Eye_Brown.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025"
+    },
+    {
+      "file": "textures/Trousers_ink_Albedo.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "37a754ec2be6fa204ea353e8dbfe88570141f317cde4076595cea740fe3d63ff"
+    },
+    {
+      "file": "textures/Trousers_ink_Roughness.png",
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "f90b8062d0d896da937c921e5bf633848543744ca97f98299c4d8f5101d6ab34"
+    }
+  ]
+}

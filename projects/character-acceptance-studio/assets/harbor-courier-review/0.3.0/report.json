@@ -1,0 +1,20 @@
+{
+  "blender": "5.2.3 LTS",
+  "source_blend": "assets/harbor-courier-review/0.2.0/harbor-courier-review.blend",
+  "source_sha256": "30af1ae95767e5f25238249662633ebc3015a5b488f119009fdb224a2ae167ac",
+  "source_unchanged": true,
+  "body_geometry_weights_unchanged": true,
+  "raw_original_topology_available_in": "0.2.0",
+  "garment_changes": "garment-change-log.json",
+  "posture_changes": "posture-audit.json",
+  "root_and_lower_body_channels_preserved": true,
+  "packed_images_changed": false,
+  "art_approved": false,
+  "game_ready": false,
+  "limitations": [
+    "No physical cloth simulation",
+    "No all-body collision guarantee",
+    "Human art and physical phone untested",
+    "Head-forward axis constraint is not pupil gaze correction"
+  ]
+}

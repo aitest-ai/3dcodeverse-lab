@@ -1,0 +1,86 @@
+{
+  "observations": [
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/targeted/harbor-courier-review-run-chest.png",
+      "region": "領片／領巾／胸前衣片",
+      "verdict": "observed-improved",
+      "notes": "Run@0.2333s大型頸骨平面外翻已改善；胸側仍偏貼身，摺痕、肩腋與布料鬆量尚未正式核准。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/targeted/harbor-courier-review-run-elbow.png",
+      "region": "袖口／手腕",
+      "verdict": "observed-improved",
+      "notes": "同鏡位尖齒與大空隙改善，改用貼合實際手腕的閉合橢圓袖口；不是全動作碰撞保證。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "harbor-courier-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/targeted/harbor-courier-review-run-hem.png",
+      "region": "衣襬／背帶／包",
+      "verdict": "needs-review",
+      "notes": "衣襬局部放量、前帶重配；包與背帶縫接／擺動及胸側仍需修整。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/targeted/taiwan-oldman-review-run-hem.png",
+      "region": "腰腹／前衣襬",
+      "verdict": "observed-improved",
+      "notes": "原腰口大片鋸齒與這個姿勢的腹部小穿點改善；保留原MRT拓樸與UV，另調局部權重。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/targeted/taiwan-oldman-review-run-back.png",
+      "region": "背腰／衣襬",
+      "verdict": "observed-improved",
+      "notes": "原初稿露膚與投影裂片已退回，本次取樣的背面覆蓋改善。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.233333,
+      "image": "evidence-v03/details/taiwan-oldman-review/Run/chest/001.png",
+      "region": "眼球視線／臉",
+      "verdict": "observed-failed",
+      "notes": "瞳孔仍偏上；head-forward約束不等於視線修正，原面部未雕改。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    },
+    {
+      "asset_id": "taiwan-oldman-review",
+      "version": "0.3.0",
+      "clip": "Run",
+      "time_s": 0.116666666625,
+      "image": "evidence-v03/frames/taiwan-oldman-review/Run/back/001.png",
+      "region": "後膝／小腿褲料",
+      "verdict": "observed-failed",
+      "notes": "可見原褲料細裂紋／小塊露膚，需進一步辨識穿模或拓樸；本輪未改褲子。",
+      "reviewer": "AI visual inspection of actual browser framebuffer; not human art approval"
+    }
+  ],
+  "human_art_review": "NOT_TESTED",
+  "physical_phone": "NOT_TESTED",
+  "full_garment_continuous_collision": "NOT_TESTED",
+  "art_approved": false,
+  "game_ready": false
+}

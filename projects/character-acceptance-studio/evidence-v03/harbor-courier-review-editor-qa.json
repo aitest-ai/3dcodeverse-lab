@@ -1,0 +1,94 @@
+{
+  "asset": "harbor-courier-review",
+  "blender": "5.2.3 LTS",
+  "source_sha256": "30af1ae95767e5f25238249662633ebc3015a5b488f119009fdb224a2ae167ac",
+  "candidate_sha256": "93b3e5dd0dba63975858f67d4da4ad48ce8595cc45ac7e344051af9abb11dfae",
+  "body_shoes_hair_pants_raw_geometry_weights_uv_shapes_unchanged": true,
+  "rest_bones_identical": true,
+  "images_byte_identical_and_pixels_decoded": {
+    "Jacket_sea_green_Albedo": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "34fd744435a83d35900aba7cd07f1350984348e7d594538d5b9d25f13124122e"
+    },
+    "Jacket_sea_green_Roughness": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "748b84a9ed9802e09e81cb77c0b68e315a9f58c19ead5dd0137dd3521ced3145"
+    },
+    "Shirt_oat_canvas_Albedo": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "fde3f01d1f3bed283b1fbc9fdc08aa03f464577579aacfa5c975e6a6082a7d0d"
+    },
+    "Shirt_oat_canvas_Roughness": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "ba9181a86490944cf10d6fee5c6b6a6db3352a5aeb0c15b2f0e95069447b4a2e"
+    },
+    "T_Eye_Brown": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025"
+    },
+    "Trousers_ink_Albedo": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "37a754ec2be6fa204ea353e8dbfe88570141f317cde4076595cea740fe3d63ff"
+    },
+    "Trousers_ink_Roughness": {
+      "dimensions": [
+        256,
+        256
+      ],
+      "sha256": "f90b8062d0d896da937c921e5bf633848543744ca97f98299c4d8f5101d6ab34"
+    }
+  },
+  "changed_existing_meshes": [
+    "Merged_Jacket_sea_green",
+    "Original_Tailored_Jacket",
+    "Merged_Shirt_oat_canvas",
+    "Review_jacket_fitted_strap_front"
+  ],
+  "removed_meshes": [
+    "Original_coral_neckerchief",
+    "Review_continuous_cuff_l",
+    "Review_continuous_cuff_r"
+  ],
+  "new_meshes": [
+    "V03_closed_rolled_cuff_l",
+    "V03_closed_rolled_cuff_r",
+    "V03_continuous_shirt_inset",
+    "V03_surface_lapel_-1",
+    "V03_surface_lapel_1",
+    "V03_surface_neckerchief"
+  ],
+  "closed_cuffs": {
+    "V03_closed_rolled_cuff_l": {
+      "vertices": 560,
+      "faces": 560,
+      "every_edge_incident_faces": 2,
+      "fabric_uv_present": true
+    },
+    "V03_closed_rolled_cuff_r": {
+      "vertices": 560,
+      "faces": 560,
+      "every_edge_incident_faces": 2,
+      "fabric_uv_present": true
+    }
+  },
+  "art_approved": false,
+  "offline_render": "NOT_RENDERED"
+}

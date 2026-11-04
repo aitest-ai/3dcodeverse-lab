@@ -1,0 +1,53 @@
+{
+  "assets": [
+    {
+      "id": "harbor-courier-review",
+      "created_meshes": [
+        "V03_continuous_shirt_inset",
+        "V03_surface_lapel_-1",
+        "V03_surface_lapel_1",
+        "V03_surface_neckerchief",
+        "V03_closed_rolled_cuff_l",
+        "V03_closed_rolled_cuff_r"
+      ],
+      "changed_existing_meshes": [
+        {
+          "name": "Original_Tailored_Jacket",
+          "before_vertices": 1997,
+          "after_vertices": 1997
+        },
+        {
+          "name": "Merged_Shirt_oat_canvas",
+          "before_vertices": 2564,
+          "after_vertices": 2556
+        },
+        {
+          "name": "Merged_Jacket_sea_green",
+          "before_vertices": 280,
+          "after_vertices": 216
+        },
+        {
+          "name": "Review_jacket_fitted_strap_front",
+          "before_vertices": 90,
+          "after_vertices": 90
+        }
+      ],
+      "hem_adjusted_vertices": 0,
+      "weight_field_transferred_vertices": 0
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "created_meshes": [],
+      "changed_existing_meshes": [
+        {
+          "name": "OpenSourceCloth_oldman_toigo_basic_tucked_t-shirt",
+          "before_vertices": 1391,
+          "after_vertices": 1391
+        }
+      ],
+      "hem_adjusted_vertices": 872,
+      "weight_field_transferred_vertices": 897
+    }
+  ],
+  "art_approved": false
+}

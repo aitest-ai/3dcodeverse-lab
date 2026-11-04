@@ -1,0 +1,317 @@
+{
+  "videos": [
+    {
+      "file": "harbor-courier-review-walk-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "Walk",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.3333333730697632,
+      "bytes": 781963,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "127"
+      },
+      "duration_s": "5.291667",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "harbor-courier-review-run-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "Run",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 0.9333333373069763,
+      "bytes": 750733,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "89"
+      },
+      "duration_s": "3.708333",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "harbor-courier-review-start-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "Start",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.7333333492279053,
+      "bytes": 849890,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "165"
+      },
+      "duration_s": "6.875000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "harbor-courier-review-stop-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "Stop",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.7333333492279053,
+      "bytes": 846451,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "165"
+      },
+      "duration_s": "6.875000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "harbor-courier-review-turnleft-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "TurnLeft",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.600000023841858,
+      "bytes": 828492,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "153"
+      },
+      "duration_s": "6.375000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "harbor-courier-review-turnright-webgl.mp4",
+      "character": "harbor-courier-review",
+      "clip": "TurnRight",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.600000023841858,
+      "bytes": 782261,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "153"
+      },
+      "duration_s": "6.375000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-walk-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "Walk",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.3333333730697632,
+      "bytes": 752234,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "127"
+      },
+      "duration_s": "5.291667",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-run-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "Run",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 0.9333333373069763,
+      "bytes": 673249,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "89"
+      },
+      "duration_s": "3.708333",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-start-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "Start",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.7333333492279053,
+      "bytes": 825523,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "165"
+      },
+      "duration_s": "6.875000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-stop-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "Stop",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.7333333492279053,
+      "bytes": 821384,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "165"
+      },
+      "duration_s": "6.875000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-turnleft-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "TurnLeft",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.600000023841858,
+      "bytes": 797318,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "153"
+      },
+      "duration_s": "6.375000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    },
+    {
+      "file": "taiwan-oldman-review-turnright-webgl.mp4",
+      "character": "taiwan-oldman-review",
+      "clip": "TurnRight",
+      "source": "Real Chromium WebGL2 framebuffer, native model SHA, no offline render",
+      "mode": "A v0.2 / B v0.3, normalized action fraction",
+      "sampled_phases_per_view": 8,
+      "views": [
+        "front",
+        "side",
+        "back",
+        "feetwide"
+      ],
+      "loops": 4,
+      "original_clip_duration_s": 1.600000023841858,
+      "bytes": 753298,
+      "video": {
+        "codec_name": "h264",
+        "width": 1280,
+        "height": 880,
+        "r_frame_rate": "24/1",
+        "nb_frames": "153"
+      },
+      "duration_s": "6.375000",
+      "warning": "8 distinct framebuffer samples per camera repeated into a compatible 24fps container; not real-time GPU performance or art approval"
+    }
+  ],
+  "art_approved": false
+}

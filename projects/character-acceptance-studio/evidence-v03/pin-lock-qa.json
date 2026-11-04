@@ -1,0 +1,77 @@
+{
+  "status": "PIN_LOCK_GUARDS_PASS",
+  "checks": [
+    {
+      "id": "harbor-courier-review",
+      "case": "unapproved production install",
+      "rejected": true,
+      "reason": "art_approved=false / game_ready=false. Only isolated review is allowed with --candidate-review"
+    },
+    {
+      "id": "harbor-courier-review",
+      "case": "wrong ID",
+      "rejected": true,
+      "reason": "Exact character ID + version not found; no latest fallback"
+    },
+    {
+      "id": "harbor-courier-review",
+      "case": "wrong version",
+      "rejected": true,
+      "reason": "Exact character ID + version not found; no latest fallback"
+    },
+    {
+      "id": "harbor-courier-review",
+      "case": "wrong hash",
+      "rejected": true,
+      "reason": "Pinned SHA-256 does not match registry"
+    },
+    {
+      "id": "harbor-courier-review",
+      "case": "exact review-only copy and native profile hash",
+      "passed": true
+    },
+    {
+      "id": "harbor-courier-review",
+      "case": "destination exists",
+      "rejected": true,
+      "reason": "Destination already exists; refusing to overwrite"
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "unapproved production install",
+      "rejected": true,
+      "reason": "art_approved=false / game_ready=false. Only isolated review is allowed with --candidate-review"
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "wrong ID",
+      "rejected": true,
+      "reason": "Exact character ID + version not found; no latest fallback"
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "wrong version",
+      "rejected": true,
+      "reason": "Exact character ID + version not found; no latest fallback"
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "wrong hash",
+      "rejected": true,
+      "reason": "Pinned SHA-256 does not match registry"
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "exact review-only copy and native profile hash",
+      "passed": true
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "case": "destination exists",
+      "rejected": true,
+      "reason": "Destination already exists; refusing to overwrite"
+    }
+  ],
+  "automatic_update": false,
+  "art_approved": false
+}
