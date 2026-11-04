@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "observations": [
+    {
+      "schema_version": 1,
+      "studio_version": "0.2.0",
+      "character_id": "taiwan-oldman-review",
+      "version": "0.2.0",
+      "assets": [
+        {
+          "variant": "candidate",
+          "sha256": "fa39a04313410aa5cf551dfcce778fc62e4a12ab31a997fb9332d6e4817e6988"
+        }
+      ],
+      "clip": "Walk",
+      "time_s": 0.4,
+      "rate": 1,
+      "loop": true,
+      "grid_motion": true,
+      "camera": {
+        "position": [
+          4.8,
+          0.8479999999999995,
+          2.9391523179536476e-16
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "root_state": [
+        {
+          "variant": "candidate",
+          "carry": {
+            "x": 0,
+            "z": 0,
+            "yaw": 0
+          },
+          "travel": {
+            "x": 0,
+            "z": 0.2536593079566956,
+            "yaw": 0
+          },
+          "clip_time_s": 0.4
+        }
+      ],
+      "phase_sync": true,
+      "sequence": null,
+      "recorded_at": "2026-11-04T07:33:11.306Z",
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+        "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+      },
+      "art_approved": false,
+      "game_ready": false,
+      "region": "動作／重心與手肘",
+      "verdict": "failed",
+      "notes": "v0.2 smoke: known clothing issues remain; automated browser check only"
+    }
+  ],
+  "art_approved": false,
+  "game_ready": false
+}

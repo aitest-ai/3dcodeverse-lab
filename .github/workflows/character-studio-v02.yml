@@ -1,0 +1,30 @@
+name: Character studio v0.2 - motion integrity only
+on:
+  push:
+    branches: [feat/character-studio-v02-planted-locomotion-20261104]
+    paths: ['projects/character-acceptance-studio/**', '.github/workflows/character-studio-v02.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile portable source
+        run: python3 -m compileall -q projects/character-acceptance-studio/scripts
+      - name: Versioned GLB structure, recorded bake samples and unblended boundaries
+        run: python3 projects/character-acceptance-studio/scripts/verify_motion_v02.py
+      - name: Exact review-only install and overwrite refusal
+        run: python3 projects/character-acceptance-studio/scripts/verify_locks_v02.py
+      - name: Repository GLB handoff contract
+        run: |
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/harbor-courier-review/0.2.0
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/assets/taiwan-oldman-review/0.2.0
+      - name: Preserve numerical report; never art approval
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-v02-integrity
+          path: projects/character-acceptance-studio/evidence-v02/numerical-qa.json
+          retention-days: 30

@@ -1,0 +1,20 @@
+{
+  "blender": "5.2.3 LTS",
+  "source_blend": "assets/harbor-courier-review/0.1.0/harbor-courier-review.blend",
+  "source_sha256": "e495bef7247e665e6329ef43febf28ab1b1c4ad3547386e2aa2005a453ec041c",
+  "source_unchanged": true,
+  "bones": 65,
+  "fps": 60,
+  "leg_length_m": 0.8759646951483899,
+  "half_stance_width_m": 0.11140003055334091,
+  "geometry_weights_uv_changed": false,
+  "texture_resolution_changed": false,
+  "art_approved": false,
+  "game_ready": false,
+  "known_limitations": [
+    "Full garment/body collisions not solved",
+    "Root/contact paths are authored candidates, not captured or trained motion",
+    "Human art and physical phone not tested",
+    "Toe/heel contact uses selected actual shoe vertices; not physical ground reaction forces"
+  ]
+}

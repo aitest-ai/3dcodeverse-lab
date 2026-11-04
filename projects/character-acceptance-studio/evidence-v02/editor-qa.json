@@ -1,0 +1,164 @@
+{
+  "blender": "5.2.3 LTS",
+  "assets": {
+    "harbor-courier-review": {
+      "source_sha256": "e495bef7247e665e6329ef43febf28ab1b1c4ad3547386e2aa2005a453ec041c",
+      "candidate_sha256": "30af1ae95767e5f25238249662633ebc3015a5b488f119009fdb224a2ae167ac",
+      "bone_count": 65,
+      "mesh_count": 18,
+      "raw_positions_topology_uv_shape_keys_rest_bones_identical": true,
+      "packed_images_byte_identical": {
+        "Jacket_sea_green_Albedo": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "34fd744435a83d35900aba7cd07f1350984348e7d594538d5b9d25f13124122e"
+        },
+        "Jacket_sea_green_Roughness": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "748b84a9ed9802e09e81cb77c0b68e315a9f58c19ead5dd0137dd3521ced3145"
+        },
+        "Shirt_oat_canvas_Albedo": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "fde3f01d1f3bed283b1fbc9fdc08aa03f464577579aacfa5c975e6a6082a7d0d"
+        },
+        "Shirt_oat_canvas_Roughness": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "ba9181a86490944cf10d6fee5c6b6a6db3352a5aeb0c15b2f0e95069447b4a2e"
+        },
+        "T_Eye_Brown": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025"
+        },
+        "Trousers_ink_Albedo": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "37a754ec2be6fa204ea353e8dbfe88570141f317cde4076595cea740fe3d63ff"
+        },
+        "Trousers_ink_Roughness": {
+          "dimensions": [
+            256,
+            256
+          ],
+          "sha256": "f90b8062d0d896da937c921e5bf633848543744ca97f98299c4d8f5101d6ab34"
+        }
+      },
+      "weights_changed_meshes": [],
+      "cold_read_pixel_decode": true
+    },
+    "taiwan-oldman-review": {
+      "source_sha256": "8b08b26d3b7ac6428f5fdd3cf59631073a94e5550411520251f4db26ecc3ccf4",
+      "candidate_sha256": "7670b402a998335e3d878f3a19f74e4fe6250a04ba5bc7651a048ca4170e3cd7",
+      "bone_count": 53,
+      "mesh_count": 21,
+      "raw_positions_topology_uv_shape_keys_rest_bones_identical": true,
+      "packed_images_byte_identical": {
+        "brown_eye.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "cc14a193f411197a1924885800ae7ccb3717295dccad63358f92f3a2ec37515e"
+        },
+        "eyebrow001.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b"
+        },
+        "eyelashes01.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35"
+        },
+        "old_lightskinned_male_diffuse2.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "7a96cb8c080fd26d6e45802bf1ee95be2d2d290ec77f8cad18ae805804435f6f"
+        },
+        "oldman_cc0_hair_gray": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "1bb8842e0799c8563174f49b051a4c180cbf49bb3ec67f763a79d8cd83aba276"
+        },
+        "oldman_v28_age_normal": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "1405c6029b39d1d9919a4b363e9f062095bce11bdb9fbdda4629be280026d025"
+        },
+        "oldman_v28_cc0_skin_detail": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "c081bddf90f6c3a87736e8abea1c7586167ef8e8397838fa112b15c5c368cf11"
+        },
+        "oldman_v29_cc0_hair_tone": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f"
+        },
+        "oldman_v29_strand_normal": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8"
+        },
+        "shoes03_diffuse.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "3ab689b0f00e6d23538c48a0c9fe3022abd79ea28d1c9db391703ed19329d6ab"
+        },
+        "teeth.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "22f9b3f2e88b36ef1686b049c91d5e210a3779db53358ab60f11350f108cf035"
+        },
+        "tongue01_diffuse.png": {
+          "dimensions": [
+            512,
+            512
+          ],
+          "sha256": "6ab705e2462400c1e223530e032c85ad44dd5d3706b4de0943bc196495b71bb7"
+        }
+      },
+      "weights_changed_meshes": [
+        "TrueMPFBBody_oldman.shoes03"
+      ],
+      "cold_read_pixel_decode": true
+    }
+  },
+  "art_approved": false,
+  "offline_render": "NOT_RENDERED"
+}
