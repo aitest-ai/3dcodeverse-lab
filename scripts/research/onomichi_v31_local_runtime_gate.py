@@ -29,7 +29,7 @@ PROTECTED={
  "assets/zones/mukaishima.glb":"de0c393ffe271f3824ea5d283416ff8e12c19c6fe34b5955fa30ec7dd8ea63ea",
  "assets/zones/ferry.glb":"db9f54d8a5ade5563b6b5aa7abe7f129a65e76a44031661ccea9d7dd0ce1d89d",
  "review/halows-v16/halows-mukaishima-v15-surface.glb":"317106f7edaabd87df6d5ff8aef314c00a8a6905ba9b0b6478ee4a60afc765b0",
- "review/onomichi-v20/V20_SourceDEM_Corridor_Visual_Only.glb":"54f358eae488db5493dce3ca3a0a76ea99bb673baa8c3f3a3f63169d13bc3fa7ba",
+ "review/onomichi-v20/V20_SourceDEM_Corridor_Visual_Only.glb":"54f358eae488db5493dce3ca3a0a76ea99bb673baa8c3f3f63169d13bc3fa7ba",
 }
 # Do not accept placeholders or non-SHA source locks: fail closed at import.
 for _path,_digest in PROTECTED.items():
