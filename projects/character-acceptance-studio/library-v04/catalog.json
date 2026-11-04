@@ -1,0 +1,6029 @@
+{
+  "schema_version": 1,
+  "version": "0.4.0",
+  "entries": [
+    {
+      "id": "kaykit-knight",
+      "name": "騎士",
+      "category": "game",
+      "family": "kaykit-adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Knight.glb",
+      "source": "sources-v04/kaykit/Knight.glb",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/kaykit-knight/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "免費包為原生 GLB；工作副本由 GLB 匯入。付費 SOURCE 包未取得、未購買。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "1.0 / 672074b73ba276876a19e8816ecdc5241817ab47",
+      "upstream_sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+      "default_clip": "Idle",
+      "warning": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。",
+      "source_sha256": "60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168",
+      "model": {
+        "url": "../library-v04/kaykit-knight/1.0.0/model.glb",
+        "sha256": "60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168",
+        "bytes": 3659532
+      },
+      "profile": "../library-v04/kaykit-knight/1.0.0/skeleton-profile.json",
+      "profile_sha256": "a5b9adea6503b0b4bfd3ef2a40da3e770eb30723bb3014641abfad3c9bcbc4e7",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration_s": 1.1666666666666667,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration_s": 1.6,
+          "channels": 101,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration_s": 1.6333333333333333,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration_s": 1.1,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration_s": 2.4,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration_s": 0.6666666666666666,
+          "channels": 87,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 97,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration_s": 1.6,
+          "channels": 109,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration_s": 1.0666666666666667,
+          "channels": 108,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Attack",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Hit",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Blocking",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Cheer",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B",
+          "duration_s": 2.6333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Left",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Right",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration_s": 1.2666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration_s": 1.1666666666666667,
+          "channels": 96,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_A",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_B",
+          "duration_s": 0.8666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Interact",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration_s": 1.1666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Land",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Start",
+          "duration_s": 0.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Down",
+          "duration_s": 3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Idle",
+          "duration_s": 2.6666666666666665,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Pose",
+          "duration_s": 0,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "PickUp",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_A",
+          "duration_s": 0.8,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration_s": 3.6,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration_s": 0,
+          "channels": 85,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration_s": 4,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration_s": 0,
+          "channels": 84,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration_s": 1.1333333333333333,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration_s": 2.533333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration_s": 2.1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcasting",
+          "duration_s": 0.6666666666666666,
+          "channels": 95,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "T-Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Throw",
+          "duration_s": 1.3666666666666667,
+          "channels": 100,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration_s": 1.4666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Use_Item",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_A",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_C",
+          "duration_s": 1.6,
+          "channels": 119,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 41,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "5d250ccc5da020e6126bfa3839f83bd9a465a951ed223e4d13c08b1925e154d4",
+          "bytes": 14172,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "kaykit-barbarian",
+      "name": "野蠻人",
+      "category": "game",
+      "family": "kaykit-adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Barbarian.glb",
+      "source": "sources-v04/kaykit/Barbarian.glb",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/kaykit-barbarian/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "免費包為原生 GLB；工作副本由 GLB 匯入。付費 SOURCE 包未取得、未購買。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "1.0 / 672074b73ba276876a19e8816ecdc5241817ab47",
+      "upstream_sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+      "default_clip": "Idle",
+      "warning": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。",
+      "source_sha256": "cefc311a0e10c7858b6141f5ada7e33268727564fb8ac1347aab97d000669cc6",
+      "model": {
+        "url": "../library-v04/kaykit-barbarian/1.0.0/model.glb",
+        "sha256": "cefc311a0e10c7858b6141f5ada7e33268727564fb8ac1347aab97d000669cc6",
+        "bytes": 3613268
+      },
+      "profile": "../library-v04/kaykit-barbarian/1.0.0/skeleton-profile.json",
+      "profile_sha256": "0eceb188effb17ae20e2201c432d6eca74a312c96ba49206ac9087dbfda8aeb3",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration_s": 1.1666666666666667,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration_s": 1.6,
+          "channels": 101,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration_s": 1.6333333333333333,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration_s": 1.1,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration_s": 2.4,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration_s": 0.6666666666666666,
+          "channels": 87,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 97,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration_s": 1.6,
+          "channels": 109,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration_s": 1.0666666666666667,
+          "channels": 108,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Attack",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Hit",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Blocking",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Cheer",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B",
+          "duration_s": 2.6333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Left",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Right",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration_s": 1.2666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration_s": 1.1666666666666667,
+          "channels": 96,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_A",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_B",
+          "duration_s": 0.8666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Interact",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration_s": 1.1666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Land",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Start",
+          "duration_s": 0.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Down",
+          "duration_s": 3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Idle",
+          "duration_s": 2.6666666666666665,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Pose",
+          "duration_s": 0,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "PickUp",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_A",
+          "duration_s": 0.8,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration_s": 3.6,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration_s": 0,
+          "channels": 85,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration_s": 4,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration_s": 0,
+          "channels": 84,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration_s": 1.1333333333333333,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration_s": 2.533333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration_s": 2.1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcasting",
+          "duration_s": 0.6666666666666666,
+          "channels": 95,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "T-Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Throw",
+          "duration_s": 1.3666666666666667,
+          "channels": 100,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration_s": 1.4666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Use_Item",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_A",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_C",
+          "duration_s": 1.6,
+          "channels": 119,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 41,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "7329b2ff9709e8d54c886d5ef49c08bd42b12be3bbb2facb1488a6b48b1e8a80",
+          "bytes": 15089,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "kaykit-mage",
+      "name": "法師",
+      "category": "game",
+      "family": "kaykit-adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Mage.glb",
+      "source": "sources-v04/kaykit/Mage.glb",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/kaykit-mage/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "免費包為原生 GLB；工作副本由 GLB 匯入。付費 SOURCE 包未取得、未購買。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "1.0 / 672074b73ba276876a19e8816ecdc5241817ab47",
+      "upstream_sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+      "default_clip": "Idle",
+      "warning": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。",
+      "source_sha256": "cf898585da33fab50c724d31605fb931eb2912e6d2280092141e98ca81ad507d",
+      "model": {
+        "url": "../library-v04/kaykit-mage/1.0.0/model.glb",
+        "sha256": "cf898585da33fab50c724d31605fb931eb2912e6d2280092141e98ca81ad507d",
+        "bytes": 3589240
+      },
+      "profile": "../library-v04/kaykit-mage/1.0.0/skeleton-profile.json",
+      "profile_sha256": "d5546db88ce68b00d001c9094393342055108a8b349918bc30d2a15dd65f233d",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration_s": 1.1666666666666667,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration_s": 1.6,
+          "channels": 101,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration_s": 1.6333333333333333,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration_s": 1.1,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration_s": 2.4,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration_s": 0.6666666666666666,
+          "channels": 87,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 97,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration_s": 1.6,
+          "channels": 109,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration_s": 1.0666666666666667,
+          "channels": 108,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Attack",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Hit",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Blocking",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Cheer",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B",
+          "duration_s": 2.6333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Left",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Right",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration_s": 1.2666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration_s": 1.1666666666666667,
+          "channels": 96,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_A",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_B",
+          "duration_s": 0.8666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Interact",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration_s": 1.1666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Land",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Start",
+          "duration_s": 0.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Down",
+          "duration_s": 3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Idle",
+          "duration_s": 2.6666666666666665,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Pose",
+          "duration_s": 0,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "PickUp",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_A",
+          "duration_s": 0.8,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration_s": 3.6,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration_s": 0,
+          "channels": 85,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration_s": 4,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration_s": 0,
+          "channels": 84,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration_s": 1.1333333333333333,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration_s": 2.533333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration_s": 2.1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcasting",
+          "duration_s": 0.6666666666666666,
+          "channels": 95,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "T-Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Throw",
+          "duration_s": 1.3666666666666667,
+          "channels": 100,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration_s": 1.4666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Use_Item",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_A",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_C",
+          "duration_s": 1.6,
+          "channels": 119,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 41,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "ea49f094b960402635fe51db9f1864960c97271b17f2e3554e5aca1b2bbba144",
+          "bytes": 16311,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "kaykit-rogue",
+      "name": "盜賊",
+      "category": "game",
+      "family": "kaykit-adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Rogue.glb",
+      "source": "sources-v04/kaykit/Rogue.glb",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/kaykit-rogue/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "免費包為原生 GLB；工作副本由 GLB 匯入。付費 SOURCE 包未取得、未購買。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "1.0 / 672074b73ba276876a19e8816ecdc5241817ab47",
+      "upstream_sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+      "default_clip": "Idle",
+      "warning": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。",
+      "source_sha256": "e825437cd4d2ee9c1960b517a74a69101e33eb409ae7fa8cedc7134a998fbb7d",
+      "model": {
+        "url": "../library-v04/kaykit-rogue/1.0.0/model.glb",
+        "sha256": "e825437cd4d2ee9c1960b517a74a69101e33eb409ae7fa8cedc7134a998fbb7d",
+        "bytes": 3616284
+      },
+      "profile": "../library-v04/kaykit-rogue/1.0.0/skeleton-profile.json",
+      "profile_sha256": "aa2d1f56c027ba19e553849015dd6f42fa63c27395db122bfd740004c8b7627e",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration_s": 1.1666666666666667,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration_s": 1.6,
+          "channels": 101,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration_s": 1.6333333333333333,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration_s": 1.1,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration_s": 2.4,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration_s": 0.6666666666666666,
+          "channels": 87,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 97,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration_s": 1.6,
+          "channels": 109,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration_s": 1.0666666666666667,
+          "channels": 108,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Attack",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Hit",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Blocking",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Cheer",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B",
+          "duration_s": 2.6333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Left",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Right",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration_s": 1.2666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration_s": 1.1666666666666667,
+          "channels": 96,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_A",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_B",
+          "duration_s": 0.8666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Interact",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration_s": 1.1666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Land",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Start",
+          "duration_s": 0.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Down",
+          "duration_s": 3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Idle",
+          "duration_s": 2.6666666666666665,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Pose",
+          "duration_s": 0,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "PickUp",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_A",
+          "duration_s": 0.8,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration_s": 3.6,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration_s": 0,
+          "channels": 85,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration_s": 4,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration_s": 0,
+          "channels": 84,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration_s": 1.1333333333333333,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration_s": 2.533333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration_s": 2.1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcasting",
+          "duration_s": 0.6666666666666666,
+          "channels": 95,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "T-Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Throw",
+          "duration_s": 1.3666666666666667,
+          "channels": 100,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration_s": 1.4666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Use_Item",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_A",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_C",
+          "duration_s": 1.6,
+          "channels": 119,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 41,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "a4032e877c3b91939f5cdbb630349c1998fdbc3211bbd587c111125500fe4cc5",
+          "bytes": 16670,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "kaykit-rogue-hooded",
+      "name": "兜帽盜賊",
+      "category": "game",
+      "family": "kaykit-adventurers",
+      "author": "Kay Lousberg",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0/blob/672074b73ba276876a19e8816ecdc5241817ab47/addons/kaykit_character_pack_adventures/Characters/gltf/Rogue_Hooded.glb",
+      "source": "sources-v04/kaykit/Rogue_Hooded.glb",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/kaykit-rogue-hooded/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "免費包為原生 GLB；工作副本由 GLB 匯入。付費 SOURCE 包未取得、未購買。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "1.0 / 672074b73ba276876a19e8816ecdc5241817ab47",
+      "upstream_sha": "672074b73ba276876a19e8816ecdc5241817ab47",
+      "default_clip": "Idle",
+      "warning": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。",
+      "source_sha256": "93e6e25213009952276d9cf34f5d96a243767334c66f280db0433ddfabb91545",
+      "model": {
+        "url": "../library-v04/kaykit-rogue-hooded/1.0.0/model.glb",
+        "sha256": "93e6e25213009952276d9cf34f5d96a243767334c66f280db0433ddfabb91545",
+        "bytes": 3597652
+      },
+      "profile": "../library-v04/kaykit-rogue-hooded/1.0.0/skeleton-profile.json",
+      "profile_sha256": "18bf305a35fc0403329a677efc1e711116c95f6b7cba4eec2a0ea1e7346c7dd1",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "1H_Melee_Attack_Chop",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Diagonal",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Slice_Horizontal",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Aiming",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Reload",
+          "duration_s": 1.1666666666666667,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 120,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "1H_Ranged_Shooting",
+          "duration_s": 1.6,
+          "channels": 101,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Chop",
+          "duration_s": 1.6333333333333333,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Slice",
+          "duration_s": 1.1,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spin",
+          "duration_s": 2.4,
+          "channels": 98,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Spinning",
+          "duration_s": 0.6666666666666666,
+          "channels": 87,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 97,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Melee_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Aiming",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Reload",
+          "duration_s": 1.6,
+          "channels": 109,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shoot",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "2H_Ranged_Shooting",
+          "duration_s": 1.0666666666666667,
+          "channels": 108,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Attack",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Block_Hit",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Blocking",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Cheer",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_A_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B",
+          "duration_s": 2.6333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death_B_Pose",
+          "duration_s": 0,
+          "channels": 83,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Backward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Forward",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Left",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dodge_Right",
+          "duration_s": 0.4,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Chop",
+          "duration_s": 1.2666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Slice",
+          "duration_s": 1.1666666666666667,
+          "channels": 96,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Dualwield_Melee_Attack_Stab",
+          "duration_s": 1.6,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_A",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Hit_B",
+          "duration_s": 0.8666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Interact",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Long",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Full_Short",
+          "duration_s": 1.1666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Land",
+          "duration_s": 0.6666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_Start",
+          "duration_s": 0.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Down",
+          "duration_s": 3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Idle",
+          "duration_s": 2.6666666666666665,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_Pose",
+          "duration_s": 0,
+          "channels": 102,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Lie_StandUp",
+          "duration_s": 2.3333333333333335,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "PickUp",
+          "duration_s": 1.3,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_A",
+          "duration_s": 0.8,
+          "channels": 122,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Left",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Running_Strafe_Right",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Down",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Idle",
+          "duration_s": 3.6,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_Pose",
+          "duration_s": 0,
+          "channels": 85,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Chair_StandUp",
+          "duration_s": 0.8,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Down",
+          "duration_s": 1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Idle",
+          "duration_s": 4,
+          "channels": 89,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_Pose",
+          "duration_s": 0,
+          "channels": 84,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Sit_Floor_StandUp",
+          "duration_s": 1.1333333333333333,
+          "channels": 94,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Long",
+          "duration_s": 2.533333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Raise",
+          "duration_s": 2.1,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcast_Shoot",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Spellcasting",
+          "duration_s": 0.6666666666666666,
+          "channels": 95,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "T-Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Throw",
+          "duration_s": 1.3666666666666667,
+          "channels": 100,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Idle",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Kick",
+          "duration_s": 0.9333333333333333,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_A",
+          "duration_s": 1.4666666666666666,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Melee_Attack_Punch_B",
+          "duration_s": 1.6666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Unarmed_Pose",
+          "duration_s": 0,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Use_Item",
+          "duration_s": 1.6,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_A",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_B",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_Backwards",
+          "duration_s": 1.0666666666666667,
+          "channels": 123,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walking_C",
+          "duration_s": 1.6,
+          "channels": 119,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 41,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "a4032e877c3b91939f5cdbb630349c1998fdbc3211bbd587c111125500fe4cc5",
+          "bytes": 16670,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-cow",
+      "name": "乳牛",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Cow.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Cow.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv",
+          "title": "Cow.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2532300",
+          "url": "https://drive.google.com/file/d/1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:32.077Z",
+          "modified_time": "2022-02-08T23:22:53.971Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG",
+          "title": "Cow.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3114187",
+          "url": "https://drive.google.com/file/d/1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:23:48.823Z",
+          "modified_time": "2022-02-08T23:23:44.508Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "b04af067688d9fadf1395b4456dbf3117c2f760fb49e704ee5c8b6391fc8adb5",
+      "model": {
+        "url": "../library-v04/quaternius-cow/1.0.0/model.glb",
+        "sha256": "8e345f177881c1d5e234dd1a503472208d67bba515d0314c5abf606a888e39d0",
+        "bytes": 1921572
+      },
+      "profile": "../library-v04/quaternius-cow/1.0.0/skeleton-profile.json",
+      "profile_sha256": "ea8bb45bfdf6f11957de50d19fc513e654ad8702c47123e90a9b2d9c123bbfb6",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1.0333333333333334,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 1,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.6,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.7333333333333334,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666667,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 42,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-bull",
+      "name": "公牛",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Bull.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Bull.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "14GAVfZIbpweka8tUlDDI2M8-tR9c39YC",
+          "title": "Bull.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2531860",
+          "url": "https://drive.google.com/file/d/14GAVfZIbpweka8tUlDDI2M8-tR9c39YC/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/14GAVfZIbpweka8tUlDDI2M8-tR9c39YC/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:27.198Z",
+          "modified_time": "2022-02-08T23:22:51.555Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1M9gyr2UikIDW_Ynp-OfgiK-JjI7ziPd3",
+          "title": "Bull.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3110158",
+          "url": "https://drive.google.com/file/d/1M9gyr2UikIDW_Ynp-OfgiK-JjI7ziPd3/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1M9gyr2UikIDW_Ynp-OfgiK-JjI7ziPd3/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:23:43.206Z",
+          "modified_time": "2022-02-08T23:23:41.776Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "535da2992eb125d517725159a2eddeb520b72595bcb3021985fc43d2c84bff76",
+      "model": {
+        "url": "../library-v04/quaternius-bull/1.0.0/model.glb",
+        "sha256": "fb9681e83ad95c88842e7f4efa17066b9dd94de68b89fcefb0e037ef7a95b2c0",
+        "bytes": 1918548
+      },
+      "profile": "../library-v04/quaternius-bull/1.0.0/skeleton-profile.json",
+      "profile_sha256": "e800ca8594ba7d9af27413aab45d379933b1e3bfb4081ec2c78e05d38aac8e51",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1.0333333333333334,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 1,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.6,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.7333333333333334,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666667,
+          "channels": 126,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 42,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-alpaca",
+      "name": "羊駝",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Alpaca.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Alpaca.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD",
+          "title": "Alpaca.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2561952",
+          "url": "https://drive.google.com/file/d/1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:22.240Z",
+          "modified_time": "2022-02-08T23:22:49.110Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "13dxCPosR1tVx24LKXr6gN44sIOY4hZgo",
+          "title": "Alpaca.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "1435679",
+          "url": "https://drive.google.com/file/d/13dxCPosR1tVx24LKXr6gN44sIOY4hZgo/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/13dxCPosR1tVx24LKXr6gN44sIOY4hZgo/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:23:37.595Z",
+          "modified_time": "2022-02-08T23:23:39.112Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "5009bfa756c7b7af5e02263d47a6d9088cadaada2240b41b4e87f31327b0e063",
+      "model": {
+        "url": "../library-v04/quaternius-alpaca/1.0.0/model.glb",
+        "sha256": "52b84a93cafb5c51baea724524f3e124f1e2609ae46f6cfcb11419706b0e0871",
+        "bytes": 783988
+      },
+      "profile": "../library-v04/quaternius-alpaca/1.0.0/skeleton-profile.json",
+      "profile_sha256": "3c8d29349f8bb88e125c74f8baf75ca3e859f2a4180818c7a26b9463994fe7b0",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 1,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0416666666666667,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 7.5,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.6666666666666666,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.75,
+          "channels": 92,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 4.166666666666667,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 4.166666666666667,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 4.166666666666667,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.5833333333333334,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.9166666666666667,
+          "channels": 92,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.4583333333333333,
+          "channels": 86,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 46,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-deer",
+      "name": "鹿",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Deer.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Deer.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1XOyqlUcRPKO6J3eLTJypQt6LAuvCw4M_",
+          "title": "Deer.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2603644",
+          "url": "https://drive.google.com/file/d/1XOyqlUcRPKO6J3eLTJypQt6LAuvCw4M_/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1XOyqlUcRPKO6J3eLTJypQt6LAuvCw4M_/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:37.194Z",
+          "modified_time": "2022-02-08T23:22:56.341Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1iGpXKrqYGyZCPGHPPSuDAoKnOXLhXJ0q",
+          "title": "Deer.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3288813",
+          "url": "https://drive.google.com/file/d/1iGpXKrqYGyZCPGHPPSuDAoKnOXLhXJ0q/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1iGpXKrqYGyZCPGHPPSuDAoKnOXLhXJ0q/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:23:54.568Z",
+          "modified_time": "2022-02-08T23:23:47.215Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "b8afd0647e7a74332ce802c8326dfefe1a2b76da67ab925a631aaddb5ae9bdd4",
+      "model": {
+        "url": "../library-v04/quaternius-deer/1.0.0/model.glb",
+        "sha256": "19a3ee311cbec9f0dfb5fc5038c1c49455c7d76a14e7678c61978672e3bddf25",
+        "bytes": 2013688
+      },
+      "profile": "../library-v04/quaternius-deer/1.0.0/skeleton-profile.json",
+      "profile_sha256": "96a0b3220753d4b9a17761566372ffe5fe4fae54b12697b1b753ad78b6f50fa9",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 0.8,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 0.8,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 0.8333333333333334,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5333333333333333,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.4666666666666667,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.5333333333333333,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.5333333333333334,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666667,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 46,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-stag",
+      "name": "雄鹿",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Stag.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Stag.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd",
+          "title": "Stag.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2315696",
+          "url": "https://drive.google.com/file/d/1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:20:15.983Z",
+          "modified_time": "2022-02-08T23:24:08.957Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx",
+          "title": "Stag.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3224724",
+          "url": "https://drive.google.com/file/d/1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:35.617Z",
+          "modified_time": "2022-02-08T23:24:14.147Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "170b964909d16d1ab4d428b1d714f25016913d32481acd9c3d62923192583be6",
+      "model": {
+        "url": "../library-v04/quaternius-stag/1.0.0/model.glb",
+        "sha256": "be287c4e8bd0e20d84d50b73e8eda7a9cfa94b599b66a705b9eed968ffbb9c58",
+        "bytes": 2044468
+      },
+      "profile": "../library-v04/quaternius-stag/1.0.0/skeleton-profile.json",
+      "profile_sha256": "8842089b139476ea25787087b18886a280cffe8adb5ef71101f1638dedaaf1be",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 0.8,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 0.8,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.1,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 12.1,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5333333333333333,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.4666666666666667,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.5333333333333333,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.5333333333333334,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666667,
+          "channels": 114,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 38,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-donkey",
+      "name": "驢",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Donkey.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Donkey.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1_zF8xp1UjtYi2Cir0m850zLVDukkYWZL",
+          "title": "Donkey.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2858844",
+          "url": "https://drive.google.com/file/d/1_zF8xp1UjtYi2Cir0m850zLVDukkYWZL/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1_zF8xp1UjtYi2Cir0m850zLVDukkYWZL/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:42.554Z",
+          "modified_time": "2022-02-08T23:22:58.935Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1Buic-_4vNtmwN0rtMHcdWw3TEaSPz4iW",
+          "title": "Donkey.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3564269",
+          "url": "https://drive.google.com/file/d/1Buic-_4vNtmwN0rtMHcdWw3TEaSPz4iW/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1Buic-_4vNtmwN0rtMHcdWw3TEaSPz4iW/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:00.818Z",
+          "modified_time": "2022-02-08T23:23:50.093Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "4cbb2eb7d057789c945b6445d99d0c73b76c0caf7ac9b37ce88a04ca718be2ff",
+      "model": {
+        "url": "../library-v04/quaternius-donkey/1.0.0/model.glb",
+        "sha256": "2e71a683e1e00c76d5c36e6429adc238620a43bea50b146958cac66c7a43670b",
+        "bytes": 2181252
+      },
+      "profile": "../library-v04/quaternius-donkey/1.0.0/skeleton-profile.json",
+      "profile_sha256": "04087579e57c88fa658e332557b5dc2575de416aed4173f6689d1cbcb151501e",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1.6,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 0.8,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5333333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.4666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.5333333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.5333333333333334,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 50,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-shibainu",
+      "name": "柴犬",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/ShibaInu.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/ShibaInu.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1HbN45J5I19ZZsuMwEqW0caho-EWp0VfX",
+          "title": "ShibaInu.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2366516",
+          "url": "https://drive.google.com/file/d/1HbN45J5I19ZZsuMwEqW0caho-EWp0VfX/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1HbN45J5I19ZZsuMwEqW0caho-EWp0VfX/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:20:09.250Z",
+          "modified_time": "2022-02-08T23:23:11.705Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1XWUVbmMbiG9E90OqrumueD_pBdnYdyHZ",
+          "title": "ShibaInu.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "2894445",
+          "url": "https://drive.google.com/file/d/1XWUVbmMbiG9E90OqrumueD_pBdnYdyHZ/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1XWUVbmMbiG9E90OqrumueD_pBdnYdyHZ/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:29.816Z",
+          "modified_time": "2022-02-08T23:24:01.199Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "3236979b94a840eb72d9ce091b1361da327a96f5ce068e666680297480f30f6b",
+      "model": {
+        "url": "../library-v04/quaternius-shibainu/1.0.0/model.glb",
+        "sha256": "8302af941f144185c1afbde4ad8cc79358b575311deea23be4fbcd3d367f50a8",
+        "bytes": 1752268
+      },
+      "profile": "../library-v04/quaternius-shibainu/1.0.0/skeleton-profile.json",
+      "profile_sha256": "abec32290b493094e7228320f2b4691400a00fd224643649f379fad03ca40e65",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack",
+          "duration_s": 1.2,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0666666666666667,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 2.6666666666666665,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5666666666666667,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 0.9333333333333333,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2_HeadLow",
+          "duration_s": 4,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_ToIdle",
+          "duration_s": 1.3333333333333333,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.0666666666666667,
+          "channels": 138,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 46,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-husky",
+      "name": "哈士奇",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Husky.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Husky.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4",
+          "title": "Husky.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2509344",
+          "url": "https://drive.google.com/file/d/1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:20:03.805Z",
+          "modified_time": "2022-02-08T23:23:09.342Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt",
+          "title": "Husky.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3059335",
+          "url": "https://drive.google.com/file/d/1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:24.477Z",
+          "modified_time": "2022-02-08T23:24:03.927Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "0cfd85ddfcc5c07caf1bdeb296b21017b0da4c8558a92086daf4a172e0bf8d97",
+      "model": {
+        "url": "../library-v04/quaternius-husky/1.0.0/model.glb",
+        "sha256": "d5e33b7f9ffc92e5278df5035f86e8749f14c5ff8d9c79a922b2e8c1c906fcec",
+        "bytes": 1849832
+      },
+      "profile": "../library-v04/quaternius-husky/1.0.0/skeleton-profile.json",
+      "profile_sha256": "2cddd2635fdc5d4f2774362d5b9d11c9adb7d84f6cc0105801c740a59ea051b6",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack",
+          "duration_s": 1.2,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0666666666666667,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 2.6666666666666665,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5666666666666667,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 0.9333333333333333,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2_HeadLow",
+          "duration_s": 4,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_ToIdle",
+          "duration_s": 1.3333333333333333,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.0666666666666667,
+          "channels": 147,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 49,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-fox",
+      "name": "狐狸",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Fox.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Fox.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1mURf8Sd70PZJlFJzodmvb756kM26w0A5",
+          "title": "Fox.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2585572",
+          "url": "https://drive.google.com/file/d/1mURf8Sd70PZJlFJzodmvb756kM26w0A5/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1mURf8Sd70PZJlFJzodmvb756kM26w0A5/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:19:47.595Z",
+          "modified_time": "2022-02-08T23:23:01.443Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1z-CWoUC2vJxrqgGFTYlMaywpE1ooV-bA",
+          "title": "Fox.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3163174",
+          "url": "https://drive.google.com/file/d/1z-CWoUC2vJxrqgGFTYlMaywpE1ooV-bA/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1z-CWoUC2vJxrqgGFTYlMaywpE1ooV-bA/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:06.527Z",
+          "modified_time": "2022-02-08T23:23:53.022Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "2f36e3c9c75ecddda85c5f9944e98ee1e88e7c679a546534aff1cea8ecde64c7",
+      "model": {
+        "url": "../library-v04/quaternius-fox/1.0.0/model.glb",
+        "sha256": "46c849f445d9ae25b11568b72c09a75ed3e17c79b36c5e8bc58ffadb41812ecf",
+        "bytes": 1909976
+      },
+      "profile": "../library-v04/quaternius-fox/1.0.0/skeleton-profile.json",
+      "profile_sha256": "ecf71fb355cab48a8e12182e1a40ed97ce8d223d971554eb28165895c69bf57f",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack",
+          "duration_s": 1.3333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 2.533333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 0.9333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2_HeadLow",
+          "duration_s": 4,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_ToIdle",
+          "duration_s": 1.3333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.0666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 51,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "quaternius-wolf",
+      "name": "狼",
+      "category": "animal",
+      "family": "quaternius-quadruped",
+      "author": "Quaternius",
+      "license": "CC0-1.0",
+      "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "source": "sources-v04/animals/Wolf.gltf",
+      "editable": {
+        "kind": "original-blender-master",
+        "path": "sources-v04/animals/Wolf.blend",
+        "original_blend_available": true
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+      "files": [
+        {
+          "id": "1daskW0IjLfPK8tLe7qTRTrjNwzyrQnjl",
+          "title": "Wolf.blend",
+          "mime_type": "application/octet-stream",
+          "size": "2571200",
+          "url": "https://drive.google.com/file/d/1daskW0IjLfPK8tLe7qTRTrjNwzyrQnjl/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1daskW0IjLfPK8tLe7qTRTrjNwzyrQnjl/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:20:23.773Z",
+          "modified_time": "2022-02-08T23:24:11.393Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        },
+        {
+          "id": "1lFQoQ9ln2Z2wGuFFWObj9i5jHqUl_ftG",
+          "title": "Wolf.gltf",
+          "mime_type": "application/octet-stream",
+          "size": "3175890",
+          "url": "https://drive.google.com/file/d/1lFQoQ9ln2Z2wGuFFWObj9i5jHqUl_ftG/view?usp=drivesdk",
+          "display_url": "https://drive.google.com/file/d/1lFQoQ9ln2Z2wGuFFWObj9i5jHqUl_ftG/view?usp=drivesdk",
+          "file_or_folder": "file",
+          "created_time": "2021-07-07T22:24:41.280Z",
+          "modified_time": "2022-02-08T23:24:16.737Z",
+          "parent_ids": null,
+          "drive_id": null,
+          "current_user_can_share": null,
+          "has_augmented_permissions": null,
+          "shared": true,
+          "permissions": null,
+          "source_visibility_status": "access_not_verified"
+        }
+      ],
+      "default_clip": "Idle",
+      "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+      "source_sha256": "cc02e9d128b5715f352ee8bea086f97a35f1d875d240de99b0f9f2775c37d415",
+      "model": {
+        "url": "../library-v04/quaternius-wolf/1.0.0/model.glb",
+        "sha256": "142291b6f9114c2fc9ac8e51ffda8d9f959c5726036c3ea9946be173b608a5aa",
+        "bytes": 1920324
+      },
+      "profile": "../library-v04/quaternius-wolf/1.0.0/skeleton-profile.json",
+      "profile_sha256": "5daefeed1c1824c7213b0d91881d2cc90a7048b7e82d182e43ffed227c891fa6",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Attack",
+          "duration_s": 1.3333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 2.533333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 0.9333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2_HeadLow",
+          "duration_s": 4,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666666,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666666,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_ToIdle",
+          "duration_s": 1.3333333333333333,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Walk",
+          "duration_s": 1.0666666666666667,
+          "channels": 153,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 51,
+      "textures": [],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "Lossless data-URI glTF → binary GLB packaging"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "vroid-vita",
+      "name": "Vita・貓耳歌手",
+      "category": "anime",
+      "family": "vrm0-humanoid",
+      "author": "pixiv Inc. (sample design); madjin/vrm-samples (download mirror; export author field empty)",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Vita.vrm",
+      "source": "sources-v04/vroid/Vita.vrm",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/vroid-vita/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "原始 VRM 完整保留；未取得 .vroid 母檔。Blender 副本為 glTF 匯入，MToon／SpringBone／VRM 表情語意不保證往返；編修後需重新驗收。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "VRoid beta CC0 sample / mirror e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "upstream_sha": "e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "license_url": "https://vroid.pixiv.help/hc/en-us/articles/360014900113",
+      "default_clip": null,
+      "warning": "原檔沒有走跑動畫；本版只驗收參考姿勢、原生 MToon 材質與表情，不以 T 姿冒充待機。",
+      "source_sha256": "f2bf78f28a24e2f75f5ca0b6c3b646654c394e4b03592dfaa0d0633ef0972b4d",
+      "model": {
+        "url": "../library-v04/vroid-vita/1.0.0/model.glb",
+        "sha256": "f2bf78f28a24e2f75f5ca0b6c3b646654c394e4b03592dfaa0d0633ef0972b4d",
+        "bytes": 14359044
+      },
+      "profile": "../library-v04/vroid-vita/1.0.0/skeleton-profile.json",
+      "profile_sha256": "803064bf07cbd20d2b6843e10ae41f4bff50193e209f2e72e349766d6886069b",
+      "renderer": "vrm0-mtoon",
+      "clips": [],
+      "bones": 155,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "7fd7c542e628bebe9a7b744492d885a51f01d46c0bdf2b4ed968b06c2cbbb029",
+          "bytes": 71084,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/01.png",
+          "sha256": "bdb4dd51887eedb9525089cd17d3ae3b0c42823844430f889daafaf9872ddf1c",
+          "bytes": 80,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/02.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/03.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/04.png",
+          "sha256": "bcdba6af752f39bff97ab8802b0d0403cff3e2aa2c2a2f4f1ed6e2c0b8480d8e",
+          "bytes": 155888,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/05.png",
+          "sha256": "94abf1592d9c5f28bdc06c63eb9356bc80f6af63214397acc6f011f26d27765b",
+          "bytes": 41665,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/06.png",
+          "sha256": "22fe0562d8af76b13e08c75bd6dafdb1c0961c5663f4c2be44ea66711143d669",
+          "bytes": 75681,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/07.png",
+          "sha256": "bfb6a56e8580456c28e9580a0195694578bbefaf3cf1cb6138b409b4f132ab2d",
+          "bytes": 23642,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/08.png",
+          "sha256": "89e29fda719ecc944711d3f0ae0d9b8dab460977cd34875f51a318dd92ee0628",
+          "bytes": 22300,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/09.png",
+          "sha256": "4a8cf078b34eccb025b16af096cb5c855192b7096b5801d781057178a8a5a6b6",
+          "bytes": 93189,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/10.png",
+          "sha256": "01eea0f723ac8b58f4a4ae46ff28f22526028578ac65d59e4f6664aa2646e7ff",
+          "bytes": 30402,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/11.png",
+          "sha256": "cadd89b4d68346a3dd8d7c8ccbdac0875b1aed656c36c5e10b3b7e0d0a8c190e",
+          "bytes": 582506,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/12.png",
+          "sha256": "1e6aa5a275603384910e78956b8c2ab1c37735ab86f79daf46815fd55b7079b4",
+          "bytes": 388199,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/13.png",
+          "sha256": "1e2416d720645c9a71e4c8d15087b4018ea4de13c118eb08d13e1c0508f30614",
+          "bytes": 9851,
+          "dimensions": [
+            256,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/14.png",
+          "sha256": "e2b10828b60d28d4dec20215412cd1c76d9c7e8a3288f5d77da23f249632dd50",
+          "bytes": 31878,
+          "dimensions": [
+            512,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/15.png",
+          "sha256": "0561136dc3ef310b8bcedae6d4559c676e72d5be6568b16383cf446c1fda180f",
+          "bytes": 2159641,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/16.png",
+          "sha256": "a92461af165dfc448c9ba831aca42481a7b44ba014e95b75f39924f67e3c5d1d",
+          "bytes": 2161983,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/17.png",
+          "sha256": "f2999e5675975e3f220a5e476b7f46e037a6b0d1a3993518ccdc8d49faf180e1",
+          "bytes": 1167396,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/18.png",
+          "sha256": "3da8df8df9c8dbbdef874bd7bb2d77b003f6de9cdb4323c6106a3f0bf73a03d7",
+          "bytes": 154104,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/19.png",
+          "sha256": "1be9a663f784c4db3c89f8b07319d4b8311f61a9bfd3100f8954e5f539a11c47",
+          "bytes": 287349,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/20.png",
+          "sha256": "ff198a1bf756c6775c1d40ea02e91aecc536b1f7fc721d702aeb88f049de44f9",
+          "bytes": 368948,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/21.png",
+          "sha256": "e2122e7809900f096222ce104a26dd459d180d3a14bb41bd86726de9f78f45c3",
+          "bytes": 39288,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/22.png",
+          "sha256": "2725e5e2b9e7ac189ca2929b3fc3e3fc65153ace878d6455a58969f4375acdd3",
+          "bytes": 127218,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/23.png",
+          "sha256": "6fa6d663cdb5af7aeb380628d138fcdfe417f6f8bb8e6458bed4929e588f1ad3",
+          "bytes": 105128,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/24.png",
+          "sha256": "5be73c761268d5a1b2c685866a319823eacb2658cf618a93505393eb5ef6c292",
+          "bytes": 126661,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/25.png",
+          "sha256": "2725e5e2b9e7ac189ca2929b3fc3e3fc65153ace878d6455a58969f4375acdd3",
+          "bytes": 127218,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/26.png",
+          "sha256": "2e557bd74abebf97ec1df98e3316eeae317fce2476adb0822327f0c035af0aad",
+          "bytes": 138291,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/27.png",
+          "sha256": "dfe00e49a89894803c2feca8a3ca0ef96870edbf5dd6f68b955802b766a248b0",
+          "bytes": 2041317,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 3.141592653589793,
+      "status": "appearance-only-no-animation",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "vroid-vivi",
+      "name": "Vivi・動漫少女",
+      "category": "anime",
+      "family": "vrm0-humanoid",
+      "author": "pixiv Inc. (sample design); madjin/vrm-samples (download mirror; export author field empty)",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Vivi.vrm",
+      "source": "sources-v04/vroid/Vivi.vrm",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/vroid-vivi/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "原始 VRM 完整保留；未取得 .vroid 母檔。Blender 副本為 glTF 匯入，MToon／SpringBone／VRM 表情語意不保證往返；編修後需重新驗收。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "VRoid beta CC0 sample / mirror e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "upstream_sha": "e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "license_url": "https://vroid.pixiv.help/hc/en-us/articles/360014900273",
+      "default_clip": null,
+      "warning": "原檔沒有走跑動畫；本版只驗收參考姿勢、原生 MToon 材質與表情，不以 T 姿冒充待機。",
+      "source_sha256": "eaf902e041a7a810f1423599ae75682f61184ab6ef0206da9a8ed9caa8ec3a9d",
+      "model": {
+        "url": "../library-v04/vroid-vivi/1.0.0/model.glb",
+        "sha256": "eaf902e041a7a810f1423599ae75682f61184ab6ef0206da9a8ed9caa8ec3a9d",
+        "bytes": 18089136
+      },
+      "profile": "../library-v04/vroid-vivi/1.0.0/skeleton-profile.json",
+      "profile_sha256": "74a08689ca42bed2c8c2e20f7d6daaac2ef581f20e94bb2c20fc337ec2f73921",
+      "renderer": "vrm0-mtoon",
+      "clips": [],
+      "bones": 152,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "7fd7c542e628bebe9a7b744492d885a51f01d46c0bdf2b4ed968b06c2cbbb029",
+          "bytes": 71084,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/01.png",
+          "sha256": "bdb4dd51887eedb9525089cd17d3ae3b0c42823844430f889daafaf9872ddf1c",
+          "bytes": 80,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/02.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/03.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/04.png",
+          "sha256": "f4a4bc031e6ce74464d18f95785a44031c9c46ea01bf54f55603f9f562f8068d",
+          "bytes": 234374,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/05.png",
+          "sha256": "a511c17492ed038fcc8f624f2b898f579890ea14015890c4544dfe2e6e62276c",
+          "bytes": 57614,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/06.png",
+          "sha256": "bc19af8cf1d10d6cc47fe62b0cde7e55fc62cdb95bcfb0e940562680b837548d",
+          "bytes": 50049,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/07.png",
+          "sha256": "13766c4efb71b27506e18388ea9a0bc5bbe910014e0d1679807164fcc5c975a5",
+          "bytes": 17602,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/08.png",
+          "sha256": "c3c7d8d139791ec587154e9fc41a27466955725ac3784e2be4b01a418448ac58",
+          "bytes": 29155,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/09.png",
+          "sha256": "1e635169c9e6e12bbdfa8713c154f1dd5dc298535a48b584abe34deffee822a5",
+          "bytes": 128660,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/10.png",
+          "sha256": "b4d42c8390ec7b2008d52930ef0101ceef6bfea23ae2b3e9d500bdb5fe6984b9",
+          "bytes": 29812,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/11.png",
+          "sha256": "4663d3434292e9cc1c0e55dfa3914e9b7829a035b3f337b96b3eefd90c38d30e",
+          "bytes": 562185,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/12.png",
+          "sha256": "1e6aa5a275603384910e78956b8c2ab1c37735ab86f79daf46815fd55b7079b4",
+          "bytes": 388199,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/13.png",
+          "sha256": "1e2416d720645c9a71e4c8d15087b4018ea4de13c118eb08d13e1c0508f30614",
+          "bytes": 9851,
+          "dimensions": [
+            256,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/14.png",
+          "sha256": "e2b10828b60d28d4dec20215412cd1c76d9c7e8a3288f5d77da23f249632dd50",
+          "bytes": 31878,
+          "dimensions": [
+            512,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/15.png",
+          "sha256": "5e2db06eca5974a77e9d681017562dbf4e89de41512dd88197819453edc2fc5a",
+          "bytes": 3339643,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/16.png",
+          "sha256": "a92461af165dfc448c9ba831aca42481a7b44ba014e95b75f39924f67e3c5d1d",
+          "bytes": 2161983,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/17.png",
+          "sha256": "7e140d64345701e4582a0b7572cbbb0ffccd064223d6b023b52243c16fadc585",
+          "bytes": 2658938,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/18.png",
+          "sha256": "7166b28af52a57baef96b0f478c9e85033bdbab32af10b84d33700195087a285",
+          "bytes": 164369,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/19.png",
+          "sha256": "1be9a663f784c4db3c89f8b07319d4b8311f61a9bfd3100f8954e5f539a11c47",
+          "bytes": 287349,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/20.png",
+          "sha256": "ff198a1bf756c6775c1d40ea02e91aecc536b1f7fc721d702aeb88f049de44f9",
+          "bytes": 368948,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/21.png",
+          "sha256": "b20771b7aa5c5c87c1096dd8e1fbbe5d2683b74b0b339016f189da03b930aec6",
+          "bytes": 55824,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/22.png",
+          "sha256": "1c2d6b2d03f61801868e1552f4a3cd8ddf8a011a612d7d56d7851dd223d753d9",
+          "bytes": 229509,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/23.png",
+          "sha256": "6fa6d663cdb5af7aeb380628d138fcdfe417f6f8bb8e6458bed4929e588f1ad3",
+          "bytes": 105128,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/24.png",
+          "sha256": "5be73c761268d5a1b2c685866a319823eacb2658cf618a93505393eb5ef6c292",
+          "bytes": 126661,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/25.png",
+          "sha256": "121c3dc277fa3a0c64d3094e64d574d65c179fc7c4110b2f165e73ac2be7f3c1",
+          "bytes": 219176,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/26.png",
+          "sha256": "972791ca5653d3e40368aeb96a5302f9913971cc60c368c4869db7510ae5f23d",
+          "bytes": 202069,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/27.png",
+          "sha256": "b277e2f7b1f59cf71ce00ad2b15ab651c6d55f179bf6945647e52ec4c7166796",
+          "bytes": 2749628,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 3.141592653589793,
+      "status": "appearance-only-no-animation",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "vroid-victoria-rubin",
+      "name": "Victoria Rubin・動漫女性",
+      "category": "anime",
+      "family": "vrm0-humanoid",
+      "author": "pixiv Inc. (sample design); madjin/vrm-samples (download mirror; export author field empty)",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Victoria_Rubin.vrm",
+      "source": "sources-v04/vroid/Victoria_Rubin.vrm",
+      "editable": {
+        "kind": "derived-blender-working-copy",
+        "path": "library-v04/vroid-victoria-rubin/1.0.0/model.blend",
+        "original_blend_available": false,
+        "note": "原始 VRM 完整保留；未取得 .vroid 母檔。Blender 副本為 glTF 匯入，MToon／SpringBone／VRM 表情語意不保證往返；編修後需重新驗收。"
+      },
+      "version": "1.0.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "VRoid beta CC0 sample / mirror e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "upstream_sha": "e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+      "license_url": "https://vroid.pixiv.help/hc/en-us/articles/360014900233",
+      "default_clip": null,
+      "warning": "原檔沒有走跑動畫；本版只驗收參考姿勢、原生 MToon 材質與表情，不以 T 姿冒充待機。",
+      "source_sha256": "b1372131bdbf233f46320146d565f342a7e4f6f4b8f2aefb301f1a283ec07e1e",
+      "model": {
+        "url": "../library-v04/vroid-victoria-rubin/1.0.0/model.glb",
+        "sha256": "b1372131bdbf233f46320146d565f342a7e4f6f4b8f2aefb301f1a283ec07e1e",
+        "bytes": 15479480
+      },
+      "profile": "../library-v04/vroid-victoria-rubin/1.0.0/skeleton-profile.json",
+      "profile_sha256": "890df6a916325394313297036139bae7689e538134f7001dda3319bacff1a2cb",
+      "renderer": "vrm0-mtoon",
+      "clips": [],
+      "bones": 162,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "7fd7c542e628bebe9a7b744492d885a51f01d46c0bdf2b4ed968b06c2cbbb029",
+          "bytes": 71084,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/01.png",
+          "sha256": "bdb4dd51887eedb9525089cd17d3ae3b0c42823844430f889daafaf9872ddf1c",
+          "bytes": 80,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/02.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/03.png",
+          "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+          "bytes": 81,
+          "dimensions": [
+            8,
+            8
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/04.png",
+          "sha256": "cb61f933073d7e43e93988dc4a50c9bb38d5f0769aafcbba76fcb3c5d33ee769",
+          "bytes": 122520,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/05.png",
+          "sha256": "8229bae815b5403d8be9bd0677e34268bb84cb2d80fcd59c0c367a74e55d45c9",
+          "bytes": 79280,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/06.png",
+          "sha256": "22fe0562d8af76b13e08c75bd6dafdb1c0961c5663f4c2be44ea66711143d669",
+          "bytes": 75681,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/07.png",
+          "sha256": "f90fe1e6db99afe865c16685af8d51e8c3f7356b65b90fd242b4f34c3e344cc3",
+          "bytes": 67274,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/08.png",
+          "sha256": "82f442f30c059b52793e8e9d19e8d2ea6c332d9dabeb6b93a4a863d18a4415dc",
+          "bytes": 45036,
+          "dimensions": [
+            1024,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/09.png",
+          "sha256": "a2c88a7b75d48f37c0fb597d85cc7da795eda49ebdddab9057311be8c3626753",
+          "bytes": 142180,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/10.png",
+          "sha256": "006c199fb54e7abb60abf34241ae6fa90652ab47c80b807ca946cd1edc70e102",
+          "bytes": 26266,
+          "dimensions": [
+            1024,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/11.png",
+          "sha256": "4eb17f207ab5f204275a87c4580cd11a3722efc56680056bb558df5fb597cba5",
+          "bytes": 374771,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/12.png",
+          "sha256": "1e6aa5a275603384910e78956b8c2ab1c37735ab86f79daf46815fd55b7079b4",
+          "bytes": 388199,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/13.png",
+          "sha256": "1e2416d720645c9a71e4c8d15087b4018ea4de13c118eb08d13e1c0508f30614",
+          "bytes": 9851,
+          "dimensions": [
+            256,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/14.png",
+          "sha256": "e2b10828b60d28d4dec20215412cd1c76d9c7e8a3288f5d77da23f249632dd50",
+          "bytes": 31878,
+          "dimensions": [
+            512,
+            256
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/15.png",
+          "sha256": "6fd69290a2a374666106d2a9a548a3bca811f650af0d3427f954b26e1ead1c0b",
+          "bytes": 2037566,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/16.png",
+          "sha256": "a92461af165dfc448c9ba831aca42481a7b44ba014e95b75f39924f67e3c5d1d",
+          "bytes": 2161983,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/17.png",
+          "sha256": "409eb967d43de6827ab5432de6f8d695e1deb402ea0c03a69ce3b60153cf335f",
+          "bytes": 2436749,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/18.png",
+          "sha256": "e62a2cac0c5964a30e7bcd546b28e90ffa4e3346fa750c128359f32e32c5c43b",
+          "bytes": 127310,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/19.png",
+          "sha256": "1be9a663f784c4db3c89f8b07319d4b8311f61a9bfd3100f8954e5f539a11c47",
+          "bytes": 287349,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/20.png",
+          "sha256": "ff198a1bf756c6775c1d40ea02e91aecc536b1f7fc721d702aeb88f049de44f9",
+          "bytes": 368948,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/21.png",
+          "sha256": "e2122e7809900f096222ce104a26dd459d180d3a14bb41bd86726de9f78f45c3",
+          "bytes": 39288,
+          "dimensions": [
+            512,
+            512
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/22.png",
+          "sha256": "16d4fdb5b28b02d20ed2632b81c7a9759f828ec4e51c7846b9b1f6ed6cd2477e",
+          "bytes": 132167,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/23.png",
+          "sha256": "6fa6d663cdb5af7aeb380628d138fcdfe417f6f8bb8e6458bed4929e588f1ad3",
+          "bytes": 105128,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/24.png",
+          "sha256": "5be73c761268d5a1b2c685866a319823eacb2658cf618a93505393eb5ef6c292",
+          "bytes": 126661,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/25.png",
+          "sha256": "1c67da940952fe659a71b887198dbea92d9829af56c87720cbf1115fe6f605f3",
+          "bytes": 114819,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/26.png",
+          "sha256": "764a0f0e4413ac6b467d7b3cb57df430f178c84f9328aa12cee6bb53c27d9dc4",
+          "bytes": 11891,
+          "dimensions": [
+            512,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/27.png",
+          "sha256": "04785c0524406957e96c6462d6cb7e7de21c6b2ac2eb65d0ade2710acfa4b329",
+          "bytes": 2118439,
+          "dimensions": [
+            2048,
+            2048
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 3.141592653589793,
+      "status": "appearance-only-no-animation",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "horse-brown",
+      "name": "深棕馬",
+      "category": "animal",
+      "family": "quaternius-horse-v23",
+      "author": "Quaternius; aitest-ai (PBR/material derivatives)",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0",
+      "source": "sources-v04/horses/horse-brown-v2.3.glb",
+      "editable": {
+        "kind": "existing-project-blender-master",
+        "path": "sources-v04/horses/horse-brown/Horse_V23.blend",
+        "original_blend_available": true
+      },
+      "version": "2.3.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "horses-v2.3.0",
+      "default_clip": "Idle",
+      "warning": "沿用既有賽馬 v2.3 原檔；來源曾記錄人工檢視，本模型庫尚未重新取得人工核准，物理步態未驗。",
+      "source_sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+      "model": {
+        "url": "../library-v04/horse-brown/2.3.0/model.glb",
+        "sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+        "bytes": 3693280
+      },
+      "profile": "../library-v04/horse-brown/2.3.0/skeleton-profile.json",
+      "profile_sha256": "4fa4739e80416e0b61c915dc01eb4417cbff83337908825bbb49196b5c85d988",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666665,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.7083333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4583333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5833333333333334,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 50,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "1e211f1b507d8f59902a175f5aa55c8640049b98e94056bdc225ccbc84a91ee6",
+          "bytes": 919292,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/01.png",
+          "sha256": "aaed5a495fe3b281e2d56f4c23f25460644b542c6130962e3e510172d5828dfb",
+          "bytes": 836784,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/02.png",
+          "sha256": "8b248559f73d48b3f1da79e02055ff2df7e939ce1aef2e8bde1ef7a92a1025d5",
+          "bytes": 612795,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    },
+    {
+      "id": "horse-white",
+      "name": "白馬",
+      "category": "animal",
+      "family": "quaternius-horse-v23",
+      "author": "Quaternius; aitest-ai (PBR/material derivatives)",
+      "license": "CC0-1.0",
+      "source_url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0",
+      "source": "sources-v04/horses/horse-white-v2.3.glb",
+      "editable": {
+        "kind": "existing-project-blender-master",
+        "path": "sources-v04/horses/horse-white/Horse_White_V23.blend",
+        "original_blend_available": true
+      },
+      "version": "2.3.0",
+      "art_approved": false,
+      "game_ready": false,
+      "upstream_version": "horses-v2.3.0",
+      "default_clip": "Idle",
+      "warning": "沿用既有賽馬 v2.3 原檔；來源曾記錄人工檢視，本模型庫尚未重新取得人工核准，物理步態未驗。",
+      "source_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+      "model": {
+        "url": "../library-v04/horse-white/2.3.0/model.glb",
+        "sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+        "bytes": 3635768
+      },
+      "profile": "../library-v04/horse-white/2.3.0/skeleton-profile.json",
+      "profile_sha256": "be693fa6f1e7a8de7e2dc0538b8b817e7ba64848171ba5313f07a5aaa6027ecd",
+      "renderer": "gltf-pbr",
+      "clips": [
+        {
+          "name": "Walk",
+          "duration_s": 1.1666666666666665,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Jump_toIdle",
+          "duration_s": 1.7083333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact2",
+          "duration_s": 0.6666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_HitReact1",
+          "duration_s": 0.6666666666666667,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_Headlow",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle_2",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Idle",
+          "duration_s": 3.3333333333333335,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop_Jump",
+          "duration_s": 1.4583333333333333,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Gallop",
+          "duration_s": 0.5833333333333334,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Eating",
+          "duration_s": 6.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Death",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Kick",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        },
+        {
+          "name": "Attack_Headbutt",
+          "duration_s": 1.0,
+          "channels": 150,
+          "source": "original-native-animation",
+          "art_approved": false
+        }
+      ],
+      "bones": 50,
+      "textures": [
+        {
+          "file": "textures/00.png",
+          "sha256": "e8ec2d88a99f5a141ddfc26e2d3acc534b8da8d3d35609ca1367e7ffdd655a7d",
+          "bytes": 918114,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/01.png",
+          "sha256": "8a183d8a7753f095673a0b0c817891fe56297a36ffe2041bdec3cab8226c43e5",
+          "bytes": 785171,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        },
+        {
+          "file": "textures/02.png",
+          "sha256": "2ca85c8794a34840138b1b55838a501001c0d471d371a99926399b876ce299a8",
+          "bytes": 612304,
+          "dimensions": [
+            1024,
+            1024
+          ],
+          "resized": false
+        }
+      ],
+      "display_yaw": 0,
+      "status": "candidate-native-motion",
+      "modifications": [
+        "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+      ],
+      "validation": {
+        "structure": "pass; evidence-v04/structure-qa.json",
+        "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+        "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+        "human_art": "not-tested",
+        "physical_mobile": "not-tested",
+        "engine_gameplay": "not-tested"
+      }
+    }
+  ],
+  "source_lock": "../sources-v04/SOURCE_FILES.sha256",
+  "legacy_studio": "../web-v03/",
+  "policy": "Source-native review candidates; no inferred art approval, no automatic map replacement."
+}

@@ -1,0 +1,108 @@
+{
+  "id": "quaternius-alpaca",
+  "name": "羊駝",
+  "category": "animal",
+  "family": "quaternius-quadruped",
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "source": "sources-v04/animals/Alpaca.gltf",
+  "editable": {
+    "kind": "original-blender-master",
+    "path": "sources-v04/animals/Alpaca.blend",
+    "original_blend_available": true
+  },
+  "version": "1.0.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+  "files": [
+    {
+      "id": "1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD",
+      "title": "Alpaca.blend",
+      "mime_type": "application/octet-stream",
+      "size": "2561952",
+      "url": "https://drive.google.com/file/d/1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1Ze3dbyu_kv30kwt1XoxRWBM78NphsigD/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:19:22.240Z",
+      "modified_time": "2022-02-08T23:22:49.110Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    {
+      "id": "13dxCPosR1tVx24LKXr6gN44sIOY4hZgo",
+      "title": "Alpaca.gltf",
+      "mime_type": "application/octet-stream",
+      "size": "1435679",
+      "url": "https://drive.google.com/file/d/13dxCPosR1tVx24LKXr6gN44sIOY4hZgo/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/13dxCPosR1tVx24LKXr6gN44sIOY4hZgo/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:23:37.595Z",
+      "modified_time": "2022-02-08T23:23:39.112Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    }
+  ],
+  "default_clip": "Idle",
+  "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+  "source_sha256": "5009bfa756c7b7af5e02263d47a6d9088cadaada2240b41b4e87f31327b0e063",
+  "model": {
+    "url": "../library-v04/quaternius-alpaca/1.0.0/model.glb",
+    "sha256": "52b84a93cafb5c51baea724524f3e124f1e2609ae46f6cfcb11419706b0e0871",
+    "bytes": 783988
+  },
+  "profile": "../library-v04/quaternius-alpaca/1.0.0/skeleton-profile.json",
+  "profile_sha256": "3c8d29349f8bb88e125c74f8baf75ca3e859f2a4180818c7a26b9463994fe7b0",
+  "renderer": "gltf-pbr",
+  "clips": [
+    "Attack_Headbutt",
+    "Attack_Kick",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_Headlow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_toIdle",
+    "Walk"
+  ],
+  "bones": 46,
+  "textures": [],
+  "display_yaw": 0,
+  "status": "candidate-native-motion",
+  "modifications": [
+    "Lossless data-URI glTF → binary GLB packaging"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "quaternius-alpaca",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 13,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  }
+}

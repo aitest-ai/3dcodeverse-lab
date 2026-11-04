@@ -1,0 +1,207 @@
+{
+  "status": "20_LOSSLESS_INTAKE_AND_EDITABLE_DATA_PASS_NOT_ART_APPROVAL",
+  "source_files": 58,
+  "models": [
+    {
+      "id": "kaykit-knight",
+      "sha256": "60428e3abc09ba83e595d256e3af8c5c976b46cdae599f0802fc82b4a3445168",
+      "native_clips": 76,
+      "accessor_rows_decoded": 140690,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "kaykit-barbarian",
+      "sha256": "cefc311a0e10c7858b6141f5ada7e33268727564fb8ac1347aab97d000669cc6",
+      "native_clips": 76,
+      "accessor_rows_decoded": 135487,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "kaykit-mage",
+      "sha256": "cf898585da33fab50c724d31605fb931eb2912e6d2280092141e98ca81ad507d",
+      "native_clips": 76,
+      "accessor_rows_decoded": 131812,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "kaykit-rogue",
+      "sha256": "e825437cd4d2ee9c1960b517a74a69101e33eb409ae7fa8cedc7134a998fbb7d",
+      "native_clips": 76,
+      "accessor_rows_decoded": 135570,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "kaykit-rogue-hooded",
+      "sha256": "93e6e25213009952276d9cf34f5d96a243767334c66f280db0433ddfabb91545",
+      "native_clips": 76,
+      "accessor_rows_decoded": 132969,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "quaternius-cow",
+      "sha256": "8e345f177881c1d5e234dd1a503472208d67bba515d0314c5abf606a888e39d0",
+      "native_clips": 13,
+      "accessor_rows_decoded": 125189,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 2
+    },
+    {
+      "id": "quaternius-bull",
+      "sha256": "fb9681e83ad95c88842e7f4efa17066b9dd94de68b89fcefb0e037ef7a95b2c0",
+      "native_clips": 13,
+      "accessor_rows_decoded": 124837,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 2
+    },
+    {
+      "id": "quaternius-alpaca",
+      "sha256": "52b84a93cafb5c51baea724524f3e124f1e2609ae46f6cfcb11419706b0e0871",
+      "native_clips": 13,
+      "accessor_rows_decoded": 43986,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-deer",
+      "sha256": "19a3ee311cbec9f0dfb5fc5038c1c49455c7d76a14e7678c61978672e3bddf25",
+      "native_clips": 13,
+      "accessor_rows_decoded": 129651,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-stag",
+      "sha256": "be287c4e8bd0e20d84d50b73e8eda7a9cfa94b599b66a705b9eed968ffbb9c58",
+      "native_clips": 13,
+      "accessor_rows_decoded": 140582,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-donkey",
+      "sha256": "2e71a683e1e00c76d5c36e6429adc238620a43bea50b146958cac66c7a43670b",
+      "native_clips": 13,
+      "accessor_rows_decoded": 137371,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-shibainu",
+      "sha256": "8302af941f144185c1afbde4ad8cc79358b575311deea23be4fbcd3d367f50a8",
+      "native_clips": 12,
+      "accessor_rows_decoded": 110148,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-husky",
+      "sha256": "d5e33b7f9ffc92e5278df5035f86e8749f14c5ff8d9c79a922b2e8c1c906fcec",
+      "native_clips": 12,
+      "accessor_rows_decoded": 115530,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-fox",
+      "sha256": "46c849f445d9ae25b11568b72c09a75ed3e17c79b36c5e8bc58ffadb41812ecf",
+      "native_clips": 12,
+      "accessor_rows_decoded": 118505,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 1
+    },
+    {
+      "id": "quaternius-wolf",
+      "sha256": "142291b6f9114c2fc9ac8e51ffda8d9f959c5726036c3ea9946be173b608a5aa",
+      "native_clips": 12,
+      "accessor_rows_decoded": 119815,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+      "unavailable_unused_image_count": 2
+    },
+    {
+      "id": "vroid-vita",
+      "sha256": "f2bf78f28a24e2f75f5ca0b6c3b646654c394e4b03592dfaa0d0633ef0972b4d",
+      "native_clips": 0,
+      "accessor_rows_decoded": 364058,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "vroid-vivi",
+      "sha256": "eaf902e041a7a810f1423599ae75682f61184ab6ef0206da9a8ed9caa8ec3a9d",
+      "native_clips": 0,
+      "accessor_rows_decoded": 361446,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "vroid-victoria-rubin",
+      "sha256": "b1372131bdbf233f46320146d565f342a7e4f6f4b8f2aefb301f1a283ec07e1e",
+      "native_clips": 0,
+      "accessor_rows_decoded": 382673,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "horse-brown",
+      "sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+      "native_clips": 13,
+      "accessor_rows_decoded": 114591,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    },
+    {
+      "id": "horse-white",
+      "sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+      "native_clips": 13,
+      "accessor_rows_decoded": 114321,
+      "source_graph_animation_geometry_preserved": true,
+      "embedded_texture_bytes_preserved": true,
+      "master_read": "BLENDER_OPEN_AND_DATA_READ_PASS",
+      "unavailable_unused_image_count": 0
+    }
+  ],
+  "limitations": "Not a full Khronos validator, anatomy/collision/contact validation or human approval."
+}

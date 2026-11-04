@@ -1,0 +1,16 @@
+{
+  "status": "SOURCE_PRESERVED_REVIEW_CANDIDATE",
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "original_bytes_preserved": true,
+  "texture_resized": false,
+  "art_approved": false,
+  "game_ready": false,
+  "limitations": "原檔沒有走跑動畫；本版只驗收參考姿勢、原生 MToon 材質與表情，不以 T 姿冒充待機。"
+}

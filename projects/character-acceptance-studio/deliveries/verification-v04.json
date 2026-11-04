@@ -1,0 +1,33 @@
+{
+  "package": {
+    "archives": [
+      {
+        "file": "Character_Library_0.4.0_Runtime.zip",
+        "indexed_files": 539,
+        "crc": "pass",
+        "sha256": "d4b93ea33fadc5a617e31b67a0081a49296c16d099b7525ad1ddc24a6b405815"
+      },
+      {
+        "file": "Character_Library_0.4.0_Sources.zip",
+        "indexed_files": 57,
+        "crc": "pass",
+        "sha256": "ccaae4e1563f21385cf80a5fed4a3f9ecb6a62adccbe0ad422eb7a12cc9257a9"
+      }
+    ],
+    "source_restore": "58 source files exact SHA",
+    "lossless_rebuild": "20 models byte-identical; no overwritten candidate",
+    "status": "PASS"
+  },
+  "browser": {
+    "status": "EXTRACTED_DELIVERY_REAL_BROWSER_PASS",
+    "checks": [
+      "kaykit-knight correct native model and downloadable GLB/profile/mother links",
+      "vroid-vivi correct native model and downloadable GLB/profile/mother links",
+      "quaternius-cow correct native model and downloadable GLB/profile/mother links",
+      "horse-white correct native model and downloadable GLB/profile/mother links",
+      "gallery actual four-view images loaded"
+    ],
+    "page_errors": []
+  },
+  "note": "Post-package verification; published ZIP contents remain unchanged. Artificial mobile viewport only; no human art approval."
+}

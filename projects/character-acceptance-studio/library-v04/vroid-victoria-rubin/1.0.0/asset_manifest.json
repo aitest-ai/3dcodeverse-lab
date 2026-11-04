@@ -1,0 +1,340 @@
+{
+  "id": "vroid-victoria-rubin",
+  "name": "Victoria Rubin・動漫女性",
+  "category": "anime",
+  "family": "vrm0-humanoid",
+  "author": "pixiv Inc. (sample design); madjin/vrm-samples (download mirror; export author field empty)",
+  "license": "CC0-1.0",
+  "source_url": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Victoria_Rubin.vrm",
+  "source": "sources-v04/vroid/Victoria_Rubin.vrm",
+  "editable": {
+    "kind": "derived-blender-working-copy",
+    "path": "library-v04/vroid-victoria-rubin/1.0.0/model.blend",
+    "original_blend_available": false,
+    "note": "原始 VRM 完整保留；未取得 .vroid 母檔。Blender 副本為 glTF 匯入，MToon／SpringBone／VRM 表情語意不保證往返；編修後需重新驗收。"
+  },
+  "version": "1.0.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "VRoid beta CC0 sample / mirror e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+  "upstream_sha": "e16eb187100149a315ad92c3c9968f1d5baa6c7d",
+  "license_url": "https://vroid.pixiv.help/hc/en-us/articles/360014900233",
+  "default_clip": null,
+  "warning": "原檔沒有走跑動畫；本版只驗收參考姿勢、原生 MToon 材質與表情，不以 T 姿冒充待機。",
+  "source_sha256": "b1372131bdbf233f46320146d565f342a7e4f6f4b8f2aefb301f1a283ec07e1e",
+  "model": {
+    "url": "../library-v04/vroid-victoria-rubin/1.0.0/model.glb",
+    "sha256": "b1372131bdbf233f46320146d565f342a7e4f6f4b8f2aefb301f1a283ec07e1e",
+    "bytes": 15479480
+  },
+  "profile": "../library-v04/vroid-victoria-rubin/1.0.0/skeleton-profile.json",
+  "profile_sha256": "890df6a916325394313297036139bae7689e538134f7001dda3319bacff1a2cb",
+  "renderer": "vrm0-mtoon",
+  "clips": [],
+  "bones": 162,
+  "textures": [
+    {
+      "file": "textures/00.png",
+      "sha256": "7fd7c542e628bebe9a7b744492d885a51f01d46c0bdf2b4ed968b06c2cbbb029",
+      "bytes": 71084,
+      "dimensions": [
+        512,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/01.png",
+      "sha256": "bdb4dd51887eedb9525089cd17d3ae3b0c42823844430f889daafaf9872ddf1c",
+      "bytes": 80,
+      "dimensions": [
+        8,
+        8
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/02.png",
+      "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+      "bytes": 81,
+      "dimensions": [
+        8,
+        8
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/03.png",
+      "sha256": "f3d3041bd0fd91f762bbae71c920be829305acaa8b2bef824f1ed65b757e0fc2",
+      "bytes": 81,
+      "dimensions": [
+        8,
+        8
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/04.png",
+      "sha256": "cb61f933073d7e43e93988dc4a50c9bb38d5f0769aafcbba76fcb3c5d33ee769",
+      "bytes": 122520,
+      "dimensions": [
+        1024,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/05.png",
+      "sha256": "8229bae815b5403d8be9bd0677e34268bb84cb2d80fcd59c0c367a74e55d45c9",
+      "bytes": 79280,
+      "dimensions": [
+        1024,
+        256
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/06.png",
+      "sha256": "22fe0562d8af76b13e08c75bd6dafdb1c0961c5663f4c2be44ea66711143d669",
+      "bytes": 75681,
+      "dimensions": [
+        512,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/07.png",
+      "sha256": "f90fe1e6db99afe865c16685af8d51e8c3f7356b65b90fd242b4f34c3e344cc3",
+      "bytes": 67274,
+      "dimensions": [
+        1024,
+        256
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/08.png",
+      "sha256": "82f442f30c059b52793e8e9d19e8d2ea6c332d9dabeb6b93a4a863d18a4415dc",
+      "bytes": 45036,
+      "dimensions": [
+        1024,
+        256
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/09.png",
+      "sha256": "a2c88a7b75d48f37c0fb597d85cc7da795eda49ebdddab9057311be8c3626753",
+      "bytes": 142180,
+      "dimensions": [
+        1024,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/10.png",
+      "sha256": "006c199fb54e7abb60abf34241ae6fa90652ab47c80b807ca946cd1edc70e102",
+      "bytes": 26266,
+      "dimensions": [
+        1024,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/11.png",
+      "sha256": "4eb17f207ab5f204275a87c4580cd11a3722efc56680056bb558df5fb597cba5",
+      "bytes": 374771,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/12.png",
+      "sha256": "1e6aa5a275603384910e78956b8c2ab1c37735ab86f79daf46815fd55b7079b4",
+      "bytes": 388199,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/13.png",
+      "sha256": "1e2416d720645c9a71e4c8d15087b4018ea4de13c118eb08d13e1c0508f30614",
+      "bytes": 9851,
+      "dimensions": [
+        256,
+        256
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/14.png",
+      "sha256": "e2b10828b60d28d4dec20215412cd1c76d9c7e8a3288f5d77da23f249632dd50",
+      "bytes": 31878,
+      "dimensions": [
+        512,
+        256
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/15.png",
+      "sha256": "6fd69290a2a374666106d2a9a548a3bca811f650af0d3427f954b26e1ead1c0b",
+      "bytes": 2037566,
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/16.png",
+      "sha256": "a92461af165dfc448c9ba831aca42481a7b44ba014e95b75f39924f67e3c5d1d",
+      "bytes": 2161983,
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/17.png",
+      "sha256": "409eb967d43de6827ab5432de6f8d695e1deb402ea0c03a69ce3b60153cf335f",
+      "bytes": 2436749,
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/18.png",
+      "sha256": "e62a2cac0c5964a30e7bcd546b28e90ffa4e3346fa750c128359f32e32c5c43b",
+      "bytes": 127310,
+      "dimensions": [
+        512,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/19.png",
+      "sha256": "1be9a663f784c4db3c89f8b07319d4b8311f61a9bfd3100f8954e5f539a11c47",
+      "bytes": 287349,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/20.png",
+      "sha256": "ff198a1bf756c6775c1d40ea02e91aecc536b1f7fc721d702aeb88f049de44f9",
+      "bytes": 368948,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/21.png",
+      "sha256": "e2122e7809900f096222ce104a26dd459d180d3a14bb41bd86726de9f78f45c3",
+      "bytes": 39288,
+      "dimensions": [
+        512,
+        512
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/22.png",
+      "sha256": "16d4fdb5b28b02d20ed2632b81c7a9759f828ec4e51c7846b9b1f6ed6cd2477e",
+      "bytes": 132167,
+      "dimensions": [
+        512,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/23.png",
+      "sha256": "6fa6d663cdb5af7aeb380628d138fcdfe417f6f8bb8e6458bed4929e588f1ad3",
+      "bytes": 105128,
+      "dimensions": [
+        512,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/24.png",
+      "sha256": "5be73c761268d5a1b2c685866a319823eacb2658cf618a93505393eb5ef6c292",
+      "bytes": 126661,
+      "dimensions": [
+        512,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/25.png",
+      "sha256": "1c67da940952fe659a71b887198dbea92d9829af56c87720cbf1115fe6f605f3",
+      "bytes": 114819,
+      "dimensions": [
+        512,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/26.png",
+      "sha256": "764a0f0e4413ac6b467d7b3cb57df430f178c84f9328aa12cee6bb53c27d9dc4",
+      "bytes": 11891,
+      "dimensions": [
+        512,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/27.png",
+      "sha256": "04785c0524406957e96c6462d6cb7e7de21c6b2ac2eb65d0ade2710acfa4b329",
+      "bytes": 2118439,
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "resized": false
+    }
+  ],
+  "display_yaw": 3.141592653589793,
+  "status": "appearance-only-no-animation",
+  "modifications": [
+    "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "vroid-victoria-rubin",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 0,
+  "requirements": {
+    "skins": true,
+    "animated": false,
+    "visual_review": true
+  }
+}

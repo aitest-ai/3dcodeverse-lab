@@ -1,0 +1,22 @@
+{
+  "asset_id": "quaternius-stag",
+  "mesh_count": 2,
+  "skin_count": 1,
+  "animation_clips": [
+    "Attack_Headbutt",
+    "Attack_Kick",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_Headlow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_toIdle",
+    "Walk"
+  ],
+  "file_bytes": 2044468,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

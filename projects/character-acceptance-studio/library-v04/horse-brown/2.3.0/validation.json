@@ -1,0 +1,22 @@
+{
+  "asset_id": "horse-brown",
+  "mesh_count": 2,
+  "skin_count": 1,
+  "animation_clips": [
+    "Walk",
+    "Jump_toIdle",
+    "Idle_HitReact2",
+    "Idle_HitReact1",
+    "Idle_Headlow",
+    "Idle_2",
+    "Idle",
+    "Gallop_Jump",
+    "Gallop",
+    "Eating",
+    "Death",
+    "Attack_Kick",
+    "Attack_Headbutt"
+  ],
+  "file_bytes": 3693280,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

@@ -1,0 +1,8 @@
+{
+  "asset_id": "vroid-vita",
+  "mesh_count": 3,
+  "skin_count": 3,
+  "animation_clips": [],
+  "file_bytes": 14359044,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

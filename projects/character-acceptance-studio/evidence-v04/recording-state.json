@@ -1,0 +1,88 @@
+{
+  "requested_wall_duration_s": 6,
+  "start": {
+    "studio_version": "0.4.0",
+    "assets": [
+      {
+        "id": "quaternius-shibainu",
+        "version": "1.0.0",
+        "sha256": "8302af941f144185c1afbde4ad8cc79358b575311deea23be4fbcd3d367f50a8",
+        "clip": "Walk",
+        "clip_time_s": 0,
+        "display_yaw": 0,
+        "view_translation": [
+          3.122109980204246e-9,
+          0,
+          -0.24089819632619097
+        ],
+        "display_scale": 0.5831878710158385,
+        "source": "https://quaternius.com/packs/ultimateanimatedanimals.html"
+      }
+    ],
+    "time_s": 0,
+    "camera": {
+      "view": "full",
+      "position": [
+        3.9441791917785274,
+        1.5093776728304054,
+        5.157772789248843
+      ],
+      "target": [
+        0,
+        0.9025808740952466,
+        0
+      ]
+    },
+    "expression": "neutral",
+    "rate": 1,
+    "loop": true,
+    "comparison": "different asset selection; no before/after claim; independent native clips normalized by duration",
+    "art_approved": false,
+    "game_ready": false,
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "recorded_at": "2026-11-04T22:40:53.916Z"
+  },
+  "end": {
+    "studio_version": "0.4.0",
+    "assets": [
+      {
+        "id": "quaternius-shibainu",
+        "version": "1.0.0",
+        "sha256": "8302af941f144185c1afbde4ad8cc79358b575311deea23be4fbcd3d367f50a8",
+        "clip": "Walk",
+        "clip_time_s": 0.31629966621398947,
+        "display_yaw": 0,
+        "view_translation": [
+          3.122109980204246e-9,
+          0,
+          -0.24089819632619097
+        ],
+        "display_scale": 0.5831878710158385,
+        "source": "https://quaternius.com/packs/ultimateanimatedanimals.html"
+      }
+    ],
+    "time_s": 0.31629966621398947,
+    "camera": {
+      "view": "full",
+      "position": [
+        3.9441791917785274,
+        1.5093776728304054,
+        5.157772789248843
+      ],
+      "target": [
+        0,
+        0.9025808740952466,
+        0
+      ]
+    },
+    "expression": "neutral",
+    "rate": 1,
+    "loop": true,
+    "comparison": "different asset selection; no before/after claim; independent native clips normalized by duration",
+    "art_approved": false,
+    "game_ready": false,
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "recorded_at": "2026-11-04T22:41:00.545Z"
+  },
+  "note": "Actual MediaRecorder draw callbacks; inspect ffprobe for encoded duration and frames; software GPU can drop frames."
+}
