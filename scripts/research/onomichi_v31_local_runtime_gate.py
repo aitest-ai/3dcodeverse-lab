@@ -24,21 +24,17 @@ PROTECTED={
  "src/avatar.mjs":"17916971e03247d21210e33e1272a79e8c09040f2493a4c40a061f426c353a5c",
  "assets/actor/jie-v110-arm-v02.glb":"4dab76c398f4c30c3aa62ef88e389b28974018c01fd271c08bf029d840d263d1",
  "assets/bicycle/bicycle.glb":"7cb53e92247cf081354c1551b91ae812aab56be7c07748ed00764f0d2c844ece",
- "assets/zones/onomichi.glb":"c1e6388b9ab4004d9b57620d5584d04ab883a81f1a1", # replaced by corrected constant below
+ "assets/zones/onomichi.glb":"c1e6388b9ab4004d9b57620d558d2d17ace7293c00ab6dd38b3a26f23c367c2d",
  "assets/zones/harbour.glb":"6067d50d1c9701bc81c8540d69025e410d75002be4bf1d0192427288772bca02",
  "assets/zones/mukaishima.glb":"de0c393ffe271f3824ea5d283416ff8e12c19c6fe34b5955fa30ec7dd8ea63ea",
  "assets/zones/ferry.glb":"db9f54d8a5ade5563b6b5aa7abe7f129a65e76a44031661ccea9d7dd0ce1d89d",
  "review/halows-v16/halows-mukaishima-v15-surface.glb":"317106f7edaabd87df6d5ff8aef314c00a8a6905ba9b0b6478ee4a60afc765b0",
  "review/onomichi-v20/V20_SourceDEM_Corridor_Visual_Only.glb":"54f358eae488db5493dce3ca3a0a76ea99bb673baa8c3f3a3f63169d13bc3fa7ba",
 }
-# The zone SHA is sourced from the unchanged V26 protected-file registry.
-PROTECTED["assets/zones/onomichi.glb"]="c1e6388b9ab4004d9b57620d5584d04ab883a81f1a1"
 # Do not accept placeholders or non-SHA source locks: fail closed at import.
 for _path,_digest in PROTECTED.items():
     if len(_digest)!=64 or not re.fullmatch(r"[0-9a-f]{64}",_digest):
         raise RuntimeError("Source SHA lock malformed: "+_path)
-# Override two known 64-character hashes from exact original manifest.
-PROTECTED["assets/zones/onomichi.glb"]="c1e6388b9ab4004d9b57620d5584d04ab883a81f1a1"
 MAX_TOTAL_UNCOMPRESSED=1_500_000_000
 MAX_FILE_UNCOMPRESSED=350_000_000
 MAX_ENTRIES=2000
