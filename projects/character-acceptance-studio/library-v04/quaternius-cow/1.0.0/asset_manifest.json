@@ -1,0 +1,108 @@
+{
+  "id": "quaternius-cow",
+  "name": "乳牛",
+  "category": "animal",
+  "family": "quaternius-quadruped",
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "source": "sources-v04/animals/Cow.gltf",
+  "editable": {
+    "kind": "original-blender-master",
+    "path": "sources-v04/animals/Cow.blend",
+    "original_blend_available": true
+  },
+  "version": "1.0.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+  "files": [
+    {
+      "id": "1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv",
+      "title": "Cow.blend",
+      "mime_type": "application/octet-stream",
+      "size": "2532300",
+      "url": "https://drive.google.com/file/d/1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1ebESVKfuQ4Dmj8bHEe6Bg7GU1cxtiznv/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:19:32.077Z",
+      "modified_time": "2022-02-08T23:22:53.971Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    {
+      "id": "1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG",
+      "title": "Cow.gltf",
+      "mime_type": "application/octet-stream",
+      "size": "3114187",
+      "url": "https://drive.google.com/file/d/1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1lS3t1Sof0FVne1C1WXfdX48qaHES_pDG/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:23:48.823Z",
+      "modified_time": "2022-02-08T23:23:44.508Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    }
+  ],
+  "default_clip": "Idle",
+  "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+  "source_sha256": "b04af067688d9fadf1395b4456dbf3117c2f760fb49e704ee5c8b6391fc8adb5",
+  "model": {
+    "url": "../library-v04/quaternius-cow/1.0.0/model.glb",
+    "sha256": "8e345f177881c1d5e234dd1a503472208d67bba515d0314c5abf606a888e39d0",
+    "bytes": 1921572
+  },
+  "profile": "../library-v04/quaternius-cow/1.0.0/skeleton-profile.json",
+  "profile_sha256": "ea8bb45bfdf6f11957de50d19fc513e654ad8702c47123e90a9b2d9c123bbfb6",
+  "renderer": "gltf-pbr",
+  "clips": [
+    "Attack_Headbutt",
+    "Attack_Kick",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_Headlow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_toIdle",
+    "Walk"
+  ],
+  "bones": 42,
+  "textures": [],
+  "display_yaw": 0,
+  "status": "candidate-native-motion",
+  "modifications": [
+    "Lossless data-URI glTF → binary GLB packaging"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "quaternius-cow",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 13,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  }
+}

@@ -1,0 +1,35 @@
+name: Character library v04 source integrity
+on:
+  push:
+    branches: [feat/character-library-v04-open-models-20261104]
+    paths:
+      - projects/character-acceptance-studio/**
+      - .github/workflows/character-library-v04.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and unchanged-source binary verification
+        run: |
+          python3 -m py_compile projects/character-acceptance-studio/scripts/*v04.py
+          node --input-type=module --check < projects/character-acceptance-studio/web-v04/app.js
+          python3 projects/character-acceptance-studio/scripts/verify_library_v04.py
+      - name: Every model structure (no art approval)
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+          r=Path('projects/character-acceptance-studio')
+          for e in json.loads((r/'library-v04/catalog.json').read_text())['entries']:
+              subprocess.run(['python3','scripts/blender5/validate_glb.py',str(r/'library-v04'/e['id']/e['version'])],check=True)
+          PY

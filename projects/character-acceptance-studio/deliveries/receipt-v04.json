@@ -1,0 +1,20 @@
+{
+  "version": "0.4.0",
+  "deliveries": [
+    {
+      "file": "Character_Library_0.4.0_Runtime.zip",
+      "bytes": 83355429,
+      "sha256": "d4b93ea33fadc5a617e31b67a0081a49296c16d099b7525ad1ddc24a6b405815",
+      "indexed_files": 539,
+      "index": "RUNTIME_FILES_V04.sha256"
+    },
+    {
+      "file": "Character_Library_0.4.0_Sources.zip",
+      "bytes": 73570999,
+      "sha256": "ccaae4e1563f21385cf80a5fed4a3f9ecb6a62adccbe0ad422eb7a12cc9257a9",
+      "indexed_files": 57,
+      "index": "SOURCES_FILES_V04.sha256"
+    }
+  ],
+  "restore": "scripts/restore_library_v04.py reconstructs exact duplicate original containers/textures; no image reencoding. Extract both into the same directory."
+}

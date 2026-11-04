@@ -1,0 +1,107 @@
+{
+  "id": "quaternius-husky",
+  "name": "哈士奇",
+  "category": "animal",
+  "family": "quaternius-quadruped",
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "source": "sources-v04/animals/Husky.gltf",
+  "editable": {
+    "kind": "original-blender-master",
+    "path": "sources-v04/animals/Husky.blend",
+    "original_blend_available": true
+  },
+  "version": "1.0.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+  "files": [
+    {
+      "id": "1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4",
+      "title": "Husky.blend",
+      "mime_type": "application/octet-stream",
+      "size": "2509344",
+      "url": "https://drive.google.com/file/d/1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1TZJdLLCJ2fhd8wOEDI9BsJY9B7SIXCd4/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:20:03.805Z",
+      "modified_time": "2022-02-08T23:23:09.342Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    {
+      "id": "1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt",
+      "title": "Husky.gltf",
+      "mime_type": "application/octet-stream",
+      "size": "3059335",
+      "url": "https://drive.google.com/file/d/1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1oYn47mfq9JAdkJJDcUftbhHNsgQ_CWdt/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:24:24.477Z",
+      "modified_time": "2022-02-08T23:24:03.927Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    }
+  ],
+  "default_clip": "Idle",
+  "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+  "source_sha256": "0cfd85ddfcc5c07caf1bdeb296b21017b0da4c8558a92086daf4a172e0bf8d97",
+  "model": {
+    "url": "../library-v04/quaternius-husky/1.0.0/model.glb",
+    "sha256": "d5e33b7f9ffc92e5278df5035f86e8749f14c5ff8d9c79a922b2e8c1c906fcec",
+    "bytes": 1849832
+  },
+  "profile": "../library-v04/quaternius-husky/1.0.0/skeleton-profile.json",
+  "profile_sha256": "2cddd2635fdc5d4f2774362d5b9d11c9adb7d84f6cc0105801c740a59ea051b6",
+  "renderer": "gltf-pbr",
+  "clips": [
+    "Attack",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_2_HeadLow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_ToIdle",
+    "Walk"
+  ],
+  "bones": 49,
+  "textures": [],
+  "display_yaw": 0,
+  "status": "candidate-native-motion",
+  "modifications": [
+    "Lossless data-URI glTF → binary GLB packaging"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "quaternius-husky",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 12,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  }
+}

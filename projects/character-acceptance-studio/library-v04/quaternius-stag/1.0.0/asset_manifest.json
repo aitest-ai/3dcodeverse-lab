@@ -1,0 +1,108 @@
+{
+  "id": "quaternius-stag",
+  "name": "雄鹿",
+  "category": "animal",
+  "family": "quaternius-quadruped",
+  "author": "Quaternius",
+  "license": "CC0-1.0",
+  "source_url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "source": "sources-v04/animals/Stag.gltf",
+  "editable": {
+    "kind": "original-blender-master",
+    "path": "sources-v04/animals/Stag.blend",
+    "original_blend_available": true
+  },
+  "version": "1.0.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "Ultimate Animated Animals / July 2021 / Drive revision 2022-02",
+  "files": [
+    {
+      "id": "1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd",
+      "title": "Stag.blend",
+      "mime_type": "application/octet-stream",
+      "size": "2315696",
+      "url": "https://drive.google.com/file/d/1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1JFpz-m6ZnSxCD50ImedmOHGFh_5aKQQd/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:20:15.983Z",
+      "modified_time": "2022-02-08T23:24:08.957Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    },
+    {
+      "id": "1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx",
+      "title": "Stag.gltf",
+      "mime_type": "application/octet-stream",
+      "size": "3224724",
+      "url": "https://drive.google.com/file/d/1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx/view?usp=drivesdk",
+      "display_url": "https://drive.google.com/file/d/1URNoFeIFblJXPFOV6qwPrxZr5dLZ3YGx/view?usp=drivesdk",
+      "file_or_folder": "file",
+      "created_time": "2021-07-07T22:24:35.617Z",
+      "modified_time": "2022-02-08T23:24:14.147Z",
+      "parent_ids": null,
+      "drive_id": null,
+      "current_user_can_share": null,
+      "has_augmented_permissions": null,
+      "shared": true,
+      "permissions": null,
+      "source_visibility_status": "access_not_verified"
+    }
+  ],
+  "default_clip": "Idle",
+  "warning": "風格化四足動物，使用各自原生動作；未做人形重定向、蹄／腳掌接地物理驗收。",
+  "source_sha256": "170b964909d16d1ab4d428b1d714f25016913d32481acd9c3d62923192583be6",
+  "model": {
+    "url": "../library-v04/quaternius-stag/1.0.0/model.glb",
+    "sha256": "be287c4e8bd0e20d84d50b73e8eda7a9cfa94b599b66a705b9eed968ffbb9c58",
+    "bytes": 2044468
+  },
+  "profile": "../library-v04/quaternius-stag/1.0.0/skeleton-profile.json",
+  "profile_sha256": "8842089b139476ea25787087b18886a280cffe8adb5ef71101f1638dedaaf1be",
+  "renderer": "gltf-pbr",
+  "clips": [
+    "Attack_Headbutt",
+    "Attack_Kick",
+    "Death",
+    "Eating",
+    "Gallop",
+    "Gallop_Jump",
+    "Idle",
+    "Idle_2",
+    "Idle_Headlow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_toIdle",
+    "Walk"
+  ],
+  "bones": 38,
+  "textures": [],
+  "display_yaw": 0,
+  "status": "candidate-native-motion",
+  "modifications": [
+    "Lossless data-URI glTF → binary GLB packaging"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_WITH_UNUSED_IMAGE_WARNING",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "quaternius-stag",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 13,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "status": "20_STRUCTURE_PASS_NOT_ART_APPROVAL",
+  "results": [
+    {
+      "id": "kaykit-mage",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-deer",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-alpaca",
+      "exit": 0
+    },
+    {
+      "id": "vroid-vivi",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-donkey",
+      "exit": 0
+    },
+    {
+      "id": "kaykit-barbarian",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-shibainu",
+      "exit": 0
+    },
+    {
+      "id": "kaykit-rogue-hooded",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-husky",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-fox",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-bull",
+      "exit": 0
+    },
+    {
+      "id": "horse-brown",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-wolf",
+      "exit": 0
+    },
+    {
+      "id": "horse-white",
+      "exit": 0
+    },
+    {
+      "id": "vroid-vita",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-cow",
+      "exit": 0
+    },
+    {
+      "id": "kaykit-knight",
+      "exit": 0
+    },
+    {
+      "id": "quaternius-stag",
+      "exit": 0
+    },
+    {
+      "id": "kaykit-rogue",
+      "exit": 0
+    },
+    {
+      "id": "vroid-victoria-rubin",
+      "exit": 0
+    }
+  ]
+}

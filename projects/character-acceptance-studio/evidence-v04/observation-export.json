@@ -1,0 +1,50 @@
+{
+  "observations": [
+    {
+      "studio_version": "0.4.0",
+      "assets": [
+        {
+          "id": "vroid-vivi",
+          "version": "1.0.0",
+          "sha256": "eaf902e041a7a810f1423599ae75682f61184ab6ef0206da9a8ed9caa8ec3a9d",
+          "clip": "__rest",
+          "clip_time_s": null,
+          "display_yaw": 3.141592653589793,
+          "view_translation": [
+            0.00030292178730029586,
+            0,
+            0.025727965391138946
+          ],
+          "display_scale": 1.2745199313458715,
+          "source": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Vivi.vrm"
+        }
+      ],
+      "time_s": 0,
+      "camera": {
+        "view": "full",
+        "position": [
+          2.9249999735424423,
+          1.3498574184906573,
+          3.8249999654016547
+        ],
+        "target": [
+          0,
+          0.8998574225610505,
+          0
+        ]
+      },
+      "expression": "happy",
+      "rate": 1,
+      "loop": true,
+      "comparison": "different asset selection; no before/after claim; independent native clips normalized by duration",
+      "art_approved": false,
+      "game_ready": false,
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "recorded_at": "2026-11-04T22:40:53.658Z",
+      "region": "身形／頭身比與輪廓",
+      "verdict": "unreviewed",
+      "notes": "Automated browser observation export check; not human approval."
+    }
+  ],
+  "art_approved": false
+}

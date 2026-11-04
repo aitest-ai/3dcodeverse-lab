@@ -1,0 +1,16 @@
+{
+  "status": "SOURCE_PRESERVED_REVIEW_CANDIDATE",
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "original_bytes_preserved": true,
+  "texture_resized": false,
+  "art_approved": false,
+  "game_ready": false,
+  "limitations": "沿用既有賽馬 v2.3 原檔；來源曾記錄人工檢視，本模型庫尚未重新取得人工核准，物理步態未驗。"
+}

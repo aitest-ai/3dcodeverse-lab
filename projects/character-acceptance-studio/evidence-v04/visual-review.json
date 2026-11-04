@@ -1,0 +1,18 @@
+{
+  "reviewer": "AI visual inspection of actual browser frames; not human art approval",
+  "observed": [
+    "All 20 model thumbnails visually show complete source characters/animals; 3 VRM native toon materials display their original garments and footwear.",
+    "KayKit silhouettes are deliberately chibi; original authored accessory sets remain.",
+    "Vivi and Victoria front poses show coherent author-provided clothing; Vita is a cyber/anime design. Toon lighting reduced in viewer to retain pale material detail.",
+    "Different source units remain, some animal assets are several glTF units tall; optional display height alignment is explicitly separate from asset scale."
+  ],
+  "limitations": [
+    "Only sampled poses and views inspected; no every-frame cloth collision certification.",
+    "3 VRM assets have no animation, secondary hair/cloth physics disabled, and original .vroid unavailable.",
+    "Original animal gait contact and source root displacement have not been fitted to world speed.",
+    "Existing v0.3 custom human proportions/clothing defects remain in that separate candidate stage.",
+    "No physical mobile, human art approval, other-engine or map validation."
+  ],
+  "game_ready": false,
+  "art_approved": false
+}

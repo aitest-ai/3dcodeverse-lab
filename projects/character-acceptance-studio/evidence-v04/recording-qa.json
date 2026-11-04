@@ -1,0 +1,11 @@
+{
+  "format": {
+    "duration": "2.788043",
+    "size": "295861"
+  },
+  "method": "actual browser MediaRecorder using UI six-second timer",
+  "requested_wall_duration_s": 6,
+  "encoded_duration_note": "Software WebGL drops frames; encoded duration below wall request. This is not a real-time frame-rate claim.",
+  "source": "shibainu-native-walk.webm",
+  "not_image_sequence_synthesis": true
+}

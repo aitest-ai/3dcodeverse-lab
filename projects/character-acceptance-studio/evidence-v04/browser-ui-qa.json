@@ -1,0 +1,17 @@
+{
+  "status": "UI_AND_NATIVE_RENDER_SMOKE_PASS_NOT_ART_APPROVAL",
+  "checks": [
+    "initial-native-hash-load",
+    "filter-search-counts",
+    "native-motion-frame-step-comparison-height-align",
+    "vrm-native-expression-changes-morphed-vertices-no-fake-idle",
+    "review-export-pins-model-camera-expression",
+    "actual-six-second-ui-recorder",
+    "rapid-selection-cancels-stale-loads",
+    "390px-layout-emulation-only-not-real-mobile",
+    "native-webcrypto-rejects-one-byte-tamper-no-fallback"
+  ],
+  "page_errors": [],
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

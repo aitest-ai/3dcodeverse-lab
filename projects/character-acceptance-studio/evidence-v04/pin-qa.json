@@ -1,0 +1,20 @@
+{
+  "results": [
+    {
+      "case": "candidate-default-block",
+      "passed": true
+    },
+    {
+      "case": "explicit-review",
+      "passed": true
+    },
+    {
+      "case": "overwrite-block",
+      "passed": true
+    },
+    {
+      "case": "wrong-hash",
+      "passed": true
+    }
+  ]
+}

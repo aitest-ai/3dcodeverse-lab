@@ -1,0 +1,16 @@
+{
+  "status": "SOURCE_PRESERVED_REVIEW_CANDIDATE",
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "original_bytes_preserved": true,
+  "texture_resized": false,
+  "art_approved": false,
+  "game_ready": false,
+  "limitations": "卡通大頭短肢比例為原作者設計；原生動畫尚未完成接地／服裝人工驗收。"
+}

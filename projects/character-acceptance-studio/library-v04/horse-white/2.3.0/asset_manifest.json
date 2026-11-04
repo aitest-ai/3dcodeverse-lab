@@ -1,0 +1,101 @@
+{
+  "id": "horse-white",
+  "name": "白馬",
+  "category": "animal",
+  "family": "quaternius-horse-v23",
+  "author": "Quaternius; aitest-ai (PBR/material derivatives)",
+  "license": "CC0-1.0",
+  "source_url": "https://github.com/aitest-ai/3dcodeverse-lab/releases/tag/horses-v2.3.0",
+  "source": "sources-v04/horses/horse-white-v2.3.glb",
+  "editable": {
+    "kind": "existing-project-blender-master",
+    "path": "sources-v04/horses/horse-white/Horse_White_V23.blend",
+    "original_blend_available": true
+  },
+  "version": "2.3.0",
+  "art_approved": false,
+  "game_ready": false,
+  "upstream_version": "horses-v2.3.0",
+  "default_clip": "Idle",
+  "warning": "沿用既有賽馬 v2.3 原檔；來源曾記錄人工檢視，本模型庫尚未重新取得人工核准，物理步態未驗。",
+  "source_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+  "model": {
+    "url": "../library-v04/horse-white/2.3.0/model.glb",
+    "sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+    "bytes": 3635768
+  },
+  "profile": "../library-v04/horse-white/2.3.0/skeleton-profile.json",
+  "profile_sha256": "be693fa6f1e7a8de7e2dc0538b8b817e7ba64848171ba5313f07a5aaa6027ecd",
+  "renderer": "gltf-pbr",
+  "clips": [
+    "Walk",
+    "Jump_toIdle",
+    "Idle_HitReact2",
+    "Idle_HitReact1",
+    "Idle_Headlow",
+    "Idle_2",
+    "Idle",
+    "Gallop_Jump",
+    "Gallop",
+    "Eating",
+    "Death",
+    "Attack_Kick",
+    "Attack_Headbutt"
+  ],
+  "bones": 50,
+  "textures": [
+    {
+      "file": "textures/00.png",
+      "sha256": "e8ec2d88a99f5a141ddfc26e2d3acc534b8da8d3d35609ca1367e7ffdd655a7d",
+      "bytes": 918114,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/01.png",
+      "sha256": "8a183d8a7753f095673a0b0c817891fe56297a36ffe2041bdec3cab8226c43e5",
+      "bytes": 785171,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    },
+    {
+      "file": "textures/02.png",
+      "sha256": "2ca85c8794a34840138b1b55838a501001c0d471d371a99926399b876ce299a8",
+      "bytes": 612304,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "resized": false
+    }
+  ],
+  "display_yaw": 0,
+  "status": "candidate-native-motion",
+  "modifications": [
+    "None: runtime GLB container byte-identical to downloaded GLB/VRM"
+  ],
+  "validation": {
+    "structure": "pass; evidence-v04/structure-qa.json",
+    "blender_editable": "BLENDER_OPEN_AND_DATA_READ_PASS",
+    "browser": "native-render-and-clip-sampling-pass; see evidence-v04/browser-all-clips.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested",
+    "engine_gameplay": "not-tested"
+  },
+  "schema_version": 1,
+  "asset_id": "horse-white",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "min_animation_count": 13,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  }
+}
