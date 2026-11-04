@@ -1,0 +1,6 @@
+__pycache__/
+*.blend1
+*.blend2
+work/
+web/standalone-bundle.js
+OPEN_STUDIO.html

@@ -1,0 +1,36 @@
+{
+  "status": "BROWSER_UI_PASS_NOT_ART_APPROVAL",
+  "checks": [
+    "Native WebGL2 + pinned Harbor load",
+    "Seven actual named Harbor animations selectable",
+    "Actual animated foot bone travel, no static substitute",
+    "Pause and +/- one actual 30fps frame",
+    "Paused timeline stays fixed",
+    "Playback rate control",
+    "Loop default distinguishes locomotion from one-shot transition",
+    "Eight real camera presets",
+    "Actual same-camera/source-time A/B WebGL comparison",
+    "Skeleton and pace-grid UI toggles",
+    "Second distinct 53-bone body and honest missing transitions",
+    "Observation export pins identity/hash/camera/time and keeps approval false",
+    "Real canvas PNG download",
+    "Actual 6-second canvas WebM recording/download",
+    "Corrupted actual GLB rejected by native SHA-256 with no fallback",
+    "Same-version retry recovers after digest failure",
+    "Missing actual model gives explicit HTTP error",
+    "390x844 desktop-browser viewport: WebGL model and no horizontal overflow (not physical phone)",
+    "No uncaught page errors in ordinary/negative loader flows"
+  ],
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+  "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+  "page_errors": [],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "negative_test_note": "Only expected model transport is changed in two isolated negative tests; no renderer/digest adapters. Normal UI tests use actual server files.",
+  "physical_phone": "NOT_TESTED",
+  "human_art": "NOT_APPROVED",
+  "art_approved": false,
+  "game_ready": false,
+  "camera_followup": "Side preset distance widened from3.8m to4.8m after UI suite to keep complete sprint stride in split view; four affected side sequences re-captured from actual WebGL. Other UI behavior unchanged."
+}

@@ -1,0 +1,12 @@
+{
+  "file": "Character_Studio_0.1.0_Complete.zip",
+  "bytes": 78841737,
+  "sha256": "1a4bf19858856357574d9663dd1428ff0dc637b049f0db08dab59b71b8a8c10b",
+  "entries": 280,
+  "verified_file_sha256_count": 279,
+  "zip_crc": "PASS",
+  "includes_complete_html": true,
+  "includes_editable_mothers_glbs_textures_profiles_licenses": true,
+  "art_approved": false,
+  "game_ready": false
+}

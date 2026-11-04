@@ -1,0 +1,63 @@
+{
+  "status": "SINGLE_EMBEDDED_HTML_WEBGL_PASS",
+  "secure_context": true,
+  "native_crypto": true,
+  "external_http_requests": [],
+  "page_errors": [],
+  "model_state": {
+    "ready": true,
+    "loading": false,
+    "error": null,
+    "character": "taiwan-oldman-review",
+    "clip": "Walk",
+    "time": 0.333,
+    "duration": 1.3333333730697632,
+    "playing": false,
+    "variants": [
+      {
+        "variant": "candidate",
+        "clips": [
+          "Idle",
+          "Walk",
+          "Run"
+        ],
+        "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907",
+        "joints": {
+          "pelvis": [
+            0.026702869823366216,
+            0.8644821287181558,
+            -0.0017878639058881204
+          ],
+          "spine_03": [
+            0.026916457818996164,
+            1.0717662680155395,
+            0.037473437324731934
+          ],
+          "hand_l": [
+            0.27207572562569643,
+            0.9092367302871376,
+            0.10052967661331179
+          ],
+          "hand_r": [
+            -0.20467606213826067,
+            0.9147757050761434,
+            0.13158818472343659
+          ],
+          "foot_l": [
+            0.10890649609032133,
+            0.09127323978143526,
+            -0.04608157155818592
+          ],
+          "foot_r": [
+            -0.11266931849686489,
+            0.33008150155454075,
+            -0.18747442063664393
+          ]
+        }
+      }
+    ],
+    "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+  },
+  "html_bytes": 26338771,
+  "art_approved": false
+}

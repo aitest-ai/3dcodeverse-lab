@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "observations": [
+    {
+      "schema_version": 1,
+      "studio_version": "0.1.0",
+      "character_id": "taiwan-oldman-review",
+      "version": "0.1.0",
+      "assets": [
+        {
+          "variant": "source",
+          "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f"
+        },
+        {
+          "variant": "candidate",
+          "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+        }
+      ],
+      "clip": "Walk",
+      "time_s": 0.333,
+      "rate": 1.5,
+      "loop": true,
+      "grid_motion": true,
+      "camera": {
+        "position": [
+          0,
+          0.8480000000000003,
+          3.8000000000000003
+        ],
+        "target": [
+          0,
+          0.8,
+          0
+        ]
+      },
+      "recorded_at": "2026-11-04T04:11:30.120Z",
+      "environment": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+        "webgl": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+      },
+      "art_approved": false,
+      "game_ready": false,
+      "region": "動作／重心與手肘",
+      "verdict": "failed",
+      "notes": "Browser test observation: source alpha failure / candidate opaque face repair; not human art approval."
+    }
+  ],
+  "art_approved": false,
+  "game_ready": false
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset_id": "oldman",
+  "format": "glTF 2.0 GLB",
+  "unit": "meter",
+  "source": "V28 native elder; V29 bounded artistic cheek/jowl form and gray hair clump maps",
+  "model_file": "oldman.glb",
+  "source_file": "oldman.blend",
+  "clips": [],
+  "min_animation_count": 0,
+  "requirements": {
+    "skins": true,
+    "animated": false,
+    "visual_review": true
+  },
+  "additional_animation_file": "oldman_stress.glb",
+  "license_note": "MakeHuman CC0 character; source-texture derivative and authored normal-field CC0-1.0",
+  "art_approved": false
+}

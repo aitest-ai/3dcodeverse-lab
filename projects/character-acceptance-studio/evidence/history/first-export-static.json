@@ -1,0 +1,38 @@
+{
+  "blender": "5.2.3 LTS",
+  "bone_count": 65,
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Start",
+    "Stop",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "art_approved": false,
+  "game_ready": false,
+  "source_meshes_changed": false,
+  "source_textures_downsampled": false,
+  "source_files_overwritten": false,
+  "source_motion_metrics": {
+    "Idle": {
+      "speed_mps": 0,
+      "duration": 2.5,
+      "sole_min_m": 0.016892921179533005,
+      "sole_max_lowest_m": 0.016892921179533005
+    },
+    "Walk": {
+      "speed_mps": 0,
+      "duration": 1.3333333333333333,
+      "sole_min_m": 0.016892921179533005,
+      "sole_max_lowest_m": 0.016892921179533005
+    },
+    "Run": {
+      "speed_mps": 0,
+      "duration": 0.9333333174387614,
+      "sole_min_m": 0.016892921179533005,
+      "sole_max_lowest_m": 0.016892921179533005
+    }
+  }
+}

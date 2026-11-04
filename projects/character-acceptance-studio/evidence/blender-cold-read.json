@@ -1,0 +1,562 @@
+{
+  "blender": "5.2.3 LTS",
+  "mother_files": [
+    {
+      "file": "sources/harbor-v02/assets/harbor-courier-v02.blend",
+      "sha256": "533ffbdff3bb3dc702787ae4b8340bcd7905e2dd47b609fc0fac190ece4a8453",
+      "bones": 65,
+      "images": [
+        {
+          "name": "Jacket_sea_green_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "34fd744435a83d35900aba7cd07f1350984348e7d594538d5b9d25f13124122e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Jacket_sea_green_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "748b84a9ed9802e09e81cb77c0b68e315a9f58c19ead5dd0137dd3521ced3145",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Shirt_oat_canvas_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "fde3f01d1f3bed283b1fbc9fdc08aa03f464577579aacfa5c975e6a6082a7d0d",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Shirt_oat_canvas_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "ba9181a86490944cf10d6fee5c6b6a6db3352a5aeb0c15b2f0e95069447b4a2e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "T_Eye_Brown",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Trousers_ink_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "37a754ec2be6fa204ea353e8dbfe88570141f317cde4076595cea740fe3d63ff",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Trousers_ink_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "f90b8062d0d896da937c921e5bf633848543744ca97f98299c4d8f5101d6ab34",
+          "actual_pixel_read": true
+        }
+      ],
+      "unchanged_after_cold_read": true,
+      "mesh_count": 14
+    },
+    {
+      "file": "sources/oldman-v29/oldman.blend",
+      "sha256": "9c844fe9d31dfd23dcbb2558aed6e8bbc6eede8e4c636cda73ca365e39089467",
+      "bones": 53,
+      "images": [
+        {
+          "name": "brown_eye.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "cc14a193f411197a1924885800ae7ccb3717295dccad63358f92f3a2ec37515e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyebrow001.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyelashes01.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "old_lightskinned_male_diffuse2.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "7a96cb8c080fd26d6e45802bf1ee95be2d2d290ec77f8cad18ae805804435f6f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_cc0_hair_gray",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1bb8842e0799c8563174f49b051a4c180cbf49bb3ec67f763a79d8cd83aba276",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_age_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1405c6029b39d1d9919a4b363e9f062095bce11bdb9fbdda4629be280026d025",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_cc0_skin_detail",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "c081bddf90f6c3a87736e8abea1c7586167ef8e8397838fa112b15c5c368cf11",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_cc0_hair_tone",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_strand_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "shoes03_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "3ab689b0f00e6d23538c48a0c9fe3022abd79ea28d1c9db391703ed19329d6ab",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "teeth.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "22f9b3f2e88b36ef1686b049c91d5e210a3779db53358ab60f11350f108cf035",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "tongue01_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "6ab705e2462400c1e223530e032c85ad44dd5d3706b4de0943bc196495b71bb7",
+          "actual_pixel_read": true
+        }
+      ],
+      "unchanged_after_cold_read": true,
+      "mesh_count": 21
+    },
+    {
+      "file": "assets/harbor-courier-review/0.1.0/harbor-courier-review.blend",
+      "sha256": "e495bef7247e665e6329ef43febf28ab1b1c4ad3547386e2aa2005a453ec041c",
+      "bones": 65,
+      "images": [
+        {
+          "name": "Jacket_sea_green_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "34fd744435a83d35900aba7cd07f1350984348e7d594538d5b9d25f13124122e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Jacket_sea_green_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "748b84a9ed9802e09e81cb77c0b68e315a9f58c19ead5dd0137dd3521ced3145",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Shirt_oat_canvas_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "fde3f01d1f3bed283b1fbc9fdc08aa03f464577579aacfa5c975e6a6082a7d0d",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Shirt_oat_canvas_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "ba9181a86490944cf10d6fee5c6b6a6db3352a5aeb0c15b2f0e95069447b4a2e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "T_Eye_Brown",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "d08e3356a83211bc6ca21fe3a8e39f4b5c1a3b8f85457fc2c0fb57be09935025",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Trousers_ink_Albedo",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "37a754ec2be6fa204ea353e8dbfe88570141f317cde4076595cea740fe3d63ff",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "Trousers_ink_Roughness",
+          "size": [
+            256,
+            256
+          ],
+          "packed_sha256": "f90b8062d0d896da937c921e5bf633848543744ca97f98299c4d8f5101d6ab34",
+          "actual_pixel_read": true
+        }
+      ],
+      "unchanged_after_cold_read": true,
+      "mesh_count": 18
+    },
+    {
+      "file": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-baseline.blend",
+      "sha256": "c7a5662d103153a3a79146e039b8c7f9add27abd07cb6e18219fe8442d03fa8f",
+      "bones": 53,
+      "images": [
+        {
+          "name": "brown_eye.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "cc14a193f411197a1924885800ae7ccb3717295dccad63358f92f3a2ec37515e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyebrow001.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyelashes01.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "old_lightskinned_male_diffuse2.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "7a96cb8c080fd26d6e45802bf1ee95be2d2d290ec77f8cad18ae805804435f6f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_cc0_hair_gray",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1bb8842e0799c8563174f49b051a4c180cbf49bb3ec67f763a79d8cd83aba276",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_age_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1405c6029b39d1d9919a4b363e9f062095bce11bdb9fbdda4629be280026d025",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_cc0_skin_detail",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "c081bddf90f6c3a87736e8abea1c7586167ef8e8397838fa112b15c5c368cf11",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_cc0_hair_tone",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_strand_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "shoes03_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "3ab689b0f00e6d23538c48a0c9fe3022abd79ea28d1c9db391703ed19329d6ab",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "teeth.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "22f9b3f2e88b36ef1686b049c91d5e210a3779db53358ab60f11350f108cf035",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "tongue01_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "6ab705e2462400c1e223530e032c85ad44dd5d3706b4de0943bc196495b71bb7",
+          "actual_pixel_read": true
+        }
+      ],
+      "unchanged_after_cold_read": true,
+      "mesh_count": 21
+    },
+    {
+      "file": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.blend",
+      "sha256": "8b08b26d3b7ac6428f5fdd3cf59631073a94e5550411520251f4db26ecc3ccf4",
+      "bones": 53,
+      "images": [
+        {
+          "name": "brown_eye.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "cc14a193f411197a1924885800ae7ccb3717295dccad63358f92f3a2ec37515e",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyebrow001.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "eyelashes01.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "old_lightskinned_male_diffuse2.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "7a96cb8c080fd26d6e45802bf1ee95be2d2d290ec77f8cad18ae805804435f6f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_cc0_hair_gray",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1bb8842e0799c8563174f49b051a4c180cbf49bb3ec67f763a79d8cd83aba276",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_age_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "1405c6029b39d1d9919a4b363e9f062095bce11bdb9fbdda4629be280026d025",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v28_cc0_skin_detail",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "c081bddf90f6c3a87736e8abea1c7586167ef8e8397838fa112b15c5c368cf11",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_cc0_hair_tone",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "oldman_v29_strand_normal",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "shoes03_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "3ab689b0f00e6d23538c48a0c9fe3022abd79ea28d1c9db391703ed19329d6ab",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "teeth.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "22f9b3f2e88b36ef1686b049c91d5e210a3779db53358ab60f11350f108cf035",
+          "actual_pixel_read": true
+        },
+        {
+          "name": "tongue01_diffuse.png",
+          "size": [
+            512,
+            512
+          ],
+          "packed_sha256": "6ab705e2462400c1e223530e032c85ad44dd5d3706b4de0943bc196495b71bb7",
+          "actual_pixel_read": true
+        }
+      ],
+      "unchanged_after_cold_read": true,
+      "mesh_count": 21
+    }
+  ],
+  "glb_reimports": [
+    {
+      "file": "assets/harbor-courier-review/0.1.0/harbor-courier-review.glb",
+      "bones": 65,
+      "actions": [
+        "Idle",
+        "Run",
+        "Start",
+        "Stop",
+        "TurnLeft",
+        "TurnRight",
+        "Walk"
+      ],
+      "actual_walk_foot_samples": [
+        [
+          0.1104733943939209,
+          -0.23837769031524658,
+          0.10162167251110077
+        ],
+        [
+          0.10996411740779877,
+          0.10116101801395416,
+          0.07842177897691727
+        ],
+        [
+          0.11368954181671143,
+          0.3965405523777008,
+          0.16518470644950867
+        ]
+      ],
+      "scope": "Real GLB import and evaluated bone motion; not rendered image approval"
+    },
+    {
+      "file": "assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.glb",
+      "bones": 53,
+      "actions": [
+        "Idle",
+        "Run",
+        "Walk"
+      ],
+      "actual_walk_foot_samples": [
+        [
+          0.1089078038930893,
+          -0.22264495491981506,
+          0.08611808717250824
+        ],
+        [
+          0.10890761762857437,
+          0.046352457255125046,
+          0.09130498021841049
+        ],
+        [
+          0.11123842746019363,
+          0.3187631368637085,
+          0.14342054724693298
+        ]
+      ],
+      "scope": "Real GLB import and evaluated bone motion; not rendered image approval"
+    }
+  ],
+  "art_approved": false,
+  "offline_visual": "NOT_RENDERED_BY_THIS_CHECK"
+}

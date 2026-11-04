@@ -1,0 +1,25 @@
+{
+  "blender": "5.2.3 LTS",
+  "bones": 53,
+  "body_morphs": 14,
+  "leg_scale_ratio": 0.8656892372699776,
+  "source_files_overwritten": false,
+  "geometry_uv_weights_changed": false,
+  "source_textures_downsampled": false,
+  "material_alpha_repairs": [
+    "oldman_V28_AgedSkin_DerivedCC0",
+    "TrueMPFBBody_oldman.high-poly",
+    "TrueMPFBBody_oldman.teeth_base",
+    "TrueMPFBBody_oldman.tongue01"
+  ],
+  "material_repair_reason": "Source V29 opaque anatomy exported as alpha BLEND; internal mouth/eyes incorrectly sorted over face in WebGL. Candidate removes alpha connection only for skin/eyes/teeth/tongue; original image bytes and transparent hair/brow/lash retained. Sandal texture alpha preserved; explicit glTF MASK .5 export conversion, implemented in export_alpha_mask().",
+  "art_approved": false,
+  "game_ready": false,
+  "missing": [
+    "Target-specific garment sculpt/weight polish",
+    "Start/Stop/Turn retarget not produced",
+    "Human art acceptance",
+    "Phone grip animation"
+  ],
+  "source_blend_sha256": "9c844fe9d31dfd23dcbb2558aed6e8bbc6eede8e4c636cda73ca365e39089467"
+}

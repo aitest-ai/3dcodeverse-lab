@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "characters": [
+    {
+      "id": "harbor-courier-review",
+      "name": "Harbor 郵差 · 完整衣鞋",
+      "version": "0.1.0",
+      "height_m": 1.76,
+      "fps": 30,
+      "profileSummary": "65 骨 · Quaternius T-pose",
+      "profile": "../assets/harbor-courier-review/0.1.0/skeleton-profile.json",
+      "source": {
+        "url": "../sources/harbor-v02/assets/harbor-courier-v02.glb",
+        "bytes": 2467336,
+        "sha256": "930243269ebfc05f4340259d2560567c922c201f9927e57dd93e98989a8cca81"
+      },
+      "candidate": {
+        "url": "../assets/harbor-courier-review/0.1.0/harbor-courier-review.glb",
+        "bytes": 2497028,
+        "sha256": "9d720c2860a0b6197868a7d9d98476a8df952679a43c98a3c33b085cd552252d"
+      },
+      "motions": {
+        "Idle": {
+          "speed_mps": 0,
+          "note": "原有待機，接地修正候選。"
+        },
+        "Walk": {
+          "speed_mps": 0.8902484178543091,
+          "note": "原始 CC0 動作；接地／步速、袖口及肩帶修正候選。服裝、手肘、重心仍待美術驗收。"
+        },
+        "Run": {
+          "speed_mps": 5.628267920498643,
+          "note": "原始 CC0 動作；接地／步速、袖口及肩帶修正候選。服裝、手肘、重心仍待美術驗收。"
+        },
+        "Start": {
+          "speed_mps": 0,
+          "note": "實驗片段：姿態混合或步行加根節點轉向，腳滑／支撐腳尚待修正，禁止正式地圖取用。"
+        },
+        "Stop": {
+          "speed_mps": 0,
+          "note": "實驗片段：姿態混合或步行加根節點轉向，腳滑／支撐腳尚待修正，禁止正式地圖取用。"
+        },
+        "TurnLeft": {
+          "speed_mps": 0,
+          "note": "實驗片段：姿態混合或步行加根節點轉向，腳滑／支撐腳尚待修正，禁止正式地圖取用。"
+        },
+        "TurnRight": {
+          "speed_mps": 0,
+          "note": "實驗片段：姿態混合或步行加根節點轉向，腳滑／支撐腳尚待修正，禁止正式地圖取用。"
+        }
+      },
+      "provenance": {
+        "pr": 137,
+        "commit": "8e877a07f19571436c2658a885db77206014a74c",
+        "author": "Quaternius / 3dcodeverse-lab styling",
+        "source": "../sources/harbor-v02/THIRD_PARTY_NOTICES.md"
+      },
+      "license": "Quaternius CC0-1.0 + existing project-authored outfit under user task authorization",
+      "warnings": [
+        "所有動畫尚未美術核准",
+        "起停／轉身為實驗候選",
+        "不具遊戲端即時布料／Foot IK",
+        "來源原圖已是 256px，本版保存原位元組，沒有恢復不存在的細節"
+      ],
+      "profile_sha256": "2c18fb7676f921937a321d7fdcc2500f3e98a808ff843623e6a768ce4561da37",
+      "art_approved": false,
+      "game_ready": false
+    },
+    {
+      "id": "taiwan-oldman-review",
+      "name": "V29 騎樓阿伯 · 較矮寬身形",
+      "version": "0.1.0",
+      "height_m": 1.6,
+      "fps": 30,
+      "profileSummary": "53 骨 · MPFB A-pose · 獨立 rest/roll 適配",
+      "profile": "../assets/taiwan-oldman-review/0.1.0/skeleton-profile.json",
+      "source": {
+        "url": "../assets/taiwan-oldman-review/0.1.0/oldman-retarget-baseline.glb",
+        "bytes": 7108808,
+        "sha256": "1c2085ca5ec9b95c2e3da5e520ec627d75454b81b060d4b0603352221d7f330f",
+        "label": "重定向初稿（非原 V29 動作）"
+      },
+      "candidate": {
+        "url": "../assets/taiwan-oldman-review/0.1.0/oldman-retarget-candidate.glb",
+        "bytes": 7110528,
+        "sha256": "bb0495cb2f7c2eb0a0fcbe2da2e03d2c33f33365784708e5e3271b27c794b907"
+      },
+      "motions": {
+        "Idle": {
+          "speed_mps": 0,
+          "note": "Quaternius→MPFB rest/軸向適配及烘焙候選；服裝、手肘、腳滑尚待美術驗收。"
+        },
+        "Walk": {
+          "speed_mps": 0.8069924015830721,
+          "note": "Quaternius→MPFB rest/軸向適配及烘焙候選；服裝、手肘、腳滑尚待美術驗收。"
+        },
+        "Run": {
+          "speed_mps": 4.68693705681849,
+          "note": "Quaternius→MPFB rest/軸向適配及烘焙候選；服裝、手肘、腳滑尚待美術驗收。"
+        }
+      },
+      "provenance": {
+        "pr": 48,
+        "commit": "1b1f3695abde627362f6cdd78031e442fbee9ea4",
+        "documentation_head": "0cef2282394b911e61cb3cde169f31be0034af95",
+        "artifact_id": 13039030982,
+        "original_source": "../sources/oldman-v29/oldman.blend",
+        "original_GLBS": [
+          "../sources/oldman-v29/oldman.glb",
+          "../sources/oldman-v29/oldman_stress.glb"
+        ],
+        "author": "MakeHuman Community / MRT garments / existing 3dcodeverse styling; Quaternius motion"
+      },
+      "license": "MakeHuman CC0-1.0; MRT CC0 shirt/pants; Quaternius CC0 motion. See LICENSE-SOURCE-HEADERS.txt",
+      "warnings": [
+        "原 V29 只有短姿態片段，這裡 A 為本次重定向初稿，B 為接地候選",
+        "不同53骨、A姿態與骨長，未複製65骨動畫或 inverse bind",
+        "原有手機仍綁手，握持未適配",
+        "未提供起停／轉身",
+        "來源原圖512px完整保留，未宣稱高解析度原素材已取回"
+      ],
+      "profile_sha256": "f2b6ab728e3ebf7a1ce8ddc0bdb91eb2d0f93e49160c716ea1ea402bffbcd2f8",
+      "art_approved": false,
+      "game_ready": false
+    }
+  ],
+  "art_approved": false
+}

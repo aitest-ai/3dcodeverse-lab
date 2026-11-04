@@ -1,0 +1,227 @@
+{
+  "character": "oldman",
+  "version": "V29",
+  "input_blend_sha256": "5a62bfd2351477bba1668852c9c5de32334311ae1c207190fb5b1a866f4ded71",
+  "native_body_vertices": 13380,
+  "bones": 53,
+  "body_morph_count": 14,
+  "body_form": {
+    "changed_source_vertices": 392,
+    "maximum_world_displacement_m": 0.002928859698064001,
+    "relative_morph_max_error_m": 7.450580596923828e-09,
+    "existing_relative_shape_count": 14,
+    "fitted_eye_center": [
+      0.026312491813757118,
+      -0.12475519178462147,
+      1.4878881743089143
+    ],
+    "scope": "under-eye/cheek/jowl artistic form; eye/nose/lip centre protected",
+    "method": "bounded smooth displacement, identical offset applied to Basis and every existing shape",
+    "target_age_claim": false,
+    "new_expression_keys": false
+  },
+  "hair_form": {
+    "changed_source_vertices": 0,
+    "maximum_world_displacement_m": 0.0,
+    "scope": "source swept-back silhouette retained"
+  },
+  "hair_material": {
+    "source_cc0_image": "oldman_cc0_hair_gray",
+    "source_decoded_sha256": "f38e29fa1b6993cfcb49f32437458bbb28158a9f1b8984455f576e829c7018cc",
+    "derived_hair_albedo": {
+      "file": "oldman_v29_cc0_hair_tone.png",
+      "sha256": "a12d6b5155f6e940a68600ef1f2cc1789e03385f22b30a867c69e80d5766534f",
+      "width": 512,
+      "height": 512
+    },
+    "source_flow_normal": {
+      "file": "oldman_v29_strand_normal.png",
+      "sha256": "2ddecd6fd3cc06c0be99862a3f9288188bc2f746e71a1f9d7272fbcb0665b7f8",
+      "width": 512,
+      "height": 512
+    },
+    "valid_hair_texels": 138767,
+    "normal_strength": 0.48,
+    "source_detail_std": 0.007278108203619001,
+    "source_broad_std": 0.010796627671158207,
+    "method": "source-UV native irregular hair flow, local contrast and restrained standard tangent normal",
+    "periodic_procedural_pattern_removed": true,
+    "not_individual_hair_strands": true,
+    "no_hair_card_simulation": true,
+    "license": "CC0 hair color and normal derivatives of original licensed source"
+  },
+  "topology_uv_weights_unchanged": true,
+  "unchanged_original_meshes": [
+    "V27_oldman_CapCrown",
+    "V27_oldman_CapBand",
+    "V27_oldman_CapVisor",
+    "V27_oldman_CapPanelSeam0",
+    "V27_oldman_CapPanelSeam1",
+    "V27_oldman_CapPanelSeam2",
+    "V27_oldman_CapPanelSeam3",
+    "V27_oldman_CapPanelSeam4",
+    "V27_oldman_CapPanelSeam5",
+    "TrueMPFBBody_oldman.high-poly",
+    "TrueMPFBBody_oldman.eyebrow001",
+    "TrueMPFBBody_oldman.eyelashes01",
+    "TrueMPFBBody_oldman.teeth_base",
+    "TrueMPFBBody_oldman.tongue01",
+    "OpenSourceCloth_oldman_toigo_basic_tucked_t-shirt",
+    "OpenSourceCloth_oldman_toigo_wool_pants",
+    "TrueMPFBBody_oldman.shoes03",
+    "V27_oldman_PhoneBody",
+    "V27_oldman_PhoneScreen"
+  ],
+  "source_image_bytes_preserved": [
+    "brown_eye.png",
+    "eyebrow001.png",
+    "eyelashes01.png",
+    "old_lightskinned_male_diffuse2.png",
+    "oldman_cc0_hair_gray",
+    "oldman_v28_age_normal",
+    "oldman_v28_cc0_skin_detail",
+    "shoes03_diffuse.png",
+    "teeth.png",
+    "tongue01_diffuse.png"
+  ],
+  "neutral_glb": {
+    "file": "oldman.glb",
+    "bytes": 4183472,
+    "sha256": "3c347d9587abb42c865a71a984af91ac98514ef01f86e35001de33104e0c4693",
+    "animations": 0,
+    "animation_channels": 0
+  },
+  "stress_glb": {
+    "file": "oldman_stress.glb",
+    "bytes": 4224824,
+    "sha256": "abb3c57b381447a434fcb9c71f7cb40dfb5dabab2ecba98e44c87961546b50f3",
+    "animations": 1,
+    "animation_channels": 159
+  },
+  "editable_blend": {
+    "file": "oldman.blend",
+    "bytes": 4317147,
+    "sha256": "9c844fe9d31dfd23dcbb2558aed6e8bbc6eede8e4c636cda73ca365e39089467"
+  },
+  "scope": "V28 native elder source update; bounded face and hair form plus source-UV strand maps; same 2.5s action",
+  "not_claimed": [
+    "complete chronological-age likeness",
+    "individual hair simulation",
+    "all-angle expression or collision approval",
+    "new walk/run/squat"
+  ],
+  "art_approved": false,
+  "renders": [
+    "oldman_before_full.png",
+    "oldman_before_face.png",
+    "oldman_before_threequarter.png",
+    "oldman_before_side.png",
+    "oldman_before_with_hat.png",
+    "oldman_before_smile.png",
+    "oldman_before_blink.png",
+    "oldman_before_jaw_open.png",
+    "oldman_before_turn.png",
+    "oldman_after_full.png",
+    "oldman_after_face.png",
+    "oldman_after_threequarter.png",
+    "oldman_after_side.png",
+    "oldman_after_with_hat.png",
+    "oldman_after_smile.png",
+    "oldman_after_blink.png",
+    "oldman_after_jaw_open.png",
+    "oldman_after_turn.png",
+    "oldman_delivered_full.png",
+    "oldman_delivered_face.png",
+    "oldman_delivered_threequarter.png",
+    "oldman_delivered_smile.png",
+    "oldman_delivered_blink.png",
+    "oldman_delivered_jaw_open.png"
+  ],
+  "delivered_glb_rendered": true,
+  "source_reopened_images": [
+    {
+      "name": "brown_eye.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "eyebrow001.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "eyelashes01.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "old_lightskinned_male_diffuse2.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "oldman_cc0_hair_gray",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "oldman_v28_age_normal",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "oldman_v28_cc0_skin_detail",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "oldman_v29_cc0_hair_tone",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "oldman_v29_strand_normal",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "shoes03_diffuse.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "teeth.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    },
+    {
+      "name": "tongue01_diffuse.png",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  ]
+}
