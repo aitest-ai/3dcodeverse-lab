@@ -1,0 +1,57 @@
+{
+  "schema": "noboribetsu-date-v034-v004-roof-mesh-isolation/1",
+  "kind": "inspector_only_source_attribution",
+  "base_pr": 138,
+  "source_v033_inspector_zip_sha256": "b1a430f27f390bc284ba5febbdcd07b5ea45c1e281c5b2308d16c5fb38356339",
+  "v004_original_glb_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "original_v004_mesh_count": 17,
+  "original_v033_inspector_files": 38,
+  "original_files_unchanged": 36,
+  "new_inspector_files": 41,
+  "original_glbs_byte_identical": true,
+  "changed_files": [
+    "app.js",
+    "index.html"
+  ],
+  "isolated_meshes": [
+    "plaster_offwhite",
+    "ridge_tile",
+    "tile_lit",
+    "tile_ash",
+    "tile_variation",
+    "tile_slate"
+  ],
+  "candidate_white_band_face_indices_trimesh": [
+    20,
+    21
+  ],
+  "white_band_model_bounds_xyz_min": [
+    1.8208966255,
+    6.193520546,
+    56.7219162
+  ],
+  "white_band_model_bounds_xyz_max": [
+    22.018398285,
+    6.193520546,
+    57.34191513
+  ],
+  "white_band_visibility_confirmed_by_webgl2": true,
+  "ridge_visibility_independently_confirmed": true,
+  "mesh_selection_in_browser_modes": 6,
+  "glbs_loaded": 10,
+  "webgl2_pass": true,
+  "js_errors": 0,
+  "console_errors": 0,
+  "clean_replay_matches": 41,
+  "full_runtime_modified": false,
+  "new_glb_created": false,
+  "geometry_surgically_edited": false,
+  "visual_art_approved": false,
+  "site_surveyed": false,
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_host_tested": false,
+  "inspector_zip_sha256": "b631c6d0fbed245a493a087848dc6ceaf94373d9da6de4ada8349a3b97fa7040",
+  "sourceqa_zip_sha256": "7dd54c65609ead87503c512c4565bf987b60422d73509a73dcd56a3c2a61f834",
+  "merge_policy": "DRAFT_NO_MERGE_NO_DEPLOY"
+}
