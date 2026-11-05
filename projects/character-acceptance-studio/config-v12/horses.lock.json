@@ -1,0 +1,17 @@
+{
+  "version": "0.12.0",
+  "assets": [
+    {
+      "asset_id": "horse-brown-walk-support-review",
+      "version": "0.1.0",
+      "source_id": "horse-brown",
+      "model_sha256": "1904546061754251a43b85d555046a200e821410e8ebb1a4e88cb177f7853978"
+    },
+    {
+      "asset_id": "horse-white-walk-support-review",
+      "version": "0.1.0",
+      "source_id": "horse-white",
+      "model_sha256": "6db040ebc75cce158d350cd142b17fa7446e18bdd04bdf7edd00db425c2084f3"
+    }
+  ]
+}

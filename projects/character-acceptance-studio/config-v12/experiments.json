@@ -1,0 +1,30 @@
+{
+  "trials": [
+    {
+      "trial": "trial01",
+      "status": "native-reach-passed",
+      "error": null
+    },
+    {
+      "trial": "trial-even55",
+      "status": "native-reach-failed",
+      "error": "RuntimeError: FrontR t=0.991667, phase=0.9286 reach=2.376676 max=2.371996 target=[-0.42048129439353943, -2.1829946041107178, 0.11086741089820862] old=[-0.42074158787727356, -1.7360692024230957, 0.2615460157394409] delta=[-1.3582634572628649e-08, -0.38142478466033936, -0.13840675354003906]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": "trial-even60",
+      "status": "native-reach-failed",
+      "error": "RuntimeError: FrontL t=0.058333, phase=0.6286 reach=2.372216 max=2.371992 target=[0.42212018370628357, -0.6216697096824646, 0.028625063598155975] old=[0.41641029715538025, -0.7352514266967773, 0.24681055545806885] delta=[-1.1452292625335758e-07, 0.3053533434867859, -0.12295228987932205]: Unreachable native leg correction: FrontLowerLeg.L"
+    },
+    {
+      "trial": "trial-even535",
+      "status": "native-reach-passed",
+      "error": null
+    }
+  ],
+  "selected": "trial-even535",
+  "selected_parameters": "LH .19 / LF .44 / RH .69 / RF .94, all duty 15/28, speed .8m/s, body lowering .02m unchanged",
+  "native_maximum_required_body_lowering_m": 0.01565166793195165,
+  "native_minimum_reach_margin_m": 0.004109519497944444,
+  "calibration_source_plan": "config-v11/walk-plan.json",
+  "failures_not_registered": true
+}

@@ -1,0 +1,1 @@
+Generated v0.12 review output. Full pipeline: scripts/run_validation_v12.py in a fresh repository checkout. Downloaded Runtime + Sources: use the separate-output rebuild command in README_V12.md. No production release.
