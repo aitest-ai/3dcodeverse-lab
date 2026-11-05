@@ -1,0 +1,12 @@
+{
+  "asset_id": "vroid-vita-motion-review",
+  "mesh_count": 3,
+  "skin_count": 3,
+  "animation_clips": [
+    "Idle",
+    "Walk",
+    "Run"
+  ],
+  "file_bytes": 16394136,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

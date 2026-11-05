@@ -1,0 +1,65 @@
+{
+  "method": "All Face/Body/Hair vertices at cycle 2 end vs cycle 3 start with root travel accumulation",
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "cycle": 3,
+      "variants": [
+        {
+          "variant": "previous-or-experiment",
+          "maximum_world_vertex_jump_m": 6.20961618124808e-7
+        },
+        {
+          "variant": "corrected",
+          "maximum_world_vertex_jump_m": 0.0000012984282799512416
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Idle",
+      "cycle": 3,
+      "variants": [
+        {
+          "variant": "previous-or-experiment",
+          "maximum_world_vertex_jump_m": 0
+        },
+        {
+          "variant": "corrected",
+          "maximum_world_vertex_jump_m": 0
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Walk",
+      "cycle": 3,
+      "variants": [
+        {
+          "variant": "previous-or-experiment",
+          "maximum_world_vertex_jump_m": 3.194568529349045e-7
+        },
+        {
+          "variant": "corrected",
+          "maximum_world_vertex_jump_m": 3.766325774142756e-7
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Run",
+      "cycle": 3,
+      "variants": [
+        {
+          "variant": "previous-or-experiment",
+          "maximum_world_vertex_jump_m": 9.098465095310989e-7
+        },
+        {
+          "variant": "corrected",
+          "maximum_world_vertex_jump_m": 8.085254749741882e-7
+        }
+      ]
+    }
+  ]
+}

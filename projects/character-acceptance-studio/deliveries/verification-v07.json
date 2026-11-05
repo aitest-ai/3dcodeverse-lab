@@ -1,0 +1,74 @@
+{
+  "archives": [
+    {
+      "file": "Character_Studio_0.7.0_Runtime.zip",
+      "sha256": "439365e80ab1b9121c209060bbb72f9e139cd600c90adfc0c8582b9cb3d4c1b2",
+      "crc": "pass",
+      "indexed_files": 237,
+      "all_indexed_hashes": "pass",
+      "repository_bytes_equal_archive": true
+    },
+    {
+      "file": "Character_Studio_0.7.0_Vivi_Sources.zip",
+      "sha256": "e9e8d9377011e5a34f9c1679e1a877745892f70db1d14807e42e2dcbd72a114e",
+      "crc": "pass",
+      "indexed_files": 35,
+      "all_indexed_hashes": "pass",
+      "repository_bytes_equal_archive": true
+    },
+    {
+      "file": "Character_Studio_0.7.0_Vita_Sources.zip",
+      "sha256": "052e11a08bf695a460c04c53a47e6a4cb81d8bdc88e27cc587c89f2c2ba0045c",
+      "crc": "pass",
+      "indexed_files": 48,
+      "all_indexed_hashes": "pass",
+      "repository_bytes_equal_archive": true
+    }
+  ],
+  "clean_extracted_browser": {
+    "source": "clean extracted Runtime + both Sources, separate localhost server",
+    "characters": [
+      "vivi",
+      "vita"
+    ],
+    "actual_browser": true,
+    "a_b_and_single_corrected": true,
+    "native_B_timeline": true,
+    "step_rate_play_pause": true,
+    "expression": true,
+    "all_download_links": true,
+    "sha256_corruption_rejected_and_retry": true,
+    "gallery": true,
+    "errors": [],
+    "http_failures": []
+  },
+  "full_clean_rebuilds": [
+    {
+      "id": "vroid-vivi-motion-review",
+      "version": "0.3.0",
+      "file": "model.glb",
+      "sha256": "1efdd916d4f14b59b27c9baf71bb52fd334fa64d88c67c1484e11a6f4d4814a0",
+      "result": "byte-identical GLB from clean extracted inputs"
+    },
+    {
+      "id": "vroid-vita-motion-review",
+      "version": "0.1.0",
+      "file": "model.glb",
+      "sha256": "c2b0a9522177b2f4ccda29fd886c503b3f58ff503076f65496050a109a559157",
+      "result": "byte-identical GLB from clean extracted inputs"
+    },
+    {
+      "id": "vroid-vita-motion-review",
+      "version": "0.1.0",
+      "file": "baseline.glb",
+      "sha256": "7ac69124b475c9f95d8c3fdb3bd0b28a4d3d428ecfaf529acd715b34f57aed05",
+      "result": "byte-identical GLB from clean extracted inputs"
+    }
+  ],
+  "indexed_files_verified": 320,
+  "all_141_frame_records_match_final_model_hashes": true,
+  "previous_tracked_files": "unchanged from d58ec88446bde04fa79db1323ca4c4c340e0269f",
+  "main_and_other_project_sites": "untouched",
+  "art_approved": false,
+  "game_ready": false
+}

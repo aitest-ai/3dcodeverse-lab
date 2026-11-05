@@ -1,0 +1,21 @@
+{
+  "errors": [],
+  "frames": 141,
+  "videos": [
+    {
+      "key": "vivi",
+      "file": "vivi-run.webm",
+      "requested_wall_seconds": 6,
+      "requested_capture_hz": 24
+    },
+    {
+      "key": "vita",
+      "file": "vita-run.webm",
+      "requested_wall_seconds": 6,
+      "requested_capture_hz": 24,
+      "actual_encoded_duration": "see video-probes.json; software WebGL can drop frames"
+    }
+  ],
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

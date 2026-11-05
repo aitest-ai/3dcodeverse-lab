@@ -1,0 +1,17 @@
+{
+  "errors": [],
+  "model_switch_vivi_vita": true,
+  "seven_vivi_clips": true,
+  "vita_unmade_transitions_disabled": true,
+  "vivi_sequences": true,
+  "corrected_duration_timeline": true,
+  "step_60_fps": true,
+  "single_corrected_version": true,
+  "viewport_390": {
+    "width": 390,
+    "scroll": 390
+  },
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested",
+  "renderer": "headless Chromium + SwiftShader"
+}

@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 5.331911385273697e-7
+    },
+    {
+      "key": "vita",
+      "clip": "Idle",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 0.0000010133986471855106
+    },
+    {
+      "key": "vita",
+      "clip": "Walk",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 6.90035527934199e-7
+    },
+    {
+      "key": "vita",
+      "clip": "Run",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 6.652515979692127e-7
+    }
+  ]
+}

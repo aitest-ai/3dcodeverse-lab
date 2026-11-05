@@ -1,0 +1,24 @@
+{
+  "delivered_as_finished_models": false,
+  "trials": [
+    {
+      "candidate": "Vivi high flight pelvis",
+      "model_sha256": "1b30dc1da830730c0eb2ad1ddb227ef672744468d19a6c99ef87444ac24ce24f",
+      "parameters": {
+        "pelvis_center": 0.95,
+        "amplitude": 0.02
+      },
+      "failure": "Up to 9.304 mm leg reach residual during flight; rejected, reduced flight peak while retaining support extension."
+    },
+    {
+      "candidate": "Vivi repeated skirt correction",
+      "model_sha256": "452f77fe20329c723076ee1e97d70cae35e17d244c9e3befaa40f0dc1f027f6b",
+      "failure": "Visual side inspection found excessive hem lift: applied fresh rotation onto an already-baked secondary chain. Rejected; reset whole native chain from rest before solving."
+    },
+    {
+      "candidate": "Vita Walk first adaptation",
+      "model_sha256": "39f5c31175ebb25691f4f004b0d2d7fdd7fe4c7419196f8e25edbb9cb986af75",
+      "failure": "Walk stance mean knee flexion about 38 degrees and visibly crouched support. Rejected intermediate B, replaced with phase-specific walking pelvis curve. Low-pelvis A is explicitly retained for comparison, never approved."
+    }
+  ]
+}

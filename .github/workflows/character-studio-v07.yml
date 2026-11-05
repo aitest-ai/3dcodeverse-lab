@@ -1,0 +1,30 @@
+name: Character studio v07 posture integrity
+on:
+  push:
+    branches: [feat/character-studio-v07-run-posture-20261105]
+    paths:
+      - projects/character-acceptance-studio/**
+      - .github/workflows/character-studio-v07.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source preservation and recorded acceptance checks
+        run: |
+          python3 -m py_compile projects/character-acceptance-studio/scripts/*v07.py projects/character-acceptance-studio/scripts/v07/*.py
+          node --input-type=module --check < projects/character-acceptance-studio/web-v07/app.js
+          python3 projects/character-acceptance-studio/scripts/verify_motion_v07.py
+      - name: GLB structure only, not new browser testing or art approval
+        run: |
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/library-v07/vroid-vivi-motion-review/0.3.0
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/library-v07/vroid-vita-motion-review/0.1.0

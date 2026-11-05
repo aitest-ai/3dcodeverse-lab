@@ -1,0 +1,140 @@
+{
+  "studio_version": "0.7.0",
+  "entries": [
+    {
+      "asset_id": "vroid-vivi-motion-review",
+      "version": "0.3.0",
+      "sha256": "1efdd916d4f14b59b27c9baf71bb52fd334fa64d88c67c1484e11a6f4d4814a0",
+      "native_joints": 152,
+      "native_leg_length_m": 0.6317317366,
+      "run_period_s": 0.7,
+      "run_speed_m_s": 1.4890818722159602,
+      "changed_and_checked_clips": [
+        "Run"
+      ],
+      "stance_knee_degrees": [
+        {
+          "clip": "Run",
+          "before": {
+            "min": 56.85828569902051,
+            "mean": 62.664191728222825,
+            "max": 66.39252460784871
+          },
+          "after": {
+            "min": 24.0732468276816,
+            "mean": 38.20229412508347,
+            "max": 42.78596140809785
+          }
+        }
+      ],
+      "minimum_sole_y_m": 0.0027398037695899186,
+      "maximum_contact_drift_m": 0.0008861521835356817,
+      "maximum_absolute_torso_lean_degrees": 6.653420679771659,
+      "art_approved": false,
+      "game_ready": false
+    },
+    {
+      "asset_id": "vroid-vita-motion-review",
+      "version": "0.1.0",
+      "sha256": "c2b0a9522177b2f4ccda29fd886c503b3f58ff503076f65496050a109a559157",
+      "native_joints": 155,
+      "native_leg_length_m": 0.8038161826932363,
+      "run_period_s": 0.7,
+      "run_speed_m_s": 1.8947095734911998,
+      "changed_and_checked_clips": [
+        "Idle",
+        "Walk",
+        "Run"
+      ],
+      "stance_knee_degrees": [
+        {
+          "clip": "Idle",
+          "before": {
+            "min": 13.972965198659722,
+            "mean": 14.86463947236562,
+            "max": 15.736807170856935
+          },
+          "after": {
+            "min": 13.972965198659722,
+            "mean": 14.86463947236562,
+            "max": 15.736807170856935
+          }
+        },
+        {
+          "clip": "Walk",
+          "before": {
+            "min": 31.044345344088327,
+            "mean": 38.056983794844356,
+            "max": 43.00680937822176
+          },
+          "after": {
+            "min": 21.008459749868763,
+            "mean": 27.703835707347377,
+            "max": 34.51611636663742
+          }
+        },
+        {
+          "clip": "Run",
+          "before": {
+            "min": 57.09011175596355,
+            "mean": 62.75858156207509,
+            "max": 65.9954134515281
+          },
+          "after": {
+            "min": 24.3372136917082,
+            "mean": 38.002260284895996,
+            "max": 42.44234682599961
+          }
+        }
+      ],
+      "minimum_sole_y_m": 0.00265469694818201,
+      "maximum_contact_drift_m": 0.0014422229974295547,
+      "maximum_absolute_torso_lean_degrees": 6.97777462087788,
+      "art_approved": false,
+      "game_ready": false
+    }
+  ],
+  "program": {
+    "status": "source byte/clip preservation, exact version/hash pinning, motion-only geometry guard and cold reexport tested",
+    "evidence": [
+      "reexport.json",
+      "export-guard.json",
+      "pin-check.json"
+    ]
+  },
+  "blender": {
+    "status": "cold mothers and evaluated surfaces tested; no offline art rendering",
+    "evidence": "blender-cold.json"
+  },
+  "browser": {
+    "status": "actual Chromium + SwiftShader",
+    "sample_hz": 120,
+    "samples_per_comparison_variant": 632,
+    "corrected_maximum_specified_skirt_leg_pairs": 0,
+    "corrected_maximum_hand_skin_self_pairs": 0,
+    "maximum_full_mesh_probe_vs_blender_m": 1.0133986471855106e-06,
+    "maximum_accumulated_loop_join_m": 1.2984282799512416e-06,
+    "actual_screenshots": 141,
+    "encoded_video_seconds": {
+      "vivi": 4.051143,
+      "vita": 4.12188
+    },
+    "phase_comparison": "Timeline is corrected B seconds; previous A time-scaled to same normalized phase, not same seconds"
+  },
+  "physical_mobile": "not-tested; desktop viewport width 390 only",
+  "human_art": "not-tested",
+  "second_engine": "not-tested",
+  "known_limitations": [
+    "Vita Start/Stop/TurnLeft/TurnRight not made; controls disabled",
+    "No full-body solid/cloth-self collision or garment thickness approval",
+    "Deterministic secondary-bone garment correction, no cloth simulation",
+    "Original body shapes, textures and source nail attachments retained",
+    "Vivi six unchanged clips retained exactly; this phase only fixes Run",
+    "No new animal animation in this phase; earlier Shiba/horse library preserved",
+    "Light jogging candidates, not sprint/mocap/AI training",
+    "No arbitrary-time gameplay blending or uneven terrain validation",
+    "CPU recordings can drop frames; no hardware/mobile performance claim"
+  ],
+  "art_approved": false,
+  "game_ready": false
+}

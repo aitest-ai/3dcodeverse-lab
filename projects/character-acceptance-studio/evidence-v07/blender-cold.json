@@ -1,0 +1,39 @@
+{
+  "blender": "5.2.3 LTS",
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "frames": 43,
+      "maximum_build_vs_cold_surface_error_m": 2.5035130522423195e-07,
+      "minimum_sole_z_m": 0.0029998719692230225,
+      "mother_sha256": "08829fc3da823c10b6228249f05d8ce4de864ba6c562fdbabe4d0ca6674cc5a3"
+    },
+    {
+      "key": "vita",
+      "clip": "Idle",
+      "frames": 151,
+      "maximum_build_vs_cold_surface_error_m": 4.819648875433702e-07,
+      "minimum_sole_z_m": 0.002999722957611084,
+      "mother_sha256": "7753384aeebf4180a075c0862016b64bec953df79ab5fa582501394bbabb4814"
+    },
+    {
+      "key": "vita",
+      "clip": "Walk",
+      "frames": 81,
+      "maximum_build_vs_cold_surface_error_m": 3.03925246810483e-07,
+      "minimum_sole_z_m": 0.00299956277012825,
+      "mother_sha256": "7753384aeebf4180a075c0862016b64bec953df79ab5fa582501394bbabb4814"
+    },
+    {
+      "key": "vita",
+      "clip": "Run",
+      "frames": 43,
+      "maximum_build_vs_cold_surface_error_m": 3.425039274803365e-07,
+      "minimum_sole_z_m": 0.0029996857047080994,
+      "mother_sha256": "7753384aeebf4180a075c0862016b64bec953df79ab5fa582501394bbabb4814"
+    }
+  ],
+  "offline_art_render": "not performed; actual evaluated surfaces only",
+  "human_art": "not-tested"
+}
