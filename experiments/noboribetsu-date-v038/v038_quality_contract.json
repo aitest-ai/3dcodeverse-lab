@@ -1,0 +1,51 @@
+{
+  "schema": "noboribetsu-date-v038-integrated-roof-alignment/1",
+  "status": "SOURCE_AND_WEBGL2_PASS_ART_NOT_APPROVED",
+  "kind": "inspector_only_reversible_F",
+  "source_v037_draft_pr": 149,
+  "base_branch": "qa/noboribetsu-date-v037-lossless-roof-material-candidates-r1",
+  "source_v037_inspector_sha256": "ff86ba6e7e64f69505aa5aa5d6cacfd2d73dba3da04e57043e67891fced2f453",
+  "original_v004_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "f_glb_sha256": "d9232643103378644ea89b780126a8c516c1a41da70edfaa2542916da558e1a0",
+  "f_glb_bytes": 1208064,
+  "changed_bytes_in_GLb": 12,
+  "plaster_modified_vertices": [
+    2,
+    3,
+    6,
+    7
+  ],
+  "y_delta": -0.225,
+  "plaster_total_vertices": 32,
+  "plaster_faces": 48,
+  "all_original_mesh_count": 17,
+  "other_meshes_unchanged": 16,
+  "source_file_count": 53,
+  "source_files_unchanged": 51,
+  "inspector_file_count": 58,
+  "clean_replay_matching_files": 58,
+  "webgl2_real": true,
+  "loaded_GLBs": 14,
+  "desktop_equal_view_comparisons": 8,
+  "mobile_chromium_emulation_430x932": true,
+  "browser_errors": 0,
+  "pixels_rgb_maxchannel_gt10": {
+    "roof": 66985,
+    "roofSide": 26788,
+    "eave": 17910,
+    "street": 4986
+  },
+  "right_eave_dark_corner": "UNRESOLVED_ALREADY_VISIBLE_IN_ORIGINAL",
+  "art_approval": false,
+  "original_all13_GLbs_byte_identical": true,
+  "full_game_runtime_modified": false,
+  "blender_native_executed": false,
+  "android_real_tested": false,
+  "private_host_tested": false,
+  "same_building_survey_verified": false,
+  "delivery_sha256": {
+    "inspector": "2078d61d53a9f52fcf76064b5abfc05fc7117753be4565d383884f5e40727f38",
+    "sourceqa": "85fa116905105f85335257c63f355bd72e01f49a1abeaa6aac94654e3bb294a5"
+  },
+  "merge_policy": "DRAFT_NO_MERGE_NO_DEPLOY"
+}
