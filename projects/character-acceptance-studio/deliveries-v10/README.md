@@ -1,0 +1,1 @@
+Generated v0.10 review artifacts. Build/validation scripts populate this directory; candidate binaries are distributed through the Draft PR GitHub Actions artifact, not committed to Git or released as official horse assets. See ../README_V10.md.

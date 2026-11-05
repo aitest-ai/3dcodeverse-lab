@@ -1,0 +1,253 @@
+{
+  "checked_at": "2026-11-05T15:00:52.941777+08:00",
+  "stage": "local authoring and fresh ZIP extraction; CI results recorded in Draft PR",
+  "blender": "5.2.3 LTS e13b728c6880",
+  "hardware": "4 CPU quota, 16 GiB, no GPU; Chromium SwiftShader",
+  "preservation": {
+    "status": "source preservation + recorded browser contact/loop + cold body parity passed",
+    "entries": [
+      {
+        "asset_id": "horse-brown-grounded-review",
+        "model_sha256": "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6",
+        "original_binary_and_geometry": "exactly preserved",
+        "unchanged_clips": 11,
+        "corrected_clips": [
+          "Walk",
+          "Gallop"
+        ]
+      },
+      {
+        "asset_id": "horse-white-grounded-review",
+        "model_sha256": "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb",
+        "original_binary_and_geometry": "exactly preserved",
+        "unchanged_clips": 11,
+        "corrected_clips": [
+          "Walk",
+          "Gallop"
+        ]
+      }
+    ],
+    "brown_white_body_correspondence": {
+      "vertices": 6548,
+      "exact_positions": 6457,
+      "maximum_native_position_difference": 9.830249847454215e-07,
+      "maximum_weight_difference": 0.0,
+      "node_rest_definitions_equal": true,
+      "note": "Native vertex order and material primitive partition differ; matching uses spatial positions and named bone weights."
+    },
+    "material_partitions_and_mane_geometry": "different source variants retained independently",
+    "adaptation_scope": "same body surface/weights after spatial correspondence (native vertex order differs) and joint rest; different material partition and mane geometry preserved; not a second anatomical body shape",
+    "art_approved": false,
+    "game_ready": false
+  },
+  "browser": {
+    "scope": "Actual Chromium WebGL + SwiftShader. Normalized first-to-last key phase. 240Hz interpolated surface sample, no world velocity claim.",
+    "entries": [
+      {
+        "source_id": "horse-brown",
+        "clip": "Walk",
+        "model_sha256": [
+          "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+          "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6"
+        ],
+        "sample_hz": 240,
+        "samples": 281,
+        "summary": [
+          {
+            "minimum_sole_y_m": -0.011203630959245274,
+            "worst_phase": 0.5107142857142857,
+            "worst_foot": "FrontR",
+            "loop_seam_m": 0
+          },
+          {
+            "minimum_sole_y_m": 0.0013087805180997782,
+            "worst_phase": 0.5178571428571429,
+            "worst_foot": "FrontR",
+            "loop_seam_m": 0,
+            "maximum_cold_body_surface_error_m": 9.394218393482492e-07
+          }
+        ],
+        "world_sliding": "not-tested: source remains in-place without calibrated world velocity"
+      },
+      {
+        "source_id": "horse-brown",
+        "clip": "Gallop",
+        "model_sha256": [
+          "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+          "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6"
+        ],
+        "sample_hz": 240,
+        "samples": 146,
+        "summary": [
+          {
+            "minimum_sole_y_m": -0.0151103032062874,
+            "worst_phase": 0,
+            "worst_foot": "FrontL",
+            "loop_seam_m": 0.13567546911573536
+          },
+          {
+            "minimum_sole_y_m": 0.001925409945872346,
+            "worst_phase": 0.11724137931034483,
+            "worst_foot": "FrontL",
+            "loop_seam_m": 0,
+            "maximum_cold_body_surface_error_m": 1.3678817171177978e-06
+          }
+        ],
+        "world_sliding": "not-tested: source remains in-place without calibrated world velocity"
+      },
+      {
+        "source_id": "horse-white",
+        "clip": "Walk",
+        "model_sha256": [
+          "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+          "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb"
+        ],
+        "sample_hz": 240,
+        "samples": 281,
+        "summary": [
+          {
+            "minimum_sole_y_m": -0.011203630959245274,
+            "worst_phase": 0.5107142857142857,
+            "worst_foot": "FrontR",
+            "loop_seam_m": 0
+          },
+          {
+            "minimum_sole_y_m": 0.0013087805180997782,
+            "worst_phase": 0.5178571428571429,
+            "worst_foot": "FrontR",
+            "loop_seam_m": 0,
+            "maximum_cold_body_surface_error_m": 9.394218393482492e-07
+          }
+        ],
+        "world_sliding": "not-tested: source remains in-place without calibrated world velocity"
+      },
+      {
+        "source_id": "horse-white",
+        "clip": "Gallop",
+        "model_sha256": [
+          "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+          "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb"
+        ],
+        "sample_hz": 240,
+        "samples": 146,
+        "summary": [
+          {
+            "minimum_sole_y_m": -0.0151103032062874,
+            "worst_phase": 0,
+            "worst_foot": "FrontL",
+            "loop_seam_m": 0.13567546911573536
+          },
+          {
+            "minimum_sole_y_m": 0.001925409945872346,
+            "worst_phase": 0.11724137931034483,
+            "worst_foot": "FrontL",
+            "loop_seam_m": 0,
+            "maximum_cold_body_surface_error_m": 1.3678817171177978e-06
+          }
+        ],
+        "world_sliding": "not-tested: source remains in-place without calibrated world velocity"
+      }
+    ]
+  },
+  "cold_blender": {
+    "renderer": "Blender 5.2.3 Cycles CPU, 12 samples, 640x480; three still views per horse at Gallop 0.125s; not offline animation/art approval",
+    "entries": [
+      {
+        "source_id": "horse-brown",
+        "model_sha256": "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6",
+        "mother_sha256": "fb1f75fe25716a125705307f773c871d7ee217ce164a3f14f6c1a945450144d1",
+        "bones": 50,
+        "editable_actions": 13,
+        "probes_per_clip": 5,
+        "native_body_vertices": 6548,
+        "world_sliding": "not-tested"
+      },
+      {
+        "source_id": "horse-white",
+        "model_sha256": "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb",
+        "mother_sha256": "e108ac0e9c8f96b8d38bd13dcabe8acce26c8778b8a7f89a84106d46e9b22d21",
+        "bones": 50,
+        "editable_actions": 13,
+        "probes_per_clip": 5,
+        "native_body_vertices": 6548,
+        "world_sliding": "not-tested"
+      }
+    ]
+  },
+  "exports": {
+    "entries": [
+      {
+        "asset_id": "horse-brown-grounded-review",
+        "reexport_sha256": "36c7cb617893a61e9a9e93ea817db744ab53c4dfe2ceb66a5631485db1eee6a4",
+        "maximum_curve_component_difference": 2.9206275939941406e-06,
+        "other_eleven_clips": "exactly preserved"
+      },
+      {
+        "asset_id": "horse-white-grounded-review",
+        "reexport_sha256": "ddba3264221205a1dd45c80becccaf97f56ca5e26f9742303b29a276273004ae",
+        "maximum_curve_component_difference": 2.9206275939941406e-06,
+        "other_eleven_clips": "exactly preserved"
+      }
+    ],
+    "changed_geometry_rejected": true,
+    "source_masters_unchanged": true
+  },
+  "pins": {
+    "exact_id_version_sha": true,
+    "editable_mother_included": true,
+    "existing_destination_rejected": true,
+    "wrong_sha_rejected": true,
+    "game_ready": false
+  },
+  "clean_delivery": {
+    "archives": [
+      {
+        "file": "Character_Studio_0.10.0_Runtime.zip",
+        "bytes": 32083419,
+        "sha256": "9f346ae214e6e9ba0f61d9f30c45fcb6c0ccdcd3c817c9bae8008868b3d7ba2a",
+        "index": "RUNTIME_FILES_V10.sha256",
+        "indexed_files": 216,
+        "crc_and_all_indexed_sha256": "pass"
+      },
+      {
+        "file": "Character_Studio_0.10.0_Sources.zip",
+        "bytes": 45755809,
+        "sha256": "751fc48a774634ee45455d648a26876cc4707fa99efb914393e0610116bc0e6f",
+        "index": "SOURCE_FILES_V10.sha256",
+        "indexed_files": 19,
+        "crc_and_all_indexed_sha256": "pass"
+      }
+    ],
+    "clean_models": [
+      {
+        "asset_id": "horse-brown-grounded-review",
+        "sha256": "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6",
+        "byte_identical_rebuild": true
+      },
+      {
+        "asset_id": "horse-white-grounded-review",
+        "sha256": "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb",
+        "byte_identical_rebuild": true
+      }
+    ],
+    "clean_actual_browser": "../evidence-v10/delivery-smoke.json",
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested"
+  },
+  "clean_browser": {
+    "source": "fresh extracted Runtime+Sources at separate server",
+    "actual_browser": true,
+    "both_horses_ab_single": true,
+    "download_links": true,
+    "diagnostic_jump": true,
+    "step_speed_play_pause_review": true,
+    "hash_corruption_rejection_and_retry": true,
+    "evidence_gallery": true,
+    "errors": [],
+    "http_failures": [],
+    "human_art": "not-tested",
+    "physical_mobile": "not-tested"
+  },
+  "art_approved": false,
+  "game_ready": false
+}

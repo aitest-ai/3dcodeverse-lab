@@ -1,0 +1,35 @@
+{
+  "studio_version": "0.10.0",
+  "base_commit": "ae7f433caf8fbeb28b18e31368014a691a4e8e37",
+  "blender": "5.2.3 LTS e13b728c6880",
+  "blender_linux_archive_sha256": "78486c018b4443efe5e75ab54c290ed8c15abafd249b862c2c9ce2530a918eec",
+  "assets": [
+    {
+      "asset_id": "horse-brown-grounded-review",
+      "version": "0.1.0",
+      "source_id": "horse-brown",
+      "source_version": "2.3.0",
+      "source_glb": "library-v04/horse-brown/2.3.0/model.glb",
+      "source_glb_sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+      "source_mother": "sources-v04/horses/horse-brown/Horse_V23.blend",
+      "source_mother_sha256": "c43d8593e9c3f9e9e23b9e1e55ca61308311650cdad77004c92da457061b44dc",
+      "model_sha256": "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6"
+    },
+    {
+      "asset_id": "horse-white-grounded-review",
+      "version": "0.1.0",
+      "source_id": "horse-white",
+      "source_version": "2.3.0",
+      "source_glb": "library-v04/horse-white/2.3.0/model.glb",
+      "source_glb_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+      "source_mother": "sources-v04/horses/horse-white/Horse_White_V23.blend",
+      "source_mother_sha256": "7d3cf6102ac3e9ffc7783bec343df68d8e344b53892d32fb377447f69eb31833",
+      "model_sha256": "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb"
+    }
+  ],
+  "motion_recipe": {
+    "path": "motion-v10/horse-grounded-curves.json",
+    "sha256": "cd0d48f9169d82bce29996102d6b3dec6528ab8aeeeda4323f4e706e710057e4",
+    "fresh_solver_component_tolerance": 1e-05
+  }
+}
