@@ -1,0 +1,488 @@
+{
+  "entries": [
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "Start",
+      "time": 2.5,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 4.299737779399417e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "Walk",
+      "time": 4.233333333333333,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 3.7748380005469343e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "Walk",
+      "time": 5.566666666666666,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 3.791432942462651e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "Stop",
+      "time": 6.8999999999999995,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 3.7914329394578966e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "Idle",
+      "time": 8.633333333333333,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 5.009494656811413e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "walk",
+      "incoming": "cycle restart",
+      "cycle": 4,
+      "maximum_world_surface_jump_m": 0,
+      "root_plan": {
+        "id": "walk",
+        "label": "待機 → 起步 → 走路 ×2 → 停步 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "Start",
+            "start": 2.5,
+            "end": 4.233333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Walk",
+            "start": 4.233333333333333,
+            "end": 5.566666666666666,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 0.7636253833770752,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 3,
+            "name": "Walk",
+            "start": 5.566666666666666,
+            "end": 6.8999999999999995,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 1.5272507667541504,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 4,
+            "name": "Stop",
+            "start": 6.8999999999999995,
+            "end": 8.633333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 2.2908761501312256,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 5,
+            "name": "Idle",
+            "start": 8.633333333333333,
+            "end": 11.133333333333333,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 3.054501533508301,
+              "yaw": 0
+            }
+          }
+        ],
+        "duration": 11.133333333333333,
+        "end": {
+          "x": 0,
+          "z": 3.054501533508301,
+          "yaw": 0
+        }
+      }
+    },
+    {
+      "key": "vita",
+      "sequence": "turn",
+      "incoming": "TurnLeft",
+      "time": 2.5,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 8.660945808654163e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "turn",
+      "incoming": "Idle",
+      "time": 4.1,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 0.0000012857467881069865
+    },
+    {
+      "key": "vita",
+      "sequence": "turn",
+      "incoming": "TurnRight",
+      "time": 6.6,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 8.660945815723885e-7
+    },
+    {
+      "key": "vita",
+      "sequence": "turn",
+      "incoming": "Idle",
+      "time": 8.2,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 0.0000012857479874679865
+    },
+    {
+      "key": "vita",
+      "sequence": "turn",
+      "incoming": "cycle restart",
+      "cycle": 4,
+      "maximum_world_surface_jump_m": 1.1102230246251565e-16,
+      "root_plan": {
+        "id": "turn",
+        "label": "待機 → 左轉 → 待機 → 右轉 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "TurnLeft",
+            "start": 2.5,
+            "end": 4.1,
+            "duration": 1.6,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Idle",
+            "start": 4.1,
+            "end": 6.6,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707964142176731
+            }
+          },
+          {
+            "index": 3,
+            "name": "TurnRight",
+            "start": 6.6,
+            "end": 8.2,
+            "duration": 1.6,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707964142176731
+            }
+          },
+          {
+            "index": 4,
+            "name": "Idle",
+            "start": 8.2,
+            "end": 10.7,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.11000000464931983,
+              "z": 0.10999999503281443,
+              "yaw": 1.7484555314695172e-7
+            }
+          }
+        ],
+        "duration": 10.7,
+        "end": {
+          "x": 0.11000000464931983,
+          "z": 0.10999999503281443,
+          "yaw": 1.7484555314695172e-7
+        }
+      }
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "Start",
+      "time": 2.5,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 1.2970931832796559e-8
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "Walk",
+      "time": 4.233333333333333,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 4.580479172891456e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "Walk",
+      "time": 5.566666666666666,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 4.51576507902154e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "Stop",
+      "time": 6.8999999999999995,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 4.51576507902154e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "Idle",
+      "time": 8.633333333333333,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 3.574840586300644e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "walk",
+      "incoming": "cycle restart",
+      "cycle": 4,
+      "maximum_world_surface_jump_m": 0,
+      "root_plan": {
+        "id": "walk",
+        "label": "待機 → 起步 → 走路 ×2 → 停步 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "Start",
+            "start": 2.5,
+            "end": 4.233333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Walk",
+            "start": 4.233333333333333,
+            "end": 5.566666666666666,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 0.6001451015472412,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 3,
+            "name": "Walk",
+            "start": 5.566666666666666,
+            "end": 6.8999999999999995,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 1.2002902030944824,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 4,
+            "name": "Stop",
+            "start": 6.8999999999999995,
+            "end": 8.633333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 1.8004353046417236,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 5,
+            "name": "Idle",
+            "start": 8.633333333333333,
+            "end": 11.133333333333333,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 2.400580406188965,
+              "yaw": 0
+            }
+          }
+        ],
+        "duration": 11.133333333333333,
+        "end": {
+          "x": 0,
+          "z": 2.400580406188965,
+          "yaw": 0
+        }
+      }
+    },
+    {
+      "key": "vivi",
+      "sequence": "turn",
+      "incoming": "TurnLeft",
+      "time": 2.5,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 1.85629659161087e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "turn",
+      "incoming": "Idle",
+      "time": 4.1,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 0.0000011436155848822485
+    },
+    {
+      "key": "vivi",
+      "sequence": "turn",
+      "incoming": "TurnRight",
+      "time": 6.6,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 1.856296593047591e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "turn",
+      "incoming": "Idle",
+      "time": 8.2,
+      "cycle": 3,
+      "maximum_world_surface_jump_m": 7.579813997574728e-7
+    },
+    {
+      "key": "vivi",
+      "sequence": "turn",
+      "incoming": "cycle restart",
+      "cycle": 4,
+      "maximum_world_surface_jump_m": 1.1102230246251565e-16,
+      "root_plan": {
+        "id": "turn",
+        "label": "待機 → 左轉 → 待機 → 右轉 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "TurnLeft",
+            "start": 2.5,
+            "end": 4.1,
+            "duration": 1.6,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Idle",
+            "start": 4.1,
+            "end": 6.6,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707964142176731
+            }
+          },
+          {
+            "index": 3,
+            "name": "TurnRight",
+            "start": 6.6,
+            "end": 8.2,
+            "duration": 1.6,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707964142176731
+            }
+          },
+          {
+            "index": 4,
+            "name": "Idle",
+            "start": 8.2,
+            "end": 10.7,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.11000000464931983,
+              "z": 0.10999999503281443,
+              "yaw": 1.7484555314695172e-7
+            }
+          }
+        ],
+        "duration": 10.7,
+        "end": {
+          "x": 0.11000000464931983,
+          "z": 0.10999999503281443,
+          "yaw": 1.7484555314695172e-7
+        }
+      }
+    }
+  ]
+}

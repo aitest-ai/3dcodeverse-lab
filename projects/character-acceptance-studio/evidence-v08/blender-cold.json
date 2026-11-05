@@ -1,0 +1,39 @@
+{
+  "blender": "5.2.3 LTS",
+  "entries": [
+    {
+      "key": "vita",
+      "clip": "Start",
+      "frames": 105,
+      "maximum_build_vs_cold_surface_error_m": 2.8732961759516665e-07,
+      "minimum_sole_z_m": 0.0029997192323207855,
+      "mother_sha256": "97889b9e27a4a40c3d40b718b2c5f40da8e805a3d0b22223e64e1c3e1fa7c699"
+    },
+    {
+      "key": "vita",
+      "clip": "Stop",
+      "frames": 105,
+      "maximum_build_vs_cold_surface_error_m": 2.725833375741052e-07,
+      "minimum_sole_z_m": 0.0029996782541275024,
+      "mother_sha256": "97889b9e27a4a40c3d40b718b2c5f40da8e805a3d0b22223e64e1c3e1fa7c699"
+    },
+    {
+      "key": "vita",
+      "clip": "TurnLeft",
+      "frames": 97,
+      "maximum_build_vs_cold_surface_error_m": 3.37556579194953e-07,
+      "minimum_sole_z_m": 0.0029725083149969578,
+      "mother_sha256": "97889b9e27a4a40c3d40b718b2c5f40da8e805a3d0b22223e64e1c3e1fa7c699"
+    },
+    {
+      "key": "vita",
+      "clip": "TurnRight",
+      "frames": 97,
+      "maximum_build_vs_cold_surface_error_m": 2.60770320892334e-07,
+      "minimum_sole_z_m": 0.0029485193081200123,
+      "mother_sha256": "97889b9e27a4a40c3d40b718b2c5f40da8e805a3d0b22223e64e1c3e1fa7c699"
+    }
+  ],
+  "offline_art_render": "not performed; actual evaluated surfaces only",
+  "human_art": "not-tested"
+}

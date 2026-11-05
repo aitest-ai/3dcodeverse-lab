@@ -1,0 +1,27 @@
+{
+  "version": "0.8.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.8.0_Runtime.zip",
+      "bytes": 82039623,
+      "sha256": "0df3b7ed7863e6654c7a28c6bcc80b2eeded1c7f42d043f049af3ba5240392ef",
+      "indexed_files": 246,
+      "index": "RUNTIME_FILES_V08.sha256"
+    },
+    {
+      "file": "Character_Studio_0.8.0_Vita_Sources.zip",
+      "bytes": 69814459,
+      "sha256": "d10c567447495bb135c7440f161bfb40b2f968d3766ae8b579178ba7aab90ba2",
+      "indexed_files": 48,
+      "index": "VITA_SOURCES_FILES_V08.sha256"
+    },
+    {
+      "file": "Character_Studio_0.8.0_Vivi_Sources.zip",
+      "bytes": 89342502,
+      "sha256": "0828c8c5f3dfe2bfb8deb6ad11c548feeb67e124888a9f9603bd32fbcfc773b4",
+      "indexed_files": 34,
+      "index": "VIVI_SOURCES_FILES_V08.sha256"
+    }
+  ],
+  "usage": "Runtime plays both; extract source archive(s) into the same Character_Studio_0.8.0 folder. No prior ZIP required for v08 Vita rebuild. Earlier authoring chains remain pinned in prior PRs."
+}

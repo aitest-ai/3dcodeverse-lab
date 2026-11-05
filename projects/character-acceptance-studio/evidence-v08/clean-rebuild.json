@@ -1,0 +1,22 @@
+{
+  "source": "clean extracted Runtime + Vita Sources; Blender 5.2.3 LTS background CPU; no prior workspace assets read",
+  "exit_code": 0,
+  "frozen_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+  "rebuilt_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+  "glb_byte_identical": true,
+  "builder_files": [
+    {
+      "file": "scripts/build_vita_v08.py",
+      "sha256": "527489e0492d557ce2915d3050c3cf074514a90d8adbd014573ce0cd9539ba0c"
+    },
+    {
+      "file": "scripts/v08/vita_setup.py",
+      "sha256": "26393dc85ecaee37a15430d5e77e428ffca93594dc7b6ed5175ab1747f7edfca"
+    },
+    {
+      "file": "scripts/gait_plan_v02.py",
+      "sha256": "1720e0c168276bd6c14f87c9b4f5cbab2483bd616488e85957cf6ebcf6844dfb"
+    }
+  ],
+  "mother": "Rebuilt editable .blend; binary .blend SHA can differ due Blender serialization/session metadata. GLB compared exactly."
+}

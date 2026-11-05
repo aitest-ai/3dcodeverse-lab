@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "key": "vita",
+      "clip": "Start",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 0.0000011677945338463139
+    },
+    {
+      "key": "vita",
+      "clip": "Stop",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 6.368869551944097e-7
+    },
+    {
+      "key": "vita",
+      "clip": "TurnLeft",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 7.291087255235325e-7
+    },
+    {
+      "key": "vita",
+      "clip": "TurnRight",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18681,
+      "maximum_browser_vs_cold_blender_m": 0.000001006228012571939
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+"""Self-contained runtime and per-character source bundles; original full-resolution textures retained."""
+import json,hashlib,zipfile
+from pathlib import Path
+R=Path(__file__).resolve().parents[1];D=R/'deliveries';prefix='Character_Studio_0.8.0';h=lambda b:hashlib.sha256(b).hexdigest()
+def files(folder):return [p for p in (R/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts]
+def make(name,paths,index):
+ target=D/name
+ if target.exists():raise RuntimeError('Immutable archive exists: '+str(target))
+ rows=[]
+ with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
+  for p in sorted(set(paths)):
+   raw=p.read_bytes();rel=str(p.relative_to(R));z.writestr(prefix+'/'+rel,raw);rows.append(h(raw)+'  '+rel)
+  z.writestr(prefix+'/'+index,'\n'.join(rows)+'\n')
+ with zipfile.ZipFile(target) as z:assert z.testzip() is None
+ return {'file':name,'bytes':target.stat().st_size,'sha256':h(target.read_bytes()),'indexed_files':len(rows),'index':index}
+if __name__=='__main__':
+ cat=json.loads((R/'library-v08/catalog.json').read_text());runtime=[p for p in files('library-v08') if p.suffix!='.blend']
+ for e in cat['entries']:
+  folder=(R/e['model']['url'].removeprefix('../')).parent
+  runtime.extend(p for p in folder.iterdir() if p.is_file() and p.suffix not in ['.blend'] and not p.name.startswith('baseline'))
+ for folder in ['web-v08','web/vendor','web-v04/vendor','evidence-v08','scripts/v05','scripts/v06','scripts/v07','scripts/v08']:runtime.extend(files(folder))
+ runtime.extend(p for p in (R/'scripts').glob('*v08*') if p.is_file());runtime.append(R/'scripts/gait_plan_v02.py')
+ for name in ['START_STUDIO_V08.py','START_WINDOWS_V08.cmd','README_V08.md','THIRD_PARTY_V08.md','THIRD_PARTY_V07.md','THIRD_PARTY_V06.md','THIRD_PARTY_V05.md','THIRD_PARTY_V04.md','THIRD_PARTY_NOTICES.md','docs/CHECKPOINT_V08.md','AGENTS.md']:runtime.append(R/name)
+ receipts=[make(prefix+'_Runtime.zip',runtime,'RUNTIME_FILES_V08.sha256')]
+ for key in ['vita','vivi']:
+  sources=[R/e['editable']['path'] for e in cat['entries'] if e['asset_id']=='vroid-'+key+'-motion-review'];sources.extend(p for p in files('library-v04/vroid-'+key+'/1.0.0') if p.suffix in ['.blend','.glb'] or 'textures' in p.parts);sources.extend([R/'sources-v04/vroid'/('Vita.vrm' if key=='vita' else 'Vivi.vrm'),R/'sources-v04/license-evidence'/('vroid3.html' if key=='vita' else 'vroid2.html')])
+  if key=='vita':
+   sources.extend([R/'assets/harbor-courier-review/0.3.0/harbor-courier-review.blend',R/'assets/harbor-courier-review/0.3.0/asset_manifest.json']);sources.extend(files('assets/harbor-courier-review/0.3.0/textures'));sources.extend(files('sources/harbor-v02/assets/licenses'))
+  receipts.append(make(prefix+'_'+key.title()+'_Sources.zip',sources,key.upper()+'_SOURCES_FILES_V08.sha256'))
+ (D/'receipt-v08.json').write_text(json.dumps({'version':'0.8.0','deliveries':receipts,'usage':'Runtime plays both; extract source archive(s) into the same Character_Studio_0.8.0 folder. No prior ZIP required for v08 Vita rebuild. Earlier authoring chains remain pinned in prior PRs.'},indent=2)+'\n');print(json.dumps(receipts,indent=2))

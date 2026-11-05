@@ -1,0 +1,80 @@
+{
+  "version": "0.8.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.8.0_Runtime.zip",
+      "bytes": 82039623,
+      "sha256": "0df3b7ed7863e6654c7a28c6bcc80b2eeded1c7f42d043f049af3ba5240392ef",
+      "indexed_files": 246,
+      "index": "RUNTIME_FILES_V08.sha256",
+      "zip_sha256_verified": true,
+      "crc_verified": true,
+      "all_indexed_hashes_verified": true
+    },
+    {
+      "file": "Character_Studio_0.8.0_Vita_Sources.zip",
+      "bytes": 69814459,
+      "sha256": "d10c567447495bb135c7440f161bfb40b2f968d3766ae8b579178ba7aab90ba2",
+      "indexed_files": 48,
+      "index": "VITA_SOURCES_FILES_V08.sha256",
+      "zip_sha256_verified": true,
+      "crc_verified": true,
+      "all_indexed_hashes_verified": true
+    },
+    {
+      "file": "Character_Studio_0.8.0_Vivi_Sources.zip",
+      "bytes": 89342502,
+      "sha256": "0828c8c5f3dfe2bfb8deb6ad11c548feeb67e124888a9f9603bd32fbcfc773b4",
+      "indexed_files": 34,
+      "index": "VIVI_SOURCES_FILES_V08.sha256",
+      "zip_sha256_verified": true,
+      "crc_verified": true,
+      "all_indexed_hashes_verified": true
+    }
+  ],
+  "total_indexed_files": 328,
+  "actual_clean_browser": {
+    "source": "clean extracted Runtime + both Sources, separate localhost server",
+    "characters": [
+      "vivi",
+      "vita"
+    ],
+    "actual_browser": true,
+    "a_b_and_single_corrected": true,
+    "native_B_timeline": true,
+    "step_rate_play_pause": true,
+    "expression": true,
+    "all_download_links": true,
+    "sha256_corruption_rejected_and_retry": true,
+    "gallery": true,
+    "errors": [],
+    "http_failures": []
+  },
+  "clean_rebuild": {
+    "source": "clean extracted Runtime + Vita Sources; Blender 5.2.3 LTS background CPU; no prior workspace assets read",
+    "exit_code": 0,
+    "frozen_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+    "rebuilt_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+    "glb_byte_identical": true,
+    "builder_files": [
+      {
+        "file": "scripts/build_vita_v08.py",
+        "sha256": "527489e0492d557ce2915d3050c3cf074514a90d8adbd014573ce0cd9539ba0c"
+      },
+      {
+        "file": "scripts/v08/vita_setup.py",
+        "sha256": "26393dc85ecaee37a15430d5e77e428ffca93594dc7b6ed5175ab1747f7edfca"
+      },
+      {
+        "file": "scripts/gait_plan_v02.py",
+        "sha256": "1720e0c168276bd6c14f87c9b4f5cbab2483bd616488e85957cf6ebcf6844dfb"
+      }
+    ],
+    "mother": "Rebuilt editable .blend; binary .blend SHA can differ due Blender serialization/session metadata. GLB compared exactly."
+  },
+  "final_archives_match_tested_programs_and_frozen_assets": true,
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested",
+  "art_approved": false,
+  "game_ready": false
+}

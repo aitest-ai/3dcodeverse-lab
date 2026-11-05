@@ -1,0 +1,35 @@
+{
+  "frozen_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+  "cold_export_sha256": "e4be6cd145d69c4c9d3446ca59533fb50932b7d5c3e142cc2a4dd443f2ebdd02",
+  "clips": [
+    {
+      "clip": "Idle",
+      "maximum_local_trs_component_error": 1.084059476852417e-06
+    },
+    {
+      "clip": "Walk",
+      "maximum_local_trs_component_error": 1.0654330253601074e-06
+    },
+    {
+      "clip": "Run",
+      "maximum_local_trs_component_error": 9.834766387939453e-07
+    },
+    {
+      "clip": "Start",
+      "maximum_local_trs_component_error": 7.133930921554565e-07
+    },
+    {
+      "clip": "Stop",
+      "maximum_local_trs_component_error": 7.264316082000732e-07
+    },
+    {
+      "clip": "TurnLeft",
+      "maximum_local_trs_component_error": 7.282942533493042e-07
+    },
+    {
+      "clip": "TurnRight",
+      "maximum_local_trs_component_error": 7.152557373046875e-07
+    }
+  ],
+  "previous_version_binary_prefix_preserved": true
+}
