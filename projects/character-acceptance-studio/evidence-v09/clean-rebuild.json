@@ -1,0 +1,25 @@
+{
+  "source": "fresh Runtime + Sources extraction; no prior ZIP or workspace asset path required",
+  "command": "STUDIO_V09_OUT=<fresh output> blender -b -t 4 --python-exit-code 1 --python scripts/build_shiba_v09.py",
+  "cwd": "Character_Studio_0.9.0",
+  "blender": "5.2.3 LTS e13b728c6880",
+  "script_sha256": "f9e9e0d0bf6116536673babbce8e3d23f21c609baab62372f0836e482855430e",
+  "exit_code": 0,
+  "glbs": [
+    {
+      "file": "model.glb",
+      "frozen_sha256": "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff",
+      "clean_rebuilt_sha256": "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff",
+      "byte_identical": true
+    },
+    {
+      "file": "baseline.glb",
+      "frozen_sha256": "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+      "clean_rebuilt_sha256": "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+      "byte_identical": true
+    }
+  ],
+  "mother_output": "both editable .blend regenerated; serialized Blender bytes not required to be identical",
+  "runtime_browser": "delivery-smoke.json",
+  "human_art": "not-tested"
+}

@@ -1,0 +1,65 @@
+{
+  "trials": [
+    {
+      "name": "center-only-paw-lock",
+      "sha256": "22d531fe2e91d6ee9d1be075469cf0ebd856b8b0733a8b50cb85fa8b71469ad1",
+      "status": "rejected; unpublished scratch only, not a delivered candidate",
+      "reason": "Stance center stable but actual near-ground flat-paw vertices drifted 7.35\u20137.44mm. Replaced by stance orientation correction.",
+      "measured_clips": [
+        {
+          "key": "shiba",
+          "clip": "WalkTurnLeft",
+          "model_sha256": [
+            "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+            "22d531fe2e91d6ee9d1be075469cf0ebd856b8b0733a8b50cb85fa8b71469ad1"
+          ],
+          "sample_hz": 120,
+          "samples": 513,
+          "summary": [
+            {
+              "variant": "root-only-arc-experiment",
+              "minimum_sole_y_m": 0.0028615278003782992,
+              "maximum_stance_center_xz_drift_m": 0.051296251094879765,
+              "maximum_flat_patch_vertex_xz_drift_m": 0.058240554585323,
+              "maximum_browser_vs_build_baked_m": 3.79466540851866e-07
+            },
+            {
+              "variant": "corrected",
+              "minimum_sole_y_m": 0.0028608178904533485,
+              "maximum_stance_center_xz_drift_m": 0.0001472454415286362,
+              "maximum_flat_patch_vertex_xz_drift_m": 0.007350286072807488,
+              "maximum_browser_vs_build_baked_m": 4.053641340493789e-07
+            }
+          ]
+        },
+        {
+          "key": "shiba",
+          "clip": "WalkTurnRight",
+          "model_sha256": [
+            "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+            "22d531fe2e91d6ee9d1be075469cf0ebd856b8b0733a8b50cb85fa8b71469ad1"
+          ],
+          "sample_hz": 120,
+          "samples": 513,
+          "summary": [
+            {
+              "variant": "root-only-arc-experiment",
+              "minimum_sole_y_m": 0.0028615278003782992,
+              "maximum_stance_center_xz_drift_m": 0.051305556620782296,
+              "maximum_flat_patch_vertex_xz_drift_m": 0.05767262237929064,
+              "maximum_browser_vs_build_baked_m": 4.5447518981523236e-07
+            },
+            {
+              "variant": "corrected",
+              "minimum_sole_y_m": 0.002860842003320882,
+              "maximum_stance_center_xz_drift_m": 0.00013931141026038307,
+              "maximum_flat_patch_vertex_xz_drift_m": 0.007442516600695808,
+              "maximum_browser_vs_build_baked_m": 4.4072081462694523e-07
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "art_approved": false
+}

@@ -1,0 +1,8 @@
+{
+  "reviewer": "AI assistant; not human art approval",
+  "image": "evidence-v09/frames/shiba-WalkTurnLeft-side-03.png",
+  "sha256": "f36196c2ede80abe528fd31d4413f9d1e2f00f210fadd054d5146c66a245e1f2",
+  "observed": "Final A/B browser side-view sample shows complete textured stylized Shiba silhouettes and visible feet, with no missing mesh apparent in this sampled frame. This one frame cannot prove motion naturalness, all-angle quality, or absence of self-intersection.",
+  "human_art": "not-tested",
+  "game_ready": false
+}

@@ -1,0 +1,57 @@
+{
+  "method": "Actual Three.js skin vertices at 120 Hz; native four-paw phase IDs; center and individual flat-patch vertices are separately reported.",
+  "entries": [
+    {
+      "key": "shiba",
+      "clip": "WalkTurnLeft",
+      "model_sha256": [
+        "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+        "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff"
+      ],
+      "sample_hz": 120,
+      "samples": 513,
+      "summary": [
+        {
+          "variant": "root-only-arc-experiment",
+          "minimum_sole_y_m": 0.0028615278003782992,
+          "maximum_stance_center_xz_drift_m": 0.051296251094879765,
+          "maximum_flat_patch_vertex_xz_drift_m": 0.058240554585323,
+          "maximum_browser_vs_build_baked_m": 3.79466540851866e-7
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0029999265519670727,
+          "maximum_stance_center_xz_drift_m": 0.0001549022772489926,
+          "maximum_flat_patch_vertex_xz_drift_m": 0.0026138782409685733,
+          "maximum_browser_vs_build_baked_m": 3.746087220278449e-7
+        }
+      ]
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnRight",
+      "model_sha256": [
+        "84de9df81ef7541d45886e9691e76cd2b74c602142cad4afa5f536a940ea029c",
+        "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff"
+      ],
+      "sample_hz": 120,
+      "samples": 513,
+      "summary": [
+        {
+          "variant": "root-only-arc-experiment",
+          "minimum_sole_y_m": 0.0028615278003782992,
+          "maximum_stance_center_xz_drift_m": 0.051305556620782296,
+          "maximum_flat_patch_vertex_xz_drift_m": 0.05767262237929064,
+          "maximum_browser_vs_build_baked_m": 4.5447518981523236e-7
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0029999366379429146,
+          "maximum_stance_center_xz_drift_m": 0.00013534509268349433,
+          "maximum_flat_patch_vertex_xz_drift_m": 0.0026120437857302097,
+          "maximum_browser_vs_build_baked_m": 3.5630875891073156e-7
+        }
+      ]
+    }
+  ]
+}

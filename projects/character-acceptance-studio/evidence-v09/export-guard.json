@@ -1,0 +1,6 @@
+{
+  "changed_body_vertex_native_units": 0.01,
+  "geometry_change_refused": true,
+  "no_output_created": true,
+  "error": "Geometry/skin/rest/shapes/materials/textures changed: motion-only export refuses silently dropping these edits"
+}

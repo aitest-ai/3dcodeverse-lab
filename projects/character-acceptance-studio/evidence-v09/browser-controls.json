@@ -1,0 +1,16 @@
+{
+  "errors": [],
+  "three_animal_assets": true,
+  "shiba_ab_and_single": true,
+  "all_13_clips_per_horse_playable": true,
+  "horse_missing_turn_and_comparison_disabled": true,
+  "root_heading_accumulation": true,
+  "step_60_fps": true,
+  "viewport_390": {
+    "width": 390,
+    "scroll": 390
+  },
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested",
+  "renderer": "actual Chromium + SwiftShader"
+}

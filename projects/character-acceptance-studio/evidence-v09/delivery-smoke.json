@@ -1,0 +1,15 @@
+{
+  "source": "clean extracted Runtime + Sources, separate localhost server",
+  "actual_browser": true,
+  "three_assets": true,
+  "shiba_ab_single_and_circle": true,
+  "horse_failure_jump_controls": true,
+  "all_download_links": true,
+  "step_rate_play_pause": true,
+  "sha256_corruption_rejected_and_retry": true,
+  "gallery": true,
+  "errors": [],
+  "http_failures": [],
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

@@ -1,0 +1,20 @@
+{
+  "version": "0.9.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.9.0_Runtime.zip",
+      "bytes": 30002337,
+      "sha256": "732cedc26fa1058188f966d76d42229ac52b4934d8b53e54447fdf707932a5b1",
+      "indexed_files": 238,
+      "index": "RUNTIME_FILES_V09.sha256"
+    },
+    {
+      "file": "Character_Studio_0.9.0_Sources.zip",
+      "bytes": 43448992,
+      "sha256": "2412c87f6e4587f0715a9cd5cd1e7a4575c37b91362ecf98ad6278ccfc336ea1",
+      "indexed_files": 41,
+      "index": "SOURCE_FILES_V09.sha256"
+    }
+  ],
+  "usage": "Runtime plays Shiba, brown horse and white horse. Sources extracts into the same Character_Studio_0.9.0 folder for native editing and standalone Shiba arc rebuild. Horse release files are unchanged."
+}

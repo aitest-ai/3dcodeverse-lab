@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "frames": 124,
+  "videos": [
+    {
+      "key": "horse-brown",
+      "file": "horse-brown-browser.webm",
+      "requested_wall_seconds": 6,
+      "requested_capture_hz": 24,
+      "actual_encoded_duration": "see video-probes.json; CPU renderer may drop frames"
+    },
+    {
+      "key": "shiba",
+      "file": "shiba-browser.webm",
+      "requested_wall_seconds": 6,
+      "requested_capture_hz": 24,
+      "actual_encoded_duration": "see video-probes.json; CPU renderer may drop frames"
+    }
+  ],
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

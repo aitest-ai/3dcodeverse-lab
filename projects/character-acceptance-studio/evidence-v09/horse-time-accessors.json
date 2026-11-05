@@ -1,0 +1,187 @@
+{
+  "method": "Read actual float32 time keys, separately from glTF accessor max. Original source bytes unchanged.",
+  "entries": [
+    {
+      "key": "horse-brown",
+      "clip": "Walk",
+      "actual_last_key_s": 1.2083333730697632,
+      "declared_accessor_max_s": 1.2083333333333333,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Jump_toIdle",
+      "actual_last_key_s": 1.75,
+      "declared_accessor_max_s": 1.75,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle_HitReact2",
+      "actual_last_key_s": 0.7083333134651184,
+      "declared_accessor_max_s": 0.7083333333333334,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle_HitReact1",
+      "actual_last_key_s": 0.7083333134651184,
+      "declared_accessor_max_s": 0.7083333333333334,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle_Headlow",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle_2",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Gallop_Jump",
+      "actual_last_key_s": 1.5,
+      "declared_accessor_max_s": 1.5,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Gallop",
+      "actual_last_key_s": 0.625,
+      "declared_accessor_max_s": 0.625,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Eating",
+      "actual_last_key_s": 6.041666507720947,
+      "declared_accessor_max_s": 6.041666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Death",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Attack_Kick",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Attack_Headbutt",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Walk",
+      "actual_last_key_s": 1.2083333730697632,
+      "declared_accessor_max_s": 1.2083333333333333,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Jump_toIdle",
+      "actual_last_key_s": 1.75,
+      "declared_accessor_max_s": 1.75,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle_HitReact2",
+      "actual_last_key_s": 0.7083333134651184,
+      "declared_accessor_max_s": 0.7083333333333334,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle_HitReact1",
+      "actual_last_key_s": 0.7083333134651184,
+      "declared_accessor_max_s": 0.7083333333333334,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle_Headlow",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle_2",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle",
+      "actual_last_key_s": 3.375,
+      "declared_accessor_max_s": 3.375,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Gallop_Jump",
+      "actual_last_key_s": 1.5,
+      "declared_accessor_max_s": 1.5,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Gallop",
+      "actual_last_key_s": 0.625,
+      "declared_accessor_max_s": 0.625,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Eating",
+      "actual_last_key_s": 6.041666507720947,
+      "declared_accessor_max_s": 6.041666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Death",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Attack_Kick",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    },
+    {
+      "key": "horse-white",
+      "clip": "Attack_Headbutt",
+      "actual_last_key_s": 1.0416666269302368,
+      "declared_accessor_max_s": 1.0416666666666667,
+      "bounds_match": true
+    }
+  ]
+}
