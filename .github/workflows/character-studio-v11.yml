@@ -35,7 +35,7 @@ jobs:
           mkdir "$RUNNER_TEMP/blender-v11"
           tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender-v11" --strip-components=1
           echo "BLENDER_BIN=$RUNNER_TEMP/blender-v11/blender" >> "$GITHUB_ENV"
-      - name: Build, cold-open, render, run actual browser and clean ZIP reconstruction
+      - name: Build, cold-open, run actual browser and clean ZIP reconstruction
         working-directory: projects/character-acceptance-studio
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
