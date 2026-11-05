@@ -1,0 +1,29 @@
+{
+  "version": "0.11.0",
+  "assets": [
+    {
+      "asset_id": "horse-brown-walk-translation-trial",
+      "version": "0.1.0",
+      "source_id": "horse-brown",
+      "model_sha256": "0f0394e6be4562f9d79369c9bba0d04806ab231a626965b97a92ceb3ec3fa4d1"
+    },
+    {
+      "asset_id": "horse-brown-walk-world-review",
+      "version": "0.1.0",
+      "source_id": "horse-brown",
+      "model_sha256": "b5036b2f646bd7026d66aacf41249509ec1d44f0957124bf9c271c6d4125ddc9"
+    },
+    {
+      "asset_id": "horse-white-walk-translation-trial",
+      "version": "0.1.0",
+      "source_id": "horse-white",
+      "model_sha256": "6b1bccdb5a9e567f5b4dfb6cdf903d7845ff441d41f8378b0bb9b9cb5e27ff85"
+    },
+    {
+      "asset_id": "horse-white-walk-world-review",
+      "version": "0.1.0",
+      "source_id": "horse-white",
+      "model_sha256": "8a95e2c2398a005e91d5b755fb80571b1ac415c3eb69ddec64841cb54dbea99d"
+    }
+  ]
+}

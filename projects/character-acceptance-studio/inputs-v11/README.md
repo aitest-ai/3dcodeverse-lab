@@ -1,0 +1,1 @@
+Generated v0.11 review output. In a fresh repository checkout, run scripts/run_validation_v11.py. For a downloaded Runtime + Sources pair, use the separate-output rebuild command in README_V11.md. Binary delivery uses the Draft PR Actions artifact; no production release.
