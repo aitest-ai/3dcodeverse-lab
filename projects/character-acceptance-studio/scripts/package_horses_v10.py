@@ -16,7 +16,7 @@ def make(name,paths,index):
 if __name__=='__main__':
  D.mkdir(exist_ok=True);runtime=[p for p in files('library-v10') if p.suffix!='.blend']
  for key in ['horse-brown','horse-white']:runtime.extend(p for p in files('library-v04/'+key+'/2.3.0') if p.suffix!='.blend')
- for folder in ['library-v09/horse-diagnostics','web-v10','web/vendor','web-v04/vendor','evidence-v10','scripts/v05','scripts/v06','scripts/v07','scripts/v10','config-v10']:runtime.extend(files(folder))
+ for folder in ['library-v09/horse-diagnostics','web-v10','web/vendor','web-v04/vendor','evidence-v10','scripts/v05','scripts/v06','scripts/v07','scripts/v10','config-v10','motion-v10']:runtime.extend(files(folder))
  runtime.append(R/'library-v09/catalog.json');runtime.extend(p for p in (R/'scripts').glob('*v10*') if p.is_file())
  for file in ['START_STUDIO_V10.py','START_WINDOWS_V10.cmd','README_V10.md','THIRD_PARTY_V10.md','THIRD_PARTY_V04.md','THIRD_PARTY_NOTICES.md','docs/CHECKPOINT_V10.md','AGENTS.md']:runtime.append(R/file)
  sources=[p for p in files('library-v10') if p.suffix=='.blend'];sources.extend(files('sources-v04/horses'))

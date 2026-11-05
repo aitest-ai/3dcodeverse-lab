@@ -26,5 +26,10 @@
       "source_mother_sha256": "7d3cf6102ac3e9ffc7783bec343df68d8e344b53892d32fb377447f69eb31833",
       "model_sha256": "cf1148ce670983718cf757ec831ea182c189e7cdd73aaffbfa053c0c690627bb"
     }
-  ]
+  ],
+  "motion_recipe": {
+    "path": "motion-v10/horse-grounded-curves.json",
+    "sha256": "cd0d48f9169d82bce29996102d6b3dec6528ab8aeeeda4323f4e706e710057e4",
+    "fresh_solver_component_tolerance": 1e-05
+  }
 }
