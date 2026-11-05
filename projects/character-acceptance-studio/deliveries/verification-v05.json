@@ -1,0 +1,241 @@
+{
+  "archives": [
+    {
+      "file": "Character_Studio_0.5.0_Runtime.zip",
+      "bytes": 79187790,
+      "sha256": "e54c202caf520116bf0784cdd882dcaad87deb8de493d95ac997dae7b1ca98c3",
+      "indexed_files": 310,
+      "index": "RUNTIME_FILES_V05.sha256",
+      "crc": "pass",
+      "every_indexed_sha256": "pass"
+    },
+    {
+      "file": "Character_Studio_0.5.0_Sources.zip",
+      "bytes": 64121836,
+      "sha256": "b87714b353cc1eedd8476ab819b2cec99bf6d865d39f474677ba55c11f1c53d4",
+      "indexed_files": 52,
+      "index": "SOURCES_FILES_V05.sha256",
+      "crc": "pass",
+      "every_indexed_sha256": "pass"
+    }
+  ],
+  "clean_glb_rebuilds": [
+    {
+      "id": "vroid-vivi-motion-review",
+      "sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+      "byte_identical_clean_rebuild": true
+    },
+    {
+      "id": "quaternius-shibainu-grounded-review",
+      "sha256": "52561dc53ad291ded9b9cc726253b9b72344469acdd24a5d68a815c7380b3329",
+      "byte_identical_clean_rebuild": true
+    }
+  ],
+  "clean_browser": {
+    "checks": [
+      {
+        "case": "vivi-baseline",
+        "state": {
+          "ready": true,
+          "loading": false,
+          "error": null,
+          "selected": "vroid-vivi-motion-review-before",
+          "playing": false,
+          "time": 0.2,
+          "duration": 1.3333333730697632,
+          "slots": [
+            {
+              "id": "vroid-vivi-motion-review-before",
+              "sha256": "911ce71612784c63c96d25f8df3784bb9d1c6627abf23603f0f69275c6b86252",
+              "clips": [
+                "Idle",
+                "Walk",
+                "Run",
+                "Start",
+                "Stop",
+                "TurnLeft",
+                "TurnRight"
+              ],
+              "vrm": true,
+              "box": {
+                "min": [
+                  -0.27951157991818254,
+                  -0.011385441459922072,
+                  -0.1970307796252071
+                ],
+                "max": [
+                  0.26400190162776394,
+                  1.3706531615218542,
+                  0.31862719611766965
+                ]
+              },
+              "morphs": [
+                "neutral",
+                "aa",
+                "ih",
+                "ou",
+                "ee",
+                "oh",
+                "blink",
+                "blinkLeft",
+                "blinkRight",
+                "angry",
+                "relaxed",
+                "happy",
+                "sad",
+                "Surprised",
+                "Extra"
+              ],
+              "animation": "Walk"
+            },
+            {
+              "id": "vroid-vivi-motion-review",
+              "sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+              "clips": [
+                "Idle",
+                "Walk",
+                "Run",
+                "Start",
+                "Stop",
+                "TurnLeft",
+                "TurnRight"
+              ],
+              "vrm": true,
+              "box": {
+                "min": [
+                  -0.2917726820559389,
+                  0.0029998609578670496,
+                  -0.2097996868484185
+                ],
+                "max": [
+                  0.270981930573398,
+                  1.3706531615218542,
+                  0.30768693707324735
+                ]
+              },
+              "morphs": [
+                "neutral",
+                "aa",
+                "ih",
+                "ou",
+                "ee",
+                "oh",
+                "blink",
+                "blinkLeft",
+                "blinkRight",
+                "angry",
+                "relaxed",
+                "happy",
+                "sad",
+                "Surprised",
+                "Extra"
+              ],
+              "animation": "Walk"
+            }
+          ]
+        }
+      },
+      {
+        "case": "shiba-baseline",
+        "state": {
+          "ready": true,
+          "loading": false,
+          "error": null,
+          "selected": "quaternius-shibainu-grounded-review-before",
+          "playing": false,
+          "time": 0.2,
+          "duration": 1.0666667222976685,
+          "slots": [
+            {
+              "id": "quaternius-shibainu-grounded-review-before",
+              "sha256": "191a991acda019cbdbcb912823c83be024f5d6730f699ecfccb2049ced888cf5",
+              "clips": [
+                "Attack",
+                "Death",
+                "Eating",
+                "Gallop_Jump",
+                "Idle_2",
+                "Idle_2_HeadLow",
+                "Idle_HitReact1",
+                "Idle_HitReact2",
+                "Jump_ToIdle",
+                "Idle",
+                "Walk",
+                "Gallop"
+              ],
+              "vrm": false,
+              "box": {
+                "min": [
+                  -0.09384139704833841,
+                  0.0022432430105846436,
+                  -0.34073938031967443
+                ],
+                "max": [
+                  0.08767628347894256,
+                  0.48112599168972076,
+                  0.34114012319845993
+                ]
+              },
+              "animation": "Walk"
+            },
+            {
+              "id": "quaternius-shibainu-grounded-review",
+              "sha256": "52561dc53ad291ded9b9cc726253b9b72344469acdd24a5d68a815c7380b3329",
+              "clips": [
+                "Attack",
+                "Death",
+                "Eating",
+                "Gallop_Jump",
+                "Idle_2",
+                "Idle_2_HeadLow",
+                "Idle_HitReact1",
+                "Idle_HitReact2",
+                "Jump_ToIdle",
+                "Idle",
+                "Walk",
+                "Gallop"
+              ],
+              "vrm": false,
+              "box": {
+                "min": [
+                  -0.09384103021159272,
+                  0.002999956177093875,
+                  -0.3445832917237226
+                ],
+                "max": [
+                  0.08769927563735666,
+                  0.48112599168972076,
+                  0.34114012319845993
+                ]
+              },
+              "animation": "Walk"
+            }
+          ]
+        }
+      },
+      {
+        "case": "vroid-vivi-motion-review mother download",
+        "status": 200
+      },
+      {
+        "case": "quaternius-shibainu-grounded-review mother download",
+        "status": 200
+      },
+      {
+        "case": "clean evidence gallery",
+        "status": "pass"
+      }
+    ],
+    "errors": [],
+    "runtime_only_dependency_check": "All initial browser resources belong to Runtime ZIP; mother downloads verified separately from Sources ZIP."
+  },
+  "previous_library": {
+    "base_commit": "7bd1e577d2867e3c4772f2655c8285cae5ac0700",
+    "all_20_original_assets_and_58_source_files": "verified unchanged by verify_library_v04.py",
+    "tracked_existing_files_modified": 0
+  },
+  "mobile_hardware": "not-tested",
+  "human_art": "not-tested",
+  "game_engine_integration": "not-tested",
+  "status": "REVIEW_CANDIDATES_ONLY"
+}

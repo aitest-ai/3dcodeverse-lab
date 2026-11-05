@@ -1,0 +1,80 @@
+{
+  "version": "5.2.3 LTS",
+  "status": "COLD_BAKED_SURFACES_MATCH_BUILD_AUDIT",
+  "entries": [
+    {
+      "id": "vroid-vivi-motion-review",
+      "blender_sha256": "e2e9c6845044166bef352e542af14e21c5a9187ea4038ddb9810b2e0e4797333",
+      "clips": [
+        {
+          "clip": "Idle",
+          "samples": 151,
+          "maximum_build_vs_cold_bake_error_m": 2.980232238769531e-07,
+          "minimum_sole_z_m": 0.002999786753207445
+        },
+        {
+          "clip": "Walk",
+          "samples": 81,
+          "maximum_build_vs_cold_bake_error_m": 3.988149020101449e-07,
+          "minimum_sole_z_m": 0.0029995739459991455
+        },
+        {
+          "clip": "Run",
+          "samples": 57,
+          "maximum_build_vs_cold_bake_error_m": 2.980232238769531e-07,
+          "minimum_sole_z_m": 0.0029997900128364563
+        },
+        {
+          "clip": "Start",
+          "samples": 105,
+          "maximum_build_vs_cold_bake_error_m": 3.3620744943618774e-07,
+          "minimum_sole_z_m": 0.002999737858772278
+        },
+        {
+          "clip": "Stop",
+          "samples": 105,
+          "maximum_build_vs_cold_bake_error_m": 3.224703574062145e-07,
+          "minimum_sole_z_m": 0.002999429125338793
+        },
+        {
+          "clip": "TurnLeft",
+          "samples": 97,
+          "maximum_build_vs_cold_bake_error_m": 2.5399006050382e-07,
+          "minimum_sole_z_m": 0.0029997555539011955
+        },
+        {
+          "clip": "TurnRight",
+          "samples": 97,
+          "maximum_build_vs_cold_bake_error_m": 3.427666438120793e-07,
+          "minimum_sole_z_m": 0.002999789547175169
+        }
+      ]
+    },
+    {
+      "id": "quaternius-shibainu-grounded-review",
+      "blender_sha256": "30d61ce1384823beac15307dd25d88d834827dd9f7d9121cef40fbc8232a063d",
+      "clips": [
+        {
+          "clip": "Idle",
+          "samples": 201,
+          "maximum_build_vs_cold_bake_error_m": 4.60887068199315e-08,
+          "minimum_sole_z_m": 0.0029999723192304373
+        },
+        {
+          "clip": "Walk",
+          "samples": 65,
+          "maximum_build_vs_cold_bake_error_m": 9.140256156314386e-08,
+          "minimum_sole_z_m": 0.002999952994287014
+        },
+        {
+          "clip": "Gallop",
+          "samples": 35,
+          "maximum_build_vs_cold_bake_error_m": 1.2065570608304177e-07,
+          "minimum_sole_z_m": 0.0029999674297869205
+        }
+      ]
+    }
+  ],
+  "offline_render": "not performed; these are evaluated native mesh checks, not images",
+  "human_art": "not-tested"
+}

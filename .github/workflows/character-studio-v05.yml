@@ -1,0 +1,31 @@
+name: Character studio v05 motion integrity
+on:
+  push:
+    branches: [feat/character-studio-v05-vivi-shiba-20261105]
+    paths:
+      - projects/character-acceptance-studio/**
+      - .github/workflows/character-studio-v05.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax, original-source preservation and locked browser evidence
+        run: |
+          python3 -m py_compile projects/character-acceptance-studio/scripts/*v05.py projects/character-acceptance-studio/scripts/v05/*.py
+          node --input-type=module --check < projects/character-acceptance-studio/web-v05/app.js
+          python3 projects/character-acceptance-studio/scripts/verify_motion_v05.py
+          python3 projects/character-acceptance-studio/scripts/verify_library_v04.py
+      - name: Model structure only, not art approval
+        run: |
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/library-v05/vroid-vivi-motion-review/0.1.0
+          python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/library-v05/quaternius-shibainu-grounded-review/0.1.0

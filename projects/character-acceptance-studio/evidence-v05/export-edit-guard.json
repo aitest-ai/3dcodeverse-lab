@@ -1,0 +1,15 @@
+{
+  "checks": [
+    {
+      "case": "changed one source mesh vertex in separate working copy",
+      "status": "rejected",
+      "output_created": false
+    },
+    {
+      "case": "unchanged geometry via explicit --mother",
+      "status": "exported",
+      "sha256": "2c2ff1e10cb19f707e722c67adcc3d9418800118a09a9e4fd3912804d046ad80"
+    }
+  ],
+  "scope": "Motion exporter refuses geometry/skin/rest/shape/image/material edits instead of silently discarding them. Full geometry editing requires a new exporter/version."
+}

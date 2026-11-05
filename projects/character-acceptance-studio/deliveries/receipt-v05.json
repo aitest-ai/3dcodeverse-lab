@@ -1,0 +1,20 @@
+{
+  "version": "0.5.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.5.0_Runtime.zip",
+      "bytes": 79187790,
+      "sha256": "e54c202caf520116bf0784cdd882dcaad87deb8de493d95ac997dae7b1ca98c3",
+      "indexed_files": 310,
+      "index": "RUNTIME_FILES_V05.sha256"
+    },
+    {
+      "file": "Character_Studio_0.5.0_Sources.zip",
+      "bytes": 64121836,
+      "sha256": "b87714b353cc1eedd8476ab819b2cec99bf6d865d39f474677ba55c11f1c53d4",
+      "indexed_files": 52,
+      "index": "SOURCES_FILES_V05.sha256"
+    }
+  ],
+  "usage": "Extract both ZIPs into the same Character_Studio_0.5.0 folder. Runtime alone plays; Sources supplies editable mothers, original inputs and original-resolution texture files."
+}
