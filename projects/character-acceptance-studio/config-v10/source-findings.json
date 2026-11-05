@@ -1,0 +1,36 @@
+{
+  "Walk": {
+    "frame_range": [
+      0.0,
+      28.0
+    ],
+    "native_full_endpoint_m": 0.0,
+    "native_integer_endpoint_m": 0.0
+  },
+  "Gallop": {
+    "frame_range": [
+      0.0,
+      14.40000057220459
+    ],
+    "native_full_endpoint_m": 0.10575981996884057,
+    "native_integer_endpoint_m": 0.1356754804476764
+  },
+  "flat_weights": {
+    "FrontL": {
+      "FF.L": 0.9084883278066461,
+      "IKFrontLeg.L": 0.0915116865865209
+    },
+    "FrontR": {
+      "FF.R": 0.908488327806646,
+      "IKFrontLeg.R": 0.09151168421588161
+    },
+    "BackL": {
+      "FFB.L": 0.9160974994301797,
+      "IKBackLeg.L": 0.08390251795450845
+    },
+    "BackR": {
+      "FFB.R": 0.9160975019137065,
+      "IKBackLeg.R": 0.08390251764406757
+    }
+  }
+}

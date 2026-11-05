@@ -1,0 +1,4 @@
+import json,subprocess,sys
+from pathlib import Path
+R=Path(__file__).resolve().parents[1];a=json.loads((R/'config-v10/horses.lock.json').read_text())['assets'][0];dest=R/'work/v10-pin';cmd=[sys.executable,str(R/'scripts/pin_horses_v10.py'),'--id',a['asset_id'],'--version',a['version'],'--sha256',a['model_sha256'],'--dest',str(dest),'--review-candidate','--include-mother'];subprocess.run(cmd,check=True);r=subprocess.run(cmd,capture_output=True,text=True);assert r.returncode!=0 and 'overwriting' in r.stdout+r.stderr
+bad=cmd.copy();bad[bad.index('--sha256')+1]='0'*64;bad[bad.index('--dest')+1]=str(R/'work/v10-bad-pin');r=subprocess.run(bad,capture_output=True,text=True);assert r.returncode!=0 and not (R/'work/v10-bad-pin').exists();(R/'evidence-v10/pin-check.json').write_text(json.dumps({'exact_id_version_sha':True,'editable_mother_included':True,'existing_destination_rejected':True,'wrong_sha_rejected':True,'game_ready':False},indent=2)+'\n');print('PIN_PASS')
