@@ -1,0 +1,12 @@
+{
+  "errors": [],
+  "frames": 165,
+  "video": {
+    "file": "run-browser.webm",
+    "requested_wall_seconds": 6,
+    "canvas_capture_hz": 24,
+    "actual_encoded_duration": "see video-probe.json; software rendering can drop frames"
+  },
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "file": "adaptation.json",
+      "bytes": 56497,
+      "sha256": "29a293d283c7dddab3e8900b1d4ed4f28d745cf331d9b7ec46a897d800834e69"
+    },
+    {
+      "file": "asset_manifest.json",
+      "bytes": 766,
+      "sha256": "4b55b40be20fdd5f411e062214977d94b3ad7032422563c6d1902e13173d0322"
+    },
+    {
+      "file": "model.blend",
+      "bytes": 17780944,
+      "sha256": "67fef9456fefc25b9ecbd1c214b7b26457485aff8f1e0c4057e40c7cc9404611"
+    },
+    {
+      "file": "model.glb",
+      "bytes": 23517764,
+      "sha256": "2c26ef8a2c2462d90a95e8402f6f8a01960d12c4512d8cc647d90671d86594a5"
+    },
+    {
+      "file": "motion-audit.json",
+      "bytes": 2482812,
+      "sha256": "0303e39242f1ad162d37d8437fa36b7d30e7d794bb587bf5487ed9b3a3e312d2"
+    },
+    {
+      "file": "report.json",
+      "bytes": 377,
+      "sha256": "bc7a4fc75464a487b3522ebda6cbc9f33226a9ea541acf147e915b95ef02d47b"
+    },
+    {
+      "file": "skeleton-profile.json",
+      "bytes": 288578,
+      "sha256": "aba076976449883758568f852b9c3c412ee861948d6622cba140919bb82d9334"
+    }
+  ]
+}

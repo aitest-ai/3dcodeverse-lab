@@ -1,0 +1,50 @@
+{
+  "blender": "5.2.3 LTS",
+  "mother_sha256": "67fef9456fefc25b9ecbd1c214b7b26457485aff8f1e0c4057e40c7cc9404611",
+  "entries": [
+    {
+      "clip": "Idle",
+      "frames": 151,
+      "minimum_sole_z_m": 0.0029997038654983044,
+      "maximum_contact_reference_change_from_v01_m": 5.529741143889671e-07
+    },
+    {
+      "clip": "Walk",
+      "frames": 81,
+      "minimum_sole_z_m": 0.0029994994401931763,
+      "maximum_contact_reference_change_from_v01_m": 5.347967331348263e-07
+    },
+    {
+      "clip": "Run",
+      "frames": 57,
+      "minimum_sole_z_m": 0.00299980491399765,
+      "maximum_contact_reference_change_from_v01_m": 5.399486700294446e-07
+    },
+    {
+      "clip": "Start",
+      "frames": 105,
+      "minimum_sole_z_m": 0.0029997266829013824,
+      "maximum_contact_reference_change_from_v01_m": 6.321559182503678e-07
+    },
+    {
+      "clip": "Stop",
+      "frames": 105,
+      "minimum_sole_z_m": 0.0029993639327585697,
+      "maximum_contact_reference_change_from_v01_m": 6.224921353170121e-07
+    },
+    {
+      "clip": "TurnLeft",
+      "frames": 97,
+      "minimum_sole_z_m": 0.002749585546553135,
+      "maximum_contact_reference_change_from_v01_m": 0.004556930343186225
+    },
+    {
+      "clip": "TurnRight",
+      "frames": 97,
+      "minimum_sole_z_m": 0.002784501761198044,
+      "maximum_contact_reference_change_from_v01_m": 0.004559064466834883
+    }
+  ],
+  "offline_render": "not performed; evaluated mesh coordinates only",
+  "human_art": "not-tested"
+}

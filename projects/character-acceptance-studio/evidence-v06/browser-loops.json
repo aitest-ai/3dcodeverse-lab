@@ -1,0 +1,61 @@
+{
+  "method": "Actual Chromium full meshes at cycle 2 end vs cycle 3 start, accumulated world root transform retained",
+  "entries": [
+    {
+      "mode": "Walk",
+      "cycles": 3,
+      "variants": [
+        {
+          "version": "0.1.0",
+          "maximum_world_vertex_jump_m": 4.910710061306125e-7
+        },
+        {
+          "version": "0.2.0",
+          "maximum_world_vertex_jump_m": 4.910710061306125e-7
+        }
+      ]
+    },
+    {
+      "mode": "Run",
+      "cycles": 3,
+      "variants": [
+        {
+          "version": "0.1.0",
+          "maximum_world_vertex_jump_m": 5.665344631391612e-7
+        },
+        {
+          "version": "0.2.0",
+          "maximum_world_vertex_jump_m": 6.20961618124808e-7
+        }
+      ]
+    },
+    {
+      "mode": "sequence-walk",
+      "cycles": 3,
+      "variants": [
+        {
+          "version": "0.1.0",
+          "maximum_world_vertex_jump_m": 0
+        },
+        {
+          "version": "0.2.0",
+          "maximum_world_vertex_jump_m": 0
+        }
+      ]
+    },
+    {
+      "mode": "sequence-turn",
+      "cycles": 3,
+      "variants": [
+        {
+          "version": "0.1.0",
+          "maximum_world_vertex_jump_m": 0
+        },
+        {
+          "version": "0.2.0",
+          "maximum_world_vertex_jump_m": 0
+        }
+      ]
+    }
+  ]
+}

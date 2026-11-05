@@ -1,0 +1,18 @@
+{
+  "reviewer": "assistant visual inspection, not human art approval",
+  "observations": [
+    {
+      "frame": "frames/Idle-front-00.png",
+      "observation": "Original stylized body silhouette and outfit retained; no body proportion approval."
+    },
+    {
+      "frame": "frames/Run-rightHand-02.png",
+      "observation": "A has visible triangular skin exposure on front skirt; B removes this exposure at the same time/camera. B fingers curve more, but hand silhouette still requires artistic review."
+    },
+    {
+      "frame": "frames/Run-side-01.png",
+      "observation": "Run support phase retains substantial knee flexion and crouched silhouette from v0.1. Not solved by this clothing/turn correction; flag for the next motion-style pass."
+    }
+  ],
+  "art_approved": false
+}

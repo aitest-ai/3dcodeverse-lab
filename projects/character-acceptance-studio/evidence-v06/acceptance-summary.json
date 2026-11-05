@@ -1,0 +1,60 @@
+{
+  "studio_version": "0.6.0",
+  "asset_id": "vroid-vivi-motion-review",
+  "version": "0.2.0",
+  "sha256": "2c26ef8a2c2462d90a95e8402f6f8a01960d12c4512d8cc647d90671d86594a5",
+  "baseline": "frozen corrected v0.1.0, not earlier failed FK draft",
+  "program": {
+    "status": "pass",
+    "evidence": [
+      "rebuild.json",
+      "reexport.json",
+      "export-guard.json",
+      "pin-check.json"
+    ]
+  },
+  "blender": {
+    "status": "cold mother and actual evaluated surfaces checked; offline art rendering not performed",
+    "evidence": [
+      "blender-cold.json",
+      "browser-blender-parity.json"
+    ]
+  },
+  "browser": {
+    "status": "real headless Chromium + SwiftShader, CPU",
+    "clips": 7,
+    "sample_hz": 120,
+    "samples_per_version": 1379,
+    "minimum_sole_y_m": 0.002409563311499354,
+    "maximum_stance_reference_xz_drift_m": 0.0024825347873234952,
+    "maximum_all_mesh_browser_vs_blender_probe_m": 1.5858231572664628e-06,
+    "maximum_specified_skirt_leg_pairs_before": 32,
+    "maximum_specified_skirt_leg_pairs_after": 0,
+    "maximum_hand_skin_self_pairs_before": 7,
+    "maximum_hand_skin_self_pairs_after": 0,
+    "maximum_sequence_join_m_before": 0.09946414583585692,
+    "maximum_sequence_join_m_after": 5.065407831869571e-06,
+    "actual_screenshot_count": 165,
+    "encoded_video_seconds": 4.921613,
+    "controls_evidence": "browser-controls.json",
+    "loop_evidence": "browser-loops.json"
+  },
+  "physical_mobile": "not-tested; desktop viewport width 390 only",
+  "human_art": "not-tested",
+  "second_engine": "not-tested this phase",
+  "known_limitations": [
+    "Original stylized body proportions retained; no body-shape approval",
+    "Run support phase still has a deep knee bend; visual style needs refinement/review",
+    "Bounded proper triangle crossings only; no full-body solid containment, cloth self-contact or thickness proof",
+    "Original disconnected nail/skin overlap attachments preserved",
+    "Deterministic skirt-bone correction, not cloth simulation",
+    "Fixed phase-aligned sequences; arbitrary-time/velocity blending not implemented",
+    "CPU software rendering frames can drop; no mobile/GPU performance claim"
+  ],
+  "failed_candidates_excluded": [
+    "Initial stronger finger curl caused up to 29 hand Skin crossing pairs and was discarded",
+    "Uncorrected turn-to-Idle mesh discontinuity around 9.9 cm retained only as v0.1 A comparison"
+  ],
+  "art_approved": false,
+  "game_ready": false
+}

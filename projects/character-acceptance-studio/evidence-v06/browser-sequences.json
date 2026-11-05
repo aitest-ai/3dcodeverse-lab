@@ -1,0 +1,306 @@
+{
+  "method": "All Face/Body/Hair native vertices at every phase-aligned clip boundary in actual Chromium. World SE(2) attachment preserved; 10 microsecond finite-time probe, not analytic velocity continuity.",
+  "entries": [
+    {
+      "plan": {
+        "id": "walk",
+        "label": "待機 → 起步 → 走路 ×2 → 停步 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "Start",
+            "start": 2.5,
+            "end": 4.233333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Walk",
+            "start": 4.233333333333333,
+            "end": 5.566666666666666,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 0.6001451015472412,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 3,
+            "name": "Walk",
+            "start": 5.566666666666666,
+            "end": 6.8999999999999995,
+            "duration": 1.3333333333333333,
+            "attach": {
+              "x": 0,
+              "z": 1.2002902030944824,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 4,
+            "name": "Stop",
+            "start": 6.8999999999999995,
+            "end": 8.633333333333333,
+            "duration": 1.7333333333333334,
+            "attach": {
+              "x": 0,
+              "z": 1.8004353046417236,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 5,
+            "name": "Idle",
+            "start": 8.633333333333333,
+            "end": 11.133333333333333,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 2.400580406188965,
+              "yaw": 0
+            }
+          }
+        ],
+        "duration": 11.133333333333333,
+        "end": {
+          "x": 0,
+          "z": 2.400580406188965,
+          "yaw": 0
+        }
+      },
+      "seams": [
+        {
+          "boundary_s": 2.5,
+          "next": "Start",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 5.28847311879919e-7
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 5.233161398601113e-7
+            }
+          ]
+        },
+        {
+          "boundary_s": 4.233333333333333,
+          "next": "Walk",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 0.000005069695065608961
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 0.000005063995933252063
+            }
+          ]
+        },
+        {
+          "boundary_s": 5.566666666666666,
+          "next": "Walk",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 0.000005070851056883162
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 0.000005065407831869571
+            }
+          ]
+        },
+        {
+          "boundary_s": 6.8999999999999995,
+          "next": "Stop",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 0.000005070851056661395
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 0.000005065407831647701
+            }
+          ]
+        },
+        {
+          "boundary_s": 8.633333333333333,
+          "next": "Idle",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 4.898839067490039e-7
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 4.898839067490039e-7
+            }
+          ]
+        }
+      ],
+      "repeated_same_seek_60_times_maximum_change_m": 0
+    },
+    {
+      "plan": {
+        "id": "turn",
+        "label": "待機 → 左轉 → 待機 → 右轉 → 待機",
+        "segments": [
+          {
+            "index": 0,
+            "name": "Idle",
+            "start": 0,
+            "end": 2.5,
+            "duration": 2.5,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 1,
+            "name": "TurnLeft",
+            "start": 2.5,
+            "end": 4.1,
+            "duration": 1.6,
+            "attach": {
+              "x": 0,
+              "z": 0,
+              "yaw": 0
+            }
+          },
+          {
+            "index": 2,
+            "name": "Idle",
+            "start": 4.1,
+            "end": 6.6,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707963267948966
+            }
+          },
+          {
+            "index": 3,
+            "name": "TurnRight",
+            "start": 6.6,
+            "end": 8.2,
+            "duration": 1.6,
+            "attach": {
+              "x": 0.05999999865889549,
+              "z": 0.05000000074505806,
+              "yaw": 1.5707963267948966
+            }
+          },
+          {
+            "index": 4,
+            "name": "Idle",
+            "start": 8.2,
+            "end": 10.7,
+            "duration": 2.5,
+            "attach": {
+              "x": 0.10999999940395355,
+              "z": 0.10999999940395355,
+              "yaw": 0
+            }
+          }
+        ],
+        "duration": 10.7,
+        "end": {
+          "x": 0.10999999940395355,
+          "z": 0.10999999940395355,
+          "yaw": 0
+        }
+      },
+      "seams": [
+        {
+          "boundary_s": 2.5,
+          "next": "TurnLeft",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 5.28847311879919e-7
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 5.583856120927352e-7
+            }
+          ]
+        },
+        {
+          "boundary_s": 4.1,
+          "next": "Idle",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 0.0993588567541339
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 0.0000011429500822401034
+            }
+          ]
+        },
+        {
+          "boundary_s": 6.6,
+          "next": "TurnRight",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 5.288473118247052e-7
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 5.583856120148163e-7
+            }
+          ]
+        },
+        {
+          "boundary_s": 8.2,
+          "next": "Idle",
+          "epsilon_s": 0.00001,
+          "variants": [
+            {
+              "version": "0.1.0",
+              "maximum_world_vertex_jump_m": 0.09946414583585692
+            },
+            {
+              "version": "0.2.0",
+              "maximum_world_vertex_jump_m": 7.565257859552399e-7
+            }
+          ]
+        }
+      ],
+      "repeated_same_seek_60_times_maximum_change_m": 0
+    }
+  ]
+}
