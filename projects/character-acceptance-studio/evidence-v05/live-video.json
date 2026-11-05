@@ -1,0 +1,19 @@
+{
+  "source": "Actual browser canvas MediaRecorder captureStream(24), 6 seconds wall-clock request",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "avg_frame_rate": "0/0",
+        "nb_read_frames": "53"
+      }
+    ],
+    "format": {
+      "duration": "5.360852",
+      "size": "378074"
+    }
+  },
+  "real_time_performance_approved": false,
+  "note": "Software GPU dropped frames; encoded duration differs from wall-clock capture. Not physical-device performance."
+}

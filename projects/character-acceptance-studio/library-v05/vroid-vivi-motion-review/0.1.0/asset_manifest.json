@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "asset_id": "vroid-vivi-motion-review",
+  "version": "0.1.0",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+  "unit": "meter",
+  "clips": [
+    "Idle",
+    "Walk",
+    "Run",
+    "Start",
+    "Stop",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "min_animation_count": 7,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  },
+  "source": "https://github.com/madjin/vrm-samples/blob/e16eb187100149a315ad92c3c9968f1d5baa6c7d/vroid/beta/Vivi.vrm",
+  "license_note": "See THIRD_PARTY_V05.md; source CC0 grants retained, project corrections not newly dedicated CC0.",
+  "art_approved": false,
+  "game_ready": false
+}

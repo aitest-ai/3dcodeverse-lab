@@ -1,0 +1,19 @@
+{
+  "method": "All unique primitive position arrays from actual Chromium deformation vs independently cold-opened Blender surface at the same t=.30; nearest-vertex comparison (no topology/collision claim).",
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "t": 0.3,
+      "max_nearest_surface_vertex_distance_m": 5.564587481744531e-07,
+      "vertices": 18338
+    },
+    {
+      "key": "shiba",
+      "clip": "Gallop",
+      "t": 0.3,
+      "max_nearest_surface_vertex_distance_m": 4.146468322967139e-07,
+      "vertices": 3966
+    }
+  ]
+}

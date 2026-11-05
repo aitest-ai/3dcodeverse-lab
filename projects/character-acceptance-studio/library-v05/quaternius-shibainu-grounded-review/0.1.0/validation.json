@@ -1,0 +1,21 @@
+{
+  "asset_id": "quaternius-shibainu-grounded-review",
+  "mesh_count": 1,
+  "skin_count": 1,
+  "animation_clips": [
+    "Attack",
+    "Death",
+    "Eating",
+    "Gallop_Jump",
+    "Idle_2",
+    "Idle_2_HeadLow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_ToIdle",
+    "Idle",
+    "Walk",
+    "Gallop"
+  ],
+  "file_bytes": 2371480,
+  "verdict": "STRUCTURE_PASS (visual and all-frame checks still required)"
+}

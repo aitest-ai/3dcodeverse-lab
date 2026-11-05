@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "name": "two pinned VRM A/B assets and seven real clips",
+      "status": "pass"
+    },
+    {
+      "name": "pause, 60 Hz stepping, scrub, rate, six camera views, bones",
+      "status": "pass"
+    },
+    {
+      "name": "VRM expression remains available",
+      "status": "pass"
+    },
+    {
+      "name": "PNG capture and downloadable review with pinned hashes",
+      "status": "pass"
+    },
+    {
+      "name": "animal native skeleton, twelve clips, own scale",
+      "status": "pass"
+    },
+    {
+      "name": "390 px browser layout (not physical phone)",
+      "status": "pass"
+    },
+    {
+      "name": "hash mismatch is rejected and retry recovers",
+      "status": "pass"
+    },
+    {
+      "name": "actual browser MediaRecorder export",
+      "status": "pass"
+    }
+  ],
+  "page_errors": [],
+  "rendering": "headless Chromium + SwiftShader CPU; no hardware GPU or human interactive claim",
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

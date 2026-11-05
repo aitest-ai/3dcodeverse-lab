@@ -1,0 +1,23 @@
+{
+  "method": "Actually cold-open mother and run export_motion_v05.py for both assets. Compare every animation output component; float rounding allowed, new SHA recorded. New outputs remain unregistered work files.",
+  "entries": [
+    {
+      "id": "vroid-vivi-motion-review",
+      "source_sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+      "new_candidate_sha256": "2b20654480435e350bbbb1c5ef8eae1c5e535c45a4955e7d56a536c339ee891e",
+      "maximum_animation_component_error": 8.307397365570068e-07,
+      "original_geometry_skin_material_texture_prefix": "unchanged",
+      "bitwise_identical": false,
+      "registered": false
+    },
+    {
+      "id": "quaternius-shibainu-grounded-review",
+      "source_sha256": "52561dc53ad291ded9b9cc726253b9b72344469acdd24a5d68a815c7380b3329",
+      "new_candidate_sha256": "2c2ff1e10cb19f707e722c67adcc3d9418800118a09a9e4fd3912804d046ad80",
+      "maximum_animation_component_error": 1.5497207641601562e-06,
+      "original_geometry_skin_material_texture_prefix": "unchanged",
+      "bitwise_identical": false,
+      "registered": false
+    }
+  ]
+}

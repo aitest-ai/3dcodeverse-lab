@@ -1,0 +1,20 @@
+{
+  "generation": "Blender 5.2.3 LTS background; CPU only; no desktop GUI/GPU claim",
+  "corrected_clips": [
+    "Idle",
+    "Walk",
+    "Gallop"
+  ],
+  "runtime_geometry_material_skin_vrm_bytes": "unchanged source prefix",
+  "editable_weight_sync": {
+    "edited_copy_vertices_changed": 977,
+    "maximum_weight_difference": 0.15980970859527588,
+    "duplicate_joint_entries_summed_in_original_primitives": 0,
+    "source_runtime_weight_bytes": "unchanged",
+    "native_master": "unchanged",
+    "rest_mapping_max_error": 0
+  },
+  "browser_evidence": "../../../evidence-v05/browser-contacts.json",
+  "art_approved": false,
+  "game_ready": false
+}

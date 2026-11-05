@@ -1,0 +1,228 @@
+{
+  "method": "Actual Chromium Three.js SkinnedMesh vertices, world coordinates; 120 Hz including between 60 Hz baked keys. Stance drift measured separately per foot/contact ID/pivot. Not collision/art approval.",
+  "errors": [],
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Idle",
+      "hz": 120,
+      "samples": 301,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": 0.006110351423841768,
+          "maximum_stance_reference_xz_drift_m": 0.005661584964559057,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 2
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002999826664596197,
+          "maximum_stance_reference_xz_drift_m": 6.393448582615611e-8,
+          "maximum_browser_vs_blender_at_baked_frames_m": 3.5733983757418875e-7,
+          "contact_groups": 2
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "Walk",
+      "hz": 120,
+      "samples": 161,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.02744725582960316,
+          "maximum_stance_reference_xz_drift_m": 0.05939385901430893,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 8
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0029658814843222733,
+          "maximum_stance_reference_xz_drift_m": 0.0012394042135781677,
+          "maximum_browser_vs_blender_at_baked_frames_m": 2.618151521750387e-7,
+          "contact_groups": 8
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "hz": 120,
+      "samples": 113,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.03306106650334878,
+          "maximum_stance_reference_xz_drift_m": 0.10048747757806885,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 4
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002887146829322479,
+          "maximum_stance_reference_xz_drift_m": 0.001596286740268116,
+          "maximum_browser_vs_blender_at_baked_frames_m": 2.5995148845051315e-7,
+          "contact_groups": 4
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "Start",
+      "hz": 120,
+      "samples": 209,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.028491403240170993,
+          "maximum_stance_reference_xz_drift_m": 0.07019010697517598,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 11
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002837342373040161,
+          "maximum_stance_reference_xz_drift_m": 0.001296544443001712,
+          "maximum_browser_vs_blender_at_baked_frames_m": 3.143315262621951e-7,
+          "contact_groups": 11
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "Stop",
+      "hz": 120,
+      "samples": 209,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.030142209681718133,
+          "maximum_stance_reference_xz_drift_m": 0.05376159062346257,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 12
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0025819072971512286,
+          "maximum_stance_reference_xz_drift_m": 0.0012486628012422138,
+          "maximum_browser_vs_blender_at_baked_frames_m": 2.6791984365955035e-7,
+          "contact_groups": 12
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "TurnLeft",
+      "hz": 120,
+      "samples": 193,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": 0.006109368840953777,
+          "maximum_stance_reference_xz_drift_m": 0.08994630839720044,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 8
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002487353621456515,
+          "maximum_stance_reference_xz_drift_m": 0.001690441898477625,
+          "maximum_browser_vs_blender_at_baked_frames_m": 3.4422402738533333e-7,
+          "contact_groups": 8
+        }
+      ]
+    },
+    {
+      "key": "vivi",
+      "clip": "TurnRight",
+      "hz": 120,
+      "samples": 193,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": 0.006109990189925321,
+          "maximum_stance_reference_xz_drift_m": 0.0826588013201136,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 8
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002409558921185044,
+          "maximum_stance_reference_xz_drift_m": 0.0016393015751567728,
+          "maximum_browser_vs_blender_at_baked_frames_m": 3.192507163716357e-7,
+          "contact_groups": 8
+        }
+      ]
+    },
+    {
+      "key": "shiba",
+      "clip": "Idle",
+      "hz": 120,
+      "samples": 401,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": 0.003000007577504035,
+          "maximum_stance_reference_xz_drift_m": 0.000019080789040026385,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 4
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.002999966524670555,
+          "maximum_stance_reference_xz_drift_m": 4.172974729804586e-8,
+          "maximum_browser_vs_blender_at_baked_frames_m": 5.297661548534282e-8,
+          "contact_groups": 4
+        }
+      ]
+    },
+    {
+      "key": "shiba",
+      "clip": "Walk",
+      "hz": 120,
+      "samples": 129,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.013549819166977926,
+          "maximum_stance_reference_xz_drift_m": 0.12651182243429107,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 7
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0028615355529314776,
+          "maximum_stance_reference_xz_drift_m": 0.00013943589554215308,
+          "maximum_browser_vs_blender_at_baked_frames_m": 9.423919670654443e-8,
+          "contact_groups": 7
+        }
+      ]
+    },
+    {
+      "key": "shiba",
+      "clip": "Gallop",
+      "hz": 120,
+      "samples": 69,
+      "summary": [
+        {
+          "variant": "baseline",
+          "minimum_sole_y_m": -0.010039921372404672,
+          "maximum_stance_reference_xz_drift_m": 0.05724631649760089,
+          "maximum_browser_vs_blender_at_baked_frames_m": null,
+          "contact_groups": 5
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0015762206759169783,
+          "maximum_stance_reference_xz_drift_m": 0.00008151320335400623,
+          "maximum_browser_vs_blender_at_baked_frames_m": 1.1987260721861365e-7,
+          "contact_groups": 5
+        }
+      ]
+    }
+  ],
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested"
+}

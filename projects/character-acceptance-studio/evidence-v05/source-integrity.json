@@ -1,0 +1,29 @@
+{
+  "status": "STRUCTURAL_SOURCE_AND_LOCK_CHECKS_PASS_NOT_ART_APPROVAL",
+  "entries": [
+    {
+      "id": "vroid-vivi-motion-review-before",
+      "sha256": "911ce71612784c63c96d25f8df3784bb9d1c6627abf23603f0f69275c6b86252",
+      "source_geometry_skin_material_texture_vrm_bytes": "identical",
+      "clips": 7
+    },
+    {
+      "id": "vroid-vivi-motion-review",
+      "sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+      "source_geometry_skin_material_texture_vrm_bytes": "identical",
+      "clips": 7
+    },
+    {
+      "id": "quaternius-shibainu-grounded-review-before",
+      "sha256": "191a991acda019cbdbcb912823c83be024f5d6730f699ecfccb2049ced888cf5",
+      "source_geometry_skin_material_texture_vrm_bytes": "identical",
+      "clips": 12
+    },
+    {
+      "id": "quaternius-shibainu-grounded-review",
+      "sha256": "52561dc53ad291ded9b9cc726253b9b72344469acdd24a5d68a815c7380b3329",
+      "source_geometry_skin_material_texture_vrm_bytes": "identical",
+      "clips": 12
+    }
+  ]
+}
