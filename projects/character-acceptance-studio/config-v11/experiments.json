@@ -1,0 +1,62 @@
+{
+  "failures": [
+    {
+      "trial": 1,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.000000, phase=0.0286: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 2,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.000000, phase=0.0286 reach=2.377859 max=2.371994 target=[-0.4194774627685547, -1.9846364259719849, 0.0009242282249033451] old=[-0.4245862364768982, -2.1051480770111084, 0.046711087226867676] delta=[1.652312988653648e-07, -0.046303920447826385, -0.0014837696217000484]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 3,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.566667, phase=0.5143 reach=2.379272 max=2.371996 target=[-0.4185185730457306, -0.674868643283844, 0.006805759854614735] old=[-0.4117739796638489, -0.6581568121910095, 0.030257344245910645] delta=[-1.3582634572628649e-08, 0.05028373375535011, -0.0014836965128779411]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 4,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.575000, phase=0.5214 reach=2.375241 max=2.371996 target=[-0.4185185134410858, -0.695679247379303, 0.006805796176195145] old=[-0.41175127029418945, -0.6513660550117493, 0.053504109382629395] delta=[1.652312988653648e-07, 0.04090956971049309, -0.02208070084452629]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 5,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.600000, phase=0.5429 reach=2.376010 max=2.371996 target=[-0.4185038208961487, -0.7109051942825317, 0.007958009839057922] old=[-0.4121921956539154, -0.6391171813011169, 0.14895445108413696] delta=[-1.3582634572628649e-08, 0.059684909880161285, -0.08470873534679413]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 6,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.566667, phase=0.5143 reach=2.372144 max=2.371996 target=[-0.4193345904350281, -0.6856626272201538, 0.010916230268776417] old=[-0.4117739796638489, -0.6581568121910095, 0.030257344245910645] delta=[1.0562665408997418e-07, 0.06568518280982971, 0.007500854320824146]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 7,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontL t=0.866667, phase=0.3214 reach=2.372493 max=2.371993 target=[0.42525047063827515, -1.120367407798767, 0.0007370845414698124] old=[0.421487957239151, -1.1507517099380493, 0.004886150360107422] delta=[-8.472060386566227e-08, 0.04747466742992401, -0.0014836057089269161]: Unreachable native leg correction: FrontLowerLeg.L"
+    },
+    {
+      "trial": 8,
+      "status": "native-solver-failed",
+      "error": "RuntimeError: FrontR t=0.600000, phase=0.5429 reach=2.375908 max=2.371996 target=[-0.4185037314891815, -0.6432170271873474, 0.007958009839057922] old=[-0.412192165851593, -0.6391172409057617, 0.12785392999649048] delta=[7.582433170227887e-08, 0.12737321853637695, -0.06360836327075958]: Unreachable native leg correction: FrontLowerLeg.R"
+    },
+    {
+      "trial": 9,
+      "status": "native-exported; browser status separate",
+      "error": null
+    },
+    {
+      "trial": 10,
+      "status": "native-exported; browser status separate",
+      "error": null
+    }
+  ],
+  "failed_browser": {
+    "glb_sha256": "9d055f267c97e19bfa799066f0c388064c76ef646bc52bec1672c138ab9eaf02",
+    "minimum_sole_y_m": -0.01091456260071723,
+    "maximum_stance_patch_drift_m": 0.32283022237480874,
+    "cause": "Child FF inherited IK translation and was then translated again; corrected by snapshotting both matrices before shared translation."
+  },
+  "final_brown_glb_sha256": "b5036b2f646bd7026d66aacf41249509ec1d44f0957124bf9c271c6d4125ddc9",
+  "status": "only final lockfile registered; failed candidates excluded from package"
+}

@@ -1,0 +1,74 @@
+{
+  "source_model_sha256": "3d81fcebd8755b19f6ff3e80bde6adf3d4ecdc41e59a6d80cebfebcbd457c4a6",
+  "duration_s": 1.1666666666666667,
+  "source_sampling_hz": 120,
+  "candidate_speed_m_s": 0.8,
+  "candidate_stride_m": 0.9333333333333335,
+  "selection_note": "Measured fore mean is 0.850632 m/s; selected display speed 0.8 m/s. Trials without body adaptation exceeded native reach near toe-off; smaller speed/earlier toe-off alone also failed. Candidate retains source contact windows and lowers the body pose by 20 mm, then re-solves each leg at unchanged link lengths and fixed world hoof targets. No root lift, leg stretch or force-contact claim.",
+  "feet": {
+    "FrontL": {
+      "phase": 0.42142857142857143,
+      "duty": 0.5285714285714286,
+      "source_stance_mean_m": [
+        0.15214437011122914,
+        -0.5856613988854085,
+        0.0073193298554836686
+      ],
+      "fitted_speed_m_s": 0.8721795991085314,
+      "fit_rms_m": 0.011817128219692477,
+      "source_stance_span_m": 0.4797069819887723,
+      "source_max_lift_m": 0.15334787317178686,
+      "source_duty": 0.5285714285714286
+    },
+    "FrontR": {
+      "phase": 0.9714285714285714,
+      "duty": 0.5357142857142857,
+      "source_stance_mean_m": [
+        -0.15214437348416873,
+        -0.5904370987282651,
+        0.007385396561161974
+      ],
+      "fitted_speed_m_s": 0.8290847810362332,
+      "fit_rms_m": 0.010659132395752172,
+      "source_stance_span_m": 0.47835191146992906,
+      "source_max_lift_m": 0.15334791836888115,
+      "source_duty": 0.5357142857142857
+    },
+    "BackL": {
+      "phase": 0.2357142857142857,
+      "duty": 0.5357142857142857,
+      "source_stance_mean_m": [
+        0.1641726462012405,
+        0.5832960399404613,
+        0.007938628713938054
+      ],
+      "fitted_speed_m_s": 1.4285186904257985,
+      "fit_rms_m": 0.05961935894589305,
+      "source_stance_span_m": 0.747766452407856,
+      "source_max_lift_m": 0.1050034227378146,
+      "source_duty": 0.5357142857142857
+    },
+    "BackR": {
+      "phase": 0.75,
+      "duty": 0.5357142857142857,
+      "source_stance_mean_m": [
+        -0.16417264915160637,
+        0.5832960042347568,
+        0.007938630221249623
+      ],
+      "fitted_speed_m_s": 1.4215229683005084,
+      "fit_rms_m": 0.05836572188804733,
+      "source_stance_span_m": 0.7477664580574928,
+      "source_max_lift_m": 0.10619623055216791,
+      "source_duty": 0.5357142857142857
+    }
+  },
+  "display_calibration": {
+    "scale": 0.37914070663370214,
+    "offset_y": 0.005371682565088657,
+    "method": "Uniform framing scale from a narrow front-shoulder/neck section, chosen section height 1.50m; not true withers measurement or biological size certification. Original GLB unchanged.",
+    "native_section_height": 3.9563148291781545
+  },
+  "measured_fore_mean_speed_m_s": 0.8506321900723823,
+  "body_lowering_m": 0.02
+}
