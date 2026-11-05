@@ -1,0 +1,67 @@
+{
+  "studio_version": "0.8.0",
+  "asset_id": "vroid-vita-motion-review",
+  "version": "0.2.0",
+  "sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+  "native_joints": 155,
+  "changed_clips": [
+    "Start",
+    "Stop",
+    "TurnLeft",
+    "TurnRight"
+  ],
+  "exactly_preserved_clips": [
+    "Idle",
+    "Walk",
+    "Run"
+  ],
+  "vivi": "0.3.0 unchanged; continuous sequences regression checked",
+  "program": {
+    "status": "GLB structure, exact source/old clip preservation, per-asset root plan, pinning, geometry-edit rejection and cold reexport tested",
+    "evidence": [
+      "reexport.json",
+      "export-guard.json",
+      "pin-check.json"
+    ]
+  },
+  "blender": {
+    "status": "cold native mother and evaluated surfaces tested; no offline art render",
+    "evidence": "blender-cold.json"
+  },
+  "browser": {
+    "status": "actual Chromium + SwiftShader",
+    "sample_hz": 120,
+    "new_clip_samples": 804,
+    "minimum_sole_y_m": 0.0020759112795556978,
+    "maximum_stance_drift_m": 0.0030672111591847962,
+    "maximum_torso_lean_degrees": 3.355082298107819,
+    "maximum_specified_skirt_leg_pairs": 0,
+    "maximum_hand_skin_self_pairs": 0,
+    "maximum_full_mesh_blender_probe_difference_m": 1.1677945338463139e-06,
+    "maximum_sequence_join_m": 1.2857479874679865e-06,
+    "actual_screenshots": 136,
+    "encoded_video_seconds": {
+      "vita-sequence-walk.webm": 5.407036,
+      "vita-sequence-turn.webm": 5.403876
+    }
+  },
+  "physical_mobile": "not-tested; desktop 390px viewport only",
+  "human_art": "not-tested",
+  "second_engine": "not-tested",
+  "failed_or_unavailable": [
+    "Previous Vita has no Start/Stop/turn clips; no previous-motion A/B comparison for them",
+    "Initial metadata writer had a name collision, fixed; GLB and mother already exported; clean packaged rebuild separately verified"
+  ],
+  "known_limitations": [
+    "Project-authored motion, not mocap or model training",
+    "Original stylized body, garment pattern and shoe heel retained; not refitted this phase",
+    "Deterministic baked garment bones, no cloth simulation or full-body collision approval",
+    "Human aesthetics, hardware mobile, Godot/maps untested",
+    "Predefined phase joins only; arbitrary velocity transitions, slopes and uneven terrain untested",
+    "CPU recordings may drop frames; no real-time hardware performance claim",
+    "Existing animal library preserved; no new animal motions in this phase",
+    "V110/V111/rainbow and Taiwan clothing latest sources remain inventory gaps, no fallback to V103"
+  ],
+  "art_approved": false,
+  "game_ready": false
+}

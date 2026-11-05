@@ -1,0 +1,57 @@
+{
+  "method": "Actual Chromium skin vertices at 120 Hz, including between baked keys. Groups by foot/contact-ID/pivot. Four new clips only.",
+  "entries": [
+    {
+      "key": "vita",
+      "clip": "Start",
+      "hz": 120,
+      "samples": 209,
+      "model_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+      "summary": {
+        "minimum_sole_y_m": 0.0020759112795556978,
+        "maximum_stance_reference_xz_drift_m": 0.0025640202588231636,
+        "maximum_browser_vs_build_baked_m": 3.599783425327601e-7,
+        "maximum_absolute_torso_lean_degrees": 3.355082298107819
+      }
+    },
+    {
+      "key": "vita",
+      "clip": "Stop",
+      "hz": 120,
+      "samples": 209,
+      "model_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+      "summary": {
+        "minimum_sole_y_m": 0.0022856082793682522,
+        "maximum_stance_reference_xz_drift_m": 0.0014162020593548711,
+        "maximum_browser_vs_build_baked_m": 3.274787852304396e-7,
+        "maximum_absolute_torso_lean_degrees": 3.355079073402299
+      }
+    },
+    {
+      "key": "vita",
+      "clip": "TurnLeft",
+      "hz": 120,
+      "samples": 193,
+      "model_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+      "summary": {
+        "minimum_sole_y_m": 0.002325685451341108,
+        "maximum_stance_reference_xz_drift_m": 0.0030672111591847962,
+        "maximum_browser_vs_build_baked_m": 3.629137368750708e-7,
+        "maximum_absolute_torso_lean_degrees": 2.68038903217692
+      }
+    },
+    {
+      "key": "vita",
+      "clip": "TurnRight",
+      "hz": 120,
+      "samples": 193,
+      "model_sha256": "73810ed0414c723da46dd74dfe227b4c1aec83e4321a6cd0eda0a7ec5f7e7194",
+      "summary": {
+        "minimum_sole_y_m": 0.0022356590199620677,
+        "maximum_stance_reference_xz_drift_m": 0.0030345111294473657,
+        "maximum_browser_vs_build_baked_m": 4.1598987276332197e-7,
+        "maximum_absolute_torso_lean_degrees": 2.68042625092819
+      }
+    }
+  ]
+}

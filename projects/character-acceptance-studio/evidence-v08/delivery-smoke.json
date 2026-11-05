@@ -1,0 +1,17 @@
+{
+  "source": "clean extracted Runtime + both Sources, separate localhost server",
+  "characters": [
+    "vivi",
+    "vita"
+  ],
+  "actual_browser": true,
+  "a_b_and_single_corrected": true,
+  "native_B_timeline": true,
+  "step_rate_play_pause": true,
+  "expression": true,
+  "all_download_links": true,
+  "sha256_corruption_rejected_and_retry": true,
+  "gallery": true,
+  "errors": [],
+  "http_failures": []
+}
