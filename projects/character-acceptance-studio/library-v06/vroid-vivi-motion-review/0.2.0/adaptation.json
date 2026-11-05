@@ -1,0 +1,2242 @@
+{
+  "asset_id": "vroid-vivi-motion-review",
+  "version": "0.2.0",
+  "base_model": "library-v05/vroid-vivi-motion-review/0.1.0/model.glb",
+  "base_model_sha256": "2bc4896cafe97ccded0b739629e523486c44548df2e5f4a3af96a20d1a78e2c7",
+  "base_mother": "library-v05/vroid-vivi-motion-review/0.1.0/model.blend",
+  "base_mother_sha256": "e2e9c6845044166bef352e542af14e21c5a9187ea4038ddb9810b2e0e4797333",
+  "original_geometry": "library-v04/vroid-vivi/1.0.0/model.glb",
+  "original_geometry_sha256": "eaf902e041a7a810f1423599ae75682f61184ab6ef0206da9a8ed9caa8ec3a9d",
+  "model_sha256": "2c26ef8a2c2462d90a95e8402f6f8a01960d12c4512d8cc647d90671d86594a5",
+  "mother_sha256": "67fef9456fefc25b9ecbd1c214b7b26457485aff8f1e0c4057e40c7cc9404611",
+  "original_binary_prefix_bytes": 22191640,
+  "original_binary_prefix_sha256": "54dbae1d9ac9d7d343c795069fa5a2c73ba9b224ae871c5e78a2044d32ad05a5",
+  "finger_angles_radians": {
+    "Idle": [
+      0.29250000000000004,
+      0.42250000000000004,
+      0.21450000000000002
+    ],
+    "Walk": [
+      0.29700000000000004,
+      0.42900000000000005,
+      0.21780000000000002
+    ],
+    "Run": [
+      0.30150000000000005,
+      0.43550000000000005,
+      0.22110000000000002
+    ]
+  },
+  "finger_factors": {
+    "Index": 0.88,
+    "Middle": 1,
+    "Ring": 1.08,
+    "Little": 1.15,
+    "Thumb": 0.55
+  },
+  "skirt_front_ease_m_per_radian": 0.07,
+  "turn_correction": "Heading-aware axial twist on upper arms, thighs and shins, preserving joint/foot world positions; final 15% settles to exact Idle in turned root frame. Contact drift is independently measured.",
+  "scope": "Run-only front-support translation based on native thigh pitch; original topology, skin weights, textures and rest rig unchanged. Not a cloth simulation or full-body collision approval.",
+  "changed_channels": [
+    {
+      "clip": "Idle",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 431,
+      "maximum_component_change": 0.12664860120275945
+    },
+    {
+      "clip": "Idle",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 434,
+      "maximum_component_change": 0.18238805115106516
+    },
+    {
+      "clip": "Idle",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 437,
+      "maximum_component_change": 0.09299439072492532
+    },
+    {
+      "clip": "Idle",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 443,
+      "maximum_component_change": 0.16716654572519496
+    },
+    {
+      "clip": "Idle",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 446,
+      "maximum_component_change": 0.24022564248298295
+    },
+    {
+      "clip": "Idle",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 449,
+      "maximum_component_change": 0.12285668501863256
+    },
+    {
+      "clip": "Idle",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 455,
+      "maximum_component_change": 0.14530060949618928
+    },
+    {
+      "clip": "Idle",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 458,
+      "maximum_component_change": 0.20906546979676932
+    },
+    {
+      "clip": "Idle",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 461,
+      "maximum_component_change": 0.10672969606821425
+    },
+    {
+      "clip": "Idle",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 467,
+      "maximum_component_change": 0.15708469916717105
+    },
+    {
+      "clip": "Idle",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 470,
+      "maximum_component_change": 0.22587479546200484
+    },
+    {
+      "clip": "Idle",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 473,
+      "maximum_component_change": 0.11541733998456039
+    },
+    {
+      "clip": "Idle",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 479,
+      "maximum_component_change": 0.05937533127143979
+    },
+    {
+      "clip": "Idle",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 482,
+      "maximum_component_change": 0.08566355751827359
+    },
+    {
+      "clip": "Idle",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 485,
+      "maximum_component_change": 0.04356361203826964
+    },
+    {
+      "clip": "Idle",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 515,
+      "maximum_component_change": 0.1266441647894681
+    },
+    {
+      "clip": "Idle",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 518,
+      "maximum_component_change": 0.1823815245006699
+    },
+    {
+      "clip": "Idle",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 521,
+      "maximum_component_change": 0.09299108621780783
+    },
+    {
+      "clip": "Idle",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 527,
+      "maximum_component_change": 0.16716939161415212
+    },
+    {
+      "clip": "Idle",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 530,
+      "maximum_component_change": 0.24022960683214478
+    },
+    {
+      "clip": "Idle",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 533,
+      "maximum_component_change": 0.12285875406814761
+    },
+    {
+      "clip": "Idle",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 539,
+      "maximum_component_change": 0.14529998812940903
+    },
+    {
+      "clip": "Idle",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 542,
+      "maximum_component_change": 0.20906463149003685
+    },
+    {
+      "clip": "Idle",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 545,
+      "maximum_component_change": 0.10672925639664754
+    },
+    {
+      "clip": "Idle",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 551,
+      "maximum_component_change": 0.1570871169678867
+    },
+    {
+      "clip": "Idle",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 554,
+      "maximum_component_change": 0.22587821201886982
+    },
+    {
+      "clip": "Idle",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 557,
+      "maximum_component_change": 0.11541913941618986
+    },
+    {
+      "clip": "Idle",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 563,
+      "maximum_component_change": 0.059407145832665376
+    },
+    {
+      "clip": "Idle",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 566,
+      "maximum_component_change": 0.08570945309475064
+    },
+    {
+      "clip": "Idle",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 569,
+      "maximum_component_change": 0.0435869549401105
+    },
+    {
+      "clip": "Walk",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 891,
+      "maximum_component_change": 0.12858600026811473
+    },
+    {
+      "clip": "Walk",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 894,
+      "maximum_component_change": 0.18516095068480348
+    },
+    {
+      "clip": "Walk",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 897,
+      "maximum_component_change": 0.09442066488554696
+    },
+    {
+      "clip": "Walk",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 903,
+      "maximum_component_change": 0.16971357192960568
+    },
+    {
+      "clip": "Walk",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 906,
+      "maximum_component_change": 0.24384674290195107
+    },
+    {
+      "clip": "Walk",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 909,
+      "maximum_component_change": 0.12473693762149196
+    },
+    {
+      "clip": "Walk",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 915,
+      "maximum_component_change": 0.147519676014781
+    },
+    {
+      "clip": "Walk",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 918,
+      "maximum_component_change": 0.2122328270925209
+    },
+    {
+      "clip": "Walk",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 921,
+      "maximum_component_change": 0.10836521031160373
+    },
+    {
+      "clip": "Walk",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 927,
+      "maximum_component_change": 0.15948082297109023
+    },
+    {
+      "clip": "Walk",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 930,
+      "maximum_component_change": 0.22928784601390373
+    },
+    {
+      "clip": "Walk",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 933,
+      "maximum_component_change": 0.11718485830351733
+    },
+    {
+      "clip": "Walk",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 939,
+      "maximum_component_change": 0.060286711901426315
+    },
+    {
+      "clip": "Walk",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 942,
+      "maximum_component_change": 0.08697547903284442
+    },
+    {
+      "clip": "Walk",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 945,
+      "maximum_component_change": 0.04423305043019354
+    },
+    {
+      "clip": "Walk",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 975,
+      "maximum_component_change": 0.12858141743345186
+    },
+    {
+      "clip": "Walk",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 978,
+      "maximum_component_change": 0.18515431994455867
+    },
+    {
+      "clip": "Walk",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 981,
+      "maximum_component_change": 0.09441727783996567
+    },
+    {
+      "clip": "Walk",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 987,
+      "maximum_component_change": 0.16971644666045893
+    },
+    {
+      "clip": "Walk",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 990,
+      "maximum_component_change": 0.24385079694911838
+    },
+    {
+      "clip": "Walk",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 993,
+      "maximum_component_change": 0.12473904552462045
+    },
+    {
+      "clip": "Walk",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 999,
+      "maximum_component_change": 0.14751893408538308
+    },
+    {
+      "clip": "Walk",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 1002,
+      "maximum_component_change": 0.21223186000133865
+    },
+    {
+      "clip": "Walk",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 1005,
+      "maximum_component_change": 0.10836468648631137
+    },
+    {
+      "clip": "Walk",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 1011,
+      "maximum_component_change": 0.1594832667033188
+    },
+    {
+      "clip": "Walk",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 1014,
+      "maximum_component_change": 0.22929132031276822
+    },
+    {
+      "clip": "Walk",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 1017,
+      "maximum_component_change": 0.11718667554669104
+    },
+    {
+      "clip": "Walk",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 1023,
+      "maximum_component_change": 0.06031908863224089
+    },
+    {
+      "clip": "Walk",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 1026,
+      "maximum_component_change": 0.0870220583747141
+    },
+    {
+      "clip": "Walk",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 1029,
+      "maximum_component_change": 0.044256714172661304
+    },
+    {
+      "clip": "Run",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 1351,
+      "maximum_component_change": 0.13052302319556475
+    },
+    {
+      "clip": "Run",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 1354,
+      "maximum_component_change": 0.18793217558413766
+    },
+    {
+      "clip": "Run",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 1357,
+      "maximum_component_change": 0.09584677964448929
+    },
+    {
+      "clip": "Run",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 1363,
+      "maximum_component_change": 0.17225930187851213
+    },
+    {
+      "clip": "Run",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 1366,
+      "maximum_component_change": 0.2474642563611269
+    },
+    {
+      "clip": "Run",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 1369,
+      "maximum_component_change": 0.12661686702631425
+    },
+    {
+      "clip": "Run",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 1375,
+      "maximum_component_change": 0.14973801304586254
+    },
+    {
+      "clip": "Run",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 1378,
+      "maximum_component_change": 0.21539786644279957
+    },
+    {
+      "clip": "Run",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 1381,
+      "maximum_component_change": 0.11000061780214299
+    },
+    {
+      "clip": "Run",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 1387,
+      "maximum_component_change": 0.16187588544562415
+    },
+    {
+      "clip": "Run",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 1390,
+      "maximum_component_change": 0.232698096893728
+    },
+    {
+      "clip": "Run",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 1393,
+      "maximum_component_change": 0.11895195487886678
+    },
+    {
+      "clip": "Run",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 1399,
+      "maximum_component_change": 0.06119805574417114
+    },
+    {
+      "clip": "Run",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 1402,
+      "maximum_component_change": 0.08828702010214373
+    },
+    {
+      "clip": "Run",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 1405,
+      "maximum_component_change": 0.04490229394286871
+    },
+    {
+      "clip": "Run",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 1435,
+      "maximum_component_change": 0.13051834423094988
+    },
+    {
+      "clip": "Run",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 1438,
+      "maximum_component_change": 0.18792546866461635
+    },
+    {
+      "clip": "Run",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 1441,
+      "maximum_component_change": 0.09584335703402713
+    },
+    {
+      "clip": "Run",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 1447,
+      "maximum_component_change": 0.17226216197013866
+    },
+    {
+      "clip": "Run",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 1450,
+      "maximum_component_change": 0.24746852833777688
+    },
+    {
+      "clip": "Run",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 1453,
+      "maximum_component_change": 0.1266188914887607
+    },
+    {
+      "clip": "Run",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 1459,
+      "maximum_component_change": 0.14973734505474567
+    },
+    {
+      "clip": "Run",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 1462,
+      "maximum_component_change": 0.21539691044017684
+    },
+    {
+      "clip": "Run",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 1465,
+      "maximum_component_change": 0.11000008229166269
+    },
+    {
+      "clip": "Run",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 1471,
+      "maximum_component_change": 0.16187837696634233
+    },
+    {
+      "clip": "Run",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 1474,
+      "maximum_component_change": 0.2327016331255436
+    },
+    {
+      "clip": "Run",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 1477,
+      "maximum_component_change": 0.1189538079779594
+    },
+    {
+      "clip": "Run",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 1483,
+      "maximum_component_change": 0.06123070931062102
+    },
+    {
+      "clip": "Run",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 1486,
+      "maximum_component_change": 0.08833442255854584
+    },
+    {
+      "clip": "Run",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 1489,
+      "maximum_component_change": 0.04492643801495433
+    },
+    {
+      "clip": "Run",
+      "node": 133,
+      "bone": "J_Sec_L_SkirtFront0",
+      "path": "translation",
+      "previous_output": 1509,
+      "maximum_component_change": 0.06838510185480118
+    },
+    {
+      "clip": "Run",
+      "node": 146,
+      "bone": "J_Sec_R_SkirtFront0",
+      "path": "translation",
+      "previous_output": 1548,
+      "maximum_component_change": 0.06825920939445496
+    },
+    {
+      "clip": "Start",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 1811,
+      "maximum_component_change": 0.12858599436003715
+    },
+    {
+      "clip": "Start",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 1814,
+      "maximum_component_change": 0.18516089022159576
+    },
+    {
+      "clip": "Start",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 1817,
+      "maximum_component_change": 0.09442065352050122
+    },
+    {
+      "clip": "Start",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 1823,
+      "maximum_component_change": 0.16971354465931654
+    },
+    {
+      "clip": "Start",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 1826,
+      "maximum_component_change": 0.24384665273828432
+    },
+    {
+      "clip": "Start",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 1829,
+      "maximum_component_change": 0.1247369069606068
+    },
+    {
+      "clip": "Start",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 1835,
+      "maximum_component_change": 0.14751957610133104
+    },
+    {
+      "clip": "Start",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 1838,
+      "maximum_component_change": 0.21223274862859398
+    },
+    {
+      "clip": "Start",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 1841,
+      "maximum_component_change": 0.10836516914423555
+    },
+    {
+      "clip": "Start",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 1847,
+      "maximum_component_change": 0.1594807972724086
+    },
+    {
+      "clip": "Start",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 1850,
+      "maximum_component_change": 0.2292878633015789
+    },
+    {
+      "clip": "Start",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 1853,
+      "maximum_component_change": 0.117184852657374
+    },
+    {
+      "clip": "Start",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 1859,
+      "maximum_component_change": 0.06028676847927272
+    },
+    {
+      "clip": "Start",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 1862,
+      "maximum_component_change": 0.08697550022043285
+    },
+    {
+      "clip": "Start",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 1865,
+      "maximum_component_change": 0.044233065098524066
+    },
+    {
+      "clip": "Start",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 1895,
+      "maximum_component_change": 0.12858145032078028
+    },
+    {
+      "clip": "Start",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 1898,
+      "maximum_component_change": 0.18515433417633176
+    },
+    {
+      "clip": "Start",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 1901,
+      "maximum_component_change": 0.09441734151914716
+    },
+    {
+      "clip": "Start",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 1907,
+      "maximum_component_change": 0.16971640055999182
+    },
+    {
+      "clip": "Start",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 1910,
+      "maximum_component_change": 0.243850770522841
+    },
+    {
+      "clip": "Start",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 1913,
+      "maximum_component_change": 0.12473907624371416
+    },
+    {
+      "clip": "Start",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 1919,
+      "maximum_component_change": 0.1475189604680054
+    },
+    {
+      "clip": "Start",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 1922,
+      "maximum_component_change": 0.21223192149773284
+    },
+    {
+      "clip": "Start",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 1925,
+      "maximum_component_change": 0.10836474830284759
+    },
+    {
+      "clip": "Start",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 1931,
+      "maximum_component_change": 0.1594832397531719
+    },
+    {
+      "clip": "Start",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 1934,
+      "maximum_component_change": 0.22929135046433724
+    },
+    {
+      "clip": "Start",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 1937,
+      "maximum_component_change": 0.11718666111119114
+    },
+    {
+      "clip": "Start",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 1943,
+      "maximum_component_change": 0.060319016687572
+    },
+    {
+      "clip": "Start",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 1946,
+      "maximum_component_change": 0.0870221545919776
+    },
+    {
+      "clip": "Start",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 1949,
+      "maximum_component_change": 0.044256802182644606
+    },
+    {
+      "clip": "Stop",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 2271,
+      "maximum_component_change": 0.12858602133928798
+    },
+    {
+      "clip": "Stop",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 2274,
+      "maximum_component_change": 0.1851609347504568
+    },
+    {
+      "clip": "Stop",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 2277,
+      "maximum_component_change": 0.09442063255119115
+    },
+    {
+      "clip": "Stop",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 2283,
+      "maximum_component_change": 0.16971359045419376
+    },
+    {
+      "clip": "Stop",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 2286,
+      "maximum_component_change": 0.24384664022363722
+    },
+    {
+      "clip": "Stop",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 2289,
+      "maximum_component_change": 0.12473691033665091
+    },
+    {
+      "clip": "Stop",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 2295,
+      "maximum_component_change": 0.1475196165702075
+    },
+    {
+      "clip": "Stop",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 2298,
+      "maximum_component_change": 0.21223287004977465
+    },
+    {
+      "clip": "Stop",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 2301,
+      "maximum_component_change": 0.10836518678115681
+    },
+    {
+      "clip": "Stop",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 2307,
+      "maximum_component_change": 0.159480797548895
+    },
+    {
+      "clip": "Stop",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 2310,
+      "maximum_component_change": 0.2292878351872787
+    },
+    {
+      "clip": "Stop",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 2313,
+      "maximum_component_change": 0.117184852657374
+    },
+    {
+      "clip": "Stop",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 2319,
+      "maximum_component_change": 0.0602867566049099
+    },
+    {
+      "clip": "Stop",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 2322,
+      "maximum_component_change": 0.08697545551694932
+    },
+    {
+      "clip": "Stop",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 2325,
+      "maximum_component_change": 0.044233010150492025
+    },
+    {
+      "clip": "Stop",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 2355,
+      "maximum_component_change": 0.12858141920878563
+    },
+    {
+      "clip": "Stop",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 2358,
+      "maximum_component_change": 0.18515430530533195
+    },
+    {
+      "clip": "Stop",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 2361,
+      "maximum_component_change": 0.09441729300306179
+    },
+    {
+      "clip": "Stop",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 2367,
+      "maximum_component_change": 0.1697164454963056
+    },
+    {
+      "clip": "Stop",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 2370,
+      "maximum_component_change": 0.24385079985950142
+    },
+    {
+      "clip": "Stop",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 2373,
+      "maximum_component_change": 0.12473907892126679
+    },
+    {
+      "clip": "Stop",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 2379,
+      "maximum_component_change": 0.1475189623888582
+    },
+    {
+      "clip": "Stop",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 2382,
+      "maximum_component_change": 0.21223187807481736
+    },
+    {
+      "clip": "Stop",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 2385,
+      "maximum_component_change": 0.10836471407674275
+    },
+    {
+      "clip": "Stop",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 2391,
+      "maximum_component_change": 0.15948323893826455
+    },
+    {
+      "clip": "Stop",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 2394,
+      "maximum_component_change": 0.22929132051649526
+    },
+    {
+      "clip": "Stop",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 2397,
+      "maximum_component_change": 0.1171866579388734
+    },
+    {
+      "clip": "Stop",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 2403,
+      "maximum_component_change": 0.0603190249530598
+    },
+    {
+      "clip": "Stop",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 2406,
+      "maximum_component_change": 0.08702207473106682
+    },
+    {
+      "clip": "Stop",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 2409,
+      "maximum_component_change": 0.04425678262487054
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 3,
+      "bone": "J_Bip_C_Hips",
+      "path": "rotation",
+      "previous_output": 2500,
+      "maximum_component_change": 0.006746672093868256
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 5,
+      "bone": "J_Sec_L_SkirtSide1",
+      "path": "rotation",
+      "previous_output": 2506,
+      "maximum_component_change": 0.0005272815469652414
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 9,
+      "bone": "J_Sec_R_SkirtSide1",
+      "path": "rotation",
+      "previous_output": 2518,
+      "maximum_component_change": 0.000527271768078208
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 12,
+      "bone": "J_Bip_C_Spine",
+      "path": "rotation",
+      "previous_output": 2527,
+      "maximum_component_change": 0.0003464501933194697
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 13,
+      "bone": "J_Bip_C_Chest",
+      "path": "rotation",
+      "previous_output": 2530,
+      "maximum_component_change": 0.006201252341270447
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 14,
+      "bone": "J_Bip_C_UpperChest",
+      "path": "rotation",
+      "previous_output": 2533,
+      "maximum_component_change": 0.006201334297657013
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 19,
+      "bone": "J_Bip_C_Neck",
+      "path": "rotation",
+      "previous_output": 2548,
+      "maximum_component_change": 0.006201423704624176
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 20,
+      "bone": "J_Bip_C_Head",
+      "path": "rotation",
+      "previous_output": 2551,
+      "maximum_component_change": 0.008301347959786654
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 73,
+      "bone": "J_Bip_L_UpperArm",
+      "path": "rotation",
+      "previous_output": 2710,
+      "maximum_component_change": 0.5276116728782654
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 74,
+      "bone": "J_Bip_L_LowerArm",
+      "path": "rotation",
+      "previous_output": 2713,
+      "maximum_component_change": 0.6703307423740625
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 2731,
+      "maximum_component_change": 0.1266485558298882
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 2734,
+      "maximum_component_change": 0.18238811008632183
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 2737,
+      "maximum_component_change": 0.09299435015418611
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 2743,
+      "maximum_component_change": 0.1671665185422171
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 2746,
+      "maximum_component_change": 0.2402256260975264
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 2749,
+      "maximum_component_change": 0.12285669893026352
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 2755,
+      "maximum_component_change": 0.1453005658695472
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 2758,
+      "maximum_component_change": 0.2090654961648395
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 2761,
+      "maximum_component_change": 0.10672976745991031
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 2767,
+      "maximum_component_change": 0.15708464159979463
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 2770,
+      "maximum_component_change": 0.22587474883766823
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 2773,
+      "maximum_component_change": 0.11541734446655005
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 2779,
+      "maximum_component_change": 0.05937524209730338
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 2782,
+      "maximum_component_change": 0.08566361735574912
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 2785,
+      "maximum_component_change": 0.043563698302023224
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 101,
+      "bone": "J_Bip_R_UpperArm",
+      "path": "rotation",
+      "previous_output": 2794,
+      "maximum_component_change": 0.4905189424753189
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 102,
+      "bone": "J_Bip_R_LowerArm",
+      "path": "rotation",
+      "previous_output": 2797,
+      "maximum_component_change": 0.66544054960832
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 2815,
+      "maximum_component_change": 0.12664413571474142
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 2818,
+      "maximum_component_change": 0.18238149821991123
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 2821,
+      "maximum_component_change": 0.09299114462919533
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 2827,
+      "maximum_component_change": 0.16716938838362738
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 2830,
+      "maximum_component_change": 0.24022957665147265
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 2833,
+      "maximum_component_change": 0.12285880907438695
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 2839,
+      "maximum_component_change": 0.14530000273953192
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 2842,
+      "maximum_component_change": 0.20906458844547182
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 2845,
+      "maximum_component_change": 0.10672926984261721
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 2851,
+      "maximum_component_change": 0.15708710372564383
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 2854,
+      "maximum_component_change": 0.2258782500284724
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 2857,
+      "maximum_component_change": 0.11541914756526217
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 2863,
+      "maximum_component_change": 0.059407231281511486
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 2866,
+      "maximum_component_change": 0.08570950396824628
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 2869,
+      "maximum_component_change": 0.04358695191331208
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 128,
+      "bone": "J_Bip_L_UpperLeg",
+      "path": "rotation",
+      "previous_output": 2875,
+      "maximum_component_change": 0.7386631518602371
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 129,
+      "bone": "J_Sec_L_SkirtBack0",
+      "path": "translation",
+      "previous_output": 2877,
+      "maximum_component_change": 0.14316820353269577
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 129,
+      "bone": "J_Sec_L_SkirtBack0",
+      "path": "rotation",
+      "previous_output": 2878,
+      "maximum_component_change": 0.7386631891131401
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 133,
+      "bone": "J_Sec_L_SkirtFront0",
+      "path": "translation",
+      "previous_output": 2889,
+      "maximum_component_change": 0.15690457075834274
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 133,
+      "bone": "J_Sec_L_SkirtFront0",
+      "path": "rotation",
+      "previous_output": 2890,
+      "maximum_component_change": 0.7386631742119789
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 134,
+      "bone": "J_Sec_L_SkirtFront1",
+      "path": "rotation",
+      "previous_output": 2893,
+      "maximum_component_change": 0.0010862164199352264
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 137,
+      "bone": "J_Bip_L_LowerLeg",
+      "path": "rotation",
+      "previous_output": 2902,
+      "maximum_component_change": 0.41264865547418594
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 138,
+      "bone": "J_Bip_L_Foot",
+      "path": "rotation",
+      "previous_output": 2905,
+      "maximum_component_change": 0.6997125998605043
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 141,
+      "bone": "J_Bip_R_UpperLeg",
+      "path": "rotation",
+      "previous_output": 2914,
+      "maximum_component_change": 0.7344679459929466
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 142,
+      "bone": "J_Sec_R_SkirtBack0",
+      "path": "translation",
+      "previous_output": 2916,
+      "maximum_component_change": 0.13511806726455688
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 142,
+      "bone": "J_Sec_R_SkirtBack0",
+      "path": "rotation",
+      "previous_output": 2917,
+      "maximum_component_change": 0.7344679981470108
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 146,
+      "bone": "J_Sec_R_SkirtFront0",
+      "path": "translation",
+      "previous_output": 2928,
+      "maximum_component_change": 0.14975435845553875
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 146,
+      "bone": "J_Sec_R_SkirtFront0",
+      "path": "rotation",
+      "previous_output": 2929,
+      "maximum_component_change": 0.734468013048172
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 147,
+      "bone": "J_Sec_R_SkirtFront1",
+      "path": "rotation",
+      "previous_output": 2932,
+      "maximum_component_change": 0.0013682618737220764
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 150,
+      "bone": "J_Bip_R_LowerLeg",
+      "path": "rotation",
+      "previous_output": 2941,
+      "maximum_component_change": 0.23470304161310196
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 151,
+      "bone": "J_Bip_R_Foot",
+      "path": "rotation",
+      "previous_output": 2944,
+      "maximum_component_change": 0.7048557258676738
+    },
+    {
+      "clip": "TurnLeft",
+      "node": 157,
+      "bone": "StudioRootMotion_v05",
+      "path": "translation",
+      "previous_output": 2952,
+      "maximum_component_change": 4.507554695010185e-05
+    },
+    {
+      "clip": "TurnRight",
+      "node": 3,
+      "bone": "J_Bip_C_Hips",
+      "path": "rotation",
+      "previous_output": 2960,
+      "maximum_component_change": 0.0067466869950294495
+    },
+    {
+      "clip": "TurnRight",
+      "node": 5,
+      "bone": "J_Sec_L_SkirtSide1",
+      "path": "rotation",
+      "previous_output": 2966,
+      "maximum_component_change": 0.0005272733978927135
+    },
+    {
+      "clip": "TurnRight",
+      "node": 9,
+      "bone": "J_Sec_R_SkirtSide1",
+      "path": "rotation",
+      "previous_output": 2978,
+      "maximum_component_change": 0.0005272948183119297
+    },
+    {
+      "clip": "TurnRight",
+      "node": 12,
+      "bone": "J_Bip_C_Spine",
+      "path": "rotation",
+      "previous_output": 2987,
+      "maximum_component_change": 0.0003464636392891407
+    },
+    {
+      "clip": "TurnRight",
+      "node": 13,
+      "bone": "J_Bip_C_Chest",
+      "path": "rotation",
+      "previous_output": 2990,
+      "maximum_component_change": 0.0062012821435928345
+    },
+    {
+      "clip": "TurnRight",
+      "node": 14,
+      "bone": "J_Bip_C_UpperChest",
+      "path": "rotation",
+      "previous_output": 2993,
+      "maximum_component_change": 0.006201319396495819
+    },
+    {
+      "clip": "TurnRight",
+      "node": 19,
+      "bone": "J_Bip_C_Neck",
+      "path": "rotation",
+      "previous_output": 3008,
+      "maximum_component_change": 0.006201416254043579
+    },
+    {
+      "clip": "TurnRight",
+      "node": 20,
+      "bone": "J_Bip_C_Head",
+      "path": "rotation",
+      "previous_output": 3011,
+      "maximum_component_change": 0.008301434456370771
+    },
+    {
+      "clip": "TurnRight",
+      "node": 73,
+      "bone": "J_Bip_L_UpperArm",
+      "path": "rotation",
+      "previous_output": 3170,
+      "maximum_component_change": 0.46198567072860897
+    },
+    {
+      "clip": "TurnRight",
+      "node": 74,
+      "bone": "J_Bip_L_LowerArm",
+      "path": "rotation",
+      "previous_output": 3173,
+      "maximum_component_change": 0.6654692767187953
+    },
+    {
+      "clip": "TurnRight",
+      "node": 80,
+      "bone": "J_Bip_L_Index1",
+      "path": "rotation",
+      "previous_output": 3191,
+      "maximum_component_change": 0.12664862515521058
+    },
+    {
+      "clip": "TurnRight",
+      "node": 81,
+      "bone": "J_Bip_L_Index2",
+      "path": "rotation",
+      "previous_output": 3194,
+      "maximum_component_change": 0.18238802062114656
+    },
+    {
+      "clip": "TurnRight",
+      "node": 82,
+      "bone": "J_Bip_L_Index3",
+      "path": "rotation",
+      "previous_output": 3197,
+      "maximum_component_change": 0.09299436770379543
+    },
+    {
+      "clip": "TurnRight",
+      "node": 84,
+      "bone": "J_Bip_L_Little1",
+      "path": "rotation",
+      "previous_output": 3203,
+      "maximum_component_change": 0.16716659980011084
+    },
+    {
+      "clip": "TurnRight",
+      "node": 85,
+      "bone": "J_Bip_L_Little2",
+      "path": "rotation",
+      "previous_output": 3206,
+      "maximum_component_change": 0.24022552705719136
+    },
+    {
+      "clip": "TurnRight",
+      "node": 86,
+      "bone": "J_Bip_L_Little3",
+      "path": "rotation",
+      "previous_output": 3209,
+      "maximum_component_change": 0.12285668755066603
+    },
+    {
+      "clip": "TurnRight",
+      "node": 88,
+      "bone": "J_Bip_L_Middle1",
+      "path": "rotation",
+      "previous_output": 3215,
+      "maximum_component_change": 0.14530062305857427
+    },
+    {
+      "clip": "TurnRight",
+      "node": 89,
+      "bone": "J_Bip_L_Middle2",
+      "path": "rotation",
+      "previous_output": 3218,
+      "maximum_component_change": 0.2090655118227005
+    },
+    {
+      "clip": "TurnRight",
+      "node": 90,
+      "bone": "J_Bip_L_Middle3",
+      "path": "rotation",
+      "previous_output": 3221,
+      "maximum_component_change": 0.10672967787832033
+    },
+    {
+      "clip": "TurnRight",
+      "node": 92,
+      "bone": "J_Bip_L_Ring1",
+      "path": "rotation",
+      "previous_output": 3227,
+      "maximum_component_change": 0.15708470059325896
+    },
+    {
+      "clip": "TurnRight",
+      "node": 93,
+      "bone": "J_Bip_L_Ring2",
+      "path": "rotation",
+      "previous_output": 3230,
+      "maximum_component_change": 0.22587477971683256
+    },
+    {
+      "clip": "TurnRight",
+      "node": 94,
+      "bone": "J_Bip_L_Ring3",
+      "path": "rotation",
+      "previous_output": 3233,
+      "maximum_component_change": 0.11541735651553608
+    },
+    {
+      "clip": "TurnRight",
+      "node": 96,
+      "bone": "J_Bip_L_Thumb1",
+      "path": "rotation",
+      "previous_output": 3239,
+      "maximum_component_change": 0.05937521148007363
+    },
+    {
+      "clip": "TurnRight",
+      "node": 97,
+      "bone": "J_Bip_L_Thumb2",
+      "path": "rotation",
+      "previous_output": 3242,
+      "maximum_component_change": 0.08566359395626932
+    },
+    {
+      "clip": "TurnRight",
+      "node": 98,
+      "bone": "J_Bip_L_Thumb3",
+      "path": "rotation",
+      "previous_output": 3245,
+      "maximum_component_change": 0.043563592713326216
+    },
+    {
+      "clip": "TurnRight",
+      "node": 101,
+      "bone": "J_Bip_R_UpperArm",
+      "path": "rotation",
+      "previous_output": 3254,
+      "maximum_component_change": 0.5041260067373514
+    },
+    {
+      "clip": "TurnRight",
+      "node": 102,
+      "bone": "J_Bip_R_LowerArm",
+      "path": "rotation",
+      "previous_output": 3257,
+      "maximum_component_change": 0.670342655852437
+    },
+    {
+      "clip": "TurnRight",
+      "node": 108,
+      "bone": "J_Bip_R_Index1",
+      "path": "rotation",
+      "previous_output": 3275,
+      "maximum_component_change": 0.12664410442812368
+    },
+    {
+      "clip": "TurnRight",
+      "node": 109,
+      "bone": "J_Bip_R_Index2",
+      "path": "rotation",
+      "previous_output": 3278,
+      "maximum_component_change": 0.18238151096738875
+    },
+    {
+      "clip": "TurnRight",
+      "node": 110,
+      "bone": "J_Bip_R_Index3",
+      "path": "rotation",
+      "previous_output": 3281,
+      "maximum_component_change": 0.09299113546148874
+    },
+    {
+      "clip": "TurnRight",
+      "node": 112,
+      "bone": "J_Bip_R_Little1",
+      "path": "rotation",
+      "previous_output": 3287,
+      "maximum_component_change": 0.1671693625394255
+    },
+    {
+      "clip": "TurnRight",
+      "node": 113,
+      "bone": "J_Bip_R_Little2",
+      "path": "rotation",
+      "previous_output": 3290,
+      "maximum_component_change": 0.24022957711713389
+    },
+    {
+      "clip": "TurnRight",
+      "node": 114,
+      "bone": "J_Bip_R_Little3",
+      "path": "rotation",
+      "previous_output": 3293,
+      "maximum_component_change": 0.12285888963378966
+    },
+    {
+      "clip": "TurnRight",
+      "node": 116,
+      "bone": "J_Bip_R_Middle1",
+      "path": "rotation",
+      "previous_output": 3299,
+      "maximum_component_change": 0.14530000273953192
+    },
+    {
+      "clip": "TurnRight",
+      "node": 117,
+      "bone": "J_Bip_R_Middle2",
+      "path": "rotation",
+      "previous_output": 3302,
+      "maximum_component_change": 0.20906459007528633
+    },
+    {
+      "clip": "TurnRight",
+      "node": 118,
+      "bone": "J_Bip_R_Middle3",
+      "path": "rotation",
+      "previous_output": 3305,
+      "maximum_component_change": 0.10672935238108039
+    },
+    {
+      "clip": "TurnRight",
+      "node": 120,
+      "bone": "J_Bip_R_Ring1",
+      "path": "rotation",
+      "previous_output": 3311,
+      "maximum_component_change": 0.15708708771853708
+    },
+    {
+      "clip": "TurnRight",
+      "node": 121,
+      "bone": "J_Bip_R_Ring2",
+      "path": "rotation",
+      "previous_output": 3314,
+      "maximum_component_change": 0.22587820899207145
+    },
+    {
+      "clip": "TurnRight",
+      "node": 122,
+      "bone": "J_Bip_R_Ring3",
+      "path": "rotation",
+      "previous_output": 3317,
+      "maximum_component_change": 0.11541916197165847
+    },
+    {
+      "clip": "TurnRight",
+      "node": 124,
+      "bone": "J_Bip_R_Thumb1",
+      "path": "rotation",
+      "previous_output": 3323,
+      "maximum_component_change": 0.059407055610790904
+    },
+    {
+      "clip": "TurnRight",
+      "node": 125,
+      "bone": "J_Bip_R_Thumb2",
+      "path": "rotation",
+      "previous_output": 3326,
+      "maximum_component_change": 0.08570960059296318
+    },
+    {
+      "clip": "TurnRight",
+      "node": 126,
+      "bone": "J_Bip_R_Thumb3",
+      "path": "rotation",
+      "previous_output": 3329,
+      "maximum_component_change": 0.04358696308918297
+    },
+    {
+      "clip": "TurnRight",
+      "node": 128,
+      "bone": "J_Bip_L_UpperLeg",
+      "path": "rotation",
+      "previous_output": 3335,
+      "maximum_component_change": 0.6679005026817322
+    },
+    {
+      "clip": "TurnRight",
+      "node": 129,
+      "bone": "J_Sec_L_SkirtBack0",
+      "path": "translation",
+      "previous_output": 3337,
+      "maximum_component_change": 0.14295422844588757
+    },
+    {
+      "clip": "TurnRight",
+      "node": 129,
+      "bone": "J_Sec_L_SkirtBack0",
+      "path": "rotation",
+      "previous_output": 3338,
+      "maximum_component_change": 0.6679005026817322
+    },
+    {
+      "clip": "TurnRight",
+      "node": 133,
+      "bone": "J_Sec_L_SkirtFront0",
+      "path": "translation",
+      "previous_output": 3349,
+      "maximum_component_change": 0.15681007504463196
+    },
+    {
+      "clip": "TurnRight",
+      "node": 133,
+      "bone": "J_Sec_L_SkirtFront0",
+      "path": "rotation",
+      "previous_output": 3350,
+      "maximum_component_change": 0.6679004803299904
+    },
+    {
+      "clip": "TurnRight",
+      "node": 134,
+      "bone": "J_Sec_L_SkirtFront1",
+      "path": "rotation",
+      "previous_output": 3353,
+      "maximum_component_change": 0.0018358975648880005
+    },
+    {
+      "clip": "TurnRight",
+      "node": 137,
+      "bone": "J_Bip_L_LowerLeg",
+      "path": "rotation",
+      "previous_output": 3362,
+      "maximum_component_change": 0.23839246667921543
+    },
+    {
+      "clip": "TurnRight",
+      "node": 138,
+      "bone": "J_Bip_L_Foot",
+      "path": "rotation",
+      "previous_output": 3365,
+      "maximum_component_change": 0.7037534713745117
+    },
+    {
+      "clip": "TurnRight",
+      "node": 141,
+      "bone": "J_Bip_R_UpperLeg",
+      "path": "rotation",
+      "previous_output": 3374,
+      "maximum_component_change": 0.6721437126398087
+    },
+    {
+      "clip": "TurnRight",
+      "node": 142,
+      "bone": "J_Sec_R_SkirtBack0",
+      "path": "translation",
+      "previous_output": 3376,
+      "maximum_component_change": 0.13679753430187702
+    },
+    {
+      "clip": "TurnRight",
+      "node": 142,
+      "bone": "J_Sec_R_SkirtBack0",
+      "path": "rotation",
+      "previous_output": 3377,
+      "maximum_component_change": 0.6721437051892281
+    },
+    {
+      "clip": "TurnRight",
+      "node": 146,
+      "bone": "J_Sec_R_SkirtFront0",
+      "path": "translation",
+      "previous_output": 3388,
+      "maximum_component_change": 0.15108716301620007
+    },
+    {
+      "clip": "TurnRight",
+      "node": 146,
+      "bone": "J_Sec_R_SkirtFront0",
+      "path": "rotation",
+      "previous_output": 3389,
+      "maximum_component_change": 0.6721436977386475
+    },
+    {
+      "clip": "TurnRight",
+      "node": 147,
+      "bone": "J_Sec_R_SkirtFront1",
+      "path": "rotation",
+      "previous_output": 3392,
+      "maximum_component_change": 0.0007490143179893494
+    },
+    {
+      "clip": "TurnRight",
+      "node": 150,
+      "bone": "J_Bip_R_LowerLeg",
+      "path": "rotation",
+      "previous_output": 3401,
+      "maximum_component_change": 0.42020589485764503
+    },
+    {
+      "clip": "TurnRight",
+      "node": 151,
+      "bone": "J_Bip_R_Foot",
+      "path": "rotation",
+      "previous_output": 3404,
+      "maximum_component_change": 0.7017787501681596
+    },
+    {
+      "clip": "TurnRight",
+      "node": 157,
+      "bone": "StudioRootMotion_v05",
+      "path": "translation",
+      "previous_output": 3412,
+      "maximum_component_change": 4.507554695010185e-05
+    }
+  ],
+  "clips": {
+    "Idle": {
+      "duration_s": 2.5,
+      "frames": 151,
+      "maximum_front_support_translation_m": 0
+    },
+    "Walk": {
+      "duration_s": 1.3333333333333333,
+      "frames": 81,
+      "maximum_front_support_translation_m": 0
+    },
+    "Run": {
+      "duration_s": 0.9333333333333333,
+      "frames": 57,
+      "maximum_front_support_translation_m": 0.07662378849708867
+    },
+    "Start": {
+      "duration_s": 1.7333333333333334,
+      "frames": 105,
+      "maximum_front_support_translation_m": 0
+    },
+    "Stop": {
+      "duration_s": 1.7333333333333334,
+      "frames": 105,
+      "maximum_front_support_translation_m": 0
+    },
+    "TurnLeft": {
+      "duration_s": 1.6,
+      "frames": 97,
+      "maximum_front_support_translation_m": 0
+    },
+    "TurnRight": {
+      "duration_s": 1.6,
+      "frames": 97,
+      "maximum_front_support_translation_m": 0
+    }
+  },
+  "art_approved": false,
+  "game_ready": false
+}

@@ -1,0 +1,46 @@
+{
+  "entries": [
+    {
+      "clip": "Idle",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 8.708907513383782e-7
+    },
+    {
+      "clip": "Walk",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 8.132137168134189e-7
+    },
+    {
+      "clip": "Run",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 9.80548170808023e-7
+    },
+    {
+      "clip": "Start",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 0.0000011691523171766613
+    },
+    {
+      "clip": "Stop",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 0.0000011437785969214904
+    },
+    {
+      "clip": "TurnLeft",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 0.0000015858231572664628
+    },
+    {
+      "clip": "TurnRight",
+      "probe_time_s": 0.3,
+      "all_mesh_vertices": 18338,
+      "maximum_browser_vs_cold_blender_m": 0.000001094296866242849
+    }
+  ]
+}

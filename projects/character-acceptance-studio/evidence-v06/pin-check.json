@@ -1,0 +1,6 @@
+{
+  "exact_id_version_hash_export": true,
+  "implicit_production_rejected": true,
+  "overwrite_rejected": true,
+  "wrong_sha256_rejected": true
+}

@@ -1,0 +1,7 @@
+{
+  "source": "cold v0.2.0 Blender mother, all seven clips",
+  "maximum_animation_component_difference": 3.5762786865234375e-07,
+  "reexport_sha256": "c982757dd7863ff9f1a6db9abbb7c7ade683a7559e25ca41484bcbf3626f5fb4",
+  "byte_identical": false,
+  "reason": "Cold FK evaluation introduces floating-point differences; separate candidate hash, never registered as original version."
+}

@@ -1,0 +1,39 @@
+{
+  "archives": [
+    {
+      "file": "Character_Studio_0.6.0_Runtime.zip",
+      "sha256": "3f7604ad6e31c152de3223fc673a4fd8352291b52db70f754016cf612b1a7632",
+      "crc": "pass",
+      "indexed_files": 256,
+      "all_file_hashes": "pass"
+    },
+    {
+      "file": "Character_Studio_0.6.0_Sources.zip",
+      "sha256": "5497cd75e12ebadb2a894cb14551bf33ae2426f846946dbfd9f48c34279f4156",
+      "crc": "pass",
+      "indexed_files": 47,
+      "all_file_hashes": "pass"
+    }
+  ],
+  "clean_extracted_browser": {
+    "source": "clean extracted Runtime + Sources, separate localhost server",
+    "actual_browser": true,
+    "a_b": true,
+    "single_corrected_version": true,
+    "sequence_controls": true,
+    "rate_play_pause": true,
+    "all_download_links": true,
+    "gallery": true,
+    "errors": [],
+    "http_failures": []
+  },
+  "clean_extracted_full_rebuild": {
+    "result": "byte-identical GLB",
+    "sha256": "2c26ef8a2c2462d90a95e8402f6f8a01960d12c4512d8cc647d90671d86594a5",
+    "blender": "5.2.3 LTS e13b728c6880",
+    "runtime_and_sources_sufficient": true
+  },
+  "archive_vs_repository_indexed_files": "all 303 byte-identical",
+  "art_approved": false,
+  "game_ready": false
+}

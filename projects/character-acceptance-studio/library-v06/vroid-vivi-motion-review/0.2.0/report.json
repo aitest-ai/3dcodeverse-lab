@@ -1,0 +1,12 @@
+{
+  "generation": "Blender 5.2.3 LTS background CPU",
+  "changes": [
+    "native finger curl",
+    "Run front skirt ease",
+    "heading-aware turn limb twist and exact Idle settle"
+  ],
+  "geometry_skin_rest_material_textures": "all previous binary bytes and JSON definitions preserved",
+  "evidence": "../../../evidence-v06/",
+  "art_approved": false,
+  "game_ready": false
+}

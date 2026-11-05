@@ -1,0 +1,15 @@
+{
+  "errors": [],
+  "step_60_fps": true,
+  "pause": true,
+  "expression": true,
+  "review_note": true,
+  "sha256_failure_and_retry": true,
+  "viewport_390": {
+    "viewport": 390,
+    "scrollWidth": 390
+  },
+  "physical_mobile": "not-tested",
+  "human_art": "not-tested",
+  "renderer": "headless Chromium + SwiftShader, CPU"
+}

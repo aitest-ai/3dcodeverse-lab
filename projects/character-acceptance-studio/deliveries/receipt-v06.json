@@ -1,0 +1,20 @@
+{
+  "version": "0.6.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.6.0_Runtime.zip",
+      "bytes": 89411871,
+      "sha256": "3f7604ad6e31c152de3223fc673a4fd8352291b52db70f754016cf612b1a7632",
+      "indexed_files": 256,
+      "index": "RUNTIME_FILES_V06.sha256"
+    },
+    {
+      "file": "Character_Studio_0.6.0_Sources.zip",
+      "bytes": 79331644,
+      "sha256": "5497cd75e12ebadb2a894cb14551bf33ae2426f846946dbfd9f48c34279f4156",
+      "indexed_files": 47,
+      "index": "SOURCES_FILES_V06.sha256"
+    }
+  ],
+  "usage": "Extract both into the same Character_Studio_0.6.0 folder. Runtime plays independently; Sources adds each version mother, original VRM/texture files and original motion reference."
+}

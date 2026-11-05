@@ -1,0 +1,138 @@
+{
+  "method": "Actual Chromium Three.js skin vertices sampled at 120 Hz; foot/contact-ID/pivot stance groups; not full collision/art approval",
+  "entries": [
+    {
+      "clip": "Idle",
+      "hz": 120,
+      "samples": 301,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.002999826664596197,
+          "maximum_stance_reference_xz_drift_m": 6.393448582615611e-8,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.002999826664596197,
+          "maximum_stance_reference_xz_drift_m": 6.393448582615611e-8,
+          "maximum_browser_vs_blender_baked_m": 5.552311199722923e-7
+        }
+      ]
+    },
+    {
+      "clip": "Walk",
+      "hz": 120,
+      "samples": 161,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.0029658814843222733,
+          "maximum_stance_reference_xz_drift_m": 0.0012394042135781677,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.0029658814843222733,
+          "maximum_stance_reference_xz_drift_m": 0.0012394042135781677,
+          "maximum_browser_vs_blender_baked_m": 5.5130325475343e-7
+        }
+      ]
+    },
+    {
+      "clip": "Run",
+      "hz": 120,
+      "samples": 113,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.002887146829322479,
+          "maximum_stance_reference_xz_drift_m": 0.001596286740268116,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.002887146829322479,
+          "maximum_stance_reference_xz_drift_m": 0.001596286740268116,
+          "maximum_browser_vs_blender_baked_m": 4.912392705166575e-7
+        }
+      ]
+    },
+    {
+      "clip": "Start",
+      "hz": 120,
+      "samples": 209,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.002837342373040161,
+          "maximum_stance_reference_xz_drift_m": 0.001296544443001712,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.002837342373040161,
+          "maximum_stance_reference_xz_drift_m": 0.001296544443001712,
+          "maximum_browser_vs_blender_baked_m": 5.827208994189925e-7
+        }
+      ]
+    },
+    {
+      "clip": "Stop",
+      "hz": 120,
+      "samples": 209,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.0025819072971512286,
+          "maximum_stance_reference_xz_drift_m": 0.0012486628012422138,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.0025819072971512286,
+          "maximum_stance_reference_xz_drift_m": 0.0012486628012422138,
+          "maximum_browser_vs_blender_baked_m": 5.330541210985978e-7
+        }
+      ]
+    },
+    {
+      "clip": "TurnLeft",
+      "hz": 120,
+      "samples": 193,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.002487353621456515,
+          "maximum_stance_reference_xz_drift_m": 0.001690441898477625,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.002487344860260133,
+          "maximum_stance_reference_xz_drift_m": 0.0024825347873234952,
+          "maximum_browser_vs_blender_baked_m": 6.302958235676268e-7
+        }
+      ]
+    },
+    {
+      "clip": "TurnRight",
+      "hz": 120,
+      "samples": 193,
+      "summary": [
+        {
+          "variant": "v0.1.0",
+          "minimum_sole_y_m": 0.002409558921185044,
+          "maximum_stance_reference_xz_drift_m": 0.0016393015751567728,
+          "maximum_browser_vs_blender_baked_m": null
+        },
+        {
+          "variant": "v0.2.0",
+          "minimum_sole_y_m": 0.002409563311499354,
+          "maximum_stance_reference_xz_drift_m": 0.0024229568445597073,
+          "maximum_browser_vs_blender_baked_m": 6.059269285052113e-7
+        }
+      ]
+    }
+  ]
+}

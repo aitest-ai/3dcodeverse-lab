@@ -1,0 +1,5 @@
+{
+  "test": "Modify Body vertex 0 by 1 cm in a separate mother, then attempt motion-only export",
+  "result": "rejected, no output file created",
+  "frozen_mother": "unchanged"
+}

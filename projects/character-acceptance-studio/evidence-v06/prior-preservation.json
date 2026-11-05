@@ -1,0 +1,9 @@
+{
+  "base_commit": "477cfb9135038af3dbc00309d0a8998aadbcef88",
+  "old_tracked_files": "no modifications",
+  "v04_library": "20 original model graphs, animation buffers, images and native/derived mothers verified by verify_library_v04.py",
+  "v05_motion": "both candidates and their comparison GLBs verified by verify_motion_v05.py",
+  "main": "untouched",
+  "pr_merge": "not performed",
+  "other_project_sites": "not modified"
+}

@@ -1,0 +1,17 @@
+"""Freeze a new, explicitly unapproved candidate; never overwrite an existing version."""
+import json,hashlib,shutil
+from pathlib import Path
+R=Path(__file__).resolve().parents[1];src=R/'work/v06-build/vroid-vivi-motion-review/0.2.0';dst=R/'library-v06/vroid-vivi-motion-review/0.2.0';old=R/'library-v05/vroid-vivi-motion-review/0.1.0'
+h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+if dst.exists():raise RuntimeError('Existing version is immutable')
+dst.mkdir(parents=True)
+for name in ['model.glb','model.blend','adaptation.json','motion-audit.json']:shutil.copy2(src/name,dst/name)
+meta=json.loads((dst/'adaptation.json').read_text());profile=json.loads((old/'skeleton-profile.json').read_text());profile.update(version='0.2.0',model_sha256=h(dst/'model.glb'),editable_master_sha256=h(dst/'model.blend'),retargeting=meta);profile['root_motion']['sequence_rule']='SE(2) parent attachment between phase-aligned clips; animated root channels are never mutated by the viewer.';write(dst/'skeleton-profile.json',profile)
+manifest=json.loads((old/'asset_manifest.json').read_text());manifest.update(version='0.2.0',sha256=h(dst/'model.glb'),license_note='See THIRD_PARTY_V06.md; retained CC0 input, project motion contributions not newly dedicated CC0.');write(dst/'asset_manifest.json',manifest)
+write(dst/'report.json',{'generation':'Blender 5.2.3 LTS background CPU','changes':['native finger curl','Run front skirt ease','heading-aware turn limb twist and exact Idle settle'],'geometry_skin_rest_material_textures':'all previous binary bytes and JSON definitions preserved','evidence':'../../../evidence-v06/','art_approved':False,'game_ready':False})
+write(dst/'files.json',{'files':[{'file':p.name,'bytes':p.stat().st_size,'sha256':h(p)} for p in sorted(dst.iterdir())]})
+base=next(e for e in json.loads((R/'library-v05/catalog.json').read_text())['entries'] if e['id']=='vroid-vivi-motion-review');entries=[]
+for version,folder in [('0.1.0',old),('0.2.0',dst)]:
+ e=json.loads(json.dumps(base));before=version=='0.1.0';e.update(id=base['id']+'@'+version,asset_id=base['id'],version=version,name='Vivi · '+('上一版 0.1' if before else '精修候選 0.2'),variant='before' if before else 'corrected',pair_baseline=base['id']+'@0.1.0',pair_corrected=base['id']+'@0.2.0',model={'url':'../'+str((folder/'model.glb').relative_to(R)),'bytes':(folder/'model.glb').stat().st_size,'sha256':h(folder/'model.glb')},profile='../'+str((folder/'skeleton-profile.json').relative_to(R)),profile_sha256=h(folder/'skeleton-profile.json'),editable={'kind':'baked-FK-working-copy','path':str((folder/'model.blend').relative_to(R)),'sha256':h(folder/'model.blend'),'note':'此版本自己的可編輯母檔；解壓 Sources ZIP。'},modifications=json.loads((folder/'adaptation.json').read_text()),warning='人工美術尚未核准。'+('保留上一版已修正接地的候選，用來觀察手型、裙片與轉身差異。' if before else '手型、跑步前裙片及轉身修正；碰撞檢查限指定區域，不是完整布料模擬。'));entries.append(e)
+audit=json.loads((dst/'motion-audit.json').read_text());rootclips={n:{'duration':d['duration_s'],'start':{'x':d['samples'][0]['root'][0],'z':-d['samples'][0]['root'][1],'yaw':d['samples'][0]['heading']},'end':{'x':d['samples'][-1]['root'][0],'z':-d['samples'][-1]['root'][1],'yaw':d['samples'][-1]['heading']}} for n,d in audit['clips'].items()};write(R/'library-v06/catalog.json',{'schema_version':1,'version':'0.6.0','entries':entries,'root_clips':rootclips});print('Frozen v0.2.0 candidate',h(dst/'model.glb'))

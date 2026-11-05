@@ -1,0 +1,29 @@
+name: Character studio v06 candidate integrity
+on:
+  push:
+    branches: [feat/character-studio-v06-vivi-cloth-transitions-20261105]
+    paths:
+      - projects/character-acceptance-studio/**
+      - .github/workflows/character-studio-v06.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source byte preservation, candidate locks and recorded evidence
+        run: |
+          python3 -m py_compile projects/character-acceptance-studio/scripts/*v06.py projects/character-acceptance-studio/scripts/v06/*.py
+          node --input-type=module --check < projects/character-acceptance-studio/web-v06/app.js
+          node --input-type=module --check < projects/character-acceptance-studio/web-v06/sequences.js
+          python3 projects/character-acceptance-studio/scripts/verify_motion_v06.py
+      - name: GLB structure only, not art approval or fresh browser testing
+        run: python3 scripts/blender5/validate_glb.py projects/character-acceptance-studio/library-v06/vroid-vivi-motion-review/0.2.0
