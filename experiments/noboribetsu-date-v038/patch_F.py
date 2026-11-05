@@ -20,7 +20,7 @@ def patch(src, dest):
     assert kind == b"JSON"
     data = json.loads(original[20:20+json_len])
     bhead=20+json_len;bin_len,kind=struct.unpack_from("<I4s", original,bhead)
-    assert kind == b"BIN\\0" and bhead+8+bin_len==len(original)
+    assert kind == bytes([66, 73, 78, 0]) and bhead+8+bin_len==len(original)
     assert len(data["meshes"])==17 and data["meshes"][0]["name"]=="plaster_offwhite"
     prim=data["meshes"][0]["primitives"][0]
     pos=data["accessors"][prim["attributes"]["POSITION"]]
