@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "asset_id": "quaternius-shibainu-grounded-review",
+  "version": "0.2.0",
+  "model_file": "model.glb",
+  "source_file": "model.blend",
+  "sha256": "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff",
+  "unit": "meter",
+  "clips": [
+    "Attack",
+    "Death",
+    "Eating",
+    "Gallop_Jump",
+    "Idle_2",
+    "Idle_2_HeadLow",
+    "Idle_HitReact1",
+    "Idle_HitReact2",
+    "Jump_ToIdle",
+    "Idle",
+    "Walk",
+    "Gallop",
+    "WalkTurnLeft",
+    "WalkTurnRight"
+  ],
+  "min_animation_count": 14,
+  "requirements": {
+    "skins": true,
+    "animated": true,
+    "visual_review": true
+  },
+  "source": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+  "license_note": "Quaternius CC0 inputs; project-authored arc corrections, see THIRD_PARTY_V09.md",
+  "art_approved": false,
+  "game_ready": false
+}

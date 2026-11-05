@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "key": "horse-brown",
+      "clip": "Walk",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 0.000001072654559585212,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Idle",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 6.571385300080758e-7,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "horse-brown",
+      "clip": "Gallop",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 6.643910498035322e-7,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "horse-white",
+      "clip": "Walk",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 0.000001072654559585212,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "horse-white",
+      "clip": "Idle",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 6.571385300080758e-7,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "horse-white",
+      "clip": "Gallop",
+      "probe_time_s": 0,
+      "native_body_vertices": 6548,
+      "maximum_m": 6.643910498035322e-7,
+      "scope": "body surface only; disposable Blender working copy weight-synchronized to original runtime GLB"
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnLeft",
+      "variant": "experiment",
+      "probe_time_s": 0.6166666666666667,
+      "all_native_body_vertices": 977,
+      "maximum_m": 3.207256955674136e-7
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnLeft",
+      "variant": "corrected",
+      "probe_time_s": 0.6166666666666667,
+      "all_native_body_vertices": 977,
+      "maximum_m": 3.620690786471668e-7
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnRight",
+      "variant": "experiment",
+      "probe_time_s": 0.6166666666666667,
+      "all_native_body_vertices": 977,
+      "maximum_m": 3.28290155971804e-7
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnRight",
+      "variant": "corrected",
+      "probe_time_s": 0.6166666666666667,
+      "all_native_body_vertices": 977,
+      "maximum_m": 3.348792830998137e-7
+    }
+  ]
+}

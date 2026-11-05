@@ -1,0 +1,22 @@
+{
+  "entries": [
+    {
+      "key": "shiba",
+      "clip": "WalkTurnLeft",
+      "check": "fourth quarter-turn end vs fifth start; full native surfaces with heading/translation accumulated",
+      "maximum_world_surface_jump_m": [
+        1.980210164037997e-8,
+        2.3561117431854434e-7
+      ]
+    },
+    {
+      "key": "shiba",
+      "clip": "WalkTurnRight",
+      "check": "fourth quarter-turn end vs fifth start; full native surfaces with heading/translation accumulated",
+      "maximum_world_surface_jump_m": [
+        3.570941122255025e-8,
+        1.6685829871213071e-7
+      ]
+    }
+  ]
+}

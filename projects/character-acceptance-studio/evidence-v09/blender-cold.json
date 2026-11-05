@@ -1,0 +1,35 @@
+{
+  "blender": "5.2.3 LTS",
+  "entries": [
+    {
+      "variant": "baseline",
+      "clip": "WalkTurnLeft",
+      "frames": 257,
+      "maximum_cold_vs_build_error_m": 1.8143349382111313e-07,
+      "mother_sha256": "3cfa55d56307d5eb65cdf15027b3107e977ed3b7764215c54dea97e6ffee4e6c"
+    },
+    {
+      "variant": "baseline",
+      "clip": "WalkTurnRight",
+      "frames": 257,
+      "maximum_cold_vs_build_error_m": 1.8852324677824966e-07,
+      "mother_sha256": "3cfa55d56307d5eb65cdf15027b3107e977ed3b7764215c54dea97e6ffee4e6c"
+    },
+    {
+      "variant": "model",
+      "clip": "WalkTurnLeft",
+      "frames": 257,
+      "maximum_cold_vs_build_error_m": 2.3850769292827736e-07,
+      "mother_sha256": "62997d29f5d38f0eb20babb06e4769e69fdbbf952ddf51683cbde60377fa9f4c"
+    },
+    {
+      "variant": "model",
+      "clip": "WalkTurnRight",
+      "frames": 257,
+      "maximum_cold_vs_build_error_m": 2.391450680152183e-07,
+      "mother_sha256": "62997d29f5d38f0eb20babb06e4769e69fdbbf952ddf51683cbde60377fa9f4c"
+    }
+  ],
+  "offline_art_render": "not-performed",
+  "human_art": "not-tested"
+}

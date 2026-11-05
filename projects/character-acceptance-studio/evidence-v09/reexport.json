@@ -1,0 +1,63 @@
+{
+  "frozen_sha256": "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff",
+  "cold_export_sha256": "be9bd955a5f04843ce0ba24a91e05c09defc9f717c680e70eb11e0d2e122a588",
+  "previous_binary_prefix_preserved": true,
+  "clips": [
+    {
+      "clip": "Attack",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Death",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Eating",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Gallop_Jump",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Idle_2",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Idle_2_HeadLow",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Idle_HitReact1",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Idle_HitReact2",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Jump_ToIdle",
+      "maximum_local_trs_component_error": 0
+    },
+    {
+      "clip": "Idle",
+      "maximum_local_trs_component_error": 2.384185791015625e-06
+    },
+    {
+      "clip": "Walk",
+      "maximum_local_trs_component_error": 1.9073486328125e-06
+    },
+    {
+      "clip": "Gallop",
+      "maximum_local_trs_component_error": 1.9073486328125e-06
+    },
+    {
+      "clip": "WalkTurnLeft",
+      "maximum_local_trs_component_error": 1.1026859283447266e-06
+    },
+    {
+      "clip": "WalkTurnRight",
+      "maximum_local_trs_component_error": 1.1026859283447266e-06
+    }
+  ]
+}

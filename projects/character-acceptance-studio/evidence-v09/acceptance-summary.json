@@ -1,0 +1,153 @@
+{
+  "studio_version": "0.9.0",
+  "shiba": {
+    "id": "quaternius-shibainu-grounded-review",
+    "version": "0.2.0",
+    "sha256": "922427fae1ced358766e21c3cf1d9a0f78602c5aacbc739db7580e32d9b2cbff",
+    "native_joints": 46,
+    "new_clips": [
+      "WalkTurnLeft",
+      "WalkTurnRight"
+    ],
+    "previous_12_clips": "byte-identical",
+    "maximum_before_center_drift_m": 0.051305556620782296,
+    "maximum_after_center_drift_m": 0.0001549022772489926,
+    "maximum_after_flat_patch_vertex_drift_m": 0.0026138782409685733,
+    "minimum_sole_y_m": 0.0029999265519670727,
+    "status": "bounded contact and loop checks passed; not art-approved; residual patch movement remains"
+  },
+  "horses": {
+    "source": "unchanged brown/white 2.3.0, 50 joints and 13 clips each",
+    "locomotion_findings": [
+      {
+        "key": "horse-brown",
+        "clip": "Walk",
+        "model_sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+        "duration_s": 1.2083333730697632,
+        "hz": 120,
+        "samples": 147,
+        "minimum_sole_y_m": -0.010984370764241863,
+        "worst_time_s": 0.6333333333333333,
+        "worst_foot": "FrontR",
+        "full_mesh_loop_seam_m": 0,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      },
+      {
+        "key": "horse-brown",
+        "clip": "Idle",
+        "model_sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+        "duration_s": 3.375,
+        "hz": 120,
+        "samples": 406,
+        "minimum_sole_y_m": 0.003000022422188679,
+        "worst_time_s": 0,
+        "worst_foot": "FrontR",
+        "full_mesh_loop_seam_m": 0,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      },
+      {
+        "key": "horse-brown",
+        "clip": "Gallop",
+        "model_sha256": "a03716ea170427c7ee962aa0ed61d4bef49886401ca6d8f5787059966785cf8c",
+        "duration_s": 0.625,
+        "hz": 120,
+        "samples": 76,
+        "minimum_sole_y_m": -0.0151103032062874,
+        "worst_time_s": 0,
+        "worst_foot": "FrontL",
+        "full_mesh_loop_seam_m": 0.13567546911573536,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      },
+      {
+        "key": "horse-white",
+        "clip": "Walk",
+        "model_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+        "duration_s": 1.2083333730697632,
+        "hz": 120,
+        "samples": 147,
+        "minimum_sole_y_m": -0.010984370764241863,
+        "worst_time_s": 0.6333333333333333,
+        "worst_foot": "FrontR",
+        "full_mesh_loop_seam_m": 0,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      },
+      {
+        "key": "horse-white",
+        "clip": "Idle",
+        "model_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+        "duration_s": 3.375,
+        "hz": 120,
+        "samples": 406,
+        "minimum_sole_y_m": 0.003000022422188679,
+        "worst_time_s": 0,
+        "worst_foot": "FrontR",
+        "full_mesh_loop_seam_m": 0,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      },
+      {
+        "key": "horse-white",
+        "clip": "Gallop",
+        "model_sha256": "d79cc688a7636c8c4906965d3062ce69e17477a0448d00d53f17b3a2068b6903",
+        "duration_s": 0.625,
+        "hz": 120,
+        "samples": 76,
+        "minimum_sole_y_m": -0.0151103032062874,
+        "worst_time_s": 0,
+        "worst_foot": "FrontL",
+        "full_mesh_loop_seam_m": 0.13567546911573536,
+        "world_stance_drift": "not-evaluated: unchanged in-place source has no calibrated speed or root plan",
+        "classification": "locomotion diagnostic; not corrected"
+      }
+    ],
+    "status": "Walk ground failed; Gallop ground and loop failed; no corrected horse exported",
+    "world_sliding": "not-tested: in-place source has no calibrated world speed",
+    "turns": "not-made"
+  },
+  "program": {
+    "status": "original clip/geometry preservation, SHA locks, cold reexport and geometry-edit rejection tested",
+    "evidence": [
+      "reexport.json",
+      "export-guard.json",
+      "pin-check.json"
+    ]
+  },
+  "blender": {
+    "status": "cold Shiba A/B mother surfaces checked; source horse body frame 0 in temporary weight-synchronized diagnostic copies checked; no offline art render",
+    "evidence": "blender-cold.json"
+  },
+  "browser": {
+    "status": "actual Chromium + SwiftShader",
+    "new_shiba_samples_per_variant": 1026,
+    "new_shiba_sample_hz": 120,
+    "maximum_full_native_body_cold_difference_m": 1.072654559585212e-06,
+    "maximum_shiba_full_mesh_circle_join_m": 2.3561117431854434e-07,
+    "horse_13_clips_each": "playable; Idle/Walk/Gallop 120Hz diagnosis, other ten 12Hz preview only",
+    "actual_screenshots": 124,
+    "encoded_video_seconds": {
+      "horse-brown-browser.webm": 5.599681,
+      "shiba-browser.webm": 5.731297
+    }
+  },
+  "physical_mobile": "not-tested; desktop 390px viewport only",
+  "human_art": "not-tested",
+  "second_engine": "not-tested",
+  "full_body_self_collision": "not-tested",
+  "known_limitations": [
+    "Shiba residual flat-paw vertex drift about 2.6mm; not perfect zero-slip or biomechanical approval",
+    "Shiba new arcs are moving turns; no starts/stops/in-place turns/arbitrary straight-to-turn blending",
+    "Original nine other Shiba clips unchanged, not contact-approved",
+    "Horse ground/loop failures remain; original mothers have no IK constraints",
+    "Horse display scale is a chosen shoulder/neck-section framing scale, not biological withers certification",
+    "No slopes, uneven terrain, arbitrary speed or gameplay validation",
+    "No new species or anatomy remake; original 20-model library and human studio preserved",
+    "CPU software video may drop frames; no real hardware performance claim",
+    "Taiwan latest garments and Keelung V110/V111/rainbow source gaps remain, no fallback to V103"
+  ],
+  "art_approved": false,
+  "game_ready": false
+}
