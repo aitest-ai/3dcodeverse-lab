@@ -1,0 +1,27 @@
+{
+  "accessed": "2026-11-05",
+  "sources": [
+    {
+      "author": "Alan Vincelette",
+      "year": 2023,
+      "title": "The Characteristics, Distribution, Function, and Origin of Alternative Lateral Horse Gaits",
+      "doi": "10.3390/ani13162557",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10451235/",
+      "license": "CC-BY-4.0",
+      "used_facts": "Walk: lateral LH-LF-RH-RF sequence, near-quarter footfalls, continuous two/three-foot support; reported hind duty about .60-.70. No figures or motion data imported."
+    },
+    {
+      "authors": [
+        "Hilary M. Clayton",
+        "Sarah Jane Hobbs"
+      ],
+      "year": 2019,
+      "title": "A Review of Biomechanical Gait Classification with Reference to Collected Trot, Passage and Piaffe in Dressage Horses",
+      "doi": "10.3390/ani9100763",
+      "url": "https://www.mdpi.com/2076-2615/9/10/763",
+      "used_facts": "Footfall timing, ground reaction forces, and COM mechanics are distinct classification criteria. Geometry alone does not certify balance. Used bibliographic abstract/search evidence; PMC full text access returned a browser challenge."
+    }
+  ],
+  "application": "Rephase native candidate without borrowing motion data; keep original body/root/lengths. Candidate duty .535714 is below the typical real-walk reference and is NOT biological gait certification.",
+  "trunk_reference": "Unweighted mean of native FrontShoulder.L/R and BackShoulder.L/R heads, projected to ground. No mass model or true COM."
+}
