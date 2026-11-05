@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "file": "adaptation.json",
+      "bytes": 9314,
+      "sha256": "6271663f73e3db88e44045663f3b5eb86b8927741eb31f0e25d422a4f993bea6"
+    },
+    {
+      "file": "asset_manifest.json",
+      "bytes": 729,
+      "sha256": "9c5fab558667922ab27ae0a4aa04221b2711f728db91d06f0fb2f215bc4e562e"
+    },
+    {
+      "file": "collision-regions.json",
+      "bytes": 125549,
+      "sha256": "3fc3d295349a901ae255b28fba949f0df2af28a43fac7ff95a95220fc72287a5"
+    },
+    {
+      "file": "model.blend",
+      "bytes": 18015213,
+      "sha256": "08829fc3da823c10b6228249f05d8ce4de864ba6c562fdbabe4d0ca6674cc5a3"
+    },
+    {
+      "file": "model.glb",
+      "bytes": 23835400,
+      "sha256": "1efdd916d4f14b59b27c9baf71bb52fd334fa64d88c67c1484e11a6f4d4814a0"
+    },
+    {
+      "file": "motion-audit.json",
+      "bytes": 133705,
+      "sha256": "16afa1b1ed724d8d8f842f7e93fca141851660515f5c4f6f29c8ad2462f2aed3"
+    },
+    {
+      "file": "report.json",
+      "bytes": 258,
+      "sha256": "cda28d59b3d38af7756b32468d9c93ed9b727ae2001bc891035a60cd7f33ccce"
+    },
+    {
+      "file": "skeleton-profile.json",
+      "bytes": 237811,
+      "sha256": "913cdaf4344aeddcd8982d56d87fa1dde71b3c3e9ab081614ccaccea0d3f27dd"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "file": "adaptation.json",
+      "bytes": 12528180,
+      "sha256": "7cb9bdaa1231136b8e8e4af8f04368f4c8e0574b3b54fc18d702c3d2864d2298"
+    },
+    {
+      "file": "asset_manifest.json",
+      "bytes": 671,
+      "sha256": "cf0ae0a4c18434410e3cf95a8f24a61b5c4eaead1893cce89003af0b820374a2"
+    },
+    {
+      "file": "baseline-profile.json",
+      "bytes": 14160495,
+      "sha256": "b7c15da247e53228adac0b9715ecca852ef942ebcc9646f8b35edc130857e850"
+    },
+    {
+      "file": "baseline.blend",
+      "bytes": 9162384,
+      "sha256": "42a654bc81a380007d4b47bf3c347aa7f4d5b5cbd39b0f2391afb6b07fcbcff8"
+    },
+    {
+      "file": "baseline.glb",
+      "bytes": 16394136,
+      "sha256": "7ac69124b475c9f95d8c3fdb3bd0b28a4d3d428ecfaf529acd715b34f57aed05"
+    },
+    {
+      "file": "collision-regions.json",
+      "bytes": 126228,
+      "sha256": "95947b0d1c34406ccb0aa30a4fcb96a26a171a6aeabc359aa0e85f1413b71aa6"
+    },
+    {
+      "file": "model.blend",
+      "bytes": 9164250,
+      "sha256": "7753384aeebf4180a075c0862016b64bec953df79ab5fa582501394bbabb4814"
+    },
+    {
+      "file": "model.glb",
+      "bytes": 16394136,
+      "sha256": "c2b0a9522177b2f4ccda29fd886c503b3f58ff503076f65496050a109a559157"
+    },
+    {
+      "file": "motion-audit.json",
+      "bytes": 931559,
+      "sha256": "55961083c6d752219267a36d725c5e8c36e1149d0ea407e42043776d9c46286a"
+    },
+    {
+      "file": "report.json",
+      "bytes": 258,
+      "sha256": "b6bf91ac97d4cb8f58a3e2be47dd80b1f9f9cdbe05446cc01bd9b9a36968350e"
+    },
+    {
+      "file": "skeleton-profile.json",
+      "bytes": 14160411,
+      "sha256": "d5f19beb4991261ebd1f196d3a06ecd7dc272bbd4ecc3e8a186c31d65764d12a"
+    }
+  ]
+}

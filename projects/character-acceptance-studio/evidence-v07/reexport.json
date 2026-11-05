@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "key": "vivi",
+      "source_model_sha256": "1efdd916d4f14b59b27c9baf71bb52fd334fa64d88c67c1484e11a6f4d4814a0",
+      "reexport_sha256": "800c27f6c8dc02b7e144491cb009f1f2cfdf1fa5dac8cebfd22bee7a67be743f",
+      "maximum_animation_component_difference": 1.9669532775878906e-06,
+      "byte_identical": false,
+      "status": "new candidate hash; not registered as original"
+    },
+    {
+      "key": "vita",
+      "source_model_sha256": "c2b0a9522177b2f4ccda29fd886c503b3f58ff503076f65496050a109a559157",
+      "reexport_sha256": "47c9a3ec3453ab52b5c194846eebf6ee849906f52482d198c3a27c645b4d8418",
+      "maximum_animation_component_difference": 8.195638656616211e-07,
+      "byte_identical": false,
+      "status": "new candidate hash; not registered as original"
+    }
+  ]
+}

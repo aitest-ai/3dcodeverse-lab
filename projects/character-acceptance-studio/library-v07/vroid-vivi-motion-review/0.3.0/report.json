@@ -1,0 +1,9 @@
+{
+  "generation": "Blender 5.2.3 LTS background CPU",
+  "native_joints": 152,
+  "source_geometry_skin_material_texture_bytes": "preserved",
+  "evidence": "../../../evidence-v07/",
+  "human_art": "not-tested",
+  "art_approved": false,
+  "game_ready": false
+}

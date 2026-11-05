@@ -1,0 +1,27 @@
+{
+  "version": "0.7.0",
+  "deliveries": [
+    {
+      "file": "Character_Studio_0.7.0_Runtime.zip",
+      "bytes": 96662039,
+      "sha256": "439365e80ab1b9121c209060bbb72f9e139cd600c90adfc0c8582b9cb3d4c1b2",
+      "indexed_files": 237,
+      "index": "RUNTIME_FILES_V07.sha256"
+    },
+    {
+      "file": "Character_Studio_0.7.0_Vivi_Sources.zip",
+      "bytes": 89345552,
+      "sha256": "e9e8d9377011e5a34f9c1679e1a877745892f70db1d14807e42e2dcbd72a114e",
+      "indexed_files": 35,
+      "index": "VIVI_SOURCES_FILES_V07.sha256"
+    },
+    {
+      "file": "Character_Studio_0.7.0_Vita_Sources.zip",
+      "bytes": 64855006,
+      "sha256": "052e11a08bf695a460c04c53a47e6a4cb81d8bdc88e27cc587c89f2c2ba0045c",
+      "indexed_files": 48,
+      "index": "VITA_SOURCES_FILES_V07.sha256"
+    }
+  ],
+  "usage": "Runtime plays both characters. Extract the character source archive(s) into the same Character_Studio_0.7.0 folder for editing/rebuilding. No prior ZIP is required."
+}

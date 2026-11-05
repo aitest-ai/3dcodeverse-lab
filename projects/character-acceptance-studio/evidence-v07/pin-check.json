@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "id": "vroid-vivi-motion-review",
+      "exact_id_version_hash_export": true,
+      "implicit_production_rejected": true,
+      "overwrite_rejected": true,
+      "wrong_hash_rejected": true
+    },
+    {
+      "id": "vroid-vita-motion-review",
+      "exact_id_version_hash_export": true,
+      "implicit_production_rejected": true,
+      "overwrite_rejected": true,
+      "wrong_hash_rejected": true
+    }
+  ]
+}

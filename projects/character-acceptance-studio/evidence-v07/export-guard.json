@@ -1,0 +1,5 @@
+{
+  "test": "Edit one Body vertex 1 cm in a separate Vita mother",
+  "result": "rejected; no output GLB created",
+  "frozen_mothers": "unchanged"
+}

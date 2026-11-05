@@ -1,0 +1,165 @@
+{
+  "method": "Actual Chromium Three.js skin vertices, 120 Hz including between keys; B time, A matched normalized phase; foot/contact-ID/pivot groups",
+  "entries": [
+    {
+      "key": "vivi",
+      "clip": "Run",
+      "hz": 120,
+      "samples": 85,
+      "summary": [
+        {
+          "variant": "previous-or-experiment",
+          "minimum_sole_y_m": 0.0028996803096418833,
+          "maximum_stance_reference_xz_drift_m": 0.0010645900295608189,
+          "maximum_browser_vs_build_baked_m": null,
+          "stance_knee_degrees": {
+            "min": 56.85828569902051,
+            "mean": 62.664191728222825,
+            "max": 66.39252460784871
+          },
+          "hips_height_m": {
+            "min": 0.6730869315321634,
+            "max": 0.6850918852745711
+          },
+          "maximum_absolute_torso_lean_degrees": 6.653404160479181
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0027398037695899186,
+          "maximum_stance_reference_xz_drift_m": 0.0008861521835356817,
+          "maximum_browser_vs_build_baked_m": 2.4748661111104776e-7,
+          "stance_knee_degrees": {
+            "min": 24.0732468276816,
+            "mean": 38.20229412508347,
+            "max": 42.78596140809785
+          },
+          "hips_height_m": {
+            "min": 0.7360294088755245,
+            "max": 0.7485100701257492
+          },
+          "maximum_absolute_torso_lean_degrees": 6.653420679771659
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Idle",
+      "hz": 120,
+      "samples": 301,
+      "summary": [
+        {
+          "variant": "previous-or-experiment",
+          "minimum_sole_y_m": 0.0029997482276864977,
+          "maximum_stance_reference_xz_drift_m": 9.013522391803222e-8,
+          "maximum_browser_vs_build_baked_m": null,
+          "stance_knee_degrees": {
+            "min": 13.972965198659722,
+            "mean": 14.86463947236562,
+            "max": 15.736807170856935
+          },
+          "hips_height_m": {
+            "min": 0.979763648007129,
+            "max": 0.9798345477319987
+          },
+          "maximum_absolute_torso_lean_degrees": 2.728553183657555
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0029997482276864977,
+          "maximum_stance_reference_xz_drift_m": 9.013522391803222e-8,
+          "maximum_browser_vs_build_baked_m": 5.148421378286036e-7,
+          "stance_knee_degrees": {
+            "min": 13.972965198659722,
+            "mean": 14.86463947236562,
+            "max": 15.736807170856935
+          },
+          "hips_height_m": {
+            "min": 0.979763648007129,
+            "max": 0.9798345477319987
+          },
+          "maximum_absolute_torso_lean_degrees": 2.728553183657555
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Walk",
+      "hz": 120,
+      "samples": 161,
+      "summary": [
+        {
+          "variant": "previous-or-experiment",
+          "minimum_sole_y_m": 0.0029575369634279383,
+          "maximum_stance_reference_xz_drift_m": 0.001533098558612181,
+          "maximum_browser_vs_build_baked_m": null,
+          "stance_knee_degrees": {
+            "min": 31.044345344088327,
+            "mean": 38.056983794844356,
+            "max": 43.00680937822176
+          },
+          "hips_height_m": {
+            "min": 0.9292292930185795,
+            "max": 0.9332311414100452
+          },
+          "maximum_absolute_torso_lean_degrees": 3.355134958898407
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.0029365905667859474,
+          "maximum_stance_reference_xz_drift_m": 0.0013086255963347367,
+          "maximum_browser_vs_build_baked_m": 3.547732003773745e-7,
+          "stance_knee_degrees": {
+            "min": 21.008459749868763,
+            "mean": 27.703835707347377,
+            "max": 34.51611636663742
+          },
+          "hips_height_m": {
+            "min": 0.939251557179698,
+            "max": 0.9714357892937105
+          },
+          "maximum_absolute_torso_lean_degrees": 3.3551349588984087
+        }
+      ]
+    },
+    {
+      "key": "vita",
+      "clip": "Run",
+      "hz": 120,
+      "samples": 85,
+      "summary": [
+        {
+          "variant": "previous-or-experiment",
+          "minimum_sole_y_m": 0.0027566865773461235,
+          "maximum_stance_reference_xz_drift_m": 0.0020012076675887135,
+          "maximum_browser_vs_build_baked_m": null,
+          "stance_knee_degrees": {
+            "min": 57.09011175596355,
+            "mean": 62.75858156207509,
+            "max": 65.9954134515281
+          },
+          "hips_height_m": {
+            "min": 0.8520372659674393,
+            "max": 0.864120721715068
+          },
+          "maximum_absolute_torso_lean_degrees": 6.97777462087788
+        },
+        {
+          "variant": "corrected",
+          "minimum_sole_y_m": 0.00265469694818201,
+          "maximum_stance_reference_xz_drift_m": 0.0014422229974295547,
+          "maximum_browser_vs_build_baked_m": 3.3868934137695594e-7,
+          "stance_knee_degrees": {
+            "min": 24.3372136917082,
+            "mean": 38.002260284895996,
+            "max": 42.44234682599961
+          },
+          "hips_height_m": {
+            "min": 0.9305215477987477,
+            "max": 0.9464126601571929
+          },
+          "maximum_absolute_torso_lean_degrees": 6.97777462087788
+        }
+      ]
+    }
+  ]
+}

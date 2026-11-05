@@ -1,0 +1,28 @@
+"""Freeze new candidate folders, leaving all prior versions and native sources immutable."""
+import json,hashlib,shutil,sys,os
+from pathlib import Path
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'scripts'));from v05.overlay import read
+h=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def write(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+v04=json.loads((R/'library-v04/catalog.json').read_text())['entries'];oldcatalog=json.loads((R/'library-v06/catalog.json').read_text());only=os.environ.get('STUDIO_REGISTRY_KEY');entries=[e for e in json.loads((R/'library-v07/catalog.json').read_text())['entries'] if not e['asset_id'].startswith('vroid-'+only)] if only else []
+for key,ver in [('vivi','0.3.0'),('vita','0.1.0')]:
+ if only and key!=only:continue
+ aid='vroid-'+key+'-motion-review';src=R/'work/v07-build'/aid/ver;dst=R/'library-v07'/aid/ver
+ if dst.exists():raise RuntimeError('Refuse overwriting frozen candidate: '+str(dst))
+ dst.mkdir(parents=True)
+ names=['model.glb','model.blend','adaptation.json','motion-audit.json','collision-regions.json']+(['baseline.glb','baseline.blend'] if key=='vita' else [])
+ for n in names:shutil.copy2(src/n,dst/n)
+ meta=json.loads((dst/'adaptation.json').read_text());doc,_=read(dst/'model.glb');profile=json.loads((R/'library-v04'/('vroid-'+key)/'1.0.0/skeleton-profile.json').read_text());parents={c:i for i,n in enumerate(doc['nodes']) for c in n.get('children',[])};clips=[]
+ for a in doc['animations']:clips.append({'name':a['name'],'duration_s':max(doc['accessors'][s['input']]['max'][0] for s in a['samplers']),'channels':len(a['channels']),'status':'candidate; not art-approved'})
+ profile.update(asset_id=aid,version=ver,model_sha256=h(dst/'model.glb'),editable_master_sha256=h(dst/'model.blend'),clips=clips,node_hierarchy=[{'index':i,'parent':parents.get(i),**n} for i,n in enumerate(doc['nodes'])],reference_pose='Native inverseBindMatrices, original bone lengths and topology preserved.',forward_axis='glTF +Z via root wrapper; Blender -Y',root_motion={'node':'StudioRootMotion_v05','translation':'baked world meters, glTF +Y up','heading':'baked quaternion','uniform_scale':1,'loop_rule':'Independent parent accumulates root displacement; never mutate animated root channels.'},retargeting=meta,art_approved=False,game_ready=False);write(dst/'skeleton-profile.json',profile)
+ base=next(e for e in v04 if e['id']=='vroid-'+key)
+ if key=='vivi':
+  a=json.loads(json.dumps(oldcatalog['entries'][1]));a.update(name='Vivi · 前版 0.2',default_clip='Run',variant='before',pair_baseline=aid+'@0.2.0',pair_corrected=aid+'@'+ver,original_vrm='sources-v04/vroid/Vivi.vrm');entries.append(a)
+ else:
+  bp=json.loads(json.dumps(profile));bp.update(asset_id='vroid-vita-motion-experiment',model_sha256=h(dst/'baseline.glb'),editable_master_sha256=h(dst/'baseline.blend'),status='low-pelvis experiment; not passed, not original author animation');write(dst/'baseline-profile.json',bp)
+ for before in ([False] if key=='vivi' else [True,False]):
+  file='baseline.glb' if before else 'model.glb';mother='baseline.blend' if before else 'model.blend';pf='baseline-profile.json' if before else 'skeleton-profile.json';asset='vroid-vita-motion-experiment' if before else aid;e=json.loads(json.dumps(base));contacts={s:{'all':ids,'sets':meta['contact_sets'][s]} for s,ids in meta['foot_vertex_ids'].items()};maps=[{'mesh_name':'Bodybaked','indices':{str(i):i for ids in meta['foot_vertex_ids'].values() for i in ids}}]
+  e.update(id=asset+'@'+ver,asset_id=asset,version=ver,name=('Vivi' if key=='vivi' else 'Vita')+' · '+('低骨盆試作（未通過）' if before else '跑姿適配候選'),variant='before' if before else 'corrected',pair_baseline=('vroid-vivi-motion-review@0.2.0' if key=='vivi' else 'vroid-vita-motion-experiment@0.1.0'),pair_corrected=aid+'@'+ver,display_yaw=0,default_clip='Run',clips=clips,contact_sets=contacts,vertex_maps=maps,model={'url':'../'+str((dst/file).relative_to(R)),'bytes':(dst/file).stat().st_size,'sha256':h(dst/file)},profile='../'+str((dst/pf).relative_to(R)),profile_sha256=h(dst/pf),editable={'kind':'baked native FK working copy','path':str((dst/mother).relative_to(R)),'sha256':h(dst/mother),'note':'此變體自己的母檔；需對應 Sources ZIP。'},original_vrm='sources-v04/vroid/'+('Vivi.vrm' if key=='vivi' else 'Vita.vrm'),modifications=meta,warning=('前後同相位比較；A 的週期可能加速以對齊 B。' if key=='vivi' else 'A 是本階段低骨盆試作，未通過，不是原作者動畫。只製作 Idle／Walk／Run；起停及轉身未製作。')+'原始身形與衣物保留；人工美術／完整碰撞未核准。',license='CC0-1.0 source; project-authored motion/adaptation contributions',art_approved=False,game_ready=False);entries.append(e)
+ write(dst/'asset_manifest.json',{'schema_version':1,'asset_id':aid,'version':ver,'model_file':'model.glb','source_file':'model.blend','sha256':h(dst/'model.glb'),'unit':'meter','clips':[c['name'] for c in clips],'min_animation_count':len(clips),'requirements':{'skins':True,'animated':True,'visual_review':True},'source':base['source_url'],'license_note':'CC0 source; see THIRD_PARTY_V07.md for project motion scope.','art_approved':False,'game_ready':False})
+ write(dst/'report.json',{'generation':'Blender 5.2.3 LTS background CPU','native_joints':base['bones'],'source_geometry_skin_material_texture_bytes':'preserved','evidence':'../../../evidence-v07/','human_art':'not-tested','art_approved':False,'game_ready':False});write(dst/'files.json',{'files':[{'file':p.name,'bytes':p.stat().st_size,'sha256':h(p)} for p in sorted(dst.iterdir())]})
+write(R/'library-v07/catalog.json',{'schema_version':1,'version':'0.7.0','entries':entries,'root_clips':oldcatalog['root_clips'],'phase_comparison':'Timeline seconds use corrected B duration; A is time-scaled to matching normalized phase. Not equal wall-time speeds.'});print('Two native body candidates frozen')
