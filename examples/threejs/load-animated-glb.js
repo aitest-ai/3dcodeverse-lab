@@ -7,6 +7,7 @@
  */
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 
 /**
  * @param {string} url - an HTTP(S) URL/path to a GLB file
@@ -19,7 +20,9 @@ export async function loadAnimatedGLB(url, parent) {
   if (!parent || !parent.add) {
     throw new TypeError('A Three.js Scene or Group is required');
   }
-  const gltf = await new GLTFLoader().loadAsync(url);
+  // The decoder only runs for GLB files that use EXT_meshopt_compression.
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  const gltf = await loader.loadAsync(url);
   parent.add(gltf.scene);
   const mixer = new THREE.AnimationMixer(gltf.scene);
   const actions = new Map();

@@ -48,6 +48,8 @@
 }
 ```
 
+- **沒有 `.blend` 的成品**（例如 GX10 `asset-factory` 用圖生成的模型）：要在 manifest 明確寫 `"requirements": {"source_file": false}`，並可省略 `source_file`。一般用 `bpy` 建模的任務仍然必須交 `.blend`。
+- **壓縮過的 GLB**（`EXT_meshopt_compression`）：`examples/threejs/load-animated-glb.js` 已設定解碼器；自己寫載入程式時要呼叫 `setMeshoptDecoder`，否則會載入失敗。
 - `asset_id` 與檔名只能使用安全英文數字、底線及連字號。模型需米制尺寸，進口系統再按場景縮放。
 - 動畫每段使用可辨識名稱。範例機甲支援 `Idle`、`Run`、`Punch`、`Dodge`。
 - 有骨架角色應提供 `skins`、`animations`；場景或靜態資產可將 `skins` 設為 `false`、`min_animation_count` 設為 0，`clips` 設為空陣列。
