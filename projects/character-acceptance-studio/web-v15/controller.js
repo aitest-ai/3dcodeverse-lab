@@ -33,7 +33,8 @@ export function sampleController(events,time,entry){
 }
 export function request(events,time,command){
  if(!commands.includes(command)||!Number.isFinite(time)||time<0)throw Error('Invalid controller command');
- return [...events.filter(e=>e.time<time),{time,command}];
+ // Keep command order at the same instant: stop then go must still cancel a queued turn.
+ return [...events.filter(e=>e.time<=time),{time,command}];
 }
 export const demoEvents=[{time:0,command:'go'},{time:4,command:'stop'},{time:9,command:'left'},{time:15,command:'right'},{time:22,command:'stop'},{time:27,command:'go'},{time:31,command:'stop'}];
 export const demoDuration=36;
