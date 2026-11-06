@@ -23,7 +23,12 @@ def validate(folder):
     src_name = manifest.get("source_file")
     if not isinstance(glb_name, str) or not glb_name.endswith(".glb"):
         raise ValueError("model_file must name a .glb")
-    for name in (glb_name, src_name):
+    required = manifest.get("requirements", {})
+    # Generated or externally built assets may have no .blend, but must say so explicitly.
+    names = [glb_name]
+    if required.get("source_file", True) is not False:
+        names.append(src_name)
+    for name in names:
         if not isinstance(name, str) or Path(name).name != name:
             raise ValueError("File names must be simple basenames, not paths")
         if not (folder / name).is_file() or (folder / name).stat().st_size == 0:
@@ -51,7 +56,6 @@ def validate(folder):
         raise ValueError("clips must be a list of names")
     if not doc.get("meshes"):
         raise ValueError("GLB contains no meshes")
-    required = manifest.get("requirements", {})
     if required.get("skins", False) and not doc.get("skins"):
         raise ValueError("Manifest requires skinned geometry, but GLB contains no skins")
     minimum = manifest.get("min_animation_count", 0)
