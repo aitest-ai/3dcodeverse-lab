@@ -1,0 +1,75 @@
+{
+  "schema": "noboribetsu-date-v039-gable-winding-acceptance/1",
+  "status": "isolated_webgl2_and_source_pass_external_gates_pending",
+  "parent_inspector_pr": 153,
+  "parent_full_runtime_version": "V031 R1",
+  "source_inspector_zip_sha256": "2078d61d53a9f52fcf76064b5abfc05fc7117753be4565d383884f5e40727f38",
+  "source_full_runtime_zip_sha256": "57882e06ad6f9256c3150ff562656eb745b24331fe0c9893c777c351dde394f0",
+  "original_v004_sha256": "132ee6c0add22fbfe4a9872d82cb5e6bed0e2e4f282533b6c61de6c156a7a5e3",
+  "G_glb_sha256": "bced01973a6a4c1909427092175ee924e73a1daed01b0f66608c60c0a91ffc03",
+  "FG_glb_sha256": "5583d3d9c54eb19ac4396f4a9803e57fe337daeaf70e446c249a5337758d5985",
+  "original_face13": [
+    11,
+    12,
+    13
+  ],
+  "corrected_face13": [
+    11,
+    13,
+    12
+  ],
+  "left_gable_normal": [
+    -1,
+    0,
+    0
+  ],
+  "right_gable_original_normal": [
+    -1,
+    0,
+    0
+  ],
+  "right_gable_corrected_normal": [
+    1,
+    0,
+    0
+  ],
+  "glb_changed_bytes": 2,
+  "vertices_moved": 0,
+  "triangles_added": 0,
+  "original_17_meshes_preserved": true,
+  "original_inspector_files": 58,
+  "inspector_unchanged_old": 56,
+  "output_inspector_files": 62,
+  "inspector_replay_files_identical": 62,
+  "original_runtime_files": 146,
+  "runtime_unchanged_old": 143,
+  "output_runtime_files": 148,
+  "runtime_replay_files_identical": 148,
+  "original_runtime_glbs_unchanged": true,
+  "route_changed": false,
+  "collision_changed": false,
+  "stage_A_changed": false,
+  "inspector_glbs_loaded": 16,
+  "inspector_desktop_webgl2_shots": 13,
+  "chrome_mobile_430x932_shots": 1,
+  "full_B_chromium_webgl2_loaded": true,
+  "full_B_gable_on_off_on": true,
+  "full_B_existing_v031_roof_kept": true,
+  "full_B_w_movement_model_units": 1.26816,
+  "browser_javascript_errors": 0,
+  "double_side_and_g_pixel_identical_roofSide": true,
+  "material_double_side_shipped": false,
+  "test_only_sha_adapter_shipped": false,
+  "native_crypto_end_to_end_host_tested": false,
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_host_tested": false,
+  "site_surveyed": false,
+  "full_game_includes_F_height_change": false,
+  "merge_policy": "DRAFT_NOT_MERGED_NOT_DEPLOYED",
+  "files_sha256": {
+    "inspector": "e3858af7ed6000002ac5d240586e10165f5beaa92222f82eebe62c3457a650da",
+    "runtime": "9f38174114a9661a7e77b14874d21b5eb09237476ad0966bc7b601528a7638d5",
+    "sourceqa": "1af456c27f5bdba30795854e5666a3660304e6bb3ddf1f9f5411b92af1f38c00"
+  }
+}
