@@ -1,0 +1,46 @@
+name: Sand3D build
+on:
+  push:
+    branches: ['feat/sand3d-**']
+    paths: ['scripts/sand3d/**', '.github/workflows/sand3d-build.yml']
+  workflow_dispatch:
+    inputs:
+      dataset: { description: 'simready, articraft, objaverse, cad, automate', required: true, default: simready }
+      id: { description: 'Object id in that dataset', required: true }
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dataset: simready
+            id: simready-pail_screwTop_white_glossy_a01
+          - dataset: articraft
+            id: articraft-rec_a-compact-on-camera-flash-with-a-narrow-body-a-r_20260426_045857_759417_bff0fdec
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.13' }
+      - name: Install Blender as a Python module
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libgl1 libegl1 libsm6
+          pip install -q "bpy==5.2.*" "sand3d>=1.6" pyarrow
+      - name: Build
+        env:
+          DATASET: ${{ inputs.dataset || matrix.dataset }}
+          OBJECT_ID: ${{ inputs.id || matrix.id }}
+        run: python scripts/sand3d/build_object.py --dataset "$DATASET" --id "$OBJECT_ID" --out outputs
+      - name: Check the package structure
+        run: |
+          python scripts/blender5/validate_glb.py outputs
+          cat outputs/report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sand3d-${{ strategy.job-index }}
+          path: outputs/
+          retention-days: 14
