@@ -1,0 +1,28 @@
+{
+  "studio_version": "0.14.0",
+  "assets": [
+    {
+      "asset_id": "horse-brown-walk-smooth-review",
+      "version": "0.1.0",
+      "model_sha256": "44f73b98ea9d37e21845ca807f5eaedbdc0c742a0ea90f54ffc26c11b5bfcde4"
+    },
+    {
+      "asset_id": "horse-white-walk-smooth-review",
+      "version": "0.1.0",
+      "model_sha256": "86f32c0bc29db0ae1f02f74486064910ed04c6ade5a97b29ddda7cbb4049fd20"
+    }
+  ],
+  "comparison_assets": [
+    {
+      "asset_id": "horse-brown-walk-transition-review",
+      "version": "0.1.0",
+      "model_sha256": "882fc780b7f0ed00c85dfa98afc6a4615fdeda5c6ae0cb53469b8f5e27880b2d"
+    },
+    {
+      "asset_id": "horse-white-walk-transition-review",
+      "version": "0.1.0",
+      "model_sha256": "f07734fe54e91cff8c996a81f36cbca68e77de01d553fee96a3abe0654fdddca"
+    }
+  ],
+  "policy": "Only new v14 assets are pinnable here; comparisons are immutable v13 corrected candidates, not new releases or art-approved templates."
+}
