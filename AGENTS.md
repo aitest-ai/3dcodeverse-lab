@@ -23,6 +23,10 @@
 
 **注意：** GitHub 儲存庫保存程式與版本；Blender 在每次 Actions 執行期間暫時安裝，不是常駐 3D 編輯伺服器。新的 AI 若沒有 GitHub 授權，先讓使用者安裝連接器，或以 Fork/PR 方式參與，不得假裝已經寫入儲存庫。
 
+## 開源模型庫（動手建模前先查）
+
+[docs/OPEN_MODEL_LIBRARY.md](docs/OPEN_MODEL_LIBRARY.md)：可用的開源模型、授權、與 GX10 `asset-factory` 的分工。
+
 ## 🐎 已有的共用馬匹模型（其他 AI 請先讀）
 
 本儲存庫**已經有兩匹可用的風格化賽馬**，不要因為 `main` 暫時沒有完整模型生產程式，就宣稱馬不存在、從零重造。
