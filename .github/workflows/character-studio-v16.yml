@@ -1,0 +1,65 @@
+name: Character studio v16 human hand and garment review artifacts
+on:
+  push:
+    branches: [feat/character-studio-v16-human-fit-20261106]
+    paths:
+      - projects/character-acceptance-studio/**
+      - .github/workflows/character-studio-v16.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser and CPU render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-noto-cjk libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+          npm install --prefix "$RUNNER_TEMP/studio-node" playwright@1.57.0
+          "$RUNNER_TEMP/studio-node/node_modules/.bin/playwright" install --with-deps chromium
+          echo "NODE_PATH=$RUNNER_TEMP/studio-node/node_modules" >> "$GITHUB_ENV"
+          NODE_PATH="$RUNNER_TEMP/studio-node/node_modules" node -e 'console.log("CHROMIUM_PATH="+require("playwright").chromium.executablePath())' >> "$GITHUB_ENV"
+      - name: Install exact official Blender 5.2.3
+        run: |
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o "$RUNNER_TEMP/blender.tar.xz" https://download.blender.org/release/Blender5.2/blender-5.2.3-linux-x64.tar.xz
+          echo "78486c018b4443efe5e75ab54c290ed8c15abafd249b862c2c9ce2530a918eec  $RUNNER_TEMP/blender.tar.xz" | sha256sum --check
+          mkdir "$RUNNER_TEMP/blender-v16"
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP/blender-v16" --strip-components=1
+          echo "BLENDER_BIN=$RUNNER_TEMP/blender-v16/blender" >> "$GITHUB_ENV"
+      - name: Build, cold-open, run actual browser and clean ZIP reconstruction
+        working-directory: projects/character-acceptance-studio
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          python3 -m py_compile scripts/*v16.py
+          node --input-type=module --check < web-v16/app.js
+          if ! python3 scripts/run_validation_v16.py > work-v16-ci.log 2>&1; then
+            tail -n 70 work-v16-ci.log
+            exit 1
+          fi
+      - name: Upload complete review candidate packages and verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-v16-review-${{ github.run_number }}
+          path: projects/character-acceptance-studio/deliveries-v16/*
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: character-studio-v16-failure-${{ github.run_number }}
+          path: |
+            projects/character-acceptance-studio/work-v16-ci.log
+            projects/character-acceptance-studio/evidence-v16/*.json
+          retention-days: 7

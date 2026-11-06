@@ -1,0 +1,98 @@
+{
+  "status": "rejected internal trials; not selectable or distributable candidates",
+  "strong_PIP_curl": {
+    "reason": "Proper hand-skin intersections near PIP joints; 44 triangle pairs on each hand at initial sample.",
+    "sweep": [
+      {
+        "factor": 1,
+        "crossings": 0,
+        "bone_pairs": {}
+      },
+      {
+        "factor": 1.1,
+        "crossings": 6,
+        "bone_pairs": {
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 3,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 3
+        }
+      },
+      {
+        "factor": 1.2,
+        "crossings": 11,
+        "bone_pairs": {
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 3,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 4,
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 4
+        }
+      },
+      {
+        "factor": 1.3,
+        "crossings": 16,
+        "bone_pairs": {
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 6,
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 5,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 5
+        }
+      },
+      {
+        "factor": 1.4,
+        "crossings": 23,
+        "bone_pairs": {
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 6,
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 6,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 11
+        }
+      },
+      {
+        "factor": 1.5,
+        "crossings": 29,
+        "bone_pairs": {
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 6,
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 9,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 12,
+          "J_Bip_L_Index1 / J_Bip_L_Index2": 2
+        }
+      },
+      {
+        "factor": 1.6,
+        "crossings": 32,
+        "bone_pairs": {
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 12,
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 6,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 12,
+          "J_Bip_L_Index1 / J_Bip_L_Index2": 2
+        }
+      },
+      {
+        "factor": 1.8,
+        "crossings": 42,
+        "bone_pairs": {
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 13,
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 10,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 13,
+          "J_Bip_L_Index1 / J_Bip_L_Index2": 6
+        }
+      },
+      {
+        "factor": 2.0,
+        "crossings": 44,
+        "bone_pairs": {
+          "J_Bip_L_Little1 / J_Bip_L_Little2": 10,
+          "J_Bip_L_Ring1 / J_Bip_L_Ring2": 13,
+          "J_Bip_L_Middle1 / J_Bip_L_Middle2": 13,
+          "J_Bip_L_Index1 / J_Bip_L_Index2": 8
+        }
+      }
+    ]
+  },
+  "hand_only": {
+    "reason": "Hand-to-skirt crossings remained during Run; upper-arm clothing clearance required.",
+    "maximum_browser_hand_skirt_pairs": {
+      "vivi_before": 119,
+      "vivi_trial": 109,
+      "vita_before": 123,
+      "vita_trial": 116
+    }
+  },
+  "selected_configuration": "MCP 40 degrees (per-digit factors), PIP 25, DIP 12 plus per-body periodic upper-arm clearance; original thumb curl retained. See scripts/v16/hand-clearance.json."
+}

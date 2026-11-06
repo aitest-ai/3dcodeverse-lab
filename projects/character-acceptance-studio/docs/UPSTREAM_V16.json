@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-06",
+  "entries": [
+    {
+      "number": 50,
+      "title": "WIP: D03／D06 共用人物工作室 — 灰模、來源鎖定與實際 GLB 驗證",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/50",
+      "state": "open",
+      "draft": true,
+      "head": "feat/diverse-character-studio",
+      "head_sha": "abb756d8cd9f92c5d559c048747ce15a0ebba35e",
+      "updated_at": "2026-10-31T12:26:04Z"
+    },
+    {
+      "number": 137,
+      "title": "feat: v02 character modeling and verified Godot workflow; Unreal import handoff",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/137",
+      "state": "open",
+      "draft": true,
+      "head": "feat/harbor-quality-v02-20261103",
+      "head_sha": "8e877a07f19571436c2658a885db77206014a74c",
+      "updated_at": "2026-11-03T04:47:43Z"
+    },
+    {
+      "number": 39,
+      "title": "feat: NVIDIA Nova-77 → MPFB 53骨 Blender／GLB 動作驗證",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/39",
+      "state": "open",
+      "draft": true,
+      "head": "feat/nvidia-body-pose-retarget-poc",
+      "head_sha": "424e7eda60d20f71990209a90c7c7a6c7a220724",
+      "updated_at": "2026-10-30T23:59:29Z"
+    },
+    {
+      "number": 48,
+      "title": "V29 Draft｜兩位長者臉頰與髮紋候選：拒收規律壓紋、交付表情回讀與八人封裝完成",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/48",
+      "state": "open",
+      "draft": true,
+      "head": "feat/taiwan-v29-elder-face-hair",
+      "head_sha": "0cef2282394b911e61cb3cde169f31be0034af95",
+      "updated_at": "2026-10-31T10:14:08Z"
+    },
+    {
+      "number": 49,
+      "title": "V30 Draft｜阿水伯改為單肩棉毛巾：真實前後圖、交付回讀與八人彙整完成",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/49",
+      "state": "open",
+      "draft": true,
+      "head": "feat/taiwan-v30-shui-towel-drape",
+      "head_sha": "11cae1df15367cb5a41bdb6b3dc50d61fcc8e146",
+      "updated_at": "2026-10-31T11:51:55Z"
+    },
+    {
+      "number": 51,
+      "title": "V31 Draft｜依使用者退修：真實重力毛巾靜態解算＋花衫下擺穿插修正",
+      "url": "https://github.com/aitest-ai/3dcodeverse-lab/pull/51",
+      "state": "open",
+      "draft": true,
+      "head": "feat/taiwan-v31-shui-cloth-gravity-hem",
+      "head_sha": "eafdaadae855b866c8c8f4f88c6526e2b484a11c",
+      "updated_at": "2026-10-31T13:01:24Z"
+    }
+  ]
+}
