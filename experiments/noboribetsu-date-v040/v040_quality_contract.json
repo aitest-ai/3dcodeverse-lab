@@ -1,0 +1,71 @@
+{
+  "schema": "noboribetsu-date-v040-original-post-exposure/1",
+  "parent_pr": 160,
+  "parent_branch": "feat/noboribetsu-date-v039-right-gable-winding-r1",
+  "release_type": "inspector_only",
+  "source_v039_inspector_sha256": "e3858af7ed6000002ac5d240586e10165f5beaa92222f82eebe62c3457a650da",
+  "old_files": 62,
+  "unchanged_old_files": 59,
+  "new_files": 66,
+  "clean_replay_matched": 66,
+  "archived_GLBS_byte_identical": 17,
+  "webgl_loaded_GLBS": 16,
+  "new_GLBS": 0,
+  "original_building_GLBS_modified": false,
+  "geometry": {
+    "G_plaster_y": 6.728520393371582,
+    "wood_top_y": 6.678520679473877,
+    "FG_plaster_y": 6.503520488739014,
+    "wood_top_face_pairs": [
+      [
+        20,
+        21
+      ],
+      [
+        32,
+        33
+      ],
+      [
+        44,
+        45
+      ],
+      [
+        56,
+        57
+      ]
+    ],
+    "wood_top_pairs": 4,
+    "wood_above_roof_in_G": -0.04999971389770508,
+    "wood_above_roof_in_FG": 0.17500019073486328,
+    "F_delta_y": -0.225,
+    "only_four_plaster_vertices_changed": [
+      2,
+      3,
+      6,
+      7
+    ]
+  },
+  "browser": {
+    "real_chromium_webgl2": true,
+    "desktop_captures": 7,
+    "mobile_430x932_emulation_captures": 1,
+    "page_errors": 0,
+    "console_errors": 0,
+    "continuous_00225_equals_FG_mesh_max_difference": 0,
+    "continuous_00225_equals_FG_pixels_different": 0,
+    "difference_pixels_vs_G_at_drop_0100": 12416,
+    "difference_pixels_vs_G_at_drop_0225": 27623
+  },
+  "original_full_runtime_modified": false,
+  "FG_art_approved": false,
+  "blender_native_tested": false,
+  "android_real_tested": false,
+  "private_host_tested": false,
+  "site_surveyed": false,
+  "deliveries": {
+    "inspector_sha256": "800439290b4415deaf691d4e9e369b34a091573a8277be27a6051bd860fbc168",
+    "sourceqa_sha256": "b60a5384c9c5f9312de71c8402b6c5d8a41dce9ece53bd98b98e18a5f69c5b73"
+  },
+  "decision": "Keep V039 G as full-game candidate; F+G remains independent diagnostic due to revealed pre-existing column tops.",
+  "merge_policy": "draft; do not merge, deploy or modify private site"
+}
