@@ -1,0 +1,27 @@
+{
+  "version": "0.15.0",
+  "assets": [
+    {
+      "asset_id": "horse-brown-locomotion-review",
+      "version": "0.1.0",
+      "model_sha256": "24b812bda86bcab93195d1d6537b492da4aa568075ec8261314647426f1a3632"
+    },
+    {
+      "asset_id": "horse-white-locomotion-review",
+      "version": "0.1.0",
+      "model_sha256": "b188516fd27183eb7d345fb599ff3428bd9406504e8c00186c882039bdd2f18b"
+    }
+  ],
+  "comparison_assets": [
+    {
+      "asset_id": "horse-brown-walk-smooth-review",
+      "version": "0.1.0",
+      "model_sha256": "44f73b98ea9d37e21845ca807f5eaedbdc0c742a0ea90f54ffc26c11b5bfcde4"
+    },
+    {
+      "asset_id": "horse-white-walk-smooth-review",
+      "version": "0.1.0",
+      "model_sha256": "86f32c0bc29db0ae1f02f74486064910ed04c6ade5a97b29ddda7cbb4049fd20"
+    }
+  ]
+}
