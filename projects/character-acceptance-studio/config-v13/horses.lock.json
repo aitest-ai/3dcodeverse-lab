@@ -1,0 +1,28 @@
+{
+  "studio_version": "0.13.0",
+  "assets": [
+    {
+      "asset_id": "horse-brown-walk-transition-review",
+      "version": "0.1.0",
+      "model_sha256": "882fc780b7f0ed00c85dfa98afc6a4615fdeda5c6ae0cb53469b8f5e27880b2d"
+    },
+    {
+      "asset_id": "horse-white-walk-transition-review",
+      "version": "0.1.0",
+      "model_sha256": "f07734fe54e91cff8c996a81f36cbca68e77de01d553fee96a3abe0654fdddca"
+    }
+  ],
+  "comparison_assets": [
+    {
+      "asset_id": "horse-brown-transition-baseline",
+      "version": "0.1.0",
+      "model_sha256": "10519c072298efcbbf0072fa5c2078038861fb204e179725261169f2a2c3a30f"
+    },
+    {
+      "asset_id": "horse-white-transition-baseline",
+      "version": "0.1.0",
+      "model_sha256": "6774db11c37b8d0971bedc8b633b1f58455e35340897c045e213fe8d47fdd0a2"
+    }
+  ],
+  "policy": "Only assets are pinnable review candidates; comparisons fail contact acceptance and are not templates."
+}
