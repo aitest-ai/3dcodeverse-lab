@@ -1,0 +1,20 @@
+name: Taipei Mecha v7.5 deployment bootstrap safety
+on:
+  push:
+    branches: [feat/taipei-mecha-v75-vercel-deploy-bootstrap-20261106]
+  pull_request:
+    paths:
+      - 'deploy/taipei-mecha-v75/**'
+      - '.github/workflows/taipei-mecha-v75-deploy-bootstrap.yml'
+permissions:
+  contents: read
+jobs:
+  static-safe-bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m py_compile deploy/taipei-mecha-v75/build_from_release.py
+      - run: python deploy/taipei-mecha-v75/test_bootstrap.py
