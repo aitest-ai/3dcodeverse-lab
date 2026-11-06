@@ -1,0 +1,58 @@
+{
+  "trials": [
+    {
+      "id": "arm-only",
+      "status": "rejected",
+      "reason": "Moving forearms alone increased local sleeve/skin crossings; no correction.",
+      "failed_model_pins": [
+        {
+          "id": "vroid-vivi-motion-review@0.5.0",
+          "sha256": "947bec6a3711c55325673ccbdbea36c26deabd59ccfa5b6c741ad67510284ca0"
+        },
+        {
+          "id": "vroid-vita-motion-review@0.4.0",
+          "sha256": "0de7d4bde468539bbee1c92de0716772cc1855dc2d1be852c9b11e945c0df6fc"
+        }
+      ]
+    },
+    {
+      "id": "uniform-sleeve-expansion",
+      "status": "rejected",
+      "reason": "2\u201320 mm radial expansion retained crossings and distorted silhouette."
+    },
+    {
+      "id": "cloth-only-local-fit",
+      "status": "rejected",
+      "reason": "Sleeve/skin pairs resolved but new sleeve self and skin self pairs remained.",
+      "failed_model_pins": [
+        {
+          "id": "vroid-vivi-motion-review@0.5.0",
+          "sha256": "39388239a2911fcb3edc2f90f14311015bbe0fb2c2ac3b729406dfc882eee926"
+        },
+        {
+          "id": "vroid-vita-motion-review@0.4.0",
+          "sha256": "f6204a496e64edb5f40e8f8e59feb882ba902bc4c170a99e166b435af652d440"
+        }
+      ]
+    },
+    {
+      "id": "equal-92-degree-vita",
+      "status": "rejected",
+      "reason": "Local corrective exceeded bounded displacement; Vita needs an independent range."
+    },
+    {
+      "id": "zero-all-source-skin-pairs",
+      "status": "rejected",
+      "reason": "Trying to erase inherited source armpit folds exceeded 8 mm skin displacement; these remain known defects."
+    },
+    {
+      "id": "selected",
+      "status": "review-candidate",
+      "vivi": "68\u201392 degrees; Run-only skin and garment morph",
+      "vita": "68\u201380 degrees; independent native fit",
+      "art_approved": false,
+      "game_ready": false
+    }
+  ],
+  "failed_candidates_not_selectable": true
+}
