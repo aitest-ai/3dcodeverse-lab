@@ -7,8 +7,8 @@ from __future__ import annotations
 import argparse,hashlib,os,shutil,subprocess,sys,tempfile,urllib.parse,urllib.request,zipfile
 from pathlib import Path
 
-ASSET_SHA256="6896daa50d799bf292ba298c347134aec8a55e6986bb4bbe50c560ecea9c0e7e"
-ASSET_BYTES=59898586
+ASSET_SHA256="78704c156b8667b4a47a898616edf305e783b5b7a61d7aeed17b8d7e3972dab6"
+ASSET_BYTES=59898926
 CITY_PIN="1d70708fc92a088b779c8c0e22677adb64966a1b"
 BASE=Path(__file__).resolve().parent
 LIMIT=110_000_000
