@@ -4,8 +4,8 @@
 
 ## 先決條件與唯一待補資產
 
-請把前次交付的原始檔「臺北機甲_v7.5_完整真實資產_WebGPU部署整合工程.zip」當作 GitHub Release 的二進位附件發布，大小 **59,898,586 bytes**，SHA256：
-`6896daa50d799bf292ba298c347134aec8a55e6986bb4bbe50c560ecea9c0e7e`
+請把前次交付的原始檔「臺北機甲_v7.5_正式Web部署候選_含原始城市雲端驗證.zip」當作 GitHub Release 的二進位附件發布，大小 **59,898,926 bytes**，SHA256：
+`78704c156b8667b4a47a898616edf305e783b5b7a61d7aeed17b8d7e3972dab6`
 
 取得實際附件的直接 HTTPS 下載網址後，在 Vercel 專案「環境變數」設定：
 `TAIPEI_MECHA_ASSET_RELEASE_URL=https://github.com/aitest-ai/3dcodeverse-lab/releases/download/<tag>/<asset.zip>`
