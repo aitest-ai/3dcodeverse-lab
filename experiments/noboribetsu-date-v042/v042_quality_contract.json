@@ -1,0 +1,62 @@
+{
+  "schema": "noboribetsu-date-v042-crossmesh-beam-joint-inspection/1",
+  "kind": "standalone_lightweight_inspector_only",
+  "source_v041_pr": 169,
+  "source_v041_inspector_sha256": "9561dcbdcb9fab6b173425eb2b0d809744a44882e41bd9018a8fedbb32417b87",
+  "original_source_G": "bced01973a6a4c1909427092175ee924e73a1daed01b0f66608c60c0a91ffc03",
+  "original_source_FG": "5583d3d9c54eb19ac4396f4a9803e57fe337daeaf70e446c249a5337758d5985",
+  "original_source_H": "9d6ec28e7844c3b522b6b1453426334f36da580808ad78bd4bc3e7c5969463f4",
+  "sha256_joint_audit_json": "e567688543afc0d53bc702d93728b49bf635111c01e0ddf7a10847ca90c41eff",
+  "unchanged_original_glbs": 3,
+  "other_old_glbs_retained_in_source_archive": 14,
+  "source_archive_unchanged": true,
+  "source_roof_and_post_clearance_H": 0.05,
+  "post_centers_in_model_units": [
+    [
+      2.2959,
+      45.6993
+    ],
+    [
+      21.5434,
+      45.6993
+    ],
+    [
+      2.2959,
+      56.4519
+    ],
+    [
+      21.5434,
+      56.4519
+    ]
+  ],
+  "nearest_wood_lintel_3d": [
+    0.7074,
+    0.7074,
+    0.7074,
+    0.7074
+  ],
+  "nearest_wood_timber_3d": [
+    0.56,
+    0.56,
+    0.8334,
+    0.8334
+  ],
+  "post_center_vertical_hits_wood_lintel": 0,
+  "post_center_vertical_hits_wood_timber": 0,
+  "clean_replay_files_matched": 17,
+  "standalone_inspector_files": 17,
+  "real_chromium_webgl2_pass": true,
+  "loaded_glbs": 3,
+  "desktop_pngs": 5,
+  "mobile_chromium_emulation_pngs": 1,
+  "real_android_tested": false,
+  "blender_native_tested": false,
+  "private_https_tested": false,
+  "onsite_architecture_verified": false,
+  "new_building_glb_created": false,
+  "full_game_runtime_modified": false,
+  "visual_markers_only": true,
+  "inspector_zip_sha256": "d6949e140f0763df1f2608ed5da6c48938192852878e52d18e121d69ac51d139",
+  "sourceqa_zip_sha256": "eedba81e1efd37e47fbdd34e9842be58ce9de0aa7dd2b984d752ad89da353810",
+  "merge_policy": "Draft no merge, deploy or overwrite"
+}
