@@ -15,6 +15,6 @@ try:
  for _ in range(40):
   try:urllib.request.urlopen('http://localhost:8816/web-v18/',timeout=2).close();break
   except OSError:time.sleep(.25)
- run(['node','scripts/check_browser_v18.cjs']);run(['node','scripts/capture_surface_v18.cjs']);py('summarize_surface_v18.py');py('package_surface_v18.py');py('check_delivery_v18.py')
+ run(['node','scripts/check_browser_v18.cjs']);run(['node','scripts/capture_surface_v18.cjs']);run(['node','scripts/capture_motion_v18.cjs']);py('summarize_surface_v18.py');py('package_surface_v18.py');py('check_delivery_v18.py')
 finally:server.terminate();server.wait(timeout=10)
 shutil.copyfile(R/'evidence-v18/acceptance-summary.json',R/'deliveries-v18/acceptance-summary.json');print('FULL_V18_REVIEW_PIPELINE_PASS')

@@ -16,7 +16,7 @@ python START_STUDIO_V18.py --open
 
 開啟 http://localhost:8816/web-v18/ ，Windows 也可執行 `START_WINDOWS_V18.cmd`。選 Vivi 或 Vita，勾選同鏡位比較：A 為固定 V17，B 為 V18 候選。切換 Idle、Walk、Run、Start、Stop、TurnLeft、TurnRight；可暫停、改速度、60fps 逐格、循環及檢查起走停轉序列。
 
-Run 0.175 秒的肩部近景容易看見來源暗塊；切換「局部肩腋描邊遮罩」，可在相同幾何與姿勢下比較。再檢查正／側／後、肩部、左右肘及手部近景。可匯出觀察 JSON、PNG 與瀏覽器錄影。連續畫面索引：`evidence-v18/frame-catalog.json`；兩份實際瀏覽器動畫：`evidence-v18/{vivi,vita}-run.webm`。
+Run 0.175 秒的肩部近景容易看見來源暗塊；切換「局部肩腋描邊遮罩」，可在相同幾何與姿勢下比較。再檢查正／側／後、肩部、左右肘及手部近景。可匯出觀察 JSON、PNG 與瀏覽器錄影。連續畫面索引：`evidence-v18/frame-catalog.json`；即時 CPU 瀏覽器錄影：`evidence-v18/{vivi,vita}-run.webm`（可能只錄到少量影格）。另有 `evidence-v18/{vivi,vita}-cycle.mp4`：每份由 21 張實際瀏覽器畫面依 30fps 動畫時間編碼；這是逐格畫面重播，不代表即時效能。原始 PNG 與逐格時間記錄在 `motion-frames/` 和 `motion-capture.json`。
 
 ## 母檔與可重現匯出
 
