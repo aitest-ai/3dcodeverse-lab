@@ -5,7 +5,11 @@ R=Path(__file__).resolve().parents[1];os.chdir(R);(R/'work/v18').mkdir(parents=T
 def run(a):print('RUN',a,flush=True);subprocess.run(a,check=True)
 def py(n):run([sys.executable,'scripts/'+n])
 def blend(n):run([blender,'-b','-t','4','--python-exit-code','1','--python','scripts/'+n])
-py('bootstrap_inputs_v18.py');blend('build_surface_v18.py');py('prepare_registry_v18.py');blend('check_surface_v18.py')
+py('bootstrap_inputs_v18.py');blend('build_surface_v18.py');py('prepare_registry_v18.py')
+validator=R/'../../scripts/blender5/validate_glb.py'
+if not validator.exists():validator=R/'scripts/v18/validate_glb.py'
+for key,ver in [('vivi','0.6.0'),('vita','0.5.0')]:run([sys.executable,str(validator),'library-v18/vroid-'+key+'-motion-review/'+ver])
+blend('check_surface_v18.py')
 server=subprocess.Popen([sys.executable,'START_STUDIO_V18.py'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
 try:
  for _ in range(40):
