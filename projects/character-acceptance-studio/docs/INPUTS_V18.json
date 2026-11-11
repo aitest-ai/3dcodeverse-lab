@@ -1,0 +1,19 @@
+{
+  "source_pr": 166,
+  "source_commit": "8e5e3bb7a64d353bb4b3e7440474b93b0204ad73",
+  "run": 42187889048,
+  "artifact": 13488354383,
+  "outer_sha256": "5890011f79b2120f6d57727bd92c1e063a75ebaf56298f01383547ea899219ec",
+  "locked_files": {
+    "vroid-vivi-motion-review/0.5.0": {
+      "model.glb": "889020f363d0693094bc11b36b1e1302b2bfbecd88ae0698e0fd14797ac79bdc",
+      "model.blend": "869897cd663d986b14baf3915ba49b5209fadcb18d92565d542915197bbe1db2",
+      "skeleton-profile.json": "9caa012f7825c670e8e83c615762afdc8697d6748e3348c2bb9fe2caa85182c8"
+    },
+    "vroid-vita-motion-review/0.4.0": {
+      "model.glb": "5ab09cbc3ebdd48fa21b31bf12c3944672fcfb0b592b19b2ce3ab610f2db1568",
+      "model.blend": "0b77eab63cb41e32cb681d7dd9909b61dc1b2d6d227ba3f088d6ee7ad17f7f25",
+      "skeleton-profile.json": "c64e2fe171e39806f724f0c50bd25d18d6a7fe65ed38186894f46b996a63495b"
+    }
+  }
+}

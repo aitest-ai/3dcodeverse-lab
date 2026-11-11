@@ -1,0 +1,45 @@
+{
+  "entries": [
+    {
+      "trial": "skin-weight-smoothing",
+      "result": "Rejected: increased crossings in other poses."
+    },
+    {
+      "trial": "skin-plane-corrective",
+      "result": "Rejected: up to 20 mm skin displacement; dark garment triangle remained."
+    },
+    {
+      "trial": "expanded-garment-fit",
+      "result": "Rejected: 55\u201359 mm displacement, excessive deformation."
+    },
+    {
+      "trial": "minimum-plane-fit",
+      "result": "Rejected: Vivi did not converge."
+    },
+    {
+      "trial": "garment-orientation-projection",
+      "result": "Rejected: first pass >32 mm displacement."
+    },
+    {
+      "trial": "garment-weight-smoothing-and-gamma",
+      "result": "Rejected: pattern distortion, changed crossings; visible blob remained."
+    },
+    {
+      "trial": "dual-quaternion-pose-corrective",
+      "result": "Rejected: 28\u201333 mm local displacement, dark triangle persisted."
+    },
+    {
+      "trial": "global-outline-off",
+      "result": "Diagnostic only: removed blob and all shirt outlines."
+    },
+    {
+      "trial": "local-outline-width-mask",
+      "result": "Selected display correction: 47 audited faces, 10px feather, original folds/collisions remain."
+    },
+    {
+      "trial": "cuff-boundary-subdivision",
+      "result": "Rejected after complete Vivi 60Hz test: new cuff crossings in 25 Idle, 4 Walk, 17 Start, 14 Stop, 6 TurnLeft, 10 TurnRight frames; Run 0. Vita full collision test not completed. No subdivided asset is selectable. See CUFF_REJECTED_V18.json."
+    }
+  ],
+  "policy": "Rejected variants are not in catalog. Local diagnostic files retained under work/v18; they are not delivery assets. Selected reproducible algorithms in scripts/v18."
+}

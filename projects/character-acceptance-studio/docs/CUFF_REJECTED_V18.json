@@ -1,0 +1,799 @@
+{
+  "entries": [
+    {
+      "clip": "Idle",
+      "hz": 60,
+      "samples": 151,
+      "max_source_pairs": 14,
+      "max_candidate_parent_mapped_pairs": 13,
+      "new_pairs": [
+        {
+          "frame": 0,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 6,
+          "pairs": [
+            [
+              9693,
+              3397
+            ],
+            [
+              9693,
+              3411
+            ]
+          ]
+        },
+        {
+          "frame": 28,
+          "pairs": [
+            [
+              9693,
+              3397
+            ],
+            [
+              9693,
+              3411
+            ]
+          ]
+        },
+        {
+          "frame": 30,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 31,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 47,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 48,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 49,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 50,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 51,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 52,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 53,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 54,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 55,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 56,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 57,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 73,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 74,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 96,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 102,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 125,
+          "pairs": [
+            [
+              9615,
+              8873
+            ]
+          ]
+        },
+        {
+          "frame": 126,
+          "pairs": [
+            [
+              9615,
+              8873
+            ]
+          ]
+        },
+        {
+          "frame": 142,
+          "pairs": [
+            [
+              9691,
+              3398
+            ]
+          ]
+        },
+        {
+          "frame": 149,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 150,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "Walk",
+      "hz": 60,
+      "samples": 81,
+      "max_source_pairs": 20,
+      "max_candidate_parent_mapped_pairs": 19,
+      "new_pairs": [
+        {
+          "frame": 28,
+          "pairs": [
+            [
+              9386,
+              8538
+            ]
+          ]
+        },
+        {
+          "frame": 48,
+          "pairs": [
+            [
+              9380,
+              8546
+            ]
+          ]
+        },
+        {
+          "frame": 53,
+          "pairs": [
+            [
+              9386,
+              8538
+            ]
+          ]
+        },
+        {
+          "frame": 74,
+          "pairs": [
+            [
+              9780,
+              8873
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "Run",
+      "hz": 60,
+      "samples": 43,
+      "max_source_pairs": 7,
+      "max_candidate_parent_mapped_pairs": 3,
+      "new_pairs": []
+    },
+    {
+      "clip": "Start",
+      "hz": 60,
+      "samples": 105,
+      "max_source_pairs": 21,
+      "max_candidate_parent_mapped_pairs": 19,
+      "new_pairs": [
+        {
+          "frame": 0,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 1,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 2,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 12,
+          "pairs": [
+            [
+              9384,
+              3563
+            ]
+          ]
+        },
+        {
+          "frame": 30,
+          "pairs": [
+            [
+              9386,
+              3554
+            ]
+          ]
+        },
+        {
+          "frame": 37,
+          "pairs": [
+            [
+              9290,
+              3561
+            ]
+          ]
+        },
+        {
+          "frame": 41,
+          "pairs": [
+            [
+              9382,
+              3220
+            ]
+          ]
+        },
+        {
+          "frame": 54,
+          "pairs": [
+            [
+              9780,
+              8588
+            ]
+          ]
+        },
+        {
+          "frame": 61,
+          "pairs": [
+            [
+              9380,
+              3556
+            ]
+          ]
+        },
+        {
+          "frame": 65,
+          "pairs": [
+            [
+              9691,
+              3747
+            ]
+          ]
+        },
+        {
+          "frame": 69,
+          "pairs": [
+            [
+              9380,
+              8546
+            ]
+          ]
+        },
+        {
+          "frame": 79,
+          "pairs": [
+            [
+              9380,
+              8546
+            ]
+          ]
+        },
+        {
+          "frame": 85,
+          "pairs": [
+            [
+              9780,
+              3738
+            ]
+          ]
+        },
+        {
+          "frame": 86,
+          "pairs": [
+            [
+              9384,
+              3571
+            ]
+          ]
+        },
+        {
+          "frame": 94,
+          "pairs": [
+            [
+              9787,
+              8589
+            ]
+          ]
+        },
+        {
+          "frame": 97,
+          "pairs": [
+            [
+              9292,
+              3557
+            ]
+          ]
+        },
+        {
+          "frame": 99,
+          "pairs": [
+            [
+              9783,
+              8872
+            ],
+            [
+              9783,
+              8874
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "Stop",
+      "hz": 60,
+      "samples": 105,
+      "max_source_pairs": 24,
+      "max_candidate_parent_mapped_pairs": 19,
+      "new_pairs": [
+        {
+          "frame": 21,
+          "pairs": [
+            [
+              9780,
+              3391
+            ]
+          ]
+        },
+        {
+          "frame": 27,
+          "pairs": [
+            [
+              9382,
+              8554
+            ]
+          ]
+        },
+        {
+          "frame": 37,
+          "pairs": [
+            [
+              9783,
+              3404
+            ]
+          ]
+        },
+        {
+          "frame": 49,
+          "pairs": [
+            [
+              9290,
+              3233
+            ],
+            [
+              9380,
+              3225
+            ]
+          ]
+        },
+        {
+          "frame": 53,
+          "pairs": [
+            [
+              9780,
+              8873
+            ]
+          ]
+        },
+        {
+          "frame": 62,
+          "pairs": [
+            [
+              9783,
+              8874
+            ]
+          ]
+        },
+        {
+          "frame": 73,
+          "pairs": [
+            [
+              9380,
+              3227
+            ],
+            [
+              9380,
+              3228
+            ],
+            [
+              9780,
+              3394
+            ]
+          ]
+        },
+        {
+          "frame": 86,
+          "pairs": [
+            [
+              9386,
+              8538
+            ]
+          ]
+        },
+        {
+          "frame": 92,
+          "pairs": [
+            [
+              9384,
+              3563
+            ]
+          ]
+        },
+        {
+          "frame": 94,
+          "pairs": [
+            [
+              9282,
+              3236
+            ],
+            [
+              9282,
+              3237
+            ],
+            [
+              9282,
+              3563
+            ]
+          ]
+        },
+        {
+          "frame": 95,
+          "pairs": [
+            [
+              9292,
+              8546
+            ]
+          ]
+        },
+        {
+          "frame": 102,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 103,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 104,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "TurnLeft",
+      "hz": 60,
+      "samples": 97,
+      "max_source_pairs": 11,
+      "max_candidate_parent_mapped_pairs": 11,
+      "new_pairs": [
+        {
+          "frame": 0,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 6,
+          "pairs": [
+            [
+              9693,
+              3397
+            ],
+            [
+              9693,
+              3411
+            ]
+          ]
+        },
+        {
+          "frame": 62,
+          "pairs": [
+            [
+              9290,
+              3561
+            ]
+          ]
+        },
+        {
+          "frame": 90,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 95,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 96,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "clip": "TurnRight",
+      "hz": 60,
+      "samples": 97,
+      "max_source_pairs": 13,
+      "max_candidate_parent_mapped_pairs": 14,
+      "new_pairs": [
+        {
+          "frame": 0,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 6,
+          "pairs": [
+            [
+              9693,
+              3397
+            ],
+            [
+              9693,
+              3411
+            ]
+          ]
+        },
+        {
+          "frame": 28,
+          "pairs": [
+            [
+              9693,
+              3397
+            ],
+            [
+              9693,
+              3411
+            ]
+          ]
+        },
+        {
+          "frame": 31,
+          "pairs": [
+            [
+              9292,
+              3557
+            ]
+          ]
+        },
+        {
+          "frame": 32,
+          "pairs": [
+            [
+              9292,
+              3559
+            ]
+          ]
+        },
+        {
+          "frame": 33,
+          "pairs": [
+            [
+              9292,
+              3561
+            ],
+            [
+              9292,
+              3562
+            ]
+          ]
+        },
+        {
+          "frame": 77,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 90,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 95,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        },
+        {
+          "frame": 96,
+          "pairs": [
+            [
+              9290,
+              3235
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "Only changed cuff triangles versus all Body triangles; proper crossings, not thickness/containment or full clothing certification"
+}
