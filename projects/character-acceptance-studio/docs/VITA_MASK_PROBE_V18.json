@@ -1,0 +1,135 @@
+{
+  "asset_id": "vroid-vita-motion-review",
+  "version": "0.5.0",
+  "sha256": "23ff3955af6e7e022ac79ec1cf1ecd5c1ba04c7d4e523da7b84750b8e9195874",
+  "browser": "Chromium WebGL / SwiftShader CPU",
+  "viewport": [
+    1200,
+    900
+  ],
+  "view": "shoulders, single character",
+  "method": "Canvas toDataURL at same camera and time, toggling only local outline-width mask; restore equality checked",
+  "samples": [
+    {
+      "clip": "Run",
+      "time_s": 0.0,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Run",
+      "time_s": 0.175,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Run",
+      "time_s": 0.35,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Run",
+      "time_s": 0.525,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Walk",
+      "time_s": 0.0,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Walk",
+      "time_s": 0.175,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Walk",
+      "time_s": 0.35,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Walk",
+      "time_s": 0.525,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Idle",
+      "time_s": 0.0,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Idle",
+      "time_s": 0.175,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Idle",
+      "time_s": 0.35,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "Idle",
+      "time_s": 0.525,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnLeft",
+      "time_s": 0.0,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnLeft",
+      "time_s": 0.175,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnLeft",
+      "time_s": 0.35,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnLeft",
+      "time_s": 0.525,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnRight",
+      "time_s": 0.0,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnRight",
+      "time_s": 0.175,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnRight",
+      "time_s": 0.35,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    },
+    {
+      "clip": "TurnRight",
+      "time_s": 0.525,
+      "canvas_pixels_changed": false,
+      "exact_restore": true
+    }
+  ],
+  "conclusion": "No visible difference in these samples. Runtime compatibility is separate from unverified visual benefit. Not a whole-animation visual proof."
+}
