@@ -1,0 +1,11 @@
+# V19 checkpoint / 下一位 AI
+
+Stage: operational cuff diagnostics, **not successful garment repair**. Isolated branch `feat/character-studio-v19-garment-surface-20261112`, based on exact V18 `380f1aacc14498bc96ebb4102ce137cb832bf422`. Do not infer assets are on main or merge other branches wholesale. Prior source audits/PR #50/#137/#39/Taiwan/V110/V111 gaps remain as documented by earlier checkpoints; this stage has not re-audited their current heads.
+
+Safe catalog has only exact V18 Vivi 0.6.0 and Vita 0.5.0. Both were already art-unapproved candidates. New `experiments-v19` native files and GLBs are rejected and exposed only by explicit comparison with an orange/red diagnostic panel. Do not promote based on package or CI pass. CI success means reproducible rejection and an operating review tool.
+
+Source mothers, images, rigs, animation bytes and 6648 existing Body vertices preserved. V19 new cuff vertices: Vivi 154, Vita 128. Explicit triangle construction avoids BMesh's nonplanar quad diagonal flaps. Still fails surface crossings at all-clip 60Hz. Read `evidence-v19/surface-diagnostics.json`, not just totals. A new triangle pair is not penetration volume; alpha support is not camera visibility. All original geometric crossings retained in raw counts. No Hair/Face independent-mesh intersections, containment, thickness, realtime cloth or engine physics tested.
+
+Numerical compensation study retained separately, not baked. Low-rank residual near float precision does not fix new geometric collisions. Scale-zero test still had one Vita numerical/intersection classification difference at 30Hz; no compensated file is accepted. Before a future fix, inspect actual defects, cloth ease and double surfaces at the bookmarked poses; avoid repeatedly subdividing invisible template boundaries or treating every changed parent-pair count as penetration severity.
+
+Read README_V19 for complete offline reconstruction, diagnostic UI, exact pins, limitations and package instructions. Future edits need a new version and broader garment clearance/visual verification. Continue actual shoulder geometry work afterward. Do not claim new models, mobile/Godot tests, human art approval, training, production integration, permanent download hosting or a deployment.
