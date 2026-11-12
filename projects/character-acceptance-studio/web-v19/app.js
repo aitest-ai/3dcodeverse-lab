@@ -109,8 +109,8 @@ async function jumpFinding(id=$('finding').value){
 function focusFinding(){
  const s=slots[0],mesh=s.root.getObjectByName('Bodybaked');s.root.updateMatrixWorld(true);mesh.skeleton.update();
  const box=new THREE.Box3();for(const id of selectedFinding.source_vertices.flat()){const p=new THREE.Vector3();mesh.getVertexPosition(id,p);box.expandByPoint(p.applyMatrix4(mesh.matrixWorld));}
- const center=box.getCenter(new THREE.Vector3()),radius=Math.max(.18,Math.min(.8,box.getSize(new THREE.Vector3()).length()*3));
- controls.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(radius*.45,radius*.15,radius));controls.update();view='diagnostic';document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));
+ const center=box.getCenter(new THREE.Vector3()),radius=Math.max(.5,Math.min(.8,box.getSize(new THREE.Vector3()).length()*3));
+ const outward=new THREE.Vector3(center.x,0,center.z);if(outward.lengthSq()<.01)outward.set(0,0,1);outward.normalize().multiplyScalar(radius);outward.y=radius*.18;controls.target.copy(center);camera.position.copy(center).add(outward);controls.update();view='diagnostic';document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));
 }
 function updateDiagnostic(){
  if(!selectedFinding)return;
