@@ -1,0 +1,75 @@
+{
+  "schema": "noboribetsu-date-v043-cap-footprint/1",
+  "status": "SOURCE_AND_ISOLATED_WEBGL2_PASS_NOT_PROMOTED",
+  "kind": "standalone_inspector_only",
+  "parent_pr": 170,
+  "base_branch": "qa/noboribetsu-date-v042-crossmesh-joint-inspector-r1",
+  "source_v042_inspector_zip_sha256": "d6949e140f0763df1f2608ed5da6c48938192852878e52d18e121d69ac51d139",
+  "source_glb_count": 3,
+  "source_glbs_byte_identical": true,
+  "source_file_count": 17,
+  "unchanged_parent_files": 14,
+  "modified_parent_files": [
+    "app.js",
+    "index.html",
+    "style.css"
+  ],
+  "v043_inspector_file_count": 24,
+  "clean_replay_matched": 24,
+  "whole_cap_dimensions_model_units": [
+    0.15,
+    0.2
+  ],
+  "cap_area_model_units_squared": 0.03,
+  "cap_count": 4,
+  "wood_meshes_checked": [
+    "wood_lintel",
+    "wood_timber"
+  ],
+  "full_projected_overlap_zero_for_all_eight_pairs": true,
+  "shapely_exact_projected_horizontal_gap_lintel": [
+    0.59,
+    0.59,
+    0.22,
+    0.22
+  ],
+  "shapely_exact_projected_horizontal_gap_timber": [
+    0.425,
+    0.425,
+    0.425,
+    0.425
+  ],
+  "grid_samples_per_cap_per_wood_mesh": 121,
+  "grid_sample_nearest_3d_is_approximation": true,
+  "grid_sample_min_3d_lintel": [
+    0.59,
+    0.59,
+    0.59,
+    0.59
+  ],
+  "grid_sample_min_3d_timber": [
+    0.46,
+    0.46,
+    0.73,
+    0.73
+  ],
+  "original_building_modified": false,
+  "full_game_runtime_modified": false,
+  "collision_changed": false,
+  "route_changed": false,
+  "webgl2_browser_real": true,
+  "loaded_original_glbs": 3,
+  "real_desktop_screenshots": 6,
+  "chrome_mobile_emulation_430x932_screenshots": 1,
+  "javascript_errors": 0,
+  "blender_native_executed": false,
+  "android_device_tested": false,
+  "private_host_tested": false,
+  "onsite_surveyed": false,
+  "structural_engineering_approved": false,
+  "deliveries": {
+    "inspector_zip_sha256": "f6004350fa5c216209d3467db8d807b2e3af0b74fade576b948a60ef7cd02dee",
+    "sourceqa_zip_sha256": "c0afe280a1c0432a086ffc02acb18d8219851f74be1aaa6b01d8591ddcb3e6db"
+  },
+  "merge_policy": "DRAFT_ONLY_NO_MERGE_NO_DEPLOY"
+}
