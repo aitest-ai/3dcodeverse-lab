@@ -68,8 +68,8 @@
   "onsite_surveyed": false,
   "structural_engineering_approved": false,
   "deliveries": {
-    "inspector_zip_sha256": "f6004350fa5c216209d3467db8d807b2e3af0b74fade576b948a60ef7cd02dee",
-    "sourceqa_zip_sha256": "c0afe280a1c0432a086ffc02acb18d8219851f74be1aaa6b01d8591ddcb3e6db"
+    "inspector_zip_sha256": "23d23719fb7872f09f372c61796caffdfaa90c11667cfa7bc513f3c0fad67562",
+    "sourceqa_zip_sha256": "ccbef699745d2adbc3106733132dd27880606e2427260eb4c71d81cee27d8588"
   },
   "merge_policy": "DRAFT_ONLY_NO_MERGE_NO_DEPLOY"
 }
