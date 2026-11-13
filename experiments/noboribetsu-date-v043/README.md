@@ -32,8 +32,8 @@ V043 由原 V042 Inspector.zip 直接乾淨重建，載入 3 份原始 G／F+G�
 重播：`python source/replay_v043.py /private/Noboribetsu_Date_V042_R1_Inspector.zip /new/EMPTY_V043`，需 numpy/trimesh/shapely。網頁啟動：解壓 V043 Inspector.zip，在目錄內執行 `python -m http.server 8765`，以 Chrome/Edge 開啟 `http://127.0.0.1:8765/`；不能直接雙擊 file://。
 
 ## 交付 SHA256
-- Inspector ZIP（24 files）：`f6004350fa5c216209d3467db8d807b2e3af0b74fade576b948a60ef7cd02dee`
-- SourceQA ZIP（26 files）：`c0afe280a1c0432a086ffc02acb18d8219851f74be1aaa6b01d8591ddcb3e6db`
+- Inspector ZIP（24 files）：`23d23719fb7872f09f372c61796caffdfaa90c11667cfa7bc513f3c0fad67562`
+- SourceQA ZIP（26 files）：`ccbef699745d2adbc3106733132dd27880606e2427260eb4c71d81cee27d8588`
 - 實際 Chromium 四格 comparison PNG：`621ecd00db7a25372407c9071924600f8e09434c363d79c463ba9761a072b44b`
 - 完全離線 slide Review HTML：`a774589e6ca39151160f481111eb62f4a638a44749b50206f9b053a4e1e0797b`
 
