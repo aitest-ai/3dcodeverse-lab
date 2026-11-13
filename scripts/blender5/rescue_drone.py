@@ -152,17 +152,24 @@ for key, (mx, my) in motors.items():
     hub_parts += [hub, cone]
     for k in range(2):
         a = k * math.pi
-        bl = box("blade", (0.34, 0.07, 0.008), (mx, my, 0.15), M["prop"], bevel=0.003)
-        # 扭轉的槳葉
-        bpy.context.view_layer.objects.active = bl
-        for v in bl.data.vertices:
-            t = v.co.x / 0.34
-            v.co.z += t * 0.02
-        bl.location = (mx + math.cos(a) * 0.19, my + math.sin(a) * 0.19, 0.15)
-        bl.rotation_euler = (math.radians(7) * (1 if k == 0 else -1), 0, a)
-        tip = box("tip", (0.06, 0.071, 0.01), (0, 0, 0), M["orange"], bevel=0.003)
-        tip.location = (mx + math.cos(a) * 0.34, my + math.sin(a) * 0.34, 0.152); tip.rotation_euler = (0, 0, a)
-        hub_parts += [bl, tip]
+        # 槳葉：直接用世界座標頂點建模（有扭轉角），避免 Blender 物件矩陣尚未更新的問題
+        blade_len, hw = 0.33, 0.034
+        def blade_mesh(name, r0, r1, z, material, thick):
+            vs = []
+            for r, tw in ((r0, 0.0), (r1, 0.0)):
+                pitch = math.radians(14 - 8 * (r - 0.05) / 0.3)   # 根部扭轉較大
+                for sy in (-1, 1):
+                    for sz in (-1, 1):
+                        lx = r; ly = sy * hw * (1.0 - 0.25 * (r - r0) / max(r1 - r0, 1e-6)); lz = sz * thick + ly * math.sin(pitch) * (1 if k == 0 else -1)
+                        vs.append((mx + lx * math.cos(a) - ly * math.sin(a), my + lx * math.sin(a) + ly * math.cos(a), z + lz))
+            fs = [(0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)]
+            me = bpy.data.meshes.new(name); me.from_pydata(vs, [], fs); me.update()
+            o = bpy.data.objects.new(name, me); sc.collection.objects.link(o)
+            o.data.materials.append(material)
+            for p_ in me.polygons: p_.use_smooth = True
+            return o
+        hub_parts.append(blade_mesh("blade", 0.04, 0.27, 0.15, M["prop"], 0.005))
+        hub_parts.append(blade_mesh("tip", 0.27, 0.33, 0.15, M["orange"], 0.0055))
     props.append(join(hub_parts, "Prop_" + key, active=hub_parts[0]))
 # 讓每個螺旋槳的原點移到轉軸中心
 for p in props:
