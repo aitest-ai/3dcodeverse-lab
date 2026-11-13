@@ -78,6 +78,7 @@ def torus(name, R, r, loc, material, rot=(0, 0, 0), seg=64):
     return finish(o, material)
 
 def join(objs, name, active=None):
+    bpy.context.view_layer.update()
     bpy.ops.object.select_all(action='DESELECT')
     for o in objs: o.select_set(True)
     bpy.context.view_layer.objects.active = active or objs[0]
@@ -124,7 +125,7 @@ for key, (mx, my) in motors.items():
     arm.location = (mx * 0.52, my * 0.52, -0.01); arm.rotation_euler = (0, 0, ang)
     cover = box("armcover_" + key, (L * 0.45, 0.082, 0.02), (0, 0, 0.03), M["orange"], bevel=0.008)
     cover.location = (mx * 0.40, my * 0.40, 0.025); cover.rotation_euler = (0, 0, ang)
-    mh = cyl("motor_" + key, 0.085, 0.13, (mx, my, 0.03), M["metal"], verts=48, bevel=0.01)
+    mh = cyl("motor_" + key, 0.07, 0.1, (mx, my, 0.04), M["metal"], verts=48, bevel=0.01)
     mr = cyl("mring_" + key, 0.092, 0.03, (mx, my, 0.1), M["orange"], verts=48, bevel=0.006)
     mb = cyl("mbase_" + key, 0.075, 0.05, (mx, my, -0.05), M["carbon"], verts=40)
     guard = torus("guard_" + key, 0.385, 0.016, (mx, my, 0.045), M["orange"], seg=72)
