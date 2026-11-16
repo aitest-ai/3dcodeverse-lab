@@ -1,0 +1,72 @@
+name: Arcade Cabinet GLB
+on:
+  push:
+    branches: ['feat/arcade-cabinet-glb']
+    paths:
+      - 'scripts/blender5/arcade_cabinet.py'
+      - '.github/workflows/arcade-cabinet.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install headless rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends xvfb libgl1 libegl1 libxrender1 libxi6 libsm6 libxkbcommon0 libxxf86vm1
+      - name: Download Blender 5.2.3 LTS from official source and verify SHA256
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION=5.2.3
+          FILE="blender-${VERSION}-linux-x64.tar.xz"
+          URL="https://download.blender.org/release/Blender5.2"
+          mkdir -p .tools
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o ".tools/$FILE" "$URL/$FILE"
+          curl -fL --retry 4 --retry-all-errors --connect-timeout 30 -o .tools/checksums.sha256 "$URL/blender-${VERSION}.sha256"
+          python3 - <<'PY'
+          import hashlib,re,pathlib
+          filename="blender-5.2.3-linux-x64.tar.xz"
+          lines=pathlib.Path(".tools/checksums.sha256").read_text().splitlines()
+          line=next((x for x in lines if filename in x),None)
+          assert line, "Official checksum line not found"
+          match=re.search(r"(?<![0-9a-fA-F])[0-9a-fA-F]{64}(?![0-9a-fA-F])",line)
+          assert match, "Cannot parse Blender checksum"
+          with open(".tools/"+filename,"rb") as f:
+              digest=hashlib.file_digest(f,"sha256").hexdigest()
+          assert digest==match.group().lower(),"Blender checksum mismatch"
+          print("Official Blender SHA256 verified:",digest)
+          PY
+          tar -xf ".tools/$FILE" -C .tools
+          echo "$PWD/.tools/blender-${VERSION}-linux-x64" >> "$GITHUB_PATH"
+      - name: Verify Blender is available
+        run: blender -b --factory-startup --version
+      - name: Build arcade cabinet
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          mkdir -p outputs
+          xvfb-run -a blender -b --factory-startup --python scripts/blender5/arcade_cabinet.py
+      - name: Validate GLB
+        run: |
+          python3 scripts/blender5/validate_glb.py outputs
+          ls -lah outputs/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arcade-cabinet
+          path: outputs/
+      - name: Commit result back to branch
+        if: github.ref_type == 'branch'
+        run: |
+          mkdir -p assets/arcade_cabinet
+          cp outputs/arcade_cabinet.glb outputs/arcade_cabinet.blend outputs/report.json outputs/asset_manifest.json assets/arcade_cabinet/
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/arcade_cabinet
+          git commit -m "chore: built arcade cabinet GLB [skip ci]" || echo nothing
+          git push
