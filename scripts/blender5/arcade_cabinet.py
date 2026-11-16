@@ -34,7 +34,7 @@ RED = mat("red", (.9, .12, .12, 1), 0, .25, (.9, .12, .12, 1), .6)
 BLUE = mat("blue", (.15, .4, .95, 1), 0, .25, (.15, .4, .95, 1), .6)
 GREEN = mat("green", (.15, .8, .3, 1), 0, .25, (.15, .8, .3, 1), .6)
 SCREEN = mat("screen", (.02, .03, .08, 1), 0, .15, (.1, .15, .35, 1), 1.2)
-MARQ = mat("marquee", (.1, .05, .2, 1), 0, .3, (.9, .5, .1, 1), 2.0)
+MARQ = mat("marquee", (.1, .05, .2, 1), 0, .3, (.9, .5, .1, 1), 0.8)
 STEEL = mat("steel_dark", (.15, .15, .18, 1), .8, .35)
 
 def make(name, bm, m, loc=(0, 0, 0), smooth=True):
@@ -103,7 +103,7 @@ def on_panel(x, s, lift=0.0):
 
 # screen glass + black bezel just in front of the recess
 cen = (scr_top + scr_bot) / 2; slen = (scr_top - scr_bot).length
-bez = box("Bezel", (W - .06, .012, slen + .06), (0, (cen + sn * .002).x, (cen + sn * .002).y), BLACK, 0, rx=th_s)
+bez = box("Bezel", (W - .06, slen + .06, .012), (0, (cen + sn * .002).x, (cen + sn * .002).y), BLACK, 0, rx=th_s)
 sc = cen + sn * .006
 bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=.5)
 uv = bm.loops.layers.uv.verify()
