@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "asset_id": "arcade_cabinet",
+  "format": "glTF 2.0 GLB",
+  "source": "original procedural Blender script",
+  "unit": "meter",
+  "coordinate_system": "Blender Z-up; glTF export converts to Y-up; front faces +Z",
+  "model_file": "arcade_cabinet.glb",
+  "source_file": "arcade_cabinet.blend",
+  "clips": [],
+  "min_animation_count": 0,
+  "requirements": {
+    "skins": false,
+    "animated": false,
+    "visual_review": true
+  },
+  "license_note": "Original geometry (CC0). Named parts: Screen, Marquee, Joystick, Button_A/B/C/Start, CartSlot, CoinDoor."
+}
