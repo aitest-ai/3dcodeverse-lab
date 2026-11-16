@@ -103,8 +103,8 @@ def on_panel(x, s, lift=0.0):
 
 # screen glass + black bezel just in front of the recess
 cen = (scr_top + scr_bot) / 2; slen = (scr_top - scr_bot).length
-bez = box("Bezel", (W - .06, slen + .06, .012), (0, (cen + sn * .002).x, (cen + sn * .002).y), BLACK, 0, rx=th_s)
-sc = cen + sn * .006
+bez = box("Bezel", (W - .06, slen + .06, .012), (0, (cen - sn * .004).x, (cen - sn * .004).y), BLACK, 0, rx=th_s)
+sc = cen + sn * .008
 bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=.5)
 uv = bm.loops.layers.uv.verify()
 for l in [l for fc in bm.faces for l in fc.loops]:
