@@ -1,14 +1,15 @@
 """Original procedural arcade cabinet (Blender 5, headless) for the Scratch game-studio classroom site.
-Parts are separate named objects so Three.js can drive them:
-  Screen (UV 0-1, replace its emissive texture), Marquee, Joystick (pivot at base), Button_A/B/C/Start (pivot at base),
-  CartSlot, CoinDoor.  Y-up export, metres, front faces +Z.  License: original geometry, CC0.
+All geometry is built with bmesh (no context-dependent operators) so the result is deterministic.
+Axes while modelling: X width, Y depth (front = -Y), Z up.  glTF export converts to Y-up, front faces +Z.
+Named parts: Screen (UV 0-1), Marquee, Joystick, Button_A/B/C/Start (pivot at base), CartSlot, CoinDoor.
+License: original geometry (CC0).
 """
 import bpy, bmesh, math, json
 from pathlib import Path
-from mathutils import Vector
+from mathutils import Vector, Matrix, Euler
 
 out = Path("outputs"); out.mkdir(parents=True, exist_ok=True)
-bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
+for o in list(bpy.data.objects): bpy.data.objects.remove(o, do_unlink=True)
 
 def mat(name, color, metal=0.0, rough=0.5, emit=None, strength=0.0):
     m = bpy.data.materials.new(name); m.use_nodes = True
@@ -23,7 +24,7 @@ def mat(name, color, metal=0.0, rough=0.5, emit=None, strength=0.0):
     return m
 
 BODY = mat("body_navy", (.09, .08, .30, 1), .15, .38)
-BODY2 = mat("body_panel", (.14, .12, .42, 1), .1, .45)
+BODY2 = mat("body_panel", (.16, .13, .45, 1), .1, .45)
 BLACK = mat("black_trim", (.02, .02, .04, 1), .2, .5)
 CHROME = mat("chrome", (.85, .86, .9, 1), 1.0, .18)
 PINK = mat("neon_pink", (1, .2, .6, 1), 0, .3, (1, .2, .6, 1), 3.5)
@@ -36,126 +37,146 @@ SCREEN = mat("screen", (.02, .03, .08, 1), 0, .15, (.1, .15, .35, 1), 1.2)
 MARQ = mat("marquee", (.1, .05, .2, 1), 0, .3, (.9, .5, .1, 1), 2.0)
 STEEL = mat("steel_dark", (.15, .15, .18, 1), .8, .35)
 
-def bevel(o, w=.012, seg=2):
-    m = o.modifiers.new("bevel", 'BEVEL'); m.width = w; m.segments = seg; m.limit_method = 'ANGLE'
-    bpy.context.view_layer.objects.active = o; o.select_set(True)
-    bpy.ops.object.modifier_apply(modifier="bevel"); o.select_set(False)
-
-def box(name, size, loc, m, bev=0.0, rot=(0, 0, 0)):
-    bpy.ops.mesh.primitive_cube_add(size=1, location=loc, rotation=rot)
-    o = bpy.context.object; o.name = name; o.scale = size
-    bpy.ops.object.transform_apply(scale=True)
-    o.data.materials.append(m)
-    if bev: bevel(o, bev)
-    bpy.ops.object.shade_smooth()
+def make(name, bm, m, loc=(0, 0, 0), smooth=True):
+    me = bpy.data.meshes.new(name); bm.to_mesh(me); bm.free()
+    o = bpy.data.objects.new(name, me); bpy.context.scene.collection.objects.link(o)
+    o.location = loc; o.data.materials.append(m)
+    if smooth:
+        for p in me.polygons: p.use_smooth = True
     return o
 
-def cyl(name, r, h, loc, m, rot=(0, 0, 0), verts=32):
-    bpy.ops.mesh.primitive_cylinder_add(radius=r, depth=h, vertices=verts, location=loc, rotation=rot)
-    o = bpy.context.object; o.name = name; o.data.materials.append(m); bpy.ops.object.shade_smooth(); return o
+def bevel_mod(o, w=.01, seg=2):
+    md = o.modifiers.new("bevel", 'BEVEL'); md.width = w; md.segments = seg; md.limit_method = 'ANGLE'; md.angle_limit = math.radians(35)
 
-def set_origin(o, point):
-    bpy.context.scene.cursor.location = point
-    bpy.context.view_layer.objects.active = o; o.select_set(True)
-    bpy.ops.object.origin_set(type='ORIGIN_CURSOR'); o.select_set(False)
+def box(name, size, center, m, bev=0.0, rx=0.0, pivot=None):
+    """Axis box (size) rotated by rx about X, centred at `center` (world). pivot -> object origin placed there."""
+    bm = bmesh.new(); bmesh.ops.create_cube(bm, size=1.0)
+    R = Matrix.Rotation(rx, 4, 'X')
+    bmesh.ops.scale(bm, vec=Vector(size), verts=bm.verts)
+    bmesh.ops.transform(bm, matrix=R, verts=bm.verts)
+    c = Vector(center); p = Vector(pivot) if pivot is not None else c
+    bmesh.ops.translate(bm, vec=c - p, verts=bm.verts)
+    o = make(name, bm, m, p, smooth=False)
+    if bev: bevel_mod(o, bev)
+    return o
 
-# ---------- Side profile (Y = depth, Z = height) extruded along X: classic upright cabinet ----------
-W = 0.76                       # cabinet width (x)
-prof = [  # (y, z): front is -Y in Blender -> becomes +Z after Y-up export
-    (0.00, 0.00), (0.80, 0.00), (0.80, 1.70), (0.62, 1.86), (0.34, 1.86), (0.34, 1.60), (0.02, 1.52),   # top & screen recess slope
-    (-0.02, 1.52), (-0.20, 1.52), (-0.28, 1.00), (-0.28, 0.12), (-0.18, 0.12), (-0.18, 0.00)]
-prof = [(-y + 0.0, z) for (y, z) in prof]  # flip so the front faces -Y (Blender front) => glTF +Z
+def cyl(name, r, h, center, m, rx=0.0, verts=32, pivot=None):
+    bm = bmesh.new(); bmesh.ops.create_cone(bm, cap_ends=True, segments=verts, radius1=r, radius2=r, depth=h)
+    bmesh.ops.transform(bm, matrix=Matrix.Rotation(rx, 4, 'X'), verts=bm.verts)
+    c = Vector(center); p = Vector(pivot) if pivot is not None else c
+    bmesh.ops.translate(bm, vec=c - p, verts=bm.verts)
+    return make(name, bm, m, p)
+
+def sphere(name, r, center, m, pivot=None):
+    bm = bmesh.new(); bmesh.ops.create_uvsphere(bm, u_segments=32, v_segments=16, radius=r)
+    c = Vector(center); p = Vector(pivot) if pivot is not None else c
+    bmesh.ops.translate(bm, vec=c - p, verts=bm.verts)
+    return make(name, bm, m, p)
+
+W = 0.76
+HW = W / 2
+# ---------- body: side profile (y, z) extruded along X.  Front is -Y. ----------
+prof = [(0.57, 0.0), (0.57, 1.92), (-0.30, 1.92), (-0.30, 1.70), (0.00, 1.66),     # back, top, marquee, recess top
+        (-0.16, 1.12), (-0.40, 1.03), (-0.40, 0.98), (-0.30, 0.96), (-0.30, 0.10),   # screen slope, control panel, front
+        (-0.24, 0.10), (-0.24, 0.0)]
 bm = bmesh.new()
-vs = [bm.verts.new((-W / 2, y, z)) for (y, z) in prof]
+vs = [bm.verts.new((-HW, y, z)) for (y, z) in prof]
 f = bm.faces.new(vs)
 res = bmesh.ops.extrude_face_region(bm, geom=[f])
-verts = [v for v in res['geom'] if isinstance(v, bmesh.types.BMVert)]
-bmesh.ops.translate(bm, verts=verts, vec=(W, 0, 0))
+nv = [v for v in res['geom'] if isinstance(v, bmesh.types.BMVert)]
+bmesh.ops.translate(bm, vec=(W, 0, 0), verts=nv)
 bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
-me = bpy.data.meshes.new("CabinetBody"); bm.to_mesh(me); bm.free()
-body = bpy.data.objects.new("CabinetBody", me); bpy.context.collection.objects.link(body)
-body.data.materials.append(BODY)
-bevel(body, .015, 3)
-bpy.context.view_layer.objects.active = body; bpy.ops.object.shade_smooth()
+body = make("CabinetBody", bm, BODY, smooth=False)
+bevel_mod(body, .014, 3)
 
-# Side art: diagonal neon stripes + stars on both flanks
+# helpers on the sloped surfaces
+scr_top = Vector((0.00, 1.66)); scr_bot = Vector((-0.16, 1.12))
+st = (scr_bot - scr_top).normalized()
+sn = Vector((-abs(st.y), abs(st.x)))
+th_s = math.asin(abs(sn.x))        # plane normal (0,-sin,cos)
+pan_a = Vector((-0.16, 1.12)); pan_b = Vector((-0.40, 1.03))
+pt = (pan_b - pan_a).normalized(); pn = Vector((-abs(pt.y), abs(pt.x)))
+th_p = math.asin(abs(pn.x))
+def on_panel(x, s, lift=0.0):
+    yz = pan_a + pt * s + pn * lift
+    return (x, yz.x, yz.y)
+
+# screen glass + black bezel just in front of the recess
+cen = (scr_top + scr_bot) / 2; slen = (scr_top - scr_bot).length
+bez = box("Bezel", (W - .06, .012, slen + .06), (0, (cen + sn * .002).x, (cen + sn * .002).y), BLACK, 0, rx=th_s)
+sc = cen + sn * .006
+bm = bmesh.new(); bmesh.ops.create_grid(bm, x_segments=1, y_segments=1, size=.5)
+uv = bm.loops.layers.uv.verify()
+for l in [l for fc in bm.faces for l in fc.loops]:
+    v = l.vert.co; l[uv].uv = (v.x + .5, v.y + .5)
+bmesh.ops.scale(bm, vec=Vector((W - .16, slen - .06, 1)), verts=bm.verts)
+bmesh.ops.transform(bm, matrix=Matrix.Rotation(th_s, 4, 'X'), verts=bm.verts)
+screen = make("Screen", bm, SCREEN, (0, sc.x, sc.y), smooth=False)
+
+# marquee (lit header) + frame
+box("MarqueeFrame", (W - .02, .02, .26), (0, -0.305, 1.81), BLACK, .006)
+box("Marquee", (W - .12, .01, .19), (0, -0.32, 1.81), MARQ, .003)
+# side art: diagonal neon stripes + stars on both flanks
 for sx in (-1, 1):
-    x = sx * (W / 2 + 0.004)
-    for i, (m, y0) in enumerate([(PINK, -0.38), (CYAN, -0.52), (YEL, -0.66)]):
-        s = box(f"SideStripe{sx}_{i}", (0.004, 0.55, 0.035), (x, y0 * -1 - 0.5, 1.0 + i * 0.0), m, 0, (math.radians(38 * sx * 0 + 38), 0, 0))
-        s.location = (x, -0.35 - i * 0.0, 0.55 + i * 0.07)
-        s.rotation_euler = (math.radians(52), 0, 0)
+    x = sx * (HW + .003)
+    for i, m in enumerate([PINK, CYAN, YEL]):
+        box(f"SideStripe{sx}_{i}", (.006, .75, .045), (x, .10, .38 + i * .085), m, 0, rx=math.radians(38))
     for k in range(6):
-        st = box(f"Star{sx}_{k}", (0.004, 0.035, 0.035), (x, -0.25 - (k % 3) * 0.17, 1.2 + (k // 3) * 0.28), YEL, 0, (0, 0, math.radians(45)))
-
-# ---------- Front: kick plate, coin door, control panel, bezel, screen, marquee ----------
-FY = -0.28                      # front plane (y)
-box("KickPlate", (W - .02, .02, .1), (0, FY - .005, .06), STEEL, .004)
-door = box("CoinDoor", (.30, .03, .36), (0, FY - .012, .50), BLACK, .008)
+        box(f"Star{sx}_{k}", (.006, .05, .05), (x, -.12 + (k % 3) * .20, 1.25 + (k // 3) * .30), YEL, 0, rx=math.radians(45))
+# front lower: coin door, cartridge slot, kick plate, glow strip
+box("KickPlate", (W - .02, .02, .10), (0, -0.25, .05), STEEL, .004)
+box("CoinDoor", (.30, .02, .34), (0, -0.31, .60), BLACK, .006)
 for i, x in enumerate((-.07, .07)):
-    box(f"CoinSlot{i}", (.06, .012, .015), (x, FY - .032, .58), RED, 0)
-    cyl(f"CoinBtn{i}", .028, .014, (x, FY - .034, .50), CHROME, rot=(math.radians(90), 0, 0))
-box("CartSlotFrame", (.50, .035, .09), (0, FY - .014, .26), STEEL, .006)
-slot = box("CartSlot", (.42, .02, .035), (0, FY - .034, .26), BLACK, .004)
-box("CartSlotGlow", (.40, .004, .008), (0, FY - .045, .295), CYAN, 0)
-
-# control panel (tilted slab)
-cp = box("ControlPanel", (W - .04, .34, .05), (0, FY - .12, 1.025), BODY2, .01, (math.radians(-18), 0, 0))
-cp.location = (0, FY - .10, 1.03)
-cp_top = 1.03 + .027
-box("PanelTrim", (W - .02, .02, .02), (0, FY - .27, .965), PINK, 0, (math.radians(-18), 0, 0))
-# joystick: base plate, shaft, ball (pivot at base for animation)
-base_c = Vector((-.2, FY - .10, cp_top + .006))
-cyl("JoyBase", .05, .012, base_c, STEEL, rot=(math.radians(-18), 0, 0))
-shaft = cyl("JoyShaft", .009, .13, (base_c.x, base_c.y, base_c.z + .065), CHROME, verts=16)
-ball = bpy.data.objects.new("x", None)
-bpy.ops.mesh.primitive_uv_sphere_add(radius=.034, location=(base_c.x, base_c.y, base_c.z + .145), segments=32, ring_count=16)
-ballo = bpy.context.object; ballo.name = "JoyBall"; ballo.data.materials.append(RED); bpy.ops.object.shade_smooth()
-bpy.ops.object.select_all(action='DESELECT'); shaft.select_set(True); ballo.select_set(True)
-bpy.context.view_layer.objects.active = shaft; bpy.ops.object.join(); shaft.name = "Joystick"
-set_origin(shaft, base_c)
-# buttons (pivot at base)
-def button(name, x, dy, m):
-    c = Vector((x, FY - .10 + dy, cp_top + .004))
-    b = cyl(name, .026, .022, (c.x, c.y, c.z + .011), m, verts=32)
-    cyl(name + "_ring", .031, .008, (c.x, c.y, c.z + .002), STEEL, verts=32)
-    set_origin(b, c); return b
-button("Button_A", .02, .045, RED); button("Button_B", .09, .02, BLUE); button("Button_C", .16, -.005, GREEN)
-button("Button_Start", .27, .06, YEL)
-
-# bezel + screen
-box("Bezel", (W - .06, .10, .56), (0, FY + .17, 1.52), BLACK, .01, (math.radians(-18), 0, 0))
-bezel = bpy.data.objects["Bezel"]; bezel.location = (0, -0.06, 1.55)
-bpy.ops.mesh.primitive_plane_add(size=1, location=(0, -0.06 - .063, 1.55), rotation=(math.radians(90 - 18), 0, 0))
-scr = bpy.context.object; scr.name = "Screen"; scr.scale = (.56, .42, 1); bpy.ops.object.transform_apply(scale=True)
-scr.data.materials.append(SCREEN)
-# marquee header
-mq = box("Marquee", (W - .08, .05, .20), (0, FY - .02 + .28, 1.76), MARQ, .006)
-mq.location = (0, -0.46, 1.78)
-box("MarqueeFrame", (W - .03, .12, .24), (0, -0.44, 1.78), BLACK, .008)
-# speaker grille on top front
-for i in range(7):
-    box(f"Grille{i}", (.05, .01, .012), (-.15 + i * .05, -0.28, 1.43), BLACK, 0)
-# T-molding (front vertical edges) + feet
+    box(f"CoinSlot{i}", (.06, .012, .016), (x, -0.325, .68), RED)
+    cyl(f"CoinBtn{i}", .028, .014, (x, -0.325, .58), CHROME, rx=math.radians(90))
+box("CartSlotFrame", (.50, .03, .10), (0, -0.31, .30), STEEL, .006)
+box("CartSlot", (.42, .02, .04), (0, -0.325, .30), BLACK, .004)
+box("CartSlotGlow", (.40, .004, .008), (0, -0.337, .335), CYAN)
+box("GlowStrip", (W - .1, .008, .014), (0, -0.30, .14), PINK)
 for sx in (-1, 1):
-    box(f"TMold{sx}", (.016, .02, 1.40), (sx * (W / 2), FY - .004, .84), CYAN, .004)
-    box(f"Foot{sx}", (.08, .08, .035), (sx * .30, -.55, .018), STEEL, .01)
-    box(f"Foot_b{sx}", (.08, .08, .035), (sx * .30, -.05, .018), STEEL, .01)
-# neon under-glow strip
-box("GlowStrip", (W - .1, .01, .015), (0, FY - .02, .115), PINK, 0)
+    box(f"TMold{sx}", (.016, .018, .84), (sx * HW, -0.30, .53), CYAN, .004)
+# speaker grille under marquee
+for i in range(7):
+    box(f"Grille{i}", (.05, .01, .012), (-.15 + i * .05, -0.30, 1.775), BLACK)
+# control panel top trim
+box("PanelTrim", (W - .02, .02, .02), (0, -0.40, 1.0), PINK, .004)
+# joystick (pivot at base, tilt-able) + buttons
+jb = Vector(on_panel(-.20, .12))
+cyl("JoyBase", .05, .012, on_panel(-.20, .12, .006), STEEL, rx=th_p)
+shaft_c = Vector(on_panel(-.20, .12, .075)); ball_c = Vector(on_panel(-.20, .12, .15))
+# joystick = shaft + ball in one mesh, origin at its base
+jy = bmesh.new()
+bmesh.ops.create_cone(jy, cap_ends=True, segments=16, radius1=.009, radius2=.009, depth=.14)
+bmesh.ops.translate(jy, vec=(0, 0, .07), verts=jy.verts)
+s2 = bmesh.new(); bmesh.ops.create_uvsphere(s2, u_segments=24, v_segments=12, radius=.034); bmesh.ops.translate(s2, vec=(0, 0, .15), verts=s2.verts)
+me_s = bpy.data.meshes.new("tmp_ball"); s2.to_mesh(me_s); s2.free()
+jy.from_mesh(me_s); bpy.data.meshes.remove(me_s)
+bmesh.ops.transform(jy, matrix=Matrix.Rotation(th_p, 4, 'X'), verts=jy.verts)
+joy = make("Joystick", jy, RED, jb)
+for i, (x, s, m, nme) in enumerate([(.02, .05, RED, "Button_A"), (.10, .075, BLUE, "Button_B"), (.18, .10, GREEN, "Button_C"), (.29, .03, YEL, "Button_Start")]):
+    base = Vector(on_panel(x, s))
+    cyl(nme + "_ring", .031, .008, on_panel(x, s, .004), STEEL, rx=th_p)
+    cyl(nme, .026, .022, on_panel(x, s, .011), m, rx=th_p, pivot=base)
+# feet
+for sx in (-1, 1):
+    for yy in (-.05, .45):
+        box(f"Foot{sx}_{yy}", (.08, .08, .02), (sx * .30, yy, .0), STEEL, .008)
 
-# ---------- Cleanup, export ----------
-for o in bpy.data.objects:
-    if o.type == 'EMPTY' or o.name == 'x': bpy.data.objects.remove(o)
+# ---------- export + diagnostics ----------
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.wm.save_as_mainfile(filepath=str((out / "arcade_cabinet.blend").resolve()))
-bpy.ops.export_scene.gltf(filepath=str((out / "arcade_cabinet.glb").resolve()), export_format='GLB', export_apply=True, export_yup=True, export_cameras=False, export_lights=False)
-names = sorted(o.name for o in bpy.data.objects if o.type == 'MESH')
-(out / "report.json").write_text(json.dumps({"blender_version": bpy.app.version_string, "objects": names, "note": "visual review required"}, indent=2), encoding="utf-8")
+bpy.ops.export_scene.gltf(filepath=str((out / "arcade_cabinet.glb").resolve()), export_format='GLB', export_apply=True, export_yup=True)
+diag = {}
+dg = bpy.context.evaluated_depsgraph_get()
+for o in bpy.data.objects:
+    if o.type != 'MESH': continue
+    pts = [o.matrix_world @ Vector(c) for c in o.bound_box]
+    diag[o.name] = [[round(min(p[i] for p in pts), 3) for i in range(3)], [round(max(p[i] for p in pts), 3) for i in range(3)]]
+(out / "report.json").write_text(json.dumps({"blender_version": bpy.app.version_string, "bounds_blender_zup": diag, "note": "visual review required"}, indent=2), encoding="utf-8")
 (out / "asset_manifest.json").write_text(json.dumps({
-    "schema_version": 1, "asset_id": "arcade_cabinet", "format": "glTF 2.0 GLB", "source": "original procedural Blender script",
+    "schema_version": 1, "asset_id": "arcade_cabinet", "format": "glTF 2.0 GLB", "source": "original procedural Blender script (bmesh)",
     "unit": "meter", "coordinate_system": "Blender Z-up; glTF export converts to Y-up; front faces +Z",
     "model_file": "arcade_cabinet.glb", "source_file": "arcade_cabinet.blend", "clips": [], "min_animation_count": 0,
     "requirements": {"skins": False, "animated": False, "visual_review": True},
     "license_note": "Original geometry (CC0). Named parts: Screen, Marquee, Joystick, Button_A/B/C/Start, CartSlot, CoinDoor."}, indent=2), encoding="utf-8")
-print("ARCADE_CABINET_OK", len(names))
+print("ARCADE_CABINET_OK", len(diag))
